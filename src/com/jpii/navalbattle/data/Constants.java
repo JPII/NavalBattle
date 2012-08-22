@@ -20,15 +20,17 @@ package com.jpii.navalbattle.data;
 public class Constants {
 	
 	/*
-	 * Debug
+	 * General
 	 */
+	public static final String NAVALBATTLE_VERSION = "1.0-dev";
+	public static final String NAVALBATTLE_VERSION_TITLE = "NavalBattle " + NAVALBATTLE_VERSION;
 	public static final boolean DEBUG_MODE = true;
 	
 	/*
 	 * RoketGamer
 	 */
 	public static final boolean ENABLE_ROKETGAMER = true;
-	public static final boolean FORCE_LOGIN = false;
+	public static final boolean FORCE_LOGIN = true;
 	public static final String API_KEY = "API_KEY";
 	public static final String SERVER_LOCATION = "http://www.roketgamer.co.cc";
 	

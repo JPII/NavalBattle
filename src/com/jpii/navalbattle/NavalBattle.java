@@ -27,15 +27,27 @@ public class NavalBattle {
 	
 	public static void main(String[] args) {
 		debugWindow = new DebugWindow();
-		
 		debugWindow.printInfo("NavalBattle initialized.");
+		new LoginWindow();
 	}
 	
-	public DebugWindow getDebugWindow() {
+
+	
+	/**
+	 * Returns static instance of DebugWindow.
+	 * 
+	 * @return debugWindow
+	 */
+	public static DebugWindow getDebugWindow() {
 		return debugWindow;
 	}
 	
-	public RoketGamer getRoketGamer() {
+	/**
+	 * Returns static instance of RoketGamer.
+	 * 
+	 * @return roketGamer
+	 */
+	public static RoketGamer getRoketGamer() {
 		return roketGamer;
 	}
 }
