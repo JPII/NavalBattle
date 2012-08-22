@@ -21,6 +21,7 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
+import com.jpii.navalbattle.NavalBattle;
 import com.jpii.navalbattle.data.Constants;
 
 public class DebugWindow {
@@ -72,7 +73,7 @@ public class DebugWindow {
 			@Override
 			public void keyPressed(KeyEvent k) {	
 				if(k.getKeyCode() == KeyEvent.VK_ESCAPE) {
-					System.exit(0);
+					NavalBattle.close();
 				}
 			}
 			@Override
@@ -86,7 +87,7 @@ public class DebugWindow {
 		f.addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowClosing(WindowEvent we) {
-				System.exit(0);
+				NavalBattle.close();
 			}
 		});
 	}

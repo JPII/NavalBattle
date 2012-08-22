@@ -86,7 +86,7 @@ public class LoginWindow {
 			@Override
 			public void keyPressed(KeyEvent k) {	
 				if(k.getKeyCode() == KeyEvent.VK_ESCAPE) {
-					System.exit(0);
+					NavalBattle.close();
 				}
 				if(k.getKeyCode() == KeyEvent.VK_ENTER) {
 					login();
@@ -103,7 +103,7 @@ public class LoginWindow {
 		f.addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowClosing(WindowEvent we) {
-				System.exit(0);
+				NavalBattle.close();
 			}
 		});
 	}
@@ -116,12 +116,16 @@ public class LoginWindow {
 			NavalBattle.getDebugWindow().printWarning("User is forced authenticated! Game will be insecure.");
 			NavalBattle.getDebugWindow().printInfo("Disposing LoginWindow");
 			f.dispose();
+			NavalBattle.getDebugWindow().printInfo("Opening MainMenuWindow");
+			new MainMenuWindow();
 		}
 		// Authenticate Login
 		else if (false) {
 			NavalBattle.getDebugWindow().printWarning("User authenticated!");
 			NavalBattle.getDebugWindow().printInfo("Disposing LoginWindow");
 			f.dispose();
+			NavalBattle.getDebugWindow().printInfo("Opening MainMenuWindow");
+			new MainMenuWindow();
 		} 
 		else {
 			NavalBattle.getDebugWindow().printWarning("Authentication failed!");	

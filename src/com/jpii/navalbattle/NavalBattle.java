@@ -50,4 +50,13 @@ public class NavalBattle {
 	public static RoketGamer getRoketGamer() {
 		return roketGamer;
 	}
+	
+	/**
+	 * Used as global game exit window
+	 */
+	public static void close()
+	{
+		NavalBattle.getDebugWindow().printInfo("Someone is closing me!");
+		System.exit(0);
+	}
 }
