@@ -6,8 +6,17 @@ import com.jpii.navalbattle.gui.*;
 public class NavalBattle {
 
 	private static RoketGamer roketGamer = new RoketGamer();
+	private static DebugWindow debugWindow;
 	
 	public static void main(String[] args) {
-		new DebugWindow();
+		debugWindow = new DebugWindow();
+	}
+	
+	public DebugWindow getDebugWindow() {
+		return debugWindow;
+	}
+	
+	public RoketGamer getRoketGamer() {
+		return roketGamer;
 	}
 }
