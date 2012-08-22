@@ -14,5 +14,7 @@ NavalBattle is licensed under the irrevocable GNU General Public License v3.
 
 ## Versioning
 NavalBattle will be released with the following versioning scheme:
-    major.minor.build 
+    
+    major.minor.build
+
 Names of United States Navy ships will be used for codenames.
