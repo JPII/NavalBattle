@@ -10,6 +10,8 @@ public class NavalBattle {
 	
 	public static void main(String[] args) {
 		debugWindow = new DebugWindow();
+		
+		debugWindow.printInfo("NavalBattle initialized.");
 	}
 	
 	public DebugWindow getDebugWindow() {
