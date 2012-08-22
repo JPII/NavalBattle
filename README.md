@@ -6,7 +6,7 @@ A new RoketGamer-powered game. Coming soon.
 ## Members
 * **TexasGamer** - SCM manager, RoketGamer lead
 * **abauer**
-* **DarkWarHero**
+* **DarkWarHero** - title page, music (selection, not implementation)
 * **maximusvladimir**
 
 ## License
