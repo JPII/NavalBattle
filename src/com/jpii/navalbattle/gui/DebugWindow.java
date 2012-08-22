@@ -65,38 +65,74 @@ public class DebugWindow {
 			public void keyTyped(KeyEvent arg0) {
 			}
 		});
-		
+
 		f.addWindowListener(new WindowAdapter() {
+			@Override
 			public void windowClosing(WindowEvent we) {
 				System.exit(0);
 			}
 		});
 	}
 
+	/**
+	 * Prints a message without a tag. Next message does not go to a new line.
+	 * 
+	 * @param message
+	 */
 	public void print(String message) {
 		debugPrinter.setText(debugPrinter.getText() + message);
 	}
 
+	/**
+	 * Prints a message without a tag. Next message goes to a new line.
+	 * 
+	 * @param message
+	 */
 	public void println(String message) {
 		debugPrinter.setText(debugPrinter.getText() + message + "\n");
 	}
 
+	/**
+	 * Prints a message with an [INFO] tag.
+	 * 
+	 * @param message
+	 */
 	public void printInfo(String message) {
 		debugPrinter.setText(debugPrinter.getText() + "[INFO] " + message + "\n");
 	}
 
+	/**
+	 * Prints a message with a [WARN] tag.
+	 * 
+	 * @param message
+	 */
 	public void printWarning(String message) {
 		debugPrinter.setText(debugPrinter.getText() + "[WARN] " + message + "\n");
 	}
 
+	/**
+	 * Prints a message with an [ERROR] tag.
+	 * 
+	 * @param message
+	 */
 	public void printError(String message) {
 		debugPrinter.setText(debugPrinter.getText() + "[ERROR] " + message + "\n");
 	}
 
+	/**
+	 * Prints a message with a [OTHER] tag.
+	 * 
+	 * @param message
+	 */
 	public void printOther(String message) {
 		debugPrinter.setText(debugPrinter.getText() + "[OTHER] " + message + "\n");
 	}
 
+	/**
+	 * Get current JFrame.
+	 * 
+	 * @return JFrame
+	 */
 	public JFrame getFrame() {
 		return f;
 	}
