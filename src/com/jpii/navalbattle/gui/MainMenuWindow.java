@@ -6,6 +6,7 @@ import java.awt.event.*;
 
 import com.jpii.navalbattle.NavalBattle;
 import com.jpii.navalbattle.data.*;
+import com.jpii.navalbattle.game.*;
 
 public class MainMenuWindow {
 	JFrame f;
@@ -31,9 +32,10 @@ public class MainMenuWindow {
 		btnSingleplayer.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				NavalBattle.getDebugWindow().printInfo("Starting SinglePlayer");
+				new SPOptions();
 				NavalBattle.getDebugWindow().printInfo("Disposing MainMenuWindow");
 				f.dispose();
-				NavalBattle.getDebugWindow().printInfo("Starting SinglePlayer");
 			}
 		});
 		btnSingleplayer.setBounds(177, 73, 99, 23);

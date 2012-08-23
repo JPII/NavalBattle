@@ -35,7 +35,7 @@ public class LoginWindow {
 		passwordField.setBounds(365,316,100,20);
 		loginButton=new JButton("Login");
 		loginButton.setBounds(389,347,76,22);
-
+		
 		JTextPane txtpntest = new JTextPane();
 		JScrollPane scrollableList = new JScrollPane(txtpntest);
 		scrollableList.setLocation(10, 11);
@@ -55,7 +55,45 @@ public class LoginWindow {
 		f.getContentPane().add(passwordLabel);
 		f.getContentPane().add(passwordField);
 		f.getContentPane().add(loginButton);
-
+		
+		passwordField.addKeyListener(new KeyListener() {
+			@Override
+			public void keyPressed(KeyEvent k) {	
+				if(k.getKeyCode() == KeyEvent.VK_ESCAPE) {
+					NavalBattle.close();
+				}
+				if(k.getKeyCode() == KeyEvent.VK_ENTER) {
+					login();
+				}
+			}
+			@Override
+			public void keyReleased(KeyEvent arg0) { 
+			}
+			@Override
+			public void keyTyped(KeyEvent arg0) {
+			}
+		});
+		
+		usernameField.addKeyListener(new KeyListener() {
+			@Override
+			public void keyPressed(KeyEvent k) {	
+				if(k.getKeyCode() == KeyEvent.VK_ESCAPE) {
+					NavalBattle.close();
+				}
+				if(k.getKeyCode() == KeyEvent.VK_ENTER) {
+					login();
+				}
+			}
+			@Override
+			public void keyReleased(KeyEvent arg0) { 
+			}
+			@Override
+			public void keyTyped(KeyEvent arg0) {
+			}
+		});
+		
+		
+		
 		JLabel lblVersion = new JLabel(Constants.NAVALBATTLE_VERSION_TITLE);
 		lblVersion.setBounds(10, 355, 238, 14);
 		f.getContentPane().add(lblVersion);
