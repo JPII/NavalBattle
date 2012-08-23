@@ -74,8 +74,7 @@ public class Location implements Comparable
      * @param r the row
      * @param c the column
      */
-    public Location(int r, int c)
-    {
+    public Location(int r, int c) {
         row = r;
         col = c;
     }
@@ -84,8 +83,7 @@ public class Location implements Comparable
      * Gets the row coordinate.
      * @return the row of this location
      */
-    public int getRow()
-    {
+    public int getRow() {
         return row;
     }
 
@@ -93,8 +91,7 @@ public class Location implements Comparable
      * Gets the column coordinate.
      * @return the column of this location
      */
-    public int getCol()
-    {
+    public int getCol() {
         return col;
     }
 
@@ -104,8 +101,7 @@ public class Location implements Comparable
      * @return the adjacent location in the direction that is closest to
      * <tt>direction</tt>
      */
-    public Location getAdjacentLocation(int direction)
-    {
+    public Location getAdjacentLocation(int direction) {
         // reduce mod 360 and round to closest multiple of 45
         int adjustedDirection = (direction + HALF_RIGHT / 2) % FULL_CIRCLE;
         if (adjustedDirection < 0)
@@ -152,8 +148,7 @@ public class Location implements Comparable
      * @return the closest compass direction from this location toward
      * <code>target</code>
      */
-    public int getDirectionToward(Location target)
-    {
+    public int getDirectionToward(Location target) {
         int dx = target.getCol() - getCol();
         int dy = target.getRow() - getRow();
         // y axis points opposite to mathematical orientation
@@ -179,8 +174,7 @@ public class Location implements Comparable
      * <code>Location</code> with the same row and column as this location;
      * <code>false</code> otherwise
      */
-    public boolean equals(Object other)
-    {
+    public boolean equals(Object other) {
         if (!(other instanceof Location))
             return false;
 
@@ -192,8 +186,7 @@ public class Location implements Comparable
      * Generates a hash code.
      * @return a hash code for this location
      */
-    public int hashCode()
-    {
+    public int hashCode() {
         return getRow() * 3737 + getCol();
     }
 
@@ -208,8 +201,7 @@ public class Location implements Comparable
      * <code>other</code>, zero if the two locations are equal, or a positive
      * integer if this location is greater than <code>other</code>
      */
-    public int compareTo(Object other)
-    {
+    public int compareTo(Object other) {
         Location otherLoc = (Location) other;
         if (getRow() < otherLoc.getRow())
             return -1;
@@ -227,8 +219,7 @@ public class Location implements Comparable
      * @return a string with the row and column of this location, in the format
      * (row, col)
      */
-    public String toString()
-    {
+    public String toString() {
         return "(" + getRow() + ", " + getCol() + ")";
     }
 }

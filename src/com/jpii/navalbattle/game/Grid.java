@@ -12,8 +12,7 @@ public class Grid<E>
      * @param rows number of rows in BoundedGrid
      * @param cols number of columns in BoundedGrid
      */
-    public Grid(int rows, int cols)
-    {
+    public Grid(int rows, int cols) {
         if (rows <= 0)
             throw new IllegalArgumentException("rows <= 0");
         if (cols <= 0)
@@ -21,26 +20,22 @@ public class Grid<E>
         occupantArray = new Object[rows][cols];
     }
 
-    public int getNumRows()
-    {
+    public int getNumRows() {
         return occupantArray.length;
     }
 
-    public int getNumCols()
-    {
+    public int getNumCols() {
         // Note: according to the constructor precondition, numRows() > 0, so
         // theGrid[0] is non-null.
         return occupantArray[0].length;
     }
 
-    public boolean isValid(Location loc)
-    {
+    public boolean isValid(Location loc) {
         return 0 <= loc.getRow() && loc.getRow() < getNumRows()
                 && 0 <= loc.getCol() && loc.getCol() < getNumCols();
     }
 
-    public ArrayList<Location> getOccupiedLocations()
-    {
+    public ArrayList<Location> getOccupiedLocations() {
         ArrayList<Location> theLocations = new ArrayList<Location>();
 
         // Look at all grid locations.
@@ -59,16 +54,14 @@ public class Grid<E>
     }
 
     @SuppressWarnings("unchecked")
-	public E get(Location loc)
-    {
+	public E get(Location loc) {
         if (!isValid(loc))
             throw new IllegalArgumentException("Location " + loc
                     + " is not valid");
         return (E) occupantArray[loc.getRow()][loc.getCol()];
     }
 
-    public E put(Location loc, E obj)
-    {
+    public E put(Location loc, E obj) {
         if (!isValid(loc))
             throw new IllegalArgumentException("Location " + loc
                     + " is not valid");
@@ -81,8 +74,7 @@ public class Grid<E>
         return oldOccupant;
     }
 
-    public E remove(Location loc)
-    {
+    public E remove(Location loc) {
         if (!isValid(loc))
             throw new IllegalArgumentException("Location " + loc
                     + " is not valid");
