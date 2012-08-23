@@ -23,10 +23,10 @@ public class MainMenuWindow {
 		lblVersion.setBounds(10, 276, 238, 14);
 		f.getContentPane().add(lblVersion);
 
-		JLabel lblHawkridge = new JLabel("NAVALBATTLE");
-		lblHawkridge.setFont(new Font("Prestige Elite Std", Font.BOLD, 33));
-		lblHawkridge.setBounds(101, 11, 248, 51);
-		f.getContentPane().add(lblHawkridge);
+		JLabel lblNavalBattle = new JLabel("NAVALBATTLE");
+		lblNavalBattle.setFont(new Font("Prestige Elite Std", Font.BOLD, 33));
+		lblNavalBattle.setBounds(101, 11, 248, 51);
+		f.getContentPane().add(lblNavalBattle);
 
 		JButton btnSingleplayer = new JButton("Singleplayer");
 		btnSingleplayer.addMouseListener(new MouseAdapter() {
