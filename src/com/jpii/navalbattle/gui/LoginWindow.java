@@ -94,7 +94,7 @@ public class LoginWindow {
 		
 		
 		
-		JLabel lblVersion = new JLabel(Constants.NAVALBATTLE_VERSION_TITLE);
+		JLabel lblVersion = new JLabel(Constants.NAVALBATTLE_VERSION_TITLE + " (" + Constants.NAVALBATTLE_CODENAME + ")");
 		lblVersion.setBounds(10, 355, 238, 14);
 		f.getContentPane().add(lblVersion);
 
