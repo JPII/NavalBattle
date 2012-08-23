@@ -9,7 +9,7 @@ import com.jpii.navalbattle.data.*;
 public class LoginWindow {
 	JButton loginButton;
 	JFrame f;
-	JLabel usernameLabel,passwordLabel;
+	JLabel usernameLabel, passwordLabel;
 	JTextField usernameField;
 	JPasswordField passwordField;
 
@@ -42,7 +42,7 @@ public class LoginWindow {
 		scrollableList.setSize(455, 263);
 
 		try {
-			// add news feed
+			txtpntest.setPage("https://dl.dropbox.com/u/4847494/navalbattle/news.html");
 		} catch (Exception e) { NavalBattle.getDebugWindow().printError("Exception while loading news feed!"); }
 
 		txtpntest.setEditable(false);
