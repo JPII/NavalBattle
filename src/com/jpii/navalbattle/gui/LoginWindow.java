@@ -46,6 +46,7 @@ public class LoginWindow {
 		} catch (Exception e) { NavalBattle.getDebugWindow().printError("Exception while loading news feed!"); }
 
 		txtpntest.setEditable(false);
+		txtpntest.setFocusable(false);
 		txtpntest.setContentType("text/html");
 		txtpntest.setBounds(10, 11, 455, 263);
 
@@ -56,43 +57,8 @@ public class LoginWindow {
 		f.getContentPane().add(passwordField);
 		f.getContentPane().add(loginButton);
 		
-		passwordField.addKeyListener(new KeyListener() {
-			@Override
-			public void keyPressed(KeyEvent k) {	
-				if(k.getKeyCode() == KeyEvent.VK_ESCAPE) {
-					NavalBattle.close();
-				}
-				if(k.getKeyCode() == KeyEvent.VK_ENTER) {
-					login();
-				}
-			}
-			@Override
-			public void keyReleased(KeyEvent arg0) { 
-			}
-			@Override
-			public void keyTyped(KeyEvent arg0) {
-			}
-		});
-		
-		usernameField.addKeyListener(new KeyListener() {
-			@Override
-			public void keyPressed(KeyEvent k) {	
-				if(k.getKeyCode() == KeyEvent.VK_ESCAPE) {
-					NavalBattle.close();
-				}
-				if(k.getKeyCode() == KeyEvent.VK_ENTER) {
-					login();
-				}
-			}
-			@Override
-			public void keyReleased(KeyEvent arg0) { 
-			}
-			@Override
-			public void keyTyped(KeyEvent arg0) {
-			}
-		});
-		
-		
+		passwordField.addKeyListener(new KeyBoard(this));
+		usernameField.addKeyListener(new KeyBoard(this));		
 		
 		JLabel lblVersion = new JLabel(Constants.NAVALBATTLE_VERSION_TITLE + " (" + Constants.NAVALBATTLE_CODENAME + ")");
 		lblVersion.setBounds(10, 355, 164, 14);
@@ -124,23 +90,7 @@ public class LoginWindow {
 		});
 		
 		f.setFocusable(true);
-		f.addKeyListener(new KeyListener() {
-			@Override
-			public void keyPressed(KeyEvent k) {	
-				if(k.getKeyCode() == KeyEvent.VK_ESCAPE) {
-					NavalBattle.close();
-				}
-				if(k.getKeyCode() == KeyEvent.VK_ENTER) {
-					login();
-				}
-			}
-			@Override
-			public void keyReleased(KeyEvent arg0) { 
-			}
-			@Override
-			public void keyTyped(KeyEvent arg0) {
-			}
-		});
+		f.addKeyListener(new KeyBoard(this));
 
 		f.addWindowListener(new WindowAdapter() {
 			@Override
@@ -153,7 +103,7 @@ public class LoginWindow {
 	/**
 	 *  Method for handling login.
 	 */
-	private void login() {
+	public void login() {
 		if(Constants.FORCE_LOGIN) {
 			NavalBattle.getDebugWindow().printWarning("User is forced authenticated! Game will be insecure.");
 			NavalBattle.getDebugWindow().printInfo("Disposing LoginWindow");

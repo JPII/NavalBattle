@@ -22,7 +22,7 @@ public class GameState {
 	private int score = 0;
 	
 	/**
-	 * Get if game is in offline mode.
+	 * Get if game is in Off-line mode.
 	 * 
 	 * @return offline
 	 */
@@ -31,7 +31,7 @@ public class GameState {
 	}
 	
 	/**
-	 * Set game into offline mode.
+	 * Set game into Off-line mode.
 	 * 
 	 * @param offline
 	 */
