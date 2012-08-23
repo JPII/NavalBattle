@@ -213,6 +213,27 @@ public class SPOptions {
 		
 		JButton btnNewButton = new JButton("Start");
 		btnNewButton.setBounds(193, 155, 89, 23);
+		final JRadioButton water1 = rdbtnWater;
+		final JRadioButton water2 = rdbtnWater_1;
+		final JRadioButton water3 = rdbtnWater_2;
+		btnNewButton.addMouseListener(new MouseAdapter() {
+			
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if(water1.isSelected()) {
+					NavalBattle.getGameState().setWaterLevel(60);
+				}
+				else if(water2.isSelected()) {
+					NavalBattle.getGameState().setWaterLevel(70);
+				}
+				else if(water3.isSelected()) {
+					NavalBattle.getGameState().setWaterLevel(80);
+				}
+				else {
+					NavalBattle.getDebugWindow().printError("No water level selected");
+				}
+			}
+		});
 		f.getContentPane().add(btnNewButton);
 		/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////		
 		

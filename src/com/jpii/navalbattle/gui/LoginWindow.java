@@ -3,8 +3,8 @@ package com.jpii.navalbattle.gui;
 import javax.swing.*;
 import java.awt.event.*;
 
-import com.jpii.navalbattle.*;
-import com.jpii.navalbattle.data.*;
+import com.jpii.navalbattle.NavalBattle;
+import com.jpii.navalbattle.data.Constants;
 
 public class LoginWindow {
 	JButton loginButton;

@@ -5,8 +5,8 @@ import java.awt.*;
 import java.awt.event.*;
 
 import com.jpii.navalbattle.NavalBattle;
-import com.jpii.navalbattle.data.*;
-import com.jpii.navalbattle.game.*;
+import com.jpii.navalbattle.data.Constants;
+import com.jpii.navalbattle.game.SPOptions;
 
 public class MainMenuWindow {
 	JFrame f;

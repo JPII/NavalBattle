@@ -17,9 +17,10 @@
 
 package com.jpii.navalbattle;
 
-import com.jpii.roketgamer.*;
+import com.jpii.roketgamer.RoketGamer;
 import com.jpii.navalbattle.data.GameState;
-import com.jpii.navalbattle.gui.*;
+import com.jpii.navalbattle.gui.DebugWindow;
+import com.jpii.navalbattle.gui.LoginWindow;
 
 public class NavalBattle {
 
