@@ -10,3 +10,4 @@ true
 
 target/*
 bin/*
+docs/*
