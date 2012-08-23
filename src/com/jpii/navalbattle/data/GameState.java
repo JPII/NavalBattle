@@ -22,6 +22,7 @@ public class GameState {
 	private int score = 0;
 	private int waterLevel = 60;
 	private int numShips = 3;
+	private int difficutly = 1;
 	
 	/**
 	 * Get if game is in Off-line mode.
@@ -119,5 +120,23 @@ public class GameState {
 	 */
 	public int getNumShips() {
 		return numShips;
+	}
+	
+	/**
+	 * Sets the difficulty of the game
+	 * 
+	 * @param difficulty
+	 */
+	public void setDifficulty(int difficulty) {
+		this.difficutly = difficulty;
+	}
+	
+	/**
+	 * Gets the difficulty of the game
+	 * 
+	 * @return difficulty
+	 */
+	public int getDifficulty() {
+		return difficutly;
 	}
 }
