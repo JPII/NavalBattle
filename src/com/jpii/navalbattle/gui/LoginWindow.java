@@ -57,8 +57,8 @@ public class LoginWindow {
 		f.getContentPane().add(passwordField);
 		f.getContentPane().add(loginButton);
 		
-		passwordField.addKeyListener(new KeyBoard(this));
-		usernameField.addKeyListener(new KeyBoard(this));		
+		passwordField.addKeyListener(new KeyboardListener(this));
+		usernameField.addKeyListener(new KeyboardListener(this));		
 		
 		JLabel lblVersion = new JLabel(Constants.NAVALBATTLE_VERSION_TITLE + " (" + Constants.NAVALBATTLE_CODENAME + ")");
 		lblVersion.setBounds(10, 355, 164, 14);
@@ -90,7 +90,7 @@ public class LoginWindow {
 		});
 		
 		f.setFocusable(true);
-		f.addKeyListener(new KeyBoard(this));
+		f.addKeyListener(new KeyboardListener(this));
 
 		f.addWindowListener(new WindowAdapter() {
 			@Override

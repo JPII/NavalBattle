@@ -5,7 +5,7 @@ import java.awt.*;
 import java.awt.event.*;
 
 import com.jpii.navalbattle.NavalBattle;
-import com.jpii.navalbattle.gui.KeyBoard;
+import com.jpii.navalbattle.gui.KeyboardListener;
 
 public class SPOptions {
 	JFrame f;
@@ -65,57 +65,57 @@ public class SPOptions {
 		JRadioButton rdbtnWater = new JRadioButton("60% Water");
 		rdbtnWater.setBounds(39, 114, 109, 23);
 		water.add(rdbtnWater);
-		rdbtnWater.addKeyListener(new KeyBoard(this));
+		rdbtnWater.addKeyListener(new KeyboardListener(this));
 		f.getContentPane().add(rdbtnWater);
 		
 		JRadioButton rdbtnWater_1 = new JRadioButton("70% Water");
 		rdbtnWater_1.setBounds(39, 155, 109, 23);
 		water.add(rdbtnWater_1);
-		rdbtnWater_1.addKeyListener(new KeyBoard(this));
+		rdbtnWater_1.addKeyListener(new KeyboardListener(this));
 		f.getContentPane().add(rdbtnWater_1);
 		
 		JRadioButton rdbtnWater_2 = new JRadioButton("80% Water");
 		rdbtnWater_2.setBounds(39, 193, 109, 23);
 		water.add(rdbtnWater_2);
 		f.getContentPane().add(rdbtnWater_2);
-		rdbtnWater_2.addKeyListener(new KeyBoard(this));
+		rdbtnWater_2.addKeyListener(new KeyboardListener(this));
 		rdbtnWater.setSelected(true);
 		/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		ButtonGroup difficulty = new ButtonGroup();
 		JRadioButton radioButton = new JRadioButton("");
 		radioButton.setBounds(81, 255, 21, 23);
 		difficulty.add(radioButton);
-		radioButton.addKeyListener(new KeyBoard(this));
+		radioButton.addKeyListener(new KeyboardListener(this));
 		f.getContentPane().add(radioButton);
 		
 		JRadioButton radioButton_1 = new JRadioButton("");
 		radioButton_1.setBounds(138, 255, 21, 23);
 		difficulty.add(radioButton_1);
-		radioButton_1.addKeyListener(new KeyBoard(this));
+		radioButton_1.addKeyListener(new KeyboardListener(this));
 		f.getContentPane().add(radioButton_1);
 		
 		JRadioButton radioButton_2 = new JRadioButton("");
 		radioButton_2.setBounds(194, 255, 21, 23);
 		difficulty.add(radioButton_2);
-		radioButton_2.addKeyListener(new KeyBoard(this));
+		radioButton_2.addKeyListener(new KeyboardListener(this));
 		f.getContentPane().add(radioButton_2);
 		
 		JRadioButton radioButton_3 = new JRadioButton("");
 		radioButton_3.setBounds(251, 255, 21, 23);
 		difficulty.add(radioButton_3);
-		radioButton_3.addKeyListener(new KeyBoard(this));
+		radioButton_3.addKeyListener(new KeyboardListener(this));
 		f.getContentPane().add(radioButton_3);
 		
 		JRadioButton radioButton_4 = new JRadioButton("");
 		radioButton_4.setBounds(307, 255, 21, 23);
 		difficulty.add(radioButton_4);
-		radioButton_4.addKeyListener(new KeyBoard(this));
+		radioButton_4.addKeyListener(new KeyboardListener(this));
 		f.getContentPane().add(radioButton_4);
 		
 		JRadioButton radioButton_5 = new JRadioButton("");
 		radioButton_5.setBounds(364, 255, 21, 23);
 		difficulty.add(radioButton_5);
-		radioButton_5.addKeyListener(new KeyBoard(this));
+		radioButton_5.addKeyListener(new KeyboardListener(this));
 		f.getContentPane().add(radioButton_5);
 		radioButton.setSelected(true);
 		/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -189,25 +189,25 @@ public class SPOptions {
 		JRadioButton radioButton_6 = new JRadioButton("3");
 		radioButton_6.setBounds(376, 116, 38, 23);
 		opponents.add(radioButton_6);
-		radioButton_6.addKeyListener(new KeyBoard(this));
+		radioButton_6.addKeyListener(new KeyboardListener(this));
 		f.getContentPane().add(radioButton_6);
 		
 		JRadioButton radioButton_7 = new JRadioButton("4");
 		radioButton_7.setBounds(376, 142, 38, 23);
 		opponents.add(radioButton_7);
-		radioButton_7.addKeyListener(new KeyBoard(this));
+		radioButton_7.addKeyListener(new KeyboardListener(this));
 		f.getContentPane().add(radioButton_7);
 		
 		JRadioButton radioButton_8 = new JRadioButton("5");
 		radioButton_8.setBounds(376, 167, 38, 23);
 		opponents.add(radioButton_8);
-		radioButton_8.addKeyListener(new KeyBoard(this));
+		radioButton_8.addKeyListener(new KeyboardListener(this));
 		f.getContentPane().add(radioButton_8);
 		
 		JRadioButton radioButton_9 = new JRadioButton("6");
 		radioButton_9.setBounds(376, 193, 38, 23);
 		opponents.add(radioButton_9);
-		radioButton_9.addKeyListener(new KeyBoard(this));
+		radioButton_9.addKeyListener(new KeyboardListener(this));
 		f.getContentPane().add(radioButton_9);
 		radioButton_6.setSelected(true);
 		
@@ -227,6 +227,6 @@ public class SPOptions {
 		});
 		
 		f.setFocusable(true);
-		f.addKeyListener(new KeyBoard(this));
+		f.addKeyListener(new KeyboardListener(this));
 	}
 }

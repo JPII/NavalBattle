@@ -4,11 +4,11 @@ import java.awt.event.*;
 
 import com.jpii.navalbattle.NavalBattle;
 
-public class KeyBoard implements KeyListener {
+public class KeyboardListener implements KeyListener {
 	
 	Object o;
 	
-	public KeyBoard(Object l) {
+	public KeyboardListener(Object l) {
 		o = l;
 	}
 	
@@ -23,10 +23,12 @@ public class KeyBoard implements KeyListener {
 			}
 		}
 	}
+	
 	@Override
 	public void keyReleased(KeyEvent e) {
 		
 	}
+	
 	@Override
 	public void keyTyped(KeyEvent e) {
 		
