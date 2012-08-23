@@ -28,7 +28,7 @@ public class MainMenuWindow {
 		lblHawkridge.setBounds(101, 11, 248, 51);
 		f.getContentPane().add(lblHawkridge);
 
-		JButton btnSingleplayer = new JButton("SinglePlayer");
+		JButton btnSingleplayer = new JButton("Singleplayer");
 		btnSingleplayer.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {

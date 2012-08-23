@@ -34,7 +34,7 @@ public class LoginWindow {
 		passwordField = new JPasswordField(25);
 		passwordField.setBounds(365,316,100,20);
 		loginButton=new JButton("Login");
-		loginButton.setBounds(389,347,76,22);
+		loginButton.setBounds(389,347,78,22);
 		
 		JTextPane txtpntest = new JTextPane();
 		JScrollPane scrollableList = new JScrollPane(txtpntest);
@@ -95,12 +95,16 @@ public class LoginWindow {
 		
 		
 		JLabel lblVersion = new JLabel(Constants.NAVALBATTLE_VERSION_TITLE + " (" + Constants.NAVALBATTLE_CODENAME + ")");
-		lblVersion.setBounds(10, 355, 238, 14);
+		lblVersion.setBounds(10, 355, 164, 14);
 		f.getContentPane().add(lblVersion);
 
 		JButton registerButton = new JButton("Register");
 		registerButton.setBounds(301, 347, 78, 22);
 		f.getContentPane().add(registerButton);
+		
+		JButton btnOffline = new JButton("Offline");
+		btnOffline.setBounds(213, 347, 78, 22);
+		f.getContentPane().add(btnOffline);
 
 		f.setSize(491,418);
 		f.setVisible(true);
