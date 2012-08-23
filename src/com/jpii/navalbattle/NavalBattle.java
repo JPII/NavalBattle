@@ -18,32 +18,26 @@
 package com.jpii.navalbattle;
 
 import com.jpii.roketgamer.*;
+import com.jpii.navalbattle.data.GameState;
 import com.jpii.navalbattle.gui.*;
 
 public class NavalBattle {
 
-	private static RoketGamer roketGamer = new RoketGamer();
+	private static RoketGamer roketGamer;
 	private static DebugWindow debugWindow;
+	private static GameState gameState;
 	
 	public static void main(String[] args) {
+		roketGamer = new RoketGamer();
 		debugWindow = new DebugWindow();
+		gameState = new GameState();
+		
 		debugWindow.printInfo("NavalBattle initialized.");
 		new LoginWindow();
 	}
 	
-
-	
 	/**
-	 * Returns static instance of DebugWindow.
-	 * 
-	 * @return debugWindow
-	 */
-	public static DebugWindow getDebugWindow() {
-		return debugWindow;
-	}
-	
-	/**
-	 * Returns static instance of RoketGamer.
+	 * Returns current instance of RoketGamer.
 	 * 
 	 * @return roketGamer
 	 */
@@ -52,10 +46,27 @@ public class NavalBattle {
 	}
 	
 	/**
-	 * Used as global game exit window
+	 * Returns current instance of DebugWindow.
+	 * 
+	 * @return debugWindow
 	 */
-	public static void close()
-	{
+	public static DebugWindow getDebugWindow() {
+		return debugWindow;
+	}
+	
+	/**
+	 * Returns current instance of GameState.
+	 * 
+	 * @return gameState
+	 */
+	public static GameState getGameState() {
+		return gameState;
+	}
+	
+	/**
+	 * Used as global game exit
+	 */
+	public static void close() {
 		NavalBattle.getDebugWindow().printInfo("Someone is closing me!");
 		System.exit(0);
 	}
