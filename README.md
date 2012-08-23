@@ -4,10 +4,11 @@ NavalBattle
 A new RoketGamer-powered game. Coming soon.
 
 ## Members
-* **TexasGamer** - SCM manager, RoketGamer lead, download button
+* **TexasGamer** - SCM manager, RoketGamer lead
 * **abauer** - game design lead
-* **DarkWarHero** - title page, music (selection, not implementation)
-* **maximusvladimir** - animation lead, emergancy point of contact
+* **DarkWarHero** - *TBD*
+* **maximusvladimir** - *TBD*
+* **smeagle42** - *TBD*
 
 ## License
 NavalBattle is licensed under the irrevocable GNU General Public License v3.
