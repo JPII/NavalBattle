@@ -9,6 +9,7 @@ A new RoketGamer-powered game. Coming soon.
 * **DarkWarHero** - *TBD*
 * **maximusvladimir** - *TBD*
 * **smeagle42** - *TBD*
+* **Matthis5point0** - *TBD*
 
 ## License
 NavalBattle is licensed under the irrevocable GNU General Public License v3.
