@@ -154,6 +154,11 @@ public class DebugWindow {
 		debugPrinter.setText(debugPrinter.getText() + "[OTHER] " + message + "\n");
 	}
 	
+	/**
+	 * Clears the DebugWindow and prints message.
+	 * 
+	 * @param message
+	 */
 	public void printNew(String message) {
 		debugPrinter.setText(message + "\n");
 	}
