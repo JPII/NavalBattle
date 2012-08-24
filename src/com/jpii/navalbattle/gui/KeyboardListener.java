@@ -16,10 +16,18 @@ public class KeyboardListener implements KeyListener {
 		if(k.getKeyCode() == KeyEvent.VK_ESCAPE) {
 			NavalBattle.close();
 		}
+		
 		if(o instanceof LoginWindow) {
 			LoginWindow l = (LoginWindow) o;
 			if(k.getKeyCode() == KeyEvent.VK_ENTER) {
 				l.login();
+			}
+		}
+		
+		if(o instanceof DebugWindow) {
+			DebugWindow d = (DebugWindow) o;
+			if(k.getKeyCode() == KeyEvent.VK_ENTER) {
+				d.submitCommandRemote();
 			}
 		}
 	}

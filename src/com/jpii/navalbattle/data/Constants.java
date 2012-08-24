@@ -17,6 +17,12 @@
 
 package com.jpii.navalbattle.data;
 
+import java.util.ArrayList;
+
+import com.jpii.navalbattle.NavalBattle;
+import com.jpii.navalbattle.debug.Command;
+import com.jpii.navalbattle.debug.CommandAction;
+
 public class Constants {
 	
 	/*
@@ -35,5 +41,21 @@ public class Constants {
 	public static final boolean FORCE_LOGIN = true;
 	public static final String API_KEY = "API_KEY";
 	public static final String SERVER_LOCATION = "http://www.roketgamer.co.cc";
+	
+	/*
+	 * Commands
+	 */
+	@SuppressWarnings("serial")
+	public static final ArrayList<Command> COMMANDS = new ArrayList<Command>() {{
+	    add(new Command("help", "", "View all commands", new CommandAction() { 
+	    	public void onRun(){
+	    		NavalBattle.getDebugWindow().println("----------------- NavalBattle Debug Help -----------------");
+	    		for(Command c : NavalBattle.getCommandHandler().getCommands()) {
+	    			NavalBattle.getDebugWindow().println(c.getCommand() + c.getArgs() + " - " + c.getDescription());
+	    		}
+	    	}}
+	    
+	    ));
+	}};
 	
 }

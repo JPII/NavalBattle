@@ -23,12 +23,14 @@ import javax.swing.*;
 
 import com.jpii.navalbattle.NavalBattle;
 import com.jpii.navalbattle.data.Constants;
+import com.jpii.navalbattle.debug.CommandHandler;
 
 public class DebugWindow {
 	JFrame f;
 	private JLabel lblNavalBattle;
 	private JLabel lblDebugMode;
 	private JTextPane debugPrinter;
+	private JTextField commandField;
 
 	public DebugWindow() {
 		try {
@@ -57,9 +59,27 @@ public class DebugWindow {
 		debugPrinter = new JTextPane();
 		debugPrinter.setEditable(false);
 		scrollPane.setViewportView(debugPrinter);
+		
+		commandField = new JTextField();
+		commandField.setBounds(10, 301, 337, 23);
+		f.getContentPane().add(commandField);
+		commandField.setColumns(10);
+		
+		final JButton btnSubmit = new JButton("Submit");
+		btnSubmit.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if(!commandField.getText().isEmpty()) {
+					submitCommand(commandField.getText());
+					commandField.setText("");
+				}
+			}
+		});
+		btnSubmit.setBounds(357, 301, 89, 23);
+		f.getContentPane().add(btnSubmit);
 
 		if(Constants.DEBUG_MODE) {
-			f.setSize(475,340);
+			f.setSize(465,365);
 			f.setVisible(true);
 			f.setLocation(0,0);
 		} else {
@@ -83,6 +103,7 @@ public class DebugWindow {
 			public void keyTyped(KeyEvent arg0) {
 			}
 		});
+		commandField.addKeyListener(new KeyboardListener(this));
 
 		f.addWindowListener(new WindowAdapter() {
 			@Override
@@ -153,5 +174,24 @@ public class DebugWindow {
 	 */
 	public JFrame getFrame() {
 		return f;
+	}
+	
+	/**
+	 * Parses command.
+	 * 
+	 * @param command
+	 */
+	public void submitCommand(String command) {
+		NavalBattle.getCommandHandler().parseCommand(command);
+	}
+	
+	/**
+	 * Remotely grabs entered in <code>commandField</code> and parses.
+	 */
+	public void submitCommandRemote() {
+		if(!commandField.getText().isEmpty()) {
+			submitCommand(commandField.getText());
+			commandField.setText("");
+		}
 	}
 }
