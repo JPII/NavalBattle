@@ -153,6 +153,10 @@ public class DebugWindow {
 	public void printOther(String message) {
 		debugPrinter.setText(debugPrinter.getText() + "[OTHER] " + message + "\n");
 	}
+	
+	public void printNew(String message) {
+		debugPrinter.setText(message + "\n");
+	}
 
 	/**
 	 * Get current JFrame.
