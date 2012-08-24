@@ -7,8 +7,8 @@ A new RoketGamer-powered game. Coming soon.
 * **TexasGamer** - SCM manager, RoketGamer lead
 * **abauer** - game design lead
 * **DarkWarHero** - *TBD*
-* **maximusvladimir** - *TBD*
-* **smeagle42** - *TBD*
+* **maximusvladimir** - rendering lead
+* **smeagle42** - game-play lead
 * **Matthis5point0** - *TBD*
 
 ## License
