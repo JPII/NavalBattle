@@ -145,13 +145,6 @@ public class Constants {
 	    	}}
 	    
 	    ));
-	    
-	    add(new Command("cls", "", "Clear debug window", new CommandAction() { 
-	    	public void onRun(Command c, String enteredCommand) {
-	    			NavalBattle.getDebugWindow().printNew("");
-	    	}}
-	    
-	    ));
 	}};
 	
 }
