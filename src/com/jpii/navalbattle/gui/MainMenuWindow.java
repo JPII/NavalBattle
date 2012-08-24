@@ -19,7 +19,7 @@ public class MainMenuWindow {
 		f.setTitle("NavalBattle");
 		f.getContentPane().setLayout(null);
 
-		JLabel lblVersion = new JLabel(Constants.NAVALBATTLE_VERSION_TITLE + " (" + Constants.NAVALBATTLE_CODENAME + ")");
+		JLabel lblVersion = new JLabel(Constants.NAVALBATTLE_VERSION_TITLE);
 		lblVersion.setBounds(10, 276, 238, 14);
 		f.getContentPane().add(lblVersion);
 

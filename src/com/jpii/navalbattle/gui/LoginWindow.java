@@ -60,7 +60,7 @@ public class LoginWindow {
 		passwordField.addKeyListener(new KeyboardListener(this));
 		usernameField.addKeyListener(new KeyboardListener(this));		
 		
-		JLabel lblVersion = new JLabel(Constants.NAVALBATTLE_VERSION_TITLE + " (" + Constants.NAVALBATTLE_CODENAME + ")");
+		JLabel lblVersion = new JLabel(Constants.NAVALBATTLE_VERSION_TITLE);
 		lblVersion.setBounds(10, 355, 164, 14);
 		f.getContentPane().add(lblVersion);
 

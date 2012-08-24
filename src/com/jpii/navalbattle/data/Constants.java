@@ -29,8 +29,8 @@ public class Constants {
 	 * General
 	 */
 	public static final String NAVALBATTLE_VERSION = "0.1a";
-	public static final String NAVALBATTLE_VERSION_TITLE = "NavalBattle " + NAVALBATTLE_VERSION;
 	public static final String NAVALBATTLE_CODENAME = "Pioneer";
+	public static final String NAVALBATTLE_VERSION_TITLE = "NavalBattle " + NAVALBATTLE_VERSION + " (" + NAVALBATTLE_CODENAME + ")";
 	public static final String NEWSFEED_URL = "https://dl.dropbox.com/u/4847494/navalbattle/news.html";
 	public static final boolean DEBUG_MODE = true;
 	
