@@ -107,6 +107,15 @@ public class Constants {
 	    	}}
 	    
 	    ));
+	    
+	    add(new Command("clear", "", "Clear debug window", new CommandAction() { 
+	    	public void onRun(Command c, String enteredCommand) {
+	    		for(int x = 0; x < 25; x++) {
+	    			NavalBattle.getDebugWindow().println("");
+	    		}
+	    	}}
+	    
+	    ));
 	}};
 	
 }
