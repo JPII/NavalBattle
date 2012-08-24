@@ -48,25 +48,33 @@ public class Constants {
 	@SuppressWarnings("serial")
 	public static final ArrayList<Command> COMMANDS = new ArrayList<Command>() {{
 	    add(new Command("help", "", "View all commands", new CommandAction() { 
-	    	public void onRun(){
+	    	public void onRun(Command c, String enteredCommand) {
 	    		NavalBattle.getDebugWindow().println("----------------- NavalBattle Debug Help -----------------");
-	    		for(Command c : NavalBattle.getCommandHandler().getCommands()) {
-	    			NavalBattle.getDebugWindow().println(c.getCommand() + c.getArgs() + " - " + c.getDescription());
+	    		for(Command cmd : NavalBattle.getCommandHandler().getCommands()) {
+	    			NavalBattle.getDebugWindow().println(cmd.getCommand() + cmd.getArgs() + " - " + cmd.getDescription());
 	    		}
 	    	}}
 	    
 	    ));
 	    
 	    add(new Command("quit", "", "Quit game", new CommandAction() { 
-	    	public void onRun(){
+	    	public void onRun(Command c, String enteredCommand) {
 	    		System.exit(0);
 	    	}}
 	    
 	    ));
 	    
 	    add(new Command("version", "", "View version info", new CommandAction() { 
-	    	public void onRun(){
+	    	public void onRun(Command c, String enteredCommand) {
 	    		NavalBattle.getDebugWindow().println(NAVALBATTLE_VERSION_TITLE + " (" + NAVALBATTLE_CODENAME + ")");
+	    	}}
+	    
+	    ));
+	    
+	    add(new Command("echo", "<message>", "Print specified message", new CommandAction() { 
+	    	public void onRun(Command c, String enteredCommand) {
+	    		String[] s = enteredCommand.split(" ", 2);
+	    		NavalBattle.getDebugWindow().println(s[1]);
 	    	}}
 	    
 	    ));

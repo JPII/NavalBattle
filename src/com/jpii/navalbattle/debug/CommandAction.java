@@ -5,7 +5,7 @@ public class CommandAction {
 	/**
 	 * Ran when command is issued.
 	 */
-	public void onRun() {
+	public void onRun(Command c, String enteredCommand) {
 		
 	}
 }
