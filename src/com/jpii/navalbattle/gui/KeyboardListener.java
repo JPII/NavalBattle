@@ -3,6 +3,7 @@ package com.jpii.navalbattle.gui;
 import java.awt.event.*;
 
 import com.jpii.navalbattle.NavalBattle;
+import com.jpii.navalbattle.debug.DebugWindow;
 
 public class KeyboardListener implements KeyListener {
 	

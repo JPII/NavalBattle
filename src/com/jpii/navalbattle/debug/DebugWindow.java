@@ -15,7 +15,7 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.jpii.navalbattle.gui;
+package com.jpii.navalbattle.debug;
 
 import java.awt.*;
 import java.awt.event.*;
@@ -23,7 +23,7 @@ import javax.swing.*;
 
 import com.jpii.navalbattle.NavalBattle;
 import com.jpii.navalbattle.data.Constants;
-import com.jpii.navalbattle.debug.CommandHandler;
+import com.jpii.navalbattle.gui.KeyboardListener;
 
 public class DebugWindow {
 	JFrame f;
@@ -89,20 +89,7 @@ public class DebugWindow {
 		}
 
 		f.setFocusable(true);
-		f.addKeyListener(new KeyListener() {
-			@Override
-			public void keyPressed(KeyEvent k) {	
-				if(k.getKeyCode() == KeyEvent.VK_ESCAPE) {
-					NavalBattle.close();
-				}
-			}
-			@Override
-			public void keyReleased(KeyEvent arg0) { 
-			}
-			@Override
-			public void keyTyped(KeyEvent arg0) {
-			}
-		});
+		f.addKeyListener(new KeyboardListener(this));
 		commandField.addKeyListener(new KeyboardListener(this));
 
 		f.addWindowListener(new WindowAdapter() {

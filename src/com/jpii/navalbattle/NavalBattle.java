@@ -21,7 +21,7 @@ import com.jpii.roketgamer.RoketGamer;
 import com.jpii.navalbattle.data.Constants;
 import com.jpii.navalbattle.data.GameState;
 import com.jpii.navalbattle.debug.CommandHandler;
-import com.jpii.navalbattle.gui.DebugWindow;
+import com.jpii.navalbattle.debug.DebugWindow;
 import com.jpii.navalbattle.gui.LoginWindow;
 
 public class NavalBattle {
@@ -32,6 +32,8 @@ public class NavalBattle {
 	private static CommandHandler commandHandler;
 	
 	public static void main(String[] args) {
+		
+		
 		roketGamer = new RoketGamer();
 		debugWindow = new DebugWindow();
 		gameState = new GameState();
