@@ -94,6 +94,19 @@ public class Constants {
 	    	}}
 	    
 	    ));
+	    
+	    add(new Command("setscore", "<score>", "Set user score to amount", new CommandAction() { 
+	    	public void onRun(Command c, String enteredCommand) {
+	    		String[] s = enteredCommand.split(" ", 2);
+	    		try {
+	    			NavalBattle.getGameState().addScore(Integer.parseInt(s[1]));
+		    		NavalBattle.getDebugWindow().printInfo("Game score set to " + s[1]);
+	    		} catch (Exception ex) {
+	    			NavalBattle.getDebugWindow().printError("Missing or invalid arg: score");
+	    		}
+	    	}}
+	    
+	    ));
 	}};
 	
 }
