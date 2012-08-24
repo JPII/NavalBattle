@@ -54,21 +54,18 @@ public class Constants {
 	    			NavalBattle.getDebugWindow().println(cmd.getCommand() + cmd.getArgs() + " - " + cmd.getDescription());
 	    		}
 	    	}}
-	    
 	    ));
 	    
 	    add(new Command("quit", "", "Quit game", new CommandAction() { 
 	    	public void onRun(Command c, String enteredCommand) {
 	    		System.exit(0);
 	    	}}
-	    
 	    ));
 	    
 	    add(new Command("version", "", "View version info", new CommandAction() { 
 	    	public void onRun(Command c, String enteredCommand) {
 	    		NavalBattle.getDebugWindow().println(NAVALBATTLE_VERSION_TITLE + " (" + NAVALBATTLE_CODENAME + ")");
 	    	}}
-	    
 	    ));
 	    
 	    add(new Command("echo", "<message>", "Print specified message", new CommandAction() { 
@@ -76,7 +73,6 @@ public class Constants {
 	    		String[] s = enteredCommand.split(" ", 2);
 	    		NavalBattle.getDebugWindow().println(s[1]);
 	    	}}
-	    
 	    ));
 	    
 	    add(new Command("credits", "", "NavalBattle credits", new CommandAction() { 
@@ -89,23 +85,58 @@ public class Constants {
 	    		NavalBattle.getDebugWindow().println("Matt \"Matthis5point0\" Waller - TBD");
 	    		NavalBattle.getDebugWindow().println("Zach \"smeagle42\" Mathewson - SCM manager; RoketGamer lead");
 	    		NavalBattle.getDebugWindow().println("");
-	    		NavalBattle.getDebugWindow().println("GitHub - project hosting");
+	    		NavalBattle.getDebugWindow().println("GitHub - source code hosting");
 	    		NavalBattle.getDebugWindow().println("RoketGamer - online social gaming");
 	    	}}
-	    
 	    ));
 	    
-	    add(new Command("setscore", "<score>", "Set user score to amount", new CommandAction() { 
+	    add(new Command("setscore", "<score>", "Set game score", new CommandAction() { 
 	    	public void onRun(Command c, String enteredCommand) {
 	    		String[] s = enteredCommand.split(" ", 2);
 	    		try {
-	    			NavalBattle.getGameState().addScore(Integer.parseInt(s[1]));
-		    		NavalBattle.getDebugWindow().printInfo("Game score set to " + s[1]);
+	    			NavalBattle.getGameState().setScore(Integer.parseInt(s[1]));
+		    		NavalBattle.getDebugWindow().printInfo("Game score set to " + NavalBattle.getGameState().getScore());
 	    		} catch (Exception ex) {
 	    			NavalBattle.getDebugWindow().printError("Missing or invalid arg: score");
 	    		}
 	    	}}
+	    ));
 	    
+	    add(new Command("addscore", "<score>", "Add to game score", new CommandAction() { 
+	    	public void onRun(Command c, String enteredCommand) {
+	    		String[] s = enteredCommand.split(" ", 2);
+	    		try {
+	    			NavalBattle.getGameState().addScore(Integer.parseInt(s[1]));
+		    		NavalBattle.getDebugWindow().printInfo("Game score set to " + NavalBattle.getGameState().getScore());
+	    		} catch (Exception ex) {
+	    			NavalBattle.getDebugWindow().printError("Missing or invalid arg: score");
+	    		}
+	    	}}
+	    ));
+	    
+	    add(new Command("removescore", "<score>", "Subtract from game score", new CommandAction() { 
+	    	public void onRun(Command c, String enteredCommand) {
+	    		String[] s = enteredCommand.split(" ", 2);
+	    		try {
+	    			NavalBattle.getGameState().subtractScore(Integer.parseInt(s[1]));
+		    		NavalBattle.getDebugWindow().printInfo("Game score set to " + NavalBattle.getGameState().getScore());
+	    		} catch (Exception ex) {
+	    			NavalBattle.getDebugWindow().printError("Missing or invalid arg: score");
+	    		}
+	    	}}
+	    ));
+	    
+	    add(new Command("getscore", "", "Get game score", new CommandAction() { 
+	    	public void onRun(Command c, String enteredCommand) {
+		    	NavalBattle.getDebugWindow().printInfo("Game score: " + NavalBattle.getGameState().getScore());
+	    	}}
+	    ));
+	    
+	    add(new Command("resetcore", "", "Set game score to 0", new CommandAction() { 
+	    	public void onRun(Command c, String enteredCommand) {
+	    		NavalBattle.getGameState().resetScore();
+		    	NavalBattle.getDebugWindow().printInfo("Game score reset");
+	    	}}
 	    ));
 	    
 	    add(new Command("clear", "", "Clear debug window", new CommandAction() { 
