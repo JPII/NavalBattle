@@ -56,6 +56,20 @@ public class Constants {
 	    	}}
 	    
 	    ));
+	    
+	    add(new Command("quit", "", "Quit game", new CommandAction() { 
+	    	public void onRun(){
+	    		System.exit(0);
+	    	}}
+	    
+	    ));
+	    
+	    add(new Command("version", "", "View version info", new CommandAction() { 
+	    	public void onRun(){
+	    		NavalBattle.getDebugWindow().println(NAVALBATTLE_VERSION_TITLE + " (" + NAVALBATTLE_CODENAME + ")");
+	    	}}
+	    
+	    ));
 	}};
 	
 }
