@@ -132,7 +132,7 @@ public class Constants {
 	    	}}
 	    ));
 	    
-	    add(new Command("resetcore", "", "Set game score to 0", new CommandAction() { 
+	    add(new Command("resetscore", "", "Set game score to 0", new CommandAction() { 
 	    	public void onRun(Command c, String enteredCommand) {
 	    		NavalBattle.getGameState().resetScore();
 		    	NavalBattle.getDebugWindow().printInfo("Game score reset");
@@ -140,6 +140,15 @@ public class Constants {
 	    ));
 	    
 	    add(new Command("clear", "", "Clear debug window", new CommandAction() { 
+	    	public void onRun(Command c, String enteredCommand) {
+	    		for(int x = 0; x < 25; x++) {
+	    			NavalBattle.getDebugWindow().println("");
+	    		}
+	    	}}
+	    
+	    ));
+	    
+	    add(new Command("cls", "", "Clear debug window", new CommandAction() { 
 	    	public void onRun(Command c, String enteredCommand) {
 	    		for(int x = 0; x < 25; x++) {
 	    			NavalBattle.getDebugWindow().println("");
