@@ -36,16 +36,16 @@ public class CommandHandler {
 	 * @param command
 	 */
 	public void parseCommand(String command) {
-		command.replace("/", "");
-		boolean iscommand = false;
+		boolean isCommand = false;
+		
 		for(Command c: commands) {
 			if(c.getCommand().equalsIgnoreCase(command)) {
 				c.getCommandAction().onRun();
-				iscommand = true;
+				isCommand = true;
 			}
 		}
 		
-		if(!iscommand) {
+		if(!isCommand) {
 			NavalBattle.getDebugWindow().printError("'" + command + "' is not a registered command");
 		}
 	}
