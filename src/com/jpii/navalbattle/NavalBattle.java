@@ -35,11 +35,11 @@ public class NavalBattle {
 		
 		
 		roketGamer = new RoketGamer();
-		debugWindow = new DebugWindow();
-		gameState = new GameState();
-		commandHandler = new CommandHandler(Constants.COMMANDS);
+		//debugWindow = new DebugWindow();
+		//gameState = new GameState();
+		//commandHandler = new CommandHandler(Constants.COMMANDS);
 		
-		debugWindow.printInfo("NavalBattle initialized.");
+	//	debugWindow.printInfo("NavalBattle initialized.");
 		new LoginWindow();
 	}
 	
@@ -83,7 +83,7 @@ public class NavalBattle {
 	 * Used as global game exit
 	 */
 	public static void close() {
-		NavalBattle.getDebugWindow().printInfo("Someone is closing me!");
+	//	NavalBattle.getDebugWindow().printInfo("Someone is closing me!");
 		System.exit(0);
 	}
 }
