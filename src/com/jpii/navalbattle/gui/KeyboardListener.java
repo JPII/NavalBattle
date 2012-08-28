@@ -7,27 +7,20 @@ import javax.swing.SwingUtilities;
 import com.jpii.navalbattle.NavalBattle;
 import com.jpii.navalbattle.debug.DebugWindow;
 
-public class KeyboardListener implements Runnable, KeyListener {
+public class KeyboardListener implements KeyListener {
 	
 	Object o;
-	KeyEvent k;
 	
 	public KeyboardListener(Object l) {
 		o = l;
 	}
 	
-	public void keyPressed(KeyEvent keyevent) {	
-		this.k = keyevent;
-		
-	}
-	
-	public void run()
-	{
+	public void keyPressed(KeyEvent key) {	
+		try {
+			final KeyEvent k = key;
+			SwingUtilities.invokeAndWait(new Runnable(){ public void run() {
 		if(k.getKeyCode() == KeyEvent.VK_ESCAPE) {
-			try {
-				SwingUtilities.invokeAndWait(new Runnable(){ public void run() {
-					NavalBattle.close(); }});
-			}catch (Exception e) {}
+			NavalBattle.close();	
 		}
 		
 		if(o instanceof LoginWindow) {
@@ -43,6 +36,15 @@ public class KeyboardListener implements Runnable, KeyListener {
 				d.submitCommandRemote();
 			}
 		}
+		
+		}});
+		}catch (Exception e) {}
+		
+	}
+	
+	public void run()
+	{
+		
 	}
 	
 	@Override
