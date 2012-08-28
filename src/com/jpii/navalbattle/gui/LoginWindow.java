@@ -1,7 +1,6 @@
 package com.jpii.navalbattle.gui;
 
 import javax.swing.*;
-
 import java.awt.event.*;
 
 import com.jpii.navalbattle.NavalBattle;
@@ -16,7 +15,7 @@ public class LoginWindow {
 
 	public LoginWindow() {
 		
-	//	NavalBattle.getDebugWindow().printInfo("LoginWindow opened");
+		NavalBattle.getDebugWindow().printInfo("LoginWindow opened");
 		try {
 			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 		} catch (Exception e) {}
@@ -44,7 +43,7 @@ public class LoginWindow {
 
 		try {
 			txtpntest.setPage("https://dl.dropbox.com/u/4847494/navalbattle/news.html");
-		} catch (Exception e) { }//NavalBattle.getDebugWindow().printError("Exception while loading news feed!"); }
+		} catch (Exception e) { NavalBattle.getDebugWindow().printError("Exception while loading news feed!"); }
 
 		txtpntest.setEditable(false);
 		txtpntest.setFocusable(false);
@@ -79,29 +78,26 @@ public class LoginWindow {
 
 		loginButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent ae) {
-				try {
-					SwingUtilities.invokeAndWait(new Runnable () {
-						public void run() {login();}
-					});
-				} catch (Exception e) { }
+				login();
 			}
 		});
-
+		
 		registerButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent ae) {	
-				try {
-					SwingUtilities.invokeAndWait(new Runnable(){
-						public void run() {NavalBattle.getDebugWindow().printInfo("Opening register page...");}	
-					}); 
-				} catch (Exception e) { }
+			public void actionPerformed(ActionEvent ae) {			
+				NavalBattle.getDebugWindow().printInfo("Opening register page...");
 				// open register page
 			}
 		});
-	
+		
 		f.setFocusable(true);
 		f.addKeyListener(new KeyboardListener(this));
 
-		f.addWindowListener(new GlobalWindowAdapter()); 		
+		f.addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowClosing(WindowEvent we) {
+				NavalBattle.close();
+			}
+		});
 	}
 	
 	/**

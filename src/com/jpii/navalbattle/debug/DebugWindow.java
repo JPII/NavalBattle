@@ -19,7 +19,6 @@ package com.jpii.navalbattle.debug;
 
 import java.awt.*;
 import java.awt.event.*;
-
 import javax.swing.*;
 
 import com.jpii.navalbattle.NavalBattle;
@@ -67,18 +66,16 @@ public class DebugWindow {
 		commandField.setColumns(10);
 		
 		final JButton btnSubmit = new JButton("Submit");
-		
-	/*	btnSubmit.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent ae) {	
-				try {
-					SwingUtilities.invokeAndWait(new Runnable(){
-						public  void run() {submit();}	
-					}); 
-				} catch (Exception e) { }
-				// open register page
+		btnSubmit.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if(!commandField.getText().isEmpty()) {
+					submitCommand(commandField.getText());
+					commandField.setText("");
+				}
 			}
 		});
-*/		btnSubmit.setBounds(357, 301, 89, 23);
+		btnSubmit.setBounds(357, 301, 89, 23);
 		f.getContentPane().add(btnSubmit);
 
 		if(Constants.DEBUG_MODE) {
@@ -95,13 +92,13 @@ public class DebugWindow {
 		f.addKeyListener(new KeyboardListener(this));
 		commandField.addKeyListener(new KeyboardListener(this));
 
-	/*	f.addWindowListener(new WindowAdapter() {
+		f.addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowClosing(WindowEvent we) {
 				NavalBattle.close();
 			}
-		}); */
-	} 
+		});
+	}
 
 	/**
 	 * Prints a message without a tag. Next message does not go to a new line.
@@ -188,14 +185,6 @@ public class DebugWindow {
 	 * Remotely grabs entered in <code>commandField</code> and parses.
 	 */
 	public void submitCommandRemote() {
-		if(!commandField.getText().isEmpty()) {
-			submitCommand(commandField.getText());
-			commandField.setText("");
-		}
-	}
-	
-	private void submit()
-	{
 		if(!commandField.getText().isEmpty()) {
 			submitCommand(commandField.getText());
 			commandField.setText("");
