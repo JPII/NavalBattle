@@ -3,18 +3,17 @@ package com.jpii.navalbattle.gui;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
-import javax.swing.SwingUtilities;
-
 import com.jpii.navalbattle.NavalBattle;
 
-public class GlobalWindowAdapter extends WindowAdapter {
+public class GlobalWindowAdapter extends WindowAdapter implements Runnable{
 
 	public void windowClosing(WindowEvent we) {
-		try {
-			SwingUtilities.invokeAndWait(new Runnable(){ public void run() {
-				NavalBattle.close();
-			}}); 
-		}
-		catch (Exception e) { }
+		run();
 	}
+	
+	@Override
+	public void run() {
+		NavalBattle.close();
+	}
+
 }
