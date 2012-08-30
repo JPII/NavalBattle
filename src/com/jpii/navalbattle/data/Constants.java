@@ -28,7 +28,7 @@ public class Constants {
 	/*
 	 * General
 	 */
-	public static final String NAVALBATTLE_VERSION = "0.1a";
+	public static final String NAVALBATTLE_VERSION = "0.1a-refactor";
 	public static final String NAVALBATTLE_CODENAME = "Pioneer";
 	public static final String NAVALBATTLE_VERSION_TITLE = "NavalBattle " + NAVALBATTLE_VERSION + " (" + NAVALBATTLE_CODENAME + ")";
 	public static final String NEWSFEED_URL = "https://dl.dropbox.com/u/4847494/navalbattle/news.html";
@@ -37,7 +37,7 @@ public class Constants {
 	/*
 	 * RoketGamer
 	 */
-	public static final boolean ENABLE_ROKETGAMER = true;
+	public static final boolean ENABLE_ROKETGAMER = false;
 	public static final boolean FORCE_LOGIN = true;
 	public static final String API_KEY = "API_KEY";
 	public static final String SERVER_LOCATION = "http://www.roketgamer.co.cc";
