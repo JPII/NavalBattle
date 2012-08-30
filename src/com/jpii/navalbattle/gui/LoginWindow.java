@@ -100,7 +100,7 @@ public class LoginWindow {
 		}
 		// Authenticate Login
 		else if (false) {
-			NavalBattle.getDebugWindow().printWarning("User authenticated!");
+			NavalBattle.getDebugWindow().printInfo("User authenticated!");
 			NavalBattle.getDebugWindow().printInfo("Disposing LoginWindow");
 			f.dispose();
 			NavalBattle.getDebugWindow().printInfo("Opening MainMenuWindow");
