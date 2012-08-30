@@ -33,10 +33,10 @@ public class NavalBattle {
 	
 	public static void main(String[] args) {
 		
-		
-		roketGamer = new RoketGamer();
 		debugWindow = new DebugWindow();
 		gameState = new GameState();
+		roketGamer = new RoketGamer();
+		
 		commandHandler = new CommandHandler(Constants.COMMANDS);
 		
 		debugWindow.printInfo("NavalBattle initialized.");
