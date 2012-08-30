@@ -33,7 +33,7 @@ public class LoginWindow {
 		passwordLabel.setBounds(311,42,100,20);
 		passwordField = new JPasswordField(25);
 		passwordField.setBounds(365,42,100,20);
-		loginButton=new JButton("Login");
+		loginButton = new JButton("Login");
 		loginButton.setBounds(389,73,78,22);
 
 		try {
@@ -55,9 +55,9 @@ public class LoginWindow {
 		registerButton.setBounds(301, 73, 78, 22);
 		f.getContentPane().add(registerButton);
 		
-		JButton btnOffline = new JButton("Offline");
-		btnOffline.setBounds(213, 73, 78, 22);
-		f.getContentPane().add(btnOffline);
+		JButton offlineButton = new JButton("Offline");
+		offlineButton.setBounds(213, 73, 78, 22);
+		f.getContentPane().add(offlineButton);
 
 		f.setSize(491,143);
 		f.setVisible(true);
@@ -66,6 +66,19 @@ public class LoginWindow {
 		loginButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent ae) {
 				login();
+			}
+		});
+		
+		offlineButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent ae) {
+				NavalBattle.getDebugWindow().printInfo("Opening in offline mode");
+				NavalBattle.getDebugWindow().printWarning("RoketGamer disabled");
+				NavalBattle.getGameState().setOffline(true);
+				
+				NavalBattle.getDebugWindow().printInfo("Disposing LoginWindow");
+				f.dispose();
+				NavalBattle.getDebugWindow().printInfo("Opening MainMenuWindow");
+				new MainMenuWindow();
 			}
 		});
 		
