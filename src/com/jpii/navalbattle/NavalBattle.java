@@ -18,7 +18,7 @@
 package com.jpii.navalbattle;
 
 import com.jpii.roketgamer.RoketGamer;
-import com.jpii.navalbattle.data.Constants;
+import com.jpii.navalbattle.data.Commands;
 import com.jpii.navalbattle.data.GameState;
 import com.jpii.navalbattle.debug.CommandHandler;
 import com.jpii.navalbattle.debug.DebugWindow;
@@ -33,11 +33,11 @@ public class NavalBattle {
 	
 	public static void main(String[] args) {
 		
-		
-		roketGamer = new RoketGamer();
 		debugWindow = new DebugWindow();
 		gameState = new GameState();
-		commandHandler = new CommandHandler(Constants.COMMANDS);
+		roketGamer = new RoketGamer();
+		
+		commandHandler = new CommandHandler(Commands.COMMANDS);
 		
 		debugWindow.printInfo("NavalBattle initialized.");
 		new LoginWindow();
