@@ -71,7 +71,7 @@ public class LoginWindow {
 		
 		registerButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent ae) {			
-				NavalBattle.getDebugWindow().printInfo("Opening register page...");
+				NavalBattle.getDebugWindow().printInfo("Opening register page");
 				
 				String url = Constants.SERVER_LOCATION + "/register.php?game=1&name=NavalBattle";
 				String os = System.getProperty("os.name").toLowerCase();
@@ -125,9 +125,7 @@ public class LoginWindow {
 			f.dispose();
 			NavalBattle.getDebugWindow().printInfo("Opening MainMenuWindow");
 			new MainMenuWindow();
-		}
-		// Authenticate Login
-		else if (false) {
+		} else if (false) { // TODO: Contact RoketGamer server
 			NavalBattle.getDebugWindow().printInfo("User authenticated!");
 			NavalBattle.getDebugWindow().printInfo("Disposing LoginWindow");
 			f.dispose();
