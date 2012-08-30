@@ -18,7 +18,7 @@
 package com.jpii.navalbattle.data;
 
 public class GameState {
-	private boolean offline = true;
+	private boolean offline = false;
 	private int score = 0;
 	private int waterLevel = 60;
 	private int numShips = 3;
