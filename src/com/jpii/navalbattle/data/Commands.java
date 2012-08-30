@@ -30,7 +30,7 @@ public class Commands {
 	    
 	    add(new Command("version", "", "View version info", new CommandAction() { 
 	    	public void onRun(Command c, String enteredCommand) {
-	    		NavalBattle.getDebugWindow().println(Constants.NAVALBATTLE_VERSION_TITLE + " (" + Constants.NAVALBATTLE_CODENAME + ")");
+	    		NavalBattle.getDebugWindow().println(Constants.NAVALBATTLE_VERSION_TITLE);
 	    	}}
 	    ));
 	    
@@ -49,7 +49,7 @@ public class Commands {
 	    		NavalBattle.getDebugWindow().println("Max \"maximusvladimir\" Kirkby - TBD");
 	    		NavalBattle.getDebugWindow().println("JR \"DarkWarHero\" Vetus - TBD");
 	    		NavalBattle.getDebugWindow().println("Matt \"Matthis5point0\" Waller - TBD");
-	    		NavalBattle.getDebugWindow().println("Zach \"smeagle42\" Mathewson - SCM manager; RoketGamer lead");
+	    		NavalBattle.getDebugWindow().println("Zach \"smeagle42\" Mathewson - TBD");
 	    		NavalBattle.getDebugWindow().println("");
 	    		NavalBattle.getDebugWindow().println("GitHub - source code hosting");
 	    		NavalBattle.getDebugWindow().println("RoketGamer - online social gaming");
