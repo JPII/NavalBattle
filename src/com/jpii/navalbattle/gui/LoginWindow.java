@@ -2,7 +2,6 @@ package com.jpii.navalbattle.gui;
 
 import javax.swing.*;
 import java.awt.event.*;
-
 import com.jpii.navalbattle.NavalBattle;
 import com.jpii.navalbattle.data.Constants;
 
@@ -36,8 +35,6 @@ public class LoginWindow {
 		loginButton = new JButton("Login");
 		loginButton.setBounds(389,73,78,22);
 
-		try {
-		} catch (Exception e) { NavalBattle.getDebugWindow().printError("Exception while loading news feed!"); }
 		f.getContentPane().add(usernameLabel);
 		f.getContentPane().add(usernameField);
 		f.getContentPane().add(passwordLabel);
@@ -54,6 +51,7 @@ public class LoginWindow {
 		JButton registerButton = new JButton("Register");
 		registerButton.setBounds(301, 73, 78, 22);
 		f.getContentPane().add(registerButton);
+		registerButton.addKeyListener(new KeyboardListener(this));
 		
 		JButton offlineButton = new JButton("Offline");
 		offlineButton.setBounds(213, 73, 78, 22);

@@ -6,6 +6,7 @@ import java.awt.event.*;
 
 import com.jpii.navalbattle.NavalBattle;
 import com.jpii.navalbattle.gui.KeyboardListener;
+import com.jpii.navalbattle.gui.MainMenuWindow;
 
 public class SPOptions {
 	JFrame f;
@@ -32,7 +33,7 @@ public class SPOptions {
 		f.getContentPane().setLayout(null);
 		
 		JButton btnOpenSave = new JButton("Open Save");
-		btnOpenSave.setBounds(112, 11, 89, 23);
+		btnOpenSave.setBounds(193, 11, 89, 23);
 		f.getContentPane().add(btnOpenSave);
 		/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		JSeparator separator = new JSeparator();
@@ -64,10 +65,6 @@ public class SPOptions {
 		separator_6.setOrientation(SwingConstants.VERTICAL);
 		separator_6.setBounds(324, 43, 21, 195);
 		f.getContentPane().add(separator_6);
-		/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-		JLabel lblOpenTheCurrently = new JLabel("Open the currently saved game.");
-		lblOpenTheCurrently.setBounds(211, 15, 162, 14);
-		f.getContentPane().add(lblOpenTheCurrently);
 		
 		JLabel lblNewGame = new JLabel("New Game");
 		lblNewGame.setFont(new Font("Tahoma", Font.PLAIN, 20));
@@ -231,9 +228,6 @@ public class SPOptions {
 			
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				NavalBattle.getDebugWindow().printInfo("NumShips: " + NavalBattle.getGameState().getNumShips());
-				NavalBattle.getDebugWindow().printInfo("WaterLevel: " + NavalBattle.getGameState().getWaterLevel());
-				NavalBattle.getDebugWindow().printInfo("Difficulty: " + NavalBattle.getGameState().getDifficulty());
 				saveOptions();
 				NavalBattle.getDebugWindow().printInfo("Saving Data...");
 				NavalBattle.getDebugWindow().printInfo("NumShips: " + NavalBattle.getGameState().getNumShips());
@@ -242,6 +236,31 @@ public class SPOptions {
 			}
 		});
 		f.getContentPane().add(btnNewButton);
+		
+		JButton btnBack = new JButton("Back");
+		btnBack.setBounds(39, 11, 89, 23);
+		f.getContentPane().add(btnBack);
+		btnBack.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				NavalBattle.getDebugWindow().printInfo("Opening MainMenuWindow...");
+				new MainMenuWindow();
+				NavalBattle.getDebugWindow().printInfo("Disposing SPOptions...");
+				f.dispose();
+			}
+		});
+		
+		JButton btnAdvancedOptions = new JButton("Advanced Options");
+		btnAdvancedOptions.setBounds(324, 11, 141, 23);
+		f.getContentPane().add(btnAdvancedOptions);
+		btnAdvancedOptions.addKeyListener(new KeyboardListener(this));
+		btnAdvancedOptions.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				NavalBattle.getDebugWindow().printInfo("Opening Advanced Options");
+			}
+		});
+		
 		/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////		
 		
 		f.setSize(491,339);
