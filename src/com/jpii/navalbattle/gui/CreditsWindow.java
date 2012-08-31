@@ -37,14 +37,12 @@ public class CreditsWindow {
 		f.getContentPane().add(licenseNotice);
 
 		btnClose = new JButton("Close");
-		btnClose.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
 		btnClose.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				NavalBattle.getDebugWindow().printInfo("Disposing CreditsWindow");
 				f.dispose();
+				NavalBattle.getDebugWindow().printInfo("Opening MainMenuWindow");
 				new MainMenuWindow();
 			}
 		});
