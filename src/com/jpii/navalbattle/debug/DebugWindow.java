@@ -79,10 +79,12 @@ public class DebugWindow {
 		f.getContentPane().add(btnSubmit);
 
 		if(Constants.DEBUG_MODE) {
+			printInfo("Debug mode enabled");
 			f.setSize(465,365);
 			f.setVisible(true);
 			f.setLocation(0,0);
 		} else {
+			printInfo("Debug mode disabled");
 			f.setSize(475,340);
 			f.setVisible(false);
 			f.setLocation(0,0);

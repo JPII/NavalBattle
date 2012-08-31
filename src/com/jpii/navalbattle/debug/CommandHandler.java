@@ -14,11 +14,13 @@ public class CommandHandler {
 	 * @param commands
 	 */
 	public CommandHandler(ArrayList<Command> commands) {
+		NavalBattle.getDebugWindow().printInfo("Registering commands");
+		
 		for(Command c : commands) {
 			registerCommand(c);
 		}
 		
-		NavalBattle.getDebugWindow().printInfo(commands.size() + " commands registered.");
+		NavalBattle.getDebugWindow().printInfo(commands.size() + " commands registered");
 	}
 	
 	/**

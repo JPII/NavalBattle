@@ -3,8 +3,8 @@ package com.jpii.navalbattle.data;
 import java.util.ArrayList;
 
 import com.jpii.navalbattle.NavalBattle;
-import com.jpii.navalbattle.debug.Command;
-import com.jpii.navalbattle.debug.CommandAction;
+import com.jpii.navalbattle.debug.*;
+import com.jpii.navalbattle.gui.*;
 
 public class Commands {
 	
@@ -37,6 +37,11 @@ public class Commands {
 	    add(new Command("echo", "<message>", "Print specified message", new CommandAction() { 
 	    	public void onRun(Command c, String enteredCommand) {
 	    		String[] s = enteredCommand.split(" ", 2);
+	    		try {
+	    			
+	    		} catch (Exception e) {
+	    			NavalBattle.getDebugWindow().printError("Invalid or missing arg: message");
+	    		}
 	    		NavalBattle.getDebugWindow().println(s[1]);
 	    	}}
 	    ));
@@ -115,6 +120,29 @@ public class Commands {
 	    add(new Command("cls", "", "Clear debug window", new CommandAction() { 
 	    	public void onRun(Command c, String enteredCommand) {
 	    			NavalBattle.getDebugWindow().printNew("");
+	    	}}
+	    
+	    ));
+	       
+	    add(new Command("openwindow", "<windowid>", "Force a window to appear", new CommandAction() { 
+	    	public void onRun(Command c, String enteredCommand) {
+	    		String[] s = enteredCommand.split(" ", 2);
+	    		
+	    		if(s[1].equals("login") || s[1].equals("0")) {
+	    			new LoginWindow();
+	    		}
+	    		
+	    		if(s[1].equals("main") || s[1].equals("1")) {
+	    			new MainMenuWindow();
+	    		}
+	    	}}
+	    ));
+	    
+	    add(new Command("sysinfo", "", "Get system info", new CommandAction() { 
+	    	public void onRun(Command c, String enteredCommand) {
+	    			NavalBattle.getDebugWindow().println("OS: " + System.getProperty("os.name") + " (" + System.getProperty("os.version") + ")");
+	    			NavalBattle.getDebugWindow().println("Java Home: " + System.getProperty("java.home"));
+	    			NavalBattle.getDebugWindow().println("Java Version: " + System.getProperty("java.version"));
 	    	}}
 	    
 	    ));

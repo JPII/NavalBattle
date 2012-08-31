@@ -19,6 +19,7 @@ package com.jpii.navalbattle;
 
 import com.jpii.roketgamer.RoketGamer;
 import com.jpii.navalbattle.data.Commands;
+import com.jpii.navalbattle.data.Constants;
 import com.jpii.navalbattle.data.GameState;
 import com.jpii.navalbattle.debug.CommandHandler;
 import com.jpii.navalbattle.debug.DebugWindow;
@@ -39,7 +40,7 @@ public class NavalBattle {
 		
 		commandHandler = new CommandHandler(Commands.COMMANDS);
 		
-		debugWindow.printInfo("NavalBattle initialized.");
+		debugWindow.printInfo("NavalBattle " + Constants.NAVALBATTLE_VERSION + " initialized");
 		new LoginWindow();
 	}
 	
