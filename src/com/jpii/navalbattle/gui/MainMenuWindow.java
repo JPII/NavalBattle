@@ -81,14 +81,15 @@ public class MainMenuWindow {
 			public void mouseClicked(MouseEvent e) {
 				NavalBattle.getDebugWindow().printInfo("Disposing MainMenuWindow");
 				f.dispose();
-				NavalBattle.getDebugWindow().printInfo("Starting Credits");
+				NavalBattle.getDebugWindow().printInfo("Opening CreditsWindow");
+				new CreditsWindow();
 			}
 		});
 		btnCredits.setBounds(398, 267, 67, 23);
 		f.getContentPane().add(btnCredits);
 		
 		JButton btnMultiplayer = new JButton("Multiplayer");
-		btnCredits.addMouseListener(new MouseAdapter() {
+		btnMultiplayer.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				NavalBattle.getDebugWindow().printWarning("Multiplayer doesn't work");
