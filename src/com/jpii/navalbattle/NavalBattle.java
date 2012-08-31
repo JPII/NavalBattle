@@ -33,7 +33,6 @@ public class NavalBattle {
 	private static CommandHandler commandHandler;
 	
 	public static void main(String[] args) {
-		
 		debugWindow = new DebugWindow();
 		gameState = new GameState();
 		roketGamer = new RoketGamer();
