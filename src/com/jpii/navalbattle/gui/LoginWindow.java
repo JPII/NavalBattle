@@ -21,6 +21,7 @@ import javax.swing.*;
 import java.awt.event.*;
 import com.jpii.navalbattle.NavalBattle;
 import com.jpii.navalbattle.data.Constants;
+import java.awt.Toolkit;
 
 public class LoginWindow {
 	JButton loginButton;
@@ -41,13 +42,15 @@ public class LoginWindow {
 		f.getContentPane().setLayout(null);
 		usernameLabel = new JLabel();
 		usernameLabel.setText("Username");
-		usernameLabel.setBounds(311,11,100,20);
+		usernameLabel.setBounds(311,11,58,20);
 		usernameField = new JTextField(25);
 		usernameField.setBounds(365,11,100,20);
 		passwordLabel = new JLabel();
+		passwordLabel.setToolTipText("Use RoketGamer application password");
 		passwordLabel.setText("Password");
-		passwordLabel.setBounds(311,42,100,20);
+		passwordLabel.setBounds(311,42,58,20);
 		passwordField = new JPasswordField(25);
+		passwordField.setToolTipText("Use RoketGamer application password");
 		passwordField.setBounds(365,42,100,20);
 		loginButton = new JButton("Login");
 		loginButton.setBounds(389,73,78,22);

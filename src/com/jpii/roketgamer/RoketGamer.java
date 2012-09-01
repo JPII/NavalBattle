@@ -40,16 +40,16 @@ public class RoketGamer {
 			if (result.equals("true")) {
 				session = new Session(in.readLine());
 				status = AuthStatus.GOOD;
-				
+			} else if (result.equals("false")) {
+				// Login and Session API is disabled
+				status = AuthStatus.OFFLINE;
 			} else {
-				// API key or username/password was wrong
 				status = AuthStatus.BAD;
 			}
 
 			in.close();
 
-		} catch (Exception e) {
-		}
+		} catch (Exception e) { }
 		
 		return status;
 	}
