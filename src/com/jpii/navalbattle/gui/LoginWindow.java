@@ -21,6 +21,11 @@ import javax.swing.*;
 import java.awt.event.*;
 import com.jpii.navalbattle.NavalBattle;
 import com.jpii.navalbattle.data.Constants;
+import com.jpii.roketgamer.Player;
+import com.jpii.roketgamer.auth.APIKey;
+import com.jpii.roketgamer.auth.AuthStatus;
+import com.jpii.roketgamer.auth.Password;
+
 import java.awt.Toolkit;
 
 public class LoginWindow {
@@ -150,22 +155,34 @@ public class LoginWindow {
 	 *  Method for handling login.
 	 */
 	public void login() {
-		if(Constants.FORCE_LOGIN) {
-			NavalBattle.getDebugWindow().printWarning("User is forced authenticated! Game will be insecure.");
-			NavalBattle.getDebugWindow().printInfo("Disposing LoginWindow");
-			f.dispose();
-			NavalBattle.getDebugWindow().printInfo("Opening MainMenuWindow");
-			new MainMenuWindow();
-		} else if (false) { // TODO: Contact RoketGamer server
+		@SuppressWarnings("deprecation")
+		AuthStatus status = NavalBattle.getRoketGamer().init(new APIKey(Constants.API_KEY), 
+				new Player(usernameField.getText(), 
+				new Password(passwordField.getText())));
+		
+		if (status == AuthStatus.GOOD) {
 			NavalBattle.getDebugWindow().printInfo("User authenticated!");
 			NavalBattle.getDebugWindow().printInfo("Disposing LoginWindow");
 			f.dispose();
 			NavalBattle.getDebugWindow().printInfo("Opening MainMenuWindow");
 			new MainMenuWindow();
-		} 
-		else {
-			NavalBattle.getDebugWindow().printWarning("Authentication failed!");	
-			JOptionPane.showMessageDialog(f, "Unable to login. Check username and password.");
+		} else {
+			if(status == AuthStatus.BAD) {
+				NavalBattle.getDebugWindow().printWarning("Authentication failed: AuthStatus.BAD");	
+				JOptionPane.showMessageDialog(f, "Incorrect username or password. \nUse your application password to login.");
+			} else if (status == AuthStatus.OFFLINE) {
+				NavalBattle.getDebugWindow().printWarning("Authentication failed: AuthStatus.OFFLINE");	
+				JOptionPane.showMessageDialog(f, "Unable to login. RoketGamer is offline.");
+			} else if (status == AuthStatus.INVALID_API_KEY) {
+				NavalBattle.getDebugWindow().printWarning("Authentication failed: AuthStatus.INVALID_API_KEY");	
+				JOptionPane.showMessageDialog(f, "Unable to login. API key is invalid.");
+			} else if (status == AuthStatus.UNKNOWN) {
+				NavalBattle.getDebugWindow().printWarning("Authentication failed: AuthStatus.UNKNOWN");	
+				JOptionPane.showMessageDialog(f, "Unable to login. Retry later or check the RoketGamer website.");
+			} else {
+				NavalBattle.getDebugWindow().printWarning("Authentication failed: AuthStatus is not recognized.");	
+				JOptionPane.showMessageDialog(f, "Unable to login. An unknown error occured.");
+			}
 		}
 	}
 	

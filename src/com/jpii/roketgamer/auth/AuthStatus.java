@@ -17,6 +17,11 @@ public enum AuthStatus {
 	OFFLINE,
 	
 	/**
+	 * Invalid API key
+	 */
+	INVALID_API_KEY,
+	
+	/**
 	 * Something unknown went wrong
 	 */
 	UNKNOWN;

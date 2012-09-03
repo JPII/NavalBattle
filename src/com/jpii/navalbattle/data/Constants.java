@@ -31,7 +31,6 @@ public class Constants {
 	 * RoketGamer
 	 */
 	public static final boolean ENABLE_ROKETGAMER = false;
-	public static final boolean FORCE_LOGIN = true;
 	public static final String API_KEY = "API_KEY";
 	public static final String SERVER_LOCATION = "http://www.roketgamer.co.cc";
 

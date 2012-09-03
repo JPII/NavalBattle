@@ -49,10 +49,10 @@ public class MainMenuWindow {
 		btnSingleplayer.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				NavalBattle.getDebugWindow().printInfo("Starting SinglePlayer");
-				new SPOptions();
 				NavalBattle.getDebugWindow().printInfo("Disposing MainMenuWindow");
 				f.dispose();
+				NavalBattle.getDebugWindow().printInfo("Opening SPOptions");
+				new SPOptions();
 			}
 		});
 		btnSingleplayer.setBounds(177, 73, 99, 23);
@@ -64,22 +64,28 @@ public class MainMenuWindow {
 			public void mouseClicked(MouseEvent e) {
 				NavalBattle.getDebugWindow().printInfo("Disposing MainMenuWindow");
 				f.dispose();
-				NavalBattle.getDebugWindow().printInfo("Starting Help");
+				NavalBattle.getDebugWindow().printInfo("Opening HelpWindow");
 			}
 		});
 		btnHelp.setBounds(177, 141, 99, 23);
 		f.getContentPane().add(btnHelp);
 
-		JButton btnRoketGamer = new JButton("RoketGamer");
-		btnRoketGamer.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				NavalBattle.getDebugWindow().printInfo("Disposing MainMenuWindow");
-				f.dispose();
-				NavalBattle.getDebugWindow().printInfo("Starting RoketGamer");
-			}
-		});
+		JButton btnRoketGamer = new JButton("RoketGamer");;
 		btnRoketGamer.setBounds(177, 175, 99, 23);
+		if(NavalBattle.getGameState().isOffline()) {
+			btnRoketGamer.setEnabled(false);
+		} else {
+			btnRoketGamer.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseClicked(MouseEvent e) {
+					NavalBattle.getDebugWindow().printInfo("Disposing MainMenuWindow");
+					f.dispose();
+					NavalBattle.getDebugWindow().printInfo("Opening RoketGamerWindow");
+					new RoketGamerWindow();
+				}
+			});
+		}
+		
 		f.getContentPane().add(btnRoketGamer);
 
 		JButton btnQuit = new JButton("Quit");
@@ -109,7 +115,7 @@ public class MainMenuWindow {
 		btnMultiplayer.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				NavalBattle.getDebugWindow().printWarning("Multiplayer doesn't work");
+				NavalBattle.getDebugWindow().printWarning("Multiplayer has not been implemented");
 			}
 		});
 		btnMultiplayer.setBounds(177, 107, 99, 23);

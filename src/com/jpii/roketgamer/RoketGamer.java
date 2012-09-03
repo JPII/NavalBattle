@@ -24,6 +24,7 @@ public class RoketGamer {
 	 * Initialize RoketGamer. Returns <code>AuthStatus</code>.
 	 * @param key
 	 * @param player
+	 * @param forceAuth
 	 * @return
 	 */
 	public AuthStatus init(APIKey key, Player player) {
@@ -33,22 +34,30 @@ public class RoketGamer {
 		try {
 			URL url = new URL(serverLocation + "/api/1.0/auth/login.php?key=" + key.getKey() + "&username=" + player.getName()
 					+ "&password=" + player.getPassword().getPassword());
+			System.out.println(url);
 
 			BufferedReader in = new BufferedReader(new InputStreamReader(url.openStream()));
 
 			String result = in.readLine();
+			System.out.println(result);
 			if (result.equals("true")) {
 				session = new Session(in.readLine());
 				status = AuthStatus.GOOD;
 			} else if (result.equals("false")) {
-				// Login and Session API is disabled
-				status = AuthStatus.OFFLINE;
+				String msg = in.readLine();
+				
+				if(msg.equals("Invalid API key")) {
+					status = AuthStatus.INVALID_API_KEY;
+				} else if (msg.equals("Invalid user")) {
+					status = AuthStatus.BAD;
+				} else if(msg.equals("API offline")) {
+					status = AuthStatus.OFFLINE;
+				}
 			} else {
-				status = AuthStatus.BAD;
+				status = AuthStatus.UNKNOWN;
 			}
 
 			in.close();
-
 		} catch (Exception e) { }
 		
 		return status;
