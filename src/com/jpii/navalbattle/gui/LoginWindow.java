@@ -161,7 +161,8 @@ public class LoginWindow {
 				new Password(passwordField.getText())));
 		
 		if (status == AuthStatus.GOOD) {
-			NavalBattle.getDebugWindow().printInfo("User authenticated!");
+			NavalBattle.getDebugWindow().printInfo("User authenticated");
+			NavalBattle.getDebugWindow().printInfo("Logged in as: " + NavalBattle.getRoketGamer().getPlayer().getName());
 			NavalBattle.getDebugWindow().printInfo("Disposing LoginWindow");
 			f.dispose();
 			NavalBattle.getDebugWindow().printInfo("Opening MainMenuWindow");
