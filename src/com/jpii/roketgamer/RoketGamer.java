@@ -3,6 +3,7 @@ package com.jpii.roketgamer;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.URL;
+import java.net.URLConnection;
 
 import com.jpii.navalbattle.data.Constants;
 import com.jpii.roketgamer.achievement.Achievement;
@@ -34,23 +35,27 @@ public class RoketGamer {
 		try {
 			URL url = new URL(serverLocation + "/api/1.0/auth/login.php?key=" + key.getKey() + "&username=" + player.getName()
 					+ "&password=" + player.getPassword().getPassword());
-			System.out.println(url);
+			
+			URLConnection connection = url.openConnection();
+		    connection.addRequestProperty("Protocol", "Http/1.1");
+		    connection.addRequestProperty("Connection", "keep-alive");
+		    connection.addRequestProperty("Keep-Alive", "1000");
+		    connection.addRequestProperty("User-Agent", "Web-Agent");
 
-			BufferedReader in = new BufferedReader(new InputStreamReader(url.openStream()));
+			BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
 
 			String result = in.readLine();
 			System.out.println(result);
-			if (result.equals("true")) {
+			
+			if (result.contains("true")) {
 				session = new Session(in.readLine());
 				status = AuthStatus.GOOD;
-			} else if (result.equals("false")) {
-				String msg = in.readLine();
-				
-				if(msg.equals("Invalid API key")) {
+			} else if (result.contains("false")) {
+				if(result.contains("Invalid API key")) {
 					status = AuthStatus.INVALID_API_KEY;
-				} else if (msg.equals("Invalid user")) {
+				} else if (result.contains("Invalid user")) {
 					status = AuthStatus.BAD;
-				} else if(msg.equals("API offline")) {
+				} else if(result.contains("API offline")) {
 					status = AuthStatus.OFFLINE;
 				}
 			} else {
