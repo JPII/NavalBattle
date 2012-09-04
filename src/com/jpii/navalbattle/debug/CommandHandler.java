@@ -18,6 +18,7 @@
 package com.jpii.navalbattle.debug;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 import com.jpii.navalbattle.NavalBattle;
 
@@ -35,6 +36,7 @@ public class CommandHandler {
 		
 		for(Command c : commands) {
 			registerCommand(c);
+			Collections.sort(commands, new CommandComparator());
 		}
 		
 		NavalBattle.getDebugWindow().printInfo(commands.size() + " commands registered");
@@ -47,6 +49,8 @@ public class CommandHandler {
 	 */
 	public void registerCommand(Command command) {
 		commands.add(command);
+		
+		Collections.sort(commands, new CommandComparator());
 	}
 	
 	/**

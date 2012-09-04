@@ -17,7 +17,7 @@
 
 package com.jpii.navalbattle.debug;
 
-public class Command {
+public class Command implements Comparable<Command> {
 	
 	private String command;
 	private String args;
@@ -109,5 +109,10 @@ public class Command {
 	 */
 	public void setCommandAction(CommandAction commandAction) {
 		this.commandAction = commandAction;
+	}
+
+	@Override
+	public int compareTo(Command cmd) {
+		return this.getCommand().compareTo(cmd.toString());
 	}
 }
