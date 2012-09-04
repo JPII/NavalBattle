@@ -20,19 +20,22 @@ package com.jpii.navalbattle.game.entity;
 import java.awt.Image;
 
 import com.jpii.navalbattle.game.Location;
+import com.jpii.navalbattle.game.entity.component.IntelligenceModule;
 
 public class Entity {
 	
 	private Location location;
 	private Image image;
+	private IntelligenceModule intelligenceModule;
 	
 	/**
 	 * Construct an <code>Entity</code> with a <code>Location</code>
 	 * 
 	 * @param location
 	 */
-	public Entity(Location location) {
+	public Entity(Location location, IntelligenceModule intelligenceModule) {
 		this.location = location;
+		this.intelligenceModule = intelligenceModule;
 	}
 	
 	/**
@@ -40,8 +43,9 @@ public class Entity {
 	 * 
 	 * @param image
 	 */
-	public Entity(Image image) {
+	public Entity(Image image, IntelligenceModule intelligenceModule) {
 		this.image = image;
+		this.intelligenceModule = intelligenceModule;
 	}
 	
 	/**
@@ -49,8 +53,10 @@ public class Entity {
 	 * 
 	 * @param location, image
 	 */
-	public Entity(Location location, Image image) {
+	public Entity(Location location, Image image, IntelligenceModule intelligenceModule) {
 		this.location = location;
+		this.image = image;
+		this.intelligenceModule = intelligenceModule;
 	}
 	
 	/**
@@ -87,5 +93,21 @@ public class Entity {
 	 */
 	public Image getImage() {
 		return image;
+	}
+	
+	/**
+	 * Get current <code>IntelligenceModule</code>
+	 * @param intelligenceModule
+	 */
+	public void setIntelligenceModule(IntelligenceModule intelligenceModule) {
+		this.intelligenceModule = intelligenceModule;
+	}
+	
+	/**
+	 * Set current <code>IntelligenceModule</code>
+	 * @return
+	 */
+	public IntelligenceModule getIntelligenceModule() {
+		return intelligenceModule;
 	}
 }
