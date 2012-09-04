@@ -23,6 +23,7 @@ public class Constants {
 	 * General
 	 */
 	public static final String NAVALBATTLE_VERSION = "0.1a";
+	public static final String VERSION_CODE = "1";
 	public static final String NAVALBATTLE_CODENAME = "Pioneer";
 	public static final String NAVALBATTLE_VERSION_TITLE = "NavalBattle " + NAVALBATTLE_VERSION + " (" + NAVALBATTLE_CODENAME + ")";
 	public static final boolean DEBUG_MODE = true;

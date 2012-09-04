@@ -47,7 +47,7 @@ public class Commands {
 	    
 	    add(new Command("version", "", "View version info", new CommandAction() { 
 	    	public void onRun(Command c, String enteredCommand) {
-	    		NavalBattle.getDebugWindow().println(Constants.NAVALBATTLE_VERSION_TITLE);
+	    		NavalBattle.getDebugWindow().println(Constants.NAVALBATTLE_VERSION_TITLE + " (" + Constants.VERSION_CODE + ")");
 	    	}}
 	    ));
 	    
