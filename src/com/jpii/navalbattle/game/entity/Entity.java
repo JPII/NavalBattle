@@ -31,7 +31,7 @@ public class Entity {
 	private boolean active;
 	
 	/**
-	 * Construct an <code>Entity</code> with a <code>Location</code> and <code>Image</code>
+	 * Construct an <code>Entity</code>
 	 * @param location, image
 	 */
 	public Entity(Location location, Image image, IntelligenceModule intelligenceModule, int health) {
