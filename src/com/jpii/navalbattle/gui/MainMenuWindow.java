@@ -32,6 +32,7 @@ public class MainMenuWindow {
 		try {
 			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 		} catch (Exception e) {}
+		
 		f = new JFrame();
 		f.setTitle("NavalBattle");
 		f.getContentPane().setLayout(null);
@@ -41,7 +42,7 @@ public class MainMenuWindow {
 		f.getContentPane().add(lblVersion);
 
 		JLabel lblNavalBattle = new JLabel("NAVALBATTLE");
-		lblNavalBattle.setFont(new Font("Prestige Elite Std", Font.BOLD, 33));
+		lblNavalBattle.setFont(new Font("", Font.BOLD, 33));
 		lblNavalBattle.setBounds(101, 11, 248, 51);
 		f.getContentPane().add(lblNavalBattle);
 
@@ -65,6 +66,7 @@ public class MainMenuWindow {
 				NavalBattle.getDebugWindow().printInfo("Disposing MainMenuWindow");
 				f.dispose();
 				NavalBattle.getDebugWindow().printInfo("Opening HelpWindow");
+				new HelpWindow();
 			}
 		});
 		btnHelp.setBounds(177, 141, 99, 23);
