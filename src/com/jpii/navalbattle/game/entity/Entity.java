@@ -27,11 +27,11 @@ public class Entity {
 	private Location location;
 	private Image image;
 	private IntelligenceModule intelligenceModule;
-	private int health = -1;
+	private int health;
+	private boolean active;
 	
 	/**
 	 * Construct an <code>Entity</code> with a <code>Location</code> and <code>Image</code>
-	 * 
 	 * @param location, image
 	 */
 	public Entity(Location location, Image image, IntelligenceModule intelligenceModule, int health) {
@@ -39,6 +39,7 @@ public class Entity {
 		this.image = image;
 		this.intelligenceModule = intelligenceModule;
 		this.health = health;
+		this.active = true;
 		
 		intelligenceModule.setEntity(this);
 	}
@@ -57,11 +58,14 @@ public class Entity {
 	public void onAttacked(int damage, Entity attacker) {
 		health -= damage;
 		intelligenceModule.addTarget(attacker);
+		
+		if(health <= 0) {
+			active = false;
+		}
 	}
 	
 	/**
 	 * Set current <code>Location</code>
-	 * 
 	 * @param location
 	 */
 	public void setLocation(Location location) {
@@ -70,7 +74,6 @@ public class Entity {
 	
 	/**
 	 * Get current <code>Location</code>.
-	 * 
 	 * @return
 	 */
 	public Location getLocation() {
@@ -79,7 +82,6 @@ public class Entity {
 	
 	/**
 	 * Set current <code>Image</code>
-	 * 
 	 * @param image
 	 */
 	public void setImage(Image image) {
@@ -88,7 +90,6 @@ public class Entity {
 	
 	/**
 	 * Get current <code>Image</code>
-	 * 
 	 * @return
 	 */
 	public Image getImage() {
@@ -109,5 +110,53 @@ public class Entity {
 	 */
 	public IntelligenceModule getIntelligenceModule() {
 		return intelligenceModule;
+	}
+	
+	/**
+	 * Set health
+	 * @param health
+	 */
+	public void setHealth(int health) {
+		this.health = health;
+	}
+	
+	/**
+	 * Add health
+	 * @param health
+	 */
+	public void addHealth(int health) {
+		this.health += health;
+	}
+	
+	/**
+	 * Subtract health
+	 * @param damage
+	 */
+	public void damage(int damage) {
+		this.health -= damage;
+	}
+	
+	/**
+	 * Get health
+	 * @return
+	 */
+	public int getHealth() {
+		return this.health;
+	}
+	
+	/**
+	 * Set active
+	 * @param active
+	 */
+	public void setActive(boolean active) {
+		this.active = active;
+	}
+	
+	/**
+	 * Get if active
+	 * @return
+	 */
+	public boolean getActive() {
+		return active;
 	}
 }
