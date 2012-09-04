@@ -45,7 +45,6 @@ public class RoketGamer {
 			BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
 
 			String result = in.readLine();
-			System.out.println(result);
 			
 			if (result.contains("true")) {
 				session = new Session(in.readLine());
