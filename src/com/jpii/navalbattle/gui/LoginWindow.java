@@ -26,8 +26,6 @@ import com.jpii.roketgamer.auth.APIKey;
 import com.jpii.roketgamer.auth.AuthStatus;
 import com.jpii.roketgamer.auth.Password;
 
-import java.awt.Toolkit;
-
 public class LoginWindow {
 	JButton loginButton;
 	JFrame f;

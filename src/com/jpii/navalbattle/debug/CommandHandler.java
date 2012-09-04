@@ -18,7 +18,6 @@
 package com.jpii.navalbattle.debug;
 
 import java.util.ArrayList;
-import java.util.Collections;
 
 import com.jpii.navalbattle.NavalBattle;
 
@@ -36,7 +35,6 @@ public class CommandHandler {
 		
 		for(Command c : commands) {
 			registerCommand(c);
-			Collections.sort(commands, new CommandComparator());
 		}
 		
 		NavalBattle.getDebugWindow().printInfo(commands.size() + " commands registered");
@@ -49,8 +47,7 @@ public class CommandHandler {
 	 */
 	public void registerCommand(Command command) {
 		commands.add(command);
-		
-		Collections.sort(commands, new CommandComparator());
+		sort(commands);
 	}
 	
 	/**
@@ -73,6 +70,18 @@ public class CommandHandler {
 		if(!isCommand) {
 			NavalBattle.getDebugWindow().printError("'" + command + "' is not a registered command");
 		}
+	}
+	
+	private void sort(ArrayList<Command> commands) {
+		for(int index = 1; index < commands.size(); index++) {
+			for(int count = 0; count < commands.size()-index; count++) {	
+					if(commands.get(count).getCommand().compareTo(commands.get(count+1).getCommand())>=0){
+						Command switcher = commands.get(count);
+						commands.set(count, commands.get(count+1));
+						commands.set(count+1, switcher);
+					}
+				}
+			}
 	}
 	
 	/**
