@@ -17,21 +17,22 @@
 
 package com.jpii.navalbattle.game.entity.component;
 
+import java.util.ArrayList;
+
 import com.jpii.navalbattle.game.entity.Entity;
 
 public class IntelligenceModule {
 	
 	private Entity entity;
 	private int team, level;
+	private ArrayList<Entity> targets = new ArrayList<Entity>();
 	
 	/**
 	 * Construct a basic IntelligenceModule
-	 * @param entity
 	 * @param team
 	 * @param level
 	 */
-	public IntelligenceModule(Entity entity, int team, int level) {
-		this.entity = entity;
+	public IntelligenceModule(int team, int level) {
 		this.team = team;
 		this.level = level;
 	}
@@ -82,5 +83,30 @@ public class IntelligenceModule {
 	 */
 	public void setLevel(int level) {
 		this.level = level;
+	}
+	
+	/**
+	 * Get targets
+	 * @return
+	 */
+	public ArrayList<Entity> getTargets() {
+		return targets;
+	}
+	
+	/**
+	 * Add target to bottom of priority
+	 * @param entity
+	 */
+	public void addTarget(Entity entity) {
+		targets.add(entity);
+	}
+	
+	/**
+	 * Add target with specific priority
+	 * @param entity
+	 * @param pos
+	 */
+	public void addTarget(Entity entity, int pos) {
+		targets.add(pos, entity);
 	}
 }

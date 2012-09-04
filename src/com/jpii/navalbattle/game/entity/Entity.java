@@ -27,36 +27,36 @@ public class Entity {
 	private Location location;
 	private Image image;
 	private IntelligenceModule intelligenceModule;
-	
-	/**
-	 * Construct an <code>Entity</code> with a <code>Location</code>
-	 * 
-	 * @param location
-	 */
-	public Entity(Location location, IntelligenceModule intelligenceModule) {
-		this.location = location;
-		this.intelligenceModule = intelligenceModule;
-	}
-	
-	/**
-	 * Construct an <code>Entity</code> with an <code>Image</code>
-	 * 
-	 * @param image
-	 */
-	public Entity(Image image, IntelligenceModule intelligenceModule) {
-		this.image = image;
-		this.intelligenceModule = intelligenceModule;
-	}
+	private int health = -1;
 	
 	/**
 	 * Construct an <code>Entity</code> with a <code>Location</code> and <code>Image</code>
 	 * 
 	 * @param location, image
 	 */
-	public Entity(Location location, Image image, IntelligenceModule intelligenceModule) {
+	public Entity(Location location, Image image, IntelligenceModule intelligenceModule, int health) {
 		this.location = location;
 		this.image = image;
 		this.intelligenceModule = intelligenceModule;
+		this.health = health;
+		
+		intelligenceModule.setEntity(this);
+	}
+	
+	/**
+	 * Called when moving
+	 */
+	public void onMove() {
+		
+	}
+	
+	/**
+	 * Called when attacked
+	 * @param damage
+	 */
+	public void onAttacked(int damage, Entity attacker) {
+		health -= damage;
+		intelligenceModule.addTarget(attacker);
 	}
 	
 	/**
