@@ -20,3 +20,6 @@ NavalBattle will be released with the following versioning scheme:
     major.minor.build
 
 Names of United States Navy ships will be used for codenames.
+
+## Commit updates
+Follow @NavalBattle for real-time commit logs.
