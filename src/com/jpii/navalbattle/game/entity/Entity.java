@@ -39,9 +39,9 @@ public class Entity {
 	 * @param location, image
 	 */
 	public Entity(Location location, Image image) {
-		this.location = location;
-		this.image = image;
-		this.active = true;
+		setLocation(location);
+		setImage(image);
+		setActive(true);
 	}
 	
 	/**

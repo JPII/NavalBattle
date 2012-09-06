@@ -33,8 +33,8 @@ public class IntelligenceModule {
 	 * @param level
 	 */
 	public IntelligenceModule(int team, int level) {
-		this.team = team;
-		this.level = level;
+		setTeam(team);
+		setLevel(level);
 	}
 	
 	/**

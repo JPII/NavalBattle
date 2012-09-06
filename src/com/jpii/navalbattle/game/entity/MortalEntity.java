@@ -18,9 +18,9 @@ public class MortalEntity extends Entity {
 	 */
 	public MortalEntity(Location location, Image image, int health) {
 		super(location, image);
-		this.health = health;
 		defaulthealth = health;
 		dead = false;
+		setHealth(health);
 	}
 	
 	/**
