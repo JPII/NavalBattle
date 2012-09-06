@@ -27,10 +27,6 @@ public class IntelligentEntity extends MortalEntity {
 	public void onAttacked(int damage, Entity attacker) {
 		damage(damage);
 		intelligenceModule.addTarget(attacker);
-
-		if(getHealth() <= 0) {
-			setActive(false);
-		}
 	}
 	
 	/**
