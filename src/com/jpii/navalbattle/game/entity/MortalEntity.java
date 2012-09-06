@@ -8,6 +8,12 @@ public class MortalEntity extends Entity {
 	
 	private int health;
 	
+	/**
+	 * Construct <code>MortalEntity</code>.
+	 * @param location
+	 * @param image
+	 * @param health
+	 */
 	public MortalEntity(Location location, Image image, int health) {
 		super(location, image);
 		this.health = health;
