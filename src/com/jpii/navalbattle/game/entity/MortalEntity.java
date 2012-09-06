@@ -8,7 +8,7 @@ public class MortalEntity extends Entity {
 	
 	private int health;
 	private boolean dead;
-	private int defaulthealth;
+	private int maxHealth;
 	
 	/**
 	 * Construct <code>MortalEntity</code>.
@@ -18,7 +18,7 @@ public class MortalEntity extends Entity {
 	 */
 	public MortalEntity(Location location, Image image, int health) {
 		super(location, image);
-		defaulthealth = health;
+		maxHealth = health;
 		dead = false;
 		setHealth(health);
 	}
@@ -74,7 +74,7 @@ public class MortalEntity extends Entity {
 	 * Heals the Entity
 	 */
 	public void heal() {
-		this.health = defaulthealth;
+		this.health = maxHealth;
 		dead = false;
 	}
 }
