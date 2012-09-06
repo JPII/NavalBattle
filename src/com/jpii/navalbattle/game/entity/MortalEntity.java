@@ -45,6 +45,10 @@ public class MortalEntity extends Entity {
 	 */
 	public void damage(int damage) {
 		this.health -= damage;
+		
+		if(getHealth() <= 0) {
+			kill();
+		}
 	}
 
 	/**
@@ -68,6 +72,8 @@ public class MortalEntity extends Entity {
 	public void kill() {
 		dead = true;
 		this.health = 0;
+		
+		setActive(false);
 	}
 
 	/**

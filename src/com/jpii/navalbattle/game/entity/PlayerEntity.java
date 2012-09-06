@@ -22,9 +22,5 @@ public class PlayerEntity extends MortalEntity {
 	 */
 	public void onAttacked(int damage, Entity attacker) {
 		damage(damage);
-
-		if(getHealth() <= 0) {
-			setActive(false);
-		}
 	}
 }
