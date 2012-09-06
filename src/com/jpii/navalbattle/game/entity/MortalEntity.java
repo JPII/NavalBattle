@@ -7,6 +7,8 @@ import com.jpii.navalbattle.game.Location;
 public class MortalEntity extends Entity {
 	
 	private int health;
+	private boolean dead;
+	private int defaulthealth;
 	
 	/**
 	 * Construct <code>MortalEntity</code>.
@@ -17,6 +19,8 @@ public class MortalEntity extends Entity {
 	public MortalEntity(Location location, Image image, int health) {
 		super(location, image);
 		this.health = health;
+		defaulthealth = health;
+		dead = false;
 	}
 	
 	/**
@@ -49,5 +53,28 @@ public class MortalEntity extends Entity {
 	 */
 	public int getHealth() {
 		return this.health;
+	}
+	
+	/**
+	 * Determines if dead or not.
+	 */
+	public boolean isDead() {
+		return dead;
+	}
+
+	/**
+	 * Kills the Entity.
+	 */
+	public void kill() {
+		dead = true;
+		this.health = 0;
+	}
+
+	/**
+	 * Heals the Entity
+	 */
+	public void heal() {
+		this.health = defaulthealth;
+		dead = false;
 	}
 }
