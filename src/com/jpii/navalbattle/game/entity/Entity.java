@@ -20,48 +20,45 @@ package com.jpii.navalbattle.game.entity;
 import java.awt.Image;
 
 import com.jpii.navalbattle.game.Location;
-import com.jpii.navalbattle.game.entity.component.IntelligenceModule;
 
 public class Entity {
 	
 	private Location location;
 	private Image image;
-	private IntelligenceModule intelligenceModule;
-	private int health;
 	private boolean active;
 	
 	/**
 	 * Construct an <code>Entity</code>
 	 * @param location, image
 	 */
-	public Entity(Location location, Image image, IntelligenceModule intelligenceModule, int health) {
+	public Entity(Location location, Image image) {
 		this.location = location;
 		this.image = image;
-		this.intelligenceModule = intelligenceModule;
-		this.health = health;
 		this.active = true;
-		
-		intelligenceModule.setEntity(this);
 	}
 	
 	/**
 	 * Called when moving
+	 * @param location
 	 */
-	public void onMove() {
+	public void onMove(Location location) {
 		
 	}
 	
 	/**
 	 * Called when attacked
-	 * @param damage
+	 * @param attacker
 	 */
-	public void onAttacked(int damage, Entity attacker) {
-		health -= damage;
-		intelligenceModule.addTarget(attacker);
+	public void onAttacked(Entity attacker) {
 		
-		if(health <= 0) {
-			active = false;
-		}
+	}
+	
+	/**
+	 * Called when attacking
+	 * @param target
+	 */
+	public void onAttack(Entity target) {
+		
 	}
 	
 	/**
@@ -94,54 +91,6 @@ public class Entity {
 	 */
 	public Image getImage() {
 		return image;
-	}
-	
-	/**
-	 * Get current <code>IntelligenceModule</code>
-	 * @param intelligenceModule
-	 */
-	public void setIntelligenceModule(IntelligenceModule intelligenceModule) {
-		this.intelligenceModule = intelligenceModule;
-	}
-	
-	/**
-	 * Set current <code>IntelligenceModule</code>
-	 * @return
-	 */
-	public IntelligenceModule getIntelligenceModule() {
-		return intelligenceModule;
-	}
-	
-	/**
-	 * Set health
-	 * @param health
-	 */
-	public void setHealth(int health) {
-		this.health = health;
-	}
-	
-	/**
-	 * Add health
-	 * @param health
-	 */
-	public void addHealth(int health) {
-		this.health += health;
-	}
-	
-	/**
-	 * Subtract health
-	 * @param damage
-	 */
-	public void damage(int damage) {
-		this.health -= damage;
-	}
-	
-	/**
-	 * Get health
-	 * @return
-	 */
-	public int getHealth() {
-		return this.health;
 	}
 	
 	/**
