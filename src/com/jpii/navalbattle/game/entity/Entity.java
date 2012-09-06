@@ -28,6 +28,13 @@ public class Entity {
 	private boolean active;
 	
 	/**
+	 * Default constructor. Sets instance to inactive.
+	 */
+	public Entity() {
+		this.active = false;
+	}
+	
+	/**
 	 * Construct an <code>Entity</code>
 	 * @param location, image
 	 */
