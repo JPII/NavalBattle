@@ -115,7 +115,7 @@ public class GameComponent extends JComponent {
 	private void onZoom() {
 		int w = Toolkit.getDefaultToolkit().getScreenSize().width;
 		int h = Toolkit.getDefaultToolkit().getScreenSize().height;
-		grid = Helper.genGrid(w,h, getGridSize());
+		//grid = Helper.genGrid(w,h, getGridSize());
 		
 		map = Helper.genMap(eng, w,h, getGridSize());
 	}
