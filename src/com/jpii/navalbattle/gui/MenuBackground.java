@@ -99,11 +99,17 @@ public class MenuBackground extends JComponent implements MouseListener{
 		
 		
 		g.setColor(Color.black);
-		g.fillRect((int)boatx + 50, boaty+((height/3) * 2)-40, 10, 40);
+		g.fillRect((int)boatx + 60, boaty+((height/3) * 2)-40, 10, 40);
+		g.fillRect((int)boatx + 40, boaty+((height/3) * 2)-40, 10, 40);
+		g.fillRect((int)boatx + 20, boaty+((height/3) * 2)-40, 10, 40);
+		g.setColor(Color.white);
+		g.fillRect((int)boatx + 60, boaty+((height/3) * 2)-38, 10, 5);
+		g.fillRect((int)boatx + 40, boaty+((height/3) * 2)-38, 10, 5);
+		g.fillRect((int)boatx + 20, boaty+((height/3) * 2)-38, 10, 5);
 		
 		g.setColor(new Color(125,116,81));
 		g.fillRect((int)boatx, boaty+((height/3) * 2)-26, 100, 50);
-		g.fillArc((int)boatx-40,boaty+((height/3)*2)-27,50,40,-90,-180);
+		g.fillArc((int)boatx+85, boaty+((height/3) * 2)-26, 30,50,-90,180);
 		Polygon p = new Polygon();
 		p.addPoint((int)boatx-25, boaty+((height/3) * 2)-26);
 		p.addPoint((int)boatx, boaty+((height/3) * 2)+49);
