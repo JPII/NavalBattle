@@ -250,6 +250,9 @@ public class SPOptions {
 				NavalBattle.getDebugWindow().printInfo("NumShips: " + NavalBattle.getGameState().getNumShips());
 				NavalBattle.getDebugWindow().printInfo("WaterLevel: " + NavalBattle.getGameState().getWaterLevel());
 				NavalBattle.getDebugWindow().printInfo("Difficulty: " + NavalBattle.getGameState().getDifficulty());
+				
+				f.dispose();
+				new SinglePlayerGame();
 			}
 		});
 		f.getContentPane().add(btnNewButton);

@@ -14,12 +14,12 @@ public class MenuBackground extends JComponent implements MouseListener{
 	int width, height, pixel;
 	BufferedImage buffer;
 	
-	int boatx;
+	double boatx;
 	int boaty;
 	
 	double theta = 0.0;
 	double theta2 = 0.0;
-	int whalex = 0;
+	double whalex = 0;
 	int whaley = 0;
 	double whaletheta = 0.0;
 	boolean happy = true;//int x,y;
@@ -42,12 +42,12 @@ public class MenuBackground extends JComponent implements MouseListener{
 		theta += 0.5;
 		theta2 += 1.1;
 		if (happy) {
-			whalex--;
+			whalex -= 1.25;
 		}
 		else {
 			whalex -= 4;
 		}
-		boatx--;
+		boatx -= 0.75;
 		if (boatx < -125)
 			boatx = width;
 		if (whalex < -200)
@@ -64,28 +64,28 @@ public class MenuBackground extends JComponent implements MouseListener{
 			g.setColor(new Color(172,83,85));
 		}
 		int yey2 = boaty+((height/3) * 2) + whaley - 40;
-		g.fillArc(whalex,yey2, 40, 50, -90, -180);
-		g.fillRect(whalex+20, yey2, 30, 50);
+		g.fillArc((int)whalex,yey2, 40, 50, -90, -180);
+		g.fillRect((int)whalex+20, yey2, 30, 50);
 		Polygon p2 = new Polygon();
-		p2.addPoint(whalex+50, yey2);
-		p2.addPoint(whalex+80, yey2+40);
-		p2.addPoint(whalex+100, yey2+20);
-		p2.addPoint(whalex+80, yey2+50);
-		p2.addPoint(whalex+50, yey2+50);
+		p2.addPoint((int)whalex+50, yey2);
+		p2.addPoint((int)whalex+80, yey2+40);
+		p2.addPoint((int)whalex+100, yey2+20);
+		p2.addPoint((int)whalex+80, yey2+50);
+		p2.addPoint((int)whalex+50, yey2+50);
 		g.fillPolygon(p2);
 		
 		g.setColor(Color.black);
 		if (happy) {
-			g.drawArc(whalex-17, yey2+25, 40,10, 0, -90);
+			g.drawArc((int)whalex-17, yey2+25, 40,10, 0, -90);
 			g.setColor(Color.white);
-			g.fillOval(whalex+15, yey2+5, 15,15);
+			g.fillOval((int)whalex+15, yey2+5, 15,15);
 			g.setColor(Color.black);
-			g.fillOval(whalex+18, yey2+8, 7,7);
+			g.fillOval((int)whalex+18, yey2+8, 7,7);
 		}
 		else {
-			g.drawArc(whalex-17, yey2+25, 40,10, 0, 90);
-			g.drawLine(whalex+20, yey2, whalex+10, yey2 + 10);
-			g.fillOval(whalex+15, yey2+5, 5,5);
+			g.drawArc((int)whalex-17, yey2+25, 40,10, 0, 90);
+			g.drawLine((int)whalex+20, yey2, (int)whalex+10, yey2 + 10);
+			g.fillOval((int)whalex+15, yey2+5, 5,5);
 		}
 		
 		
@@ -98,14 +98,14 @@ public class MenuBackground extends JComponent implements MouseListener{
 		
 		
 		g.setColor(Color.black);
-		g.fillRect(boatx + 50, boaty+((height/3) * 2)-40, 10, 40);
+		g.fillRect((int)boatx + 50, boaty+((height/3) * 2)-40, 10, 40);
 		
 		g.setColor(new Color(125,116,81));
-		g.fillRect(boatx, boaty+((height/3) * 2)-25, 100, 50);
+		g.fillRect((int)boatx, boaty+((height/3) * 2)-25, 100, 50);
 		Polygon p = new Polygon();
-		p.addPoint(boatx-25, boaty+((height/3) * 2)-25);
-		p.addPoint(boatx, boaty+((height/3) * 2)+50);
-		p.addPoint(boatx, boaty+((height/3) * 2)-25);
+		p.addPoint((int)boatx-25, boaty+((height/3) * 2)-25);
+		p.addPoint((int)boatx, boaty+((height/3) * 2)+50);
+		p.addPoint((int)boatx, boaty+((height/3) * 2)-25);
 		g.fillPolygon(p);
 		
 		g.setColor(new Color(78,131,209));
@@ -126,11 +126,11 @@ public class MenuBackground extends JComponent implements MouseListener{
 			if (minx < nx && nx != 0)
 				minx = nx;
 			
-			if (boatx == x) {
+			if ((int)boatx == x) {
 				boaty = nx;
 			}
 			
-			if (whalex == x) {
+			if ((int)whalex == x) {
 				whaley = nx/2;
 			}
 		}

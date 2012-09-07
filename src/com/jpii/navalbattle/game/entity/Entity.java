@@ -26,6 +26,7 @@ public class Entity {
 	private Location location;
 	private Image image;
 	private boolean active;
+	private String tag;
 	
 	/**
 	 * Default constructor. Sets instance to inactive.
@@ -42,6 +43,29 @@ public class Entity {
 		setLocation(location);
 		setImage(image);
 		setActive(true);
+	}
+	
+	/**
+	 * Gets the tag for the entity.
+	 * @return
+	 */
+	public String getTag() {
+		return tag;
+	}
+	
+	/**
+	 * Ticks the enitity (updates info).
+	 */
+	public void tick() {
+		
+	}
+	
+	/**
+	 * Sets the tag for the Entity.
+	 * @param tag
+	 */
+	public void setTag(String tag) {
+		this.tag = tag;
 	}
 	
 	/**
