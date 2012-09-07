@@ -18,6 +18,7 @@
 package com.jpii.navalbattle.gui;
 
 import javax.swing.*;
+
 import java.awt.*;
 import java.awt.event.*;
 
@@ -25,52 +26,61 @@ import com.jpii.navalbattle.NavalBattle;
 import com.jpii.navalbattle.data.Constants;
 import com.jpii.navalbattle.game.SPOptions;
 
-public class MainMenuWindow {
-	JFrame f;
-
+public class MainMenuWindow extends JFrame{
+	Timer ticker;
+	MenuBackground backgrnd;
+	int ticks;
+	
 	public MainMenuWindow() {
+		super();
 		try {
 			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 		} catch (Exception e) {}
 		
-		f = new JFrame();
-		f.setTitle("NavalBattle");
-		f.getContentPane().setLayout(null);
+		this.setTitle("NavalBattle");
+		
+		backgrnd = new MenuBackground(491,339,2);
+		backgrnd.setLocation(0, 0);
+		backgrnd.setSize(491,339);
+		setContentPane(backgrnd);
+		
+		this.getContentPane().setLayout(null);
 
 		JLabel lblVersion = new JLabel(Constants.NAVALBATTLE_VERSION_TITLE);
 		lblVersion.setBounds(10, 276, 238, 14);
-		f.getContentPane().add(lblVersion);
+		this.getContentPane().add(lblVersion);
 
 		JLabel lblNavalBattle = new JLabel("NAVALBATTLE");
 		lblNavalBattle.setFont(new Font("", Font.BOLD, 33));
 		lblNavalBattle.setBounds(101, 11, 248, 51);
-		f.getContentPane().add(lblNavalBattle);
+		this.getContentPane().add(lblNavalBattle);
 
 		JButton btnSingleplayer = new JButton("Singleplayer");
 		btnSingleplayer.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				NavalBattle.getDebugWindow().printInfo("Disposing MainMenuWindow");
-				f.dispose();
+				dispose();
 				NavalBattle.getDebugWindow().printInfo("Opening SPOptions");
 				new SPOptions();
 			}
 		});
+		btnSingleplayer.setBackground(new Color(255,255,255,255));
 		btnSingleplayer.setBounds(177, 73, 99, 23);
-		f.getContentPane().add(btnSingleplayer);
+		this.getContentPane().add(btnSingleplayer);
 
 		JButton btnHelp = new JButton("Help");
 		btnHelp.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				NavalBattle.getDebugWindow().printInfo("Disposing MainMenuWindow");
-				f.dispose();
+				dispose();
 				NavalBattle.getDebugWindow().printInfo("Opening HelpWindow");
 				new HelpWindow();
 			}
 		});
 		btnHelp.setBounds(177, 141, 99, 23);
-		f.getContentPane().add(btnHelp);
+		this.getContentPane().add(btnHelp);
 
 		JButton btnRoketGamer = new JButton("RoketGamer");;
 		btnRoketGamer.setBounds(177, 175, 99, 23);
@@ -81,14 +91,14 @@ public class MainMenuWindow {
 				@Override
 				public void mouseClicked(MouseEvent e) {
 					NavalBattle.getDebugWindow().printInfo("Disposing MainMenuWindow");
-					f.dispose();
+					dispose();
 					NavalBattle.getDebugWindow().printInfo("Opening RoketGamerWindow");
 					new RoketGamerWindow();
 				}
 			});
 		}
 		
-		f.getContentPane().add(btnRoketGamer);
+		this.getContentPane().add(btnRoketGamer);
 
 		JButton btnQuit = new JButton("Quit");
 		btnQuit.addMouseListener(new MouseAdapter() {
@@ -98,20 +108,20 @@ public class MainMenuWindow {
 			}
 		});
 		btnQuit.setBounds(177, 209, 99, 23);
-		f.getContentPane().add(btnQuit);
+		this.getContentPane().add(btnQuit);
 
 		JButton btnCredits = new JButton("Credits");
 		btnCredits.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				NavalBattle.getDebugWindow().printInfo("Disposing MainMenuWindow");
-				f.dispose();
+				dispose();
 				NavalBattle.getDebugWindow().printInfo("Opening CreditsWindow");
 				new CreditsWindow();
 			}
 		});
 		btnCredits.setBounds(398, 267, 67, 23);
-		f.getContentPane().add(btnCredits);
+		this.getContentPane().add(btnCredits);
 		
 		JButton btnMultiplayer = new JButton("Multiplayer");
 		btnMultiplayer.addMouseListener(new MouseAdapter() {
@@ -121,20 +131,20 @@ public class MainMenuWindow {
 			}
 		});
 		btnMultiplayer.setBounds(177, 107, 99, 23);
-		f.getContentPane().add(btnMultiplayer);
+		this.getContentPane().add(btnMultiplayer);
 
-		f.setSize(491,339);
-		f.setVisible(true);
-		f.setLocation(500,300);
+		this.setSize(491,339);
+		this.setVisible(true);
+		this.setLocation(500,300);
 
-		f.addWindowListener(new WindowAdapter(){
+		this.addWindowListener(new WindowAdapter(){
 			public void windowClosing(WindowEvent we){
 				NavalBattle.close();
 			}
 		});
 		
-		f.setFocusable(true);
-		f.addKeyListener(new KeyListener() {
+		this.setFocusable(true);
+		this.addKeyListener(new KeyListener() {
 			@Override
 			public void keyPressed(KeyEvent k) {	
 				if(k.getKeyCode() == KeyEvent.VK_ESCAPE) {
@@ -148,9 +158,19 @@ public class MainMenuWindow {
 			public void keyTyped(KeyEvent arg0) {
 			}
 		});
-	}
-
-	public JFrame getFrame() {
-		return f;
+		
+		ActionListener listener = new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				backgrnd.tick();
+				
+				ticks += 100;
+				
+				backgrnd.invalidate();
+				
+				repaint();
+			}
+		};
+		ticker = new Timer(100,listener);
+		ticker.start();
 	}
 }
