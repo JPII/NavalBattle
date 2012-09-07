@@ -24,6 +24,8 @@ import java.util.ArrayList;
 import javax.swing.*;
 import java.beans.*;
 
+import com.jpii.dagen.Engine;
+import com.jpii.dagen.MapType;
 import com.jpii.navalbattle.data.Helper;
 import com.jpii.navalbattle.game.entity.Entity;
 
@@ -37,11 +39,13 @@ public class GameComponent extends JComponent {
 	ArrayList<Entity> entities;
 	Timer ticker;
 
-	BufferedImage grid, shadow;
+	BufferedImage grid, shadow,map;
 
 	int test;
 	JSlider slider;
 
+	Engine eng;
+	
 	public GameComponent(JFrame frame) {
 		this.frame = frame;
 		
@@ -63,8 +67,13 @@ public class GameComponent extends JComponent {
 		};
 		int w = Toolkit.getDefaultToolkit().getScreenSize().width;
 		int h = Toolkit.getDefaultToolkit().getScreenSize().height;
+		
+		eng = new Engine(w,h);
+		eng.generate(MapType.Hills, (int)(Math.random() * 99999999999.9), 1.0);
+		
 		grid = Helper.genGrid(w, h, 20);
 		shadow = Helper.genInnerShadow(w, h);
+		map = Helper.genMap(eng, w, h, 1);
 
 		entities = new ArrayList<Entity>();
 
@@ -119,6 +128,8 @@ public class GameComponent extends JComponent {
 	public void paintComponent(Graphics g) {
 		g.setColor(Color.red);
 		g.fillRect(0, 0, getWidth() + 1, getHeight() + 1);
+		
+		g.drawImage(map,0,0,null);
 
 		g.drawImage(grid, 0, 0, null);
 		g.drawImage(shadow, 0, 0, null);
