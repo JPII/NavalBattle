@@ -52,20 +52,12 @@ public class HelpWindow {
 				new MainMenuWindow();
 			}
 		});
-		btnClose.setBounds(7, 228, 59, 23);
+		btnClose.setBounds(10, 137, 59, 23);
 		f.getContentPane().add(btnClose);
-		
-		JSeparator separator = new JSeparator();
-		separator.setBounds(10, 130, 449, 2);
-		f.getContentPane().add(separator);
 		
 		JLabel lblYoutubeTutorials = new JLabel("YouTube Tutorials");
 		lblYoutubeTutorials.setBounds(20, 36, 92, 14);
 		f.getContentPane().add(lblYoutubeTutorials);
-		
-		JLabel lblLocalTutorials = new JLabel("Local Tutorials");
-		lblLocalTutorials.setBounds(20, 143, 76, 14);
-		f.getContentPane().add(lblLocalTutorials);
 		
 		JButton btnVideoOverview = new JButton("Overview");
 		btnVideoOverview.addActionListener(new ActionListener() {
@@ -95,37 +87,13 @@ public class HelpWindow {
 		btnVideoRoketgamer.setBounds(221, 95, 100, 23);
 		f.getContentPane().add(btnVideoRoketgamer);
 		
-		JButton btnTextOverview = new JButton("Overview");
-		btnTextOverview.setBounds(30, 162, 82, 23);
-		f.getContentPane().add(btnTextOverview);
-		
-		JButton btnTextNavigation = new JButton("Navigation");
-		btnTextNavigation.setBounds(122, 162, 89, 23);
-		f.getContentPane().add(btnTextNavigation);
-		
-		JButton btnTextCombat = new JButton("Combat");
-		btnTextCombat.setBounds(221, 162, 89, 23);
-		f.getContentPane().add(btnTextCombat);
-		
-		JButton btnTextUpgradeShop = new JButton("Upgrade Shop");
-		btnTextUpgradeShop.setBounds(320, 162, 107, 23);
-		f.getContentPane().add(btnTextUpgradeShop);
-		
-		JButton btnTextMultiplayer = new JButton("Multiplayer");
-		btnTextMultiplayer.setBounds(111, 196, 100, 23);
-		f.getContentPane().add(btnTextMultiplayer);
-		
-		JButton btnTextRoketgamer = new JButton("RoketGamer");
-		btnTextRoketgamer.setBounds(221, 196, 100, 23);
-		f.getContentPane().add(btnTextRoketgamer);
-		
 		f.addWindowListener(new WindowAdapter(){
 			public void windowClosing(WindowEvent we){
 				NavalBattle.close();
 			}
 		});
 
-		f.setSize(475,300);
+		f.setSize(475,199);
 		f.setVisible(true);
 		f.setResizable(false);
 		f.setLocation(1280/2-f.getWidth()/2,800/2-f.getHeight()/2);
