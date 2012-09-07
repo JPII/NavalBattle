@@ -31,6 +31,11 @@ import javax.swing.Timer;
 
 import com.jpii.navalbattle.data.Helper;
 import com.jpii.navalbattle.game.entity.Entity;
+import javax.swing.JSlider;
+import javax.swing.SwingConstants;
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeEvent;
+import java.awt.SystemColor;
 
 /**
  * @author MKirkby
@@ -45,9 +50,26 @@ public class GameComponent extends JComponent {
 	BufferedImage grid, shadow;
 
 	int test;
+<<<<<<< HEAD
+	JSlider slider;
+	
+=======
 
+>>>>>>> add41198e40e3acffc6a0acf349ae29c36ba9915
 	public GameComponent(JFrame frame) {
 		this.frame = frame;
+		
+		slider = new JSlider();
+		slider.setForeground(new Color(0,0,0,255));
+		slider.addPropertyChangeListener(new PropertyChangeListener() {
+			public void propertyChange(PropertyChangeEvent arg0) {
+				onZoom();
+			}
+		});
+		slider.setPaintTicks(true);
+		slider.setOrientation(SwingConstants.VERTICAL);
+		slider.setBounds(10, 63, 31, 177);
+		add(slider);
 		ActionListener al = new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				tick();
@@ -94,7 +116,23 @@ public class GameComponent extends JComponent {
 		test += 1;
 		repaint();
 	}
+<<<<<<< HEAD
+	
+	private void onZoom() {
+		int w = Toolkit.getDefaultToolkit().getScreenSize().width;
+		int h = Toolkit.getDefaultToolkit().getScreenSize().height;
+		grid = Helper.genGrid(w,h, getGridSize());
+	}
+	public int getGridSize() {
+		int c = (slider.getValue() * 40)/100;
+		if (c > 5)
+			return c;
+		else
+			return 5;
+	}
+=======
 
+>>>>>>> add41198e40e3acffc6a0acf349ae29c36ba9915
 	public void paintComponent(Graphics g) {
 		g.setColor(Color.red);
 		g.fillRect(0, 0, getWidth() + 1, getHeight() + 1);
