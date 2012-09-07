@@ -28,6 +28,7 @@ import com.jpii.dagen.Engine;
 import com.jpii.dagen.MapType;
 import com.jpii.navalbattle.data.Helper;
 import com.jpii.navalbattle.game.entity.Entity;
+import com.jpii.navalbattle.util.Stopwatch;
 
 /**
  * @author MKirkby
@@ -45,6 +46,10 @@ public class GameComponent extends JComponent {
 	JSlider slider;
 
 	Engine eng;
+	
+	int zoomx, zoomy;
+	
+	boolean invokeFlag = false;
 	
 	public GameComponent(JFrame frame) {
 		this.frame = frame;
@@ -73,7 +78,7 @@ public class GameComponent extends JComponent {
 		
 		grid = Helper.genGrid(w, h, 20);
 		shadow = Helper.genInnerShadow(w, h);
-		map = Helper.genMap(eng, w, h, 1);
+		map = Helper.genMap(eng,0,0,w,h, w, h, 1);
 
 		entities = new ArrayList<Entity>();
 
@@ -103,21 +108,31 @@ public class GameComponent extends JComponent {
 	}
 
 	private void tick() {
-		for (int x = 0; x < entities.size(); x++) {
-			if (entities.get(x) != null) {
-				entities.get(x).tick();
+		if (!invokeFlag) {
+			for (int x = 0; x < entities.size(); x++) {
+				if (entities.get(x) != null) {
+					entities.get(x).tick();
+				}
 			}
+			test += 1;
+			repaint();
 		}
-		test += 1;
-		repaint();
+		invokeFlag = false;
 	}
 	
 	private void onZoom() {
 		int w = Toolkit.getDefaultToolkit().getScreenSize().width;
 		int h = Toolkit.getDefaultToolkit().getScreenSize().height;
 		//grid = Helper.genGrid(w,h, getGridSize());
+		Stopwatch watch = new Stopwatch();
+		watch.start();
+		map = Helper.genMap(eng,zoomx,zoomy, w/getGridSize(), h/getGridSize(), w,h, getGridSize());
+		watch.stop();
 		
-		map = Helper.genMap(eng, w,h, getGridSize());
+		System.out.println("Map formulation took: " + watch.getString());
+		
+		invokeFlag = true;
+		
 		repaint();
 	}
 	public int getGridSize() {
@@ -137,7 +152,7 @@ public class GameComponent extends JComponent {
 		g.drawImage(grid, 0, 0, null);
 		g.drawImage(shadow, 0, 0, null);
 
-		g.setColor(Color.black);
+		g.setColor(Color.white);
 		g.drawString("This is just a test.", 100, 100);
 		g.drawString(
 				"In the future, this is where the map, enitities, and GUI would go.",

@@ -52,18 +52,16 @@ public class Helper {
 		return (d);
 	}
 	
-	public static BufferedImage genMap(Engine eng, int width, int height, int pixelsize) {
+	public static BufferedImage genMap(Engine eng, int startx, int starty, int maxw, int maxh, int width, int height, int pixelsize) {
 		BufferedImage bi = new BufferedImage(width,height,BufferedImage.TYPE_INT_ARGB);
 		Graphics g = bi.getGraphics();
-		int WIDTH = width;
-		int HEIGHT = height;
 		int PIXEL = pixelsize;
 		if (eng != null) {
 			double[][] points = eng.getPoints();
 			g.setColor(Color.black);
 			g.fillRect(0, 0, width*PIXEL,height*PIXEL);
-			for (int x = 0; x < WIDTH; x++) {
-				for (int y = 0; y < HEIGHT; y++) {
+			for (int x = startx; x < maxw; x++) {
+				for (int y = starty; y < maxh; y++) {
 					double wamount = 0.70;
 					if (points[x][y] < wamount){
 						int reduce = (int)(snap(points[x][y]) * 49.0);
