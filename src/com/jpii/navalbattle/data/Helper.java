@@ -1,7 +1,6 @@
 package com.jpii.navalbattle.data;
 
 import java.awt.Color;
-import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RadialGradientPaint;
@@ -11,7 +10,6 @@ import java.awt.image.BufferedImage;
 
 import com.jpii.dagen.ColorHelper;
 import com.jpii.dagen.Engine;
-import com.jpii.dagen.processing.FilterEngine;
 
 public class Helper {
 	public static BufferedImage genInnerShadow(int width, int height) {

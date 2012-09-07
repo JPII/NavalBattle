@@ -116,6 +116,8 @@ public class GameComponent extends JComponent {
 		int w = Toolkit.getDefaultToolkit().getScreenSize().width;
 		int h = Toolkit.getDefaultToolkit().getScreenSize().height;
 		grid = Helper.genGrid(w,h, getGridSize());
+		
+		map = Helper.genMap(eng, w,h, getGridSize());
 	}
 	public int getGridSize() {
 		int c = (slider.getValue() * 40)/100;
