@@ -25,6 +25,7 @@ import java.awt.event.*;
 import com.jpii.navalbattle.gui.KeyboardListener;
 import com.jpii.navalbattle.NavalBattle;
 
+@SuppressWarnings("serial")
 public class SinglePlayerGame extends JFrame{
 	GameComponent game;
 	public SinglePlayerGame() {
