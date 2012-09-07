@@ -65,13 +65,14 @@ public class MenuBackground extends JComponent implements MouseListener{
 		}
 		int yey2 = boaty+((height/3) * 2) + whaley - 40;
 		g.fillArc((int)whalex,yey2, 40, 50, -90, -180);
-		g.fillRect((int)whalex+20, yey2, 30, 50);
+		g.fillRect((int)whalex+20, yey2, 50, 50);
+		g.fillArc((int)whalex+30,yey2,75,50,-90,180);
 		Polygon p2 = new Polygon();
-		p2.addPoint((int)whalex+50, yey2);
-		p2.addPoint((int)whalex+80, yey2+40);
-		p2.addPoint((int)whalex+100, yey2+20);
-		p2.addPoint((int)whalex+80, yey2+50);
-		p2.addPoint((int)whalex+50, yey2+50);
+		p2.addPoint((int)whalex+90, yey2+5);
+		p2.addPoint((int)whalex+120, yey2+30);
+		p2.addPoint((int)whalex+140, yey2+20);
+		p2.addPoint((int)whalex+120, yey2+50);
+		p2.addPoint((int)whalex+90, yey2+50);
 		g.fillPolygon(p2);
 		
 		g.setColor(Color.black);
@@ -101,11 +102,12 @@ public class MenuBackground extends JComponent implements MouseListener{
 		g.fillRect((int)boatx + 50, boaty+((height/3) * 2)-40, 10, 40);
 		
 		g.setColor(new Color(125,116,81));
-		g.fillRect((int)boatx, boaty+((height/3) * 2)-25, 100, 50);
+		g.fillRect((int)boatx, boaty+((height/3) * 2)-26, 100, 50);
+		g.fillArc((int)boatx-40,boaty+((height/3)*2)-27,50,40,-90,-180);
 		Polygon p = new Polygon();
-		p.addPoint((int)boatx-25, boaty+((height/3) * 2)-25);
-		p.addPoint((int)boatx, boaty+((height/3) * 2)+50);
-		p.addPoint((int)boatx, boaty+((height/3) * 2)-25);
+		p.addPoint((int)boatx-25, boaty+((height/3) * 2)-26);
+		p.addPoint((int)boatx, boaty+((height/3) * 2)+49);
+		p.addPoint((int)boatx, boaty+((height/3) * 2)-26);
 		g.fillPolygon(p);
 		
 		g.setColor(new Color(78,131,209));
