@@ -15,15 +15,16 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.jpii.navalbattle.game;
+package com.jpii.navalbattle.gui;
+
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
 import com.jpii.navalbattle.NavalBattle;
-import com.jpii.navalbattle.gui.KeyboardListener;
-import com.jpii.navalbattle.gui.MainMenuWindow;
+import com.jpii.navalbattle.game.*;
+
 
 public class SPOptions {
 	JFrame f;

@@ -24,7 +24,6 @@ import java.awt.event.*;
 
 import com.jpii.navalbattle.NavalBattle;
 import com.jpii.navalbattle.data.Constants;
-import com.jpii.navalbattle.game.SPOptions;
 
 @SuppressWarnings("serial")
 public class MainMenuWindow extends JFrame{
