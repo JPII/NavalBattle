@@ -252,7 +252,9 @@ public class SPOptions {
 				NavalBattle.getDebugWindow().printInfo("WaterLevel: " + NavalBattle.getGameState().getWaterLevel());
 				NavalBattle.getDebugWindow().printInfo("Difficulty: " + NavalBattle.getGameState().getDifficulty());
 				
+				NavalBattle.getDebugWindow().printInfo("Disposing SPOptions");
 				f.dispose();
+				NavalBattle.getDebugWindow().printInfo("Opening SinglePlayerGame");
 				new SinglePlayerGame();
 			}
 		});
@@ -264,9 +266,9 @@ public class SPOptions {
 		btnBack.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				NavalBattle.getDebugWindow().printInfo("Opening MainMenuWindow...");
+				NavalBattle.getDebugWindow().printInfo("Opening MainMenuWindow");
 				new MainMenuWindow();
-				NavalBattle.getDebugWindow().printInfo("Disposing SPOptions...");
+				NavalBattle.getDebugWindow().printInfo("Disposing SPOptions");
 				f.dispose();
 			}
 		});
