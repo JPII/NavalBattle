@@ -17,25 +17,15 @@
 
 package com.jpii.navalbattle.game;
 
-import java.awt.Color;
-import java.awt.Graphics;
-import java.awt.Toolkit;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.image.BufferedImage;
+import java.awt.*;
+import java.awt.event.*;
+import java.awt.image.*;
 import java.util.ArrayList;
-
-import javax.swing.JComponent;
-import javax.swing.JFrame;
-import javax.swing.Timer;
+import javax.swing.*;
+import java.beans.*;
 
 import com.jpii.navalbattle.data.Helper;
 import com.jpii.navalbattle.game.entity.Entity;
-import javax.swing.JSlider;
-import javax.swing.SwingConstants;
-import java.beans.PropertyChangeListener;
-import java.beans.PropertyChangeEvent;
-import java.awt.SystemColor;
 
 /**
  * @author MKirkby
@@ -50,12 +40,8 @@ public class GameComponent extends JComponent {
 	BufferedImage grid, shadow;
 
 	int test;
-<<<<<<< HEAD
 	JSlider slider;
-	
-=======
 
->>>>>>> add41198e40e3acffc6a0acf349ae29c36ba9915
 	public GameComponent(JFrame frame) {
 		this.frame = frame;
 		
@@ -89,7 +75,7 @@ public class GameComponent extends JComponent {
 	}
 
 	public void addEntity(Entity entity) {
-		if (entity != null && entity.isActive()) {
+		if (entity != null) {
 			entities.add(entity);
 		}
 	}
@@ -116,7 +102,6 @@ public class GameComponent extends JComponent {
 		test += 1;
 		repaint();
 	}
-<<<<<<< HEAD
 	
 	private void onZoom() {
 		int w = Toolkit.getDefaultToolkit().getScreenSize().width;
@@ -130,9 +115,7 @@ public class GameComponent extends JComponent {
 		else
 			return 5;
 	}
-=======
 
->>>>>>> add41198e40e3acffc6a0acf349ae29c36ba9915
 	public void paintComponent(Graphics g) {
 		g.setColor(Color.red);
 		g.fillRect(0, 0, getWidth() + 1, getHeight() + 1);
