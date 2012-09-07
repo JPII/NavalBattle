@@ -26,7 +26,7 @@ import java.awt.event.*;
 
 public class HelpWindow {
 	JFrame f;
-	private JLabel gameTitle;
+	private JLabel lblTitle;
 
 	public HelpWindow() {
 		try {
@@ -37,14 +37,10 @@ public class HelpWindow {
 		f.setTitle("NavalBattle");
 		f.getContentPane().setLayout(null);
 
-		gameTitle = new JLabel("NavalBattle");
-		gameTitle.setFont(new Font("Tahoma", Font.BOLD, 14));
-		gameTitle.setBounds(10, 11, 86, 14);
-		f.getContentPane().add(gameTitle);
-		
-		JLabel lblToBeImplemented = new JLabel("To be implemented...");
-		lblToBeImplemented.setBounds(10, 36, 102, 14);
-		f.getContentPane().add(lblToBeImplemented);
+		lblTitle = new JLabel("NavalBattle Help");
+		lblTitle.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblTitle.setBounds(10, 11, 121, 23);
+		f.getContentPane().add(lblTitle);
 		
 		JButton btnClose = new JButton("Close");
 		btnClose.addMouseListener(new MouseAdapter() {
@@ -58,6 +54,70 @@ public class HelpWindow {
 		});
 		btnClose.setBounds(7, 228, 59, 23);
 		f.getContentPane().add(btnClose);
+		
+		JSeparator separator = new JSeparator();
+		separator.setBounds(10, 130, 449, 2);
+		f.getContentPane().add(separator);
+		
+		JLabel lblYoutubeTutorials = new JLabel("YouTube Tutorials");
+		lblYoutubeTutorials.setBounds(20, 36, 92, 14);
+		f.getContentPane().add(lblYoutubeTutorials);
+		
+		JLabel lblLocalTutorials = new JLabel("Local Tutorials");
+		lblLocalTutorials.setBounds(20, 143, 76, 14);
+		f.getContentPane().add(lblLocalTutorials);
+		
+		JButton btnVideoOverview = new JButton("Overview");
+		btnVideoOverview.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		btnVideoOverview.setBounds(30, 61, 82, 23);
+		f.getContentPane().add(btnVideoOverview);
+		
+		JButton btnVideoNavigation = new JButton("Navigation");
+		btnVideoNavigation.setBounds(122, 61, 89, 23);
+		f.getContentPane().add(btnVideoNavigation);
+		
+		JButton btnVideoCombat = new JButton("Combat");
+		btnVideoCombat.setBounds(221, 61, 89, 23);
+		f.getContentPane().add(btnVideoCombat);
+		
+		JButton btnVideoUpgradeShop = new JButton("Upgrade Shop");
+		btnVideoUpgradeShop.setBounds(320, 61, 107, 23);
+		f.getContentPane().add(btnVideoUpgradeShop);
+		
+		JButton btnVideoMultiplayer = new JButton("Multiplayer");
+		btnVideoMultiplayer.setBounds(111, 95, 100, 23);
+		f.getContentPane().add(btnVideoMultiplayer);
+		
+		JButton btnVideoRoketgamer = new JButton("RoketGamer");
+		btnVideoRoketgamer.setBounds(221, 95, 100, 23);
+		f.getContentPane().add(btnVideoRoketgamer);
+		
+		JButton btnTextOverview = new JButton("Overview");
+		btnTextOverview.setBounds(30, 162, 82, 23);
+		f.getContentPane().add(btnTextOverview);
+		
+		JButton btnTextNavigation = new JButton("Navigation");
+		btnTextNavigation.setBounds(122, 162, 89, 23);
+		f.getContentPane().add(btnTextNavigation);
+		
+		JButton btnTextCombat = new JButton("Combat");
+		btnTextCombat.setBounds(221, 162, 89, 23);
+		f.getContentPane().add(btnTextCombat);
+		
+		JButton btnTextUpgradeShop = new JButton("Upgrade Shop");
+		btnTextUpgradeShop.setBounds(320, 162, 107, 23);
+		f.getContentPane().add(btnTextUpgradeShop);
+		
+		JButton btnTextMultiplayer = new JButton("Multiplayer");
+		btnTextMultiplayer.setBounds(111, 196, 100, 23);
+		f.getContentPane().add(btnTextMultiplayer);
+		
+		JButton btnTextRoketgamer = new JButton("RoketGamer");
+		btnTextRoketgamer.setBounds(221, 196, 100, 23);
+		f.getContentPane().add(btnTextRoketgamer);
 		
 		f.addWindowListener(new WindowAdapter(){
 			public void windowClosing(WindowEvent we){
