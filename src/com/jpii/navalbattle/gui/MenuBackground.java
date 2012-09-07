@@ -3,13 +3,11 @@ package com.jpii.navalbattle.gui;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Polygon;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 
 import javax.swing.JComponent;
-import javax.swing.Timer;
 
+@SuppressWarnings("serial")
 public class MenuBackground extends JComponent{
 	int width, height, pixel;
 	BufferedImage buffer;
@@ -59,9 +57,13 @@ public class MenuBackground extends JComponent{
 			int nx = (int)toil;
 			int add = 0;
 			if (toil < 0) {
-				//add = (int) Math.abs(toil) * 2;
+				add = (int) Math.abs(toil) * 2;
 			}
-			g.drawLine(x, ((height/3) * 2) + nx, x, ((height/3) * 2) + nx +add);
+			if (nx == 0) {
+				add = (int)(toil * 3.0);
+			}
+			add = (int)(5.05);
+			g.drawLine(x, ((height/3) * 2) + nx, x, ((height/3) * 2) + nx + add);
 			
 			if (minx < nx && nx != 0)
 				minx = nx;
