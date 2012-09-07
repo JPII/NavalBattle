@@ -26,37 +26,40 @@ import com.jpii.navalbattle.gui.KeyboardListener;
 import com.jpii.navalbattle.NavalBattle;
 
 @SuppressWarnings("serial")
-public class SinglePlayerGame extends JFrame{
+public class SinglePlayerGame extends JFrame {
 	GameComponent game;
+
 	public SinglePlayerGame() {
 		try {
 			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-		} catch (Exception e) {}
+		} catch (Exception e) {
+		}
 		this.setTitle("NavalBattle");
-		
+
 		game = new GameComponent(this);
-		
+
 		setContentPane(game);
-		
-		this.getContentPane().setLayout(null);	
-		
-		
-		this.setSize(491,339);
+
+		this.getContentPane().setLayout(null);
+
+		this.setSize(491, 339);
 		this.setVisible(true);
 		this.setResizable(true);
-		this.setLocation(Toolkit.getDefaultToolkit().getScreenSize().width/2-this.getWidth()/2,
-				800/2-Toolkit.getDefaultToolkit().getScreenSize().height/2);
+		this.setLocation(Toolkit.getDefaultToolkit().getScreenSize().width / 2
+				- this.getWidth() / 2, 800 / 2 - Toolkit.getDefaultToolkit()
+				.getScreenSize().height / 2);
 
-		this.addWindowListener(new WindowAdapter(){
-			public void windowClosing(WindowEvent we){
+		this.addWindowListener(new WindowAdapter() {
+			public void windowClosing(WindowEvent we) {
 				NavalBattle.close();
 			}
 		});
-		
+
 		this.setFocusable(true);
 		this.addKeyListener(new KeyboardListener(this));
-		
-		setSize((int)Toolkit.getDefaultToolkit().getScreenSize().getWidth(),(int)Toolkit.getDefaultToolkit().getScreenSize().getHeight()-48);
-		setLocation(0,0);
+
+		setSize((int) Toolkit.getDefaultToolkit().getScreenSize().getWidth(),
+				(int) Toolkit.getDefaultToolkit().getScreenSize().getHeight() - 48);
+		setLocation(0, 0);
 	}
 }
