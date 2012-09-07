@@ -5,14 +5,17 @@ package com.jpii.navalbattle.game;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
 import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.Timer;
 
+import com.jpii.navalbattle.data.Helper;
 import com.jpii.navalbattle.game.entity.Entity;
 
 /**
@@ -25,6 +28,8 @@ public class GameComponent extends JComponent {
 	ArrayList<Entity> entities;
 	Timer ticker;
 	
+	BufferedImage grid,shadow;
+	
 	int test;
 	
 	public GameComponent(JFrame frame) {
@@ -34,6 +39,10 @@ public class GameComponent extends JComponent {
 				tick();
 			}
 		};
+		int w = Toolkit.getDefaultToolkit().getScreenSize().width;
+		int h = Toolkit.getDefaultToolkit().getScreenSize().height;
+		grid = Helper.genGrid(w,h,20);
+		shadow = Helper.genInnerShadow(w, h);
 		
 		entities = new ArrayList<Entity>();
 		
@@ -71,6 +80,9 @@ public class GameComponent extends JComponent {
 	public void paintComponent(Graphics g) {
 		g.setColor(Color.red);
 		g.fillRect(0, 0, getWidth()+1, getHeight()+1);
+		
+		g.drawImage(grid, 0, 0, null);
+		g.drawImage(shadow,0,0,null);
 		
 		g.setColor(Color.black);
 		g.drawString("This is just a test.", 100, 100);
