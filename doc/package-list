@@ -1,0 +1,12 @@
+com.jpii.navalbattle
+com.jpii.navalbattle.data
+com.jpii.navalbattle.debug
+com.jpii.navalbattle.game
+com.jpii.navalbattle.game.entity
+com.jpii.navalbattle.game.entity.component
+com.jpii.navalbattle.gui
+com.jpii.roketgamer
+com.jpii.roketgamer.achievement
+com.jpii.roketgamer.auth
+com.jpii.roketgamer.leaderboard
+com.jpii.roketgamer.util
