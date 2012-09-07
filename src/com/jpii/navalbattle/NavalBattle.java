@@ -18,7 +18,6 @@
 package com.jpii.navalbattle;
 
 import com.jpii.roketgamer.RoketGamer;
-import com.jpii.roketgamer.analytics.Analytics;
 import com.jpii.navalbattle.data.Commands;
 import com.jpii.navalbattle.data.Constants;
 import com.jpii.navalbattle.data.GameState;

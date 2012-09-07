@@ -177,4 +177,12 @@ public class RoketGamer {
 		
 		return false;
 	}
+	
+	/**
+	 * Get current <code>Analytics</code> instance.
+	 * @return
+	 */
+	public Analytics getAnalytics() {
+		return analytics;
+	}
 }
