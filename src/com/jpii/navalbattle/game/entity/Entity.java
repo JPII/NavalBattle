@@ -136,7 +136,7 @@ public class Entity {
 	 * Get if active
 	 * @return
 	 */
-	public boolean getActive() {
+	public boolean isActive() {
 		return active;
 	}
 }
