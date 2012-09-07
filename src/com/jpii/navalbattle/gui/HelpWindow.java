@@ -67,7 +67,8 @@ public class HelpWindow {
 
 		f.setSize(475,300);
 		f.setVisible(true);
-		f.setLocation(500,300);
+		f.setResizable(false);
+		f.setLocation(1280/2-f.getWidth()/2,800/2-f.getHeight()/2);
 	}
 
 	public JFrame getFrame() {

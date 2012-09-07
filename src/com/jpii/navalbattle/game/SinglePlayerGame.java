@@ -42,7 +42,8 @@ public class SinglePlayerGame {
 		
 		f.setSize(491,339);
 		f.setVisible(true);
-		f.setLocation(500,300);
+		f.setResizable(false);
+		f.setLocation(1280/2-f.getWidth()/2,800/2-f.getHeight()/2);
 
 		f.addWindowListener(new WindowAdapter(){
 			public void windowClosing(WindowEvent we){

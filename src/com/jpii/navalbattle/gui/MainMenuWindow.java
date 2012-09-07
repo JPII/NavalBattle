@@ -136,7 +136,8 @@ public class MainMenuWindow extends JFrame{
 
 		this.setSize(491,339);
 		this.setVisible(true);
-		this.setLocation(500,300);
+		this.setResizable(false);
+		this.setLocation(1280/2-this.getWidth()/2,800/2-this.getHeight()/2);
 
 		this.addWindowListener(new WindowAdapter(){
 			public void windowClosing(WindowEvent we){
