@@ -18,6 +18,7 @@
 package com.jpii.navalbattle;
 
 import com.jpii.roketgamer.RoketGamer;
+import com.jpii.roketgamer.analytics.Analytics;
 import com.jpii.navalbattle.data.Commands;
 import com.jpii.navalbattle.data.Constants;
 import com.jpii.navalbattle.data.GameState;
@@ -38,6 +39,9 @@ public class NavalBattle {
 		roketGamer = new RoketGamer();
 		
 		commandHandler = new CommandHandler(Commands.COMMANDS);
+		
+		Analytics a = new Analytics();
+		
 		
 		debugWindow.printInfo("NavalBattle " + Constants.NAVALBATTLE_VERSION + " initialized");
 		new LoginWindow();
