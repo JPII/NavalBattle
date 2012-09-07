@@ -53,7 +53,7 @@ public class GameComponent extends JComponent {
 	}
 
 	public void addEntity(Entity entity) {
-		if (entity != null || entity.isActive()) {
+		if (entity != null && entity.isActive()) {
 			entities.add(entity);
 		}
 	}
