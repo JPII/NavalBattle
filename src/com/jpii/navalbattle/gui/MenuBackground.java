@@ -77,12 +77,16 @@ public class MenuBackground extends JComponent implements MouseListener{
 		g.setColor(Color.black);
 		if (happy) {
 			g.drawArc(whalex-17, yey2+25, 40,10, 0, -90);
+			g.setColor(Color.white);
+			g.fillOval(whalex+15, yey2+5, 15,15);
+			g.setColor(Color.black);
+			g.fillOval(whalex+18, yey2+8, 7,7);
 		}
 		else {
 			g.drawArc(whalex-17, yey2+25, 40,10, 0, 90);
 			g.drawLine(whalex+20, yey2, whalex+10, yey2 + 10);
+			g.fillOval(whalex+15, yey2+5, 5,5);
 		}
-		g.fillOval(whalex+15, yey2+5, 5,5);
 		
 		
 		g.setColor(new Color(48,101,169));
