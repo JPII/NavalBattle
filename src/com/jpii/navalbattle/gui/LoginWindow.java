@@ -56,7 +56,7 @@ public class LoginWindow {
 		passwordField.setToolTipText("Use RoketGamer application password");
 		passwordField.setBounds(365,42,100,20);
 		loginButton = new JButton("Login");
-		loginButton.setBounds(389,73,78,22);
+		loginButton.setBounds(387,86,78,22);
 
 		f.getContentPane().add(usernameLabel);
 		f.getContentPane().add(usernameField);
@@ -68,16 +68,16 @@ public class LoginWindow {
 		usernameField.addKeyListener(new KeyboardListener(this));		
 		
 		JLabel lblVersion = new JLabel(Constants.NAVALBATTLE_VERSION_TITLE);
-		lblVersion.setBounds(10, 81, 193, 14);
+		lblVersion.setBounds(10, 90, 193, 14);
 		f.getContentPane().add(lblVersion);
 
 		JButton registerButton = new JButton("Register");
-		registerButton.setBounds(301, 73, 78, 22);
+		registerButton.setBounds(301, 86, 78, 22);
 		f.getContentPane().add(registerButton);
 		registerButton.addKeyListener(new KeyboardListener(this));
 		
 		JButton offlineButton = new JButton("Offline");
-		offlineButton.setBounds(213, 73, 78, 22);
+		offlineButton.setBounds(213, 86, 78, 22);
 		f.getContentPane().add(offlineButton);
 
 		f.setSize(491,143);
