@@ -10,10 +10,11 @@ public class PlayerEntity extends MortalEntity {
 	 * Construct <code>PlayerEntity</code>.
 	 * @param location
 	 * @param image
+	 * @param tag
 	 * @param health
 	 */
-	public PlayerEntity(Location location, Image image, int health) {
-		super(location, image, health);
+	public PlayerEntity(Location location, Image image, String tag, int health) {
+		super(location, image, tag, health);
 	}
 	
 	/**

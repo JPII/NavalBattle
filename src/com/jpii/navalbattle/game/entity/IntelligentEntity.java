@@ -13,10 +13,11 @@ public class IntelligentEntity extends MortalEntity {
 	 * Construct <code>IntelligentEntity</code>.
 	 * @param location
 	 * @param image
+	 * @param tag
 	 * @param health
 	 */
-	public IntelligentEntity(Location location, Image image, IntelligenceModule intelligenceModule, int health) {
-		super(location, image, health);
+	public IntelligentEntity(Location location, Image image, IntelligenceModule intelligenceModule, String tag, int health) {
+		super(location, image, tag, health);
 		this.intelligenceModule = intelligenceModule;
 	}
 	

@@ -14,10 +14,11 @@ public class MortalEntity extends Entity {
 	 * Construct <code>MortalEntity</code>.
 	 * @param location
 	 * @param image
+	 * @param tag
 	 * @param health
 	 */
-	public MortalEntity(Location location, Image image, int health) {
-		super(location, image);
+	public MortalEntity(Location location, Image image, String tag, int health) {
+		super(location, image, tag);
 		maxHealth = health;
 		dead = false;
 		setHealth(health);

@@ -32,16 +32,19 @@ public class Entity {
 	 * Default constructor. Sets instance to inactive.
 	 */
 	public Entity() {
-		this.active = false;
+		setActive(false);
 	}
 	
 	/**
 	 * Construct an <code>Entity</code>
-	 * @param location, image
+	 * @param location
+	 * @param image
+	 * @param tag
 	 */
-	public Entity(Location location, Image image) {
+	public Entity(Location location, Image image, String tag) {
 		setLocation(location);
 		setImage(image);
+		setTag(tag);
 		setActive(true);
 	}
 	
