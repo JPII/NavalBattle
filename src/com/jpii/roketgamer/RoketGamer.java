@@ -7,6 +7,7 @@ import java.net.URLConnection;
 
 import com.jpii.navalbattle.data.Constants;
 import com.jpii.roketgamer.achievement.Achievement;
+import com.jpii.roketgamer.analytics.Analytics;
 import com.jpii.roketgamer.auth.APIKey;
 import com.jpii.roketgamer.auth.AuthStatus;
 import com.jpii.roketgamer.auth.Session;
@@ -20,6 +21,7 @@ public class RoketGamer {
 	private Player player;
 	private AuthStatus status;
 	private Session session;
+	private Analytics analytics;
 	
 	/**
 	 * Initialize RoketGamer. Returns <code>AuthStatus</code>.
@@ -63,6 +65,10 @@ public class RoketGamer {
 
 			in.close();
 		} catch (Exception e) { }
+		
+		if(status == AuthStatus.GOOD) {
+			analytics = new Analytics();
+		}
 		
 		return status;
 	}
