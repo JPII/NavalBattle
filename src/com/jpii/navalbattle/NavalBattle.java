@@ -38,10 +38,7 @@ public class NavalBattle {
 		gameState = new GameState();
 		roketGamer = new RoketGamer();
 		
-		commandHandler = new CommandHandler(Commands.COMMANDS);
-		
-		Analytics a = new Analytics();
-		
+		commandHandler = new CommandHandler(Commands.COMMANDS);		
 		
 		debugWindow.printInfo("NavalBattle " + Constants.NAVALBATTLE_VERSION + " initialized");
 		new LoginWindow();
