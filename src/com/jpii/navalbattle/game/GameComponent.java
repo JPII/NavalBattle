@@ -55,7 +55,15 @@ public class GameComponent extends JComponent {
 		this.frame = frame;
 		
 		slider = new JSlider();
-		slider.setForeground(new Color(0,0,0,255));
+		slider.setMajorTickSpacing(1);
+		slider.setMinorTickSpacing(1);
+		slider.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent arg0) {
+				onZoom();
+			}
+		});
+		slider.setForeground(new Color(0,0,0,127));
 		slider.addPropertyChangeListener(new PropertyChangeListener() {
 			public void propertyChange(PropertyChangeEvent arg0) {
 				onZoom();
@@ -65,6 +73,16 @@ public class GameComponent extends JComponent {
 		slider.setOrientation(SwingConstants.VERTICAL);
 		slider.setBounds(10, 63, 31, 177);
 		add(slider);
+		
+		JButton button = new JButton("-->");
+		button.addMouseListener(new MouseAdapter() {
+			public void mousePressed(MouseEvent arg0) {
+				zoomx += getGridSize();
+				onZoom();
+			}
+		});
+		button.setBounds(10, 243, 89, 23);
+		add(button);
 		ActionListener al = new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				tick();
@@ -76,7 +94,7 @@ public class GameComponent extends JComponent {
 		eng = new Engine(w,h);
 		eng.generate(MapType.Hills, (int)(Math.random() * 99999999999.9), 1.0);
 		
-		grid = Helper.genGrid(w, h, 20);
+		grid = Helper.genGrid(w, h, getGridSize()*3);
 		shadow = Helper.genInnerShadow(w, h);
 		map = Helper.genMap(eng,0,0,w,h, w, h, 1);
 
@@ -121,15 +139,21 @@ public class GameComponent extends JComponent {
 	}
 	
 	private void onZoom() {
+		Stopwatch watch = new Stopwatch();
 		int w = Toolkit.getDefaultToolkit().getScreenSize().width;
 		int h = Toolkit.getDefaultToolkit().getScreenSize().height;
-		grid = Helper.genGrid(w,h, getGridSize());
-		Stopwatch watch = new Stopwatch();
+		
+		watch.start();
+		grid = Helper.genGrid(w,h, getGridSize()*3);
+		watch.stop();
+		
+		//System.out.println("rid formulation took: " + watch.getString());
+		
 		watch.start();
 		map = Helper.genMap(eng,zoomx,zoomy, w/getGridSize(), h/getGridSize(), w,h, getGridSize());
 		watch.stop();
 		
-		System.out.println("Map formulation took: " + watch.getString());
+		//System.out.println("Map formulation took: " + watch.getString());
 		
 		invokeFlag = true;
 		

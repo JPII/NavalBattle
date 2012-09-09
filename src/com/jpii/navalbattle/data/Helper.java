@@ -29,12 +29,35 @@ public class Helper {
 	public static BufferedImage genGrid(int width, int height, int spacing) {
 		BufferedImage grid = new BufferedImage(width,height,BufferedImage.TYPE_INT_ARGB);
 		Graphics g = grid.getGraphics();
-		g.setColor(new Color(127,127,127,127));
-		for (int gridx = 0; gridx < width; gridx+=spacing) {
-			g.drawLine(gridx, 0, gridx, height);
+		Color def = new Color(60,60,60);
+		Color nwe = new Color(60,60,60,200);
+		/*Polygon p = new Polygon();
+		for (int gridx = 0; gridx < width; gridx+=(spacing*2)) {
+			p.addPoint(gridx, -1);
+			p.addPoint(gridx, height+1);
+			p.addPoint(gridx+spacing, height+1);
+			p.addPoint(gridx+spacing, -1);
+		}*/
+		//g.drawPolygon(p);
+		int sub = height/spacing;
+		for (int gridy = 0; gridy < sub; gridy++) {
+			if (spacing <= 10 && (gridy % 4 == 0)) {
+				g.setColor(nwe);
+			}
+			else {
+				g.setColor(def);
+			}
+			g.drawLine(0, gridy*spacing, width, gridy*spacing);
 		}
-		for (int gridy = 0; gridy < height; gridy+=spacing) {
-			g.drawLine(0, gridy, width, gridy);
+		sub = width/spacing;
+		for (int gridx = 0; gridx < sub; gridx++) {
+			if (spacing <= 10 && gridx % 4 == 0) {
+				g.setColor(nwe);
+			}
+			else {
+				g.setColor(def);
+			}
+			g.drawLine(gridx*spacing,0,gridx*spacing,height);
 		}
 		return grid;
 	}
