@@ -22,12 +22,15 @@ import java.awt.event.*;
 import java.awt.image.*;
 import java.util.ArrayList;
 import javax.swing.*;
+
 import java.beans.*;
 
 import com.jpii.dagen.Engine;
 import com.jpii.dagen.MapType;
 import com.jpii.navalbattle.data.Helper;
 import com.jpii.navalbattle.game.entity.Entity;
+import com.jpii.navalbattle.gui.cotton.NavButton;
+import com.jpii.navalbattle.gui.cotton.Slider;
 import com.jpii.navalbattle.util.Stopwatch;
 
 /**
@@ -44,6 +47,7 @@ public class GameComponent extends JComponent {
 
 	int test;
 	JSlider slider;
+	NavButton nav0;
 
 	Engine eng;
 	
@@ -53,6 +57,15 @@ public class GameComponent extends JComponent {
 	
 	public GameComponent(JFrame frame) {
 		this.frame = frame;
+		
+		//Lets use Nimbus for now.
+		try {
+			UIManager.setLookAndFeel("javax.swing.plaf.nimbus.NimbusLookAndFeel");
+		} catch (Exception e) {}
+		
+		nav0 = new NavButton();
+		nav0.setLocation(128, 159);
+		nav0.setSize(100,81);
 		
 		slider = new JSlider();
 		slider.setMajorTickSpacing(1);
@@ -73,6 +86,8 @@ public class GameComponent extends JComponent {
 		slider.setOrientation(SwingConstants.VERTICAL);
 		slider.setBounds(10, 63, 31, 177);
 		add(slider);
+		
+		add(nav0);
 		
 		JButton button = new JButton("-->");
 		button.addMouseListener(new MouseAdapter() {
