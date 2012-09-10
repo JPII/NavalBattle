@@ -89,7 +89,7 @@ public class GameComponent extends JComponent {
 		
 		add(nav0);
 		
-		JButton button = new JButton("-->");
+		JButton button = new JButton("►");
 		button.addMouseListener(new MouseAdapter() {
 			public void mousePressed(MouseEvent arg0) {
 				zoomx += getGridSize();
@@ -99,7 +99,7 @@ public class GameComponent extends JComponent {
 		button.setBounds(137, 28, 54, 23);
 		add(button);
 		
-		button_1 = new JButton("V");
+		button_1 = new JButton("▼");
 		button_1.setBounds(85, 48, 54, 23);
 		button_1.addMouseListener(new MouseAdapter() {
 			public void mousePressed(MouseEvent arg0) {
@@ -109,9 +109,9 @@ public class GameComponent extends JComponent {
 		});
 		add(button_1);
 		
-		button_2 = new JButton("^");
+		button_2 = new JButton("▲");
 		button_2.setBounds(85, 11, 54, 23);
-		button_1.addMouseListener(new MouseAdapter() {
+		button_2.addMouseListener(new MouseAdapter() {
 			public void mousePressed(MouseEvent arg0) {
 				zoomy -= getGridSize();
 				onZoom();
@@ -119,9 +119,9 @@ public class GameComponent extends JComponent {
 		});
 		add(button_2);
 		
-		button_3 = new JButton("<--");
+		button_3 = new JButton("◄");
 		button_3.setBounds(32, 28, 54, 23);
-		button_1.addMouseListener(new MouseAdapter() {
+		button_3.addMouseListener(new MouseAdapter() {
 			public void mousePressed(MouseEvent arg0) {
 				zoomx -= getGridSize();
 				onZoom();
