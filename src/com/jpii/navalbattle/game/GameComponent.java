@@ -51,6 +51,9 @@ public class GameComponent extends JComponent {
 	int zoomx, zoomy;
 	
 	boolean invokeFlag = false;
+	private JButton button_1;
+	private JButton button_2;
+	private JButton button_3;
 	
 	public GameComponent(JFrame frame) {
 		this.frame = frame;
@@ -93,8 +96,38 @@ public class GameComponent extends JComponent {
 				onZoom();
 			}
 		});
-		button.setBounds(10, 243, 89, 23);
+		button.setBounds(137, 28, 54, 23);
 		add(button);
+		
+		button_1 = new JButton("V");
+		button_1.setBounds(85, 48, 54, 23);
+		button_1.addMouseListener(new MouseAdapter() {
+			public void mousePressed(MouseEvent arg0) {
+				zoomy += getGridSize();
+				onZoom();
+			}
+		});
+		add(button_1);
+		
+		button_2 = new JButton("^");
+		button_2.setBounds(85, 11, 54, 23);
+		button_1.addMouseListener(new MouseAdapter() {
+			public void mousePressed(MouseEvent arg0) {
+				zoomy -= getGridSize();
+				onZoom();
+			}
+		});
+		add(button_2);
+		
+		button_3 = new JButton("<--");
+		button_3.setBounds(32, 28, 54, 23);
+		button_1.addMouseListener(new MouseAdapter() {
+			public void mousePressed(MouseEvent arg0) {
+				zoomx -= getGridSize();
+				onZoom();
+			}
+		});
+		add(button_3);
 		ActionListener al = new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				tick();
@@ -162,7 +195,8 @@ public class GameComponent extends JComponent {
 		//System.out.println("rid formulation took: " + watch.getString());
 		
 		watch.start();
-		map = Helper.genMap(eng,zoomx,zoomy, w/getGridSize(), h/getGridSize(), w,h, getGridSize());
+		//was zoomx and zoomy
+		map = Helper.genMap(eng,0,0, w/getGridSize(), h/getGridSize(), w,h, getGridSize());
 		watch.stop();
 		
 		//System.out.println("Map formulation took: " + watch.getString());
@@ -180,10 +214,10 @@ public class GameComponent extends JComponent {
 	}
 
 	public void paintComponent(Graphics g) {
-		g.setColor(Color.red);
+		g.setColor(Color.black);
 		g.fillRect(0, 0, getWidth() + 1, getHeight() + 1);
 		
-		g.drawImage(map,0,0,null);
+		g.drawImage(map,zoomx,zoomy,null);
 
 		g.drawImage(grid, 0, 0, null);
 		g.drawImage(shadow, 0, 0, null);
