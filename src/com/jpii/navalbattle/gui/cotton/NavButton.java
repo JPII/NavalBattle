@@ -1,15 +1,7 @@
 package com.jpii.navalbattle.gui.cotton;
 
-import java.awt.Color;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.LinearGradientPaint;
-import java.awt.Paint;
-import java.awt.Rectangle;
-import java.awt.RenderingHints;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.awt.geom.Point2D;
+import java.awt.*;
+import java.awt.event.*;
 
 import javax.swing.JComponent;
 
@@ -23,6 +15,8 @@ public class NavButton extends JComponent implements MouseListener{
 		enableInputMethods(true);   
 		addMouseListener(this);
 	}
+	
+	@SuppressWarnings("unused")
 	public void paintComponent(Graphics g2) {
 		Graphics2D g = (Graphics2D)g2;
 		g.setRenderingHint(

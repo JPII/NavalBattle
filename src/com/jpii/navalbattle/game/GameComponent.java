@@ -22,15 +22,12 @@ import java.awt.event.*;
 import java.awt.image.*;
 import java.util.ArrayList;
 import javax.swing.*;
-
 import java.beans.*;
 
-import com.jpii.dagen.Engine;
-import com.jpii.dagen.MapType;
+import com.jpii.dagen.*;
 import com.jpii.navalbattle.data.Helper;
 import com.jpii.navalbattle.game.entity.Entity;
 import com.jpii.navalbattle.gui.cotton.NavButton;
-import com.jpii.navalbattle.gui.cotton.Slider;
 import com.jpii.navalbattle.util.Stopwatch;
 
 /**

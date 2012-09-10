@@ -10,6 +10,8 @@ public class Analytics {
 		submit();
 	}
 	
+	
+	@SuppressWarnings("unused")
 	public void submit() {
 		// System
 		String os = System.getProperty("os.name");
