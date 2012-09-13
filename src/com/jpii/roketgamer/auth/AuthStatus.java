@@ -12,7 +12,7 @@ public enum AuthStatus {
 	BAD,
 	
 	/**
-	 * Server is offline
+	 * Server is offline (API is disabled, but the server could be found)
 	 */
 	OFFLINE,
 	
@@ -22,7 +22,7 @@ public enum AuthStatus {
 	INVALID_API_KEY,
 	
 	/**
-	 * Something unknown went wrong
+	 * Something unknown went wrong. This includes lack of network connectivity.
 	 */
 	UNKNOWN;
 }

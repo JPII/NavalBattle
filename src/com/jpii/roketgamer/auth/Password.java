@@ -11,6 +11,7 @@ public class Password {
 	 */
 	public Password(String password) {
 		this.password = HashUtils.MD5(password);
+		password = null;
 	}
 	
 	/**
@@ -19,6 +20,7 @@ public class Password {
 	 */
 	public void setPassword(String password) {
 		this.password = HashUtils.MD5(password);
+		password = null;
 	}
 	
 	/**
