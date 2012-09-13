@@ -29,6 +29,22 @@ public class Constants {
 	public static final boolean DEBUG_MODE = true;
 	
 	/*
+	 * Gameplay
+	 */
+	public static final int WHALE_HEALTH = 50;
+	public static final int BATTLESHIP_HEALTH = 125;
+	public static final int SUBMARINE_HEALTH = 100;
+	public static final int CARRIER_HEALTH = 200;
+	
+	public static final int SINK_SCORE = 100;
+	public static final int DISABLE_SCORE = 50;
+	public static final int DAMAGE_SCORE = 1;
+	public static final int DEFENSE_SCORE = 15;
+	public static final int SINK_SUB_SCORE = 200;
+	public static final int SURFACE_SUB_SCORE = 100;
+	public static final int WHALE_KILL_SCORE = 50;
+	
+	/*
 	 * RoketGamer
 	 */
 	public static final boolean ENABLE_ROKETGAMER = false;
