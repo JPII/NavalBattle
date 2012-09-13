@@ -153,8 +153,9 @@ public class LoginWindow {
 				NavalBattle.getDebugWindow().printWarning("Authentication failed: AuthStatus.UNKNOWN");	
 				JOptionPane.showMessageDialog(f, "Unable to login. Retry later or check the RoketGamer website.");
 			} else {
-				NavalBattle.getDebugWindow().printWarning("Authentication failed: AuthStatus is not recognized.");	
-				JOptionPane.showMessageDialog(f, "Unable to login. An unknown error occured.");
+				NavalBattle.getDebugWindow().printWarning("Authentication failed: AuthStatus is not recognized.");
+				NavalBattle.getDebugWindow().printWarning("Internet may be disconnected.");
+				JOptionPane.showMessageDialog(f, "Unable to login. Check your internet connection.");
 			}
 		}
 	}
