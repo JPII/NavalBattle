@@ -101,4 +101,12 @@ public class MortalEntity extends Entity {
 		this.health = maxHealth;
 		dead = false;
 	}
+	
+	/**
+	 * Set Entity as dead.
+	 * @param dead
+	 */
+	public void setDead(boolean dead) {
+		this.dead = dead;
+	}
 }
