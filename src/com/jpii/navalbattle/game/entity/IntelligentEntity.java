@@ -41,6 +41,7 @@ public class IntelligentEntity extends MortalEntity {
 	/**
 	 * Called when attacked
 	 * @param damage
+	 * @param attacker
 	 */
 	public void onAttacked(int damage, Entity attacker) {
 		damage(damage);
