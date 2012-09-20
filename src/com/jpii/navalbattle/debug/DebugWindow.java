@@ -38,22 +38,22 @@ public class DebugWindow extends JFrame{
 		} catch (Exception e) {
 		}
 		
-		this.setResizable(false);
-		this.setTitle("NavalBattle");
-		this.getContentPane().setLayout(null);
+		setResizable(false);
+		setTitle("NavalBattle");
+		getContentPane().setLayout(null);
 
 		lblNavalBattle = new JLabel("NavalBattle");
 		lblNavalBattle.setBounds(10, 11, 86, 14);
 		lblNavalBattle.setFont(new Font("Tahoma", Font.BOLD, 14));
-		this.getContentPane().add(lblNavalBattle);
+		getContentPane().add(lblNavalBattle);
 
 		lblDebugMode = new JLabel("Debug Mode");
 		lblDebugMode.setBounds(95, 13, 66, 14);
-		this.getContentPane().add(lblDebugMode);
+		getContentPane().add(lblDebugMode);
 
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(10, 35, 439, 255);
-		this.getContentPane().add(scrollPane);
+		getContentPane().add(scrollPane);
 
 		debugPrinter = new JTextPane();
 		debugPrinter.setEditable(false);
@@ -61,7 +61,7 @@ public class DebugWindow extends JFrame{
 		
 		commandField = new JTextField();
 		commandField.setBounds(10, 301, 337, 23);
-		this.getContentPane().add(commandField);
+		getContentPane().add(commandField);
 		commandField.setColumns(10);
 		
 		final JButton btnSubmit = new JButton("Submit");
@@ -75,25 +75,25 @@ public class DebugWindow extends JFrame{
 			}
 		});
 		btnSubmit.setBounds(357, 301, 89, 23);
-		this.getContentPane().add(btnSubmit);
+		getContentPane().add(btnSubmit);
 
 		if(Constants.DEBUG_MODE) {
 			printInfo("Debug mode enabled");
-			this.setSize(465,365);
-			this.setVisible(true);
-			this.setLocation(0,0);
+			setSize(465,365);
+			setVisible(true);
+			setLocation(0,0);
 		} else {
 			printInfo("Debug mode disabled");
-			this.setSize(475,340);
-			this.setVisible(false);
-			this.setLocation(0,0);
+			setSize(475,340);
+			setVisible(false);
+			setLocation(0,0);
 		}
 
-		this.setFocusable(true);
-		this.addKeyListener(new KeyboardListener(this));
+		setFocusable(true);
+		addKeyListener(new KeyboardListener(this));
 		commandField.addKeyListener(new KeyboardListener(this));
 
-		this.addWindowListener(new WindowAdapter() {
+		addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowClosing(WindowEvent we) {
 				NavalBattle.close();

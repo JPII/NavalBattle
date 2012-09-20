@@ -27,9 +27,9 @@ import com.jpii.roketgamer.auth.APIKey;
 import com.jpii.roketgamer.auth.AuthStatus;
 import com.jpii.roketgamer.auth.Password;
 
-public class LoginWindow {
+@SuppressWarnings("serial")
+public class LoginWindow extends JFrame{
 	JButton loginButton;
-	JFrame f;
 	JLabel usernameLabel, passwordLabel;
 	JTextField usernameField;
 	JPasswordField passwordField;
@@ -41,9 +41,8 @@ public class LoginWindow {
 			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 		} catch (Exception e) {}
 
-		f = new JFrame();
-		f.setTitle("NavalBattle");
-		f.getContentPane().setLayout(null);
+		setTitle("NavalBattle");
+		getContentPane().setLayout(null);
 		usernameLabel = new JLabel();
 		usernameLabel.setText("Username");
 		usernameLabel.setBounds(311,11,58,20);
@@ -59,32 +58,32 @@ public class LoginWindow {
 		loginButton = new JButton("Login");
 		loginButton.setBounds(387,86,78,22);
 
-		f.getContentPane().add(usernameLabel);
-		f.getContentPane().add(usernameField);
-		f.getContentPane().add(passwordLabel);
-		f.getContentPane().add(passwordField);
-		f.getContentPane().add(loginButton);
+		getContentPane().add(usernameLabel);
+		getContentPane().add(usernameField);
+		getContentPane().add(passwordLabel);
+		getContentPane().add(passwordField);
+		getContentPane().add(loginButton);
 		
 		passwordField.addKeyListener(new KeyboardListener(this));
 		usernameField.addKeyListener(new KeyboardListener(this));		
 		
 		JLabel lblVersion = new JLabel(Constants.NAVALBATTLE_VERSION_TITLE);
 		lblVersion.setBounds(10, 90, 193, 14);
-		f.getContentPane().add(lblVersion);
+		getContentPane().add(lblVersion);
 
 		JButton registerButton = new JButton("Register");
 		registerButton.setBounds(301, 86, 78, 22);
-		f.getContentPane().add(registerButton);
+		getContentPane().add(registerButton);
 		registerButton.addKeyListener(new KeyboardListener(this));
 		
 		JButton offlineButton = new JButton("Offline");
 		offlineButton.setBounds(213, 86, 78, 22);
-		f.getContentPane().add(offlineButton);
+		getContentPane().add(offlineButton);
 
-		f.setSize(491,143);
-		f.setVisible(true);
-		f.setResizable(false);
-		f.setLocation(1280/2-f.getWidth()/2,800/2-f.getHeight()/2);
+		setSize(491,143);
+		setVisible(true);
+		setResizable(false);
+		setLocation(1280/2-getWidth()/2,800/2-getHeight()/2);
 
 		loginButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent ae) {
@@ -99,7 +98,7 @@ public class LoginWindow {
 				NavalBattle.getGameState().setOffline(true);
 				
 				NavalBattle.getDebugWindow().printInfo("Disposing LoginWindow");
-				f.dispose();
+				dispose();
 				NavalBattle.getDebugWindow().printInfo("Opening MainMenuWindow");
 				new MainMenuWindow();
 			}
@@ -112,10 +111,10 @@ public class LoginWindow {
 			}
 		});
 		
-		f.setFocusable(true);
-		f.addKeyListener(new KeyboardListener(this));
+		setFocusable(true);
+		addKeyListener(new KeyboardListener(this));
 
-		f.addWindowListener(new WindowAdapter() {
+		addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowClosing(WindowEvent we) {
 				NavalBattle.close();
@@ -136,26 +135,26 @@ public class LoginWindow {
 			NavalBattle.getDebugWindow().printInfo("User authenticated");
 			NavalBattle.getDebugWindow().printInfo("Logged in as: " + NavalBattle.getRoketGamer().getPlayer().getName());
 			NavalBattle.getDebugWindow().printInfo("Disposing LoginWindow");
-			f.dispose();
+			dispose();
 			NavalBattle.getDebugWindow().printInfo("Opening MainMenuWindow");
 			new MainMenuWindow();
 		} else {
 			if(status == AuthStatus.BAD) {
 				NavalBattle.getDebugWindow().printWarning("Authentication failed: AuthStatus.BAD");	
-				JOptionPane.showMessageDialog(f, "Incorrect username or password. \nUse your application password to login.");
+				JOptionPane.showMessageDialog(this, "Incorrect username or password. \nUse your application password to login.");
 			} else if (status == AuthStatus.OFFLINE) {
 				NavalBattle.getDebugWindow().printWarning("Authentication failed: AuthStatus.OFFLINE");	
-				JOptionPane.showMessageDialog(f, "Unable to login. RoketGamer is offline.");
+				JOptionPane.showMessageDialog(this, "Unable to login. RoketGamer is offline.");
 			} else if (status == AuthStatus.INVALID_API_KEY) {
 				NavalBattle.getDebugWindow().printWarning("Authentication failed: AuthStatus.INVALID_API_KEY");	
-				JOptionPane.showMessageDialog(f, "Unable to login. API key is invalid.");
+				JOptionPane.showMessageDialog(this, "Unable to login. API key is invalid.");
 			} else if (status == AuthStatus.UNKNOWN) {
 				NavalBattle.getDebugWindow().printWarning("Authentication failed: AuthStatus.UNKNOWN");	
-				JOptionPane.showMessageDialog(f, "Unable to login. Retry later or check the RoketGamer website.");
+				JOptionPane.showMessageDialog(this, "Unable to login. Retry later or check the RoketGamer website.");
 			} else {
 				NavalBattle.getDebugWindow().printWarning("Authentication failed: AuthStatus is not recognized.");
 				NavalBattle.getDebugWindow().printWarning("Internet may be disconnected.");
-				JOptionPane.showMessageDialog(f, "Unable to login. Check your internet connection.");
+				JOptionPane.showMessageDialog(this, "Unable to login. Check your internet connection.");
 			}
 		}
 	}
@@ -166,6 +165,6 @@ public class LoginWindow {
 	 * @return LoginWindow
 	 */
 	public JFrame getFrame() {
-		return f;
+		return this;
 	}
 }

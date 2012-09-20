@@ -9,8 +9,8 @@ import java.awt.*;
 import java.awt.event.*;
 import java.io.IOException;
 
-public class RoketGamerWindow {
-	JFrame f;
+@SuppressWarnings("serial")
+public class RoketGamerWindow extends JFrame{
 	private JTable overallLeaderboard;
 
 	public RoketGamerWindow() {
@@ -18,14 +18,13 @@ public class RoketGamerWindow {
 			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 		} catch (Exception e) {}
 
-		f = new JFrame();
-		f.setIconImage(Toolkit.getDefaultToolkit().getImage(RoketGamerWindow.class.getResource("/com/jpii/roketgamer/res/logo_300px.png")));
-		f.setTitle("NavalBattle - RoketGamer");
-		f.getContentPane().setLayout(null);
+		setIconImage(Toolkit.getDefaultToolkit().getImage(RoketGamerWindow.class.getResource("/com/jpii/roketgamer/res/logo_300px.png")));
+		setTitle("NavalBattle - RoketGamer");
+		getContentPane().setLayout(null);
 
 		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
 		tabbedPane.setBounds(0, 0, 401, 372);
-		f.getContentPane().add(tabbedPane);
+		getContentPane().add(tabbedPane);
 
 		JPanel profileTab = new JPanel();
 		tabbedPane.addTab(NavalBattle.getRoketGamer().getPlayer().getName(), null, profileTab, null);
@@ -232,22 +231,22 @@ public class RoketGamerWindow {
 		lblNewLabel.setBounds(10, 233, 100, 100);
 		roketgamerTab.add(lblNewLabel);
 
-		f.addWindowListener(new WindowAdapter() {
+		addWindowListener(new WindowAdapter() {
 			public void windowClosing(WindowEvent we) {
 				NavalBattle.getDebugWindow().printInfo("Disposing RoketGamerWindow");
-				f.dispose();
+				dispose();
 				NavalBattle.getDebugWindow().printInfo("Opening MainMenuWindow");
 				new MainMenuWindow();
 			}
 		});
 
-		f.setSize(417, 410);
-		f.setVisible(true);
-		f.setResizable(false);
-		f.setLocation(1280/2-f.getWidth()/2,800/2-f.getHeight()/2);
+		setSize(417, 410);
+		setVisible(true);
+		setResizable(false);
+		setLocation(1280/2-getWidth()/2,800/2-getHeight()/2);
 	}
 
 	public JFrame getFrame() {
-		return f;
+		return this;
 	}
 }

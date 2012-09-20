@@ -25,40 +25,39 @@ import com.jpii.navalbattle.util.URLUtils;
 import java.awt.*;
 import java.awt.event.*;
 
-public class HelpWindow {
-	JFrame f;
+@SuppressWarnings("serial")
+public class HelpWindow extends JFrame {
 	private JLabel lblTitle;
 
 	public HelpWindow() {
 		try {
 			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 		} catch (Exception e){}
-
-		f = new JFrame();
-		f.setTitle("NavalBattle");
-		f.getContentPane().setLayout(null);
+		
+		setTitle("NavalBattle");
+		getContentPane().setLayout(null);
 
 		lblTitle = new JLabel("NavalBattle Help");
 		lblTitle.setFont(new Font("Tahoma", Font.BOLD, 14));
 		lblTitle.setBounds(10, 11, 121, 23);
-		f.getContentPane().add(lblTitle);
+		getContentPane().add(lblTitle);
 		
 		JButton btnClose = new JButton("Close");
 		btnClose.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				NavalBattle.getDebugWindow().printInfo("Disposing HelpWindow");
-				f.dispose();
+				dispose();
 				NavalBattle.getDebugWindow().printInfo("Opening MainMenuWindow");
 				new MainMenuWindow();
 			}
 		});
 		btnClose.setBounds(10, 137, 59, 23);
-		f.getContentPane().add(btnClose);
+		getContentPane().add(btnClose);
 		
 		JLabel lblYoutubeTutorials = new JLabel("YouTube Tutorials");
 		lblYoutubeTutorials.setBounds(20, 36, 92, 14);
-		f.getContentPane().add(lblYoutubeTutorials);
+		getContentPane().add(lblYoutubeTutorials);
 		
 		JButton btnVideoOverview = new JButton("Overview");
 		btnVideoOverview.addMouseListener(new MouseAdapter() {
@@ -73,7 +72,7 @@ public class HelpWindow {
 			}
 		});
 		btnVideoOverview.setBounds(30, 61, 82, 23);
-		f.getContentPane().add(btnVideoOverview);
+		getContentPane().add(btnVideoOverview);
 		
 		JButton btnVideoNavigation = new JButton("Navigation");
 		btnVideoNavigation.addMouseListener(new MouseAdapter() {
@@ -84,7 +83,7 @@ public class HelpWindow {
 			}
 		});
 		btnVideoNavigation.setBounds(122, 61, 89, 23);
-		f.getContentPane().add(btnVideoNavigation);
+		getContentPane().add(btnVideoNavigation);
 		
 		JButton btnVideoCombat = new JButton("Combat");
 		btnVideoCombat.addMouseListener(new MouseAdapter() {
@@ -95,7 +94,7 @@ public class HelpWindow {
 			}
 		});
 		btnVideoCombat.setBounds(221, 61, 89, 23);
-		f.getContentPane().add(btnVideoCombat);
+		getContentPane().add(btnVideoCombat);
 		
 		JButton btnVideoUpgradeShop = new JButton("Upgrade Shop");
 		btnVideoUpgradeShop.addMouseListener(new MouseAdapter() {
@@ -106,7 +105,7 @@ public class HelpWindow {
 			}
 		});
 		btnVideoUpgradeShop.setBounds(320, 61, 107, 23);
-		f.getContentPane().add(btnVideoUpgradeShop);
+		getContentPane().add(btnVideoUpgradeShop);
 		
 		JButton btnVideoMultiplayer = new JButton("Multiplayer");
 		btnVideoMultiplayer.addMouseListener(new MouseAdapter() {
@@ -117,7 +116,7 @@ public class HelpWindow {
 			}
 		});
 		btnVideoMultiplayer.setBounds(111, 95, 100, 23);
-		f.getContentPane().add(btnVideoMultiplayer);
+		getContentPane().add(btnVideoMultiplayer);
 		
 		JButton btnVideoRoketgamer = new JButton("RoketGamer");
 		btnVideoRoketgamer.addMouseListener(new MouseAdapter() {
@@ -128,21 +127,21 @@ public class HelpWindow {
 			}
 		});
 		btnVideoRoketgamer.setBounds(221, 95, 100, 23);
-		f.getContentPane().add(btnVideoRoketgamer);
+		getContentPane().add(btnVideoRoketgamer);
 		
-		f.addWindowListener(new WindowAdapter(){
+		addWindowListener(new WindowAdapter(){
 			public void windowClosing(WindowEvent we){
 				NavalBattle.close();
 			}
 		});
 
-		f.setSize(475,199);
-		f.setVisible(true);
-		f.setResizable(false);
-		f.setLocation(1280/2-f.getWidth()/2,800/2-f.getHeight()/2);
+		setSize(475,199);
+		setVisible(true);
+		setResizable(false);
+		setLocation(1280/2-getWidth()/2,800/2-getHeight()/2);
 	}
 
 	public JFrame getFrame() {
-		return f;
+		return this;
 	}
 }
