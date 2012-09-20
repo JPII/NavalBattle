@@ -25,8 +25,8 @@ import com.jpii.navalbattle.NavalBattle;
 import com.jpii.navalbattle.data.Constants;
 import com.jpii.navalbattle.gui.KeyboardListener;
 
-public class DebugWindow {
-	JFrame f;
+@SuppressWarnings("serial")
+public class DebugWindow extends JFrame{
 	private JLabel lblNavalBattle;
 	private JLabel lblDebugMode;
 	private JTextPane debugPrinter;
@@ -37,24 +37,23 @@ public class DebugWindow {
 			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 		} catch (Exception e) {
 		}
-
-		f = new JFrame();
-		f.setResizable(false);
-		f.setTitle("NavalBattle");
-		f.getContentPane().setLayout(null);
+		
+		this.setResizable(false);
+		this.setTitle("NavalBattle");
+		this.getContentPane().setLayout(null);
 
 		lblNavalBattle = new JLabel("NavalBattle");
 		lblNavalBattle.setBounds(10, 11, 86, 14);
 		lblNavalBattle.setFont(new Font("Tahoma", Font.BOLD, 14));
-		f.getContentPane().add(lblNavalBattle);
+		this.getContentPane().add(lblNavalBattle);
 
 		lblDebugMode = new JLabel("Debug Mode");
 		lblDebugMode.setBounds(95, 13, 66, 14);
-		f.getContentPane().add(lblDebugMode);
+		this.getContentPane().add(lblDebugMode);
 
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(10, 35, 439, 255);
-		f.getContentPane().add(scrollPane);
+		this.getContentPane().add(scrollPane);
 
 		debugPrinter = new JTextPane();
 		debugPrinter.setEditable(false);
@@ -62,7 +61,7 @@ public class DebugWindow {
 		
 		commandField = new JTextField();
 		commandField.setBounds(10, 301, 337, 23);
-		f.getContentPane().add(commandField);
+		this.getContentPane().add(commandField);
 		commandField.setColumns(10);
 		
 		final JButton btnSubmit = new JButton("Submit");
@@ -76,25 +75,25 @@ public class DebugWindow {
 			}
 		});
 		btnSubmit.setBounds(357, 301, 89, 23);
-		f.getContentPane().add(btnSubmit);
+		this.getContentPane().add(btnSubmit);
 
 		if(Constants.DEBUG_MODE) {
 			printInfo("Debug mode enabled");
-			f.setSize(465,365);
-			f.setVisible(true);
-			f.setLocation(0,0);
+			this.setSize(465,365);
+			this.setVisible(true);
+			this.setLocation(0,0);
 		} else {
 			printInfo("Debug mode disabled");
-			f.setSize(475,340);
-			f.setVisible(false);
-			f.setLocation(0,0);
+			this.setSize(475,340);
+			this.setVisible(false);
+			this.setLocation(0,0);
 		}
 
-		f.setFocusable(true);
-		f.addKeyListener(new KeyboardListener(this));
+		this.setFocusable(true);
+		this.addKeyListener(new KeyboardListener(this));
 		commandField.addKeyListener(new KeyboardListener(this));
 
-		f.addWindowListener(new WindowAdapter() {
+		this.addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowClosing(WindowEvent we) {
 				NavalBattle.close();
@@ -171,7 +170,7 @@ public class DebugWindow {
 	 * @return JFrame
 	 */
 	public JFrame getFrame() {
-		return f;
+		return this;
 	}
 	
 	/**
