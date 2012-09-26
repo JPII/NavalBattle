@@ -57,6 +57,7 @@ public class DebugWindow extends JFrame{
 
 		debugPrinter = new JTextPane();
 		debugPrinter.setEditable(false);
+		debugPrinter.setFont(new Font("Consolas",0,12));
 		scrollPane.setViewportView(debugPrinter);
 		
 		commandField = new JTextField();

@@ -21,6 +21,8 @@ import java.awt.*;
 import java.awt.event.*;
 import java.awt.image.*;
 import java.util.ArrayList;
+import java.util.Random;
+
 import javax.swing.*;
 import java.beans.*;
 
@@ -39,8 +41,12 @@ public class GameComponent extends JComponent {
 	JFrame frame;
 	ArrayList<Entity> entities;
 	Timer ticker;
+	
+	Random rand;
+	
+	boolean hitTime = false;
 
-	BufferedImage grid, shadow,map;
+	BufferedImage grid, shadow,map,blood;
 
 	int test;
 	JSlider slider;
@@ -48,7 +54,10 @@ public class GameComponent extends JComponent {
 
 	Engine eng;
 	
-	int zoomx, zoomy;
+	double zoomx, zoomy;
+	
+	double visualx,visualy;
+	double colorShift = 1.0;
 	
 	boolean invokeFlag = false;
 	private JButton button_1;
@@ -57,6 +66,7 @@ public class GameComponent extends JComponent {
 	
 	public GameComponent(JFrame frame) {
 		this.frame = frame;
+		rand = new Random();
 		
 		//Lets use Nimbus for now.
 		try {
@@ -85,6 +95,7 @@ public class GameComponent extends JComponent {
 		slider.setPaintTicks(true);
 		slider.setOrientation(SwingConstants.VERTICAL);
 		slider.setBounds(10, 63, 31, 177);
+		slider.setValue(0);
 		add(slider);
 		
 		add(nav0);
@@ -128,6 +139,16 @@ public class GameComponent extends JComponent {
 			}
 		});
 		add(button_3);
+		
+		JButton btnActLikeThe = new JButton("Act like the current player got hit by a shot");
+		btnActLikeThe.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseReleased(MouseEvent arg0) {
+				hitVisual();
+			}
+		});
+		btnActLikeThe.setBounds(32, 266, 313, 23);
+		add(btnActLikeThe);
 		ActionListener al = new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				tick();
@@ -142,6 +163,7 @@ public class GameComponent extends JComponent {
 		grid = Helper.genGrid(w, h, getGridSize()*3);
 		shadow = Helper.genInnerShadow(w, h);
 		map = Helper.genMap(eng,0,0,w,h, w, h, 1);
+		blood = new BufferedImage(w,h,BufferedImage.TYPE_INT_ARGB);
 
 		entities = new ArrayList<Entity>();
 
@@ -169,7 +191,7 @@ public class GameComponent extends JComponent {
 	public Entity getEntity(int index) {
 		return entities.get(index);
 	}
-
+	double cman = 1.0;
 	private void tick() {
 		if (!invokeFlag) {
 			for (int x = 0; x < entities.size(); x++) {
@@ -178,9 +200,60 @@ public class GameComponent extends JComponent {
 				}
 			}
 			test += 1;
+			
+			if (hitTime)
+			{
+				if (visualx > 1.5)
+					visualx -= random(0.5,1.5);
+
+				if (visualy > 1.5)
+					visualy -= random(0.5,1.5);
+				
+				if (cman > 0.01)
+					cman -= 0.01;
+				
+				visualx *= Math.sin(visualx);
+				visualy *= Math.sin(visualy);
+				
+				if (cman > 0.05)
+					cman -= 0.05;
+				
+				blood = new BufferedImage(getWidth(),getHeight(),BufferedImage.TYPE_INT_ARGB);
+				Graphics g = blood.getGraphics();
+				Color b = Lerp(new Color(1,1,1,1),new Color(127,25,25,125),cman);
+				g.setColor(b);
+				g.fillRect(0, 0, getWidth(),getHeight());
+			}
+			
 			repaint();
 		}
 		invokeFlag = false;
+	}
+	
+	/** Also stolen from my blog...*/
+	public double Lerp(int num0, int num1, double amount)
+	{
+		return num0 + (amount*(num1-num0));
+	}
+	
+	/** Stolen from my blog.*/
+	public Color Lerp(Color color0, Color color1, double amount)
+	{
+		int r = (int)Lerp(color0.getRed(), color1.getRed(), amount);
+		int g2 = (int)Lerp(color0.getGreen(), color1.getGreen(), amount);
+		int b = (int)Lerp(color0.getBlue(), color1.getBlue(), amount);
+		int a = (int)Lerp(color0.getAlpha(), color1.getAlpha(), amount);
+		System.out.println("alhpa="+a);
+		return new Color(snap(r),snap(g2),snap(b),snap(a));
+	}
+	
+	public int snap(int v)
+	{
+		if (v > 255)
+			return 255;
+		if (v < 0)
+			return 0;
+		return v;
 	}
 	
 	private void onZoom() {
@@ -217,10 +290,13 @@ public class GameComponent extends JComponent {
 		g.setColor(Color.black);
 		g.fillRect(0, 0, getWidth() + 1, getHeight() + 1);
 		
-		g.drawImage(map,zoomx,zoomy,null);
+		
+		g.drawImage(map,(int)(zoomx+visualx),(int)(zoomy+visualy),null);
 
-		g.drawImage(grid, 0, 0, null);
+		g.drawImage(grid, (int)visualx,(int)visualy, null);
 		g.drawImage(shadow, 0, 0, null);
+		
+		g.drawImage(blood,0,0,null);
 
 		g.setColor(Color.white);
 		g.drawString("This is just a test.", 100, 100);
@@ -235,6 +311,13 @@ public class GameComponent extends JComponent {
 	public void setTimeTick(int interval) {
 		ticker.setDelay(interval);
 	}
+	
+	public void hitVisual() {
+		hitTime = true;
+		visualx = 75;
+		visualy = 75;
+		cman = 1.0;
+	}
 
 	public int getTimeTick() {
 		return ticker.getDelay();
@@ -247,7 +330,11 @@ public class GameComponent extends JComponent {
 	public void stop() {
 		ticker.stop();
 	}
-
+	
+	public double random(double min, double max) {
+		return (rand.nextDouble() * (max-min)) + min;
+	}
+	
 	public void repaint() {
 		frame.repaint();
 	}
