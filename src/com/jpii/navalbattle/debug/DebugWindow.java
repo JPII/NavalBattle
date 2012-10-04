@@ -100,6 +100,12 @@ public class DebugWindow extends JFrame{
 				NavalBattle.close();
 			}
 		});
+		
+		addFocusListener(new FocusAdapter() {
+			public void focusGained(FocusEvent e) {
+				commandField.grabFocus();
+			}
+		});
 	}
 
 	/**
