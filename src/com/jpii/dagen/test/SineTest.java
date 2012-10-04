@@ -4,6 +4,7 @@ import java.applet.*;
 import java.awt.*;
 import java.awt.image.*;
 
+@SuppressWarnings("serial")
 public class SineTest extends Applet {
 	public void init()
 	{
