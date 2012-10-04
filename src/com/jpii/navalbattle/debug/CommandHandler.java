@@ -58,11 +58,23 @@ public class CommandHandler {
 	public void parseCommand(String command) {
 		boolean isCommand = false;
 		
-		String[] s = command.split(" ", 2);
+		String[] cmd = command.split(" ");
+		String[] args = new String[cmd.length - 1];
+		int count = 0;
+		
+		command = cmd[0];
+		
+		for(String s : cmd) {
+			if(count != 0) {
+				args[count-1] = s;
+			}
+			
+			count++;
+		}
 		
 		for(Command c: commands) {
-			if(c.getCommand().equalsIgnoreCase(s[0])) {
-				c.getCommandAction().onRun(c, command);
+			if(c.getCommand().equalsIgnoreCase(cmd[0])) {
+				c.getCommandAction().onRun(c, args);
 				isCommand = true;
 			}
 		}

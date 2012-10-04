@@ -31,7 +31,7 @@ public class Commands {
 	@SuppressWarnings("serial")
 	public static final ArrayList<Command> COMMANDS = new ArrayList<Command>() {{
 	    add(new Command("help", "", "View all commands", new CommandAction() { 
-	    	public void onRun(Command c, String enteredCommand) {
+	    	public void onRun(Command c, String[] args) {
 	    		NavalBattle.getDebugWindow().println("----------------- NavalBattle Debug Help -----------------");
 	    		for(Command cmd : NavalBattle.getCommandHandler().getCommands()) {
 	    			NavalBattle.getDebugWindow().println(cmd.getCommand() + cmd.getArgs() + " - " + cmd.getDescription());
@@ -40,31 +40,33 @@ public class Commands {
 	    ));
 	    
 	    add(new Command("quit", "", "Quit game", new CommandAction() { 
-	    	public void onRun(Command c, String enteredCommand) {
+	    	public void onRun(Command c, String[] args) {
 	    		System.exit(0);
 	    	}}
 	    ));
 	    
 	    add(new Command("version", "", "View version info", new CommandAction() { 
-	    	public void onRun(Command c, String enteredCommand) {
+	    	public void onRun(Command c, String[] args) {
 	    		NavalBattle.getDebugWindow().println(Constants.NAVALBATTLE_VERSION_TITLE + " (" + Constants.VERSION_CODE + ")");
 	    	}}
 	    ));
 	    
 	    add(new Command("echo", "<message>", "Print specified message", new CommandAction() { 
-	    	public void onRun(Command c, String enteredCommand) {
-	    		String[] s = enteredCommand.split(" ", 2);
-	    		try {
-	    			
-	    		} catch (Exception e) {
-	    			NavalBattle.getDebugWindow().printError("Invalid or missing arg: message");
+	    	public void onRun(Command c, String[] args) {
+	    		if(args[0] == null) {
+	    			NavalBattle.getDebugWindow().printError("Missing or invalid arg: message");
 	    		}
-	    		NavalBattle.getDebugWindow().println(s[1]);
+	    		
+	    		for(String s : args) {
+	    			NavalBattle.getDebugWindow().print(s + " ");
+	    		}
+	    		
+	    		NavalBattle.getDebugWindow().println("");
 	    	}}
 	    ));
 	    
 	    add(new Command("credits", "", "NavalBattle credits", new CommandAction() { 
-	    	public void onRun(Command c, String enteredCommand) {
+	    	public void onRun(Command c, String[] args) {
 	    		NavalBattle.getDebugWindow().println("----------------- NavalBattle Credits -----------------");
 	    		NavalBattle.getDebugWindow().println("Anthony \"abauer\" Bauer - game design lead");
 	    		NavalBattle.getDebugWindow().println("Thomas \"TexasGamer\" Gaubert - SCM manager; RoketGamer lead");
@@ -79,10 +81,9 @@ public class Commands {
 	    ));
 	    
 	    add(new Command("setscore", "<score>", "Set game score", new CommandAction() { 
-	    	public void onRun(Command c, String enteredCommand) {
-	    		String[] s = enteredCommand.split(" ", 2);
+	    	public void onRun(Command c, String[] args) {
 	    		try {
-	    			NavalBattle.getGameState().setScore(Integer.parseInt(s[1]));
+	    			NavalBattle.getGameState().setScore(Integer.parseInt(args[0]));
 		    		NavalBattle.getDebugWindow().printInfo("Game score set to " + NavalBattle.getGameState().getScore());
 	    		} catch (Exception ex) {
 	    			NavalBattle.getDebugWindow().printError("Missing or invalid arg: score");
@@ -91,10 +92,9 @@ public class Commands {
 	    ));
 	    
 	    add(new Command("addscore", "<score>", "Add to game score", new CommandAction() { 
-	    	public void onRun(Command c, String enteredCommand) {
-	    		String[] s = enteredCommand.split(" ", 2);
+	    	public void onRun(Command c, String[] args) {
 	    		try {
-	    			NavalBattle.getGameState().addScore(Integer.parseInt(s[1]));
+	    			NavalBattle.getGameState().addScore(Integer.parseInt(args[0]));
 		    		NavalBattle.getDebugWindow().printInfo("Game score set to " + NavalBattle.getGameState().getScore());
 	    		} catch (Exception ex) {
 	    			NavalBattle.getDebugWindow().printError("Missing or invalid arg: score");
@@ -103,10 +103,9 @@ public class Commands {
 	    ));
 	    
 	    add(new Command("removescore", "<score>", "Subtract from game score", new CommandAction() { 
-	    	public void onRun(Command c, String enteredCommand) {
-	    		String[] s = enteredCommand.split(" ", 2);
+	    	public void onRun(Command c, String[] args) {
 	    		try {
-	    			NavalBattle.getGameState().subtractScore(Integer.parseInt(s[1]));
+	    			NavalBattle.getGameState().subtractScore(Integer.parseInt(args[0]));
 		    		NavalBattle.getDebugWindow().printInfo("Game score set to " + NavalBattle.getGameState().getScore());
 	    		} catch (Exception ex) {
 	    			NavalBattle.getDebugWindow().printError("Missing or invalid arg: score");
@@ -115,48 +114,46 @@ public class Commands {
 	    ));
 	    
 	    add(new Command("getscore", "", "Get game score", new CommandAction() { 
-	    	public void onRun(Command c, String enteredCommand) {
+	    	public void onRun(Command c, String[] args) {
 		    	NavalBattle.getDebugWindow().printInfo("Game score: " + NavalBattle.getGameState().getScore());
 	    	}}
 	    ));
 	    
 	    add(new Command("resetscore", "", "Set game score to 0", new CommandAction() { 
-	    	public void onRun(Command c, String enteredCommand) {
+	    	public void onRun(Command c, String[] args) {
 	    		NavalBattle.getGameState().resetScore();
 		    	NavalBattle.getDebugWindow().printInfo("Game score reset");
 	    	}}
 	    ));
 	    
 	    add(new Command("clear", "", "Clear debug window", new CommandAction() { 
-	    	public void onRun(Command c, String enteredCommand) {
+	    	public void onRun(Command c, String[] args) {
 	    			NavalBattle.getDebugWindow().printNew("");
 	    	}}
 	    
 	    ));
 	    
 	    add(new Command("cls", "", "Clear debug window", new CommandAction() { 
-	    	public void onRun(Command c, String enteredCommand) {
+	    	public void onRun(Command c, String[] args) {
 	    			NavalBattle.getDebugWindow().printNew("");
 	    	}}
 	    
 	    ));
 	       
 	    add(new Command("openwindow", "<windowid>", "Force a window to appear", new CommandAction() { 
-	    	public void onRun(Command c, String enteredCommand) {
-	    		String[] s = enteredCommand.split(" ", 2);
-	    		
-	    		if(s[1].equals("login") || s[1].equals("0")) {
+	    	public void onRun(Command c, String[] args) {
+	    		if(args[1].equals("login") || args[1].equals("0")) {
 	    			new LoginWindow();
 	    		}
 	    		
-	    		if(s[1].equals("main") || s[1].equals("1")) {
+	    		if(args[1].equals("main") || args[1].equals("1")) {
 	    			new MainMenuWindow();
 	    		}
 	    	}}
 	    ));
 	    
 	    add(new Command("sysinfo", "", "Get system info", new CommandAction() { 
-	    	public void onRun(Command c, String enteredCommand) {
+	    	public void onRun(Command c, String[] args) {
 	    			NavalBattle.getDebugWindow().println("OS: " + System.getProperty("os.name") + " (" + System.getProperty("os.version") + ")");
 	    			NavalBattle.getDebugWindow().println("Java Home: " + System.getProperty("java.home"));
 	    			NavalBattle.getDebugWindow().println("Java Version: " + System.getProperty("java.version"));
