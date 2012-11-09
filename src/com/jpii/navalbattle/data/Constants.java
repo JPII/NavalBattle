@@ -53,5 +53,4 @@ public class Constants {
 	public static final String ACHIEVEMENT_URL = "";
 	public static final String LEADERBOARD_URL = "";
 	public static final String FRIENDS_URL = "";
-	
 }
