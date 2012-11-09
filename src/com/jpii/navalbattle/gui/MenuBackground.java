@@ -158,7 +158,7 @@ public class MenuBackground extends JComponent implements MouseListener{
 		int mx = arg0.getX();
 		int my = arg0.getY();
 		int yey2 = boaty+((height/3) * 2) + whaley - 40;
-		if (mx >= whalex - 50 && mx <= whalex + 350 && my > yey2 - 25 && my < yey2 + 60) {
+		if (mx >= whalex && mx <= whalex + 140 && my > yey2 - 25 && my < yey2 + 60) {
 			happy = !happy;
 		}
 	}

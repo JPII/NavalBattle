@@ -50,10 +50,19 @@ public class MainMenuWindow extends JFrame{
 		lblVersion.setBounds(10, 276, 238, 14);
 		this.getContentPane().add(lblVersion);
 
-		JLabel lblNavalBattle = new JLabel("NAVALBATTLE");
-		lblNavalBattle.setFont(new Font("", Font.BOLD, 33));
+		JLabel lblNavalBattle = new JLabel("NavalBattle");
+		lblNavalBattle.setForeground(Color.blue);
+		lblNavalBattle.setFont(new Font("RingBearer", Font.BOLD, 35));
 		lblNavalBattle.setBounds(101, 11, 248, 51);
 		this.getContentPane().add(lblNavalBattle);
+		
+		JLabel lbjNavalBattle = new JLabel("NavalBattle");
+		lbjNavalBattle.setForeground(Color.black);
+		lbjNavalBattle.setFont(new Font("RingBearer", Font.BOLD, 35));
+		lbjNavalBattle.setBounds(103, 13, 248, 51);
+		this.getContentPane().add(lbjNavalBattle);
+		
+		
 
 		JButton btnSingleplayer = new JButton("Singleplayer");
 		btnSingleplayer.addMouseListener(new MouseAdapter() {
