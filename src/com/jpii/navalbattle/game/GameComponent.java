@@ -46,7 +46,7 @@ public class GameComponent extends JComponent {
 	
 	boolean hitTime = false;
 
-	BufferedImage grid, shadow,map,blood;
+	BufferedImage grid, shadow, map, blood;
 
 	int test;
 	JSlider slider;
@@ -103,8 +103,7 @@ public class GameComponent extends JComponent {
 		JButton button = new JButton("►");
 		button.addMouseListener(new MouseAdapter() {
 			public void mousePressed(MouseEvent arg0) {
-				zoomx += getGridSize();
-				onZoom();
+				moveX(-1);
 			}
 		});
 		button.setBounds(137, 28, 54, 23);
@@ -114,8 +113,7 @@ public class GameComponent extends JComponent {
 		button_1.setBounds(85, 48, 54, 23);
 		button_1.addMouseListener(new MouseAdapter() {
 			public void mousePressed(MouseEvent arg0) {
-				zoomy += getGridSize();
-				onZoom();
+				moveY(-1);
 			}
 		});
 		add(button_1);
@@ -124,8 +122,7 @@ public class GameComponent extends JComponent {
 		button_2.setBounds(85, 11, 54, 23);
 		button_2.addMouseListener(new MouseAdapter() {
 			public void mousePressed(MouseEvent arg0) {
-				zoomy -= getGridSize();
-				onZoom();
+				moveY(1);
 			}
 		});
 		add(button_2);
@@ -134,8 +131,7 @@ public class GameComponent extends JComponent {
 		button_3.setBounds(32, 28, 54, 23);
 		button_3.addMouseListener(new MouseAdapter() {
 			public void mousePressed(MouseEvent arg0) {
-				zoomx -= getGridSize();
-				onZoom();
+				moveX(1);
 			}
 		});
 		add(button_3);
@@ -154,6 +150,7 @@ public class GameComponent extends JComponent {
 				tick();
 			}
 		};
+		this.setFocusable(true);		
 		int w = Toolkit.getDefaultToolkit().getScreenSize().width;
 		int h = Toolkit.getDefaultToolkit().getScreenSize().height;
 		
@@ -170,9 +167,26 @@ public class GameComponent extends JComponent {
 		ticker = new Timer(100, al);
 
 		start();
+		
 
 	}
-
+	
+	public void moveX(int ammount){
+		if(ammount>0)
+			zoomx += getGridSize();
+		else if(ammount<0)
+			zoomx -= getGridSize();
+		onZoom();
+	}
+	
+	public void moveY(int ammount){
+		if(ammount>0)
+			zoomy += getGridSize();
+		else if(ammount<0)
+			zoomy -= getGridSize();
+		onZoom();
+	}
+	
 	public void addEntity(Entity entity) {
 		if (entity != null) {
 			entities.add(entity);

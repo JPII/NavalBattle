@@ -21,6 +21,7 @@ import java.awt.event.*;
 
 import com.jpii.navalbattle.NavalBattle;
 import com.jpii.navalbattle.debug.DebugWindow;
+import com.jpii.navalbattle.game.SinglePlayerGame;
 
 public class KeyboardListener implements KeyListener {
 	
@@ -47,6 +48,25 @@ public class KeyboardListener implements KeyListener {
 			if(k.getKeyCode() == KeyEvent.VK_ENTER) {
 				d.submitCommandRemote();
 			}
+		}
+		if(o instanceof SinglePlayerGame) {
+				SinglePlayerGame s = (SinglePlayerGame) o;
+				NavalBattle.getDebugWindow().printInfo("here");
+				if(k.getKeyCode() == KeyEvent.VK_ESCAPE) {
+					NavalBattle.close();
+				}
+				else if(k.getKeyCode() == KeyEvent.VK_UP) {
+					s.game.moveY(1);
+				}
+				else if(k.getKeyCode() == KeyEvent.VK_DOWN) {
+					s.game.moveY(-1);
+				}
+				else if(k.getKeyCode() == KeyEvent.VK_LEFT) {
+					s.game.moveX(1);
+				}
+				else if(k.getKeyCode() == KeyEvent.VK_RIGHT) {
+					s.game.moveX(-1);
+				}
 		}
 	}
 	

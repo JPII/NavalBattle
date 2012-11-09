@@ -27,11 +27,11 @@ import com.jpii.navalbattle.NavalBattle;
 
 @SuppressWarnings("serial")
 public class SinglePlayerGame extends JFrame {
-	GameComponent game;
+	public GameComponent game;
 
 	public SinglePlayerGame() {
 		try {
-			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+			UIManager.setLookAndFeel("javax.swing.plaf.nimbus.NimbusLookAndFeel");
 		} catch (Exception e) {
 		}
 		this.setTitle("NavalBattle");
