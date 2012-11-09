@@ -53,7 +53,7 @@ public class DebugWindow extends JFrame {
 		this.getContentPane().add(lblNavalBattle);
 
 		lblDebugMode = new JLabel("Debug Mode");
-		lblDebugMode.setBounds(120, 13, 66, 14);
+		lblDebugMode.setBounds(95, 13, 66, 14);
 		this.getContentPane().add(lblDebugMode);
 
 		JScrollPane scrollPane = new JScrollPane();
@@ -99,18 +99,6 @@ public class DebugWindow extends JFrame {
 			public void windowClosing(WindowEvent we) {
 				setVisible(false);
 			}
-		});
-		
-		this.addFocusListener(new FocusListener() {
-
-			@Override
-			public void focusGained(FocusEvent e) {
-				commandField.grabFocus();
-			}
-
-			@Override
-			public void focusLost(FocusEvent e) { }
-			
 		});
 	}
 
