@@ -19,6 +19,7 @@ package com.jpii.navalbattle.debug;
 
 import java.awt.*;
 import java.awt.event.*;
+
 import javax.swing.*;
 
 import com.jpii.navalbattle.NavalBattle;
@@ -26,45 +27,49 @@ import com.jpii.navalbattle.data.Constants;
 import com.jpii.navalbattle.gui.KeyboardListener;
 
 @SuppressWarnings("serial")
-public class DebugWindow extends JFrame{
+public class DebugWindow extends JFrame {
 	private JLabel lblNavalBattle;
 	private JLabel lblDebugMode;
 	private JTextPane debugPrinter;
 	private JTextField commandField;
+	private boolean paused = false;
 
+	/**
+	 * Constructor for DebugWindow.
+	 */
 	public DebugWindow() {
 		try {
 			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 		} catch (Exception e) {
 		}
-		
-		setResizable(false);
-		setTitle("NavalBattle");
-		getContentPane().setLayout(null);
+
+		this.setResizable(false);
+		this.setTitle("NavalBattle");
+		this.getContentPane().setLayout(null);
 
 		lblNavalBattle = new JLabel("NavalBattle");
-		lblNavalBattle.setBounds(10, 11, 86, 14);
+		lblNavalBattle.setBounds(10, 11, 120, 14);
 		lblNavalBattle.setFont(new Font("Tahoma", Font.BOLD, 14));
-		getContentPane().add(lblNavalBattle);
+		this.getContentPane().add(lblNavalBattle);
 
 		lblDebugMode = new JLabel("Debug Mode");
-		lblDebugMode.setBounds(95, 13, 66, 14);
-		getContentPane().add(lblDebugMode);
+		lblDebugMode.setBounds(120, 13, 66, 14);
+		this.getContentPane().add(lblDebugMode);
 
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(10, 35, 439, 255);
-		getContentPane().add(scrollPane);
+		this.getContentPane().add(scrollPane);
 
 		debugPrinter = new JTextPane();
 		debugPrinter.setEditable(false);
 		debugPrinter.setFont(new Font("Consolas",0,12));
 		scrollPane.setViewportView(debugPrinter);
-		
+
 		commandField = new JTextField();
 		commandField.setBounds(10, 301, 337, 23);
-		getContentPane().add(commandField);
+		this.getContentPane().add(commandField);
 		commandField.setColumns(10);
-		
+
 		final JButton btnSubmit = new JButton("Submit");
 		btnSubmit.addMouseListener(new MouseAdapter() {
 			@Override
@@ -76,41 +81,41 @@ public class DebugWindow extends JFrame{
 			}
 		});
 		btnSubmit.setBounds(357, 301, 89, 23);
-		getContentPane().add(btnSubmit);
+		this.getContentPane().add(btnSubmit);
 
-		if(Constants.DEBUG_MODE) {
-			printInfo("Debug mode enabled");
-			setSize(465,365);
-			setVisible(true);
-			setLocation(0,0);
-		} else {
-			printInfo("Debug mode disabled");
-			setSize(475,340);
-			setVisible(false);
-			setLocation(0,0);
-		}
+		printInfo("Debug mode enabled");
+		this.setSize(465,365);
+		this.setVisible(true);
+		this.setLocation(0,0);
+		
+		commandField.grabFocus();
 
-		setFocusable(true);
-		addKeyListener(new KeyboardListener(this));
+		this.setFocusable(true);
+		this.addKeyListener(new KeyboardListener(this));
 		commandField.addKeyListener(new KeyboardListener(this));
 
-		addWindowListener(new WindowAdapter() {
+		this.addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowClosing(WindowEvent we) {
-				NavalBattle.close();
+				setVisible(false);
 			}
 		});
 		
-		addFocusListener(new FocusAdapter() {
+		this.addFocusListener(new FocusListener() {
+
+			@Override
 			public void focusGained(FocusEvent e) {
 				commandField.grabFocus();
 			}
+
+			@Override
+			public void focusLost(FocusEvent e) { }
+			
 		});
 	}
 
 	/**
 	 * Prints a message without a tag. Next message does not go to a new line.
-	 * 
 	 * @param message
 	 */
 	public void print(String message) {
@@ -119,7 +124,6 @@ public class DebugWindow extends JFrame{
 
 	/**
 	 * Prints a message without a tag. Next message goes to a new line.
-	 * 
 	 * @param message
 	 */
 	public void println(String message) {
@@ -128,43 +132,42 @@ public class DebugWindow extends JFrame{
 
 	/**
 	 * Prints a message with an [INFO] tag.
-	 * 
 	 * @param message
 	 */
 	public void printInfo(String message) {
-		debugPrinter.setText(debugPrinter.getText() + "[INFO] " + message + "\n");
+		if(!paused)
+			debugPrinter.setText(debugPrinter.getText() + "[INFO] " + message + "\n");
 	}
 
 	/**
 	 * Prints a message with a [WARN] tag.
-	 * 
 	 * @param message
 	 */
 	public void printWarning(String message) {
-		debugPrinter.setText(debugPrinter.getText() + "[WARN] " + message + "\n");
+		if(!paused)
+			debugPrinter.setText(debugPrinter.getText() + "[WARN] " + message + "\n");
 	}
 
 	/**
 	 * Prints a message with an [ERROR] tag.
-	 * 
 	 * @param message
 	 */
 	public void printError(String message) {
-		debugPrinter.setText(debugPrinter.getText() + "[ERROR] " + message + "\n");
+		if(!paused)
+			debugPrinter.setText(debugPrinter.getText() + "[ERROR] " + message + "\n");
 	}
 
 	/**
 	 * Prints a message with a [OTHER] tag.
-	 * 
 	 * @param message
 	 */
 	public void printOther(String message) {
-		debugPrinter.setText(debugPrinter.getText() + "[OTHER] " + message + "\n");
+		if(!paused)
+			debugPrinter.setText(debugPrinter.getText() + "[OTHER] " + message + "\n");
 	}
-	
+
 	/**
 	 * Clears the DebugWindow and prints message.
-	 * 
 	 * @param message
 	 */
 	public void printNew(String message) {
@@ -173,22 +176,20 @@ public class DebugWindow extends JFrame{
 
 	/**
 	 * Get current JFrame.
-	 * 
 	 * @return JFrame
 	 */
 	public JFrame getFrame() {
 		return this;
 	}
-	
+
 	/**
 	 * Parses command.
-	 * 
 	 * @param command
 	 */
 	public void submitCommand(String command) {
 		NavalBattle.getCommandHandler().parseCommand(command);
 	}
-	
+
 	/**
 	 * Remotely grabs entered in <code>commandField</code> and parses.
 	 */
@@ -197,5 +198,26 @@ public class DebugWindow extends JFrame{
 			submitCommand(commandField.getText());
 			commandField.setText("");
 		}
+	}
+
+	/**
+	 * Pause logging of tagged messages.
+	 */
+	public void pause() {
+		this.paused  = true;
+	}
+	
+	/**
+	 * Resume logging of tagged messages.
+	 */
+	public void resume() {
+		this.paused = false;
+	}
+	
+	/**
+	 * Grab focus of the <code>commandField</code>.
+	 */
+	public void focusOnField() {
+		commandField.grabFocus();
 	}
 }
