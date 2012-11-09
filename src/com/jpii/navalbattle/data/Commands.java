@@ -128,35 +128,51 @@ public class Commands {
 	    
 	    add(new Command("clear", "", "Clear debug window", new CommandAction() { 
 	    	public void onRun(Command c, String[] args) {
-	    			NavalBattle.getDebugWindow().printNew("");
+	    		NavalBattle.getDebugWindow().printNew("");
 	    	}}
 	    
 	    ));
 	    
 	    add(new Command("cls", "", "Clear debug window", new CommandAction() { 
 	    	public void onRun(Command c, String[] args) {
-	    			NavalBattle.getDebugWindow().printNew("");
+	    		NavalBattle.getDebugWindow().printNew("");
 	    	}}
 	    
 	    ));
 	       
 	    add(new Command("openwindow", "<windowid>", "Force a window to appear", new CommandAction() { 
 	    	public void onRun(Command c, String[] args) {
-	    		if(args[1].equals("login") || args[1].equals("0")) {
+	    		if(args[0].equals("login") || args[0].equals("0")) {
 	    			new LoginWindow();
 	    		}
 	    		
-	    		if(args[1].equals("main") || args[1].equals("1")) {
+	    		if(args[0].equals("main") || args[0].equals("1")) {
 	    			new MainMenuWindow();
+	    		}
+	    		
+	    		if(args[0].equals("credits") || args[0].equals("2")) {
+	    			new CreditsWindow();
+	    		}
+	    		
+	    		if(args[0].equals("help") || args[0].equals("3")) {
+	    			new HelpWindow();
+	    		}
+	    		
+	    		if(args[0].equals("roketgamer") || args[0].equals("4")) {
+	    			new RoketGamerWindow();
+	    		}
+	    		
+	    		if(args[0].equals("spoptions") || args[0].equals("5")) {
+	    			new SPOptions();
 	    		}
 	    	}}
 	    ));
 	    
 	    add(new Command("sysinfo", "", "Get system info", new CommandAction() { 
 	    	public void onRun(Command c, String[] args) {
-	    			NavalBattle.getDebugWindow().println("OS: " + System.getProperty("os.name") + " (" + System.getProperty("os.version") + ")");
-	    			NavalBattle.getDebugWindow().println("Java Home: " + System.getProperty("java.home"));
-	    			NavalBattle.getDebugWindow().println("Java Version: " + System.getProperty("java.version"));
+	    		NavalBattle.getDebugWindow().println("OS: " + System.getProperty("os.name") + " (" + System.getProperty("os.version") + ")");
+	    		NavalBattle.getDebugWindow().println("Java Home: " + System.getProperty("java.home"));
+	    		NavalBattle.getDebugWindow().println("Java Version: " + System.getProperty("java.version"));
 	    	}}
 	    
 	    ));
