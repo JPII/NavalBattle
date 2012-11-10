@@ -23,7 +23,6 @@ import java.awt.event.*;
 import javax.swing.*;
 
 import com.jpii.navalbattle.NavalBattle;
-import com.jpii.navalbattle.data.Constants;
 import com.jpii.navalbattle.gui.KeyboardListener;
 
 @SuppressWarnings("serial")
