@@ -76,6 +76,7 @@ public class GameComponent extends JComponent {
 		nav0 = new NavButton();
 		nav0.setLocation(128, 159);
 		nav0.setSize(100,81);
+		nav0.setFocusable(false);
 		
 		slider = new JSlider();
 		slider.setMajorTickSpacing(1);
@@ -101,6 +102,7 @@ public class GameComponent extends JComponent {
 		add(nav0);
 		
 		JButton button = new JButton("►");
+		button.setFocusable(false);
 		button.addMouseListener(new MouseAdapter() {
 			public void mousePressed(MouseEvent arg0) {
 				moveX(-1);
@@ -111,6 +113,7 @@ public class GameComponent extends JComponent {
 		
 		button_1 = new JButton("▼");
 		button_1.setBounds(85, 48, 54, 23);
+		button_1.setFocusable(false);
 		button_1.addMouseListener(new MouseAdapter() {
 			public void mousePressed(MouseEvent arg0) {
 				moveY(-1);
@@ -120,6 +123,7 @@ public class GameComponent extends JComponent {
 		
 		button_2 = new JButton("▲");
 		button_2.setBounds(85, 11, 54, 23);
+		button_2.setFocusable(false);
 		button_2.addMouseListener(new MouseAdapter() {
 			public void mousePressed(MouseEvent arg0) {
 				moveY(1);
@@ -129,6 +133,7 @@ public class GameComponent extends JComponent {
 		
 		button_3 = new JButton("◄");
 		button_3.setBounds(32, 28, 54, 23);
+		button_3.setFocusable(false);
 		button_3.addMouseListener(new MouseAdapter() {
 			public void mousePressed(MouseEvent arg0) {
 				moveX(1);
@@ -145,12 +150,13 @@ public class GameComponent extends JComponent {
 		});
 		btnActLikeThe.setBounds(32, 266, 313, 23);
 		add(btnActLikeThe);
+		btnActLikeThe.setFocusable(false);
 		ActionListener al = new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				tick();
 			}
 		};
-		this.setFocusable(true);		
+		this.setFocusable(false);		
 		int w = Toolkit.getDefaultToolkit().getScreenSize().width;
 		int h = Toolkit.getDefaultToolkit().getScreenSize().height;
 		
