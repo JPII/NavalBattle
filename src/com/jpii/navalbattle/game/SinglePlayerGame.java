@@ -22,6 +22,7 @@ import javax.swing.*;
 import java.awt.Toolkit;
 import java.awt.event.*;
 
+import com.jpii.navalbattle.data.Constants;
 import com.jpii.navalbattle.gui.KeyboardListener;
 import com.jpii.navalbattle.NavalBattle;
 
@@ -57,9 +58,11 @@ public class SinglePlayerGame extends JFrame {
 
 		this.setFocusable(true);
 		this.addKeyListener(new KeyboardListener(this));
-
-		setSize((int) Toolkit.getDefaultToolkit().getScreenSize().getWidth(),
-				(int) Toolkit.getDefaultToolkit().getScreenSize().getHeight() - 48);
+		
+		setSize(Constants.WINDOW_WIDTH,Constants.WINDOW_HEIGHT);
+		
+		//setSize((int) Toolkit.getDefaultToolkit().getScreenSize().getWidth(),
+			//	(int) Toolkit.getDefaultToolkit().getScreenSize().getHeight() - 48);
 		setLocation(0, 0);
 	}
 }

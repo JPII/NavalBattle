@@ -5,6 +5,7 @@ import java.awt.image.*;
 import java.util.Random;
 
 import com.jpii.dagen.*;
+import com.jpii.navalbattle.NavalBattle;
 
 public class ChunkRenderer implements Runnable
 {
@@ -26,6 +27,9 @@ public class ChunkRenderer implements Runnable
 		this.seed = seed;
 		this.eng = eng;
 		chunk = new BufferedImage(width,height,BufferedImage.TYPE_INT_RGB); // Type RGB is INTENTIONAL
+		Graphics g = chunk.getGraphics();
+		g.setColor(new Color(15,111,181));
+		g.fillRect(0,0,width,height);
 	}
 	public int getX()
 	{
@@ -55,16 +59,25 @@ public class ChunkRenderer implements Runnable
 	{
 		int s = 2;
 		Graphics g = chunk.getGraphics();
-		for (int x = 0; x < getWidth(); x++)
+		for (int x = 0; x < getWidth()/s; x++)
 		{
-			for (int z = 0; z < getHeight(); z++)
+			for (int z = 0; z < getHeight()/s; z++)
 			{
-				double y = eng.getPoint(x,z);
+				double y = eng.getPoint(x+(width*xpos),z+(height*zpos));
 				if (y <= Constants.GEN_WATER_HEIGHT)
 				{
-					Color waterSample = Constants.adjust(Constants.randomise(Constants.GEN_WATER_COLOR,
-							Constants.GEN_COLOR_DIFF, r, false), y, 10);
+					Color waterSample = Constants.randomise(Constants.GEN_WATER_COLOR, Constants.GEN_COLOR_DIFF,
+							r,false);
+					//Constants.adjust(Constants.randomise(Constants.GEN_WATER_COLOR,
+							//Constants.GEN_COLOR_DIFF, r, false), y, 10);
 					g.setColor(waterSample);
+					g.fillRect(x*s,z*s,s,s);
+				}
+				else
+				{
+					Color groundSample =Constants.randomise(Constants.GEN_GRASS_COLOR, Constants.GEN_COLOR_DIFF,
+							r,false);// Constants.GEN_GRASS_COLOR;
+					g.setColor(groundSample);
 					g.fillRect(x*s,z*s,s,s);
 				}
 			}
@@ -83,7 +96,10 @@ public class ChunkRenderer implements Runnable
 		if (getState() == ChunkState.STATE_GENERATE)
 		{
 			if (!eng.isGenerated())
+			{
 				eng.generate(seed, magnitude);
+				NavalBattle.getDebugWindow().printInfo("Map generation complete. Used seed:" + eng.getSeed());
+			}
 		}
 		if (getState() == ChunkState.STATE_RENDER)
 		{

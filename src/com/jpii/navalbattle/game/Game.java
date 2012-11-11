@@ -38,6 +38,8 @@ public class Game
 						com.jpii.navalbattle.renderer.Constants.GEN_TERRAIN_ROUGHNESS);
 				cr.setState(ChunkState.STATE_GENERATE);
 				cr.run();
+				//cr.setState(ChunkState.STATE_RENDER);
+				//cr.run();
 				chunks.add(cr);
 			}
 		}
@@ -58,7 +60,7 @@ public class Game
 		{
 			Graphics g = buffer.getGraphics();
 			g.drawImage(map,0,0,null);
-			g.drawImage(clouds,0,0,null);
+			//g.drawImage(clouds,0,0,null);
 		}
 		if (type == RepaintType.REPAINT_CHUNKS)
 		{
@@ -76,6 +78,7 @@ public class Game
 			{
 				ChunkRenderer cr = chunks.get(v);
 				g.drawImage(cr.getChunkBuffer(), cr.getX()*com.jpii.navalbattle.data.Constants.CHUNK_SIZE,cr.getZ()*com.jpii.navalbattle.data.Constants.CHUNK_SIZE,null);
+				//g.drawImage(cr.getChunkBuffer(),0,0,null);
 			}
 		}
 		if (type == RepaintType.REPAINT_INDV_ENTITIES)

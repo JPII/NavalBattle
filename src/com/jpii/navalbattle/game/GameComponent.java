@@ -39,17 +39,21 @@ public class GameComponent extends JComponent {
 		this.frame = frame;
 		ActionListener al = new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				game.repaint(RepaintType.REPAINT_MAP);
 				repaint();
 			}
 		};
 
 		ticker = new Timer(500, al);
+		ticker.start();
 		game = new Game();
-		game.repaint(RepaintType.REPAINT_MAP);
+		//game.repaint(RepaintType.REPAINT_CHUNKS);
+		//game.repaint(RepaintType.REPAINT_MAP);
 	}
 	public void paintComponent(Graphics g)
 	{
+		game.repaint(RepaintType.REPAINT_CHUNKS);
+		game.repaint(RepaintType.REPAINT_MAP);
+		game.repaint(RepaintType.REPAINT_BUFFERS);
 		g.drawImage(game.getBuffer(),0,0,null);
 	}
 }
