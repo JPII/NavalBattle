@@ -30,6 +30,8 @@ public class ChunkRenderer implements Runnable
 		Graphics g = chunk.getGraphics();
 		g.setColor(new Color(15,111,181));
 		g.fillRect(0,0,width,height);
+		setState(ChunkState.STATE_RENDER);
+		run();
 	}
 	public int getX()
 	{
@@ -57,26 +59,43 @@ public class ChunkRenderer implements Runnable
 	}
 	private void update()
 	{
-		int s = 2;
+		int s = 1;
 		Graphics g = chunk.getGraphics();
+		//System.out.println("wxps" + (width*xpos) + "wps" + (height*zpos));
 		for (int x = 0; x < getWidth()/s; x++)
 		{
 			for (int z = 0; z < getHeight()/s; z++)
 			{
-				double y = eng.getPoint(x+(width*xpos),z+(height*zpos));
-				if (y <= Constants.GEN_WATER_HEIGHT)
+				double y = eng.getPoint((x*s)+(width*xpos),(z*s)+(height*zpos));
+				boolean flag = y <= Constants.GEN_WATER_HEIGHT;
+				if (flag)
 				{
-					Color waterSample = Constants.randomise(Constants.GEN_WATER_COLOR, Constants.GEN_COLOR_DIFF,
-							r,false);
-					//Constants.adjust(Constants.randomise(Constants.GEN_WATER_COLOR,
-							//Constants.GEN_COLOR_DIFF, r, false), y, 10);
+					Color waterSample = //Constants.randomise(Constants.GEN_WATER_COLOR, Constants.GEN_COLOR_DIFF,
+							//r,false);
+					Constants.adjust(Constants.randomise(Constants.GEN_WATER_COLOR,
+							Constants.GEN_COLOR_DIFF, r, false), y, 50);
+					
 					g.setColor(waterSample);
 					g.fillRect(x*s,z*s,s,s);
 				}
-				else
+				if (y >= Constants.GEN_WATER_HEIGHT - 0.01 && y <= Constants.GEN_WATER_HEIGHT + 0.05 && r.nextInt(20) == 1)
 				{
-					Color groundSample =Constants.randomise(Constants.GEN_GRASS_COLOR, Constants.GEN_COLOR_DIFF,
-							r,false);// Constants.GEN_GRASS_COLOR;
+					flag = false;
+				}
+
+				if (!flag)
+				{
+					Color groundSample = Constants.adjust(Constants.randomise(Constants.GEN_GRASS_COLOR,
+							Constants.GEN_COLOR_DIFF, r, false), y, 50);
+					
+					if (y <= Constants.GEN_WATER_HEIGHT + 0.1)
+					{
+						double t = y - Constants.GEN_WATER_HEIGHT;
+						groundSample = Helper.Lerp(Constants.GEN_SAND_COLOR,groundSample, t / 0.1);
+						groundSample = Constants.randomise(groundSample,
+								Constants.GEN_COLOR_DIFF, r, false);
+					}
+					
 					g.setColor(groundSample);
 					g.fillRect(x*s,z*s,s,s);
 				}

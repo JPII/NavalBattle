@@ -1,4 +1,4 @@
-package com.jpii.navalbattle.data;
+package com.jpii.navalbattle.renderer;
 
 import java.awt.Color;
 import java.awt.Graphics;
@@ -75,52 +75,16 @@ public class Helper {
 		return (d);
 	}
 	
-	public static BufferedImage genMap(Engine eng, int startx, int starty, int maxw, int maxh, int width, int height, int pixelsize) {
-		BufferedImage bi = new BufferedImage(width,height,BufferedImage.TYPE_INT_ARGB);
-		Graphics g = bi.getGraphics();
-		int PIXEL = pixelsize;
-		if (eng != null) {
-			double[][] points = eng.getPoints();
-			g.setColor(Color.black);
-			g.fillRect(0, 0, width*PIXEL,height*PIXEL);
-			for (int x = startx; x < maxw; x++) {
-				for (int y = starty; y < maxh; y++) {
-					double wamount = 0.70;
-					if (points[x][y] < wamount){
-						int reduce = (int)(snap(points[x][y]) * 49.0);
-						g.setColor(new Color(50 - reduce,
-								100 - reduce,150 - reduce));
-						g.fillRect(x * PIXEL, y * PIXEL, PIXEL,PIXEL);
-					}
-					else {
-						boolean flag0 = false;
-						//if (x > 3 & y > 3 && x < eng.getWidth() - 3 && y < eng.getHeight() - 3) {
-							if (eng.getPoint(x-1,y) < wamount 
-									|| eng.getPoint(x-1,y-1) < wamount
-									|| eng.getPoint(x,y-1) < wamount
-									|| eng.getPoint(x+1,y+1) < wamount
-									|| eng.getPoint(x+1,y) < wamount
-									|| eng.getPoint(x,y+1) < wamount) {
-								int reduce = 30;//(int)(snap(points[x][y]) * 120);
-								Color sand = ColorHelper.getRelatedRandomColor(new Color(164 - reduce,
-										149 - reduce, 125 - reduce), eng.getRand(), 10);
-								g.setColor(sand);
-								flag0 = true;
-							}	
-						//}
-						if (!flag0) {
-							int reduce = (int)(snap(points[x][y]) * 63);
-							//int cr = 64 - reduce;//eng.r(-5,5) - reduce;
-							//int cg = 128 - reduce + eng.r(-5, 5);//eng.r(-5, 5) - reduce;
-							//int cb = 80 - reduce + eng.r(-5, 5); //eng.r(-5, 5) - reduce;
-							g.setColor(ColorHelper.getRelatedRandomColor(new Color(64-reduce,128-reduce,80-reduce), eng.getRand(), 5));
-							//g.setColor(new Color(cr, cg,cb));//new Color(rgb,rgb,rgb));
-						}
-						g.fillRect(x * PIXEL, y * PIXEL, PIXEL,PIXEL);
-					}
-				}
-			}
-		}
-		return bi;
-	}
+	public static double Lerp(int num0, int num1, double amount)
+    {
+    	return num0 + (amount*(num1-num0));
+    }
+    public static Color Lerp(Color color0, Color color1, double amount)
+    {
+	    int r = (int)Lerp(color0.getRed(), color1.getRed(), amount);
+	    int g = (int)Lerp(color0.getGreen(), color1.getGreen(), amount);
+	    int b = (int)Lerp(color0.getBlue(), color1.getBlue(), amount);
+	    int a = (int)Lerp(color0.getAlpha(), color1.getAlpha(), amount);
+	    return new Color(r,g,b,a);
+    }
 }

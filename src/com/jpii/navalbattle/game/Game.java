@@ -28,7 +28,9 @@ public class Game
 				BufferedImage.TYPE_INT_RGB);
 		clouds = new BufferedImage(com.jpii.navalbattle.data.Constants.WINDOW_WIDTH,com.jpii.navalbattle.data.Constants.WINDOW_HEIGHT,
 				BufferedImage.TYPE_INT_RGB);
-		eng = new Engine(com.jpii.navalbattle.data.Constants.WINDOW_WIDTH,com.jpii.navalbattle.data.Constants.WINDOW_HEIGHT);
+		eng = new Engine(com.jpii.navalbattle.data.Constants.WINDOW_WIDTH,
+				com.jpii.navalbattle.data.Constants.WINDOW_HEIGHT);
+		eng.generate(3243,0.6);
 		for (int x = 0; x < com.jpii.navalbattle.data.Constants.WINDOW_WIDTH / com.jpii.navalbattle.data.Constants.CHUNK_SIZE; x++)
 		{
 			for (int z = 0; z < com.jpii.navalbattle.data.Constants.WINDOW_HEIGHT / com.jpii.navalbattle.data.Constants.CHUNK_SIZE; z++)
@@ -36,10 +38,10 @@ public class Game
 				ChunkRenderer cr = new ChunkRenderer(eng,com.jpii.navalbattle.data.Constants.MAIN_SEED,x,z,
 						com.jpii.navalbattle.data.Constants.CHUNK_SIZE,com.jpii.navalbattle.data.Constants.CHUNK_SIZE,
 						com.jpii.navalbattle.renderer.Constants.GEN_TERRAIN_ROUGHNESS);
-				cr.setState(ChunkState.STATE_GENERATE);
-				cr.run();
-				//cr.setState(ChunkState.STATE_RENDER);
+				//cr.setState(ChunkState.STATE_GENERATE);
 				//cr.run();
+				cr.setState(ChunkState.STATE_RENDER);
+				cr.run();
 				chunks.add(cr);
 			}
 		}

@@ -51,7 +51,6 @@ public class GameComponent extends JComponent {
 	}
 	public void paintComponent(Graphics g)
 	{
-		game.repaint(RepaintType.REPAINT_CHUNKS);
 		game.repaint(RepaintType.REPAINT_MAP);
 		game.repaint(RepaintType.REPAINT_BUFFERS);
 		g.drawImage(game.getBuffer(),0,0,null);

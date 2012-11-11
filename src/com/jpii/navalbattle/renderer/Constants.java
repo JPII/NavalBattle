@@ -4,11 +4,12 @@ import java.awt.*;
 import java.util.*;
 
 public class Constants {
-	public static double GEN_WATER_HEIGHT = 0.4;
+	public static double GEN_WATER_HEIGHT = 0.8;
 	public static Color GEN_MOUNTAIN_COLOR = new Color(131,111,65);
 	public static Color GEN_WATER_COLOR = new Color(61,54,188);
 	public static Color GEN_GRASS_COLOR = new Color(60,101,42);
-	public static double GEN_TERRAIN_ROUGHNESS = 0.6;
+	public static Color GEN_SAND_COLOR = new Color(77,95,44);
+	public static double GEN_TERRAIN_ROUGHNESS = 0.9;//0.6;
 	public static int GEN_COLOR_DIFF = 6;
 	
 	
@@ -40,7 +41,7 @@ public class Constants {
 			rgbaval = 0;
 		return rgbaval;
 	}
-	public static Color adjust(Color orig, double a, int minmax)
+	public static Color adjust(Color orig, double a, int maxmin)
 	{
 		if (a > 1)
 			a = 1;
@@ -51,9 +52,10 @@ public class Constants {
 		int g = orig.getGreen();
 		int b = orig.getBlue();
 		
-		r = (int)((minmax * (r / a)) * 255 / minmax);
-		g = (int)((minmax * (g / a)) * 255 / minmax);
-		b = (int)((minmax * (b / a)) * 255 / minmax);
+		r = (int)(r - (a * maxmin));
+		g = (int)(g - (a * maxmin));
+		b = (int)(b - (a * maxmin));
+				
 		r = colorSnap(r);
 		g = colorSnap(g);
 		b = colorSnap(b);
