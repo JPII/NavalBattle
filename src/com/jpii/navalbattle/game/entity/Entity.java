@@ -18,6 +18,7 @@
 package com.jpii.navalbattle.game.entity;
 
 import java.awt.Image;
+import java.awt.image.BufferedImage;
 
 import com.jpii.navalbattle.game.Location;
 
@@ -27,6 +28,7 @@ public class Entity {
 	private Image image;
 	private boolean active;
 	private String tag;
+	private BufferedImage detailedImage;
 	
 	/**
 	 * Default constructor. Sets instance to inactive.
@@ -119,12 +121,22 @@ public class Entity {
 		this.image = image;
 	}
 	
+	public void setDetailedImage(BufferedImage img)
+	{
+		this.detailedImage = img;
+	}
+	
 	/**
 	 * Get current <code>Image</code>
 	 * @return
 	 */
 	public Image getImage() {
 		return image;
+	}
+	
+	public BufferedImage getDetailedImage()
+	{
+		return detailedImage;
 	}
 	
 	/**
