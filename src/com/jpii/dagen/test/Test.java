@@ -15,9 +15,7 @@ import java.awt.event.KeyListener;
 import java.awt.geom.Point2D;
 import java.awt.image.BufferedImage;
 
-import com.jpii.dagen.ColorHelper;
-import com.jpii.dagen.Engine;
-import com.jpii.dagen.MapType;
+import com.jpii.dagen.*;
 import com.jpii.dagen.processing.FilterEngine;
 import com.jpii.dagen.vegetation.TreeEngine;
 
@@ -44,7 +42,7 @@ public class Test extends Applet implements KeyListener{
 		setSize(WIDTH * PIXEL, HEIGHT * PIXEL);
 		eng.setSmoothFactor(3);
 		//eng.setIslandRadius(getWidth() / 8);
-		eng.generate(MapType.Hills, (int)(Math.random() * 4000000), 1);
+		eng.generate((int)(Math.random() * 4000000), 1);
 		
 		trees = new TreeEngine(eng);
 		trees.generate(eng.getWaterLevel(), 10,20);
@@ -148,7 +146,7 @@ public class Test extends Applet implements KeyListener{
 	@Override
 	public void keyPressed(KeyEvent arg0) {
 		if (arg0.getKeyCode() == KeyEvent.VK_SPACE) {
-			eng.generate(MapType.Hills, (int)(Math.random() * 4000000), 1);
+			eng.generate((int)(Math.random() * 4000000), 1);
 			regen();
 		}
 	}

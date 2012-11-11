@@ -28,6 +28,15 @@ public class Constants {
 	public static final String NAVALBATTLE_VERSION_TITLE = "NavalBattle " + NAVALBATTLE_VERSION + " (" + NAVALBATTLE_CODENAME + ")";
 	public static final boolean DEBUG_MODE = true;
 	
+	
+	/*
+	 * Game engine
+	 */
+	public static int WINDOW_WIDTH = 800;
+	public static int WINDOW_HEIGHT = 600;
+	public static int CHUNK_SIZE = 100;
+	public static int MAIN_SEED = 87842123;
+	
 	/*
 	 * Gameplay
 	 */

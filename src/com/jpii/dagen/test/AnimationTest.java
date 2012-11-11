@@ -13,9 +13,7 @@ import java.awt.image.BufferedImage;
 
 import javax.swing.Timer;
 
-import com.jpii.dagen.ColorHelper;
-import com.jpii.dagen.Engine;
-import com.jpii.dagen.MapType;
+import com.jpii.dagen.*;
 
 /**
  * An animated wave demo class.
@@ -44,7 +42,7 @@ public class AnimationTest extends Applet {
 		setSize(WIDTH*PIXEL,HEIGHT*PIXEL);
 		primary.setSmoothFactor(3);
 		primary.setWaterLevel(0.7);
-		primary.generate(MapType.Hills, (int)(Math.random() * 4000000), 1);
+		primary.generate((int)(Math.random() * 4000000), 1);
 		
 		initGrid();
 		initInnerShadow();

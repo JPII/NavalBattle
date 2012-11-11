@@ -16,7 +16,6 @@ public class Engine {
 	int seed_i = 0;
 	int cycles = 0;
 	
-	int mtMag = 0;
 	double magnitude = 1.0;
 	int smoothamount = 10;
 	boolean isgenerated = false;
@@ -83,7 +82,7 @@ public class Engine {
 	 * @param seed The seed (random value) of the map.
 	 * @param magnitude The magnitude (roughness) of the map.
 	 */
-	public void generate(MapType type, int seed, double magnitude) {
+	public void generate(int seed, double magnitude) {
 		cycles = 0;
 		points = new double[width][height];
 		
@@ -91,13 +90,6 @@ public class Engine {
 		
 		rand = new Random(seed);
 		this.magnitude = magnitude;
-		
-		if (type == MapType.Hills)
-			mtMag = 3;
-		else if (type == MapType.Plains)
-			mtMag = 1;
-		else if (type == MapType.Dips)
-			mtMag = -3;
 		
 		iterate(0,0,width,height,rand.nextDouble(),rand.nextDouble(),rand.nextDouble(),rand.nextDouble());
 		iterate(smoothamount >> 2);
