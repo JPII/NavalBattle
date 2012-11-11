@@ -1,13 +1,19 @@
 package com.jpii.navalbattle.game;
 
+import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.event.MouseEvent;
 import java.awt.image.*;
 import java.util.*;
 
 import com.jpii.dagen.*;
+import com.jpii.navalbattle.data.Constants;
 import com.jpii.navalbattle.game.entity.*;
 import com.jpii.navalbattle.renderer.ChunkRenderer;
 import com.jpii.navalbattle.renderer.ChunkState;
+import com.jpii.navalbattle.renderer.Cloud;
+import com.jpii.navalbattle.renderer.CloudRelator;
+import com.jpii.navalbattle.renderer.RenderConstants;
 import com.jpii.navalbattle.renderer.RepaintType;
 
 public class Game
@@ -19,25 +25,30 @@ public class Game
 	private BufferedImage buffer;
 	private BufferedImage clouds;
 	private int zoom;
+	private CloudRelator cr;
 	public Game()
 	{
 		chunks = new ArrayList<ChunkRenderer>();
-		map = new BufferedImage(com.jpii.navalbattle.data.Constants.WINDOW_WIDTH,com.jpii.navalbattle.data.Constants.WINDOW_HEIGHT,
+		map = new BufferedImage(Constants.WINDOW_WIDTH,Constants.WINDOW_HEIGHT,
 				BufferedImage.TYPE_INT_RGB);
-		buffer = new BufferedImage(com.jpii.navalbattle.data.Constants.WINDOW_WIDTH,com.jpii.navalbattle.data.Constants.WINDOW_HEIGHT,
+		buffer = new BufferedImage(Constants.WINDOW_WIDTH,Constants.WINDOW_HEIGHT,
 				BufferedImage.TYPE_INT_RGB);
-		clouds = new BufferedImage(com.jpii.navalbattle.data.Constants.WINDOW_WIDTH,com.jpii.navalbattle.data.Constants.WINDOW_HEIGHT,
-				BufferedImage.TYPE_INT_RGB);
-		eng = new Engine(com.jpii.navalbattle.data.Constants.WINDOW_WIDTH,
-				com.jpii.navalbattle.data.Constants.WINDOW_HEIGHT);
-		eng.generate(3243,0.6);
-		for (int x = 0; x < com.jpii.navalbattle.data.Constants.WINDOW_WIDTH / com.jpii.navalbattle.data.Constants.CHUNK_SIZE; x++)
+		clouds = new BufferedImage(Constants.WINDOW_WIDTH,Constants.WINDOW_HEIGHT,
+				BufferedImage.TYPE_INT_ARGB);
+		eng = new Engine(Constants.WINDOW_WIDTH,
+				Constants.WINDOW_HEIGHT);
+		eng.setSmoothFactor(5);
+		eng.generate(Constants.MAIN_SEED,RenderConstants.GEN_TERRAIN_ROUGHNESS);
+		
+		cr = new CloudRelator();
+		
+		for (int x = 0; x < Constants.WINDOW_WIDTH / Constants.CHUNK_SIZE; x++)
 		{
-			for (int z = 0; z < com.jpii.navalbattle.data.Constants.WINDOW_HEIGHT / com.jpii.navalbattle.data.Constants.CHUNK_SIZE; z++)
+			for (int z = 0; z < Constants.WINDOW_HEIGHT / Constants.CHUNK_SIZE; z++)
 			{
-				ChunkRenderer cr = new ChunkRenderer(eng,com.jpii.navalbattle.data.Constants.MAIN_SEED,x,z,
-						com.jpii.navalbattle.data.Constants.CHUNK_SIZE,com.jpii.navalbattle.data.Constants.CHUNK_SIZE,
-						com.jpii.navalbattle.renderer.Constants.GEN_TERRAIN_ROUGHNESS);
+				ChunkRenderer cr = new ChunkRenderer(eng,Constants.MAIN_SEED,x,z,
+						Constants.CHUNK_SIZE,Constants.CHUNK_SIZE,
+						RenderConstants.GEN_TERRAIN_ROUGHNESS);
 				//cr.setState(ChunkState.STATE_GENERATE);
 				//cr.run();
 				cr.setState(ChunkState.STATE_RENDER);
@@ -56,13 +67,21 @@ public class Game
 		repaint(RepaintType.REPAINT_CHUNKS);
 		repaint(RepaintType.REPAINT_CLOUDS);
 	}
+	public void update()
+	{
+		cr.run();
+	}
+	public void mouseMoved(MouseEvent me)
+	{
+		cr.updateMouse(me.getX(), me.getY());
+	}
 	public void repaint(RepaintType type)
 	{
 		if (type == RepaintType.REPAINT_BUFFERS)
 		{
 			Graphics g = buffer.getGraphics();
 			g.drawImage(map,0,0,null);
-			//g.drawImage(clouds,0,0,null);
+			g.drawImage(clouds,0,0,null);
 		}
 		if (type == RepaintType.REPAINT_CHUNKS)
 		{
@@ -79,7 +98,7 @@ public class Game
 			for (int v = 0; v < chunks.size(); v++)
 			{
 				ChunkRenderer cr = chunks.get(v);
-				g.drawImage(cr.getChunkBuffer(), cr.getX()*com.jpii.navalbattle.data.Constants.CHUNK_SIZE,cr.getZ()*com.jpii.navalbattle.data.Constants.CHUNK_SIZE,null);
+				g.drawImage(cr.getChunkBuffer(), cr.getX()*Constants.CHUNK_SIZE,cr.getZ()*Constants.CHUNK_SIZE,null);
 				//g.drawImage(cr.getChunkBuffer(),0,0,null);
 			}
 		}
@@ -89,6 +108,10 @@ public class Game
 			{
 				// Do entity render
 			}
+		}
+		if (type == RepaintType.REPAINT_CLOUDS)
+		{
+			clouds = cr.buffer;
 		}
 	}
 	public BufferedImage getBuffer()

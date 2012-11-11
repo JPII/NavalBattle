@@ -39,11 +39,19 @@ public class GameComponent extends JComponent {
 		this.frame = frame;
 		ActionListener al = new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				game.update();
 				repaint();
 			}
 		};
+		
+		addMouseMotionListener(new MouseAdapter(){
+			public void mouseMoved(MouseEvent me)
+			{
+				game.mouseMoved(me);
+			}
+		});
 
-		ticker = new Timer(500, al);
+		ticker = new Timer(50, al);
 		ticker.start();
 		game = new Game();
 		//game.repaint(RepaintType.REPAINT_CHUNKS);
@@ -52,6 +60,7 @@ public class GameComponent extends JComponent {
 	public void paintComponent(Graphics g)
 	{
 		game.repaint(RepaintType.REPAINT_MAP);
+		game.repaint(RepaintType.REPAINT_CLOUDS);
 		game.repaint(RepaintType.REPAINT_BUFFERS);
 		g.drawImage(game.getBuffer(),0,0,null);
 	}

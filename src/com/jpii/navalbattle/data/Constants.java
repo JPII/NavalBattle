@@ -35,7 +35,7 @@ public class Constants {
 	public static int WINDOW_WIDTH = 800;
 	public static int WINDOW_HEIGHT = 600;
 	public static int CHUNK_SIZE = 100;
-	public static int MAIN_SEED = 87842123;
+	public static int MAIN_SEED = (int)(Math.random() * (Integer.MAX_VALUE - 1));
 	
 	/*
 	 * Gameplay
