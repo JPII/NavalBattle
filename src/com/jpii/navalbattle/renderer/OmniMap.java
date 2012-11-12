@@ -14,6 +14,7 @@ public class OmniMap {
     Random r;
     BufferedImage buffer, map;
     public boolean entireWorldMode = true;
+    public int px, py;
     public OmniMap(Engine eng, int width, int height) {
         this.eng = eng;
         this.width = width;
@@ -86,7 +87,7 @@ public class OmniMap {
     }
     public void mouseClick(MouseEvent me)
     {
-    	if (me.getX() > 20 && me.getY() > 20 && me.getX() < 20 + width && me.getY() < 20 + height)
+    	if (me.getX() > px && me.getY() > py && me.getX() < px + width && me.getY() < py + height + 25)
     	{
     		entireWorldMode = !entireWorldMode;
     	}

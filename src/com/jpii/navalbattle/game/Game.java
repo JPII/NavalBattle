@@ -42,6 +42,8 @@ public class Game implements Runnable
 		eng.generate(Constants.MAIN_SEED,RenderConstants.GEN_TERRAIN_ROUGHNESS);
 		
 		omniMap = new OmniMap(eng,100,100);
+		omniMap.px = Constants.WINDOW_WIDTH - 120;
+		omniMap.py = 5;
 		
 		repaint(RepaintType.REPAINT_OMNIMAP);
 		
@@ -130,7 +132,7 @@ public class Game implements Runnable
 			//g.drawImage(grid.getFeasibleGrid(),0,0,null);
 			g.drawImage(clouds,0,0,null);
 			g.drawImage(shadow,0,0,null);
-			g.drawImage(omniMap.getBuffer(), 20,20,null);
+			g.drawImage(omniMap.getBuffer(), omniMap.px,omniMap.py,null);
 			g.setColor(Color.black);
 			g.drawString("X = " + msax + " Y = " + msay, 100,100);
 		}
