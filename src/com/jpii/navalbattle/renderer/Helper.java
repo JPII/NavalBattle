@@ -23,7 +23,7 @@ public class Helper {
         g2.fillRect(0, 0, width,height);
         return shadowOuter;
 	}
-	public static BufferedImage genGrid(int width, int height, int spacing) {
+	/*public static BufferedImage genGrid(int width, int height, int spacing) {
 		BufferedImage grid = new BufferedImage(width,height,BufferedImage.TYPE_INT_ARGB);
 		Graphics g = grid.getGraphics();
 		Color def = new Color(60,60,60);
@@ -49,7 +49,7 @@ public class Helper {
 			g.drawLine(gridx*spacing,0,gridx*spacing,height);
 		}
 		return grid;
-	}
+	}*/
 	
 	/**
 	 * Adjusts the double to fit it within 0.0 and 1.0.

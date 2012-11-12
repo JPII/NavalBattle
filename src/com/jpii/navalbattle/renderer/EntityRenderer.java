@@ -69,7 +69,6 @@ public class EntityRenderer
 	{
 		Point p = g.getMouseSet();
 		Point y = new Point((px/2)-p.x, (py/2)-p.y);
-		System.out.println(p + "" + y);
 		return y;
 	}
 }

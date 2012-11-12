@@ -17,6 +17,8 @@ public class RenderConstants {
 	public static int CLOUD_MAX_SIZE = 30;
 	public static int CLOUD_MIN_SIZE = 20;
 	public static int CLOUD_MAX = 50;
+	public static boolean OPT_INVERSE_MOUSE = false;
+	public static boolean OPT_CLOUDS_ON = true;
 	
 	
 	public static Color randomise(Color orig, int maxDiff, Random rand, boolean includeAlpha)

@@ -18,7 +18,7 @@ public class ChunkRenderer implements Runnable
 	int seed;
 	Random r;
 	int xpos, zpos, plx, ply;
-	BufferedImage grid;
+	//BufferedImage grid;
 	public ChunkRenderer(Engine eng,int seed,int x, int z, int width, int height, double mag)
 	{
 		this.width = width;
@@ -29,7 +29,7 @@ public class ChunkRenderer implements Runnable
 		this.seed = seed;
 		this.eng = eng;
 		chunk = new BufferedImage(width,height,BufferedImage.TYPE_INT_RGB); // Type RGB is INTENTIONAL
-		grid = Helper.genGrid(width,height,50);
+		//grid = Helper.genGrid(width,height,50);
 		Graphics g = chunk.getGraphics();
 		g.setColor(new Color(15,111,181));
 		g.fillRect(0,0,width,height);
@@ -138,7 +138,7 @@ public class ChunkRenderer implements Runnable
 			}
 			}
 		}
-		g.drawImage(grid, 0,0, null);
+		//g.drawImage(grid, 0,0, null);
 	}
 	public void setState(ChunkState state)
 	{

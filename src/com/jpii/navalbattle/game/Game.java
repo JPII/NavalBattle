@@ -35,8 +35,8 @@ public class Game implements Runnable
 				BufferedImage.TYPE_INT_RGB);
 		buffer = new BufferedImage(Constants.WINDOW_WIDTH,Constants.WINDOW_HEIGHT,
 				BufferedImage.TYPE_INT_RGB);
-		clouds = new BufferedImage(Constants.WINDOW_WIDTH,Constants.WINDOW_HEIGHT,
-				BufferedImage.TYPE_INT_ARGB);
+		if (RenderConstants.OPT_CLOUDS_ON)
+			clouds = new BufferedImage(Constants.WINDOW_WIDTH,Constants.WINDOW_HEIGHT,BufferedImage.TYPE_INT_ARGB);
 		eng = new Engine(Constants.WINDOW_WIDTH*4,
 				Constants.WINDOW_HEIGHT*4);
 		shadow = Helper.genInnerShadow(Constants.WINDOW_WIDTH,Constants.WINDOW_HEIGHT);
@@ -49,7 +49,8 @@ public class Game implements Runnable
 		
 		repaint(RepaintType.REPAINT_OMNIMAP);
 		
-		cr = new CloudRelator();
+		if (RenderConstants.OPT_CLOUDS_ON)
+			cr = new CloudRelator();
 		
 		for (int x = 0; x < Constants.WINDOW_WIDTH / Constants.CHUNK_SIZE; x++)
 		{
@@ -79,11 +80,14 @@ public class Game implements Runnable
 	}
 	public void update()
 	{
+		if (!RenderConstants.OPT_CLOUDS_ON)
+			return;
 		cr.run();
 	}
 	public void mouseMoved(MouseEvent me)
 	{
-		cr.updateMouse(me.getX(), me.getY());
+		if (RenderConstants.OPT_CLOUDS_ON)
+			cr.updateMouse(me.getX(), me.getY());
 		omniMap.mouse(me);
 		if (!omniMap.entireWorldMode)
 			omniMap.update();
@@ -107,12 +111,21 @@ public class Game implements Runnable
 	}
 	int lastmx = -1;
 	int lastmy = -1;
+	public int FPS = 0;
 	public void mouseDrag(MouseEvent me)
 	{
 		if (msax > -200 && msay > -200 && msax < (Constants.WINDOW_WIDTH*4)+200 && msay < (Constants.WINDOW_HEIGHT*4)+200)
 		{
-			msax += (me.getX() - (Constants.WINDOW_WIDTH/2))/8;
-			msay += (me.getY() - (Constants.WINDOW_HEIGHT/2))/8;
+			if (!RenderConstants.OPT_INVERSE_MOUSE)
+			{
+				msax += (me.getX() - (Constants.WINDOW_WIDTH/2))/8;
+				msay += (me.getY() - (Constants.WINDOW_HEIGHT/2))/8;
+			}
+			else
+			{
+				msax -= (me.getX() - (Constants.WINDOW_WIDTH/2))/8;
+				msay -= (me.getY() - (Constants.WINDOW_HEIGHT/2))/8;
+			}
 		}
 		else
 		{
@@ -140,8 +153,9 @@ public class Game implements Runnable
 			g.drawImage(clouds,0,0,null);
 			g.drawImage(shadow,0,0,null);
 			g.drawImage(omniMap.getBuffer(), omniMap.px,omniMap.py,null);
-			g.setColor(Color.black);
+			g.setColor(Color.red);
 			g.drawString("X = " + msax + " Y = " + msay, 100,100);
+			g.drawString("FPS: " + FPS, 100, 124);
 		}
 		if (type == RepaintType.REPAINT_CHUNKS)
 		{
@@ -171,6 +185,8 @@ public class Game implements Runnable
 		}
 		if (type == RepaintType.REPAINT_CLOUDS)
 		{
+			if (!RenderConstants.OPT_CLOUDS_ON)
+				return;
 			clouds = cr.buffer;
 		}
 		if (type == RepaintType.REPAINT_OMNIMAP)
