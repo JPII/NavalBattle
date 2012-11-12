@@ -40,8 +40,6 @@ public class OmniMap {
                     if (y >= RenderConstants.GEN_WATER_HEIGHT - 0.05) {
                         double t = RenderConstants.GEN_WATER_HEIGHT - y;
                         waterSample = Helper.Lerp(RenderConstants.GEN_SAND_COLOR, RenderConstants.GEN_SAND_COLOR2 /*waterSample*/ , t / 0.05);
-                        waterSample = RenderConstants.randomise(waterSample,
-                        RenderConstants.GEN_COLOR_DIFF, r, false);
                     }
                     g.setColor(waterSample);
                     g.fillRect(x * s, z * s, s + 1, s + 1);
@@ -57,15 +55,11 @@ public class OmniMap {
                     if (y <= RenderConstants.GEN_WATER_HEIGHT + 0.1) {
                         double t = y - RenderConstants.GEN_WATER_HEIGHT;
                         groundSample = Helper.Lerp(RenderConstants.GEN_SAND_COLOR, groundSample, t / 0.1);
-                        groundSample = RenderConstants.randomise(groundSample,
-                        RenderConstants.GEN_COLOR_DIFF, r, false);
                     }
                     if (y >= RenderConstants.GEN_MOUNTAIN_HEIGHT) {
                         double t = y - RenderConstants.GEN_MOUNTAIN_HEIGHT;
                         groundSample = Helper.Lerp(groundSample, RenderConstants.GEN_MOUNTAIN_COLOR,
                         t / (1.0 - RenderConstants.GEN_MOUNTAIN_HEIGHT));
-                        groundSample = RenderConstants.randomise(groundSample,
-                        RenderConstants.GEN_COLOR_DIFF, r, false);
                         groundSample = RenderConstants.adjust(groundSample, t / (1.0 - RenderConstants.GEN_MOUNTAIN_HEIGHT), 30);
                     }
 
