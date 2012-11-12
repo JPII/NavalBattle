@@ -86,6 +86,7 @@ public class Game implements Runnable
 	public void mouseClick(MouseEvent me)
 	{
 		omniMap.mouseClick(me);
+		omniMap.update();
 	}
 	public void run()
 	{
