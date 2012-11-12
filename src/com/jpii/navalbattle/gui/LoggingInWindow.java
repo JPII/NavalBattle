@@ -1,9 +1,6 @@
 package com.jpii.navalbattle.gui;
 
-import javax.swing.JFrame;
-import javax.swing.JProgressBar;
-import javax.swing.JLabel;
-import javax.swing.ImageIcon;
+import javax.swing.*;
 
 @SuppressWarnings("serial")
 public class LoggingInWindow extends JFrame {
