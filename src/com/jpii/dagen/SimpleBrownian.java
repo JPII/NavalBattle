@@ -1,7 +1,5 @@
 package com.jpii.dagen;
 
-import java.awt.Color;
-import java.awt.image.BufferedImage;
 import java.util.*;
 
 /**
@@ -84,7 +82,7 @@ public class SimpleBrownian extends Engine {
 
 		   if (X1 == X2)
 		   {
-		      int X = X1;
+		  //    int X = X1;
 		      if (Y1 > Y2)
 		      {
 		         int Temp = Y1; Y1 = Y2; Y2 = Temp;

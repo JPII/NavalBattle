@@ -21,7 +21,6 @@ import java.awt.event.*;
 
 import com.jpii.navalbattle.NavalBattle;
 import com.jpii.navalbattle.debug.DebugWindow;
-import com.jpii.navalbattle.game.SinglePlayerGame;
 
 public class KeyboardListener implements KeyListener {
 	

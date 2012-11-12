@@ -8,9 +8,6 @@ import java.awt.MultipleGradientPaint.CycleMethod;
 import java.awt.geom.Point2D;
 import java.awt.image.BufferedImage;
 
-import com.jpii.dagen.ColorHelper;
-import com.jpii.dagen.Engine;
-
 public class Helper {
 	public static BufferedImage genInnerShadow(int width, int height) {
 		BufferedImage shadowOuter = new BufferedImage(width,height,BufferedImage.TYPE_INT_ARGB);

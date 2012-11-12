@@ -19,7 +19,7 @@ public class Game implements Runnable
 	private BufferedImage buffer;
 	private BufferedImage clouds;
 	private BufferedImage shadow;
-	private int zoom;
+	//private int zoom;
 	private CloudRelator cr;
 	private int msax, msay;
 	private OmniMap omniMap;
@@ -68,7 +68,7 @@ public class Game implements Runnable
 	}
 	public void setZoom(int level)
 	{
-		zoom = level;
+	//	zoom = level;
 		repaint(RepaintType.REPAINT_CHUNKS);
 		repaint(RepaintType.REPAINT_CLOUDS);
 	}

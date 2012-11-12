@@ -1,7 +1,6 @@
 package com.jpii.dagen.vegetation;
 
 import java.applet.Applet;
-import java.awt.*;
 import java.util.Random;
 
 public class TreeFractal
