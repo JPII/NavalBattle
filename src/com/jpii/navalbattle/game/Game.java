@@ -7,7 +7,6 @@ import java.util.*;
 
 import com.jpii.dagen.*;
 import com.jpii.navalbattle.data.Constants;
-import com.jpii.navalbattle.game.entity.*;
 import com.jpii.navalbattle.renderer.*;
 
 public class Game implements Runnable
