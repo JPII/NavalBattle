@@ -79,9 +79,19 @@ public class Game implements Runnable
 	public void mouseMoved(MouseEvent me)
 	{
 		cr.updateMouse(me.getX(), me.getY());
+		omniMap.mouse(me);
+		if (!omniMap.entireWorldMode)
+			omniMap.update();
+	}
+	public void mouseClick(MouseEvent me)
+	{
+		omniMap.mouseClick(me);
 	}
 	public void run()
 	{
+		omniMap.msax = msax;
+		omniMap.msay = msay;
+		omniMap.update();
 		repaint(RepaintType.REPAINT_CHUNKS);
 		repaint(RepaintType.REPAINT_MAP);
 		repaint(RepaintType.REPAINT_BUFFERS);
@@ -120,12 +130,6 @@ public class Game implements Runnable
 			g.drawImage(clouds,0,0,null);
 			g.drawImage(shadow,0,0,null);
 			g.drawImage(omniMap.getBuffer(), 20,20,null);
-			int vx = (msax+100) * 100 / (Constants.WINDOW_WIDTH*4);
-			int vy = (msay+100) * 100 / (Constants.WINDOW_HEIGHT*4);
-			vx+=20;
-			vy+=20;
-			g.setColor(Color.red);
-			g.drawRect(vx,vy,Constants.WINDOW_WIDTH/100*2,Constants.WINDOW_HEIGHT/100*2);
 			g.setColor(Color.black);
 			g.drawString("X = " + msax + " Y = " + msay, 100,100);
 		}
