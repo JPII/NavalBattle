@@ -153,6 +153,7 @@ public class Game implements Runnable
 		}
 		if (type == RepaintType.REPAINT_INDV_ENTITIES)
 		{
+			Graphics g = new BufferedImage(1,1,BufferedImage.TYPE_INT_ARGB).getGraphics();
 			for (int x = 0; x < grid.getWidth(); x++)
 			{
 				for (int y = 0; y < grid.getHeight(); y++)
@@ -161,7 +162,7 @@ public class Game implements Runnable
 					Entity ent = grid.getEntity(x, y);
 					if (ent != null)
 					{
-						
+						g.drawImage(ent.getImage(),x,y,null);
 					}
 				}
 			}

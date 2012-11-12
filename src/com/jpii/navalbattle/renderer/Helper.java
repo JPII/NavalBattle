@@ -31,14 +31,6 @@ public class Helper {
 		Graphics g = grid.getGraphics();
 		Color def = new Color(60,60,60);
 		Color nwe = new Color(60,60,60,200);
-		/*Polygon p = new Polygon();
-		for (int gridx = 0; gridx < width; gridx+=(spacing*2)) {
-			p.addPoint(gridx, -1);
-			p.addPoint(gridx, height+1);
-			p.addPoint(gridx+spacing, height+1);
-			p.addPoint(gridx+spacing, -1);
-		}*/
-		//g.drawPolygon(p);
 		int sub = height/spacing;
 		for (int gridy = 0; gridy < sub; gridy++) {
 			if (spacing <= 10 && (gridy % 4 == 0)) {
