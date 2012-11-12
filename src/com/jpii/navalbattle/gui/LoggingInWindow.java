@@ -5,6 +5,7 @@ import javax.swing.JProgressBar;
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
 
+@SuppressWarnings("serial")
 public class LoggingInWindow extends JFrame {
 	public LoggingInWindow() {
 		setTitle("NavalBattle - Logging In");
@@ -37,13 +38,13 @@ public class LoggingInWindow extends JFrame {
 	    
 	    public void run() {
 	        try {
-				this.sleep(2000);
+				Thread.sleep(2000);
 			} catch (InterruptedException e) { }
 	        
 	        label.setIcon(new ImageIcon(LoggingInWindow.class.getResource("/com/jpii/navalbattle/res/splash_roketgamer_sm.png")));
 	        
 	        try {
-				this.sleep(2000);
+				Thread.sleep(2000);
 			} catch (InterruptedException e) { }
 	        
 	        label.setIcon(new ImageIcon(LoggingInWindow.class.getResource("/com/jpii/navalbattle/res/splash_navalbattle_sm.png")));
