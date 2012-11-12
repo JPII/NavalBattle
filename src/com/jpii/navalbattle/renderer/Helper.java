@@ -20,7 +20,7 @@ public class Helper {
         float radius = width;
         Point2D focus = new Point2D.Float(width/2, height/2);
         float[] dist = {0.0f, 1.0f};
-        Color[] colors = {new Color(0,0,0,0), new Color(0,0,0,255)};
+        Color[] colors = {new Color(0,0,0,0), new Color(0,0,0,220)};
         RadialGradientPaint p = new RadialGradientPaint(center, radius, focus, dist, colors, CycleMethod.NO_CYCLE);
         g2.setPaint(p);
         g2.fillRect(0, 0, width,height);

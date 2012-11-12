@@ -12,7 +12,7 @@ import com.jpii.navalbattle.renderer.*;
 
 public class Game implements Runnable
 {
-	private ArrayList<Entity> entityCollection;
+	private Grid grid;
 	private ArrayList<ChunkRenderer> chunks;
 	private Engine eng;
 	private BufferedImage map;
@@ -27,6 +27,7 @@ public class Game implements Runnable
 	{
 		msax = Constants.WINDOW_WIDTH*2;
 		msay = Constants.WINDOW_HEIGHT*2;
+		grid = new Grid();
 		chunks = new ArrayList<ChunkRenderer>();
 		map = new BufferedImage(Constants.WINDOW_WIDTH,Constants.WINDOW_HEIGHT,
 				BufferedImage.TYPE_INT_RGB);
@@ -61,9 +62,9 @@ public class Game implements Runnable
 			}
 		}
 	}
-	public void addEntity(Entity entity)
+	public Grid getGrid()
 	{
-		entityCollection.add(entity);
+		return grid;
 	}
 	public void setZoom(int level)
 	{
@@ -115,6 +116,7 @@ public class Game implements Runnable
 					BufferedImage.TYPE_INT_RGB);
 			Graphics g = buffer.getGraphics();
 			g.drawImage(map,0,0,null);
+			//g.drawImage(grid.getFeasibleGrid(),0,0,null);
 			g.drawImage(clouds,0,0,null);
 			g.drawImage(shadow,0,0,null);
 			g.drawImage(omniMap.getBuffer(), 20,20,null);
@@ -151,9 +153,17 @@ public class Game implements Runnable
 		}
 		if (type == RepaintType.REPAINT_INDV_ENTITIES)
 		{
-			for (int v = 0; v < entityCollection.size(); v++)
+			for (int x = 0; x < grid.getWidth(); x++)
 			{
-				// Do entity render
+				for (int y = 0; y < grid.getHeight(); y++)
+				{
+					// Do entity rendering here.
+					Entity ent = grid.getEntity(x, y);
+					if (ent != null)
+					{
+						
+					}
+				}
 			}
 		}
 		if (type == RepaintType.REPAINT_CLOUDS)
