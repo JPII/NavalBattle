@@ -4,8 +4,8 @@ import java.awt.*;
 import java.util.*;
 
 public class RenderConstants {
-	public static double GEN_WATER_HEIGHT = 0.6;
-	public static double GEN_MOUNTAIN_HEIGHT = 0.7;
+	public static double GEN_WATER_HEIGHT = 0.7;
+	public static double GEN_MOUNTAIN_HEIGHT = 0.8;
 	public static Color GEN_MOUNTAIN_COLOR = new Color(68,74,43);//new Color(131,111,65);
 	public static Color GEN_WATER_COLOR = new Color(46,61,114);//new Color(61,54,188);
 	public static Color GEN_GRASS_COLOR = new Color(60,101,42);
@@ -16,6 +16,7 @@ public class RenderConstants {
 	public static int GEN_SMOOTHIE = 30;
 	public static int CLOUD_MAX_SIZE = 30;
 	public static int CLOUD_MIN_SIZE = 20;
+	public static int CLOUD_MAX = 50;
 	
 	
 	public static Color randomise(Color orig, int maxDiff, Random rand, boolean includeAlpha)

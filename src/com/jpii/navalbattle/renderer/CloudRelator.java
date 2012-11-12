@@ -45,7 +45,7 @@ public class CloudRelator implements Runnable
 		{
 			for (int z = 0; z < Constants.WINDOW_HEIGHT; z++)
 			{
-				if (eng.getPoint(x,z) > 0.8 && r.nextInt(5) == 1)
+				if (eng.getPoint(x,z) > 0.8 && r.nextInt(5) == 1 && clouds.size() < RenderConstants.CLOUD_MAX)
 				{
 					clouds.add(new Cloud((float)(r.nextInt(RenderConstants.CLOUD_MAX_SIZE -RenderConstants.CLOUD_MIN_SIZE
 							)+RenderConstants.CLOUD_MIN_SIZE), r.nextInt(Constants.WINDOW_WIDTH),

@@ -49,6 +49,10 @@ public class GameComponent extends JComponent {
 			{
 				game.mouseMoved(me);
 			}
+			public void mouseDragged(MouseEvent me)
+			{
+				game.mouseDrag(me);
+			}
 		});
 
 		ticker = new Timer(50, al);

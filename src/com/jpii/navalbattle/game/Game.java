@@ -16,7 +16,7 @@ import com.jpii.navalbattle.renderer.CloudRelator;
 import com.jpii.navalbattle.renderer.RenderConstants;
 import com.jpii.navalbattle.renderer.RepaintType;
 
-public class Game
+public class Game implements Runnable
 {
 	private ArrayList<Entity> entityCollection;
 	private ArrayList<ChunkRenderer> chunks;
@@ -26,8 +26,11 @@ public class Game
 	private BufferedImage clouds;
 	private int zoom;
 	private CloudRelator cr;
+	private int msax, msay;
 	public Game()
 	{
+		msax = Constants.WINDOW_WIDTH*2;
+		msay = Constants.WINDOW_HEIGHT*2;
 		chunks = new ArrayList<ChunkRenderer>();
 		map = new BufferedImage(Constants.WINDOW_WIDTH,Constants.WINDOW_HEIGHT,
 				BufferedImage.TYPE_INT_RGB);
@@ -35,8 +38,8 @@ public class Game
 				BufferedImage.TYPE_INT_RGB);
 		clouds = new BufferedImage(Constants.WINDOW_WIDTH,Constants.WINDOW_HEIGHT,
 				BufferedImage.TYPE_INT_ARGB);
-		eng = new Engine(Constants.WINDOW_WIDTH,
-				Constants.WINDOW_HEIGHT);
+		eng = new Engine(Constants.WINDOW_WIDTH*4,
+				Constants.WINDOW_HEIGHT*4);
 		eng.setSmoothFactor(5);
 		eng.generate(Constants.MAIN_SEED,RenderConstants.GEN_TERRAIN_ROUGHNESS);
 		
@@ -75,19 +78,41 @@ public class Game
 	{
 		cr.updateMouse(me.getX(), me.getY());
 	}
+	public void run()
+	{
+		repaint(RepaintType.REPAINT_CHUNKS);
+		repaint(RepaintType.REPAINT_MAP);
+		repaint(RepaintType.REPAINT_BUFFERS);
+	}
+	int lastmx = -1;
+	int lastmy = -1;
+	public void mouseDrag(MouseEvent me)
+	{
+		if (msax > -200 && msay > -200 && msax < (Constants.WINDOW_WIDTH*4)+200 && msay < (Constants.WINDOW_HEIGHT*4)+200)
+		{
+		msax += (me.getX() - (Constants.WINDOW_WIDTH/2))/8;
+		msay += (me.getY() - (Constants.WINDOW_HEIGHT/2))/8;
+		}
+		run();
+	}
 	public void repaint(RepaintType type)
 	{
 		if (type == RepaintType.REPAINT_BUFFERS)
 		{
+			buffer = new BufferedImage(Constants.WINDOW_WIDTH,Constants.WINDOW_HEIGHT,
+					BufferedImage.TYPE_INT_RGB);
 			Graphics g = buffer.getGraphics();
 			g.drawImage(map,0,0,null);
 			g.drawImage(clouds,0,0,null);
+			g.setColor(Color.black);
+			g.drawString("X = " + msax + " Y = " + msay, 100,100);
 		}
 		if (type == RepaintType.REPAINT_CHUNKS)
 		{
 			for (int v = 0; v < chunks.size(); v++)
 			{
 				ChunkRenderer cr = chunks.get(v);
+				cr.setLocation(msax,msay);
 				cr.setState(ChunkState.STATE_RENDER);
 				cr.run();
 			}
@@ -95,6 +120,8 @@ public class Game
 		if (type == RepaintType.REPAINT_MAP)
 		{
 			Graphics g = map.getGraphics();
+			g.setColor(Color.black);
+			g.fillRect(0,0,Constants.WINDOW_WIDTH,Constants.WINDOW_HEIGHT);
 			for (int v = 0; v < chunks.size(); v++)
 			{
 				ChunkRenderer cr = chunks.get(v);

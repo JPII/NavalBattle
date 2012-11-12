@@ -6,6 +6,7 @@ import java.util.Random;
 
 import com.jpii.dagen.*;
 import com.jpii.navalbattle.NavalBattle;
+import com.jpii.navalbattle.data.Constants;
 
 public class ChunkRenderer implements Runnable
 {
@@ -16,7 +17,7 @@ public class ChunkRenderer implements Runnable
 	double magnitude;
 	int seed;
 	Random r;
-	int xpos, zpos;
+	int xpos, zpos, plx, ply;
 	public ChunkRenderer(Engine eng,int seed,int x, int z, int width, int height, double mag)
 	{
 		this.width = width;
@@ -32,6 +33,11 @@ public class ChunkRenderer implements Runnable
 		g.fillRect(0,0,width,height);
 		setState(ChunkState.STATE_RENDER);
 		run();
+	}
+	public void setLocation(int x, int y)
+	{
+		plx = x;
+		ply = y;
 	}
 	public int getX()
 	{
@@ -59,14 +65,25 @@ public class ChunkRenderer implements Runnable
 	}
 	private void update()
 	{
-		int s = 1;
+		int s = 3;
 		Graphics g = chunk.getGraphics();
+		g.setColor(Color.black);
+		g.fillRect(0,0,Constants.CHUNK_SIZE,Constants.CHUNK_SIZE);
 		//System.out.println("wxps" + (width*xpos) + "wps" + (height*zpos));
 		for (int x = 0; x < getWidth()/s; x++)
 		{
 			for (int z = 0; z < getHeight()/s; z++)
 			{
-				double y = eng.getPoint((x*s)+(width*xpos),(z*s)+(height*zpos));
+				int ttx = (x*s)+(width*xpos)+plx;
+				int tty = (z*s)+(height*zpos)+ply;
+				if (ttx < 0 || tty < 0)
+				{
+					g.setColor(Color.black);
+					g.fillRect(x,z,s,s);
+				}
+				else
+				{
+				double y = eng.getPoint(ttx,tty);
 				boolean flag = y <= RenderConstants.GEN_WATER_HEIGHT;
 				if (flag)
 				{
@@ -82,7 +99,7 @@ public class ChunkRenderer implements Runnable
 								RenderConstants.GEN_COLOR_DIFF, r, false);
 					}
 					g.setColor(waterSample);
-					g.fillRect(x*s,z*s,s,s);
+					g.fillRect(x*s,z*s,s+1,s+1);
 				}
 				if (y >=RenderConstants.GEN_WATER_HEIGHT - 0.01 && y <= RenderConstants.GEN_WATER_HEIGHT + 0.05 && r.nextInt(3) == 1)
 				{
@@ -112,8 +129,9 @@ public class ChunkRenderer implements Runnable
 					}
 					
 					g.setColor(groundSample);
-					g.fillRect(x*s,z*s,s,s);
+					g.fillRect(x*s,z*s,s+1,s+1);
 				}
+			}
 			}
 		}
 	}
