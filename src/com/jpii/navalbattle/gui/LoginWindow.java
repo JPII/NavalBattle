@@ -23,9 +23,9 @@ import com.jpii.navalbattle.NavalBattle;
 import com.jpii.navalbattle.data.Constants;
 import com.jpii.navalbattle.util.URLUtils;
 import com.jpii.roketgamer.Player;
-import com.jpii.roketgamer.auth.APIKey;
-import com.jpii.roketgamer.auth.AuthStatus;
-import com.jpii.roketgamer.auth.Password;
+import com.jpii.roketgamer.rauth.APIKey;
+import com.jpii.roketgamer.rauth.AuthStatus;
+import com.jpii.roketgamer.rauth.Password;
 
 @SuppressWarnings("serial")
 public class LoginWindow extends JFrame{

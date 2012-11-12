@@ -1,4 +1,4 @@
-package com.jpii.roketgamer.auth;
+package com.jpii.roketgamer.rauth;
 
 public enum AuthStatus {
 	/**

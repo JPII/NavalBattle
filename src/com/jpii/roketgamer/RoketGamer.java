@@ -8,9 +8,9 @@ import java.net.URLConnection;
 import com.jpii.navalbattle.data.Constants;
 import com.jpii.roketgamer.achievement.Achievement;
 import com.jpii.roketgamer.analytics.Analytics;
-import com.jpii.roketgamer.auth.APIKey;
-import com.jpii.roketgamer.auth.AuthStatus;
-import com.jpii.roketgamer.auth.Session;
+import com.jpii.roketgamer.rauth.APIKey;
+import com.jpii.roketgamer.rauth.AuthStatus;
+import com.jpii.roketgamer.rauth.Session;
 import com.jpii.roketgamer.leaderboard.Leaderboard;
 
 public class RoketGamer {
