@@ -113,7 +113,7 @@ public class Game implements Runnable
 	public int FPS = 0;
 	public void mouseDrag(MouseEvent me)
 	{
-		if (msax > -200 && msay > -200 && msax < (Constants.WINDOW_WIDTH*4)+200 && msay < (Constants.WINDOW_HEIGHT*4)+200)
+		if (msax > -200 && msay > -200 && msax < (Constants.WINDOW_WIDTH*4)-600 && msay < (Constants.WINDOW_HEIGHT*4)-400)
 		{
 			if (!RenderConstants.OPT_INVERSE_MOUSE)
 			{
@@ -132,10 +132,10 @@ public class Game implements Runnable
 				msax = -198;
 			if (msay <= -200)
 				msay = -198;
-			if (msax >= (Constants.WINDOW_WIDTH*4)+100)
-				msax = (Constants.WINDOW_WIDTH*4)+98;
-			if (msay >= (Constants.WINDOW_HEIGHT*4)+100)
-				msay = (Constants.WINDOW_HEIGHT*4)+98;
+			if (msax >= (Constants.WINDOW_WIDTH*4)-600)
+				msax = (Constants.WINDOW_WIDTH*4)-602;
+			if (msay >= (Constants.WINDOW_HEIGHT*4)-400)
+				msay = (Constants.WINDOW_HEIGHT*4)-402;
 		}
 		run();
 	}
