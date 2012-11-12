@@ -1,21 +1,14 @@
 package com.jpii.navalbattle.game;
 
-import java.awt.Color;
-import java.awt.Graphics;
-import java.awt.event.MouseEvent;
+import java.awt.*;
+import java.awt.event.*;
 import java.awt.image.*;
 import java.util.*;
 
 import com.jpii.dagen.*;
 import com.jpii.navalbattle.data.Constants;
 import com.jpii.navalbattle.game.entity.*;
-import com.jpii.navalbattle.renderer.ChunkRenderer;
-import com.jpii.navalbattle.renderer.ChunkState;
-import com.jpii.navalbattle.renderer.Cloud;
-import com.jpii.navalbattle.renderer.CloudRelator;
-import com.jpii.navalbattle.renderer.OmniMap;
-import com.jpii.navalbattle.renderer.RenderConstants;
-import com.jpii.navalbattle.renderer.RepaintType;
+import com.jpii.navalbattle.renderer.*;
 
 public class Game implements Runnable
 {
@@ -25,6 +18,7 @@ public class Game implements Runnable
 	private BufferedImage map;
 	private BufferedImage buffer;
 	private BufferedImage clouds;
+	private BufferedImage shadow;
 	private int zoom;
 	private CloudRelator cr;
 	private int msax, msay;
@@ -42,6 +36,7 @@ public class Game implements Runnable
 				BufferedImage.TYPE_INT_ARGB);
 		eng = new Engine(Constants.WINDOW_WIDTH*4,
 				Constants.WINDOW_HEIGHT*4);
+		shadow = Helper.genInnerShadow(Constants.WINDOW_WIDTH,Constants.WINDOW_HEIGHT);
 		eng.setSmoothFactor(5);
 		eng.generate(Constants.MAIN_SEED,RenderConstants.GEN_TERRAIN_ROUGHNESS);
 		
@@ -121,6 +116,7 @@ public class Game implements Runnable
 			Graphics g = buffer.getGraphics();
 			g.drawImage(map,0,0,null);
 			g.drawImage(clouds,0,0,null);
+			g.drawImage(shadow,0,0,null);
 			g.drawImage(omniMap.getBuffer(), 20,20,null);
 			int vx = (msax+100) * 100 / (Constants.WINDOW_WIDTH*4);
 			int vy = (msay+100) * 100 / (Constants.WINDOW_HEIGHT*4);
