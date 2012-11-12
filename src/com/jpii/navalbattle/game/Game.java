@@ -15,6 +15,7 @@ public class Game implements Runnable
 	private Grid grid;
 	private ArrayList<ChunkRenderer> chunks;
 	private Engine eng;
+	private EntityRenderer eRender;
 	private BufferedImage map;
 	private BufferedImage buffer;
 	private BufferedImage clouds;
@@ -28,6 +29,7 @@ public class Game implements Runnable
 		msax = Constants.WINDOW_WIDTH*2;
 		msay = Constants.WINDOW_HEIGHT*2;
 		grid = new Grid();
+		eRender = new EntityRenderer(grid);
 		chunks = new ArrayList<ChunkRenderer>();
 		map = new BufferedImage(Constants.WINDOW_WIDTH,Constants.WINDOW_HEIGHT,
 				BufferedImage.TYPE_INT_RGB);
@@ -63,6 +65,7 @@ public class Game implements Runnable
 				chunks.add(cr);
 			}
 		}
+		repaint(RepaintType.REPAINT_INDV_ENTITIES);
 	}
 	public Grid getGrid()
 	{
@@ -97,6 +100,9 @@ public class Game implements Runnable
 		omniMap.update();
 		repaint(RepaintType.REPAINT_CHUNKS);
 		repaint(RepaintType.REPAINT_MAP);
+		repaint(RepaintType.REPAINT_INDV_ENTITIES);
+		
+		
 		repaint(RepaintType.REPAINT_BUFFERS);
 	}
 	int lastmx = -1;
@@ -129,6 +135,7 @@ public class Game implements Runnable
 					BufferedImage.TYPE_INT_RGB);
 			Graphics g = buffer.getGraphics();
 			g.drawImage(map,0,0,null);
+			g.drawImage(eRender.getBuffer(),0,0,null);
 			//g.drawImage(grid.getFeasibleGrid(),0,0,null);
 			g.drawImage(clouds,0,0,null);
 			g.drawImage(shadow,0,0,null);
@@ -160,19 +167,7 @@ public class Game implements Runnable
 		}
 		if (type == RepaintType.REPAINT_INDV_ENTITIES)
 		{
-			Graphics g = new BufferedImage(1,1,BufferedImage.TYPE_INT_ARGB).getGraphics();
-			for (int x = 0; x < grid.getWidth(); x++)
-			{
-				for (int y = 0; y < grid.getHeight(); y++)
-				{
-					// Do entity rendering here.
-					Entity ent = grid.getEntity(x, y);
-					if (ent != null)
-					{
-						g.drawImage(ent.getImage(),x,y,null);
-					}
-				}
-			}
+			eRender.render(this);
 		}
 		if (type == RepaintType.REPAINT_CLOUDS)
 		{
@@ -187,4 +182,8 @@ public class Game implements Runnable
 	{
 		return buffer;
 	}
+    public Point getMouseSet()
+    {
+    	return new Point(msax,msay);
+    }
 }
