@@ -4,7 +4,7 @@ import java.awt.*;
 import java.util.*;
 
 public class RenderConstants {
-	public static double GEN_WATER_HEIGHT = 0.7;
+	public static double GEN_WATER_HEIGHT = 0.65;
 	public static double GEN_MOUNTAIN_HEIGHT = 0.8;
 	public static Color GEN_MOUNTAIN_COLOR = new Color(68,74,43);//new Color(131,111,65);
 	public static Color GEN_WATER_COLOR = new Color(46,61,114);//new Color(61,54,188);

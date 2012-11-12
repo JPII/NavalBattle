@@ -13,6 +13,7 @@ import com.jpii.navalbattle.renderer.ChunkRenderer;
 import com.jpii.navalbattle.renderer.ChunkState;
 import com.jpii.navalbattle.renderer.Cloud;
 import com.jpii.navalbattle.renderer.CloudRelator;
+import com.jpii.navalbattle.renderer.OmniMap;
 import com.jpii.navalbattle.renderer.RenderConstants;
 import com.jpii.navalbattle.renderer.RepaintType;
 
@@ -27,6 +28,7 @@ public class Game implements Runnable
 	private int zoom;
 	private CloudRelator cr;
 	private int msax, msay;
+	private OmniMap omniMap;
 	public Game()
 	{
 		msax = Constants.WINDOW_WIDTH*2;
@@ -42,6 +44,10 @@ public class Game implements Runnable
 				Constants.WINDOW_HEIGHT*4);
 		eng.setSmoothFactor(5);
 		eng.generate(Constants.MAIN_SEED,RenderConstants.GEN_TERRAIN_ROUGHNESS);
+		
+		omniMap = new OmniMap(eng,100,100);
+		
+		repaint(RepaintType.REPAINT_OMNIMAP);
 		
 		cr = new CloudRelator();
 		
@@ -90,8 +96,19 @@ public class Game implements Runnable
 	{
 		if (msax > -200 && msay > -200 && msax < (Constants.WINDOW_WIDTH*4)+200 && msay < (Constants.WINDOW_HEIGHT*4)+200)
 		{
-		msax += (me.getX() - (Constants.WINDOW_WIDTH/2))/8;
-		msay += (me.getY() - (Constants.WINDOW_HEIGHT/2))/8;
+			msax += (me.getX() - (Constants.WINDOW_WIDTH/2))/8;
+			msay += (me.getY() - (Constants.WINDOW_HEIGHT/2))/8;
+		}
+		else
+		{
+			if(msax <= -200)
+				msax = -198;
+			if (msay <= -200)
+				msay = -198;
+			if (msax >= (Constants.WINDOW_WIDTH*4)+100)
+				msax = (Constants.WINDOW_WIDTH*4)+98;
+			if (msay >= (Constants.WINDOW_HEIGHT*4)+100)
+				msay = (Constants.WINDOW_HEIGHT*4)+98;
 		}
 		run();
 	}
@@ -104,6 +121,13 @@ public class Game implements Runnable
 			Graphics g = buffer.getGraphics();
 			g.drawImage(map,0,0,null);
 			g.drawImage(clouds,0,0,null);
+			g.drawImage(omniMap.getBuffer(), 20,20,null);
+			int vx = (msax+100) * 100 / (Constants.WINDOW_WIDTH*4);
+			int vy = (msay+100) * 100 / (Constants.WINDOW_HEIGHT*4);
+			vx+=20;
+			vy+=20;
+			g.setColor(Color.red);
+			g.drawRect(vx,vy,Constants.WINDOW_WIDTH/100*2,Constants.WINDOW_HEIGHT/100*2);
 			g.setColor(Color.black);
 			g.drawString("X = " + msax + " Y = " + msay, 100,100);
 		}
@@ -139,6 +163,10 @@ public class Game implements Runnable
 		if (type == RepaintType.REPAINT_CLOUDS)
 		{
 			clouds = cr.buffer;
+		}
+		if (type == RepaintType.REPAINT_OMNIMAP)
+		{
+			omniMap.update();
 		}
 	}
 	public BufferedImage getBuffer()
