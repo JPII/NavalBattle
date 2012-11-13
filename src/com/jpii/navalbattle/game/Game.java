@@ -106,26 +106,26 @@ public class Game implements Runnable {
     	int alph = 0;
     	double tofd = RenderConstants.CURRENT_TIME_OF_DAY;
     	int nightl = 5;
-    	if (tofd > 0 && tofd < le / nightl)
+    	if (tofd > 0 && tofd < le / nightl/2)
     	{
     		double t = tofd;
     		timeStatus = "Sunset";
-    		alph = (int)(t * 130 / (le / nightl));
+    		alph = (int)(t * 130 / (le / nightl/2));
     		if (alph < 0)
     			alph = 0;
     		if (alph > 255)
     			alph = 255;
     	}
-    	if (tofd > le / nightl && tofd < le / nightl * 2)
+    	if (tofd > le / nightl/2 && tofd < le / nightl * 2)
     	{
     		timeStatus = "Night";
     		alph = 130;
     	}
-    	if (tofd > le / nightl * 2 && tofd < le / nightl * 3)
+    	if (tofd > le / nightl * 2 && tofd < (le / nightl * 2) + (le / nightl / 2))
     	{
     		timeStatus = "Sunrise";
-    		double t = (le / nightl * 3) - tofd;
-    		alph = (int)(t * 130 / (le / nightl));
+    		double t = ((le / nightl * 2) + (le / nightl / 2))- tofd;
+    		alph = (int)(t * 130 / (le / nightl /2));
     		if (alph < 0)
     			alph = 0;
     		if (alph > 255)
