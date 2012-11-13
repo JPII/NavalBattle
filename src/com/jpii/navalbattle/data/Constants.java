@@ -28,6 +28,7 @@ public class Constants {
 	public static final String NAVALBATTLE_VERSION_TITLE = "NavalBattle " + NAVALBATTLE_VERSION + " (" + NAVALBATTLE_CODENAME + ")";
 	public static final boolean DEBUG_MODE = true;
 	
+	public static final int SPLASH_DURATION = 1000;
 	
 	/*
 	 * Game engine

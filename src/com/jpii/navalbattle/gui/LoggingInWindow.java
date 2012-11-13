@@ -1,10 +1,19 @@
 package com.jpii.navalbattle.gui;
 
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+
 import javax.swing.*;
+
+import com.jpii.navalbattle.NavalBattle;
+import com.jpii.navalbattle.data.Constants;
 
 @SuppressWarnings("serial")
 public class LoggingInWindow extends JFrame {
 	public LoggingInWindow() {
+		
+		NavalBattle.getDebugWindow().printInfo("LoginWindow opened");
+		
 		setTitle("NavalBattle - Logging In");
 		getContentPane().setLayout(null);
 		
@@ -21,6 +30,12 @@ public class LoggingInWindow extends JFrame {
 		this.setSize(491, 339);
 		this.setVisible(true);
 		
+		addWindowListener(new WindowAdapter() {
+			public void windowClosing(WindowEvent we) {
+				NavalBattle.close();
+			}
+		});
+		
 		new ImageChanger(label).start();
 	}
 	
@@ -35,16 +50,25 @@ public class LoggingInWindow extends JFrame {
 	    
 	    public void run() {
 	        try {
-				Thread.sleep(2000);
+				Thread.sleep(Constants.SPLASH_DURATION);
 			} catch (InterruptedException e) { }
 	        
 	        label.setIcon(new ImageIcon(LoggingInWindow.class.getResource("/com/jpii/navalbattle/res/roketgamer_title.png")));
 	        
 	        try {
-				Thread.sleep(2000);
+				Thread.sleep(Constants.SPLASH_DURATION);
 			} catch (InterruptedException e) { }
 	        
 	        label.setIcon(new ImageIcon(LoggingInWindow.class.getResource("/com/jpii/navalbattle/res/navalbattle_title.png")));
+	        
+	        try {
+				Thread.sleep(Constants.SPLASH_DURATION);
+			} catch (InterruptedException e) { }
+	        
+	        NavalBattle.getDebugWindow().printInfo("Disposing LoginWindow");
+			dispose();
+			NavalBattle.getDebugWindow().printInfo("Opening MainMenuWindow");
+			new MainMenuWindow();
 	    }
 	}
 }

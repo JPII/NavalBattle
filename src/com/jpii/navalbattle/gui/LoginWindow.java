@@ -100,8 +100,8 @@ public class LoginWindow extends JFrame{
 				
 				NavalBattle.getDebugWindow().printInfo("Disposing LoginWindow");
 				dispose();
-				NavalBattle.getDebugWindow().printInfo("Opening MainMenuWindow");
-				new MainMenuWindow();
+				NavalBattle.getDebugWindow().printInfo("Opening LoggingInWindow");
+				new LoggingInWindow();
 			}
 		});
 		
@@ -138,8 +138,8 @@ public class LoginWindow extends JFrame{
 			NavalBattle.getDebugWindow().printInfo("Logged in as: " + NavalBattle.getRoketGamer().getPlayer().getName());
 			NavalBattle.getDebugWindow().printInfo("Disposing LoginWindow");
 			dispose();
-			NavalBattle.getDebugWindow().printInfo("Opening MainMenuWindow");
-			new MainMenuWindow();
+			NavalBattle.getDebugWindow().printInfo("Opening LoggingInWindow");
+			new LoggingInWindow();
 		} else {
 			if(status == AuthStatus.BAD) {
 				NavalBattle.getDebugWindow().printWarning("Authentication failed: AuthStatus.BAD");	
