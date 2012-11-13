@@ -30,6 +30,7 @@ public class RenderConstants {
     public static boolean OPT_CLOUDS_ON = true;
     
     public static double CURRENT_TIME_OF_DAY = 0;
+    public static int DAYNIGHT_LENGTH_IN_SECONDS = 120;
     public static BufferedImage TIME_OVERLAY;
 
     // Currently not fully implemented:
