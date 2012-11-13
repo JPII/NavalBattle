@@ -57,10 +57,8 @@ public class GameComponent extends JComponent {
 				//mouseDown = 0;
 			}
 		});
-		addMouseListener(new MouseAdapter()
-		{
-			public void mousePressed(MouseEvent me)
-			{
+		addMouseListener(new MouseAdapter() {
+			public void mousePressed(MouseEvent me) {
 				//game.mouseDrag(me);
 				game.mouseClick(me);
 				//if (mouseDown > 1)
