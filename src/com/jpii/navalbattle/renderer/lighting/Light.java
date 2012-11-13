@@ -5,6 +5,7 @@ import java.awt.Point;
 
 import com.jpii.navalbattle.game.Location;
 
+@SuppressWarnings("unused")
 public class Light {
 	Point loc;
 	double[][] brightness;

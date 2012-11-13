@@ -20,6 +20,7 @@ import com.jpii.navalbattle.data.Constants;
  * @author MKirkby
  *
  */
+@SuppressWarnings("unused")
 public class Helper {
 	public static BufferedImage GUI_OMNIMAP_BACKGROUND1;
 	public static BufferedImage GUI_OMNIMAP_BACKGROUND2;

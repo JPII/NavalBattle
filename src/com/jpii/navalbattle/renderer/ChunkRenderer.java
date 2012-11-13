@@ -15,6 +15,7 @@ import com.jpii.navalbattle.renderer.lighting.Light;
  * @author MKirkby
  *
  */
+@SuppressWarnings("unused")
 public class ChunkRenderer implements Runnable {
     int width, height;
     Engine eng;

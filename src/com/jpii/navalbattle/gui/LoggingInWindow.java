@@ -35,8 +35,7 @@ public class LoggingInWindow extends JFrame {
 		label.setBounds(0, 0, 475, 300);
 		getContentPane().add(label);
 		
-		this.setSize(491, 339);
-		this.setVisible(true);
+		this.setSize(491, 339);		
 		
 		addWindowListener(new WindowAdapter() {
 			public void windowClosing(WindowEvent we) {
@@ -59,6 +58,7 @@ public class LoggingInWindow extends JFrame {
 		
 		imageChanger = new ImageChanger(label);
 		imageChanger.start();
+		this.setVisible(true);
 	}
 	
 	class ImageChanger extends Thread {
