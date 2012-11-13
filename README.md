@@ -3,6 +3,9 @@ NavalBattle
 
 A new RoketGamer-powered game. Coming soon.
 
+![NavalBattle](https://dl.dropbox.com/u/11164236/navalbattle0.3layout.png "NavalBattle")
+
+
 ## Members
 * **TexasGamer** - SCM manager, RoketGamer lead
 * **abauer** - game design lead
