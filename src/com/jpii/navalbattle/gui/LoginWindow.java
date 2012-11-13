@@ -84,9 +84,9 @@ public class LoginWindow extends JFrame{
 		getContentPane().add(offlineButton);
 
 		setSize(491,143);
-		setVisible(true);
 		setResizable(false);
 		setLocation(1280/2-getWidth()/2,800/2-getHeight()/2);
+		setVisible(true);
 
 		loginButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent ae) {

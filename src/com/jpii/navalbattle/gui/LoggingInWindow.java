@@ -59,6 +59,7 @@ public class LoggingInWindow extends JFrame {
 		imageChanger = new ImageChanger(label);
 		imageChanger.start();
 		this.setVisible(true);
+		this.setLocation(1280/2-getWidth()/2,800/2-getHeight()/2);
 	}
 	
 	class ImageChanger extends Thread {
