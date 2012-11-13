@@ -10,15 +10,15 @@ public class LoggingInWindow extends JFrame {
 		
 		JProgressBar progressBar = new JProgressBar();
 		progressBar.setIndeterminate(true);
-		progressBar.setBounds(0, 177, 350, 14);
+		progressBar.setBounds(0, 286, 475, 14);
 		getContentPane().add(progressBar);
 		
 		JLabel label = new JLabel("");
 		label.setIcon(new ImageIcon(LoggingInWindow.class.getResource("/com/jpii/navalbattle/res/splash_jpii_sm.png")));
-		label.setBounds(0, 0, 350, 191);
+		label.setBounds(0, 0, 475, 300);
 		getContentPane().add(label);
 		
-		this.setSize(366,229);
+		this.setSize(491, 339);
 		this.setVisible(true);
 		
 		new ImageChanger(label).start();
