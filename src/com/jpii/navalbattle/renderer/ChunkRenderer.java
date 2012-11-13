@@ -7,6 +7,8 @@ import java.util.Random;
 import com.jpii.dagen.*;
 import com.jpii.navalbattle.NavalBattle;
 import com.jpii.navalbattle.data.Constants;
+import com.jpii.navalbattle.renderer.lighting.Latern;
+import com.jpii.navalbattle.renderer.lighting.Light;
 
 /**
  * The chunk renderer. Useful for rendering chunks.
@@ -22,6 +24,7 @@ public class ChunkRenderer implements Runnable {
     int seed;
     Random r;
     int xpos, zpos, plx, ply;
+    boolean containsLight = false;
     //BufferedImage grid;
     public ChunkRenderer(Engine eng, int seed, int x, int z, int width, int height, double mag) {
         this.width = width;
@@ -38,6 +41,12 @@ public class ChunkRenderer implements Runnable {
         g.fillRect(0, 0, width, height);
         setState(ChunkState.STATE_RENDER);
         run();
+    }
+    public void setLighting(boolean v) {
+    	containsLight = v;
+    }
+    public boolean isLightingEnabled() {
+    	return containsLight;
     }
     public void setLocation(int x, int y) {
         plx = x;
@@ -119,7 +128,38 @@ public class ChunkRenderer implements Runnable {
                 }
             }
         }
-        g.drawImage(RenderConstants.TIME_OVERLAY, 0, 0, null);
+        //if (!containsLight) {
+        	g.drawImage(RenderConstants.TIME_OVERLAY, 0, 0, null);
+        //}
+        //else {
+        	//if (RenderConstants.TIME_OVERLAY != null) {
+        		/*BufferedImage trickyThele = new BufferedImage(Constants.CHUNK_SIZE,Constants.CHUNK_SIZE,BufferedImage.TYPE_INT_ARGB);
+	        	WritableRaster map = RenderConstants.TIME_OVERLAY.getAlphaRaster();
+	        	int[] h = map.getPixel(0, 0, (int[])null);
+	        	int alpha = h[0];
+	        	map = null;
+	        	
+	        	Light l = new Latern(10);
+	        	Graphics graphics = trickyThele.getGraphics();
+	        	for (int x = 0; x < 100; x++) {
+	        		for (int y = 0; y < 100; y++) {
+	        			if (x < 10 && y < 10) {
+	        				Color ambient = l.getAmbientColor();
+	        				int apg = (int)(l.getBrightness(x, y)*255);
+	        				if (apg < 0)
+	        					apg = 0;
+	        				if (apg > 255)
+	        					apg = 255;
+	        				graphics.setColor(new Color(255,0,0,255));
+	        			}
+	        			else {
+	        				graphics.setColor(new Color(0,0,0,alpha));
+	        			}
+	        			graphics.fillRect(x,y,1,1);
+	        		}
+	        	}*/
+        	//}
+        //}
         //g.drawImage(grid, 0,0, null);
     }
     public void setState(ChunkState state) {

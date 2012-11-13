@@ -67,6 +67,8 @@ public class Game implements Runnable {
                 RenderConstants.GEN_TERRAIN_ROUGHNESS);
                 //cr.setState(ChunkState.STATE_GENERATE);
                 //cr.run();
+                if (x == 0 && z == 0)
+                	cr.setLighting(true);
                 cr.setState(ChunkState.STATE_RENDER);
                 cr.run();
                 chunks.add(cr);
@@ -101,40 +103,14 @@ public class Game implements Runnable {
     	else
     		RenderConstants.CURRENT_TIME_OF_DAY = 0;
     	
+    	int alph = Helper.ComputTime();
     	RenderConstants.TIME_OVERLAY = new BufferedImage(Constants.CHUNK_SIZE,Constants.CHUNK_SIZE,BufferedImage.TYPE_INT_ARGB);
     	Graphics timeO = RenderConstants.TIME_OVERLAY.getGraphics();
-    	int alph = 0;
-    	double tofd = RenderConstants.CURRENT_TIME_OF_DAY;
-    	int nightl = 5;
-    	if (tofd > 0 && tofd < le / nightl/2)
-    	{
-    		double t = tofd;
-    		timeStatus = "Sunset";
-    		alph = (int)(t * 130 / (le / nightl/2));
-    		if (alph < 0)
-    			alph = 0;
-    		if (alph > 255)
-    			alph = 255;
-    	}
-    	if (tofd > le / nightl/2 && tofd < le / nightl * 2)
-    	{
-    		timeStatus = "Night";
-    		alph = 130;
-    	}
-    	if (tofd > le / nightl * 2 && tofd < (le / nightl * 2) + (le / nightl / 2))
-    	{
-    		timeStatus = "Sunrise";
-    		double t = ((le / nightl * 2) + (le / nightl / 2))- tofd;
-    		alph = (int)(t * 130 / (le / nightl /2));
-    		if (alph < 0)
-    			alph = 0;
-    		if (alph > 255)
-    			alph = 255;
-    	}
     	if (alph != 0)
     	{
     		timeO.setColor(new Color(0,0,0,alph));
     		timeO.fillRect(0,0,Constants.CHUNK_SIZE,Constants.CHUNK_SIZE);
+    		timeStatus = "Night";
     	}
     	else
     		timeStatus = "Day";

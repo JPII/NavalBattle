@@ -8,6 +8,8 @@ import java.awt.MultipleGradientPaint.CycleMethod;
 import java.awt.geom.Point2D;
 import java.awt.image.BufferedImage;
 
+import com.jpii.navalbattle.data.Constants;
+
 /**
  * The rendering helper. Consists of static methods.
  * @author MKirkby
@@ -100,5 +102,35 @@ public class Helper {
 	    int b = (int)Lerp(color0.getBlue(), color1.getBlue(), amount);
 	    int a = (int)Lerp(color0.getAlpha(), color1.getAlpha(), amount);
 	    return new Color(r,g,b,a);
+    }
+
+    public static int ComputTime() {
+    	int le = RenderConstants.DAYNIGHT_LENGTH_IN_SECONDS;
+    	int alph = 0;
+    	double tofd = RenderConstants.CURRENT_TIME_OF_DAY;
+    	int nightl = 5;
+    	if (tofd > 0 && tofd < le / nightl/2)
+    	{
+    		double t = tofd;
+    		alph = (int)(t * 130 / (le / nightl/2));
+    		if (alph < 0)
+    			alph = 0;
+    		if (alph > 255)
+    			alph = 255;
+    	}
+    	if (tofd > le / nightl/2 && tofd < le / nightl * 2)
+    	{
+    		alph = 130;
+    	}
+    	if (tofd > le / nightl * 2 && tofd < (le / nightl * 2) + (le / nightl / 2))
+    	{
+    		double t = ((le / nightl * 2) + (le / nightl / 2))- tofd;
+    		alph = (int)(t * 130 / (le / nightl /2));
+    		if (alph < 0)
+    			alph = 0;
+    		if (alph > 255)
+    			alph = 255;
+    	}
+    	return alph;
     }
 }

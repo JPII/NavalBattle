@@ -34,7 +34,7 @@ public class GameComponent extends JComponent {
 	JFrame frame;
 	Timer ticker;
 	public static Game game;
-	int mouseDown = 0;
+	//int mouseDown = 0;
 	public GameComponent(JFrame frame) {
 		this.frame = frame;
 		ActionListener al = new ActionListener() {
@@ -48,13 +48,13 @@ public class GameComponent extends JComponent {
 			public void mouseMoved(MouseEvent me)
 			{
 				game.mouseMoved(me);
-				if (mouseDown > 0)
-					game.mouseDrag(me);
+				//if (mouseDown > 0)
+					//game.mouseDrag(me);
 			}
 			public void mouseDragged(MouseEvent me)
 			{
 				game.mouseDrag(me);
-				mouseDown = 0;
+				//mouseDown = 0;
 			}
 		});
 		addMouseListener(new MouseAdapter()
@@ -63,10 +63,10 @@ public class GameComponent extends JComponent {
 			{
 				//game.mouseDrag(me);
 				game.mouseClick(me);
-				if (mouseDown > 1)
-					mouseDown = 0;
-				else
-					mouseDown++;
+				//if (mouseDown > 1)
+					//mouseDown = 0;
+				//else
+					//mouseDown++;
 			}
 			public void mouseReleased(MouseEvent me)
 			{
