@@ -24,6 +24,7 @@ import java.awt.event.*;
 
 import com.jpii.navalbattle.NavalBattle;
 import com.jpii.navalbattle.game.*;
+import com.jpii.navalbattle.renderer.Helper;
 
 
 @SuppressWarnings("serial")
@@ -48,7 +49,7 @@ public class SPOptions extends JFrame{
 		} catch (Exception e) {}
 		setTitle("NavalBattle");
 		getContentPane().setLayout(null);
-		
+		this.setIconImage(Helper.GUI_WINDOW_ICON);
 		JButton btnOpenSave = new JButton("Open Save");
 		btnOpenSave.setBounds(193, 11, 89, 23);
 		getContentPane().add(btnOpenSave);

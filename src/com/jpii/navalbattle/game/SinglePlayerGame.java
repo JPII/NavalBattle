@@ -24,6 +24,7 @@ import java.awt.event.*;
 
 import com.jpii.navalbattle.data.Constants;
 import com.jpii.navalbattle.gui.KeyboardListener;
+import com.jpii.navalbattle.renderer.Helper;
 import com.jpii.navalbattle.NavalBattle;
 
 @SuppressWarnings("serial")
@@ -49,6 +50,8 @@ public class SinglePlayerGame extends JFrame {
 		this.setLocation(Toolkit.getDefaultToolkit().getScreenSize().width / 2
 				- this.getWidth() / 2, 800 / 2 - Toolkit.getDefaultToolkit()
 				.getScreenSize().height / 2);
+		
+		this.setIconImage(Helper.GUI_WINDOW_ICON);
 
 		this.addWindowListener(new WindowAdapter() {
 			public void windowClosing(WindowEvent we) {

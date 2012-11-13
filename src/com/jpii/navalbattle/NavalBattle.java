@@ -24,6 +24,7 @@ import com.jpii.navalbattle.data.GameState;
 import com.jpii.navalbattle.debug.CommandHandler;
 import com.jpii.navalbattle.debug.DebugWindow;
 import com.jpii.navalbattle.gui.LoginWindow;
+import com.jpii.navalbattle.renderer.Helper;
 import com.jpii.navalbattle.util.Toaster;
 
 public class NavalBattle {
@@ -35,6 +36,8 @@ public class NavalBattle {
 	private static Toaster toasterManager;
 	
 	public static void main(String[] args) {
+		Helper.LoadStaticResources();
+		
 		debugWindow = new DebugWindow();
 		gameState = new GameState();
 		roketGamer = new RoketGamer();

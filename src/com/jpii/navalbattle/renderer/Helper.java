@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.net.URL;
 
 import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 
 import com.jpii.navalbattle.data.Constants;
 
@@ -23,12 +24,15 @@ public class Helper {
 	public static BufferedImage GUI_OMNIMAP_BACKGROUND1;
 	public static BufferedImage GUI_OMNIMAP_BACKGROUND2;
 	public static BufferedImage GUI_OMNIMAP_ICON_WORLD;
+	public static BufferedImage GUI_WINDOW_ICON;
 	public static void LoadStaticResources() {
 		try {
 			GUI_OMNIMAP_BACKGROUND1 = 
 					ImageIO.read(Helper.class.getResource("/com/jpii/navalbattle/res/gui_omnimap_background1.png"));
 			GUI_OMNIMAP_BACKGROUND2 = 
 					ImageIO.read(Helper.class.getResource("/com/jpii/navalbattle/res/gui_omnimap_background2.png"));
+			GUI_WINDOW_ICON = ImageIO.read(Helper.class.getResource("/com/jpii/navalbattle/res/gui_window_icon.png"));
+			
 		} catch (Exception e) {
 		}
 		

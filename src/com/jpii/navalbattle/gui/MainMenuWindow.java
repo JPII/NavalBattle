@@ -24,6 +24,7 @@ import java.awt.event.*;
 
 import com.jpii.navalbattle.NavalBattle;
 import com.jpii.navalbattle.data.Constants;
+import com.jpii.navalbattle.renderer.Helper;
 
 @SuppressWarnings("serial")
 public class MainMenuWindow extends JFrame{
@@ -38,6 +39,8 @@ public class MainMenuWindow extends JFrame{
 		} catch (Exception e) {}
 		
 		this.setTitle("NavalBattle");
+		
+		this.setIconImage(Helper.GUI_WINDOW_ICON);
 		
 		backgrnd = new MenuBackground(491,339,2);
 		backgrnd.setLocation(0, 0);

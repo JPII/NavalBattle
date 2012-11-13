@@ -24,6 +24,7 @@ import javax.swing.*;
 
 import com.jpii.navalbattle.NavalBattle;
 import com.jpii.navalbattle.gui.KeyboardListener;
+import com.jpii.navalbattle.renderer.Helper;
 
 @SuppressWarnings("serial")
 public class DebugWindow extends JFrame {
@@ -41,7 +42,9 @@ public class DebugWindow extends JFrame {
 			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 		} catch (Exception e) {
 		}
-
+		
+		this.setIconImage(Helper.GUI_WINDOW_ICON);
+		
 		this.setResizable(false);
 		this.setTitle("NavalBattle");
 		this.getContentPane().setLayout(null);

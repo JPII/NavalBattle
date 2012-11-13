@@ -9,6 +9,7 @@ import javax.swing.*;
 
 import com.jpii.navalbattle.NavalBattle;
 import com.jpii.navalbattle.data.Constants;
+import com.jpii.navalbattle.renderer.Helper;
 
 @SuppressWarnings("serial")
 public class LoggingInWindow extends JFrame {
@@ -18,6 +19,8 @@ public class LoggingInWindow extends JFrame {
 	public LoggingInWindow() {
 		
 		NavalBattle.getDebugWindow().printInfo("LoginWindow opened");
+		
+		this.setIconImage(Helper.GUI_WINDOW_ICON);
 		
 		setTitle("NavalBattle - Logging In");
 		getContentPane().setLayout(null);

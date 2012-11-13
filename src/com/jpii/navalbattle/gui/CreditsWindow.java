@@ -20,6 +20,7 @@ package com.jpii.navalbattle.gui;
 import javax.swing.*;
 
 import com.jpii.navalbattle.NavalBattle;
+import com.jpii.navalbattle.renderer.Helper;
 
 import java.awt.*;
 import java.awt.event.*;
@@ -41,6 +42,8 @@ public class CreditsWindow extends JFrame {
 
 		setTitle("NavalBattle");
 		getContentPane().setLayout(null);
+		
+		this.setIconImage(Helper.GUI_WINDOW_ICON);
 
 		gameTitle = new JLabel("NavalBattle");
 		gameTitle.setFont(new Font("Tahoma", Font.BOLD, 14));

@@ -21,6 +21,7 @@ import javax.swing.*;
 import java.awt.event.*;
 import com.jpii.navalbattle.NavalBattle;
 import com.jpii.navalbattle.data.Constants;
+import com.jpii.navalbattle.renderer.Helper;
 import com.jpii.navalbattle.util.URLUtils;
 import com.jpii.roketgamer.Player;
 import com.jpii.roketgamer.rauth.APIKey;
@@ -40,7 +41,8 @@ public class LoginWindow extends JFrame{
 		try {
 			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 		} catch (Exception e) {}
-
+		this.setIconImage(Helper.GUI_WINDOW_ICON);
+		
 		setTitle("NavalBattle");
 		getContentPane().setLayout(null);
 		usernameLabel = new JLabel();
@@ -63,6 +65,7 @@ public class LoginWindow extends JFrame{
 		getContentPane().add(passwordLabel);
 		getContentPane().add(passwordField);
 		getContentPane().add(loginButton);
+		this.setIconImage(Helper.GUI_WINDOW_ICON);
 		
 		passwordField.addKeyListener(new KeyboardListener(this));
 		usernameField.addKeyListener(new KeyboardListener(this));		

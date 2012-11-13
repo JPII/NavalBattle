@@ -33,7 +33,6 @@ public class Game implements Runnable {
      * Creates _THE_ game.
      */
     public Game() {
-    	Helper.LoadStaticResources();
         msax = Constants.WINDOW_WIDTH * 2;
         msay = Constants.WINDOW_HEIGHT * 2;
         grid = new Grid();

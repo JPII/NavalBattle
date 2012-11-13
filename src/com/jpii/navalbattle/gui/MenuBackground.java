@@ -9,6 +9,8 @@ import java.awt.image.BufferedImage;
 
 import javax.swing.JComponent;
 
+import com.jpii.navalbattle.renderer.Helper;
+
 @SuppressWarnings("serial")
 public class MenuBackground extends JComponent implements MouseListener{
 	int width, height, pixel;

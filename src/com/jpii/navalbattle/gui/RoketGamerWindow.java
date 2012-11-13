@@ -4,6 +4,7 @@ import javax.swing.*;
 
 import com.jpii.navalbattle.NavalBattle;
 import com.jpii.navalbattle.data.Constants;
+import com.jpii.navalbattle.renderer.Helper;
 
 import java.awt.*;
 import java.awt.event.*;
@@ -25,7 +26,7 @@ public class RoketGamerWindow extends JFrame{
 		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
 		tabbedPane.setBounds(0, 0, 411, 382);
 		getContentPane().add(tabbedPane);
-
+		this.setIconImage(Helper.GUI_WINDOW_ICON);
 		JPanel profileTab = new JPanel();
 		tabbedPane.addTab(NavalBattle.getRoketGamer().getPlayer().getName(), null, profileTab, null);
 		profileTab.setLayout(null);

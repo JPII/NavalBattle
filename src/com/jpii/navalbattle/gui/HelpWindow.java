@@ -20,6 +20,7 @@ package com.jpii.navalbattle.gui;
 import javax.swing.*;
 
 import com.jpii.navalbattle.NavalBattle;
+import com.jpii.navalbattle.renderer.Helper;
 import com.jpii.navalbattle.util.URLUtils;
 
 import java.awt.*;
@@ -37,6 +38,8 @@ public class HelpWindow extends JFrame {
 		setTitle("NavalBattle");
 		getContentPane().setLayout(null);
 
+		this.setIconImage(Helper.GUI_WINDOW_ICON);
+		
 		lblTitle = new JLabel("NavalBattle Help");
 		lblTitle.setFont(new Font("Tahoma", Font.BOLD, 14));
 		lblTitle.setBounds(10, 11, 121, 23);
