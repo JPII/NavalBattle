@@ -83,9 +83,9 @@ public class Toaster {
 		// Set default font...
 		font = new Font("Arial", Font.BOLD, 12);
 		// Border color
-		borderColor = new Color(245, 153, 15);
-		toasterColor = Color.WHITE;
-		messageColor = Color.BLACK;
+		borderColor = Color.GRAY;
+		toasterColor = Color.BLACK;
+		messageColor = Color.WHITE;
 		useAlwaysOnTop = true;
 		// Verify AlwaysOnTop Flag...
 		try {
