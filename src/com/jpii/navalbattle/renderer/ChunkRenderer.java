@@ -8,6 +8,11 @@ import com.jpii.dagen.*;
 import com.jpii.navalbattle.NavalBattle;
 import com.jpii.navalbattle.data.Constants;
 
+/**
+ * The chunk renderer. Useful for rendering chunks.
+ * @author MKirkby
+ *
+ */
 public class ChunkRenderer implements Runnable {
     int width, height;
     Engine eng;

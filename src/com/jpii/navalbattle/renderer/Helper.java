@@ -8,7 +8,18 @@ import java.awt.MultipleGradientPaint.CycleMethod;
 import java.awt.geom.Point2D;
 import java.awt.image.BufferedImage;
 
+/**
+ * The rendering helper. Consists of static methods.
+ * @author MKirkby
+ *
+ */
 public class Helper {
+	/**
+	 * Creates a nifty looking inner shadow for the window.
+	 * @param width The width of the shadow.
+	 * @param height The height of the shadow.
+	 * @return The translucent shadow that was created.
+	 */
 	public static BufferedImage genInnerShadow(int width, int height) {
 		BufferedImage shadowOuter = new BufferedImage(width,height,BufferedImage.TYPE_INT_ARGB);
 		Graphics g = shadowOuter.getGraphics();
@@ -64,10 +75,24 @@ public class Helper {
 		return (d);
 	}
 	
+	/**
+	 * Linear interpolation.
+	 * @param num0
+	 * @param num1
+	 * @param amount
+	 * @return
+	 */
 	public static double Lerp(int num0, int num1, double amount)
     {
     	return num0 + (amount*(num1-num0));
     }
+	/**
+	 * Linear interpolation.
+	 * @param color0
+	 * @param color1
+	 * @param amount
+	 * @return
+	 */
     public static Color Lerp(Color color0, Color color1, double amount)
     {
 	    int r = (int)Lerp(color0.getRed(), color1.getRed(), amount);

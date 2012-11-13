@@ -8,6 +8,11 @@ import java.util.*;
 import com.jpii.dagen.Engine;
 import com.jpii.navalbattle.data.Constants;
 
+/**
+ * The OmniMap (previously known as MiniZoomMap). Essential is map of the world and binoculars.
+ * @author MKirkby
+ *
+ */
 public class OmniMap {
     Engine eng;
     int width, height;
@@ -15,6 +20,12 @@ public class OmniMap {
     BufferedImage buffer, map;
     public boolean entireWorldMode = true;
     public int px, py;
+    /**
+     * Constructs a new instance of OmniMap
+     * @param eng The current engine that is being used in the game.
+     * @param width The width of the OmniMap.
+     * @param height The height of the OmniMap.
+     */
     public OmniMap(Engine eng, int width, int height) {
         this.eng = eng;
         this.width = width;
@@ -69,21 +80,39 @@ public class OmniMap {
             }
         }
     }
+    /**
+     * Returns the created buffer for the OmniMap.
+     * @return
+     */
     public BufferedImage getBuffer() {
         return buffer;
     }
     int mx = 0;
     int my = 0;
+    /**
+     * The Max variables.
+     */
     public int msax, msay;
+    /**
+     * Is called to update the mouse coordinates.
+     * @param me The MouseEvent.
+     */
     public void mouse(MouseEvent me) {
         mx = me.getX();
         my = me.getY();
     }
+    /**
+     * Fired by the mouseClicked event in the game. Checks to see if the mode is toggled.
+     * @param me
+     */
     public void mouseClick(MouseEvent me) {
         if (me.getX() > px && me.getY() > py && me.getX() < px + width && me.getY() < py + height + 25) {
             entireWorldMode = !entireWorldMode;
         }
     }
+    /**
+     * Updates the player location in the map, and the location that the mouse is at.
+     */
     public void update() {
         buffer = new BufferedImage(width, height + 25, BufferedImage.TYPE_INT_RGB);
         Graphics2D g = (Graphics2D) buffer.getGraphics();
