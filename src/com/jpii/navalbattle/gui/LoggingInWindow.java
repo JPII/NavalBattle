@@ -14,7 +14,7 @@ public class LoggingInWindow extends JFrame {
 		getContentPane().add(progressBar);
 		
 		JLabel label = new JLabel("");
-		label.setIcon(new ImageIcon(LoggingInWindow.class.getResource("/com/jpii/navalbattle/res/splash_jpii_sm.png")));
+		label.setIcon(new ImageIcon(LoggingInWindow.class.getResource("/com/jpii/navalbattle/res/jpii_title.png")));
 		label.setBounds(0, 0, 475, 300);
 		getContentPane().add(label);
 		
@@ -38,13 +38,13 @@ public class LoggingInWindow extends JFrame {
 				Thread.sleep(2000);
 			} catch (InterruptedException e) { }
 	        
-	        label.setIcon(new ImageIcon(LoggingInWindow.class.getResource("/com/jpii/navalbattle/res/splash_roketgamer_sm.png")));
+	        label.setIcon(new ImageIcon(LoggingInWindow.class.getResource("/com/jpii/navalbattle/res/roketgamer_title.png")));
 	        
 	        try {
 				Thread.sleep(2000);
 			} catch (InterruptedException e) { }
 	        
-	        label.setIcon(new ImageIcon(LoggingInWindow.class.getResource("/com/jpii/navalbattle/res/splash_navalbattle_sm.png")));
+	        label.setIcon(new ImageIcon(LoggingInWindow.class.getResource("/com/jpii/navalbattle/res/navalbattle_title.png")));
 	    }
 	}
 }
