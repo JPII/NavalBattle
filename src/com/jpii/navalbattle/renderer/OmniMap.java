@@ -33,7 +33,7 @@ public class OmniMap {
         this.height = height;
         r = new Random(Constants.MAIN_SEED);
         buffer = new BufferedImage(width, height + 25, BufferedImage.TYPE_INT_RGB);
-        map = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
+        map = new BufferedImage(width-2, height-2, BufferedImage.TYPE_INT_RGB);
         Graphics g = map.getGraphics();
         int s = 3;
         int swa = Constants.WINDOW_WIDTH / width * 10;
@@ -118,8 +118,9 @@ public class OmniMap {
         buffer = new BufferedImage(width, height + 25, BufferedImage.TYPE_INT_RGB);
         Graphics2D g = (Graphics2D) buffer.getGraphics();
         g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+        g.drawImage(Helper.GUI_OMNIMAP_BACKGROUND1,0,0,100,125,null);
         if (entireWorldMode) {
-            g.drawImage(map, 0, 0, null);
+            g.drawImage(map, 1,1, null);
             int vx = (msax - 200) * 100 / (Constants.WINDOW_WIDTH * 4);
             int vy = (msay - 200) * 100 / (Constants.WINDOW_HEIGHT * 4);
             vx += 20;
@@ -129,8 +130,8 @@ public class OmniMap {
         } else {
         	EntityRenderer render = new EntityRenderer(GameComponent.game.getGrid());
         	Point p = render.screenToPoint(mx,my, GameComponent.game);
-        	p.x += 250;
-        	p.y += 200;
+        	p.x += 250 + 50;
+        	p.y += 200 + 50;
         	for (int x22 = -50; x22 < width/2; x22++) {
                 for (int z22 = -50; z22 < height/2; z22++) {
                     int ttx = x22 + p.x;
@@ -188,9 +189,9 @@ public class OmniMap {
         }
         g.setColor(new Color(100, 78, 47));
         g.drawRect(1, 1, width - 3, height - 3);
-        g.setColor(new Color(74, 30, 3));
-        g.drawRect(0, 0, width - 1, height - 1);
-        g.fillRect(0, height, width, 25);
+        //g.setColor(new Color(74, 30, 3));
+        ///g.drawRect(0, 0, width - 1, height - 1);
+        //g.fillRect(0, height, width, 25);
 
         g.setColor(new Color(100, 78, 47));
         if (entireWorldMode) {
@@ -214,29 +215,8 @@ public class OmniMap {
             g.drawLine(50 + 48, height - 1, 50 + 48, height + 23);
             g.drawLine(49 + 48, height - 1, 49 + 48, height + 23);
         }
-        g.setColor(new Color(38, 65, 136));
-        g.fillOval(17, height, 19, 19);
-        g.setColor(Color.black);
-        g.drawOval(17, height, 19, 19);
-        g.setColor(new Color(90, 142, 81));
-        g.drawLine(24, height + 1, 29, height + 1);
-        g.drawLine(22, height + 2, 31, height + 2);
-        g.drawLine(21, height + 3, 32, height + 3);
-        g.drawLine(21, height + 4, 31, height + 4);
-        g.drawLine(21, height + 5, 31, height + 5);
-        g.drawLine(22, height + 6, 30, height + 6);
-        g.drawLine(23, height + 7, 29, height + 7);
-        g.drawLine(23, height + 8, 26, height + 8);
-        g.drawLine(23, height + 9, 25, height + 9);
-        g.drawLine(23, height + 10, 25, height + 10);
-        g.drawLine(22, height + 11, 28, height + 11);
-        g.drawLine(21, height + 12, 29, height + 12);
-        g.drawLine(21, height + 13, 30, height + 13);
-        g.drawLine(20, height + 14, 30, height + 14);
-        g.drawLine(21, height + 15, 30, height + 15);
-        g.drawLine(21, height + 16, 30, height + 16);
-        g.drawLine(22, height + 17, 29, height + 17);
-        g.drawLine(24, height + 18, 27, height + 18);
+        
+        g.drawImage(Helper.GUI_OMNIMAP_ICON_WORLD, 17, height+1, null);
 
         g.setColor(new Color(122, 49, 5));
         g.fillOval(49 + 21, height, 10, 10);

@@ -7,6 +7,10 @@ import java.awt.RadialGradientPaint;
 import java.awt.MultipleGradientPaint.CycleMethod;
 import java.awt.geom.Point2D;
 import java.awt.image.BufferedImage;
+import java.io.IOException;
+import java.net.URL;
+
+import javax.imageio.ImageIO;
 
 import com.jpii.navalbattle.data.Constants;
 
@@ -18,8 +22,43 @@ import com.jpii.navalbattle.data.Constants;
 public class Helper {
 	public static BufferedImage GUI_OMNIMAP_BACKGROUND1;
 	public static BufferedImage GUI_OMNIMAP_BACKGROUND2;
+	public static BufferedImage GUI_OMNIMAP_ICON_WORLD;
 	public static void LoadStaticResources() {
+		try {
+			GUI_OMNIMAP_BACKGROUND1 = 
+					ImageIO.read(Helper.class.getResource("/com/jpii/navalbattle/res/gui_omnimap_background1.png"));
+			GUI_OMNIMAP_BACKGROUND2 = 
+					ImageIO.read(Helper.class.getResource("/com/jpii/navalbattle/res/gui_omnimap_background2.png"));
+		} catch (Exception e) {
+		}
 		
+		
+		GUI_OMNIMAP_ICON_WORLD = new BufferedImage(20,20,BufferedImage.TYPE_INT_ARGB);
+		Graphics g = GUI_OMNIMAP_ICON_WORLD.getGraphics();
+		g.setColor(new Color(38, 65, 136));
+        g.fillOval(0, 0, 19, 19);
+        g.setColor(Color.black);
+        g.drawOval(0, 0, 19, 19);
+        g.setColor(new Color(90, 142, 81));
+        int xt = 3;
+        g.drawLine(4+xt, 1, 9+xt, 1);
+        g.drawLine(2+xt, 2, 11+xt, 2);
+        g.drawLine(1+xt, 3, 12+xt, 3);
+        g.drawLine(1+xt, 4, 11+xt, 4);
+        g.drawLine(1+xt, 5, 11+xt, 5);
+        g.drawLine(2+xt, 6, 10+xt, 6);
+        g.drawLine(3+xt, 7, 9+xt, 7);
+        g.drawLine(3+xt, 8, 6+xt, 8);
+        g.drawLine(3+xt, 9, 5+xt, 9);
+        g.drawLine(3+xt, 10, 5+xt, 10);
+        g.drawLine(2+xt, 11, 8+xt, 11);
+        g.drawLine(1+xt, 12, 9+xt, 12);
+        g.drawLine(1+xt, 13, 10+xt, 13);
+        g.drawLine(0+xt, 14, 10+xt, 14);
+        g.drawLine(1+xt, 15, 10+xt, 15);
+        g.drawLine(1+xt, 16, 10+xt, 16);
+        g.drawLine(2+xt, 17, 9+xt, 17);
+        g.drawLine(4+xt, 18, 7+xt, 18);
 	}
 	/**
 	 * Creates a nifty looking inner shadow for the window.
