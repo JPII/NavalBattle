@@ -66,8 +66,7 @@ public class GameComponent extends JComponent {
 				//else
 					//mouseDown++;
 			}
-			public void mouseReleased(MouseEvent me)
-			{
+			public void mouseReleased(MouseEvent me) {
 				//mouseDown++;
 			}
 		});

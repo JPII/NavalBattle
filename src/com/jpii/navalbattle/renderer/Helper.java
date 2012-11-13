@@ -16,6 +16,11 @@ import com.jpii.navalbattle.data.Constants;
  *
  */
 public class Helper {
+	public static BufferedImage GUI_OMNIMAP_BACKGROUND1;
+	public static BufferedImage GUI_OMNIMAP_BACKGROUND2;
+	public static void LoadStaticResources() {
+		
+	}
 	/**
 	 * Creates a nifty looking inner shadow for the window.
 	 * @param width The width of the shadow.
