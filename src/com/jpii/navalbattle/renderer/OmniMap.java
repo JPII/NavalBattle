@@ -7,6 +7,7 @@ import java.util.*;
 
 import com.jpii.dagen.Engine;
 import com.jpii.navalbattle.data.Constants;
+import com.jpii.navalbattle.game.GameComponent;
 
 /**
  * The OmniMap (previously known as MiniZoomMap). Essential is map of the world and binoculars.
@@ -126,14 +127,64 @@ public class OmniMap {
             g.setColor(Color.red);
             g.drawRect(vx, vy, Constants.WINDOW_WIDTH / 100 * 2, Constants.WINDOW_HEIGHT / 100 * 2);
         } else {
-            for (int xt = 0; xt < width; xt++) {
-                for (int zt = 0; zt < height; zt++) {
-                    double y = eng.getPoint(msax - 50 + xt, msay - 50 + zt);
-                    int rgb = (int)(y * 255);
-                    g.setColor(new Color(rgb, rgb, rgb));
-                    g.drawRect(xt, zt, 1, 1);
+        	EntityRenderer render = new EntityRenderer(GameComponent.game.getGrid());
+        	Point p = render.screenToPoint(mx,my, GameComponent.game);
+        	p.x += 250;
+        	p.y += 200;
+        	for (int x22 = -50; x22 < width/2; x22++) {
+                for (int z22 = -50; z22 < height/2; z22++) {
+                    int ttx = x22 + p.x;
+                    int tty = z22 + p.y;
+                    int x = x22 + 50;
+                    int z = z22 + 50;
+                    int s = 1;
+                    if (ttx < 0 || tty < 0 || ttx > (Constants.WINDOW_WIDTH * 4) || tty > (Constants.WINDOW_HEIGHT * 4)) {
+                        int rgb = r.nextInt(100);
+                        g.setColor(new Color(rgb, rgb, rgb));
+                        g.fillRect(x * s, z * s, s + 1, s + 1);
+                    } else {
+                        double y = eng.getPoint(ttx, tty);
+                        boolean flag = y <= RenderConstants.GEN_WATER_HEIGHT;
+                        if (flag) {
+                            Color waterSample = RenderConstants.GEN_WATER_COLOR; //Constants.randomise(Constants.GEN_WATER_COLOR, Constants.GEN_COLOR_DIFF,
+                            //r,false);
+                            if (RenderConstants.OPT_RENDERING_QUALITY == RenderingQuality.FullSpeedAhead || RenderConstants.OPT_RENDERING_QUALITY == RenderingQuality.AtPort) waterSample = RenderConstants.adjust(RenderConstants.randomise(RenderConstants.GEN_WATER_COLOR,
+                            RenderConstants.GEN_COLOR_DIFF, r, false), 1 - (y / RenderConstants.GEN_WATER_HEIGHT), 50);
+                            if (y >= RenderConstants.GEN_WATER_HEIGHT - 0.05) {
+                                double t = RenderConstants.GEN_WATER_HEIGHT - y;
+                                waterSample = Helper.Lerp(RenderConstants.GEN_SAND_COLOR, RenderConstants.GEN_SAND_COLOR2 /*waterSample*/ , t / 0.05);
+                                if (RenderConstants.OPT_RENDERING_QUALITY == RenderingQuality.FullSpeedAhead || RenderConstants.OPT_RENDERING_QUALITY == RenderingQuality.AtPort) waterSample = RenderConstants.randomise(waterSample, RenderConstants.GEN_COLOR_DIFF, r, false);
+                            }
+                            g.setColor(waterSample);
+                            g.fillRect(x * s, z * s, s + 1, s + 1);
+                        }
+                        if (y >= RenderConstants.GEN_WATER_HEIGHT - 0.01 && y <= RenderConstants.GEN_WATER_HEIGHT + 0.05 && r.nextInt(3) == 1) {
+                            flag = false;
+                        }
+
+                        if (!flag) {
+                            Color groundSample = RenderConstants.adjust(RenderConstants.randomise(RenderConstants.GEN_GRASS_COLOR,
+                            RenderConstants.GEN_COLOR_DIFF, r, false), y, 50);
+
+                            if (y <= RenderConstants.GEN_WATER_HEIGHT + 0.1) {
+                                double t = y - RenderConstants.GEN_WATER_HEIGHT;
+                                groundSample = Helper.Lerp(RenderConstants.GEN_SAND_COLOR, groundSample, t / 0.1);
+                                if (RenderConstants.OPT_RENDERING_QUALITY == RenderingQuality.FullSpeedAhead || RenderConstants.OPT_RENDERING_QUALITY == RenderingQuality.AtPort) groundSample = RenderConstants.randomise(groundSample, RenderConstants.GEN_COLOR_DIFF, r, false);
+                            }
+                            if (y >= RenderConstants.GEN_MOUNTAIN_HEIGHT) {
+                                double t = y - RenderConstants.GEN_MOUNTAIN_HEIGHT;
+                                groundSample = Helper.Lerp(groundSample, RenderConstants.GEN_MOUNTAIN_COLOR,
+                                t / (1.0 - RenderConstants.GEN_MOUNTAIN_HEIGHT));
+                                if (RenderConstants.OPT_RENDERING_QUALITY == RenderingQuality.FullSpeedAhead || RenderConstants.OPT_RENDERING_QUALITY == RenderingQuality.AtPort) groundSample = RenderConstants.randomise(groundSample, RenderConstants.GEN_COLOR_DIFF, r, false);
+                                if (RenderConstants.OPT_RENDERING_QUALITY != RenderingQuality.ShipSunk) groundSample = RenderConstants.adjust(groundSample, t / (1.0 - RenderConstants.GEN_MOUNTAIN_HEIGHT), 30);
+                            }
+
+                            g.setColor(groundSample);
+                            g.fillRect(x * s, z * s, s + 1, s + 1);
+                        }
+                    }
                 }
-            }
+        	}
         }
         g.setColor(new Color(100, 78, 47));
         g.drawRect(1, 1, width - 3, height - 3);

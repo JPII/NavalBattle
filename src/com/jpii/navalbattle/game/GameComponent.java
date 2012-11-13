@@ -33,7 +33,7 @@ import com.jpii.navalbattle.renderer.RepaintType;
 public class GameComponent extends JComponent {
 	JFrame frame;
 	Timer ticker;
-	Game game;
+	public static Game game;
 	int mouseDown = 0;
 	public GameComponent(JFrame frame) {
 		this.frame = frame;

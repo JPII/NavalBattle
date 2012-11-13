@@ -98,7 +98,18 @@ public class EntityRenderer {
      */
     public Point pointToScreen(int px, int py, Game g) {
         Point p = g.getMouseSet();
+        // p = 40
+        // v = 5
+        // a = 15
+        // a = (p/2) - v
+        // v = ((p/2) - a)
         Point y = new Point((px / 2) - p.x, (py / 2) - p.y);
+        return y;
+    }
+    
+    public Point screenToPoint(int px, int py, Game g) {
+    	Point p = g.getMouseSet();
+        Point y = new Point((p.x) + (px/2), (p.y) + (py/2));
         return y;
     }
 }

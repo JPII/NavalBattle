@@ -6,6 +6,7 @@ import java.awt.image.*;
 import java.util.*;
 
 import com.jpii.dagen.*;
+import com.jpii.navalbattle.NavalBattle;
 import com.jpii.navalbattle.data.Constants;
 import com.jpii.navalbattle.renderer.*;
 
@@ -47,7 +48,10 @@ public class Game implements Runnable {
         shadow = Helper.genInnerShadow(Constants.WINDOW_WIDTH, Constants.WINDOW_HEIGHT);
         eng.setSmoothFactor(5);
         eng.generate(Constants.MAIN_SEED, RenderConstants.GEN_TERRAIN_ROUGHNESS);
-
+        
+        NavalBattle.getDebugWindow().printInfo("Generated map. Size: " + (4*Constants.WINDOW_WIDTH/50) + "x" +
+        (4*Constants.WINDOW_HEIGHT/50) + ". Used seed: " + Constants.MAIN_SEED);
+        
         omniMap = new OmniMap(eng, 100, 100);
         omniMap.px = Constants.WINDOW_WIDTH - 120;
         omniMap.py = 5;
@@ -143,9 +147,11 @@ public class Game implements Runnable {
      * @param me
      */
     public void mouseMoved(MouseEvent me) {
-        if (RenderConstants.OPT_CLOUDS_ON) cr.updateMouse(me.getX(), me.getY());
+        if (RenderConstants.OPT_CLOUDS_ON)
+        	cr.updateMouse(me.getX(), me.getY());
         omniMap.mouse(me);
-        if (!omniMap.entireWorldMode) omniMap.update();
+        if (!omniMap.entireWorldMode)
+        	omniMap.update();
     }
     /**
      * Fired when the mouse is clicked.
