@@ -1,5 +1,7 @@
 package com.jpii.navalbattle.gui;
 
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
@@ -10,6 +12,9 @@ import com.jpii.navalbattle.data.Constants;
 
 @SuppressWarnings("serial")
 public class LoggingInWindow extends JFrame {
+	
+	private ImageChanger imageChanger;
+	
 	public LoggingInWindow() {
 		
 		NavalBattle.getDebugWindow().printInfo("LoginWindow opened");
@@ -36,7 +41,21 @@ public class LoggingInWindow extends JFrame {
 			}
 		});
 		
-		new ImageChanger(label).start();
+		addMouseListener(new MouseAdapter() {
+			@SuppressWarnings("deprecation")
+			public void mouseClicked(MouseEvent e) {
+				NavalBattle.getDebugWindow().printInfo("Skipping splash screens");
+				NavalBattle.getDebugWindow().printInfo("Disposing LoginWindow");
+				dispose();
+				NavalBattle.getDebugWindow().printInfo("Opening MainMenuWindow");
+				new MainMenuWindow();
+				
+				imageChanger.stop();
+			}
+		});
+		
+		imageChanger = new ImageChanger(label);
+		imageChanger.start();
 	}
 	
 	class ImageChanger extends Thread {
