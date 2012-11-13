@@ -93,6 +93,7 @@ public class LoginWindow extends JFrame{
 		
 		offlineButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent ae) {
+				NavalBattle.getToasterManager().showToaster("Offline mode enabled");
 				NavalBattle.getDebugWindow().printInfo("Opening in offline mode");
 				NavalBattle.getDebugWindow().printWarning("RoketGamer disabled");
 				NavalBattle.getGameState().setOffline(true);
