@@ -28,7 +28,7 @@ public class ChunkRenderer implements Runnable {
         this.height = height;
         xpos = x;
         zpos = z;
-        r = new Random(seed);
+        r = new Random(seed+x+z);
         this.seed = seed;
         this.eng = eng;
         chunk = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB); // Type RGB is INTENTIONAL
@@ -63,6 +63,7 @@ public class ChunkRenderer implements Runnable {
     }
     private void update() {
         int s = 3;
+        r = new Random(seed+xpos+zpos);
         Graphics g = chunk.getGraphics();
         g.setColor(Color.black);
         g.fillRect(0, 0, Constants.CHUNK_SIZE, Constants.CHUNK_SIZE);
@@ -74,7 +75,6 @@ public class ChunkRenderer implements Runnable {
                 if (ttx < 0 || tty < 0 || ttx > (Constants.WINDOW_WIDTH * 4) || tty > (Constants.WINDOW_HEIGHT * 4)) {
                     int rgb = r.nextInt(100);
                     g.setColor(new Color(rgb, rgb, rgb));
-                    //g.setColor(Color.black);
                     g.fillRect(x * s, z * s, s + 1, s + 1);
                 } else {
                     double y = eng.getPoint(ttx, tty);
@@ -119,6 +119,7 @@ public class ChunkRenderer implements Runnable {
                 }
             }
         }
+        g.drawImage(RenderConstants.TIME_OVERLAY, 0, 0, null);
         //g.drawImage(grid, 0,0, null);
     }
     public void setState(ChunkState state) {

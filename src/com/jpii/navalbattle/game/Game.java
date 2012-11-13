@@ -90,8 +90,25 @@ public class Game implements Runnable {
      * Updates the game.
      */
     public void update() {
+    	if (RenderConstants.CURRENT_TIME_OF_DAY < 60)
+    		RenderConstants.CURRENT_TIME_OF_DAY += 0.6;
+    	else
+    		RenderConstants.CURRENT_TIME_OF_DAY = 0;
+    	
+    	RenderConstants.TIME_OVERLAY = new BufferedImage(Constants.CHUNK_SIZE,Constants.CHUNK_SIZE,BufferedImage.TYPE_INT_ARGB);
+    	Graphics timeO = RenderConstants.TIME_OVERLAY.getGraphics();
+    	int alph = 0;
+    	double tofd = RenderConstants.CURRENT_TIME_OF_DAY;
+    	if (tofd > 30)
+    	{
+    		tofd = 60 - tofd;
+    		alph = (int)(tofd * 160 / 30);
+    		timeO.setColor(new Color(0,0,0,alph));
+    		timeO.fillRect(0,0,Constants.CHUNK_SIZE,Constants.CHUNK_SIZE);
+    	}
+    	run();
         if (!RenderConstants.OPT_CLOUDS_ON) return;
-        cr.run();
+        	cr.run();
     }
     /**
      * Fired when the mouse moves.
@@ -119,7 +136,7 @@ public class Game implements Runnable {
         omniMap.update();
         repaint(RepaintType.REPAINT_CHUNKS);
         repaint(RepaintType.REPAINT_MAP);
-        repaint(RepaintType.REPAINT_INDV_ENTITIES);
+        //repaint(RepaintType.REPAINT_INDV_ENTITIES);
 
 
         repaint(RepaintType.REPAINT_BUFFERS);
@@ -148,7 +165,7 @@ public class Game implements Runnable {
             if (msax >= (Constants.WINDOW_WIDTH * 4) - 600) msax = (Constants.WINDOW_WIDTH * 4) - 602;
             if (msay >= (Constants.WINDOW_HEIGHT * 4) - 400) msay = (Constants.WINDOW_HEIGHT * 4) - 402;
         }
-        run();
+        //run();
     }
     /**
      * Repaints the specified portion of the game.
@@ -168,6 +185,7 @@ public class Game implements Runnable {
             g.setColor(Color.red);
             g.drawString("X = " + msax + " Y = " + msay, 100, 100);
             g.drawString("FPS: " + FPS, 100, 124);
+            g.drawString("Time of day = " + (int)(RenderConstants.CURRENT_TIME_OF_DAY), 100, 148);
         }
         if (type == RepaintType.REPAINT_CHUNKS) {
             for (int v = 0; v < chunks.size(); v++) {

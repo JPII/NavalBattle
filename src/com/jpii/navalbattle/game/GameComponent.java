@@ -56,8 +56,9 @@ public class GameComponent extends JComponent {
 		});
 		addMouseListener(new MouseAdapter()
 		{
-			public void mouseClicked(MouseEvent me)
+			public void mousePressed(MouseEvent me)
 			{
+				//game.mouseDrag(me);
 				game.mouseClick(me);
 			}
 		});

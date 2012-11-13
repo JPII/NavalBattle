@@ -1,6 +1,7 @@
 package com.jpii.navalbattle.renderer;
 
 import java.awt.*;
+import java.awt.image.BufferedImage;
 import java.util.*;
 
 /**
@@ -27,6 +28,9 @@ public class RenderConstants {
     public static int CLOUD_MAX = 50;
     public static boolean OPT_INVERSE_MOUSE = false;
     public static boolean OPT_CLOUDS_ON = true;
+    
+    public static double CURRENT_TIME_OF_DAY = 0;
+    public static BufferedImage TIME_OVERLAY;
 
     // Currently not fully implemented:
     public static boolean OPT_HIGH_PRIORITY_SCHEDULING = true;
