@@ -121,8 +121,7 @@ public class Entity {
 		this.image = image;
 	}
 	
-	public void setDetailedImage(BufferedImage img)
-	{
+	public void setDetailedImage(BufferedImage img) {
 		this.detailedImage = img;
 	}
 	
@@ -134,8 +133,7 @@ public class Entity {
 		return image;
 	}
 	
-	public BufferedImage getDetailedImage()
-	{
+	public BufferedImage getDetailedImage() {
 		return detailedImage;
 	}
 	

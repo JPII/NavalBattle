@@ -3,6 +3,7 @@ package com.jpii.navalbattle.renderer;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.image.*;
+import java.util.ArrayList;
 
 import com.jpii.navalbattle.NavalBattle;
 import com.jpii.navalbattle.data.Constants;
@@ -27,7 +28,6 @@ public class Grid {
                 c++;
             }
         }
-        //gridHelper = Helper.genGrid(Constants.WINDOW_WIDTH,Constants.WINDOW_HEIGHT,25);
     }
     public Entity getEntity(int x, int y) {
         boolean failFlag = false;
@@ -56,7 +56,9 @@ public class Grid {
         }
         return entities[x][y];
     }
-    public void setEntity(Entity e, int x, int y) {
+    public void setEntity(Entity e) {
+    	int x = e.getLocation().getCol();
+    	int y = e.getLocation().getRow();
         boolean failFlag = false;
         if (x > width) {
             x = width;
@@ -85,6 +87,36 @@ public class Grid {
     }
     public int getWidth() {
         return width;
+    }
+    public Entity findEntity(String tag) {
+    	return findEntity(tag,true);
+    }
+    public Entity findEntity(String tag, boolean caseMatters) {
+    	for (int x = 0; x < width; x++) {
+    		for (int y = 0; y < height; y++) {
+    			Entity a = entities[x][y];
+    			if (caseMatters) {
+    				if (a.getTag().equals(tag))
+    					return a;
+    			}
+    			else {
+    				if (a.getTag().toLowerCase().equals(tag.toLowerCase()))
+    					return a;
+    			}
+    		}
+    	}
+    	return null;
+    }
+    public Entity[] findAllEntities(Entity typeOf) {
+    	ArrayList<Entity> ecache = new ArrayList<Entity>();
+    	for (int x = 0; x < width; x++) {
+    		for (int y = 0; y < height; y++) {
+    			Entity a = entities[x][y];
+    			if (a.getClass().isInstance(typeOf))
+    				ecache.add(a);
+    		}
+    	}
+    	return (Entity[]) ecache.toArray();
     }
     public int getHeight() {
         return height;
