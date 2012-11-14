@@ -9,6 +9,7 @@ import java.util.*;
 import com.jpii.dagen.*;
 import com.jpii.navalbattle.data.Constants;
 
+@SuppressWarnings("unused")
 public class CloudRelator implements Runnable {
     Engine eng;
     ArrayList < Cloud > clouds;

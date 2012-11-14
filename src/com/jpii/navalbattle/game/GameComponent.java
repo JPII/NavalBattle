@@ -30,7 +30,7 @@ import com.jpii.navalbattle.renderer.RepaintType;
  * @author MKirkby
  * 
  */
-@SuppressWarnings("serial")
+@SuppressWarnings({ "serial", "unused" })
 public class GameComponent extends JComponent {
 	JFrame frame;
 	Timer ticker;

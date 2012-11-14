@@ -9,6 +9,7 @@ import java.util.*;
  * @author MKirkby
  *
  */
+@SuppressWarnings("unused")
 public class RenderConstants {
 	// If it begins with GEN, it is related to the Generator.
 	// If it begins with OPT, then it is an option.
