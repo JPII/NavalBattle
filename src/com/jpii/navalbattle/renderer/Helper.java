@@ -27,6 +27,8 @@ public class Helper {
 	public static BufferedImage GUI_OMNIMAP_BACKGROUND2;
 	public static BufferedImage GUI_OMNIMAP_ICON_WORLD;
 	public static BufferedImage GUI_WINDOW_ICON;
+	public static BufferedImage GUI_GLYPHS;
+	private static BufferedImage[] GUI_GLYPH_CHARS;
 	public static void LoadStaticResources() {
 		try {
 			GUI_OMNIMAP_BACKGROUND1 = 
@@ -34,6 +36,7 @@ public class Helper {
 			GUI_OMNIMAP_BACKGROUND2 = 
 					ImageIO.read(Helper.class.getResource("/com/jpii/navalbattle/res/gui_omnimap_background2.png"));
 			GUI_WINDOW_ICON = ImageIO.read(Helper.class.getResource("/com/jpii/navalbattle/res/gui_window_icon.png"));
+			GUI_GLYPHS = ImageIO.read(Helper.class.getResource("/com/jpii/navalbattle/res/glyphs.bmp"));
 			
 		} catch (Exception e) {
 		}
@@ -65,6 +68,118 @@ public class Helper {
         g.drawLine(1+xt, 16, 10+xt, 16);
         g.drawLine(2+xt, 17, 9+xt, 17);
         g.drawLine(4+xt, 18, 7+xt, 18);
+        glyphParser();
+	}
+	private static void glyphParser() {
+		BufferedImage glyphs = GUI_GLYPHS;
+		int size = (glyphs.getWidth()/8)*(glyphs.getHeight()/11);
+		GUI_GLYPH_CHARS = new BufferedImage[size];
+		int c = 0;
+		for (int x = 0; x < (glyphs.getWidth()/8); x+=8) {
+			for (int y = 0; y < (glyphs.getHeight()/11); y+=11) {
+				GUI_GLYPH_CHARS[c] = glyphs.getSubimage(x,y,8,11);
+				c++;
+			}
+		}
+	}
+	public static void drawString(String txt, int x, int y, Graphics g) {
+		int x2 = 0;
+		for (int v = 0; v < txt.length(); v++) {
+			char c = txt.charAt(v);
+			drawChar(c,x2 + x, y, g);
+			x2 += 8;
+		}
+	}
+	private static void drawChar(char c, int x, int y, Graphics g) {
+		BufferedImage img = null;
+		switch (c) {
+			case ' ':
+				img = GUI_GLYPH_CHARS[0];
+			break;
+			case '\u0263':
+				img = GUI_GLYPH_CHARS[1];
+			break;
+			case '!':
+				img = GUI_GLYPH_CHARS[33];
+			break;
+			case '"':
+				img = GUI_GLYPH_CHARS[34];
+			break;
+			case '#':
+				img = GUI_GLYPH_CHARS[35];
+			break;
+			case '$':
+				img = GUI_GLYPH_CHARS[36];
+			break;
+			case '%':
+				img = GUI_GLYPH_CHARS[37];
+			break;
+			case '&':
+				img = GUI_GLYPH_CHARS[38];
+			break;
+			case '\'':
+				img = GUI_GLYPH_CHARS[39];
+			break;
+			case '(':
+				img = GUI_GLYPH_CHARS[40];
+			break;
+			case ')':
+				img = GUI_GLYPH_CHARS[41];
+			break;
+			case '*':
+				img = GUI_GLYPH_CHARS[42];
+			break;
+			case '+':
+				img = GUI_GLYPH_CHARS[43];
+			break;
+			case ',':
+				img = GUI_GLYPH_CHARS[44];
+			break;
+			case '-':
+				img = GUI_GLYPH_CHARS[45];
+			break;
+			case '.':
+				img = GUI_GLYPH_CHARS[46];
+			break;
+			case '/':
+				img = GUI_GLYPH_CHARS[47];
+			break;
+			case '0':
+				img = GUI_GLYPH_CHARS[48];
+			break;
+			case '1':
+				img = GUI_GLYPH_CHARS[49];
+			break;
+			case '2':
+				img = GUI_GLYPH_CHARS[50];
+			break;
+			case '3':
+				img = GUI_GLYPH_CHARS[51];
+			break;
+			case '4':
+				img = GUI_GLYPH_CHARS[52];
+			break;
+			case '5':
+				img = GUI_GLYPH_CHARS[53];
+			break;
+			case '6':
+				img = GUI_GLYPH_CHARS[54];
+			break;
+			case '7':
+				img = GUI_GLYPH_CHARS[55];
+			break;
+			case '8':
+				img = GUI_GLYPH_CHARS[56];
+			break;
+			case '9':
+				img = GUI_GLYPH_CHARS[57];
+			break;
+			case ':':
+				img = GUI_GLYPH_CHARS[58];
+			break;
+		}
+		
+		g.drawImage(img,x,y,null);
 	}
 	/**
 	 * Creates a nifty looking inner shadow for the window.

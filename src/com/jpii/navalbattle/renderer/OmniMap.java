@@ -149,12 +149,12 @@ public class OmniMap {
                         if (flag) {
                             Color waterSample = RenderConstants.GEN_WATER_COLOR; //Constants.randomise(Constants.GEN_WATER_COLOR, Constants.GEN_COLOR_DIFF,
                             //r,false);
-                            if (RenderConstants.OPT_RENDERING_QUALITY == RenderingQuality.FullSpeedAhead || RenderConstants.OPT_RENDERING_QUALITY == RenderingQuality.AtPort) waterSample = Helper.adjust(Helper.randomise(RenderConstants.GEN_WATER_COLOR,
+                           waterSample = Helper.adjust(Helper.randomise(RenderConstants.GEN_WATER_COLOR,
                             RenderConstants.GEN_COLOR_DIFF, r, false), 1 - (y / RenderConstants.GEN_WATER_HEIGHT), 50);
                             if (y >= RenderConstants.GEN_WATER_HEIGHT - 0.05) {
                                 double t = RenderConstants.GEN_WATER_HEIGHT - y;
                                 waterSample = Helper.Lerp(RenderConstants.GEN_SAND_COLOR, RenderConstants.GEN_SAND_COLOR2 /*waterSample*/ , t / 0.05);
-                                if (RenderConstants.OPT_RENDERING_QUALITY == RenderingQuality.FullSpeedAhead || RenderConstants.OPT_RENDERING_QUALITY == RenderingQuality.AtPort) waterSample = Helper.randomise(waterSample, RenderConstants.GEN_COLOR_DIFF, r, false);
+                                waterSample = Helper.randomise(waterSample, RenderConstants.GEN_COLOR_DIFF, r, false);
                             }
                             g.setColor(waterSample);
                             g.fillRect(x * s, z * s, s + 1, s + 1);
@@ -170,14 +170,14 @@ public class OmniMap {
                             if (y <= RenderConstants.GEN_WATER_HEIGHT + 0.1) {
                                 double t = y - RenderConstants.GEN_WATER_HEIGHT;
                                 groundSample = Helper.Lerp(RenderConstants.GEN_SAND_COLOR, groundSample, t / 0.1);
-                                if (RenderConstants.OPT_RENDERING_QUALITY == RenderingQuality.FullSpeedAhead || RenderConstants.OPT_RENDERING_QUALITY == RenderingQuality.AtPort) groundSample = Helper.randomise(groundSample, RenderConstants.GEN_COLOR_DIFF, r, false);
+                                groundSample = Helper.randomise(groundSample, RenderConstants.GEN_COLOR_DIFF, r, false);
                             }
                             if (y >= RenderConstants.GEN_MOUNTAIN_HEIGHT) {
                                 double t = y - RenderConstants.GEN_MOUNTAIN_HEIGHT;
                                 groundSample = Helper.Lerp(groundSample, RenderConstants.GEN_MOUNTAIN_COLOR,
                                 t / (1.0 - RenderConstants.GEN_MOUNTAIN_HEIGHT));
-                                if (RenderConstants.OPT_RENDERING_QUALITY == RenderingQuality.FullSpeedAhead || RenderConstants.OPT_RENDERING_QUALITY == RenderingQuality.AtPort) groundSample = Helper.randomise(groundSample, RenderConstants.GEN_COLOR_DIFF, r, false);
-                                if (RenderConstants.OPT_RENDERING_QUALITY != RenderingQuality.ShipSunk) groundSample = Helper.adjust(groundSample, t / (1.0 - RenderConstants.GEN_MOUNTAIN_HEIGHT), 30);
+                                if (RenderConstants.OPT_RENDERING_QUALITY == RenderingQuality.FullSpeedAhead) groundSample = Helper.randomise(groundSample, RenderConstants.GEN_COLOR_DIFF, r, false);
+                                groundSample = Helper.adjust(groundSample, t / (1.0 - RenderConstants.GEN_MOUNTAIN_HEIGHT), 30);
                             }
 
                             g.setColor(groundSample);
