@@ -287,9 +287,10 @@ public class Game implements Runnable {
      * @return The Location on the grid. Its possible that it may not be a valid location at all.
      */
     public Location pointToGridLocation(int px, int py) {
-        int x = ((Constants.WINDOW_WIDTH * 4) / Constants.CHUNK_SIZE) / px * 2;
-        int y = ((Constants.WINDOW_HEIGHT * 4) / Constants.CHUNK_SIZE) / py * 2;
-        return new Location(x, y);
+    	int x = (px/Constants.CHUNK_SIZE) + (msax/Constants.CHUNK_SIZE);
+    	int y = (py/Constants.CHUNK_SIZE) + (msay/Constants.CHUNK_SIZE);
+    	Location l = new Location(x*2,y*2);
+    	return l;
     }
     /**
      * Converts a grid location into a point (not on screen, so it may not be useful at all).
