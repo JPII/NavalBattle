@@ -1,18 +1,15 @@
 package com.jpii.navalbattle.renderer;
 
-import java.awt.Color;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.RadialGradientPaint;
+import java.awt.*;
 import java.awt.MultipleGradientPaint.CycleMethod;
-import java.awt.geom.Point2D;
-import java.awt.image.BufferedImage;
-import java.io.IOException;
-import java.net.URL;
-import java.util.Random;
+import java.awt.geom.*;
+import java.awt.image.*;
+import java.io.*;
+import java.net.*;
+import java.util.*;
 
-import javax.imageio.ImageIO;
-import javax.swing.ImageIcon;
+import javax.imageio.*;
+import javax.swing.*;
 
 import com.jpii.navalbattle.data.Constants;
 
@@ -29,7 +26,26 @@ public class Helper {
 	public static BufferedImage GUI_WINDOW_ICON;
 	public static BufferedImage GUI_GLYPHS;
 	private static BufferedImage[] GUI_GLYPH_CHARS;
+	public static Font GUI_GAME_FONT;
+	private static Font loadFont(String name) {
+	    Font font = null;
+	    if (name == null) {
+	        return new Font("Fixedsys",0,11);
+	    }
+	    try {
+	        File file = new File(Helper.class.getResource("/com/jpii/navalbattle/res/" + name).toURI());
+	        font = Font.createFont(Font.TRUETYPE_FONT, file);
+	        GraphicsEnvironment ge = GraphicsEnvironment
+	                .getLocalGraphicsEnvironment();
+	        ge.registerFont(font);
+	    } catch (Exception ex) {
+	    	return new Font("Fixedsys",0,11);
+	    }
+	    return font;
+	}
 	public static void LoadStaticResources() {
+		loadFont("munro.ttf");
+		GUI_GAME_FONT = new Font("Munro",0,16);
 		try {
 			GUI_OMNIMAP_BACKGROUND1 = 
 					ImageIO.read(Helper.class.getResource("/com/jpii/navalbattle/res/gui_omnimap_background1.png"));
@@ -75,10 +91,23 @@ public class Helper {
 		int size = (glyphs.getWidth()/8)*(glyphs.getHeight()/11);
 		GUI_GLYPH_CHARS = new BufferedImage[size];
 		int c = 0;
-		for (int x = 0; x < (glyphs.getWidth()/8); x+=8) {
-			for (int y = 0; y < (glyphs.getHeight()/11); y+=11) {
-				GUI_GLYPH_CHARS[c] = glyphs.getSubimage(x,y,8,11);
-				c++;
+		for (int x = 0; x < (glyphs.getWidth()); x+=9) {
+			for (int y = 0; y < (glyphs.getHeight()); y+=12) {
+				if (x + 8 < glyphs.getWidth() && y + 11 < glyphs.getHeight()) {
+					GUI_GLYPH_CHARS[c] = glyphs.getSubimage(x,y,8,11);
+					BufferedImage copy = new BufferedImage(8,11,BufferedImage.TYPE_INT_ARGB);
+					Graphics g = copy.getGraphics();
+					for (int cx = 0; cx < GUI_GLYPH_CHARS[c].getWidth(); cx++) {
+						for (int cy = 0; cy < GUI_GLYPH_CHARS[c].getHeight(); cy++) {
+							if (new Color(GUI_GLYPH_CHARS[c].getRGB(cx,cy)).getBlue() > 20) {
+								g.setColor(Color.red);
+								g.drawLine(cx,cy,cx,cy);
+							}
+						}
+					}
+					//GUI_GLYPH_CHARS[c] = copy;
+					c++;
+				}
 			}
 		}
 	}
@@ -90,7 +119,7 @@ public class Helper {
 			x2 += 8;
 		}
 	}
-	private static void drawChar(char c, int x, int y, Graphics g) {
+	public static void drawChar(char c, int x, int y, Graphics g) {
 		BufferedImage img = null;
 		switch (c) {
 			case ' ':

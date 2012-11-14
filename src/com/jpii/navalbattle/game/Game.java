@@ -213,17 +213,37 @@ public class Game implements Runnable {
         if (type == RepaintType.REPAINT_BUFFERS) {
             buffer = new BufferedImage(Constants.WINDOW_WIDTH, Constants.WINDOW_HEIGHT,
             BufferedImage.TYPE_INT_RGB);
-            Graphics g = buffer.getGraphics();
+            Graphics2D g = (Graphics2D)buffer.getGraphics();
+            g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+            g.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
             g.drawImage(map, 0, 0, null);
             g.drawImage(eRender.getBuffer(), 0, 0, null);
             //g.drawImage(grid.getFeasibleGrid(),0,0,null);
             g.drawImage(clouds, 0, 0, null);
             g.drawImage(shadow, 0, 0, null);
             g.drawImage(omniMap.getBuffer(), omniMap.px, omniMap.py, null);
+            
+            g.setFont(Helper.GUI_GAME_FONT);
+            
+            g.setColor(new Color(0,0,0,120));
+            g.fillRect(Constants.WINDOW_WIDTH - 300, 5, 150, 100);
+            
             g.setColor(Color.red);
-            g.drawString("X = " + msax + " Y = " + msay, 100, 100);
-            g.drawString("FPS: " + FPS, 100, 124);
-            g.drawString("Time of day = " + (int)(RenderConstants.CURRENT_TIME_OF_DAY) + " " + timeStatus, 100, 148);
+            g.drawRect(Constants.WINDOW_WIDTH - 300, 5, 150, 100);
+            g.drawString("------- Console -------", Constants.WINDOW_WIDTH - 300, 20);
+            g.drawLine(Constants.WINDOW_WIDTH - 300, 22, Constants.WINDOW_WIDTH - 150, 22);
+            
+            float height = Helper.GUI_GAME_FONT.getSize2D() * 1.1f;
+            
+            int ftsx = Constants.WINDOW_WIDTH - 295;
+            int ftsy = 48;
+            
+            g.setColor(RenderConstants.GUI_GAME_FONT_COLOR);
+            g.drawString("X = " + msax + " Y = " + msay, ftsx,ftsy);
+            ftsy += (int)height;
+            g.drawString("FPS: " + FPS, ftsx, ftsy);
+            ftsy += (int)height;
+            g.drawString("Time of day = " + (int)(RenderConstants.CURRENT_TIME_OF_DAY) + " " + timeStatus, ftsx,ftsy);
         }
         if (type == RepaintType.REPAINT_CHUNKS) {
             for (int v = 0; v < chunks.size(); v++) {
