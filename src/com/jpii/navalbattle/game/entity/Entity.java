@@ -152,8 +152,11 @@ public class Entity {
 	public boolean isActive() {
 		return active;
 	}
-
-
+	
+	public void updateImage() {
+		
+	}
+	
 	public void onMouseHover(int localMX, int localMY) {
 		//System.out.println("Hello! Entity at " + getLocation().getCol() + "," + getLocation().getRow() + " speaking!!!");
 	}
