@@ -155,10 +155,10 @@ public class Entity {
 
 
 	public void onMouseHover(int localMX, int localMY) {
-		System.out.println("Hello! Entity at " + getLocation().getCol() + "," + getLocation().getRow() + " speaking!!!");
+		//System.out.println("Hello! Entity at " + getLocation().getCol() + "," + getLocation().getRow() + " speaking!!!");
 	}
 	
 	public void onMouseDown(int localMX, int localMY) {
-		
+		// TODO needs to be implemented in Game.java
 	}
 }
