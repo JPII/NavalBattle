@@ -41,7 +41,8 @@ public class FastMath {
 	public static double cos(double x) {
 		return sqrt1(1 - sin(x));
 	}
-	public static double atan2(double y, double x)
+	
+	/*public static double atan2(double y, double x)
 	{
 	         double absx, absy, val, M_PI, M_PI_2;
 	         M_PI = Math.PI;
@@ -53,22 +54,19 @@ public class FastMath {
 	         absy = y < 0 ? -y : y;
 	         absx = x < 0 ? -x : x;
 	         if (absy - absx == absy) {
-	                 /* x negligible compared to y */
 	                 return y < 0 ? -M_PI_2 : M_PI_2;
 	         }
 	         if (absx - absy == absx) {
-	                 /* y negligible compared to x */
 	                 val = 0.0;
 	         }
-	         else    val = atan(y/x);
+	         else
+	        	 val = Math.atan(y/x);
 	         if (x > 0) {
-	                 /* first or fourth quadrant; already correct */
 	                 return val;
 	         }
 	         if (y < 0) {
-	                 /* third quadrant */
 	                 return val - M_PI;
 	         }
 	         return val + M_PI;
-	}
+	}*/
 }
