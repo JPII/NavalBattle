@@ -9,6 +9,7 @@ import java.awt.geom.Point2D;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.net.URL;
+import java.util.Random;
 
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
@@ -181,5 +182,66 @@ public class Helper {
     			alph = 255;
     	}
     	return alph;
+    }
+    
+    /**
+     * Randomise a preset color, by the maximum differencial as the maximum absolute value, with the random provider.
+     * @param orig The orginal color.
+     * @param maxDiff The maximum differencial.
+     * @param rand The random number provider.
+     * @param includeAlpha Should alpha be included with the randomisation??? (Usually is false)
+     * @return
+     */
+    public static Color randomise(Color orig, int maxDiff, Random rand, boolean includeAlpha) {
+        int r = orig.getRed();
+        int g = orig.getGreen();
+        int b = orig.getBlue();
+        int a = orig.getAlpha();
+
+        r += rand.nextInt(maxDiff + maxDiff) - maxDiff;
+        g += rand.nextInt(maxDiff + maxDiff) - maxDiff;
+        b += rand.nextInt(maxDiff + maxDiff) - maxDiff;
+        if (includeAlpha) a += rand.nextInt(maxDiff + maxDiff) - maxDiff;
+
+        r = colorSnap(r);
+        g = colorSnap(g);
+        b = colorSnap(b);
+        a = colorSnap(a);
+
+        return new Color(r, g, b, a);
+    }
+    /**
+     * Snaps a rgba value to a byte.
+     * @param rgbaval The integer to snap.
+     * @return Between 0 and 255.
+     */
+    public static int colorSnap(int rgbaval) {
+        if (rgbaval > 255) rgbaval = 255;
+        if (rgbaval < 0) rgbaval = 0;
+        return rgbaval;
+    }
+    /**
+     * Adjusts a preset color to a roughness value.
+     * @param orig The original color
+     * @param a The roughness value.
+     * @param maxmin The maximum and minimum differencial.
+     * @return A color that has been adjust to match the orginal and roughness.
+     */
+    public static Color adjust(Color orig, double a, int maxmin) {
+        if (a > 1) a = 1;
+        if (a < 0) a = 0;
+
+        int r = orig.getRed();
+        int g = orig.getGreen();
+        int b = orig.getBlue();
+
+        r = (int)(r - (a * maxmin));
+        g = (int)(g - (a * maxmin));
+        b = (int)(b - (a * maxmin));
+
+        r = colorSnap(r);
+        g = colorSnap(g);
+        b = colorSnap(b);
+        return new Color(r, g, b, orig.getAlpha());
     }
 }
