@@ -59,7 +59,7 @@ public class Entity {
 	}
 	
 	/**
-	 * Ticks the enitity (updates info).
+	 * Ticks the entity (updates info).
 	 */
 	public void tick() {
 		
