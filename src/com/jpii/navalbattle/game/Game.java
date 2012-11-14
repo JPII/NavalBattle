@@ -8,6 +8,7 @@ import java.util.*;
 import com.jpii.dagen.*;
 import com.jpii.navalbattle.NavalBattle;
 import com.jpii.navalbattle.data.Constants;
+import com.jpii.navalbattle.game.entity.Entity;
 import com.jpii.navalbattle.renderer.*;
 
 /**
@@ -114,6 +115,7 @@ public class Game implements Runnable {
     	}
     	else
     		timeStatus = "Day";
+    	setStatus(GameStatus.STATUS_CHUNK_RENDER);
     	run();
         if (!RenderConstants.OPT_CLOUDS_ON) return;
         	cr.run();
@@ -123,11 +125,16 @@ public class Game implements Runnable {
      * @param me
      */
     public void mouseMoved(MouseEvent me) {
+    	lastmx = me.getX();
+    	lastmy = me.getY();
         if (RenderConstants.OPT_CLOUDS_ON)
         	cr.updateMouse(me.getX(), me.getY());
         omniMap.mouse(me);
         if (!omniMap.entireWorldMode)
         	omniMap.update();
+        
+        setStatus(GameStatus.STATUS_CHUNK_EVENTS);
+        run();
     }
     /**
      * Fired when the mouse is clicked.
@@ -141,18 +148,39 @@ public class Game implements Runnable {
      * Runs the OmniMap updater and chunk updator.
      */
     public void run() {
-        omniMap.msax = msax;
-        omniMap.msay = msay;
-        omniMap.update();
-        repaint(RepaintType.REPAINT_CHUNKS);
-        repaint(RepaintType.REPAINT_MAP);
-        //repaint(RepaintType.REPAINT_INDV_ENTITIES);
-
-
-        repaint(RepaintType.REPAINT_BUFFERS);
+    	
+    	if (getStatus() == GameStatus.STATUS_CHUNK_RENDER) {
+    		omniMap.msax = msax;
+    		omniMap.msay = msay;
+    		omniMap.update();
+    		repaint(RepaintType.REPAINT_CHUNKS);
+    		repaint(RepaintType.REPAINT_MAP);
+    		repaint(RepaintType.REPAINT_BUFFERS);
+    	}
+    	else if (getStatus() == GameStatus.STATUS_CHUNK_UPDATES) {
+    		
+    	}
+    	else if (getStatus() == GameStatus.STATUS_CHUNK_EVENTS) {
+    		for (int x = 0; x < grid.getWidth(); x++) {
+    			for (int y = 0; y < grid.getHeight(); y++) {
+    				Entity ent = grid.getEntity(x, y);
+    				Location l = pointToGridLocation(lastmx,lastmy);
+    				if (l.getCol() == ent.getLocation().getCol() && l.getRow() == ent.getLocation().getRow())
+    					ent.onMouseHover(lastmx,lastmy);
+    			}
+    		}
+    	}
+    }
+    public void setStatus(GameStatus state) {
+    	this.state = state;
+    }
+    public GameStatus getStatus() {
+    	return state;
     }
     int lastmx = -1;
     int lastmy = -1;
+    boolean mouseDown = false;
+    GameStatus state;
     /**
      * The FPS. Currently not implemented. Should be in a getter/setter methods.
      */
@@ -239,5 +267,58 @@ public class Game implements Runnable {
      */
     public Point getMouseSet() {
         return new Point(msax, msay);
+    }
+    
+    /**
+     * Converts a grid location to screen coordinates.
+     * @param l The location to convert.
+     * @param g The game.
+     * @return A point on the screen (its possible that it might not be on the screen).
+     */
+    public Point gridLocationToScreen(Location l) {
+        Point p = gridLocationToPoint(l);
+        Point s = pointToScreen(p.x, p.y);
+        return s;
+    }
+    /**
+     * Converts a point on the screen to a grid location. UNTESTED and MAY NOT WORK AT ALL.
+     * @param px The x coordinate.
+     * @param py The y coordinate.
+     * @return The Location on the grid. Its possible that it may not be a valid location at all.
+     */
+    public Location pointToGridLocation(int px, int py) {
+        int x = ((Constants.WINDOW_WIDTH * 4) / Constants.CHUNK_SIZE) / px * 2;
+        int y = ((Constants.WINDOW_HEIGHT * 4) / Constants.CHUNK_SIZE) / py * 2;
+        return new Location(x, y);
+    }
+    /**
+     * Converts a grid location into a point (not on screen, so it may not be useful at all).
+     * @param l The location to convert.
+     * @return The point in the world.
+     */
+    public Point gridLocationToPoint(Location l) {
+        int px = l.getRow();
+        int py = l.getCol();
+        int x = px * Constants.CHUNK_SIZE;
+        int y = py * Constants.CHUNK_SIZE;
+        return new Point(x, y);
+    }
+    /**
+     * Converts a point in the world, into a point in the screen.
+     * @param px The x point in the world.
+     * @param py The y point in the world.
+     * @param g The game.
+     * @return A point. (May not physically be on the screen, and may be negative.)
+     */
+    public Point pointToScreen(int px, int py) {
+        Point p = getMouseSet();
+        Point y = new Point((px / 2) - p.x, (py / 2) - p.y);
+        return y;
+    }
+ 
+    public Point screenToPoint(int px, int py) {
+    	Point p = getMouseSet();
+        Point y = new Point((p.x) + (px/2), (p.y) + (py/2));
+        return y;
     }
 }

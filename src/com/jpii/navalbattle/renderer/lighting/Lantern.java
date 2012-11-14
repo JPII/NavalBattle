@@ -1,9 +1,9 @@
 package com.jpii.navalbattle.renderer.lighting;
 
-public class Latern extends Light {
+public class Lantern extends Light {
 	double radius;
 	int diameter;
-	public Latern(double radius) {
+	public Lantern(double radius) {
 		super((int)(radius*2),(int)(radius*2));
 		diameter = (int)(radius*2);
 		this.radius = radius;
