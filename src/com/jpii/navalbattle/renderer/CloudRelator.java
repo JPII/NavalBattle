@@ -33,13 +33,17 @@ public class CloudRelator implements Runnable {
         eng = new Engine(Constants.WINDOW_WIDTH, Constants.WINDOW_HEIGHT);
         eng.generate(r.nextInt(), 1);
         clouds = new ArrayList < Cloud > ();
-        for (int x = 0; x < Constants.WINDOW_WIDTH; x++) {
+        /*for (int x = 0; x < Constants.WINDOW_WIDTH; x++) {
             for (int z = 0; z < Constants.WINDOW_HEIGHT; z++) {
                 if (eng.getPoint(x, z) > 0.8 && r.nextInt(5) == 1 && clouds.size() < RenderConstants.CLOUD_MAX) {
                     clouds.add(new Cloud((float)(r.nextInt(RenderConstants.CLOUD_MAX_SIZE - RenderConstants.CLOUD_MIN_SIZE) + RenderConstants.CLOUD_MIN_SIZE), r.nextInt(Constants.WINDOW_WIDTH),
                     r.nextInt(Constants.WINDOW_HEIGHT), (float)((1 - eng.getPoint(x, z)) / 0.3)));
                 }
             }
+        }*/
+        for (int c = 0; c < r.nextInt(8) + 8; c++) {
+        	clouds.add(new Cloud(100,r.nextInt(Constants.WINDOW_WIDTH),
+                    r.nextInt(Constants.WINDOW_HEIGHT)));
         }
     }
     public BufferedImage getBuffer() {
@@ -48,7 +52,9 @@ public class CloudRelator implements Runnable {
         g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
         for (int c = 0; c < clouds.size(); c++) {
             Cloud cloudw = clouds.get(c);
-            int alpha = (int)(cloudw.diameter * 255 / (1 + RenderConstants.CLOUD_MIN_SIZE));
+            int dh = (int)(cloudw.diameter / 2);
+            g.drawImage(cloudw.buffer,cloudw.x - dh, cloudw.z - dh,null);
+            /*int alpha = (int)(cloudw.diameter * 255 / (1 + RenderConstants.CLOUD_MIN_SIZE));
             if (alpha < 10) alpha = 10;
             if (alpha > 30) alpha = 30;
             int rgb = (int)(cloudw.cloudLR * 127) + 100;
@@ -57,7 +63,7 @@ public class CloudRelator implements Runnable {
             g.setColor(new Color(rgb, rgb, rgb, alpha));
             int d = (int) cloudw.diameter;
             int dh = d / 2;
-            g.fillOval(cloudw.x - dh, cloudw.z - dh, d, d);
+            g.fillOval(cloudw.x - dh, cloudw.z - dh, d, d);*/
         }
         return img;
     }
@@ -77,7 +83,7 @@ public class CloudRelator implements Runnable {
             Cloud poll = clouds.get(c);
             double dist = Math.sqrt(Math.pow(mouseX - poll.x, 2) + Math.pow(mouseY - poll.z, 2));
             //double dist = 1234242142;
-            if (dist <= (poll.diameter * 3.25)) {
+            if (dist <= (poll.diameter * 1.25)) {
                 double angv = Math.atan2(mouseY - poll.z, mouseX - poll.x);
                 int mmx = (int)(Math.cos(angv) * (dist / 12));
                 int mmy = (int)(Math.sin(angv) * (dist / 12));

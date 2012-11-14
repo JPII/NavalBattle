@@ -23,8 +23,8 @@ public class RenderConstants {
     public static double GEN_TERRAIN_ROUGHNESS = 0.35; //0.6;
     public static int GEN_COLOR_DIFF = 6;
     public static int GEN_SMOOTHIE = 30;
-    public static int CLOUD_MAX_SIZE = 30;
-    public static int CLOUD_MIN_SIZE = 20;
+    public static int CLOUD_MAX_SIZE = 60;
+    public static int CLOUD_MIN_SIZE = 40;
     public static int CLOUD_MAX = 50;
     public static boolean OPT_INVERSE_MOUSE = false;
     public static boolean OPT_CLOUDS_ON = true;
