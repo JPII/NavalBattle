@@ -79,9 +79,15 @@ public class GameComponent extends JComponent {
 	}
 	public void paintComponent(Graphics g)
 	{
+		long start = System.currentTimeMillis();
+		
 		game.repaint(RepaintType.REPAINT_MAP);
 		game.repaint(RepaintType.REPAINT_CLOUDS);
 		game.repaint(RepaintType.REPAINT_BUFFERS);
 		g.drawImage(game.getBuffer(),0,0,null);
+		
+		long end = System.currentTimeMillis() - start;
+		double fps = (1.0/end) * 1000.0;
+		game.FPS = (int)fps;
 	}
 }

@@ -33,8 +33,8 @@ public class Cloud {
 		Engine enger = new Engine((int)diam,(int)diam);
 		enger.generate(x & z, 1.3);
 		
-		for (int x2 = 0; x2 < (int)diam; x2++) {
-			for (int y2 = 0; y2 < (int)diam; y2++) {
+		for (int x2 = 0; x2 < (int)diam; x2+=2) {
+			for (int y2 = 0; y2 < (int)diam; y2+=2) {
 				double v = enger.getPoint(x2, y2);
 				if (x2 < 15) {
 					v -= 1.0-(x2 / ((Math.random() * 2) + 15));
@@ -66,7 +66,8 @@ public class Cloud {
 				if (a < 0)
 					a = 0;
 				g.setColor(new Color(rg,rg,b,a));
-				g.drawLine(x2,y2,x2,y2);
+				//g.drawLine(x2,y2,x2,y2);
+				g.fillRect(x2,y2,2,2);
 				}
 			}
 		}
