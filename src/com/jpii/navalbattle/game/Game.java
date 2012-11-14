@@ -11,7 +11,7 @@ import com.jpii.navalbattle.data.Constants;
 import com.jpii.navalbattle.renderer.*;
 
 /**
- * _THE_ game.
+ * <b>THE</b> game.
  * @author MKirkby
  *
  */
@@ -30,7 +30,7 @@ public class Game implements Runnable {
     private OmniMap omniMap;
     private String timeStatus = "Night";
     /**
-     * Creates _THE_ game.
+     * Creates <b>THE</b> game.
      */
     public Game() {
         msax = Constants.WINDOW_WIDTH * 2;
