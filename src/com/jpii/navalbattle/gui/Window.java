@@ -36,8 +36,7 @@ public class Window extends JFrame {
 		try {
 			UIManager.setLookAndFeel("javax.swing.plaf.nimbus.NimbusLookAndFeel");
 		} catch (Exception e) {
-			e.printStackTrace();
-			
+			NavalBattle.getDebugWindow().printError("NimbusLookAndFeel was unable to be loaded");	
 		}
 	}
 	
