@@ -33,22 +33,6 @@ public class SinglePlayerGame extends JFrame {
 	public GameComponent game;
 
 	public SinglePlayerGame() {
-		try {
-		    for (LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
-		        if ("nimbus".contains(info.getName().toLowerCase())) {
-		            UIManager.setLookAndFeel(info.getClassName());
-		            break;
-		        }
-		    }
-		} catch (UnsupportedLookAndFeelException e) {
-		    // handle exception
-		} catch (ClassNotFoundException e) {
-		    // handle exception
-		} catch (InstantiationException e) {
-		    // handle exception
-		} catch (IllegalAccessException e) {
-		    // handle exception
-		}
 		this.setTitle("NavalBattle");
 
 		game = new GameComponent(this);

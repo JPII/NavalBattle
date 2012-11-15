@@ -5,6 +5,7 @@ import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.util.Random;
 
+import com.jpii.navalbattle.renderer.Helper;
 import com.jpii.navalbattle.renderer.particles.*;
 
 public class TamaleEntity extends Entity {
@@ -18,7 +19,7 @@ public class TamaleEntity extends Entity {
 	public void update() {
 		setImage(new BufferedImage(50,50,BufferedImage.TYPE_INT_ARGB));
 		Graphics g = getImage().getGraphics();
-		g.setColor(Color.red);
+		g.setColor(Helper.randomColor(r));
 		g.fillRect(0,0,50,50);
 		/*system.update();
 		

@@ -125,6 +125,9 @@ public class Helper {
 			x2 += 8;
 		}
 	}
+	public static Color randomColor(Random r) {
+		return new Color(r.nextInt(127) + 127, r.nextInt(127) + 127, r.nextInt(127) + 127);
+	}
 	public static void drawChar(char c, int x, int y, Graphics g) {
 		BufferedImage img = null;
 		switch (c) {

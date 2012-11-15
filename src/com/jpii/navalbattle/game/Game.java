@@ -107,6 +107,9 @@ public class Game implements Runnable {
     		timeStatus = "Day";
     	setStatus(GameStatus.STATUS_CHUNK_RENDER);
     	run();
+    	
+    	setStatus(GameStatus.STATUS_CHUNK_UPDATES);
+    	run();
         if (!RenderConstants.OPT_CLOUDS_ON) return;
         	cr.run();
     }
@@ -149,19 +152,16 @@ public class Game implements Runnable {
     		repaint(RepaintType.REPAINT_BUFFERS);
     	}
     	else if (getStatus() == GameStatus.STATUS_CHUNK_UPDATES) {
-    		String chunksTxt = "";
     		for (int x = msax; x < 800+msax; x += 50) {
     			for (int y = msay; y < 600+msay; y += 50) {
-    				//Entity ent = grid.getEntity(x, y);
-    				Location l = pointToGridLocation(x,y);
+    				Point p = pointToScreen(x,y);
+    				Location l = pointToGridLocation(p.x,p.y);
     				if (Location.validate(l)) {
     					Entity ti = getGrid().getEntity(l.getRow(),l.getCol());
     					ti.invokeUpdate();
-    					chunksTxt += ",[" + l.getCol() + "," + l.getRow() + "]";
     				}
     			}
     		}
-    		System.out.println(chunksTxt);
     	}
     	else if (getStatus() == GameStatus.STATUS_CHUNK_EVENTS) {
     		for (int x = 0; x < grid.getWidth(); x++) {
