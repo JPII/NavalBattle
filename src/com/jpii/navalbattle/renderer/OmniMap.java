@@ -128,17 +128,16 @@ public class OmniMap {
             g.setColor(Color.red);
             g.drawRect(vx, vy, Constants.WINDOW_WIDTH / 100 * 2, Constants.WINDOW_HEIGHT / 100 * 2);
         } else {
-        	EntityRenderer render = new EntityRenderer(GameComponent.game.getGrid());
-        	Point p = render.screenToPoint(mx,my, GameComponent.game);
+        	Point p = GameComponent.game.screenToPoint(mx,my);
         	p.x += 250 + 50;
         	p.y += 200 + 50;
-        	for (int x22 = -50; x22 < width/2; x22++) {
-                for (int z22 = -50; z22 < height/2; z22++) {
-                    int ttx = x22 + p.x;
-                    int tty = z22 + p.y;
-                    int x = x22 + 50;
-                    int z = z22 + 50;
-                    int s = 1;
+        	for (int x22 = -10; x22 < 10; x22++) {
+                for (int z22 = -10; z22 < 10; z22++) {
+                    int ttx = (x22 + p.x);
+                    int tty = (z22 + p.y);
+                    int x = x22 + 20;//50;
+                    int z = z22 + 20;//50;
+                    int s = 5;
                     if (ttx < 0 || tty < 0 || ttx > (Constants.WINDOW_WIDTH * 4) || tty > (Constants.WINDOW_HEIGHT * 4)) {
                         int rgb = r.nextInt(100);
                         g.setColor(new Color(rgb, rgb, rgb));
@@ -157,7 +156,7 @@ public class OmniMap {
                                 waterSample = Helper.randomise(waterSample, RenderConstants.GEN_COLOR_DIFF, r, false);
                             }
                             g.setColor(waterSample);
-                            g.fillRect(x * s, z * s, s + 1, s + 1);
+                            //g.fillRect(x * s, z * s, s + 1, s + 1);
                         }
                         if (y >= RenderConstants.GEN_WATER_HEIGHT - 0.01 && y <= RenderConstants.GEN_WATER_HEIGHT + 0.05 && r.nextInt(3) == 1) {
                             flag = false;
@@ -181,8 +180,8 @@ public class OmniMap {
                             }
 
                             g.setColor(groundSample);
-                            g.fillRect(x * s, z * s, s + 1, s + 1);
                         }
+                        g.fillRect(x * s, z * s, s + 1, s + 1);
                     }
                 }
         	}

@@ -28,12 +28,6 @@ public class Helper {
 	private static BufferedImage[] GUI_GLYPH_CHARS;
 	public static Font GUI_GAME_FONT;
 	private static Font loadFont(String name) {
-		
-		double gfd = Math.random() * 2390+3291;
-		System.out.println("sqrt of " + gfd + " estimated is: " + FastMath.sqrt1(gfd) + ". Actually is " + Math.sqrt(gfd));
-		System.out.println("sin of " + gfd + " estimated is: " + FastMath.sin(gfd) + ". Actually is " + Math.sin(gfd));
-		System.out.println("cos of " + gfd + " estimated is: " + FastMath.cos(gfd) + ". Actually is " + Math.cos(gfd));
-		
 	    Font font = null;
 	    if (name == null) {
 	        return new Font("Fixedsys",0,11);

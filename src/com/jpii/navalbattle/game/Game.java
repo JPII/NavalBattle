@@ -166,7 +166,8 @@ public class Game implements Runnable {
     	if (getStatus() == GameStatus.STATUS_CHUNK_RENDER) {
     		omniMap.msax = msax;
     		omniMap.msay = msay;
-    		omniMap.update();
+    		if (omniMap.entireWorldMode)
+    			omniMap.update();
     		repaint(RepaintType.REPAINT_CHUNKS);
     		repaint(RepaintType.REPAINT_MAP);
     		repaint(RepaintType.REPAINT_INDV_ENTITIES);

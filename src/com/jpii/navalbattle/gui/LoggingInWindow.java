@@ -34,16 +34,33 @@ public class LoggingInWindow extends Window {
 		addMouseListener(new MouseAdapter() {
 			@SuppressWarnings("deprecation")
 			public void mouseClicked(MouseEvent e) {
+				if (alreadyOpened) {
+					try
+					{
+						dispose();
+						return;
+					}
+					catch (Exception ex) {
+						return;
+					}
+				}
 				NavalBattle.getDebugWindow().printInfo("Skipping splash screens");
 				NavalBattle.getDebugWindow().printInfo("Disposing LoggingInWindow");
-				dispose();
+				try
+				{
+					dispose();
+				}
+				catch (Exception ex) {
+				}
 				NavalBattle.getDebugWindow().printInfo("Opening MainMenuWindow");
+				alreadyOpened = true;
 				new MainMenuWindow();
 				
 				imageChanger.interrupt();//imageChanger.stop();
 			}
 		});
 	}
+	boolean alreadyOpened = false;
 	
 	class ImageChanger extends Thread {
 		
@@ -66,7 +83,12 @@ public class LoggingInWindow extends Window {
 	        sleep(Constants.SPLASH_DURATION);
 	        
 	        NavalBattle.getDebugWindow().printInfo("Disposing LoggingInWindow");
-			dispose();
+	        try
+			{
+				dispose();
+			}
+			catch (Exception ex) {
+			}
 			NavalBattle.getDebugWindow().printInfo("Opening MainMenuWindow");
 			new MainMenuWindow();
 	    }

@@ -100,13 +100,13 @@ public class ChunkRenderer implements Runnable {
                             if (RenderConstants.OPT_RENDERING_QUALITY == RenderingQuality.FullSpeedAhead )/*|| RenderConstants.OPT_RENDERING_QUALITY == RenderingQuality.AtPort)*/ waterSample = Helper.randomise(waterSample, RenderConstants.GEN_COLOR_DIFF, r, false);
                         }
                         g.setColor(waterSample);
-                        g.fillRect(x * s, z * s, s + 1, s + 1);
+                        //g.fillRect(x * s, z * s, s + 1, s + 1);
                     }
-                    if (y >= RenderConstants.GEN_WATER_HEIGHT - 0.01 && y <= RenderConstants.GEN_WATER_HEIGHT + 0.05 && r.nextInt(3) == 1) {
+                    else if (y >= RenderConstants.GEN_WATER_HEIGHT - 0.01 && y <= RenderConstants.GEN_WATER_HEIGHT + 0.05 && r.nextInt(3) == 1) {
                         flag = false;
                     }
 
-                    if (!flag) {
+                    else if (!flag) {
                         Color groundSample = Helper.adjust(Helper.randomise(RenderConstants.GEN_GRASS_COLOR,
                         RenderConstants.GEN_COLOR_DIFF, r, false), y, 50);
 
@@ -124,8 +124,8 @@ public class ChunkRenderer implements Runnable {
                         }
 
                         g.setColor(groundSample);
-                        g.fillRect(x * s, z * s, s + 1, s + 1);
                     }
+                    g.fillRect(x * s, z * s, s + 1, s + 1);
                 }
             }
         }
