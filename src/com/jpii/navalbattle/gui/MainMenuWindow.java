@@ -34,12 +34,12 @@ public class MainMenuWindow extends Window {
 	public MainMenuWindow() {
 		super();
 		
-		backgrnd = new MenuBackground(491,339,2);
-		backgrnd.setLocation(0, 0);
-		backgrnd.setSize(491,339);
-		setContentPane(backgrnd);
+		getContentPane().setLayout(null);
 		
-		this.getContentPane().setLayout(null);
+	//	backgrnd = new MenuBackground(491,339,2);
+	//	backgrnd.setLocation(0, 0);
+	//	backgrnd.setSize(491,339);
+	//	setContentPane(backgrnd);
 
 		JLabel lblVersion = new JLabel(Constants.NAVALBATTLE_VERSION_TITLE);
 		lblVersion.setBounds(10, 276, 238, 14);
@@ -48,14 +48,8 @@ public class MainMenuWindow extends Window {
 		JLabel lblNavalBattle = new JLabel("NavalBattle");
 		lblNavalBattle.setForeground(Color.blue);
 		lblNavalBattle.setFont(new Font("RingBearer", Font.BOLD, 35));
-		lblNavalBattle.setBounds(101, 11, 248, 51);
+		lblNavalBattle.setBounds(158, 13, 193, 51);
 		this.getContentPane().add(lblNavalBattle);
-		
-		JLabel lbjNavalBattle = new JLabel("NavalBattle");
-		lbjNavalBattle.setForeground(Color.black);
-		lbjNavalBattle.setFont(new Font("RingBearer", Font.BOLD, 35));
-		lbjNavalBattle.setBounds(103, 13, 248, 51);
-		this.getContentPane().add(lbjNavalBattle);
 		
 		JButton btnSingleplayer = new JButton("Singleplayer");
 		btnSingleplayer.addMouseListener(new MouseAdapter() {
@@ -68,7 +62,7 @@ public class MainMenuWindow extends Window {
 			}
 		});
 		btnSingleplayer.setBackground(new Color(255,255,255,255));
-		btnSingleplayer.setBounds(177, 73, 99, 23);
+		btnSingleplayer.setBounds(194, 73, 100, 25);
 		this.getContentPane().add(btnSingleplayer);
 
 		JButton btnHelp = new JButton("Help");
@@ -82,11 +76,11 @@ public class MainMenuWindow extends Window {
 			}
 		});
 		
-		btnHelp.setBounds(177, 141, 99, 23);
+		btnHelp.setBounds(194, 141, 100, 25);
 		this.getContentPane().add(btnHelp);
 
 		JButton btnRoketGamer = new JButton("RoketGamer");;
-		btnRoketGamer.setBounds(177, 175, 99, 23);
+		btnRoketGamer.setBounds(194, 175, 100, 25);
 		if(NavalBattle.getGameState().isOffline()) {
 			btnRoketGamer.setEnabled(false);
 		} else {
@@ -110,7 +104,7 @@ public class MainMenuWindow extends Window {
 				NavalBattle.close();
 			}
 		});
-		btnQuit.setBounds(177, 209, 99, 23);
+		btnQuit.setBounds(194, 209, 100, 25);
 		this.getContentPane().add(btnQuit);
 
 		JButton btnCredits = new JButton("Credits");
@@ -123,7 +117,7 @@ public class MainMenuWindow extends Window {
 				new CreditsWindow();
 			}
 		});
-		btnCredits.setBounds(398, 267, 67, 23);
+		btnCredits.setBounds(389, 267, 76, 23);
 		this.getContentPane().add(btnCredits);
 		
 		JButton btnMultiplayer = new JButton("Multiplayer");
@@ -133,7 +127,7 @@ public class MainMenuWindow extends Window {
 				NavalBattle.getDebugWindow().printWarning("Multiplayer has not been implemented");
 			}
 		});
-		btnMultiplayer.setBounds(177, 107, 99, 23);
+		btnMultiplayer.setBounds(194, 107, 100, 25);
 		this.getContentPane().add(btnMultiplayer);
 		
 		ActionListener listener = new ActionListener() {

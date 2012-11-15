@@ -21,11 +21,8 @@ import javax.swing.UIManager.*;
 import javax.swing.*;
 
 import com.jpii.roketgamer.RoketGamer;
-import com.jpii.navalbattle.data.Commands;
-import com.jpii.navalbattle.data.Constants;
-import com.jpii.navalbattle.data.GameState;
-import com.jpii.navalbattle.debug.CommandHandler;
-import com.jpii.navalbattle.debug.DebugWindow;
+import com.jpii.navalbattle.data.*;
+import com.jpii.navalbattle.debug.*;
 import com.jpii.navalbattle.gui.LoginWindow;
 import com.jpii.navalbattle.renderer.Helper;
 import com.jpii.navalbattle.util.Toaster;
