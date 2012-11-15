@@ -175,9 +175,9 @@ public class Entity implements Runnable {
 	}
 	
 	public void onMouseHover(int localMX, int localMY) {
-		TamaleEntity tamale = new TamaleEntity();
-		tamale.setLocation(getLocation());
-		GameComponent.game.getGrid().setEntity(tamale);
+		//TamaleEntity tamale = new TamaleEntity();
+		//tamale.setLocation(getLocation());
+		//GameComponent.game.getGrid().setEntity(tamale);
 		//System.out.println("Hello! Entity at " + getLocation().getCol() + "," + getLocation().getRow() + " speaking!!!");
 	}
 	
