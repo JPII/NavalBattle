@@ -52,7 +52,7 @@ public class Game implements Runnable {
         
         for (int c = 0; c < 100; c++) {
 	        SimpleBrownian river = new SimpleBrownian(600,800);
-	        river.setMaxIterations(1000);
+	        river.setMaxIterations(1000000);
 	        int sx = (int)(Math.random() * 700);
 	        int sy = (int)(Math.random() * 500);
 	        river.generate(Constants.MAIN_SEED + (sx & sy) + sx, 0.9);

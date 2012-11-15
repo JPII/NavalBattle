@@ -40,7 +40,7 @@ public class LoggingInWindow extends Window {
 				NavalBattle.getDebugWindow().printInfo("Opening MainMenuWindow");
 				new MainMenuWindow();
 				
-				imageChanger.stop();
+				imageChanger.interrupt();//imageChanger.stop();
 			}
 		});
 	}
@@ -71,9 +71,14 @@ public class LoggingInWindow extends Window {
 			new MainMenuWindow();
 	    }
 	    public void sleep(int millseconds) {
-	    	long orig = System.currentTimeMillis();
-	    	while (orig + millseconds > System.currentTimeMillis()) {
-	    		;
+	    	try
+	    	{
+		    	long orig = System.currentTimeMillis();
+		    	while (orig + millseconds > System.currentTimeMillis()) {
+		    	}
+	    	}
+	    	catch (Exception e) {
+	    		
 	    	}
 	    }
 	}
