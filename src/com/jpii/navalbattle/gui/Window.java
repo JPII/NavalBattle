@@ -2,7 +2,6 @@ package com.jpii.navalbattle.gui;
 
 import java.awt.event.*;
 import javax.swing.*;
-import javax.swing.UIManager.LookAndFeelInfo;
 
 import com.jpii.navalbattle.NavalBattle;
 import com.jpii.navalbattle.renderer.Helper;
@@ -24,32 +23,11 @@ public class Window extends JFrame {
 	public Window() {
 		width = 491;
 		height = 339;
-		startup();
 		setDefaults();
 	}
 	public Window(int x, int y) {
 		width = x;
 		height = y;
-		startup();
-	}
-	
-	private void startup(){
-		try {
-		    for (LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
-		        if ("Nimbus".equals(info.getName())) {
-		            UIManager.setLookAndFeel(info.getClassName());
-		            break;
-		        }
-		    }
-		} catch (UnsupportedLookAndFeelException e) {
-			NavalBattle.getDebugWindow().printError("NimbusLookAndFeel was unable to be loaded, unsuported");	
-		} catch (ClassNotFoundException e) {
-			NavalBattle.getDebugWindow().printError("NimbusLookAndFeel was unable to be loaded, class not found");	
-		} catch (InstantiationException e) {
-			NavalBattle.getDebugWindow().printError("NimbusLookAndFeel was unable to be loaded, instantiation");	
-		} catch (IllegalAccessException e) {
-			NavalBattle.getDebugWindow().printError("NimbusLookAndFeel was unable to be loaded, illegalaccess");	
-		}
 	}
 	
 	protected void setDefaults(){

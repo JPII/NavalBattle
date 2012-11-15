@@ -17,6 +17,9 @@
 
 package com.jpii.navalbattle;
 
+import javax.swing.UIManager.*;
+import javax.swing.*;
+
 import com.jpii.roketgamer.RoketGamer;
 import com.jpii.navalbattle.data.Commands;
 import com.jpii.navalbattle.data.Constants;
@@ -37,6 +40,8 @@ public class NavalBattle {
 	
 	public static void main(String[] args) {
 		Helper.LoadStaticResources();
+		
+		setDefaultLookAndFeel();
 		
 		debugWindow = new DebugWindow();
 		gameState = new GameState();
@@ -92,6 +97,25 @@ public class NavalBattle {
 	 */
 	public static Toaster getToasterManager() {
 		return toasterManager;
+	}
+	
+	private static void setDefaultLookAndFeel(){
+		try {
+		    for (LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
+		        if ("Nimbus".equals(info.getName())) {
+		            UIManager.setLookAndFeel(info.getClassName());
+		            break;
+		        }
+		    }
+		} catch (UnsupportedLookAndFeelException e) {
+			NavalBattle.getDebugWindow().printError("NimbusLookAndFeel was unable to be loaded, unsuported");	
+		} catch (ClassNotFoundException e) {
+			NavalBattle.getDebugWindow().printError("NimbusLookAndFeel was unable to be loaded, class not found");	
+		} catch (InstantiationException e) {
+			NavalBattle.getDebugWindow().printError("NimbusLookAndFeel was unable to be loaded, instantiation");	
+		} catch (IllegalAccessException e) {
+			NavalBattle.getDebugWindow().printError("NimbusLookAndFeel was unable to be loaded, illegalaccess");	
+		}
 	}
 	
 	/**

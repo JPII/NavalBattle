@@ -21,7 +21,6 @@ import java.awt.*;
 import java.awt.event.*;
 
 import javax.swing.*;
-import javax.swing.UIManager.LookAndFeelInfo;
 
 import com.jpii.navalbattle.NavalBattle;
 import com.jpii.navalbattle.gui.Window;
