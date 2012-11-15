@@ -29,7 +29,7 @@ public class FastMath {
 	 * @return
 	 */
 	public static double sin(double x) {
-		x /= (Math.PI/2);
+		//x *= (Math.PI/2);
 		double x2 = x * x;
 		return ((((.00015148419 * x2 - .00467376557) * x2 + .07968967928) * x2 - .64596371106) * x2 + 1.57079631847) * x;
 	}
@@ -39,7 +39,7 @@ public class FastMath {
 	 * @return
 	 */
 	public static double cos(double x) {
-		return sqrt1(1 - sin(x));
+		return Math.sqrt(1 - sin(x));
 	}
 	
 	/*public static double atan2(double y, double x)

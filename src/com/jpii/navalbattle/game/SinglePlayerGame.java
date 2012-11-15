@@ -66,6 +66,7 @@ public class SinglePlayerGame extends JFrame {
 		
 		//setSize((int) Toolkit.getDefaultToolkit().getScreenSize().getWidth(),
 			//	(int) Toolkit.getDefaultToolkit().getScreenSize().getHeight() - 48);
-		setLocation(0, 0);
+		setLocation((int)(Toolkit.getDefaultToolkit().getScreenSize().getWidth()/2) - (getWidth()/2),
+				(int)(Toolkit.getDefaultToolkit().getScreenSize().getHeight()/2) - (getHeight()/2));
 	}
 }
