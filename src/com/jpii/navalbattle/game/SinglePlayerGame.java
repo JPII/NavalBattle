@@ -45,7 +45,7 @@ public class SinglePlayerGame extends JFrame {
 		this.getContentPane().setLayout(null);
 
 		this.setSize(491, 339);
-		this.setUndecorated(true);
+		//this.setUndecorated(true);
 		this.setVisible(true);
 		this.setResizable(true);
 		this.setLocation(Toolkit.getDefaultToolkit().getScreenSize().width / 2
