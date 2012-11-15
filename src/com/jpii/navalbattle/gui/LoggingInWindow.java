@@ -57,19 +57,19 @@ public class LoggingInWindow extends Window {
 	    public void run() {
 	        try {
 				Thread.sleep(Constants.SPLASH_DURATION);
-			} catch (InterruptedException e) { }
+			} catch (Exception e) { }
 	        
 	        label.setIcon(new ImageIcon(LoggingInWindow.class.getResource("/com/jpii/navalbattle/res/roketgamer_title.png")));
 	        
 	        try {
 				Thread.sleep(Constants.SPLASH_DURATION);
-			} catch (InterruptedException e) { }
+			} catch (Exception e) { }
 	        
 	        label.setIcon(new ImageIcon(LoggingInWindow.class.getResource("/com/jpii/navalbattle/res/navalbattle_title.png")));
 	        
 	        try {
 				Thread.sleep(Constants.SPLASH_DURATION);
-			} catch (InterruptedException e) { }
+			} catch (Exception e) { }
 	        
 	        NavalBattle.getDebugWindow().printInfo("Disposing LoggingInWindow");
 			dispose();

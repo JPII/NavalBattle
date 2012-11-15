@@ -50,7 +50,7 @@ public class Game implements Runnable {
         eng.setSmoothFactor(5);
         eng.generate(Constants.MAIN_SEED, RenderConstants.GEN_TERRAIN_ROUGHNESS);
         
-        for (int c = 0; c < 50; c++) {
+        for (int c = 0; c < 100; c++) {
 	        SimpleBrownian river = new SimpleBrownian(600,800);
 	        river.setMaxIterations(1000);
 	        int sx = (int)(Math.random() * 700);

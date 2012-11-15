@@ -32,7 +32,7 @@ public class RenderConstants {
     
     public static Color GUI_GAME_FONT_COLOR = new Color(188,169,95);
     
-    public static double CURRENT_TIME_OF_DAY = 0;
+    public static double CURRENT_TIME_OF_DAY = 60;
     public static int DAYNIGHT_LENGTH_IN_SECONDS = 120;
     public static BufferedImage TIME_OVERLAY;
 
