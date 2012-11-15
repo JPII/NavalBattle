@@ -23,11 +23,11 @@ import java.awt.event.*;
 import javax.swing.*;
 
 import com.jpii.navalbattle.NavalBattle;
+import com.jpii.navalbattle.gui.Window;
 import com.jpii.navalbattle.gui.listeners.KeyboardListener;
-import com.jpii.navalbattle.renderer.Helper;
 
 @SuppressWarnings("serial")
-public class DebugWindow extends JFrame {
+public class DebugWindow extends Window {
 	private JLabel lblNavalBattle;
 	private JLabel lblDebugMode;
 	private JTextPane debugPrinter;
@@ -38,41 +38,36 @@ public class DebugWindow extends JFrame {
 	 * Constructor for DebugWindow.
 	 */
 	public DebugWindow() {
-		try {
-			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-		} catch (Exception e) {
-		}
-		
-		this.setIconImage(Helper.GUI_WINDOW_ICON);
-		
-		this.setResizable(false);
-		this.setTitle("NavalBattle");
-		this.getContentPane().setLayout(null);
+		super();
+		getContentPane().setLayout(null);
 
 		lblNavalBattle = new JLabel("NavalBattle");
-		lblNavalBattle.setBounds(10, 11, 120, 14);
-		lblNavalBattle.setFont(new Font("Tahoma", Font.BOLD, 14));
-		this.getContentPane().add(lblNavalBattle);
-
 		lblDebugMode = new JLabel("Debug Mode");
-		lblDebugMode.setBounds(95, 13, 66, 14);
-		this.getContentPane().add(lblDebugMode);
-
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(10, 35, 439, 255);
-		this.getContentPane().add(scrollPane);
-
 		debugPrinter = new JTextPane();
-		debugPrinter.setEditable(false);
-		debugPrinter.setFont(new Font("Consolas",0,12));
-		scrollPane.setViewportView(debugPrinter);
-
 		commandField = new JTextField();
-		commandField.setBounds(10, 301, 337, 23);
-		this.getContentPane().add(commandField);
-		commandField.setColumns(10);
-
 		final JButton btnSubmit = new JButton("Submit");
+		
+		lblNavalBattle.setBounds(10, 11, 120, 14);
+		lblDebugMode.setBounds(95, 13, 66, 14);
+		scrollPane.setBounds(10, 35, 439, 255);
+		commandField.setBounds(10, 301, 337, 23);
+		btnSubmit.setBounds(357, 301, 89, 23);
+		
+		lblNavalBattle.setFont(new Font("Tahoma", Font.BOLD, 14));
+		debugPrinter.setFont(new Font("Consolas",0,12));
+		debugPrinter.setEditable(false);
+		scrollPane.setViewportView(debugPrinter);
+		commandField.setColumns(10);
+		
+		getContentPane().add(lblNavalBattle);
+		getContentPane().add(lblDebugMode);
+		getContentPane().add(scrollPane);
+		getContentPane().add(commandField);
+		getContentPane().add(btnSubmit);
+		
+		commandField.grabFocus();
+		commandField.addKeyListener(new KeyboardListener(this));
 		btnSubmit.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -82,26 +77,12 @@ public class DebugWindow extends JFrame {
 				}
 			}
 		});
-		btnSubmit.setBounds(357, 301, 89, 23);
-		this.getContentPane().add(btnSubmit);
-
+	
 		printInfo("Debug mode enabled");
+		
 		this.setSize(465,365);
 		this.setVisible(true);
 		this.setLocation(0,0);
-		
-		commandField.grabFocus();
-
-		this.setFocusable(true);
-		this.addKeyListener(new KeyboardListener(this));
-		commandField.addKeyListener(new KeyboardListener(this));
-
-		this.addWindowListener(new WindowAdapter() {
-			@Override
-			public void windowClosing(WindowEvent we) {
-				setVisible(false);
-			}
-		});
 	}
 
 	/**
