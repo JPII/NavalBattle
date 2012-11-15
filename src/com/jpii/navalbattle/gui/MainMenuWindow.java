@@ -36,22 +36,40 @@ public class MainMenuWindow extends Window {
 		
 		getContentPane().setLayout(null);
 		
-	//	backgrnd = new MenuBackground(491,339,2);
-	//	backgrnd.setLocation(0, 0);
-	//	backgrnd.setSize(491,339);
-	//	setContentPane(backgrnd);
-
+		backgrnd = new MenuBackground(491,339,2);
 		JLabel lblVersion = new JLabel(Constants.NAVALBATTLE_VERSION_TITLE);
-		lblVersion.setBounds(10, 276, 238, 14);
-		this.getContentPane().add(lblVersion);
-
 		JLabel lblNavalBattle = new JLabel("NavalBattle");
+		JButton btnSingleplayer = new JButton("Singleplayer");
+		JButton btnHelp = new JButton("Help");
+		JButton btnRoketGamer = new JButton("RoketGamer");
+		JButton btnQuit = new JButton("Quit");
+		JButton btnCredits = new JButton("Credits");
+		JButton btnMultiplayer = new JButton("Multiplayer");
+		
+		lblNavalBattle.setBounds(158, 13, 193, 51);
+		lblVersion.setBounds(10, 276, 238, 14);
+		lblNavalBattle.setBounds(158, 13, 193, 51);
+		btnSingleplayer.setBounds(194, 73, 100, 25);
+		btnHelp.setBounds(194, 141, 100, 25);
+		btnRoketGamer.setBounds(194, 175, 100, 25);
+		btnQuit.setBounds(194, 209, 100, 25);
+		btnCredits.setBounds(389, 267, 76, 23);
+		btnMultiplayer.setBounds(194, 107, 100, 25);
+		
+		backgrnd.setLocation(0, 0);
 		lblNavalBattle.setForeground(Color.blue);
 		lblNavalBattle.setFont(new Font("RingBearer", Font.BOLD, 35));
-		lblNavalBattle.setBounds(158, 13, 193, 51);
-		this.getContentPane().add(lblNavalBattle);
 		
-		JButton btnSingleplayer = new JButton("Singleplayer");
+		setContentPane(backgrnd);
+		getContentPane().add(lblVersion);
+		getContentPane().add(lblNavalBattle);
+		getContentPane().add(btnSingleplayer);
+		getContentPane().add(btnHelp);
+		getContentPane().add(btnRoketGamer);
+		getContentPane().add(btnQuit);
+		getContentPane().add(btnCredits);
+		getContentPane().add(btnMultiplayer);
+		
 		btnSingleplayer.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -60,12 +78,7 @@ public class MainMenuWindow extends Window {
 				NavalBattle.getDebugWindow().printInfo("Opening SPOptions");
 				new SPOptions();
 			}
-		});
-		btnSingleplayer.setBackground(new Color(255,255,255,255));
-		btnSingleplayer.setBounds(194, 73, 100, 25);
-		this.getContentPane().add(btnSingleplayer);
-
-		JButton btnHelp = new JButton("Help");
+		});		
 		btnHelp.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -75,12 +88,6 @@ public class MainMenuWindow extends Window {
 				new HelpWindow();
 			}
 		});
-		
-		btnHelp.setBounds(194, 141, 100, 25);
-		this.getContentPane().add(btnHelp);
-
-		JButton btnRoketGamer = new JButton("RoketGamer");;
-		btnRoketGamer.setBounds(194, 175, 100, 25);
 		if(NavalBattle.getGameState().isOffline()) {
 			btnRoketGamer.setEnabled(false);
 		} else {
@@ -94,20 +101,12 @@ public class MainMenuWindow extends Window {
 				}
 			});
 		}
-		
-		this.getContentPane().add(btnRoketGamer);
-
-		JButton btnQuit = new JButton("Quit");
 		btnQuit.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				NavalBattle.close();
 			}
 		});
-		btnQuit.setBounds(194, 209, 100, 25);
-		this.getContentPane().add(btnQuit);
-
-		JButton btnCredits = new JButton("Credits");
 		btnCredits.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -117,27 +116,17 @@ public class MainMenuWindow extends Window {
 				new CreditsWindow();
 			}
 		});
-		btnCredits.setBounds(389, 267, 76, 23);
-		this.getContentPane().add(btnCredits);
-		
-		JButton btnMultiplayer = new JButton("Multiplayer");
 		btnMultiplayer.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				NavalBattle.getDebugWindow().printWarning("Multiplayer has not been implemented");
 			}
 		});
-		btnMultiplayer.setBounds(194, 107, 100, 25);
-		this.getContentPane().add(btnMultiplayer);
-		
 		ActionListener listener = new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				backgrnd.tick();
-				
 				ticks += 100;
-				
 				backgrnd.invalidate();
-				
 				repaint();
 			}
 		};
