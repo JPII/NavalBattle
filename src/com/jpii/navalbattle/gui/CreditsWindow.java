@@ -48,7 +48,7 @@ public class CreditsWindow extends Window {
 
 		licenseNotice = new JLabel("NavalBattle is open source under the GNU General Public License v3.");
 		licenseNotice.setHorizontalAlignment(SwingConstants.CENTER);
-		licenseNotice.setBounds(121, 232, 328, 14);
+		licenseNotice.setBounds(0, 292, 492, 15);
 		getContentPane().add(licenseNotice);
 
 		btnClose = new JButton("Close");
@@ -65,57 +65,57 @@ public class CreditsWindow extends Window {
 		getContentPane().add(btnClose);
 		
 		JLabel anthonyBauer = new JLabel("Anthony \"abauer\" Bauer");
-		anthonyBauer.setBounds(10, 36, 117, 14);
+		anthonyBauer.setBounds(10, 36, 209, 14);
 		getContentPane().add(anthonyBauer);
 		
 		JLabel thomasGaubert = new JLabel("Thomas \"TexasGamer\" Gaubert");
-		thomasGaubert.setBounds(10, 61, 150, 14);
+		thomasGaubert.setBounds(10, 61, 209, 14);
 		getContentPane().add(thomasGaubert);
 		
 		JLabel maxKirkby = new JLabel("Max \"maximusvladimir\" Kirkby");
-		maxKirkby.setBounds(10, 86, 140, 14);
+		maxKirkby.setBounds(10, 86, 209, 14);
 		getContentPane().add(maxKirkby);
 		
 		JLabel jrVetus = new JLabel("JR \"DarkWarHero\" Vetus");
-		jrVetus.setBounds(10, 111, 127, 14);
+		jrVetus.setBounds(10, 111, 220, 14);
 		getContentPane().add(jrVetus);
 		
 		mattWaller = new JLabel("Matt \"Matthis5point0\" Waller");
-		mattWaller.setBounds(10, 136, 140, 14);
+		mattWaller.setBounds(10, 135, 220, 14);
 		getContentPane().add(mattWaller);
 		
 		zachMathewson = new JLabel("Zach \"smeagle42\" Mathewson");
-		zachMathewson.setBounds(10, 161, 150, 14);
+		zachMathewson.setBounds(10, 161, 209, 14);
 		getContentPane().add(zachMathewson);
 		
 		anthonyRole = new JLabel("Game design lead");
 		anthonyRole.setFont(new Font("Tahoma", Font.BOLD, 11));
-		anthonyRole.setBounds(190, 36, 117, 14);
+		anthonyRole.setBounds(260, 37, 117, 14);
 		getContentPane().add(anthonyRole);
 		
 		thomasRole = new JLabel("SCM manager, RoketGamer lead");
 		thomasRole.setFont(new Font("Tahoma", Font.BOLD, 11));
-		thomasRole.setBounds(190, 61, 189, 14);
+		thomasRole.setBounds(260, 62, 189, 14);
 		getContentPane().add(thomasRole);
 		
 		JLabel maxRole = new JLabel("TBD");
 		maxRole.setFont(new Font("Tahoma", Font.BOLD, 11));
-		maxRole.setBounds(190, 86, 46, 14);
+		maxRole.setBounds(260, 87, 46, 14);
 		getContentPane().add(maxRole);
 		
 		JLabel jrRole = new JLabel("TBD");
 		jrRole.setFont(new Font("Tahoma", Font.BOLD, 11));
-		jrRole.setBounds(190, 111, 46, 14);
+		jrRole.setBounds(260, 112, 46, 14);
 		getContentPane().add(jrRole);
 		
 		JLabel mattRole = new JLabel("TBD");
 		mattRole.setFont(new Font("Tahoma", Font.BOLD, 11));
-		mattRole.setBounds(190, 136, 46, 14);
+		mattRole.setBounds(260, 137, 46, 14);
 		getContentPane().add(mattRole);
 		
 		JLabel zachRole = new JLabel("TBD");
 		zachRole.setFont(new Font("Tahoma", Font.BOLD, 11));
-		zachRole.setBounds(190, 161, 46, 14);
+		zachRole.setBounds(260, 162, 46, 14);
 		getContentPane().add(zachRole);
 		
 		JLabel gitHub = new JLabel("GitHub");
@@ -123,17 +123,17 @@ public class CreditsWindow extends Window {
 		getContentPane().add(gitHub);
 		
 		JLabel roketGamer = new JLabel("RoketGamer");
-		roketGamer.setBounds(10, 203, 59, 14);
+		roketGamer.setBounds(10, 203, 117, 14);
 		getContentPane().add(roketGamer);
 		
 		JLabel githubRole = new JLabel("Source code hosting, SCM");
 		githubRole.setFont(new Font("Tahoma", Font.BOLD, 11));
-		githubRole.setBounds(190, 181, 156, 14);
+		githubRole.setBounds(260, 182, 156, 14);
 		getContentPane().add(githubRole);
 		
 		JLabel roketgamerRole = new JLabel("Online social gaming");
 		roketgamerRole.setFont(new Font("Tahoma", Font.BOLD, 11));
-		roketgamerRole.setBounds(190, 203, 117, 14);
+		roketgamerRole.setBounds(260, 204, 117, 14);
 		getContentPane().add(roketgamerRole);
 	}
 }
