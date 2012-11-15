@@ -23,7 +23,7 @@ import java.awt.Toolkit;
 import java.awt.event.*;
 
 import com.jpii.navalbattle.data.Constants;
-import com.jpii.navalbattle.gui.KeyboardListener;
+import com.jpii.navalbattle.gui.listeners.KeyboardListener;
 import com.jpii.navalbattle.renderer.Helper;
 import com.jpii.navalbattle.NavalBattle;
 

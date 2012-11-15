@@ -25,6 +25,7 @@ import java.awt.event.*;
 import com.jpii.navalbattle.NavalBattle;
 import com.jpii.navalbattle.game.*;
 import com.jpii.navalbattle.renderer.Helper;
+import com.jpii.navalbattle.gui.listeners.KeyboardListener;
 
 
 @SuppressWarnings("serial")

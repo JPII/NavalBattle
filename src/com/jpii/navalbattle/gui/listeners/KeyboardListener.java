@@ -15,35 +15,33 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.jpii.navalbattle.gui;
+package com.jpii.navalbattle.gui.listeners;
 
 import java.awt.event.*;
-
 import com.jpii.navalbattle.NavalBattle;
 import com.jpii.navalbattle.debug.DebugWindow;
+import com.jpii.navalbattle.gui.*;
 
 public class KeyboardListener implements KeyListener {
 	
-	Object o;
+	Object window;
 	
-	public KeyboardListener(Object l) {
-		o = l;
+	public KeyboardListener(Object classname) {
+		window = classname;
 	}
 	
 	public void keyPressed(KeyEvent k) {	
 		if(k.getKeyCode() == KeyEvent.VK_ESCAPE) {
 			NavalBattle.close();
 		}
-		
-		if(o instanceof LoginWindow) {
-			LoginWindow l = (LoginWindow) o;
+		if(window instanceof LoginWindow) {
+			LoginWindow l = (LoginWindow) window;
 			if(k.getKeyCode() == KeyEvent.VK_ENTER) {
 				l.login();
 			}
 		}
-		
-		if(o instanceof DebugWindow) {
-			DebugWindow d = (DebugWindow) o;
+		if(window instanceof DebugWindow) {
+			DebugWindow d = (DebugWindow) window;
 			if(k.getKeyCode() == KeyEvent.VK_ENTER) {
 				d.submitCommandRemote();
 			}

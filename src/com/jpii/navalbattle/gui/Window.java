@@ -1,13 +1,11 @@
 package com.jpii.navalbattle.gui;
 
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
-
-import javax.swing.JFrame;
-import javax.swing.UIManager;
+import java.awt.event.*;
+import javax.swing.*;
 
 import com.jpii.navalbattle.NavalBattle;
 import com.jpii.navalbattle.renderer.Helper;
+import com.jpii.navalbattle.gui.listeners.KeyboardListener;
 
 @SuppressWarnings("serial")
 public class Window extends JFrame {

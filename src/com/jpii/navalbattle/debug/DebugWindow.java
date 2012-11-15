@@ -21,10 +21,9 @@ import java.awt.*;
 import java.awt.event.*;
 
 import javax.swing.*;
-import javax.swing.text.StyledDocument;
 
 import com.jpii.navalbattle.NavalBattle;
-import com.jpii.navalbattle.gui.KeyboardListener;
+import com.jpii.navalbattle.gui.listeners.KeyboardListener;
 import com.jpii.navalbattle.renderer.Helper;
 
 @SuppressWarnings("serial")
