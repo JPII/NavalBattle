@@ -23,35 +23,35 @@ public class Window extends JFrame {
 	public Window() {
 		width = 491;
 		height = 339;
+		startup();
 		setDefaults();
 	}
 	public Window(int x, int y) {
 		width = x;
 		height = y;
-		setDefaults();
+		startup();
 	}
 	
-	private void setDefaults(){
+	private void startup(){
 		try {
 			UIManager.setLookAndFeel("javax.swing.plaf.nimbus.NimbusLookAndFeel");
 		} catch (Exception e) {}
+	}
+	
+	protected void setDefaults(){
 		this.setIconImage(Helper.GUI_WINDOW_ICON);
-		
 		setTitle("NavalBattle");
 		setSize(width, height);
 		setLocation(1280/2-getWidth()/2,800/2-getHeight()/2);
-		
 		setResizable(false);
 		setFocusable(true);
 		addKeyListener(new KeyboardListener(this));
-		
 		addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowClosing(WindowEvent we) {
 				NavalBattle.close();
 			}
 		});
-		
 		setVisible(true);
 	}
 	

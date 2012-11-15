@@ -35,7 +35,7 @@ public class LoginWindow extends Window {
 	JPasswordField passwordField;
 
 	public LoginWindow() {
-		//super(491,160);
+		super(491,160);
 		NavalBattle.getDebugWindow().printInfo("LoginWindow opened");
 		
 		getContentPane().setLayout(null);
@@ -59,7 +59,6 @@ public class LoginWindow extends Window {
 		getContentPane().add(passwordLabel);
 		getContentPane().add(passwordField);
 		getContentPane().add(loginButton);
-		this.setIconImage(Helper.GUI_WINDOW_ICON);
 		
 		passwordField.addKeyListener(new KeyboardListener(this));
 		usernameField.addKeyListener(new KeyboardListener(this));		
@@ -81,9 +80,7 @@ public class LoginWindow extends Window {
 		optionsButton.setBounds(387, 103, 78, 22);
 		getContentPane().add(optionsButton);
 
-		setSize(491,160);
-		setLocation(1280/2-getWidth()/2,800/2-getHeight()/2);
-		setVisible(true);
+		setDefaults();
 
 		loginButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent ae) {
