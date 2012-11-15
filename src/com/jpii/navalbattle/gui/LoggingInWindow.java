@@ -14,21 +14,23 @@ public class LoggingInWindow extends Window {
 	private ImageChanger imageChanger;
 	
 	public LoggingInWindow() {
-		
 		NavalBattle.getDebugWindow().printInfo("LoggingInWindow opened");
-
 		getContentPane().setLayout(null);
 		
 		JProgressBar progressBar = new JProgressBar();
-		progressBar.setIndeterminate(true);
-		progressBar.setBounds(0, 286, 475, 14);
-		getContentPane().add(progressBar);
-		
 		JLabel label = new JLabel("");
 		label.setIcon(new ImageIcon(LoggingInWindow.class.getResource("/com/jpii/navalbattle/res/jpii_title.png")));
-		label.setBounds(0, 0, 475, 300);
+		imageChanger = new ImageChanger(label);
+		
+		progressBar.setBounds(0, 297, 485, 14);
+		label.setBounds(0, 0, 485, 311);
+		
+		progressBar.setIndeterminate(true);
+		
+		getContentPane().add(progressBar);
 		getContentPane().add(label);
 		
+		imageChanger.start();
 		addMouseListener(new MouseAdapter() {
 			@SuppressWarnings("deprecation")
 			public void mouseClicked(MouseEvent e) {
@@ -41,9 +43,6 @@ public class LoggingInWindow extends Window {
 				imageChanger.stop();
 			}
 		});
-		
-		imageChanger = new ImageChanger(label);
-		imageChanger.start();
 	}
 	
 	class ImageChanger extends Thread {
