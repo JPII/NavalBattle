@@ -53,7 +53,7 @@ public class LoginWindow extends Window {
 		passwordField.setToolTipText("Use RoketGamer application password");
 		passwordField.setBounds(365,42,100,20);
 		loginButton = new JButton("Login");
-		loginButton.setBounds(387,86,78,22);
+		loginButton.setBounds(387,73,78,22);
 
 		getContentPane().add(usernameLabel);
 		getContentPane().add(usernameField);
@@ -66,19 +66,23 @@ public class LoginWindow extends Window {
 		usernameField.addKeyListener(new KeyboardListener(this));		
 		
 		JLabel lblVersion = new JLabel(Constants.NAVALBATTLE_VERSION_TITLE);
-		lblVersion.setBounds(10, 90, 193, 14);
+		lblVersion.setBounds(10, 107, 193, 14);
 		getContentPane().add(lblVersion);
 
 		JButton registerButton = new JButton("Register");
-		registerButton.setBounds(301, 86, 78, 22);
+		registerButton.setBounds(299, 103, 78, 22);
 		getContentPane().add(registerButton);
 		registerButton.addKeyListener(new KeyboardListener(this));
 		
 		JButton offlineButton = new JButton("Offline");
-		offlineButton.setBounds(213, 86, 78, 22);
+		offlineButton.setBounds(299, 73, 78, 22);
 		getContentPane().add(offlineButton);
+		
+		JButton optionsButton = new JButton("Options");
+		optionsButton.setBounds(387, 103, 78, 22);
+		getContentPane().add(optionsButton);
 
-		setSize(491,143);
+		setSize(491,160);
 		setVisible(true);
 
 		loginButton.addActionListener(new ActionListener() {
@@ -105,6 +109,15 @@ public class LoginWindow extends Window {
 			public void actionPerformed(ActionEvent ae) {			
 				NavalBattle.getDebugWindow().printInfo("Opening register page");
 				URLUtils.openURL(Constants.SERVER_LOCATION + "/register.php?game=1&name=NavalBattle");
+			}
+		});
+		
+		optionsButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent ae) {
+				NavalBattle.getDebugWindow().printInfo("Disposing LoginWindow");
+				dispose();
+				NavalBattle.getDebugWindow().printInfo("Opening LoginOptionsWindow");
+				new LoginOptionsWindow();
 			}
 		});
 	}
