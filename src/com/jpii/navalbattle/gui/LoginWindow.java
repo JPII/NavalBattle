@@ -21,7 +21,6 @@ import javax.swing.*;
 import java.awt.event.*;
 import com.jpii.navalbattle.NavalBattle;
 import com.jpii.navalbattle.data.Constants;
-import com.jpii.navalbattle.renderer.Helper;
 import com.jpii.navalbattle.util.URLUtils;
 import com.jpii.roketgamer.Player;
 import com.jpii.roketgamer.rauth.*;
@@ -37,51 +36,51 @@ public class LoginWindow extends Window {
 	public LoginWindow() {
 		super(491,160);
 		NavalBattle.getDebugWindow().printInfo("LoginWindow opened");
-		
 		getContentPane().setLayout(null);
 		usernameLabel = new JLabel();
 		usernameLabel.setText("Username");
-		usernameLabel.setBounds(311,11,58,20);
+		usernameLabel.setBounds(295,11,78,20);
 		usernameField = new JTextField(25);
 		usernameField.setBounds(365,11,100,20);
 		passwordLabel = new JLabel();
 		passwordLabel.setToolTipText("Use RoketGamer application password");
 		passwordLabel.setText("Password");
-		passwordLabel.setBounds(311,42,58,20);
+		passwordLabel.setBounds(295,37,78,20);
 		passwordField = new JPasswordField(25);
 		passwordField.setToolTipText("Use RoketGamer application password");
-		passwordField.setBounds(365,42,100,20);
+		passwordField.setBounds(365,37,100,20);
+		
 		loginButton = new JButton("Login");
-		loginButton.setBounds(387,73,78,22);
-
+		loginButton.setBounds(385,66,78,22);
+		JButton registerButton = new JButton("Register");
+		registerButton.setBounds(295, 94, 78, 22);
+		JButton offlineButton = new JButton("Offline");
+		offlineButton.setBounds(295, 66, 78, 22);
+		JButton optionsButton = new JButton("Options");
+		optionsButton.setBounds(385, 94, 78, 22);
+		
+		JLabel lblVersion = new JLabel(Constants.NAVALBATTLE_VERSION_TITLE);
+		lblVersion.setBounds(10, 107, 193, 14);
+		
 		getContentPane().add(usernameLabel);
 		getContentPane().add(usernameField);
 		getContentPane().add(passwordLabel);
 		getContentPane().add(passwordField);
 		getContentPane().add(loginButton);
+		getContentPane().add(lblVersion);
+		getContentPane().add(registerButton);
+		getContentPane().add(offlineButton);
+		getContentPane().add(optionsButton);
 		
 		passwordField.addKeyListener(new KeyboardListener(this));
 		usernameField.addKeyListener(new KeyboardListener(this));		
-		
-		JLabel lblVersion = new JLabel(Constants.NAVALBATTLE_VERSION_TITLE);
-		lblVersion.setBounds(10, 107, 193, 14);
-		getContentPane().add(lblVersion);
-
-		JButton registerButton = new JButton("Register");
-		registerButton.setBounds(299, 103, 78, 22);
-		getContentPane().add(registerButton);
 		registerButton.addKeyListener(new KeyboardListener(this));
 		
-		JButton offlineButton = new JButton("Offline");
-		offlineButton.setBounds(299, 73, 78, 22);
-		getContentPane().add(offlineButton);
-		
-		JButton optionsButton = new JButton("Options");
-		optionsButton.setBounds(387, 103, 78, 22);
-		getContentPane().add(optionsButton);
-
 		setDefaults();
-
+		setSize(491,160);
+		setLocation(1280/2-getWidth()/2,800/2-getHeight()/2);
+		
+		
 		loginButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent ae) {
 				login();
