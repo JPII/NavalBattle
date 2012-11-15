@@ -50,6 +50,27 @@ public class Game implements Runnable {
         eng.setSmoothFactor(5);
         eng.generate(Constants.MAIN_SEED, RenderConstants.GEN_TERRAIN_ROUGHNESS);
         
+        for (int c = 0; c < 50; c++) {
+	        SimpleBrownian river = new SimpleBrownian(600,800);
+	        river.setMaxIterations(1000);
+	        int sx = (int)(Math.random() * 700);
+	        int sy = (int)(Math.random() * 500);
+	        river.generate(Constants.MAIN_SEED + (sx & sy) + sx, 0.9);
+	        int rx = (int)(Math.random() * Constants.WINDOW_WIDTH * 3);
+	        int ry = (int)(Math.random() * Constants.WINDOW_HEIGHT * 3);
+	        for (int x = 0; x < 600; x++) {
+	        	for (int y = 0; y < 800; y++) {
+	        		if (river.getPoint(x,y) == 1.0) {
+		        		int tx = rx + x;
+		        		int ty = ry + y;
+		        		if (eng.getPoint(tx, ty) > RenderConstants.GEN_WATER_HEIGHT) {
+		        			eng.setPoint(tx,ty,eng.getPoint(tx,ty) - 0.3);
+		        		}
+	        		}
+	        	}
+	        }
+        }
+        
         NavalBattle.getDebugWindow().printInfo("Generated map. Size: " + (4*Constants.WINDOW_WIDTH/50) + "x" +
         (4*Constants.WINDOW_HEIGHT/50) + ". Used seed: " + Constants.MAIN_SEED);
         
