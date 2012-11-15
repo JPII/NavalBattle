@@ -33,11 +33,51 @@ public class HelpWindow extends Window {
 		getContentPane().setLayout(null);
 		
 		lblTitle = new JLabel("NavalBattle Help");
-		lblTitle.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lblTitle.setBounds(10, 11, 121, 23);
-		getContentPane().add(lblTitle);
-		
 		JButton btnClose = new JButton("Close");
+		JLabel lblYoutubeTutorials = new JLabel("YouTube Tutorials");
+		JButton btnVideoOverview = new JButton("Overview");
+		JButton btnVideoNavigation = new JButton("Navigation");
+		JButton btnVideoCombat = new JButton("Combat");
+		JButton btnVideoUpgradeShop = new JButton("Upgrades");
+		JButton btnVideoMultiplayer = new JButton("Multiplayer");
+		JButton btnVideoRoketgamer = new JButton("RoketGamer");
+		
+		lblTitle.setFont(new Font("Tahoma", Font.BOLD, 14));
+		
+		lblTitle.setBounds(10, 11, 121, 23);
+		btnClose.setBounds(10, 137, 82, 23);
+		lblYoutubeTutorials.setBounds(20, 36, 111, 14);
+		btnVideoOverview.setBounds(30, 61, 82, 23);
+		btnVideoNavigation.setBounds(122, 61, 89, 23);
+		btnVideoCombat.setBounds(221, 61, 89, 23);
+		btnVideoUpgradeShop.setBounds(320, 61, 107, 23);
+		btnVideoMultiplayer.setBounds(111, 95, 100, 23);
+		btnVideoRoketgamer.setBounds(221, 95, 100, 23);
+		
+		getContentPane().add(lblTitle);
+		getContentPane().add(btnClose);
+		getContentPane().add(lblYoutubeTutorials);
+		getContentPane().add(btnVideoOverview);
+		getContentPane().add(btnVideoNavigation);
+		getContentPane().add(btnVideoCombat);
+		getContentPane().add(btnVideoUpgradeShop);
+		getContentPane().add(btnVideoMultiplayer);
+		getContentPane().add(btnVideoRoketgamer);
+		
+		btnVideoRoketgamer.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				NavalBattle.getDebugWindow().printInfo("Opening RoketGamer tutorial");
+				URLUtils.openURL("http://www.google.com");
+			}
+		});
+		btnVideoOverview.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				NavalBattle.getDebugWindow().printInfo("Opening overview tutorial");
+				URLUtils.openURL("http://www.google.com");
+			}
+		});
 		btnClose.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -47,29 +87,10 @@ public class HelpWindow extends Window {
 				new MainMenuWindow();
 			}
 		});
-		btnClose.setBounds(10, 137, 59, 23);
-		getContentPane().add(btnClose);
-		
-		JLabel lblYoutubeTutorials = new JLabel("YouTube Tutorials");
-		lblYoutubeTutorials.setBounds(20, 36, 92, 14);
-		getContentPane().add(lblYoutubeTutorials);
-		
-		JButton btnVideoOverview = new JButton("Overview");
-		btnVideoOverview.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				NavalBattle.getDebugWindow().printInfo("Opening overview tutorial");
-				URLUtils.openURL("http://www.google.com");
-			}
-		});
 		btnVideoOverview.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		btnVideoOverview.setBounds(30, 61, 82, 23);
-		getContentPane().add(btnVideoOverview);
-		
-		JButton btnVideoNavigation = new JButton("Navigation");
 		btnVideoNavigation.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -77,10 +98,6 @@ public class HelpWindow extends Window {
 				URLUtils.openURL("http://www.google.com");
 			}
 		});
-		btnVideoNavigation.setBounds(122, 61, 89, 23);
-		getContentPane().add(btnVideoNavigation);
-		
-		JButton btnVideoCombat = new JButton("Combat");
 		btnVideoCombat.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -88,10 +105,6 @@ public class HelpWindow extends Window {
 				URLUtils.openURL("http://www.google.com");
 			}
 		});
-		btnVideoCombat.setBounds(221, 61, 89, 23);
-		getContentPane().add(btnVideoCombat);
-		
-		JButton btnVideoUpgradeShop = new JButton("Upgrade Shop");
 		btnVideoUpgradeShop.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -99,10 +112,6 @@ public class HelpWindow extends Window {
 				URLUtils.openURL("http://www.google.com");
 			}
 		});
-		btnVideoUpgradeShop.setBounds(320, 61, 107, 23);
-		getContentPane().add(btnVideoUpgradeShop);
-		
-		JButton btnVideoMultiplayer = new JButton("Multiplayer");
 		btnVideoMultiplayer.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -110,18 +119,5 @@ public class HelpWindow extends Window {
 				URLUtils.openURL("http://www.google.com");
 			}
 		});
-		btnVideoMultiplayer.setBounds(111, 95, 100, 23);
-		getContentPane().add(btnVideoMultiplayer);
-		
-		JButton btnVideoRoketgamer = new JButton("RoketGamer");
-		btnVideoRoketgamer.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				NavalBattle.getDebugWindow().printInfo("Opening RoketGamer tutorial");
-				URLUtils.openURL("http://www.google.com");
-			}
-		});
-		btnVideoRoketgamer.setBounds(221, 95, 100, 23);
-		getContentPane().add(btnVideoRoketgamer);
 	}
 }
