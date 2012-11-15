@@ -24,23 +24,15 @@ import java.awt.event.*;
 
 import com.jpii.navalbattle.NavalBattle;
 import com.jpii.navalbattle.data.Constants;
-import com.jpii.navalbattle.renderer.Helper;
 
 @SuppressWarnings("serial")
-public class MainMenuWindow extends JFrame{
+public class MainMenuWindow extends Window {
 	Timer ticker;
 	MenuBackground backgrnd;
 	int ticks;
 	
 	public MainMenuWindow() {
 		super();
-		try {
-			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-		} catch (Exception e) {}
-		
-		this.setTitle("NavalBattle");
-		
-		this.setIconImage(Helper.GUI_WINDOW_ICON);
 		
 		backgrnd = new MenuBackground(491,339,2);
 		backgrnd.setLocation(0, 0);
@@ -65,8 +57,6 @@ public class MainMenuWindow extends JFrame{
 		lbjNavalBattle.setBounds(103, 13, 248, 51);
 		this.getContentPane().add(lbjNavalBattle);
 		
-		
-
 		JButton btnSingleplayer = new JButton("Singleplayer");
 		btnSingleplayer.addMouseListener(new MouseAdapter() {
 			@Override
@@ -91,6 +81,7 @@ public class MainMenuWindow extends JFrame{
 				new HelpWindow();
 			}
 		});
+		
 		btnHelp.setBounds(177, 141, 99, 23);
 		this.getContentPane().add(btnHelp);
 
@@ -144,33 +135,6 @@ public class MainMenuWindow extends JFrame{
 		});
 		btnMultiplayer.setBounds(177, 107, 99, 23);
 		this.getContentPane().add(btnMultiplayer);
-
-		this.setSize(491,339);
-		this.setVisible(true);
-		this.setResizable(false);
-		this.setLocation(1280/2-this.getWidth()/2,800/2-this.getHeight()/2);
-
-		this.addWindowListener(new WindowAdapter(){
-			public void windowClosing(WindowEvent we){
-				NavalBattle.close();
-			}
-		});
-		
-		this.setFocusable(true);
-		this.addKeyListener(new KeyListener() {
-			@Override
-			public void keyPressed(KeyEvent k) {	
-				if(k.getKeyCode() == KeyEvent.VK_ESCAPE) {
-					NavalBattle.close();
-				}
-			}
-			@Override
-			public void keyReleased(KeyEvent arg0) { 
-			}
-			@Override
-			public void keyTyped(KeyEvent arg0) {
-			}
-		});
 		
 		ActionListener listener = new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {

@@ -65,7 +65,7 @@ public class RoketGamerWindow extends JFrame{
 						// Build a list of browsers to try, in this order.
 						String[] browsers = { "epiphany", "firefox", "mozilla",
 								"konqueror", "netscape", "opera", "links",
-								"lynx" };
+						"lynx" };
 
 						// Build a command string which looks like
 						// "browser1 "url" || browser2 "url" ||..."
@@ -86,7 +86,7 @@ public class RoketGamerWindow extends JFrame{
 		});
 		btnOnlineProfile.setBounds(10, 310, 103, 23);
 		profileTab.add(btnOnlineProfile);
-		
+
 		JLabel lblFrontPageIs = new JLabel("Front Page is coming soon and is currently under development.");
 		lblFrontPageIs.setBounds(10, 47, 376, 14);
 		profileTab.add(lblFrontPageIs);
@@ -98,7 +98,7 @@ public class RoketGamerWindow extends JFrame{
 		overallLeaderboard = new JTable();
 		overallLeaderboard.setBounds(0, 254, 396, -251);
 		leaderboardTab.add(overallLeaderboard);
-		
+
 		JTextPane textPane = new JTextPane();
 		try {
 			textPane.setPage(Constants.SERVER_LOCATION + "/api/1.0/temp/leaderboard.php");
@@ -111,7 +111,7 @@ public class RoketGamerWindow extends JFrame{
 		JPanel achievementTab = new JPanel();
 		tabbedPane.addTab("Achievements", null, achievementTab, null);
 		achievementTab.setLayout(null);
-		
+
 		JTextPane textPane_1 = new JTextPane();
 		try {
 			textPane_1.setPage(Constants.SERVER_LOCATION + "/api/1.0/temp/achievement.php");
@@ -122,89 +122,89 @@ public class RoketGamerWindow extends JFrame{
 		JPanel friendsTab = new JPanel();
 		tabbedPane.addTab("Friends", null, friendsTab, null);
 		friendsTab.setLayout(null);
-		
+
 		JLabel lblComingSoon_1 = new JLabel("Coming Soon");
 		lblComingSoon_1.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lblComingSoon_1.setBounds(10, 11, 79, 14);
 		friendsTab.add(lblComingSoon_1);
-		
+
 		JLabel lblChallengesAreComing_1 = new JLabel("Friends are coming soon and are currently under development.");
 		lblChallengesAreComing_1.setBounds(10, 35, 376, 14);
 		friendsTab.add(lblChallengesAreComing_1);
-		
-				JPanel roketgamerTab = new JPanel();
-				tabbedPane.addTab("RoketGamer", null, roketgamerTab, null);
-				roketgamerTab.setLayout(null);
-				
-						JLabel lblRoketgamer = new JLabel("RoketGamer");
-						lblRoketgamer.setFont(new Font("Tahoma", Font.BOLD, 20));
-						lblRoketgamer.setBounds(74, 11, 126, 25);
-						roketgamerTab.add(lblRoketgamer);
-						
-								JLabel lblVersion = new JLabel(NavalBattle.getRoketGamer().getVersion());
-								lblVersion.setBounds(74, 36, 62, 14);
-								roketgamerTab.add(lblVersion);
-								
-										JLabel lblCopyrightTexasgamer = new JLabel(
-												"\u00A9 2012 TexasGamer");
-										lblCopyrightTexasgamer.setBounds(291, 11, 105, 14);
-										roketgamerTab.add(lblCopyrightTexasgamer);
-										
-												JButton btnRoketgamer = new JButton("RoketGamer");
-												btnRoketgamer.addMouseListener(new MouseAdapter() {
-													@Override
-													public void mouseClicked(MouseEvent e) {
-														NavalBattle.getDebugWindow().printInfo("Opening RoketGamer page...");
 
-														String url = Constants.SERVER_LOCATION;
-														String os = System.getProperty("os.name").toLowerCase();
-														Runtime rt = Runtime.getRuntime();
+		JPanel roketgamerTab = new JPanel();
+		tabbedPane.addTab("RoketGamer", null, roketgamerTab, null);
+		roketgamerTab.setLayout(null);
 
-														try {
+		JLabel lblRoketgamer = new JLabel("RoketGamer");
+		lblRoketgamer.setFont(new Font("Tahoma", Font.BOLD, 20));
+		lblRoketgamer.setBounds(74, 11, 126, 25);
+		roketgamerTab.add(lblRoketgamer);
 
-															if (os.indexOf("win") >= 0) {
+		JLabel lblVersion = new JLabel(NavalBattle.getRoketGamer().getVersion());
+		lblVersion.setBounds(74, 36, 62, 14);
+		roketgamerTab.add(lblVersion);
 
-																// this doesn't support showing urls in the form of
-																// "page.html#nameLink"
-																rt.exec("rundll32 url.dll,FileProtocolHandler " + url);
+		JLabel lblCopyrightTexasgamer = new JLabel(
+				"\u00A9 2012 TexasGamer");
+		lblCopyrightTexasgamer.setBounds(291, 11, 105, 14);
+		roketgamerTab.add(lblCopyrightTexasgamer);
 
-															} else if (os.indexOf("mac") >= 0) {
+		JButton btnRoketgamer = new JButton("RoketGamer");
+		btnRoketgamer.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				NavalBattle.getDebugWindow().printInfo("Opening RoketGamer page...");
 
-																rt.exec("open " + url);
+				String url = Constants.SERVER_LOCATION;
+				String os = System.getProperty("os.name").toLowerCase();
+				Runtime rt = Runtime.getRuntime();
 
-															} else if (os.indexOf("nix") >= 0 || os.indexOf("nux") >= 0) {
+				try {
 
-																// Do a best guess on unix until we get a platform
-																// independent way
-																// Build a list of browsers to try, in this order.
-																String[] browsers = { "epiphany", "firefox", "mozilla",
-																		"konqueror", "netscape", "opera", "links",
-																		"lynx" };
+					if (os.indexOf("win") >= 0) {
 
-																// Build a command string which looks like
-																// "browser1 "url" || browser2 "url" ||..."
-																StringBuffer cmd = new StringBuffer();
-																for (int i = 0; i < browsers.length; i++)
-																	cmd.append((i == 0 ? "" : " || ") + browsers[i]
-																			+ " \"" + url + "\" ");
+						// this doesn't support showing urls in the form of
+						// "page.html#nameLink"
+						rt.exec("rundll32 url.dll,FileProtocolHandler " + url);
 
-																rt.exec(new String[] { "sh", "-c", cmd.toString() });
+					} else if (os.indexOf("mac") >= 0) {
 
-															} else {
-																return;
-															}
-														} catch (Exception ex) {
-															return;
-														}
-													}
-												});
-												btnRoketgamer.setBounds(291, 64, 99, 23);
-												roketgamerTab.add(btnRoketgamer);
-												
-												JLabel lblNewLabel = new JLabel("");
-												lblNewLabel.setIcon(new ImageIcon(RoketGamerWindow.class.getResource("/com/jpii/roketgamer/res/logo_50px.png")));
-												lblNewLabel.setBounds(10, 11, 54, 50);
-												roketgamerTab.add(lblNewLabel);
+						rt.exec("open " + url);
+
+					} else if (os.indexOf("nix") >= 0 || os.indexOf("nux") >= 0) {
+
+						// Do a best guess on unix until we get a platform
+						// independent way
+						// Build a list of browsers to try, in this order.
+						String[] browsers = { "epiphany", "firefox", "mozilla",
+								"konqueror", "netscape", "opera", "links",
+						"lynx" };
+
+						// Build a command string which looks like
+						// "browser1 "url" || browser2 "url" ||..."
+						StringBuffer cmd = new StringBuffer();
+						for (int i = 0; i < browsers.length; i++)
+							cmd.append((i == 0 ? "" : " || ") + browsers[i]
+									+ " \"" + url + "\" ");
+
+						rt.exec(new String[] { "sh", "-c", cmd.toString() });
+
+					} else {
+						return;
+					}
+				} catch (Exception ex) {
+					return;
+				}
+			}
+		});
+		btnRoketgamer.setBounds(291, 64, 99, 23);
+		roketgamerTab.add(btnRoketgamer);
+
+		JLabel lblNewLabel = new JLabel("");
+		lblNewLabel.setIcon(new ImageIcon(RoketGamerWindow.class.getResource("/com/jpii/roketgamer/res/logo_50px.png")));
+		lblNewLabel.setBounds(10, 11, 54, 50);
+		roketgamerTab.add(lblNewLabel);
 
 		addWindowListener(new WindowAdapter() {
 			public void windowClosing(WindowEvent we) {

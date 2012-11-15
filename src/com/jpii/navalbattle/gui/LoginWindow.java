@@ -29,7 +29,7 @@ import com.jpii.roketgamer.rauth.AuthStatus;
 import com.jpii.roketgamer.rauth.Password;
 
 @SuppressWarnings("serial")
-public class LoginWindow extends JFrame{
+public class LoginWindow extends Window {
 	JButton loginButton;
 	JLabel usernameLabel, passwordLabel;
 	JTextField usernameField;
@@ -38,12 +38,7 @@ public class LoginWindow extends JFrame{
 	public LoginWindow() {
 		
 		NavalBattle.getDebugWindow().printInfo("LoginWindow opened");
-		try {
-			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-		} catch (Exception e) {}
-		this.setIconImage(Helper.GUI_WINDOW_ICON);
 		
-		setTitle("NavalBattle");
 		getContentPane().setLayout(null);
 		usernameLabel = new JLabel();
 		usernameLabel.setText("Username");
@@ -84,8 +79,6 @@ public class LoginWindow extends JFrame{
 		getContentPane().add(offlineButton);
 
 		setSize(491,143);
-		setResizable(false);
-		setLocation(1280/2-getWidth()/2,800/2-getHeight()/2);
 		setVisible(true);
 
 		loginButton.addActionListener(new ActionListener() {
@@ -112,16 +105,6 @@ public class LoginWindow extends JFrame{
 			public void actionPerformed(ActionEvent ae) {			
 				NavalBattle.getDebugWindow().printInfo("Opening register page");
 				URLUtils.openURL(Constants.SERVER_LOCATION + "/register.php?game=1&name=NavalBattle");
-			}
-		});
-		
-		setFocusable(true);
-		addKeyListener(new KeyboardListener(this));
-
-		addWindowListener(new WindowAdapter() {
-			@Override
-			public void windowClosing(WindowEvent we) {
-				NavalBattle.close();
 			}
 		});
 	}
@@ -162,14 +145,5 @@ public class LoginWindow extends JFrame{
 				JOptionPane.showMessageDialog(this, "Unable to login. Check your internet connection.");
 			}
 		}
-	}
-	
-	/**
-	 * Get method for LoginWindow
-	 * 
-	 * @return LoginWindow
-	 */
-	public JFrame getFrame() {
-		return this;
 	}
 }

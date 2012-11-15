@@ -26,7 +26,7 @@ import java.awt.*;
 import java.awt.event.*;
 
 @SuppressWarnings("serial")
-public class CreditsWindow extends JFrame {
+public class CreditsWindow extends Window {
 	private JLabel gameTitle;
 	private JLabel licenseNotice;
 	private JButton btnClose;
@@ -36,11 +36,7 @@ public class CreditsWindow extends JFrame {
 	private JLabel thomasRole;
 
 	public CreditsWindow() {
-		try {
-			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-		} catch (Exception e){}
 
-		setTitle("NavalBattle");
 		getContentPane().setLayout(null);
 		
 		this.setIconImage(Helper.GUI_WINDOW_ICON);
@@ -139,20 +135,5 @@ public class CreditsWindow extends JFrame {
 		roketgamerRole.setFont(new Font("Tahoma", Font.BOLD, 11));
 		roketgamerRole.setBounds(190, 203, 117, 14);
 		getContentPane().add(roketgamerRole);
-		
-		addWindowListener(new WindowAdapter(){
-			public void windowClosing(WindowEvent we){
-				NavalBattle.close();
-			}
-		});
-
-		setSize(475,300);
-		setVisible(true);
-		setResizable(false);
-		setLocation(1280/2-getWidth()/2,800/2-getHeight()/2);
-	}
-
-	public JFrame getFrame() {
-		return this;
 	}
 }

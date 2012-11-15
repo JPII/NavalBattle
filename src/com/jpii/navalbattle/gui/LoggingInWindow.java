@@ -2,27 +2,21 @@ package com.jpii.navalbattle.gui;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
 
 import javax.swing.*;
 
 import com.jpii.navalbattle.NavalBattle;
 import com.jpii.navalbattle.data.Constants;
-import com.jpii.navalbattle.renderer.Helper;
 
 @SuppressWarnings("serial")
-public class LoggingInWindow extends JFrame {
+public class LoggingInWindow extends Window {
 	
 	private ImageChanger imageChanger;
 	
 	public LoggingInWindow() {
 		
-		NavalBattle.getDebugWindow().printInfo("LoginWindow opened");
-		
-		this.setIconImage(Helper.GUI_WINDOW_ICON);
-		
-		setTitle("NavalBattle - Logging In");
+		NavalBattle.getDebugWindow().printInfo("LoggingInWindow opened");
+
 		getContentPane().setLayout(null);
 		
 		JProgressBar progressBar = new JProgressBar();
@@ -35,19 +29,11 @@ public class LoggingInWindow extends JFrame {
 		label.setBounds(0, 0, 475, 300);
 		getContentPane().add(label);
 		
-		this.setSize(491, 339);		
-		
-		addWindowListener(new WindowAdapter() {
-			public void windowClosing(WindowEvent we) {
-				NavalBattle.close();
-			}
-		});
-		
 		addMouseListener(new MouseAdapter() {
 			@SuppressWarnings("deprecation")
 			public void mouseClicked(MouseEvent e) {
 				NavalBattle.getDebugWindow().printInfo("Skipping splash screens");
-				NavalBattle.getDebugWindow().printInfo("Disposing LoginWindow");
+				NavalBattle.getDebugWindow().printInfo("Disposing LoggingInWindow");
 				dispose();
 				NavalBattle.getDebugWindow().printInfo("Opening MainMenuWindow");
 				new MainMenuWindow();
@@ -58,8 +44,6 @@ public class LoggingInWindow extends JFrame {
 		
 		imageChanger = new ImageChanger(label);
 		imageChanger.start();
-		this.setVisible(true);
-		this.setLocation(1280/2-getWidth()/2,800/2-getHeight()/2);
 	}
 	
 	class ImageChanger extends Thread {
@@ -88,7 +72,7 @@ public class LoggingInWindow extends JFrame {
 				Thread.sleep(Constants.SPLASH_DURATION);
 			} catch (InterruptedException e) { }
 	        
-	        NavalBattle.getDebugWindow().printInfo("Disposing LoginWindow");
+	        NavalBattle.getDebugWindow().printInfo("Disposing LoggingInWindow");
 			dispose();
 			NavalBattle.getDebugWindow().printInfo("Opening MainMenuWindow");
 			new MainMenuWindow();

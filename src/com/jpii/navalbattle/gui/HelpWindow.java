@@ -20,25 +20,17 @@ package com.jpii.navalbattle.gui;
 import javax.swing.*;
 
 import com.jpii.navalbattle.NavalBattle;
-import com.jpii.navalbattle.renderer.Helper;
 import com.jpii.navalbattle.util.URLUtils;
 
 import java.awt.*;
 import java.awt.event.*;
 
 @SuppressWarnings("serial")
-public class HelpWindow extends JFrame {
+public class HelpWindow extends Window {
 	private JLabel lblTitle;
 
 	public HelpWindow() {
-		try {
-			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-		} catch (Exception e){}
-		
-		setTitle("NavalBattle");
 		getContentPane().setLayout(null);
-
-		this.setIconImage(Helper.GUI_WINDOW_ICON);
 		
 		lblTitle = new JLabel("NavalBattle Help");
 		lblTitle.setFont(new Font("Tahoma", Font.BOLD, 14));
@@ -131,20 +123,5 @@ public class HelpWindow extends JFrame {
 		});
 		btnVideoRoketgamer.setBounds(221, 95, 100, 23);
 		getContentPane().add(btnVideoRoketgamer);
-		
-		addWindowListener(new WindowAdapter(){
-			public void windowClosing(WindowEvent we){
-				NavalBattle.close();
-			}
-		});
-
-		setSize(475,199);
-		setVisible(true);
-		setResizable(false);
-		setLocation(1280/2-getWidth()/2,800/2-getHeight()/2);
-	}
-
-	public JFrame getFrame() {
-		return this;
 	}
 }
