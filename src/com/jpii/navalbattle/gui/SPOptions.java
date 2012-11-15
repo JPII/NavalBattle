@@ -24,12 +24,10 @@ import java.awt.event.*;
 
 import com.jpii.navalbattle.NavalBattle;
 import com.jpii.navalbattle.game.*;
-import com.jpii.navalbattle.renderer.Helper;
-import com.jpii.navalbattle.gui.listeners.KeyboardListener;
 
 
 @SuppressWarnings("serial")
-public class SPOptions extends JFrame{
+public class SPOptions extends Window{
 	JRadioButton radioButton;
 	JRadioButton radioButton_1;
 	JRadioButton radioButton_2;
@@ -45,206 +43,203 @@ public class SPOptions extends JFrame{
 	JRadioButton rdbtnWater_2;
 	
 	public SPOptions() {
-		try {
-			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-		} catch (Exception e) {}
-		setTitle("NavalBattle");
 		getContentPane().setLayout(null);
-		this.setIconImage(Helper.GUI_WINDOW_ICON);
+		
 		JButton btnOpenSave = new JButton("Open Save");
-		btnOpenSave.setBounds(193, 11, 89, 23);
+		JButton btnBack = new JButton("Back");
+		JButton btnAdvancedOptions = new JButton("Advanced Options");
+		
+		btnOpenSave.setBounds(201, 11, 90, 25);
+		btnAdvancedOptions.setBounds(331, 11, 150, 25);
+		btnBack.setBounds(33, 10, 90, 25);
+		
 		getContentPane().add(btnOpenSave);
+		getContentPane().add(btnBack);
+		getContentPane().add(btnAdvancedOptions);
+		
 		/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		JSeparator separator = new JSeparator();
-		separator.setBounds(10, 44, 455, 5);
-		getContentPane().add(separator);
-		
 		JSeparator separator_1 = new JSeparator();
-		separator_1.setBounds(10, 43, 455, 5);
-		getContentPane().add(separator_1);
-		
 		JSeparator separator_2 = new JSeparator();
-		separator_2.setBounds(10, 45, 455, 5);
-		getContentPane().add(separator_2);
-		
 		JSeparator separator_3 = new JSeparator();
-		separator_3.setBounds(10, 42, 455, 5);
-		getContentPane().add(separator_3);
-		
 		JSeparator separator_4 = new JSeparator();
-		separator_4.setBounds(10, 239, 455, 5);
-		getContentPane().add(separator_4);
-		
 		JSeparator separator_5 = new JSeparator();
-		separator_5.setOrientation(SwingConstants.VERTICAL);
-		separator_5.setBounds(150, 44, 21, 195);
-		getContentPane().add(separator_5);
-		
 		JSeparator separator_6 = new JSeparator();
-		separator_6.setOrientation(SwingConstants.VERTICAL);
-		separator_6.setBounds(324, 43, 21, 195);
-		getContentPane().add(separator_6);
-		
 		JLabel lblNewGame = new JLabel("New Game");
+		
+		separator.setBounds(0, 42, 492, 5);
+		separator_1.setBounds(0, 43, 492, 5);
+		separator_2.setBounds(0, 44, 492, 5);
+		separator_3.setBounds(0, 45, 492, 5);
+		separator_4.setBounds(0, 239, 492, 5);
+		separator_5.setBounds(164, 44, 5, 197);
+		separator_6.setBounds(328, 43, 5, 197);
+		lblNewGame.setBounds(196, 120, 100, 35);
+		
+		lblNewGame.setAlignmentX(CENTER_ALIGNMENT);
+		separator_5.setOrientation(SwingConstants.VERTICAL);
+		separator_6.setOrientation(SwingConstants.VERTICAL);
 		lblNewGame.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		lblNewGame.setBounds(189, 120, 106, 33);
+		
+		
+		getContentPane().add(separator);
+		getContentPane().add(separator_1);
+		getContentPane().add(separator_2);
+		getContentPane().add(separator_3);
+		getContentPane().add(separator_4);
+		getContentPane().add(separator_5);
+		getContentPane().add(separator_6);
 		getContentPane().add(lblNewGame);
+		
 		/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		ButtonGroup water = new ButtonGroup();
+		
 		rdbtnWater = new JRadioButton("60% Water");
-		rdbtnWater.setBounds(39, 114, 109, 23);
-		water.add(rdbtnWater);
-		rdbtnWater.addKeyListener(new KeyboardListener(this));
-		getContentPane().add(rdbtnWater);
-		
 		rdbtnWater_1 = new JRadioButton("70% Water");
-		rdbtnWater_1.setBounds(39, 155, 109, 23);
-		water.add(rdbtnWater_1);
-		rdbtnWater_1.addKeyListener(new KeyboardListener(this));
-		getContentPane().add(rdbtnWater_1);
-		
 		rdbtnWater_2 = new JRadioButton("80% Water");
-		rdbtnWater_2.setBounds(39, 193, 109, 23);
+		
+		rdbtnWater.setBounds(36, 114, 84, 23);
+		rdbtnWater_1.setBounds(36, 155, 109, 23);
+		rdbtnWater_2.setBounds(36, 193, 109, 23);
+		
+		water.add(rdbtnWater);
+		water.add(rdbtnWater_1);
 		water.add(rdbtnWater_2);
+		
+		getContentPane().add(rdbtnWater);
+		getContentPane().add(rdbtnWater_1);
 		getContentPane().add(rdbtnWater_2);
-		rdbtnWater_2.addKeyListener(new KeyboardListener(this));
+		
 		rdbtnWater.setSelected(true);
 		/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		ButtonGroup difficulty = new ButtonGroup();
+		
 		radioButton = new JRadioButton("");
-		radioButton.setBounds(81, 255, 21, 23);
-		difficulty.add(radioButton);
-		radioButton.addKeyListener(new KeyboardListener(this));
-		getContentPane().add(radioButton);
-		
 		radioButton_1 = new JRadioButton("");
-		radioButton_1.setBounds(138, 255, 21, 23);
-		difficulty.add(radioButton_1);
-		radioButton_1.addKeyListener(new KeyboardListener(this));
-		getContentPane().add(radioButton_1);
-		
 		radioButton_2 = new JRadioButton("");
-		radioButton_2.setBounds(194, 255, 21, 23);
-		difficulty.add(radioButton_2);
-		radioButton_2.addKeyListener(new KeyboardListener(this));
-		getContentPane().add(radioButton_2);
-		
 		radioButton_3 = new JRadioButton("");
-		radioButton_3.setBounds(251, 255, 21, 23);
-		difficulty.add(radioButton_3);
-		radioButton_3.addKeyListener(new KeyboardListener(this));
-		getContentPane().add(radioButton_3);
-		
 		radioButton_4 = new JRadioButton("");
-		radioButton_4.setBounds(307, 255, 21, 23);
-		difficulty.add(radioButton_4);
-		radioButton_4.addKeyListener(new KeyboardListener(this));
-		getContentPane().add(radioButton_4);
-		
 		radioButton_5 = new JRadioButton("");
-		radioButton_5.setBounds(364, 255, 21, 23);
+		
+		radioButton.setBounds(75, 255, 60, 23);
+		radioButton_1.setBounds(130, 255, 60, 23);
+		radioButton_2.setBounds(180, 255, 60, 23);
+		radioButton_3.setBounds(235, 255, 60, 23);
+		radioButton_4.setBounds(290, 255, 60, 23);
+		radioButton_5.setBounds(355, 255, 60, 23);
+		
+		radioButton.setHorizontalAlignment(SwingConstants.CENTER);
+		radioButton_1.setHorizontalAlignment(SwingConstants.CENTER);
+		radioButton_2.setHorizontalAlignment(SwingConstants.CENTER);
+		radioButton_3.setHorizontalAlignment(SwingConstants.CENTER);
+		radioButton_4.setHorizontalAlignment(SwingConstants.CENTER);
+		radioButton_5.setHorizontalAlignment(SwingConstants.CENTER);	
+		
+		difficulty.add(radioButton);
+		difficulty.add(radioButton_1);
+		difficulty.add(radioButton_2);
+		difficulty.add(radioButton_3);
+		difficulty.add(radioButton_4);
 		difficulty.add(radioButton_5);
-		radioButton_5.addKeyListener(new KeyboardListener(this));
+		
+		getContentPane().add(radioButton);
+		getContentPane().add(radioButton_1);
+		getContentPane().add(radioButton_2);
+		getContentPane().add(radioButton_3);
+		getContentPane().add(radioButton_4);
 		getContentPane().add(radioButton_5);
+		
 		radioButton.setSelected(true);
 		/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		JLabel lblPioneer = new JLabel("Pioneer");
-		lblPioneer.setHorizontalAlignment(SwingConstants.CENTER);
-		lblPioneer.setBounds(69, 276, 46, 14);
-		getContentPane().add(lblPioneer);
-		
 		JLabel lblSeawolf = new JLabel("Seawolf");
-		lblSeawolf.setHorizontalAlignment(SwingConstants.CENTER);
-		lblSeawolf.setBounds(125, 276, 46, 14);
-		getContentPane().add(lblSeawolf);
-		
 		JLabel lblSentry = new JLabel("Sentry");
-		lblSentry.setHorizontalAlignment(SwingConstants.CENTER);
-		lblSentry.setBounds(182, 276, 46, 14);
-		getContentPane().add(lblSentry);
-		
 		JLabel lblFirebolt = new JLabel("Firebolt");
-		lblFirebolt.setHorizontalAlignment(SwingConstants.CENTER);
-		lblFirebolt.setBounds(238, 276, 46, 14);
-		getContentPane().add(lblFirebolt);
-		
 		JLabel lblDefender = new JLabel("Defender");
-		lblDefender.setHorizontalAlignment(SwingConstants.CENTER);
-		lblDefender.setBounds(294, 276, 46, 14);
-		getContentPane().add(lblDefender);
-		
 		JLabel lblBattleship = new JLabel("Battleship");
-		lblBattleship.setHorizontalAlignment(SwingConstants.CENTER);
-		lblBattleship.setBounds(350, 276, 53, 14);
-		getContentPane().add(lblBattleship);
-		
 		JLabel lblDifficulty = new JLabel("Difficulty");
-		lblDifficulty.setBounds(213, 239, 46, 14);
-		getContentPane().add(lblDifficulty);
-		
 		JLabel lblEasiest = new JLabel("Easiest");
-		lblEasiest.setBounds(10, 264, 46, 14);
-		getContentPane().add(lblEasiest);
-		
 		JLabel lblHardest = new JLabel("Hardest");
-		lblHardest.setBounds(407, 264, 46, 14);
-		getContentPane().add(lblHardest);
-		
 		JLabel lblAmmountOf = new JLabel("Ammount of");
-		lblAmmountOf.setHorizontalAlignment(SwingConstants.CENTER);
-		lblAmmountOf.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblAmmountOf.setBounds(20, 59, 106, 14);
-		getContentPane().add(lblAmmountOf);
-		
 		JLabel lblLandmass = new JLabel("Landmass");
-		lblLandmass.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblLandmass.setHorizontalAlignment(SwingConstants.CENTER);
-		lblLandmass.setBounds(39, 82, 76, 14);
-		getContentPane().add(lblLandmass);
-		
 		JLabel lblNumberOf = new JLabel("Number of");
-		lblNumberOf.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblNumberOf.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNumberOf.setBounds(364, 58, 66, 14);
-		getContentPane().add(lblNumberOf);
-		
 		JLabel lblOpponets = new JLabel("Opponents");
-		lblOpponets.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		
+		lblPioneer.setHorizontalAlignment(SwingConstants.CENTER);
+		lblSeawolf.setHorizontalAlignment(SwingConstants.CENTER);
+		lblSentry.setHorizontalAlignment(SwingConstants.CENTER);
+		lblFirebolt.setHorizontalAlignment(SwingConstants.CENTER);
+		lblDefender.setHorizontalAlignment(SwingConstants.CENTER);
+		lblBattleship.setHorizontalAlignment(SwingConstants.CENTER);
+		lblDifficulty.setHorizontalAlignment(SwingConstants.CENTER);
+		lblEasiest.setHorizontalAlignment(SwingConstants.CENTER);
+		lblHardest.setHorizontalAlignment(SwingConstants.CENTER);
+		lblAmmountOf.setHorizontalAlignment(SwingConstants.CENTER);
+		lblLandmass.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNumberOf.setHorizontalAlignment(SwingConstants.CENTER);
 		lblOpponets.setHorizontalAlignment(SwingConstants.CENTER);
-		lblOpponets.setBounds(355, 81, 75, 16);
+		
+		lblPioneer.setBounds(75, 276, 60, 14);
+		lblSeawolf.setBounds(130, 276, 60, 14);
+		lblSentry.setBounds(180, 276, 60, 14);
+		lblFirebolt.setBounds(235, 276, 60, 14);
+		lblDefender.setBounds(290, 276, 60, 14);
+		lblBattleship.setBounds(355, 276, 60, 14);
+		lblDifficulty.setBounds(216, 240, 60, 14);
+		lblEasiest.setBounds(20, 270, 60, 14);
+		lblHardest.setBounds(412, 270, 60, 14);
+		lblAmmountOf.setBounds(28, 59, 100, 14);
+		lblLandmass.setBounds(40, 82, 76, 14);
+		lblNumberOf.setBounds(371, 58, 70, 14);
+		lblOpponets.setBounds(369, 81, 76, 16);
+		
+		lblAmmountOf.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		lblLandmass.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		lblNumberOf.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		lblOpponets.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		
+		getContentPane().add(lblPioneer);
+		getContentPane().add(lblSeawolf);
+		getContentPane().add(lblSentry);
+		getContentPane().add(lblFirebolt);
+		getContentPane().add(lblDefender);
+		getContentPane().add(lblBattleship);
+		getContentPane().add(lblDifficulty);
+		getContentPane().add(lblEasiest);
+		getContentPane().add(lblHardest);
+		getContentPane().add(lblAmmountOf);
+		getContentPane().add(lblLandmass);
+		getContentPane().add(lblNumberOf);
 		getContentPane().add(lblOpponets);
 		/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		ButtonGroup opponents = new ButtonGroup();
+		
 		radioButton_6 = new JRadioButton("3");
-		radioButton_6.setBounds(376, 116, 38, 23);
-		opponents.add(radioButton_6);
-		radioButton_6.addKeyListener(new KeyboardListener(this));
-		getContentPane().add(radioButton_6);
-		
 		radioButton_7 = new JRadioButton("4");
-		radioButton_7.setBounds(376, 142, 38, 23);
-		opponents.add(radioButton_7);
-		radioButton_7.addKeyListener(new KeyboardListener(this));
-		getContentPane().add(radioButton_7);
-		
 		radioButton_8 = new JRadioButton("5");
-		radioButton_8.setBounds(376, 167, 38, 23);
-		opponents.add(radioButton_8);
-		radioButton_8.addKeyListener(new KeyboardListener(this));
-		getContentPane().add(radioButton_8);
-		
 		radioButton_9 = new JRadioButton("6");
-		radioButton_9.setBounds(376, 193, 38, 23);
-		opponents.add(radioButton_9);
-		radioButton_9.addKeyListener(new KeyboardListener(this));
-		getContentPane().add(radioButton_9);
-		radioButton_6.setSelected(true);
-		
 		JButton btnNewButton = new JButton("Start");
-		btnNewButton.setBounds(193, 155, 89, 23);		
+		
+		radioButton_6.setBounds(386, 116, 40, 25);
+		radioButton_7.setBounds(386, 142, 40, 25);
+		radioButton_8.setBounds(386, 167, 40, 25);
+		radioButton_9.setBounds(386, 193, 40, 25);
+		btnNewButton.setBounds(201, 155, 90, 25);
+		
+		opponents.add(radioButton_6);
+		opponents.add(radioButton_7);
+		opponents.add(radioButton_8);
+		opponents.add(radioButton_9);
+		
+		getContentPane().add(radioButton_6);
+		getContentPane().add(radioButton_7);
+		getContentPane().add(radioButton_8);
+		getContentPane().add(radioButton_9);
+		getContentPane().add(btnNewButton);
+		
+		radioButton_6.setSelected(true);		
 		
 		btnNewButton.addMouseListener(new MouseAdapter() {
-			
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				saveOptions();
@@ -259,11 +254,8 @@ public class SPOptions extends JFrame{
 				new SinglePlayerGame();
 			}
 		});
-		getContentPane().add(btnNewButton);
 		
-		JButton btnBack = new JButton("Back");
-		btnBack.setBounds(39, 11, 89, 23);
-		getContentPane().add(btnBack);
+		
 		btnBack.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -273,11 +265,6 @@ public class SPOptions extends JFrame{
 				dispose();
 			}
 		});
-		
-		JButton btnAdvancedOptions = new JButton("Advanced Options");
-		btnAdvancedOptions.setBounds(324, 11, 141, 23);
-		getContentPane().add(btnAdvancedOptions);
-		btnAdvancedOptions.addKeyListener(new KeyboardListener(this));
 		btnAdvancedOptions.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -286,22 +273,6 @@ public class SPOptions extends JFrame{
 		});
 		
 		/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////		
-		
-		setSize(491,339);
-		setVisible(true);
-		
-		setFocusable(true);
-		addKeyListener(new KeyboardListener(this));
-		addWindowListener(new WindowAdapter(){
-			public void windowClosing(WindowEvent we){
-				NavalBattle.close();
-			}
-		});
-		
-		setFocusable(true);
-		setResizable(false);
-		setLocation(1280/2-getWidth()/2,800/2-getHeight()/2);
-		addKeyListener(new KeyboardListener(this));
 	}
 	
 	private void saveOptions() {

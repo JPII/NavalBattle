@@ -59,6 +59,7 @@ public class MainMenuWindow extends Window {
 		backgrnd.setLocation(0, 0);
 		lblNavalBattle.setForeground(Color.blue);
 		lblNavalBattle.setFont(new Font("RingBearer", Font.BOLD, 35));
+		btnMultiplayer.setEnabled(false);
 		
 		setContentPane(backgrnd);
 		getContentPane().add(lblVersion);
