@@ -5,6 +5,7 @@ import javax.swing.*;
 import com.jpii.navalbattle.NavalBattle;
 import com.jpii.navalbattle.data.Constants;
 import com.jpii.navalbattle.renderer.Helper;
+import com.jpii.navalbattle.gui.listeners.*;
 
 import java.awt.*;
 import java.awt.event.*;
@@ -206,14 +207,7 @@ public class RoketGamerWindow extends JFrame{
 		lblNewLabel.setBounds(10, 11, 54, 50);
 		roketgamerTab.add(lblNewLabel);
 
-		addWindowListener(new WindowAdapter() {
-			public void windowClosing(WindowEvent we) {
-				NavalBattle.getDebugWindow().printInfo("Disposing RoketGamerWindow");
-				dispose();
-				NavalBattle.getDebugWindow().printInfo("Opening MainMenuWindow");
-				new MainMenuWindow();
-			}
-		});
+		addWindowListener(new WindowCloser());
 
 		setSize(417, 410);
 		setVisible(true);

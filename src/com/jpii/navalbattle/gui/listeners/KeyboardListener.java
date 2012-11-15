@@ -18,7 +18,6 @@
 package com.jpii.navalbattle.gui.listeners;
 
 import java.awt.event.*;
-import com.jpii.navalbattle.NavalBattle;
 import com.jpii.navalbattle.debug.DebugWindow;
 import com.jpii.navalbattle.gui.*;
 
@@ -32,7 +31,7 @@ public class KeyboardListener implements KeyListener {
 	
 	public void keyPressed(KeyEvent k) {	
 		if(k.getKeyCode() == KeyEvent.VK_ESCAPE) {
-			NavalBattle.close();
+			WindowCloser.close();
 		}
 		if(window instanceof LoginWindow) {
 			LoginWindow l = (LoginWindow) window;

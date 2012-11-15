@@ -24,6 +24,7 @@ import java.awt.event.*;
 
 import com.jpii.navalbattle.NavalBattle;
 import com.jpii.navalbattle.data.Constants;
+import com.jpii.navalbattle.gui.listeners.*;
 
 @SuppressWarnings("serial")
 public class MainMenuWindow extends Window {
@@ -103,9 +104,8 @@ public class MainMenuWindow extends Window {
 			});
 		}
 		btnQuit.addMouseListener(new MouseAdapter() {
-			@Override
 			public void mouseClicked(MouseEvent e) {
-				NavalBattle.close();
+				WindowCloser.close();
 			}
 		});
 		btnCredits.addMouseListener(new MouseAdapter() {

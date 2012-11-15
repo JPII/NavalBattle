@@ -114,12 +114,4 @@ public class NavalBattle {
 			NavalBattle.getDebugWindow().printError("NimbusLookAndFeel was unable to be loaded, illegalaccess");	
 		}
 	}
-	
-	/**
-	 * Used as global game exit
-	 */
-	public static void close() {
-		NavalBattle.getDebugWindow().printInfo("Someone is closing me!");
-		System.exit(0);
-	}
 }

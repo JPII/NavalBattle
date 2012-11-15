@@ -3,8 +3,7 @@ package com.jpii.navalbattle.gui;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Polygon;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
+import java.awt.event.*;
 import java.awt.image.BufferedImage;
 
 import javax.swing.JComponent;

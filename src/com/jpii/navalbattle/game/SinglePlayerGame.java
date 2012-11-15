@@ -18,15 +18,12 @@
 package com.jpii.navalbattle.game;
 
 import javax.swing.*;
-import javax.swing.UIManager.LookAndFeelInfo;
 
 import java.awt.*;
-import java.awt.event.*;
 
 import com.jpii.navalbattle.data.Constants;
-import com.jpii.navalbattle.gui.listeners.KeyboardListener;
+import com.jpii.navalbattle.gui.listeners.*;
 import com.jpii.navalbattle.renderer.Helper;
-import com.jpii.navalbattle.NavalBattle;
 
 @SuppressWarnings("serial")
 public class SinglePlayerGame extends JFrame {
@@ -51,11 +48,7 @@ public class SinglePlayerGame extends JFrame {
 		
 		this.setIconImage(Helper.GUI_WINDOW_ICON);
 
-		this.addWindowListener(new WindowAdapter() {
-			public void windowClosing(WindowEvent we) {
-				NavalBattle.close();
-			}
-		});
+		this.addWindowListener(new WindowCloser());
 
 		this.setFocusable(true);
 		this.addKeyListener(new KeyboardListener(this));

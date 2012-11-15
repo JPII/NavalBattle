@@ -1,12 +1,11 @@
 package com.jpii.navalbattle.gui;
 
-import java.awt.event.*;
 import javax.swing.*;
 import javax.swing.UIManager.LookAndFeelInfo;
 
 import com.jpii.navalbattle.NavalBattle;
 import com.jpii.navalbattle.renderer.Helper;
-import com.jpii.navalbattle.gui.listeners.KeyboardListener;
+import com.jpii.navalbattle.gui.listeners.*;
 
 @SuppressWarnings("serial")
 public class Window extends JFrame {
@@ -71,12 +70,7 @@ public class Window extends JFrame {
 		setResizable(false);
 		setFocusable(true);
 		addKeyListener(new KeyboardListener(this));
-		addWindowListener(new WindowAdapter() {
-			@Override
-			public void windowClosing(WindowEvent we) {
-				NavalBattle.close();
-			}
-		});
+		addWindowListener(new WindowCloser());
 		setVisible(true);
 	}
 	
