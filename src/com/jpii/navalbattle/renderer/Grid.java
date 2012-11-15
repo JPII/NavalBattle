@@ -22,7 +22,7 @@ public class Grid {
      * Creates a new instance of the Grid.
      */
     public Grid() {
-        width = Constants.WINDOW_WIDTH * 4 / Constants.CHUNK_SIZE / 2;
+        width = (Constants.WINDOW_WIDTH * 4) / (Constants.CHUNK_SIZE / 2);
         height = Constants.WINDOW_HEIGHT * 4 / Constants.CHUNK_SIZE / 2;
         entities = new Entity[width + 1][height + 1];
         BufferedImage bu = new BufferedImage(50, 50, BufferedImage.TYPE_INT_ARGB);

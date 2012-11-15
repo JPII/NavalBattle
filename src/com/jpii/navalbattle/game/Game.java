@@ -155,6 +155,7 @@ public class Game implements Runnable {
     		omniMap.update();
     		repaint(RepaintType.REPAINT_CHUNKS);
     		repaint(RepaintType.REPAINT_MAP);
+    		repaint(RepaintType.REPAINT_INDV_ENTITIES);
     		repaint(RepaintType.REPAINT_BUFFERS);
     	}
     	else if (getStatus() == GameStatus.STATUS_CHUNK_UPDATES) {
