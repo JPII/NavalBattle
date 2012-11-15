@@ -35,7 +35,10 @@ public class Window extends JFrame {
 	private void startup(){
 		try {
 			UIManager.setLookAndFeel("javax.swing.plaf.nimbus.NimbusLookAndFeel");
-		} catch (Exception e) {}
+		} catch (Exception e) {
+			e.printStackTrace();
+			
+		}
 	}
 	
 	protected void setDefaults(){
