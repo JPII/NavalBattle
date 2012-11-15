@@ -20,8 +20,6 @@ public class Window extends JFrame {
 	 * handled within each subclass.
 	 */
 	public Window() {
-		NavalBattle.getDebugWindow().printInfo(getClass().getName() + " opened");
-		
 		try {
 			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 		} catch (Exception e) {}
@@ -29,6 +27,7 @@ public class Window extends JFrame {
 		
 		setTitle("NavalBattle");
 		setSize(491, 339);
+		setLocation(1280/2-getWidth()/2,800/2-getHeight()/2);
 		
 		setResizable(false);
 		setFocusable(true);
@@ -40,6 +39,8 @@ public class Window extends JFrame {
 				NavalBattle.close();
 			}
 		});
+		
+		setVisible(true);
 	}
 	
 	/**
