@@ -18,6 +18,7 @@
 package com.jpii.navalbattle.game;
 
 import javax.swing.*;
+import javax.swing.UIManager.LookAndFeelInfo;
 
 import java.awt.*;
 import java.awt.event.*;
@@ -33,8 +34,20 @@ public class SinglePlayerGame extends JFrame {
 
 	public SinglePlayerGame() {
 		try {
-			UIManager.setLookAndFeel("javax.swing.plaf.nimbus.NimbusLookAndFeel");
-		} catch (Exception e) {
+		    for (LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
+		        if ("nimbus".contains(info.getName().toLowerCase())) {
+		            UIManager.setLookAndFeel(info.getClassName());
+		            break;
+		        }
+		    }
+		} catch (UnsupportedLookAndFeelException e) {
+		    // handle exception
+		} catch (ClassNotFoundException e) {
+		    // handle exception
+		} catch (InstantiationException e) {
+		    // handle exception
+		} catch (IllegalAccessException e) {
+		    // handle exception
 		}
 		this.setTitle("NavalBattle");
 

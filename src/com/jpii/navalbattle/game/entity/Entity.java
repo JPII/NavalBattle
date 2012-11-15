@@ -21,6 +21,7 @@ import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.lang.Thread.State;
 
+import com.jpii.navalbattle.game.GameComponent;
 import com.jpii.navalbattle.game.Location;
 
 public class Entity implements Runnable {
@@ -53,12 +54,13 @@ public class Entity implements Runnable {
 	}
 	
 	public void invokeUpdate() {
-		if (latestThread == null || !latestThread.isAlive() || latestThread.getState() == State.TERMINATED) {
+		run();
+		/*if (latestThread == null || !latestThread.isAlive() || latestThread.getState() == State.TERMINATED) {
 			latestThread = new Thread(this);
 			latestThread.run();
 		}
 		else
-			update();
+			update();*/
 	}
 	
 	public void update() {
@@ -173,7 +175,9 @@ public class Entity implements Runnable {
 	}
 	
 	public void onMouseHover(int localMX, int localMY) {
-		
+		TamaleEntity tamale = new TamaleEntity();
+		tamale.setLocation(getLocation());
+		GameComponent.game.getGrid().setEntity(tamale);
 		//System.out.println("Hello! Entity at " + getLocation().getCol() + "," + getLocation().getRow() + " speaking!!!");
 	}
 	

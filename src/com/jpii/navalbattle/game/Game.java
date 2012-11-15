@@ -149,7 +149,19 @@ public class Game implements Runnable {
     		repaint(RepaintType.REPAINT_BUFFERS);
     	}
     	else if (getStatus() == GameStatus.STATUS_CHUNK_UPDATES) {
-    		
+    		String chunksTxt = "";
+    		for (int x = msax; x < 800+msax; x += 50) {
+    			for (int y = msay; y < 600+msay; y += 50) {
+    				//Entity ent = grid.getEntity(x, y);
+    				Location l = pointToGridLocation(x,y);
+    				if (Location.validate(l)) {
+    					Entity ti = getGrid().getEntity(l.getRow(),l.getCol());
+    					ti.invokeUpdate();
+    					chunksTxt += ",[" + l.getCol() + "," + l.getRow() + "]";
+    				}
+    			}
+    		}
+    		System.out.println(chunksTxt);
     	}
     	else if (getStatus() == GameStatus.STATUS_CHUNK_EVENTS) {
     		for (int x = 0; x < grid.getWidth(); x++) {
@@ -292,7 +304,7 @@ public class Game implements Runnable {
         return s;
     }
     /**
-     * Converts a point on the screen to a grid location. UNTESTED and MAY NOT WORK AT ALL.
+     * Converts a point on the screen to a grid location.
      * @param px The x coordinate.
      * @param py The y coordinate.
      * @return The Location on the grid. Its possible that it may not be a valid location at all.
