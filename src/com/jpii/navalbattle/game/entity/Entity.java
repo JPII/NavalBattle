@@ -19,16 +19,18 @@ package com.jpii.navalbattle.game.entity;
 
 import java.awt.Image;
 import java.awt.image.BufferedImage;
+import java.lang.Thread.State;
 
 import com.jpii.navalbattle.game.Location;
 
-public class Entity {
+public class Entity implements Runnable {
 	
 	private Location location;
 	private Image image;
 	private boolean active;
 	private String tag;
 	private BufferedImage detailedImage;
+	private Thread latestThread;
 	
 	/**
 	 * Default constructor. Sets instance to inactive.
@@ -48,6 +50,19 @@ public class Entity {
 		setImage(image);
 		setTag(tag);
 		setActive(true);
+	}
+	
+	public void invokeUpdate() {
+		if (latestThread == null || !latestThread.isAlive() || latestThread.getState() == State.TERMINATED) {
+			latestThread = new Thread(this);
+			latestThread.run();
+		}
+		else
+			update();
+	}
+	
+	public void update() {
+		
 	}
 	
 	/**
@@ -158,10 +173,16 @@ public class Entity {
 	}
 	
 	public void onMouseHover(int localMX, int localMY) {
+		
 		//System.out.println("Hello! Entity at " + getLocation().getCol() + "," + getLocation().getRow() + " speaking!!!");
 	}
 	
 	public void onMouseDown(int localMX, int localMY) {
 		// TODO needs to be implemented in Game.java
+	}
+
+	@Override
+	public void run() {
+		update();		
 	}
 }

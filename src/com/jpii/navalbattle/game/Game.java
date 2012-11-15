@@ -85,16 +85,6 @@ public class Game implements Runnable {
         return grid;
     }
     /**
-     * Sets the zoom for the world.
-     * @param level
-     * @deprecated
-     */
-    public void setZoom(int level) {
-        //	zoom = level;
-        repaint(RepaintType.REPAINT_CHUNKS);
-        repaint(RepaintType.REPAINT_CLOUDS);
-    }
-    /**
      * Updates the game.
      */
     public void update() {
