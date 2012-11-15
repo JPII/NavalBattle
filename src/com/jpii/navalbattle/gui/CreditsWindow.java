@@ -20,7 +20,6 @@ package com.jpii.navalbattle.gui;
 import javax.swing.*;
 
 import com.jpii.navalbattle.NavalBattle;
-import com.jpii.navalbattle.renderer.Helper;
 
 import java.awt.*;
 import java.awt.event.*;

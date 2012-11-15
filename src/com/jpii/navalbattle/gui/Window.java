@@ -20,15 +20,29 @@ public class Window extends JFrame {
 	 */
 	protected int width;
 	protected int height;
+	protected int xloc;
+	protected int yloc;
+	
 	
 	public Window() {
 		width = 492;
 		height = 340;
+		xloc = 1280/2-width/2;
+		yloc = 800/2-height/2;
 		setDefaults();
 	}
 	public Window(int x, int y) {
 		width = x;
 		height = y;
+		xloc = 1280/2-width/2;
+		yloc = 800/2-height/2;
+	}
+	
+	public Window(int x, int y,int xloc,int yloc) {
+		width = x;
+		height = y;
+		this.xloc = xloc;
+		this.yloc = yloc;
 	}
 	
 	protected void setDefaults(){
@@ -53,7 +67,7 @@ public class Window extends JFrame {
 		this.setIconImage(Helper.GUI_WINDOW_ICON);
 		setTitle("NavalBattle");
 		setSize(width, height);
-		setLocation(1280/2-getWidth()/2,800/2-getHeight()/2);
+		setLocation(xloc,yloc);
 		setResizable(false);
 		setFocusable(true);
 		addKeyListener(new KeyboardListener(this));

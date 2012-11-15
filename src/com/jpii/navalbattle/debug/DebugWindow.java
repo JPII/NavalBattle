@@ -38,7 +38,7 @@ public class DebugWindow extends Window {
 	 * Constructor for DebugWindow.
 	 */
 	public DebugWindow() {
-		super();
+		super(465,365,0,0);
 		getContentPane().setLayout(null);
 
 		lblNavalBattle = new JLabel("NavalBattle");
@@ -79,10 +79,7 @@ public class DebugWindow extends Window {
 		});
 	
 		printInfo("Debug mode enabled");
-		
-		this.setSize(465,365);
-		this.setVisible(true);
-		this.setLocation(0,0);
+		setDefaults();
 	}
 
 	/**
