@@ -12,58 +12,54 @@ import com.jpii.navalbattle.NavalBattle;
 
 @SuppressWarnings("serial")
 public class LoginOptionsWindow extends Window {
+	
 	private JTextField txtHttproketgamercocc;
+	
 	public LoginOptionsWindow() {
 		getContentPane().setLayout(null);
 		
 		JLabel lblTitle = new JLabel("NavalBattle");
-		lblTitle.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lblTitle.setBounds(10, 11, 79, 17);
-		getContentPane().add(lblTitle);
-		
 		JLabel lblSubtitle = new JLabel("Launch Options");
-		lblSubtitle.setBounds(96, 14, 79, 14);
-		getContentPane().add(lblSubtitle);
-		
 		txtHttproketgamercocc = new JTextField();
+		JCheckBox chckbxEnableSplashScreens = new JCheckBox("Enable splash screens");
+		JCheckBox chckbxDebugMode = new JCheckBox("Debug mode");
+		JLabel lblGeneral = new JLabel("General");
+		JLabel lblRoketgamer = new JLabel("RoketGamer");
+		JLabel lblServer = new JLabel("Server Address");
+		JButton btnSave = new JButton("Save");
+		JCheckBox chckbxSaveLastUsername = new JCheckBox("Remember username");
+		JCheckBox chckbxAnalytics = new JCheckBox("Analytics");
+		
 		txtHttproketgamercocc.setText("http://roketgamer.co.cc");
-		txtHttproketgamercocc.setBounds(122, 141, 131, 20);
-		getContentPane().add(txtHttproketgamercocc);
 		txtHttproketgamercocc.setColumns(10);
 		
-		JCheckBox chckbxEnableSplashScreens = new JCheckBox("Enable splash screens");
-		chckbxEnableSplashScreens.setBounds(30, 60, 131, 23);
-		getContentPane().add(chckbxEnableSplashScreens);
-		
-		JCheckBox chckbxDebugMode = new JCheckBox("Debug mode");
-		chckbxDebugMode.setBounds(30, 86, 85, 23);
-		getContentPane().add(chckbxDebugMode);
-		
-		JLabel lblGeneral = new JLabel("General");
-		lblGeneral.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblTitle.setBounds(10, 11, 79, 17);
+		lblSubtitle.setBounds(96, 14, 89, 14);
+		txtHttproketgamercocc.setBounds(130, 137, 145, 27);
+		chckbxEnableSplashScreens.setBounds(30, 60, 160, 23);
+		chckbxDebugMode.setBounds(30, 86, 123, 23);
 		lblGeneral.setBounds(20, 39, 46, 14);
-		getContentPane().add(lblGeneral);
-		
-		JLabel lblRoketgamer = new JLabel("RoketGamer");
-		lblRoketgamer.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lblRoketgamer.setBounds(20, 119, 79, 14);
-		getContentPane().add(lblRoketgamer);
-		
-		JLabel lblServer = new JLabel("Server Address");
-		lblServer.setBounds(33, 144, 79, 14);
-		getContentPane().add(lblServer);
-		
-		JCheckBox chckbxAnalytics = new JCheckBox("Analytics");
-		chckbxAnalytics.setBounds(30, 165, 69, 23);
-		getContentPane().add(chckbxAnalytics);
-		
-		JCheckBox chckbxSaveLastUsername = new JCheckBox("Remember username");
-		chckbxSaveLastUsername.setBounds(30, 191, 145, 23);
-		getContentPane().add(chckbxSaveLastUsername);
-		
-		JButton btnSave = new JButton("Save");
+		lblServer.setBounds(30, 144, 102, 14);
+		chckbxAnalytics.setBounds(30, 165, 102, 23);
+		chckbxSaveLastUsername.setBounds(30, 191, 155, 23);
 		btnSave.setBounds(386, 277, 89, 23);
+		
+		lblTitle.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblGeneral.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblRoketgamer.setFont(new Font("Tahoma", Font.BOLD, 11));
+		
+		getContentPane().add(lblTitle);
+		getContentPane().add(lblSubtitle);		
+		getContentPane().add(txtHttproketgamercocc);
+		getContentPane().add(chckbxEnableSplashScreens);
+		getContentPane().add(chckbxDebugMode);
+		getContentPane().add(lblGeneral);
+		getContentPane().add(lblRoketgamer);
+		getContentPane().add(lblServer);
+		getContentPane().add(chckbxAnalytics);
 		getContentPane().add(btnSave);
+		getContentPane().add(chckbxSaveLastUsername);
 		
 		btnSave.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent ae) {

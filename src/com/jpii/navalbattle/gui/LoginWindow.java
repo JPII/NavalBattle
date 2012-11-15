@@ -76,10 +76,7 @@ public class LoginWindow extends Window {
 		usernameField.addKeyListener(new KeyboardListener(this));		
 		registerButton.addKeyListener(new KeyboardListener(this));
 		
-		setDefaults();
-		setSize(491,160);
-		setLocation(1280/2-getWidth()/2,800/2-getHeight()/2);
-		
+		setDefaults();		
 		
 		loginButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent ae) {
@@ -93,7 +90,6 @@ public class LoginWindow extends Window {
 				NavalBattle.getDebugWindow().printInfo("Opening in offline mode");
 				NavalBattle.getDebugWindow().printWarning("RoketGamer disabled");
 				NavalBattle.getGameState().setOffline(true);
-				
 				NavalBattle.getDebugWindow().printInfo("Disposing LoginWindow");
 				dispose();
 				NavalBattle.getDebugWindow().printInfo("Opening LoggingInWindow");
