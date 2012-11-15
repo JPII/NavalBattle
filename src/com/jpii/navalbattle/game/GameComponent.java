@@ -17,6 +17,7 @@
 
 package com.jpii.navalbattle.game;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.event.*;
 
@@ -85,7 +86,15 @@ public class GameComponent extends JComponent {
 		game.repaint(RepaintType.REPAINT_MAP);
 		game.repaint(RepaintType.REPAINT_CLOUDS);
 		game.repaint(RepaintType.REPAINT_BUFFERS);
-		g.drawImage(game.getBuffer(),0,0,null);
+		g.drawImage(game.getBuffer(),0,40,null);
+		
+		g.setColor(Color.black);
+		g.fillRect(0,0,getWidth(),40);
+		g.setColor(Color.darkGray);
+		g.fillRect(getWidth()-55,0,55,40);
+		g.setColor(Color.white);
+		g.drawLine(getWidth() - 50, 5, getWidth() - 5, 35);
+		g.drawLine(getWidth() - 5, 5, getWidth() - 50, 35);
 
 		long end = System.currentTimeMillis() - start;
 		double fps = (1.0/end) * 1000.0;

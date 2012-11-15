@@ -19,7 +19,7 @@ package com.jpii.navalbattle.game;
 
 import javax.swing.*;
 
-import java.awt.Toolkit;
+import java.awt.*;
 import java.awt.event.*;
 
 import com.jpii.navalbattle.data.Constants;
@@ -39,12 +39,13 @@ public class SinglePlayerGame extends JFrame {
 		this.setTitle("NavalBattle");
 
 		game = new GameComponent(this);
-
+		game.setLocation(0,40);
 		setContentPane(game);
 
 		this.getContentPane().setLayout(null);
 
 		this.setSize(491, 339);
+		this.setUndecorated(true);
 		this.setVisible(true);
 		this.setResizable(true);
 		this.setLocation(Toolkit.getDefaultToolkit().getScreenSize().width / 2
@@ -62,11 +63,13 @@ public class SinglePlayerGame extends JFrame {
 		this.setFocusable(true);
 		this.addKeyListener(new KeyboardListener(this));
 		
-		setSize(Constants.WINDOW_WIDTH,Constants.WINDOW_HEIGHT);
+		
+		setSize(Constants.WINDOW_WIDTH,Constants.WINDOW_HEIGHT+40);
 		
 		//setSize((int) Toolkit.getDefaultToolkit().getScreenSize().getWidth(),
 			//	(int) Toolkit.getDefaultToolkit().getScreenSize().getHeight() - 48);
 		setLocation((int)(Toolkit.getDefaultToolkit().getScreenSize().getWidth()/2) - (getWidth()/2),
 				(int)(Toolkit.getDefaultToolkit().getScreenSize().getHeight()/2) - (getHeight()/2));
+		
 	}
 }
