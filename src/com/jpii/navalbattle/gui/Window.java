@@ -17,14 +17,28 @@ public class Window extends JFrame {
 	 * Will log opening automatically, but closing (disposing) should be
 	 * handled within each subclass.
 	 */
+	protected int width;
+	protected int height;
+	
 	public Window() {
+		width = 491;
+		height = 339;
+		setDefaults();
+	}
+	public Window(int x, int y) {
+		width = x;
+		height = y;
+		setDefaults();
+	}
+	
+	private void setDefaults(){
 		try {
-			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+			UIManager.setLookAndFeel("javax.swing.plaf.nimbus.NimbusLookAndFeel");
 		} catch (Exception e) {}
 		this.setIconImage(Helper.GUI_WINDOW_ICON);
 		
 		setTitle("NavalBattle");
-		setSize(491, 339);
+		setSize(width, height);
 		setLocation(1280/2-getWidth()/2,800/2-getHeight()/2);
 		
 		setResizable(false);
