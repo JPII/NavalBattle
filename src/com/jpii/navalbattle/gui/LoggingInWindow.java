@@ -90,7 +90,6 @@ public class LoggingInWindow extends Window {
 			catch (Exception ex) {
 			}
 			NavalBattle.getDebugWindow().printInfo("Opening MainMenuWindow");
-			new MainMenuWindow();
 	    }
 	    public void sleep(int millseconds) {
 	    	try
