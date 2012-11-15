@@ -49,7 +49,7 @@ public class DebugWindow extends Window {
 		final JButton btnSubmit = new JButton("Submit");
 		
 		lblNavalBattle.setBounds(10, 11, 120, 14);
-		lblDebugMode.setBounds(95, 13, 66, 14);
+		lblDebugMode.setBounds(95, 13, 120, 14);
 		scrollPane.setBounds(10, 35, 439, 255);
 		commandField.setBounds(10, 301, 337, 23);
 		btnSubmit.setBounds(357, 301, 89, 23);
@@ -59,6 +59,8 @@ public class DebugWindow extends Window {
 		debugPrinter.setEditable(false);
 		scrollPane.setViewportView(debugPrinter);
 		commandField.setColumns(10);
+		btnSubmit.setFocusable(false);
+		debugPrinter.setFocusable(false);
 		
 		getContentPane().add(lblNavalBattle);
 		getContentPane().add(lblDebugMode);

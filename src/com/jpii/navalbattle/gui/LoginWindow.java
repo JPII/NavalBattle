@@ -61,6 +61,8 @@ public class LoginWindow extends Window {
 		
 		JLabel lblVersion = new JLabel(Constants.NAVALBATTLE_VERSION_TITLE);
 		lblVersion.setBounds(10, 107, 193, 14);
+		loginButton.setFocusable(false);
+		registerButton.setFocusable(false);
 		
 		getContentPane().add(usernameLabel);
 		getContentPane().add(usernameField);
@@ -73,8 +75,7 @@ public class LoginWindow extends Window {
 		getContentPane().add(optionsButton);
 		
 		passwordField.addKeyListener(new KeyboardListener(this));
-		usernameField.addKeyListener(new KeyboardListener(this));		
-		registerButton.addKeyListener(new KeyboardListener(this));
+		usernameField.addKeyListener(new KeyboardListener(this));
 		
 		setDefaults();		
 		
