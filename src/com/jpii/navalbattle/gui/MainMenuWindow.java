@@ -48,9 +48,8 @@ public class MainMenuWindow extends Window {
 		JButton btnCredits = new JButton("Credits");
 		JButton btnMultiplayer = new JButton("Multiplayer");
 		
-		lblNavalBattle.setBounds(10, 13, 500, 51);
+		lblNavalBattle.setBounds(10, 13, 466, 51);
 		lblVersion.setBounds(10, 276, 238, 14);
-		lblNavalBattle.setBounds(158, 13, 193, 51);
 		btnSingleplayer.setBounds(194, 73, 100, 25);
 		btnHelp.setBounds(194, 141, 100, 25);
 		btnRoketGamer.setBounds(194, 175, 100, 25);
@@ -63,6 +62,7 @@ public class MainMenuWindow extends Window {
 		lblNavalBattle.setFont(Helper.GUI_MENU_TITLE_FONT);
 		setFont(new Font("RingBearer", Font.BOLD, 35));
 		btnMultiplayer.setEnabled(false);
+		lblNavalBattle.setHorizontalAlignment(SwingConstants.CENTER);
 		
 	//	setContentPane(backgrnd);
 		getContentPane().add(lblVersion);

@@ -1,7 +1,6 @@
 package com.jpii.navalbattle.gui;
 
 import javax.swing.*;
-import javax.swing.UIManager.LookAndFeelInfo;
 
 import com.jpii.navalbattle.NavalBattle;
 import com.jpii.navalbattle.renderer.Helper;

@@ -16,10 +16,6 @@
  */
 
 package com.jpii.navalbattle;
-
-import java.net.URL;
-import java.util.ArrayList;
-
 import javax.swing.UIManager.*;
 import javax.swing.*;
 
@@ -27,7 +23,6 @@ import com.jpii.roketgamer.*;
 import com.jpii.navalbattle.data.*;
 import com.jpii.navalbattle.debug.*;
 import com.jpii.navalbattle.gui.*;
-import com.jpii.navalbattle.io.*;
 import com.jpii.navalbattle.renderer.*;
 import com.jpii.navalbattle.util.*;
 
