@@ -18,9 +18,6 @@
 package com.jpii.navalbattle.gui;
 
 import javax.swing.*;
-
-import com.jpii.navalbattle.NavalBattle;
-
 import java.awt.*;
 import java.awt.event.*;
 
@@ -114,9 +111,7 @@ public class CreditsWindow extends Window {
 		btnClose.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				NavalBattle.getDebugWindow().printInfo("Disposing CreditsWindow");
 				dispose();
-				NavalBattle.getDebugWindow().printInfo("Opening MainMenuWindow");
 				new MainMenuWindow();
 			}
 		});

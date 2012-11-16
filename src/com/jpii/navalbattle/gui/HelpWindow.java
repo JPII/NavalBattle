@@ -89,9 +89,7 @@ public class HelpWindow extends Window {
 		btnClose.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				NavalBattle.getDebugWindow().printInfo("Disposing HelpWindow");
 				dispose();
-				NavalBattle.getDebugWindow().printInfo("Opening MainMenuWindow");
 				new MainMenuWindow();
 			}
 		});
