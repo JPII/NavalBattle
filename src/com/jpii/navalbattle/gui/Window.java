@@ -80,7 +80,10 @@ public class Window extends JFrame {
 		addWindowListener(new WindowCloser());
 		setVisible(true);
 	}
-	
+	public void dispose(){
+		NavalBattle.getDebugWindow().printError("Disposing "+parseString(this.getClass()+""));
+		super.dispose();
+	}
 	/**
 	 * Get method for Window
 	 * 

@@ -8,8 +8,6 @@ import javax.swing.JTextField;
 import javax.swing.JCheckBox;
 import javax.swing.JButton;
 
-import com.jpii.navalbattle.NavalBattle;
-
 @SuppressWarnings("serial")
 public class LoginOptionsWindow extends Window {
 	
@@ -65,7 +63,6 @@ public class LoginOptionsWindow extends Window {
 		
 		btnSave.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent ae) {
-				NavalBattle.getDebugWindow().printInfo("Disposing LoginOptionsWindow");
 				dispose();
 				new LoginWindow();
 			}
