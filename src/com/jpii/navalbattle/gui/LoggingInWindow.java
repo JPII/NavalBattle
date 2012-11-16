@@ -50,12 +50,10 @@ public class LoggingInWindow extends Window {
 	        
 	        try
 			{
-				dispose();
+	        	nextWindow("MainMenuWindow");
 			}
 			catch (Exception ex) {
 			}
-			
-			new MainMenuWindow();
 	    }
 	    
 	    public void sleep(int millseconds) {

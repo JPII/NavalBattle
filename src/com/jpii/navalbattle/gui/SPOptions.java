@@ -246,6 +246,7 @@ public class SPOptions extends Window{
 				NavalBattle.getDebugWindow().printInfo("NumShips: " + NavalBattle.getGameState().getNumShips());
 				NavalBattle.getDebugWindow().printInfo("WaterLevel: " + NavalBattle.getGameState().getWaterLevel());
 				NavalBattle.getDebugWindow().printInfo("Difficulty: " + NavalBattle.getGameState().getDifficulty());
+				
 				dispose();
 				NavalBattle.getDebugWindow().printInfo("Opening SinglePlayerGame");
 				new SinglePlayerGame();
@@ -256,8 +257,7 @@ public class SPOptions extends Window{
 		btnBack.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				new MainMenuWindow();
-				dispose();
+				nextWindow("MainMenuWindow");
 			}
 		});
 		btnAdvancedOptions.addMouseListener(new MouseAdapter() {

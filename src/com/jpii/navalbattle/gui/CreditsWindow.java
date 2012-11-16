@@ -111,8 +111,7 @@ public class CreditsWindow extends Window {
 		btnClose.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				dispose();
-				new MainMenuWindow();
+				nextWindow("MainMenuWindow");
 			}
 		});
 	}

@@ -21,7 +21,6 @@ public class Window extends JFrame {
 	protected int xloc;
 	protected int yloc;
 	
-	
 	public Window() {
 		width = 492;
 		height = 340;
@@ -67,11 +66,11 @@ public class Window extends JFrame {
 		setFocusable(true);
 		addKeyListener(new KeyboardListener(this));
 		addWindowListener(new WindowCloser());
-		setVisible(true);
+		setVisible(false);
 	}
-	public void dispose(){
+	public void nextWindow(String next){
 		printDebug("Hiding "+parseString());
-		super.dispose();
+		NavalBattle.getWindowHandler().setNewWindow(next);
 	}
 	/**
 	 * Get method for Window

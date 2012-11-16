@@ -22,7 +22,6 @@ import javax.swing.*;
 import com.jpii.roketgamer.*;
 import com.jpii.navalbattle.data.*;
 import com.jpii.navalbattle.debug.*;
-import com.jpii.navalbattle.gui.*;
 import com.jpii.navalbattle.renderer.*;
 import com.jpii.navalbattle.util.*;
 
@@ -33,6 +32,7 @@ public class NavalBattle {
 	private static GameState gameState;
 	private static CommandHandler commandHandler;
 	private static Toaster toasterManager;
+	private static WindowHandler windowHandler;
 	
 	public static void main(String[] args) {
 		
@@ -49,20 +49,16 @@ public class NavalBattle {
 		URL url = NavalBattle.class.getResource("/com/jpii/navalbattle/res/settings.ini");
 		//SettingsReader reader = new SettingsReader(url.getPath(),attrs);
 		//reader.read(); */
-		
 		Helper.LoadStaticResources();
-		
 		setDefaultLookAndFeel();
-		
 		debugWindow = new DebugWindow();
 		gameState = new GameState();
 		roketGamer = new RoketGamer();
-		
 		commandHandler = new CommandHandler(Commands.COMMANDS);	
 		toasterManager = new Toaster();
-		
 		debugWindow.printInfo("NavalBattle " + Constants.NAVALBATTLE_VERSION + " initialized");
-		new LoginWindow();
+		
+		windowHandler = new WindowHandler();
 	}
 	
 	/**
@@ -108,6 +104,15 @@ public class NavalBattle {
 	 */
 	public static Toaster getToasterManager() {
 		return toasterManager;
+	}
+	
+	/**
+	 * Returns current instance of WindowHandler. Used to switch Windows.
+	 * 
+	 * @return windowHandler
+	 */
+	public static WindowHandler getWindowHandler() {
+		return windowHandler;
 	}
 	
 	private static void setDefaultLookAndFeel(){

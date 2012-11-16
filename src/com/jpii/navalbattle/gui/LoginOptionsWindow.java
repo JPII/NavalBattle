@@ -63,8 +63,7 @@ public class LoginOptionsWindow extends Window {
 		
 		btnSave.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent ae) {
-				dispose();
-				new LoginWindow();
+				nextWindow("LoginWindow");
 			}
 		});
 	}

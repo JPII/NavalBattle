@@ -84,15 +84,13 @@ public class MainMenuWindow extends Window {
 		btnSingleplayer.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				dispose();
-				new SPOptions();
+				nextWindow("SPOptions");
 			}
 		});		
 		btnHelp.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				dispose();
-				new HelpWindow();
+				nextWindow("HelpWindow");
 			}
 		});
 		if(NavalBattle.getGameState().isOffline()) {
@@ -114,8 +112,7 @@ public class MainMenuWindow extends Window {
 		btnCredits.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				dispose();
-				new CreditsWindow();
+				nextWindow("CreditsWindow");
 			}
 		});
 		btnMultiplayer.addMouseListener(new MouseAdapter() {

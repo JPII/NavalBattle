@@ -93,8 +93,7 @@ public class LoginWindow extends Window {
 				NavalBattle.getDebugWindow().printInfo("Opening in offline mode");
 				NavalBattle.getDebugWindow().printWarning("RoketGamer disabled");
 				NavalBattle.getGameState().setOffline(true);
-				dispose();
-				new LoggingInWindow();
+				nextWindow("LoggingInWindow");
 			}
 		});
 		
@@ -107,8 +106,7 @@ public class LoginWindow extends Window {
 		
 		optionsButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent ae) {
-				dispose();
-				new LoginOptionsWindow();
+				nextWindow("LoginOptionsWindow");
 			}
 		});
 	}
@@ -126,8 +124,7 @@ public class LoginWindow extends Window {
 			NavalBattle.getToasterManager().showToaster(new ImageIcon(getClass().getResource("/com/jpii/roketgamer/res/logo_100px.png")), "Logged in as " + NavalBattle.getRoketGamer().getPlayer().getName());
 			NavalBattle.getDebugWindow().printInfo("User authenticated");
 			NavalBattle.getDebugWindow().printInfo("Logged in as: " + NavalBattle.getRoketGamer().getPlayer().getName());
-			dispose();
-			new LoggingInWindow();
+			nextWindow("LoggingInWindow");
 		} else {
 			if(status == AuthStatus.BAD) {
 				NavalBattle.getDebugWindow().printWarning("Authentication failed: AuthStatus.BAD");	
