@@ -41,6 +41,7 @@ public class NavalBattle {
 	
 	public static void main(String[] args) {
 		
+		/*
 		ArrayList<SettingsAttribute> attrs = new ArrayList<SettingsAttribute>();
 		SettingsAttribute a = new SettingsAttribute("lastGoodUserName");
 		attrs.add(a);
@@ -58,8 +59,7 @@ public class NavalBattle {
 		for (int v = 0; v < data.size(); v++) {
 			System.out.println("Settings Attribute:" + data.get(v).getName() + " is equal to the value " + data.get(v).getValue());
 		}
-		
-		
+		*/
 		
 		Helper.LoadStaticResources();
 		
