@@ -17,15 +17,19 @@
 
 package com.jpii.navalbattle;
 
+import java.net.URL;
+import java.util.ArrayList;
+
 import javax.swing.UIManager.*;
 import javax.swing.*;
 
-import com.jpii.roketgamer.RoketGamer;
+import com.jpii.roketgamer.*;
 import com.jpii.navalbattle.data.*;
 import com.jpii.navalbattle.debug.*;
-import com.jpii.navalbattle.gui.LoginWindow;
-import com.jpii.navalbattle.renderer.Helper;
-import com.jpii.navalbattle.util.Toaster;
+import com.jpii.navalbattle.gui.*;
+import com.jpii.navalbattle.io.*;
+import com.jpii.navalbattle.renderer.*;
+import com.jpii.navalbattle.util.*;
 
 public class NavalBattle {
 
@@ -36,6 +40,27 @@ public class NavalBattle {
 	private static Toaster toasterManager;
 	
 	public static void main(String[] args) {
+		
+		ArrayList<SettingsAttribute> attrs = new ArrayList<SettingsAttribute>();
+		SettingsAttribute a = new SettingsAttribute("lastGoodUserName");
+		attrs.add(a);
+		a = new SettingsAttribute("lastGoodPassword");
+		attrs.add(a);
+		a = new SettingsAttribute("gameWindowWidth");
+		attrs.add(a);
+		a = new SettingsAttribute("gameWindowHeight");
+		attrs.add(a);
+		URL url = NavalBattle.class.getResource("/com/jpii/navalbattle/res/settings.ini");
+		SettingsReader reader = new SettingsReader(url.getPath(),attrs);
+		reader.read();
+		
+		ArrayList<SettingsAttribute> data = reader.getData();
+		for (int v = 0; v < data.size(); v++) {
+			System.out.println("Settings Attribute:" + data.get(v).getName() + " is equal to the value " + data.get(v).getValue());
+		}
+		
+		
+		
 		Helper.LoadStaticResources();
 		
 		setDefaultLookAndFeel();
