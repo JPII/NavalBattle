@@ -34,7 +34,7 @@ public class LoginWindow extends Window {
 	JPasswordField passwordField;
 
 	public LoginWindow() {
-		super(491,160);
+		super(500,190);
 		getContentPane().setLayout(null);
 		usernameLabel = new JLabel();
 		usernameField = new JTextField(25);
@@ -51,15 +51,15 @@ public class LoginWindow extends Window {
 		passwordLabel.setToolTipText("Use RoketGamer application password");
 		passwordField.setToolTipText("Use RoketGamer application password");
 		
-		usernameLabel.setBounds(295,11,78,30);
-		usernameField.setBounds(365,8,100,30);
-		passwordLabel.setBounds(295,37,78,30);
-		passwordField.setBounds(365,37,100,30);
-		loginButton.setBounds(385,66,78,30);
-		registerButton.setBounds(295, 94, 78, 30);
-		offlineButton.setBounds(295, 66, 78, 30);
-		optionsButton.setBounds(385, 94, 78, 30);
-		lblVersion.setBounds(10, 107, 193, 14);
+		usernameLabel.setBounds(295,8,78,30);
+		usernameField.setBounds(365,8,113,30);
+		passwordLabel.setBounds(295,39,78,30);
+		passwordField.setBounds(365,39,113,30);
+		loginButton.setBounds(400,81,78,30);
+		registerButton.setBounds(315, 113, 78, 30);
+		offlineButton.setBounds(315, 81, 78, 30);
+		optionsButton.setBounds(400, 113, 78, 30);
+		lblVersion.setBounds(6, 129, 193, 14);
 		getContentPane().add(usernameLabel);
 		getContentPane().add(usernameField);
 		getContentPane().add(passwordLabel);
@@ -78,7 +78,8 @@ public class LoginWindow extends Window {
 		passwordField.addKeyListener(new KeyboardListener(this));
 		usernameField.addKeyListener(new KeyboardListener(this));
 		
-		setDefaults();		
+		setDefaults();	
+		setSize(500,190);
 		
 		loginButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent ae) {
