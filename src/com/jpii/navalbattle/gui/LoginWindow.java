@@ -38,26 +38,28 @@ public class LoginWindow extends Window {
 		NavalBattle.getDebugWindow().printInfo("LoginWindow opened");
 		getContentPane().setLayout(null);
 		usernameLabel = new JLabel();
-		usernameLabel.setText("Username");
-		usernameLabel.setBounds(295,11,78,20);
 		usernameField = new JTextField(25);
-		usernameField.setBounds(365,11,100,20);
 		passwordLabel = new JLabel();
-		passwordLabel.setToolTipText("Use RoketGamer application password");
-		passwordLabel.setText("Password");
-		passwordLabel.setBounds(295,37,78,20);
 		passwordField = new JPasswordField(25);
+		
+		usernameLabel.setText("Username");
+		passwordLabel.setText("Password");
+		passwordLabel.setToolTipText("Use RoketGamer application password");
 		passwordField.setToolTipText("Use RoketGamer application password");
-		passwordField.setBounds(365,37,100,20);
+		
+		usernameLabel.setBounds(295,11,78,25);
+		usernameField.setBounds(365,11,100,25);
+		passwordLabel.setBounds(295,37,78,25);
+		passwordField.setBounds(365,37,100,25);
 		
 		loginButton = new JButton("Login");
-		loginButton.setBounds(385,66,78,22);
+		loginButton.setBounds(385,66,78,25);
 		JButton registerButton = new JButton("Register");
-		registerButton.setBounds(295, 94, 78, 22);
+		registerButton.setBounds(295, 94, 78, 25);
 		JButton offlineButton = new JButton("Offline");
-		offlineButton.setBounds(295, 66, 78, 22);
+		offlineButton.setBounds(295, 66, 78, 25);
 		JButton optionsButton = new JButton("Options");
-		optionsButton.setBounds(385, 94, 78, 22);
+		optionsButton.setBounds(385, 94, 78, 25);
 		
 		JLabel lblVersion = new JLabel(Constants.NAVALBATTLE_VERSION_TITLE);
 		lblVersion.setBounds(10, 107, 193, 14);
