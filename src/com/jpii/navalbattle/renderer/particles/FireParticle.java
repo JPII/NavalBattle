@@ -1,7 +1,6 @@
 package com.jpii.navalbattle.renderer.particles;
 
 import java.awt.*;
-import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
 import java.util.Random;
 

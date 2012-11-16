@@ -3,7 +3,6 @@ package com.jpii.navalbattle.renderer.particles;
 import java.awt.*;
 import java.awt.event.*;
 import java.awt.image.*;
-import java.util.Random;
 import java.util.ArrayList;
 
 import javax.swing.*;

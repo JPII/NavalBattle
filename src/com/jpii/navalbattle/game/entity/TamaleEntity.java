@@ -1,11 +1,9 @@
 package com.jpii.navalbattle.game.entity;
 
-import java.awt.Color;
-import java.awt.Graphics;
-import java.awt.image.BufferedImage;
-import java.util.Random;
+import java.awt.*;
+import java.awt.image.*;
+import java.util.*;
 
-import com.jpii.navalbattle.renderer.Helper;
 import com.jpii.navalbattle.renderer.particles.*;
 
 public class TamaleEntity extends Entity {
