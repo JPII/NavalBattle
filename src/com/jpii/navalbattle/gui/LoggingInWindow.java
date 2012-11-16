@@ -12,6 +12,7 @@ import com.jpii.navalbattle.data.Constants;
 public class LoggingInWindow extends Window {
 	
 	private ImageChanger imageChanger;
+	private boolean alreadyOpened = false;
 	
 	public LoggingInWindow() {
 		NavalBattle.getDebugWindow().printInfo("LoggingInWindow opened");
@@ -32,7 +33,6 @@ public class LoggingInWindow extends Window {
 		
 		imageChanger.start();
 		addMouseListener(new MouseAdapter() {
-			@SuppressWarnings("deprecation")
 			public void mouseClicked(MouseEvent e) {
 				if (alreadyOpened) {
 					try {
@@ -60,7 +60,6 @@ public class LoggingInWindow extends Window {
 			}
 		});
 	}
-	boolean alreadyOpened = false;
 	
 	class ImageChanger extends Thread {
 		
@@ -83,22 +82,24 @@ public class LoggingInWindow extends Window {
 	        sleep(Constants.SPLASH_DURATION);
 	        
 	        NavalBattle.getDebugWindow().printInfo("Disposing LoggingInWindow");
+	        
 	        try
 			{
 				dispose();
 			}
 			catch (Exception ex) {
 			}
+	        
 			NavalBattle.getDebugWindow().printInfo("Opening MainMenuWindow");
+			
+			new MainMenuWindow();
 	    }
+	    
 	    public void sleep(int millseconds) {
-	    	try
-	    	{
+	    	try {
 		    	long orig = System.currentTimeMillis();
-		    	while (orig + millseconds > System.currentTimeMillis()) {
-		    	}
-	    	}
-	    	catch (Exception e) {
+		    	while (orig + millseconds > System.currentTimeMillis()) { }
+	    	} catch (Exception e) {
 	    		
 	    	}
 	    }
