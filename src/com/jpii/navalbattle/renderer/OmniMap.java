@@ -128,15 +128,16 @@ public class OmniMap {
             g.setColor(Color.red);
             g.drawRect(vx, vy, Constants.WINDOW_WIDTH / 100 * 2, Constants.WINDOW_HEIGHT / 100 * 2);
         } else {
+        	r = new Random(Constants.MAIN_SEED);
         	Point p = GameComponent.game.screenToPoint(mx,my);
         	p.x += 250 + 50;
         	p.y += 200 + 50;
-        	for (int x22 = -10; x22 < 10; x22++) {
-                for (int z22 = -10; z22 < 10; z22++) {
+        	for (int x22 = -25; x22 < 25; x22++) {
+                for (int z22 = -25; z22 < 25; z22++) {
                     int ttx = (x22 + p.x);
                     int tty = (z22 + p.y);
-                    int x = x22 + 20;//50;
-                    int z = z22 + 20;//50;
+                    int x = x22 + 50;
+                    int z = z22 + 50;
                     int s = 5;
                     if (ttx < 0 || tty < 0 || ttx > (Constants.WINDOW_WIDTH * 4) || tty > (Constants.WINDOW_HEIGHT * 4)) {
                         int rgb = r.nextInt(100);

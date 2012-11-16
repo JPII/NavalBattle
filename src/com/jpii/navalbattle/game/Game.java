@@ -63,8 +63,8 @@ public class Game implements Runnable {
 	        		if (river.getPoint(x,y) == 1.0) {
 		        		int tx = rx + x;
 		        		int ty = ry + y;
-		        		if (eng.getPoint(tx, ty) > RenderConstants.GEN_WATER_HEIGHT) {
-		        			eng.setPoint(tx,ty,eng.getPoint(tx,ty) - 0.3);
+		        		if (eng.getPoint(tx, ty) > RenderConstants.GEN_WATER_HEIGHT + 0.05) {
+		        			eng.setPoint(tx,ty,eng.getPoint(tx,ty) - 0.25);
 		        		}
 	        		}
 	        	}
