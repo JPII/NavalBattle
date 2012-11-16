@@ -22,6 +22,7 @@ import java.util.ArrayList;
 import com.jpii.navalbattle.NavalBattle;
 import com.jpii.navalbattle.debug.*;
 import com.jpii.navalbattle.gui.*;
+import com.jpii.navalbattle.gui.listeners.WindowCloser;
 
 public class Commands {
 	
@@ -41,7 +42,7 @@ public class Commands {
 	    
 	    add(new Command("quit", "", "Quit game", new CommandAction() { 
 	    	public void onRun(Command c, String[] args) {
-	    		System.exit(0);
+	    		WindowCloser.close();
 	    	}}
 	    ));
 	    

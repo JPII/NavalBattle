@@ -51,8 +51,8 @@ public class DebugWindow extends Window {
 		lblNavalBattle.setBounds(10, 11, 120, 14);
 		lblDebugMode.setBounds(95, 13, 120, 14);
 		scrollPane.setBounds(10, 35, 439, 255);
-		commandField.setBounds(10, 301, 337, 23);
-		btnSubmit.setBounds(357, 301, 89, 23);
+		commandField.setBounds(10, 301, 337, 25);
+		btnSubmit.setBounds(357, 301, 90, 25);
 		
 		lblNavalBattle.setFont(new Font("Tahoma", Font.BOLD, 14));
 		debugPrinter.setFont(new Font("Consolas",0,12));
