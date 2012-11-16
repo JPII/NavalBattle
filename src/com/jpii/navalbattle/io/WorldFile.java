@@ -15,6 +15,7 @@ public class WorldFile {
 	public Grid readGrid() {
 		return null;
 	}
+	@SuppressWarnings("unused")
 	private Entity readEntity() {
 		return null;
 	}

@@ -17,12 +17,10 @@
 
 package com.jpii.navalbattle.game.entity;
 
-import java.awt.Image;
+import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.lang.Thread.State;
 
-import com.jpii.navalbattle.game.GameComponent;
-import com.jpii.navalbattle.game.Location;
+import com.jpii.navalbattle.game.*;
 
 public class Entity implements Runnable {
 	
@@ -31,7 +29,6 @@ public class Entity implements Runnable {
 	private boolean active;
 	private String tag;
 	private BufferedImage detailedImage;
-	private Thread latestThread;
 	
 	/**
 	 * Default constructor. Sets instance to inactive.
