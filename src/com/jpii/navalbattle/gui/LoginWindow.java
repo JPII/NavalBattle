@@ -51,14 +51,14 @@ public class LoginWindow extends Window {
 		passwordLabel.setToolTipText("Use RoketGamer application password");
 		passwordField.setToolTipText("Use RoketGamer application password");
 		
-		usernameLabel.setBounds(295,11,78,25);
-		usernameField.setBounds(365,11,100,25);
-		passwordLabel.setBounds(295,37,78,25);
-		passwordField.setBounds(365,37,100,25);
-		loginButton.setBounds(385,66,78,25);
-		registerButton.setBounds(295, 94, 78, 25);
-		offlineButton.setBounds(295, 66, 78, 25);
-		optionsButton.setBounds(385, 94, 78, 25);
+		usernameLabel.setBounds(295,11,78,30);
+		usernameField.setBounds(365,8,100,30);
+		passwordLabel.setBounds(295,37,78,30);
+		passwordField.setBounds(365,37,100,30);
+		loginButton.setBounds(385,66,78,30);
+		registerButton.setBounds(295, 94, 78, 30);
+		offlineButton.setBounds(295, 66, 78, 30);
+		optionsButton.setBounds(385, 94, 78, 30);
 		lblVersion.setBounds(10, 107, 193, 14);
 		getContentPane().add(usernameLabel);
 		getContentPane().add(usernameField);

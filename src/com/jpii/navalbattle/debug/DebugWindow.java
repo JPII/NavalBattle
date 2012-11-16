@@ -25,8 +25,6 @@ import javax.swing.*;
 import com.jpii.navalbattle.NavalBattle;
 import com.jpii.navalbattle.gui.Window;
 import com.jpii.navalbattle.gui.listeners.KeyboardListener;
-import com.jpii.navalbattle.gui.listeners.WindowCloser;
-import com.jpii.navalbattle.renderer.Helper;
 
 @SuppressWarnings("serial")
 public class DebugWindow extends Window {
