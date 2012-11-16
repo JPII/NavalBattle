@@ -73,7 +73,7 @@ public class GameComponent extends JComponent {
 			}
 		});
 
-		ticker = new Timer(50, al);
+		ticker = new Timer(10, al);
 		ticker.start();
 		game = new Game();
 		//game.repaint(RepaintType.REPAINT_CHUNKS);

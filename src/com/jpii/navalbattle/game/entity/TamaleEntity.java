@@ -13,7 +13,7 @@ public class TamaleEntity extends Entity {
 	Random r;
 	public TamaleEntity() {
 		r = new Random();
-		system = new ParticleEngine(100, 50, 50);
+		system = new ParticleEngine(10, 50, 50);
 		system.setMaxParticles(10);
 	}
 	public void update() {

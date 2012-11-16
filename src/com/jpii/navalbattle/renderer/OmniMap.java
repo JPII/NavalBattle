@@ -132,13 +132,14 @@ public class OmniMap {
         	Point p = GameComponent.game.screenToPoint(mx,my);
         	p.x += 250 + 50;
         	p.y += 200 + 50;
-        	for (int x22 = -25; x22 < 25; x22++) {
-                for (int z22 = -25; z22 < 25; z22++) {
+        	for (int x22 = -20; x22 < 20; x22++) {
+                for (int z22 = -50; z22 < 20; z22++) {
                     int ttx = (x22 + p.x);
                     int tty = (z22 + p.y);
-                    int x = x22 + 50;
-                    int z = z22 + 50;
-                    int s = 5;
+                    int x = x22 + 20;
+                    int z = z22 + 20;
+                    //if (x * s > )
+                    int s = 1;
                     if (ttx < 0 || tty < 0 || ttx > (Constants.WINDOW_WIDTH * 4) || tty > (Constants.WINDOW_HEIGHT * 4)) {
                         int rgb = r.nextInt(100);
                         g.setColor(new Color(rgb, rgb, rgb));
