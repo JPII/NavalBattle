@@ -116,30 +116,33 @@ public class OmniMap {
      */
     public void update() {
         buffer = new BufferedImage(width, height + 25, BufferedImage.TYPE_INT_RGB);
-        Graphics2D g = (Graphics2D) buffer.getGraphics();
-        g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-        g.drawImage(Helper.GUI_OMNIMAP_BACKGROUND1,0,0,100,125,null);
+        Graphics2D g2 = (Graphics2D) buffer.getGraphics();
+        g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+        g2.drawImage(Helper.GUI_OMNIMAP_BACKGROUND1,0,0,100,125,null);
         if (entireWorldMode) {
-            g.drawImage(map, 1,1, null);
+            g2.drawImage(map, 1,1, null);
             int vx = (msax - 200) * 100 / (Constants.WINDOW_WIDTH * 4);
             int vy = (msay - 200) * 100 / (Constants.WINDOW_HEIGHT * 4);
             vx += 20;
             vy += 20;
-            g.setColor(Color.red);
-            g.drawRect(vx, vy, Constants.WINDOW_WIDTH / 100 * 2, Constants.WINDOW_HEIGHT / 100 * 2);
+            g2.setColor(Color.red);
+            g2.drawRect(vx, vy, Constants.WINDOW_WIDTH / 100 * 2, Constants.WINDOW_HEIGHT / 100 * 2);
         } else {
+        	BufferedImage bb3 = new BufferedImage(width-4,height-4,BufferedImage.TYPE_INT_ARGB);
+        	Graphics2D g = (Graphics2D) bb3.getGraphics();
+            g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
         	r = new Random(Constants.MAIN_SEED);
         	Point p = GameComponent.game.screenToPoint(mx,my);
         	p.x += 250 + 50;
         	p.y += 200 + 50;
         	for (int x22 = -20; x22 < 20; x22++) {
-                for (int z22 = -50; z22 < 20; z22++) {
+                for (int z22 = -20; z22 < 20; z22++) {
                     int ttx = (x22 + p.x);
                     int tty = (z22 + p.y);
                     int x = x22 + 20;
                     int z = z22 + 20;
                     //if (x * s > )
-                    int s = 2;
+                    int s = 3;
                     if (ttx < 0 || tty < 0 || ttx > (Constants.WINDOW_WIDTH * 4) || tty > (Constants.WINDOW_HEIGHT * 4)) {
                         int rgb = r.nextInt(100);
                         g.setColor(new Color(rgb, rgb, rgb));
@@ -187,20 +190,22 @@ public class OmniMap {
                     }
                 }
         	}
+        	g2.drawImage(bb3,2,2,null);
         }
-        g.setColor(new Color(100, 78, 47));
-        g.drawRect(1, 1, width - 3, height - 3);
+        Graphics g = g2;
+        g2.setColor(new Color(100, 78, 47));
+        g2.drawRect(1, 1, width - 3, height - 3);
         //g.setColor(new Color(74, 30, 3));
         ///g.drawRect(0, 0, width - 1, height - 1);
         //g.fillRect(0, height, width, 25);
 
-        g.setColor(new Color(100, 78, 47));
+        g2.setColor(new Color(100, 78, 47));
         if (entireWorldMode) {
-            g.fillRect(1, height - 1, 49, 25);
-            g.setColor(new Color(175, 137, 86)); //215,197,172));
-            g.drawLine(1, height - 1, 1, height + 23);
-            g.drawLine(2, height - 1, 2, height + 23);
-            g.setColor(new Color(36, 28, 17)); //57,45,28));
+            g2.fillRect(1, height - 1, 49, 25);
+            g2.setColor(new Color(175, 137, 86)); //215,197,172));
+            g2.drawLine(1, height - 1, 1, height + 23);
+            g2.drawLine(2, height - 1, 2, height + 23);
+            g2.setColor(new Color(36, 28, 17)); //57,45,28));
             g.drawLine(1, height + 23, 49, height + 23);
             g.drawLine(2, height + 22, 49, height + 22);
             g.drawLine(50, height - 1, 50, height + 23);
