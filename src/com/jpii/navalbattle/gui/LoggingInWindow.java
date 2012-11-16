@@ -15,7 +15,6 @@ public class LoggingInWindow extends Window {
 	private boolean alreadyOpened = false;
 	
 	public LoggingInWindow() {
-		NavalBattle.getDebugWindow().printInfo("LoggingInWindow opened");
 		getContentPane().setLayout(null);
 		
 		JProgressBar progressBar = new JProgressBar();
@@ -44,15 +43,12 @@ public class LoggingInWindow extends Window {
 				}
 				
 				NavalBattle.getDebugWindow().printInfo("Skipping splash screens");
-				NavalBattle.getDebugWindow().printInfo("Disposing LoggingInWindow");
 				
 				try {
 					dispose();
 				}
 				catch (Exception ex) {
 				}
-				
-				NavalBattle.getDebugWindow().printInfo("Opening MainMenuWindow");
 				alreadyOpened = true;
 				new MainMenuWindow();
 				
@@ -81,16 +77,12 @@ public class LoggingInWindow extends Window {
 	        
 	        sleep(Constants.SPLASH_DURATION);
 	        
-	        NavalBattle.getDebugWindow().printInfo("Disposing LoggingInWindow");
-	        
 	        try
 			{
 				dispose();
 			}
 			catch (Exception ex) {
 			}
-	        
-			NavalBattle.getDebugWindow().printInfo("Opening MainMenuWindow");
 			
 			new MainMenuWindow();
 	    }
