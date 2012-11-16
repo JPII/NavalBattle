@@ -27,6 +27,7 @@ public class Helper {
 	public static BufferedImage GUI_GLYPHS;
 	private static BufferedImage[] GUI_GLYPH_CHARS;
 	public static Font GUI_GAME_FONT;
+	public static Font GUI_MENU_TITLE_FONT;
 	private static Font loadFont(String name) {
 	    Font font = null;
 	    if (name == null) {
@@ -46,6 +47,7 @@ public class Helper {
 	public static void LoadStaticResources() {
 		loadFont("munro.ttf");
 		GUI_GAME_FONT = new Font("Munro",0,16);
+		GUI_MENU_TITLE_FONT = new Font("Munro",0,56);
 		try {
 			GUI_OMNIMAP_BACKGROUND1 = 
 					ImageIO.read(Helper.class.getResource("/com/jpii/navalbattle/res/gui_omnimap_background1.png"));

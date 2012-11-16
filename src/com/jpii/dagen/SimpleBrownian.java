@@ -41,7 +41,7 @@ public class SimpleBrownian extends Engine {
 		int lasty = oy;
 		for (int c = 0; c < rand.nextInt(maxiter-(maxiter/4)) + (maxiter/4); c++)
 		{
-			int nx = lastx + r(-2,3);
+			int nx = lastx + r(-1,1);
 			int ny = lasty + r(-2,2);
 			if (nx >= width)
 				nx = width-1;
@@ -58,6 +58,10 @@ public class SimpleBrownian extends Engine {
 			}
 			points[nx][ny] = 1.0;
 			drawLine(nx,ny,lastx,lasty);
+			drawLine(nx-1,ny-1,lastx-1,lasty-1);
+			drawLine(nx+1,ny+1,lastx+1,lasty+1);
+			drawLine(nx-1,ny-1,lastx+1,lasty+1);
+			drawLine(nx+1,ny+1,lastx-1,lasty-1);
 			//drawLine(nx-1,ny-1,lastx-1,lasty-1);
 			//drawLine(nx-1,ny-1,lastx,lasty);
 			//drawLine(nx,ny,lastx-1,lasty-1);

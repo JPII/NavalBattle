@@ -25,6 +25,7 @@ import java.awt.event.*;
 import com.jpii.navalbattle.NavalBattle;
 import com.jpii.navalbattle.data.Constants;
 import com.jpii.navalbattle.gui.listeners.*;
+import com.jpii.navalbattle.renderer.Helper;
 
 @SuppressWarnings("serial")
 public class MainMenuWindow extends Window {
@@ -59,7 +60,7 @@ public class MainMenuWindow extends Window {
 		
 		backgrnd.setLocation(0, 0);
 		lblNavalBattle.setForeground(Color.blue);
-		lblNavalBattle.setFont(new Font("RingBearer", Font.BOLD, 35));
+		lblNavalBattle.setFont(Helper.GUI_MENU_TITLE_FONT);//setFont(new Font("RingBearer", Font.BOLD, 35));
 		btnMultiplayer.setEnabled(false);
 		
 		setContentPane(backgrnd);
