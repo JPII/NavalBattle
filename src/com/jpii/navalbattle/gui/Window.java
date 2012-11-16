@@ -29,6 +29,7 @@ public class Window extends JFrame {
 		xloc = 1280/2-width/2;
 		yloc = 800/2-height/2;
 		setDefaults();
+		NavalBattle.getDebugWindow().printError("Opening "+parseString(this.getClass()+""));
 	}
 	
 	public Window(int x, int y) {
@@ -36,6 +37,7 @@ public class Window extends JFrame {
 		height = y;
 		xloc = 1280/2-width/2;
 		yloc = 800/2-height/2;
+		NavalBattle.getDebugWindow().printError("Opening "+parseString(this.getClass()+""));
 	}
 	
 	public Window(int x, int y,int xloc,int yloc) {
@@ -43,6 +45,10 @@ public class Window extends JFrame {
 		height = y;
 		this.xloc = xloc;
 		this.yloc = yloc;
+	}
+	
+	private String parseString(String className){
+		return className.substring((className.lastIndexOf(".")+1));
 	}
 	
 	protected void setDefaults(){
