@@ -61,6 +61,8 @@ public class LoginOptionsWindow extends Window {
 		getContentPane().add(btnSave);
 		getContentPane().add(chckbxSaveLastUsername);
 		
+		btnSave.setFocusable(false);
+		
 		btnSave.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent ae) {
 				NavalBattle.getDebugWindow().printInfo("Disposing LoginOptionsWindow");

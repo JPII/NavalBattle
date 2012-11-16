@@ -72,6 +72,13 @@ public class MainMenuWindow extends Window {
 		getContentPane().add(btnCredits);
 		getContentPane().add(btnMultiplayer);
 		
+		btnSingleplayer.setFocusable(false);
+		btnMultiplayer.setFocusable(false);
+		btnHelp.setFocusable(false);
+		btnRoketGamer.setFocusable(false);
+		btnQuit.setFocusable(false);
+		btnCredits.setFocusable(false);
+		
 		btnSingleplayer.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {

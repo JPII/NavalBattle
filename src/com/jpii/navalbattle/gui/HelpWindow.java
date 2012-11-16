@@ -64,6 +64,14 @@ public class HelpWindow extends Window {
 		getContentPane().add(btnVideoMultiplayer);
 		getContentPane().add(btnVideoRoketgamer);
 		
+		btnVideoOverview.setFocusable(false);
+		btnVideoNavigation.setFocusable(false);
+		btnVideoCombat.setFocusable(false);
+		btnVideoUpgradeShop.setFocusable(false);
+		btnVideoMultiplayer.setFocusable(false);
+		btnVideoRoketgamer.setFocusable(false);
+		btnClose.setFocusable(false);
+		
 		btnVideoRoketgamer.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {

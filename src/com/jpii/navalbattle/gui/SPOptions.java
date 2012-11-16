@@ -81,7 +81,6 @@ public class SPOptions extends Window{
 		separator_6.setOrientation(SwingConstants.VERTICAL);
 		lblNewGame.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		
-		
 		getContentPane().add(separator);
 		getContentPane().add(separator_1);
 		getContentPane().add(separator_2);

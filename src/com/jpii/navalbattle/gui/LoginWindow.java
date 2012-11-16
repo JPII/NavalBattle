@@ -41,6 +41,11 @@ public class LoginWindow extends Window {
 		usernameField = new JTextField(25);
 		passwordLabel = new JLabel();
 		passwordField = new JPasswordField(25);
+		loginButton = new JButton("Login");
+		JButton registerButton = new JButton("Register");
+		JButton offlineButton = new JButton("Offline");
+		JButton optionsButton = new JButton("Options");
+		JLabel lblVersion = new JLabel(Constants.NAVALBATTLE_VERSION_TITLE);
 		
 		usernameLabel.setText("Username");
 		passwordLabel.setText("Password");
@@ -51,21 +56,11 @@ public class LoginWindow extends Window {
 		usernameField.setBounds(365,11,100,25);
 		passwordLabel.setBounds(295,37,78,25);
 		passwordField.setBounds(365,37,100,25);
-		
-		loginButton = new JButton("Login");
 		loginButton.setBounds(385,66,78,25);
-		JButton registerButton = new JButton("Register");
 		registerButton.setBounds(295, 94, 78, 25);
-		JButton offlineButton = new JButton("Offline");
 		offlineButton.setBounds(295, 66, 78, 25);
-		JButton optionsButton = new JButton("Options");
 		optionsButton.setBounds(385, 94, 78, 25);
-		
-		JLabel lblVersion = new JLabel(Constants.NAVALBATTLE_VERSION_TITLE);
 		lblVersion.setBounds(10, 107, 193, 14);
-		loginButton.setFocusable(false);
-		registerButton.setFocusable(false);
-		
 		getContentPane().add(usernameLabel);
 		getContentPane().add(usernameField);
 		getContentPane().add(passwordLabel);
@@ -75,6 +70,11 @@ public class LoginWindow extends Window {
 		getContentPane().add(registerButton);
 		getContentPane().add(offlineButton);
 		getContentPane().add(optionsButton);
+		
+		loginButton.setFocusable(false);
+		registerButton.setFocusable(false);
+		offlineButton.setFocusable(false);
+		optionsButton.setFocusable(false);	
 		
 		passwordField.addKeyListener(new KeyboardListener(this));
 		usernameField.addKeyListener(new KeyboardListener(this));

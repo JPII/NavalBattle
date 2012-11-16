@@ -109,6 +109,8 @@ public class CreditsWindow extends Window {
 		getContentPane().add(githubRole);
 		getContentPane().add(roketgamerRole);
 		
+		btnClose.setFocusable(false);
+		
 		btnClose.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
