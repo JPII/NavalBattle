@@ -52,14 +52,23 @@ public class NavalBattle {
 		a = new SettingsAttribute("gameWindowHeight");
 		attrs.add(a);
 		URL url = NavalBattle.class.getResource("/com/jpii/navalbattle/res/settings.ini");
-		SettingsReader reader = new SettingsReader(url.getPath(),attrs);
-		reader.read();
+		//SettingsReader reader = new SettingsReader(url.getPath(),attrs);
+		//reader.read();
 		
+<<<<<<< HEAD
 		ArrayList<SettingsAttribute> data = reader.getData();
 		for (int v = 0; v < data.size(); v++) {
 			System.out.println("Settings Attribute:" + data.get(v).getName() + " is equal to the value " + data.get(v).getValue());
 		}
 		*/
+=======
+		//ArrayList<SettingsAttribute> data = reader.getData();
+		//for (int v = 0; v < data.size(); v++) {
+		//	System.out.println("Settings Attribute:" + data.get(v).getName() + " is equal to the value " + data.get(v).getValue());
+		//}
+		
+		
+>>>>>>> commented out filereader
 		
 		Helper.LoadStaticResources();
 		
