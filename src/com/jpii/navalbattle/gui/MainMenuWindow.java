@@ -82,18 +82,14 @@ public class MainMenuWindow extends Window {
 		btnSingleplayer.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				NavalBattle.getDebugWindow().printInfo("Disposing MainMenuWindow");
 				dispose();
-				NavalBattle.getDebugWindow().printInfo("Opening SPOptions");
 				new SPOptions();
 			}
 		});		
 		btnHelp.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				NavalBattle.getDebugWindow().printInfo("Disposing MainMenuWindow");
 				dispose();
-				NavalBattle.getDebugWindow().printInfo("Opening HelpWindow");
 				new HelpWindow();
 			}
 		});
@@ -103,9 +99,7 @@ public class MainMenuWindow extends Window {
 			btnRoketGamer.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(MouseEvent e) {
-					NavalBattle.getDebugWindow().printInfo("Disposing MainMenuWindow");
 					dispose();
-					NavalBattle.getDebugWindow().printInfo("Opening RoketGamerWindow");
 					new RoketGamerWindow();
 				}
 			});
@@ -118,9 +112,7 @@ public class MainMenuWindow extends Window {
 		btnCredits.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				NavalBattle.getDebugWindow().printInfo("Disposing MainMenuWindow");
 				dispose();
-				NavalBattle.getDebugWindow().printInfo("Opening CreditsWindow");
 				new CreditsWindow();
 			}
 		});
