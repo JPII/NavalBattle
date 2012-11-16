@@ -52,12 +52,12 @@ public class NavalBattle {
 		Helper.LoadStaticResources();
 		setDefaultLookAndFeel();
 		debugWindow = new DebugWindow();
+		debugWindow.setVisible(true);
 		gameState = new GameState();
 		roketGamer = new RoketGamer();
 		commandHandler = new CommandHandler(Commands.COMMANDS);	
 		toasterManager = new Toaster();
 		debugWindow.printInfo("NavalBattle " + Constants.NAVALBATTLE_VERSION + " initialized");
-		
 		windowHandler = new WindowHandler();
 	}
 	
