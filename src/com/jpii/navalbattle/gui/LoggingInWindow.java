@@ -35,23 +35,23 @@ public class LoggingInWindow extends Window {
 			@SuppressWarnings("deprecation")
 			public void mouseClicked(MouseEvent e) {
 				if (alreadyOpened) {
-					try
-					{
+					try {
 						dispose();
 						return;
-					}
-					catch (Exception ex) {
+					} catch (Exception ex) {
 						return;
 					}
 				}
+				
 				NavalBattle.getDebugWindow().printInfo("Skipping splash screens");
 				NavalBattle.getDebugWindow().printInfo("Disposing LoggingInWindow");
-				try
-				{
+				
+				try {
 					dispose();
 				}
 				catch (Exception ex) {
 				}
+				
 				NavalBattle.getDebugWindow().printInfo("Opening MainMenuWindow");
 				alreadyOpened = true;
 				new MainMenuWindow();

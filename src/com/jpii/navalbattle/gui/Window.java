@@ -30,6 +30,7 @@ public class Window extends JFrame {
 		yloc = 800/2-height/2;
 		setDefaults();
 	}
+	
 	public Window(int x, int y) {
 		width = x;
 		height = y;
