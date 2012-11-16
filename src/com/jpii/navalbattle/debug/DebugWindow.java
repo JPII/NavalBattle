@@ -25,6 +25,8 @@ import javax.swing.*;
 import com.jpii.navalbattle.NavalBattle;
 import com.jpii.navalbattle.gui.Window;
 import com.jpii.navalbattle.gui.listeners.KeyboardListener;
+import com.jpii.navalbattle.gui.listeners.WindowCloser;
+import com.jpii.navalbattle.renderer.Helper;
 
 @SuppressWarnings("serial")
 public class DebugWindow extends Window {
@@ -51,8 +53,8 @@ public class DebugWindow extends Window {
 		lblNavalBattle.setBounds(10, 11, 120, 14);
 		lblDebugMode.setBounds(95, 13, 120, 14);
 		scrollPane.setBounds(10, 35, 439, 255);
-		commandField.setBounds(10, 301, 337, 25);
-		btnSubmit.setBounds(357, 301, 90, 25);
+		commandField.setBounds(10, 298, 337, 30);
+		btnSubmit.setBounds(357, 298, 90, 30);
 		
 		lblNavalBattle.setFont(new Font("Tahoma", Font.BOLD, 14));
 		debugPrinter.setFont(new Font("Consolas",0,12));
@@ -79,7 +81,6 @@ public class DebugWindow extends Window {
 				}
 			}
 		});
-	
 		printInfo("Debug mode enabled");
 		setDefaults();
 	}
