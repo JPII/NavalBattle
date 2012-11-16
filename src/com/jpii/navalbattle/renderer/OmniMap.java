@@ -139,7 +139,7 @@ public class OmniMap {
                     int x = x22 + 20;
                     int z = z22 + 20;
                     //if (x * s > )
-                    int s = 1;
+                    int s = 2;
                     if (ttx < 0 || tty < 0 || ttx > (Constants.WINDOW_WIDTH * 4) || tty > (Constants.WINDOW_HEIGHT * 4)) {
                         int rgb = r.nextInt(100);
                         g.setColor(new Color(rgb, rgb, rgb));
