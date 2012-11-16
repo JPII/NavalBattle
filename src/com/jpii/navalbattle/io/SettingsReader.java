@@ -12,6 +12,9 @@ public class SettingsReader {
 		if (attributes == null || attributes.size() <= 0) {
 			throw new java.lang.IllegalArgumentException("The settings that you would like to read is not filled.");
 		}
+		if (!new File(path).exists()) {
+			throw new IllegalArgumentException("The file doesn't exist at the specified location: " + path);
+		}
 	}
 	public void read() {
 		try {
