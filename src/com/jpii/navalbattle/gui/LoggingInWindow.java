@@ -50,7 +50,6 @@ public class LoggingInWindow extends Window {
 	        
 	        try
 			{
-	        	nextWindow("MainMenuWindow");
 			}
 			catch (Exception ex) {
 			}
