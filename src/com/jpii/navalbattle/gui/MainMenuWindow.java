@@ -32,6 +32,7 @@ public class MainMenuWindow extends Window {
 	Timer ticker;
 	MenuBackground backgrnd;
 	int ticks;
+	JButton btnRoketGamer;
 	
 	public MainMenuWindow() {
 		super();
@@ -43,7 +44,7 @@ public class MainMenuWindow extends Window {
 		JLabel lblNavalBattle = new JLabel("NavalBattle");
 		JButton btnSingleplayer = new JButton("Singleplayer");
 		JButton btnHelp = new JButton("Help");
-		JButton btnRoketGamer = new JButton("RoketGamer");
+		btnRoketGamer = new JButton("RoketGamer");
 		JButton btnQuit = new JButton("Quit");
 		JButton btnCredits = new JButton("Credits");
 		JButton btnMultiplayer = new JButton("Multiplayer");
@@ -93,17 +94,15 @@ public class MainMenuWindow extends Window {
 				nextWindow("HelpWindow");
 			}
 		});
-		if(NavalBattle.getGameState().isOffline()) {
-			btnRoketGamer.setEnabled(false);
-		} else {
 			btnRoketGamer.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(MouseEvent e) {
-					dispose();
-					new RoketGamerWindow();
+					if(!NavalBattle.getGameState().isOffline()) {
+						dispose();
+						new RoketGamerWindow();
+					}
 				}
 			});
-		}
 		btnQuit.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
 				WindowCloser.close();
@@ -131,5 +130,13 @@ public class MainMenuWindow extends Window {
 		};
 		ticker = new Timer(100,listener);
 		ticker.start();
+	}
+	
+	public void setVisible(boolean visible){
+		super.setVisible(visible);
+		if(isVisible())
+			if(NavalBattle.getGameState().isOffline()) {
+				btnRoketGamer.setEnabled(false);
+			}
 	}
 }

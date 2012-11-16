@@ -68,6 +68,10 @@ public class Window extends JFrame {
 		addWindowListener(new WindowCloser());
 		setVisible(false);
 	}
+	public void setVisible(boolean visible){
+		super.setVisible(visible);
+	}
+	
 	public void nextWindow(String next){
 		printDebug("Hiding "+parseString());
 		NavalBattle.getWindowHandler().setNewWindow(next);

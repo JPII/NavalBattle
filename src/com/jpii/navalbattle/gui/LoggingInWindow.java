@@ -24,8 +24,14 @@ public class LoggingInWindow extends Window {
 		
 		getContentPane().add(progressBar);
 		getContentPane().add(label);
-		
-		imageChanger.start();
+		if(isVisible())
+			imageChanger.start();
+	}
+	
+	public void setVisible(boolean visible){
+		super.setVisible(visible);
+		if(isVisible())
+			imageChanger.start();
 	}
 	
 	class ImageChanger extends Thread {
@@ -50,6 +56,7 @@ public class LoggingInWindow extends Window {
 	        
 	        try
 			{
+	        	nextWindow("MainMenuWindow");
 			}
 			catch (Exception ex) {
 			}
