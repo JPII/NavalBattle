@@ -14,7 +14,6 @@ public class WindowHandler {
 		windows = new ArrayList<Window>();
 		initArray();
 		windows.get(current).setVisible(true);
-		System.out.println("Showing");
 	}
 	
 	private void initArray(){
@@ -35,14 +34,12 @@ public class WindowHandler {
 	
 	public void setNewWindow(String a){
 		for(int index = 0; index<windows.size(); index++){
-			JFrame temp = (Window) windows.get(current);
-			if(a.equals( temp.getClass().toString().substring((getClass().toString().lastIndexOf(".")+1)) )){
+			JFrame temp = (Window) windows.get(index);
+			if(a.equals( temp.getClass().toString().substring((getClass().toString().lastIndexOf("."))) )){
 				temp.setVisible(true);
-				System.out.println("Worked");
 			}
 			else{
 				temp.setVisible(false);
-				System.out.println("hiding");
 			}
 		}
 	}
