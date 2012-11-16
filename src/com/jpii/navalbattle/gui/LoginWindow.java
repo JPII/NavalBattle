@@ -35,7 +35,6 @@ public class LoginWindow extends Window {
 
 	public LoginWindow() {
 		super(491,160);
-		NavalBattle.getDebugWindow().printInfo("LoginWindow opened");
 		getContentPane().setLayout(null);
 		usernameLabel = new JLabel();
 		usernameField = new JTextField(25);
@@ -95,7 +94,6 @@ public class LoginWindow extends Window {
 				NavalBattle.getGameState().setOffline(true);
 				NavalBattle.getDebugWindow().printInfo("Disposing LoginWindow");
 				dispose();
-				NavalBattle.getDebugWindow().printInfo("Opening LoggingInWindow");
 				new LoggingInWindow();
 			}
 		});
@@ -111,7 +109,6 @@ public class LoginWindow extends Window {
 			public void actionPerformed(ActionEvent ae) {
 				NavalBattle.getDebugWindow().printInfo("Disposing LoginWindow");
 				dispose();
-				NavalBattle.getDebugWindow().printInfo("Opening LoginOptionsWindow");
 				new LoginOptionsWindow();
 			}
 		});
@@ -132,7 +129,6 @@ public class LoginWindow extends Window {
 			NavalBattle.getDebugWindow().printInfo("Logged in as: " + NavalBattle.getRoketGamer().getPlayer().getName());
 			NavalBattle.getDebugWindow().printInfo("Disposing LoginWindow");
 			dispose();
-			NavalBattle.getDebugWindow().printInfo("Opening LoggingInWindow");
 			new LoggingInWindow();
 		} else {
 			if(status == AuthStatus.BAD) {

@@ -67,7 +67,6 @@ public class LoginOptionsWindow extends Window {
 			public void actionPerformed(ActionEvent ae) {
 				NavalBattle.getDebugWindow().printInfo("Disposing LoginOptionsWindow");
 				dispose();
-				NavalBattle.getDebugWindow().printInfo("Opening LoginWindow");
 				new LoginWindow();
 			}
 		});
