@@ -30,7 +30,7 @@ import com.jpii.navalbattle.renderer.Helper;
 @SuppressWarnings("serial")
 public class MainMenuWindow extends Window {
 	Timer ticker;
-	MenuBackground backgrnd;
+	//MenuBackground backgrnd;
 	int ticks;
 	
 	public MainMenuWindow() {
@@ -38,7 +38,7 @@ public class MainMenuWindow extends Window {
 		
 		getContentPane().setLayout(null);
 		
-		backgrnd = new MenuBackground(491,339,2);
+		//backgrnd = new MenuBackground(491,339,2);
 		JLabel lblVersion = new JLabel(Constants.NAVALBATTLE_VERSION_TITLE);
 		JLabel lblNavalBattle = new JLabel("NavalBattle");
 		JButton btnSingleplayer = new JButton("Singleplayer");
@@ -48,7 +48,7 @@ public class MainMenuWindow extends Window {
 		JButton btnCredits = new JButton("Credits");
 		JButton btnMultiplayer = new JButton("Multiplayer");
 		
-		lblNavalBattle.setBounds(158, 13, 193, 51);
+		lblNavalBattle.setBounds(10, 13, 500, 51);
 		lblVersion.setBounds(10, 276, 238, 14);
 		lblNavalBattle.setBounds(158, 13, 193, 51);
 		btnSingleplayer.setBounds(194, 73, 100, 25);
@@ -58,12 +58,13 @@ public class MainMenuWindow extends Window {
 		btnCredits.setBounds(389, 267, 76, 23);
 		btnMultiplayer.setBounds(194, 107, 100, 25);
 		
-		backgrnd.setLocation(0, 0);
+		//backgrnd.setLocation(0, 0);
 		lblNavalBattle.setForeground(Color.blue);
-		lblNavalBattle.setFont(Helper.GUI_MENU_TITLE_FONT);//setFont(new Font("RingBearer", Font.BOLD, 35));
+		lblNavalBattle.setFont(Helper.GUI_MENU_TITLE_FONT);
+		setFont(new Font("RingBearer", Font.BOLD, 35));
 		btnMultiplayer.setEnabled(false);
 		
-		setContentPane(backgrnd);
+	//	setContentPane(backgrnd);
 		getContentPane().add(lblVersion);
 		getContentPane().add(lblNavalBattle);
 		getContentPane().add(btnSingleplayer);
@@ -125,9 +126,9 @@ public class MainMenuWindow extends Window {
 		});
 		ActionListener listener = new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				backgrnd.tick();
+		//		backgrnd.tick();
 				ticks += 100;
-				backgrnd.invalidate();
+			//	backgrnd.invalidate();
 				repaint();
 			}
 		};

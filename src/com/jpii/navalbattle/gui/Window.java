@@ -28,8 +28,8 @@ public class Window extends JFrame {
 		height = 340;
 		xloc = 1280/2-width/2;
 		yloc = 800/2-height/2;
+		printDebug("Hiding "+parseString());
 		setDefaults();
-		NavalBattle.getDebugWindow().printInfo("Opening "+parseString(this.getClass()+""));
 	}
 	
 	public Window(int x, int y) {
@@ -37,7 +37,7 @@ public class Window extends JFrame {
 		height = y;
 		xloc = 1280/2-width/2;
 		yloc = 800/2-height/2;
-		NavalBattle.getDebugWindow().printError("Opening "+parseString(this.getClass()+""));
+		printDebug("Hiding "+parseString());
 	}
 	
 	public Window(int x, int y,int xloc,int yloc) {
@@ -45,30 +45,20 @@ public class Window extends JFrame {
 		height = y;
 		this.xloc = xloc;
 		this.yloc = yloc;
+		printDebug("Hiding "+parseString());
 	}
 	
-	private String parseString(String className){
-		return className.substring((className.lastIndexOf(".")+1));
+	private String parseString(){
+			return getClass().toString().substring((getClass().toString().lastIndexOf(".")+1));
+	}
+	
+	private void printDebug(String msg){
+		if(NavalBattle.getDebugWindow()!=null){
+			NavalBattle.getDebugWindow().printInfo(msg);
+		}
 	}
 	
 	protected void setDefaults(){
-		
-		try {
-		    for (LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
-		        if ("Nimbus".equals(info.getName())) {
-		            UIManager.setLookAndFeel(info.getClassName());
-		            break;
-		        }
-		    }
-		} catch (UnsupportedLookAndFeelException e) {
-			NavalBattle.getDebugWindow().printError("NimbusLookAndFeel was unable to be loaded, unsuported");	
-		} catch (ClassNotFoundException e) {
-			NavalBattle.getDebugWindow().printError("NimbusLookAndFeel was unable to be loaded, class not found");	
-		} catch (InstantiationException e) {
-			NavalBattle.getDebugWindow().printError("NimbusLookAndFeel was unable to be loaded, instantiation");	
-		} catch (IllegalAccessException e) {
-			NavalBattle.getDebugWindow().printError("NimbusLookAndFeel was unable to be loaded, illegalaccess");	
-		}
 		
 		this.setIconImage(Helper.GUI_WINDOW_ICON);
 		setTitle("NavalBattle");
@@ -81,7 +71,7 @@ public class Window extends JFrame {
 		setVisible(true);
 	}
 	public void dispose(){
-		NavalBattle.getDebugWindow().printError("Disposing "+parseString(this.getClass()+""));
+		printDebug("Hiding "+parseString());
 		super.dispose();
 	}
 	/**
