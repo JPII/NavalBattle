@@ -29,7 +29,7 @@ public class Window extends JFrame {
 		xloc = 1280/2-width/2;
 		yloc = 800/2-height/2;
 		setDefaults();
-		NavalBattle.getDebugWindow().printError("Opening "+parseString(this.getClass()+""));
+		NavalBattle.getDebugWindow().printInfo("Opening "+parseString(this.getClass()+""));
 	}
 	
 	public Window(int x, int y) {
