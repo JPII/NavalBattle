@@ -30,7 +30,7 @@ import com.jpii.navalbattle.renderer.Helper;
 @SuppressWarnings("serial")
 public class MainMenuWindow extends Window {
 	Timer ticker;
-	//MenuBackground backgrnd;
+	MenuBackground backgrnd;
 	int ticks;
 	
 	public MainMenuWindow() {
@@ -38,7 +38,7 @@ public class MainMenuWindow extends Window {
 		
 		getContentPane().setLayout(null);
 		
-		//backgrnd = new MenuBackground(491,339,2);
+		backgrnd = new MenuBackground(491,339,2);
 		JLabel lblVersion = new JLabel(Constants.NAVALBATTLE_VERSION_TITLE);
 		JLabel lblNavalBattle = new JLabel("NavalBattle");
 		JButton btnSingleplayer = new JButton("Singleplayer");
@@ -57,14 +57,14 @@ public class MainMenuWindow extends Window {
 		btnCredits.setBounds(389, 267, 76, 23);
 		btnMultiplayer.setBounds(194, 107, 100, 25);
 		
-		//backgrnd.setLocation(0, 0);
+		backgrnd.setLocation(0, 0);
 		lblNavalBattle.setForeground(Color.blue);
 		lblNavalBattle.setFont(Helper.GUI_MENU_TITLE_FONT);
 		setFont(new Font("RingBearer", Font.BOLD, 35));
 		btnMultiplayer.setEnabled(false);
 		lblNavalBattle.setHorizontalAlignment(SwingConstants.CENTER);
 		
-	//	setContentPane(backgrnd);
+		setContentPane(backgrnd);
 		getContentPane().add(lblVersion);
 		getContentPane().add(lblNavalBattle);
 		getContentPane().add(btnSingleplayer);
@@ -126,9 +126,9 @@ public class MainMenuWindow extends Window {
 		});
 		ActionListener listener = new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-		//		backgrnd.tick();
+				backgrnd.tick();
 				ticks += 100;
-			//	backgrnd.invalidate();
+				backgrnd.invalidate();
 				repaint();
 			}
 		};
