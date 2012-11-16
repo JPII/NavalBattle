@@ -35,7 +35,7 @@ public class Commands {
 	    	public void onRun(Command c, String[] args) {
 	    		NavalBattle.getDebugWindow().println("----------------- NavalBattle Debug Help -----------------");
 	    		for(Command cmd : NavalBattle.getCommandHandler().getCommands()) {
-	    			NavalBattle.getDebugWindow().println(cmd.getCommand() + cmd.getArgs() + " - " + cmd.getDescription());
+	    			NavalBattle.getDebugWindow().println(cmd.getCommand() + " " + cmd.getArgs() + " - " + cmd.getDescription());
 	    		}
 	    	}}
 	    ));
@@ -175,7 +175,14 @@ public class Commands {
 	    		NavalBattle.getDebugWindow().println("Java Home: " + System.getProperty("java.home"));
 	    		NavalBattle.getDebugWindow().println("Java Version: " + System.getProperty("java.version"));
 	    	}}
+	    ));
 	    
+	    add(new Command("sysinfo", "", "Get system info", new CommandAction() { 
+	    	public void onRun(Command c, String[] args) {
+	    		NavalBattle.getDebugWindow().println("OS: " + System.getProperty("os.name") + " (" + System.getProperty("os.version") + ")");
+	    		NavalBattle.getDebugWindow().println("Java Home: " + System.getProperty("java.home"));
+	    		NavalBattle.getDebugWindow().println("Java Version: " + System.getProperty("java.version"));
+	    	}}
 	    ));
 	}};
 }
