@@ -23,7 +23,7 @@ import com.jpii.roketgamer.*;
 import com.jpii.navalbattle.data.*;
 import com.jpii.navalbattle.debug.*;
 import com.jpii.navalbattle.renderer.*;
-import com.jpii.navalbattle.util.*;
+import com.jpii.navalbattle.util.toaster.*;
 
 public class NavalBattle {
 

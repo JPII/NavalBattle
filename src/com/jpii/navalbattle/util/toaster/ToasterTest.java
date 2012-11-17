@@ -1,8 +1,7 @@
-package com.jpii.navalbattle.util;
+package com.jpii.navalbattle.util.toaster;
 
 import java.awt.*;
 import javax.swing.*;
-import javax.swing.border.*;
 
 /**
  * Class to show toasters in multi-platform
@@ -86,6 +85,7 @@ public class ToasterTest {
 	}
 	/**
 	 * Show a toaster with the specified message and the associated icon.
+	 * @wbp.parser.entryPoint
 	 */
 	public void showToaster(Icon icon, String msg) {
 		SingleToaster singleToaster = new SingleToaster(this);
@@ -258,177 +258,6 @@ public class ToasterTest {
 
 	public void setBackgroundImage(Image backgroundImage) {
 		this.backgroundImage = backgroundImage;
-	}
-}
-
-class SingleToaster extends javax.swing.JWindow {
-	private static final long serialVersionUID = 1L;
-
-	// Label to store Icon
-	public JLabel iconLabel = new JLabel();
-
-	// Text area for the message
-	public JTextArea message = new JTextArea();
-	
-	public ToasterTest t;
-
-	/***
-	 * Simple constructor that initialized components...
-	 */
-	public SingleToaster(ToasterTest t) {
-		this.t = t;
-		initComponents(t);
-	}
-
-	/***
-	 * Function to initialized components
-	 */
-	public void initComponents(ToasterTest t) {
-
-		setSize(t.getToasterWidth(), t.getToasterHeight());
-		message.setFont(t.getToasterMessageFont());
-		JPanel externalPanel = new JPanel(new BorderLayout(1, 1));
-		externalPanel.setBackground(t.getBorderColor());
-		
-		final ToasterTest finaly = t;
-		
-		@SuppressWarnings("serial")
-		JPanel innerPanel = new JPanel(new BorderLayout(t.getMargin(),
-				t.getMargin())) {
-			
-			
-			
-			@Override
-			public void paint(Graphics g) {
-				if (finaly.getBackgroundImage() != null) {
-					g.drawImage(finaly.getBackgroundImage(), 0, 0, null);
-				}
-				super.paint(g);
-			}
-		};
-		if (t.getBackgroundImage() != null) {
-			innerPanel.setOpaque(false);
-			message.setOpaque(false);
-			iconLabel.setOpaque(false);
-		}
-		innerPanel.setBackground(t.getToasterColor());
-		message.setBackground(t.getToasterColor());
-		message.setMargin(new Insets(2, 2, 2, 2));
-		message.setLineWrap(true);
-		message.setWrapStyleWord(true);
-		EtchedBorder etchedBorder = (EtchedBorder) BorderFactory
-				.createEtchedBorder();
-		externalPanel.setBorder(etchedBorder);
-		externalPanel.add(innerPanel);
-		message.setForeground(t.getMessageColor());
-		innerPanel.add(iconLabel, BorderLayout.WEST);
-		innerPanel.add(message, BorderLayout.CENTER);
-		getContentPane().add(externalPanel);
-	}
-
-	/***
-	 * Start toaster animation...
-	 */
-	public void animate() {
-		(new Animation(this)).start();
-	}
-
-}
-
-class Animation extends Thread {
-	SingleToaster toaster;
-
-	public Animation(SingleToaster toaster) {
-		this.toaster = toaster;
-	}
-
-	/**
-	 * Animate vertically the toaster. The toaster could be moved from
-	 * bottom to upper or to upper to bottom
-	 * 
-	 * @param posx
-	 * @param fromy
-	 * @param toy
-	 * @throws InterruptedException
-	 */
-	protected void animateVertically(int posx, int fromY, int toY)
-			throws InterruptedException {
-
-		toaster.setLocation(posx, fromY);
-		if (toY < fromY) {
-			for (int i = fromY; i > toY; i -= toaster.t.getStep()) {
-				toaster.setLocation(posx, i);
-				Thread.sleep(toaster.t.getStepTime());
-			}
-		} else {
-			for (int i = fromY; i < toY; i += toaster.t.getStep()) {
-				toaster.setLocation(posx, i);
-				Thread.sleep(toaster.t.getStepTime());
-			}
-		}
-		toaster.setLocation(posx, toY);
-	}
-
-	public void run() {
-		try {
-			boolean animateFromBottom = true;
-			GraphicsEnvironment ge = GraphicsEnvironment
-					.getLocalGraphicsEnvironment();
-			Rectangle screenRect = ge.getMaximumWindowBounds();
-
-			int screenHeight = (int) screenRect.height;
-
-			int startYPosition;
-			int stopYPosition;
-
-			if (screenRect.y > 0) {
-				animateFromBottom = false; // Animate from top!
-			}
-
-			toaster.t.maxToasterInSceen = screenHeight / toaster.t.getToasterHeight();
-
-			int posx = (int) screenRect.width - toaster.t.getToasterWidth() - 1;
-
-			toaster.setLocation(posx, screenHeight);
-			toaster.setVisible(true);
-			if (toaster.t.useAlwaysOnTop) {
-				toaster.setAlwaysOnTop(true);
-			}
-
-			if (animateFromBottom) {
-				startYPosition = screenHeight;
-				stopYPosition = startYPosition - toaster.t.getToasterHeight() - 1;
-				if (toaster.t.currentNumberOfToaster > 0) {
-					stopYPosition = stopYPosition
-							- (toaster.t.maxToaster % toaster.t.maxToasterInSceen * toaster.t.getToasterHeight());
-				} else {
-					toaster.t.maxToaster = 0;
-				}
-			} else {
-				startYPosition = screenRect.y - toaster.t.getToasterHeight();
-				stopYPosition = screenRect.y;
-
-				if (toaster.t.currentNumberOfToaster > 0) {
-					stopYPosition = stopYPosition
-							+ (toaster.t.maxToaster % toaster.t.maxToasterInSceen * toaster.t.getToasterHeight());
-				} else {
-					toaster.t.maxToaster = 0;
-				}
-			}
-
-			toaster.t.currentNumberOfToaster++;
-			toaster.t.maxToaster++;
-
-			animateVertically(posx, startYPosition, stopYPosition);
-			Thread.sleep(toaster.t.getDisplayTime());
-			animateVertically(posx, stopYPosition, startYPosition);
-
-			toaster.t.currentNumberOfToaster--;
-			toaster.setVisible(false);
-			toaster.dispose();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
 	}
 }
 
