@@ -31,7 +31,7 @@ public class NavalBattle {
 	private static DebugWindow debugWindow;
 	private static GameState gameState;
 	private static CommandHandler commandHandler;
-	private static Toaster toasterManager;
+	private static ToasterTest toasterManager;
 	private static WindowHandler windowHandler;
 	
 	public static void main(String[] args) {
@@ -57,7 +57,7 @@ public class NavalBattle {
 		gameState = new GameState();
 		roketGamer = new RoketGamer();
 		commandHandler = new CommandHandler(Commands.COMMANDS);	
-		toasterManager = new Toaster();
+		toasterManager = new ToasterTest();
 		debugWindow.printInfo("NavalBattle " + Constants.NAVALBATTLE_VERSION + " initialized");
 		windowHandler = new WindowHandler();
 	}
@@ -103,7 +103,7 @@ public class NavalBattle {
 	 * 
 	 * @return toasterManager
 	 */
-	public static Toaster getToasterManager() {
+	public static ToasterTest getToasterManager() {
 		return toasterManager;
 	}
 	
