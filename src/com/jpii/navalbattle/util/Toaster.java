@@ -21,16 +21,16 @@ import javax.swing.*;
 import javax.swing.border.*;
 
 /**
- * Class to show tosters in multiplatform
+ * Class to show toasters in multi-platform
  * 
  * @author daniele piras
  * 
  */
 public class Toaster {
-	// Width of the toster
+	// Width of the toaster
 	private int toasterWidth = 300;
 
-	// Height of the toster
+	// Height of the toaster
 	private int toasterHeight = 80;
 
 	// Step for the toaster
@@ -117,7 +117,7 @@ public class Toaster {
 		private JTextArea message = new JTextArea();
 
 		/***
-		 * Simple costructor that initialized components...
+		 * Simple constructor that initialized components...
 		 */
 		public SingleToaster() {
 			initComponents();
@@ -126,15 +126,16 @@ public class Toaster {
 		/***
 		 * Function to initialized components
 		 */
-		private void initComponents() {
+		public void initComponents() {
 
 			setSize(toasterWidth, toasterHeight);
 			message.setFont(getToasterMessageFont());
 			JPanel externalPanel = new JPanel(new BorderLayout(1, 1));
 			externalPanel.setBackground(getBorderColor());
+			
+			@SuppressWarnings("serial")
 			JPanel innerPanel = new JPanel(new BorderLayout(getMargin(),
 					getMargin())) {
-				private static final long serialVersionUID = 1454631344062869213L;
 
 				@Override
 				public void paint(Graphics g) {
