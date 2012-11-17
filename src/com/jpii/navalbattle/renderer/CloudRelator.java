@@ -1,6 +1,5 @@
 package com.jpii.navalbattle.renderer;
 
-import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 import java.awt.image.BufferedImage;
@@ -9,7 +8,6 @@ import java.util.*;
 import com.jpii.dagen.*;
 import com.jpii.navalbattle.data.Constants;
 
-@SuppressWarnings("unused")
 public class CloudRelator implements Runnable {
     Engine eng;
     ArrayList < Cloud > clouds;

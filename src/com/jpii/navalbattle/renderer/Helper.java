@@ -5,20 +5,14 @@ import java.awt.MultipleGradientPaint.CycleMethod;
 import java.awt.geom.*;
 import java.awt.image.*;
 import java.io.*;
-import java.net.*;
 import java.util.*;
-
 import javax.imageio.*;
-import javax.swing.*;
-
-import com.jpii.navalbattle.data.Constants;
 
 /**
  * The rendering helper. Consists of static methods.
  * @author MKirkby
  *
  */
-@SuppressWarnings("unused")
 public class Helper {
 	public static BufferedImage GUI_OMNIMAP_BACKGROUND1;
 	public static BufferedImage GUI_OMNIMAP_BACKGROUND2;

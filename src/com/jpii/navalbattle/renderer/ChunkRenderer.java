@@ -7,15 +7,12 @@ import java.util.Random;
 import com.jpii.dagen.*;
 import com.jpii.navalbattle.NavalBattle;
 import com.jpii.navalbattle.data.Constants;
-import com.jpii.navalbattle.renderer.lighting.Lantern;
-import com.jpii.navalbattle.renderer.lighting.Light;
 
 /**
  * The chunk renderer. Useful for rendering chunks.
  * @author MKirkby
  *
  */
-@SuppressWarnings("unused")
 public class ChunkRenderer implements Runnable {
     int width, height;
     Engine eng;

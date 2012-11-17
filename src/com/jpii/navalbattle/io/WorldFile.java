@@ -1,8 +1,6 @@
 package com.jpii.navalbattle.io;
 
 import java.util.*;
-
-import com.jpii.navalbattle.game.entity.*;
 import com.jpii.navalbattle.renderer.*;
 
 public class WorldFile {
@@ -15,11 +13,6 @@ public class WorldFile {
 	public Grid readGrid() {
 		return null;
 	}
-	@SuppressWarnings("unused")
-	private Entity readEntity() {
-		return null;
-	}
-	
 	public void setChunks(ArrayList<ChunkRenderer> chunks) {
 		
 	}

@@ -17,8 +17,7 @@
 
 package com.jpii.navalbattle.game;
 
-@SuppressWarnings("rawtypes")
-public class Location implements Comparable
+public class Location
 {
     private int row; // row location in grid
     private int col; // column location in grid

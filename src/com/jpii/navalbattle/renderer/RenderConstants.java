@@ -2,14 +2,12 @@ package com.jpii.navalbattle.renderer;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.util.*;
 
 /**
  * A bunch of rendering constants that effect stuff in com.jpii.navalbattle.renderer.
  * @author MKirkby
  *
  */
-@SuppressWarnings("unused")
 public class RenderConstants {
 	// If it begins with GEN, it is related to the Generator.
 	// If it begins with OPT, then it is an option.
