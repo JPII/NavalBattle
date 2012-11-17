@@ -48,7 +48,7 @@ public class Toaster {
 	// Last opened toaster
 	private int maxToaster = 0;
 
-	// Max number of toasters for the sceen
+	// Max number of toasters for the screen
 	private int maxToasterInSceen;
 
 	// Background image
@@ -77,15 +77,20 @@ public class Toaster {
 	 * Constructor to initialized toaster component...
 	 * 
 	 * @author daniele piras
+	 * @wbp.parser.entryPoint
 	 * 
 	 */
 	public Toaster() {
+		try{
+			
+		}catch(Exception e) {}
+		
 		// Set default font...
 		font = new Font("Arial", Font.BOLD, 12);
 		// Border color
 		borderColor = Color.GRAY;
 		toasterColor = Color.BLACK;
-		messageColor = Color.WHITE;
+		messageColor = Color.GREEN;
 		useAlwaysOnTop = true;
 		// Verify AlwaysOnTop Flag...
 		try {
@@ -94,11 +99,10 @@ public class Toaster {
 		} catch (Exception e) {
 			useAlwaysOnTop = false;
 		}
-
 	}
 
 	/**
-	 * Class that rappresent a single toaster
+	 * Class that represent a single toaster
 	 * 
 	 * @author daniele piras
 	 * 
@@ -292,7 +296,6 @@ public class Toaster {
 	 * @return Returns the font
 	 */
 	public Font getToasterMessageFont() {
-		// TODO Auto-generated method stub
 		return font;
 	}
 
