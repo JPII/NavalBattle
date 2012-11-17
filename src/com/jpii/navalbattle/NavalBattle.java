@@ -49,6 +49,7 @@ public class NavalBattle {
 		URL url = NavalBattle.class.getResource("/com/jpii/navalbattle/res/settings.ini");
 		//SettingsReader reader = new SettingsReader(url.getPath(),attrs);
 		//reader.read(); */
+		
 		Helper.LoadStaticResources();
 		setDefaultLookAndFeel();
 		debugWindow = new DebugWindow();

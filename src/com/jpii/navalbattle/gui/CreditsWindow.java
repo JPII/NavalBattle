@@ -66,7 +66,7 @@ public class CreditsWindow extends Window {
 		
 		gameTitle.setBounds(10, 11, 86, 14);
 		licenseNotice.setBounds(0, 292, 492, 15);
-		btnClose.setBounds(10, 228, 89, 23);
+		btnClose.setBounds(10, 228, 90, 30);
 		anthonyBauer.setBounds(10, 36, 209, 14);
 		thomasGaubert.setBounds(10, 61, 209, 14);
 		maxKirkby.setBounds(10, 86, 209, 14);

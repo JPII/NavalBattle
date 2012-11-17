@@ -7,13 +7,11 @@ import com.jpii.navalbattle.gui.*;
 public class WindowHandler {
 	
 	private ArrayList<Window> windows;
-	private int current;
 	
 	public WindowHandler(){
-		current = 0;
 		windows = new ArrayList<Window>();
 		initArray();
-		windows.get(current).setVisible(true);
+		windows.get(0).setVisible(true);
 	}
 	
 	private void initArray(){
@@ -24,12 +22,6 @@ public class WindowHandler {
 		windows.add(new SPOptions());
 		windows.add(new HelpWindow());
 		windows.add(new CreditsWindow());
-	}
-	
-	public Window getCurrentClass(){
-		if(windows.get(current)!=null)
-			return windows.get(current);
-		return null;
 	}
 	
 	public void setNewWindow(String a){

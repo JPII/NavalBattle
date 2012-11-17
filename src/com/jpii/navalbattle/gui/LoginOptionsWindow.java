@@ -33,7 +33,7 @@ public class LoginOptionsWindow extends Window {
 		
 		lblTitle.setBounds(10, 11, 79, 17);
 		lblSubtitle.setBounds(96, 14, 89, 14);
-		txtHttproketgamercocc.setBounds(130, 137, 145, 27);
+		txtHttproketgamercocc.setBounds(130, 135, 145, 30);
 		chckbxEnableSplashScreens.setBounds(30, 60, 160, 23);
 		chckbxDebugMode.setBounds(30, 86, 123, 23);
 		lblGeneral.setBounds(20, 39, 46, 14);
@@ -41,7 +41,7 @@ public class LoginOptionsWindow extends Window {
 		lblServer.setBounds(30, 144, 102, 14);
 		chckbxAnalytics.setBounds(30, 165, 102, 23);
 		chckbxSaveLastUsername.setBounds(30, 191, 155, 23);
-		btnSave.setBounds(386, 277, 89, 23);
+		btnSave.setBounds(386, 277, 90, 30);
 		
 		lblTitle.setFont(new Font("Tahoma", Font.BOLD, 14));
 		lblGeneral.setFont(new Font("Tahoma", Font.BOLD, 11));

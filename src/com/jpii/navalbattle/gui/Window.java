@@ -26,7 +26,6 @@ public class Window extends JFrame {
 		height = 340;
 		xloc = 1280/2-width/2;
 		yloc = 800/2-height/2;
-		printDebug("Showing "+parseString());
 		setDefaults();
 	}
 	
@@ -35,7 +34,6 @@ public class Window extends JFrame {
 		height = y;
 		xloc = 1280/2-width/2;
 		yloc = 800/2-height/2;
-		printDebug("Showing "+parseString());
 	}
 	
 	public Window(int x, int y,int xloc,int yloc) {
@@ -43,7 +41,6 @@ public class Window extends JFrame {
 		height = y;
 		this.xloc = xloc;
 		this.yloc = yloc;
-		printDebug("Showing "+parseString());
 	}
 	
 	private String parseString(){
@@ -70,6 +67,9 @@ public class Window extends JFrame {
 	}
 	public void setVisible(boolean visible){
 		super.setVisible(visible);
+		if(isVisible()){
+			printDebug("Showing "+parseString());
+		}
 	}
 	
 	public void nextWindow(String next){

@@ -51,12 +51,12 @@ public class MainMenuWindow extends Window {
 		
 		lblNavalBattle.setBounds(10, 13, 466, 51);
 		lblVersion.setBounds(10, 276, 238, 14);
-		btnSingleplayer.setBounds(194, 73, 100, 25);
-		btnHelp.setBounds(194, 141, 100, 25);
-		btnRoketGamer.setBounds(194, 175, 100, 25);
-		btnQuit.setBounds(194, 209, 100, 25);
-		btnCredits.setBounds(389, 267, 76, 23);
-		btnMultiplayer.setBounds(194, 107, 100, 25);
+		btnSingleplayer.setBounds(194, 74, 100, 30);
+		btnHelp.setBounds(194, 141, 100, 30);
+		btnRoketGamer.setBounds(194, 175, 100, 30);
+		btnQuit.setBounds(194, 209, 100, 30);
+		btnCredits.setBounds(375, 267, 100, 30);
+		btnMultiplayer.setBounds(194, 107, 100, 30);
 		
 		backgrnd.setLocation(0, 0);
 		lblNavalBattle.setForeground(Color.blue);

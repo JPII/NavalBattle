@@ -45,14 +45,14 @@ public class HelpWindow extends Window {
 		lblTitle.setFont(new Font("Tahoma", Font.BOLD, 14));
 		
 		lblTitle.setBounds(10, 11, 121, 23);
-		btnClose.setBounds(10, 137, 82, 23);
+		btnClose.setBounds(10, 137, 90, 30);
 		lblYoutubeTutorials.setBounds(20, 36, 111, 14);
-		btnVideoOverview.setBounds(30, 61, 82, 23);
-		btnVideoNavigation.setBounds(122, 61, 89, 23);
-		btnVideoCombat.setBounds(221, 61, 89, 23);
-		btnVideoUpgradeShop.setBounds(320, 61, 107, 23);
-		btnVideoMultiplayer.setBounds(111, 95, 100, 23);
-		btnVideoRoketgamer.setBounds(221, 95, 100, 23);
+		btnVideoOverview.setBounds(10, 61, 100, 30);
+		btnVideoNavigation.setBounds(130, 61, 100, 30);
+		btnVideoCombat.setBounds(250, 61, 100, 30);
+		btnVideoUpgradeShop.setBounds(370, 61, 100, 30);
+		btnVideoMultiplayer.setBounds(130, 102, 100, 30);
+		btnVideoRoketgamer.setBounds(250, 102, 100, 30);
 		
 		getContentPane().add(lblTitle);
 		getContentPane().add(btnClose);
