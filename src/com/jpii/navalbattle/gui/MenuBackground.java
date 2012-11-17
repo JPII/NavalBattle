@@ -1,16 +1,11 @@
 package com.jpii.navalbattle.gui;
 
-import java.awt.Color;
-import java.awt.Graphics;
-import java.awt.Polygon;
+import java.awt.*;
 import java.awt.event.*;
-import java.awt.image.BufferedImage;
-
+import java.awt.image.*;
 import javax.swing.JComponent;
 
-import com.jpii.navalbattle.renderer.Helper;
-
-@SuppressWarnings({ "serial", "unused" })
+@SuppressWarnings("serial")
 public class MenuBackground extends JComponent implements MouseListener{
 	int width, height, pixel;
 	BufferedImage buffer;
@@ -23,7 +18,7 @@ public class MenuBackground extends JComponent implements MouseListener{
 	double whalex = 0;
 	int whaley = 0;
 	double whaletheta = 0.0;
-	boolean happy = true;//int x,y;
+	boolean happy = true;
 	
 	public MenuBackground(int width, int height, int pixelSize) {
 		addMouseListener(this);
