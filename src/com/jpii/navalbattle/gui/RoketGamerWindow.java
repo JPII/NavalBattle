@@ -43,7 +43,7 @@ public class RoketGamerWindow extends JFrame{
 			public void mouseClicked(MouseEvent e) {
 				NavalBattle.getDebugWindow().printInfo("Opening profile page...");
 
-				String url = Constants.SERVER_LOCATION + "/profile.php";
+				String url = NavalBattle.getRoketGamer().getServerLocation() + "/profile.php";
 				String os = System.getProperty("os.name").toLowerCase();
 				Runtime rt = Runtime.getRuntime();
 
@@ -102,7 +102,7 @@ public class RoketGamerWindow extends JFrame{
 
 		JTextPane textPane = new JTextPane();
 		try {
-			textPane.setPage(Constants.SERVER_LOCATION + "/api/1.0/temp/leaderboard.php");
+			textPane.setPage(NavalBattle.getRoketGamer().getServerLocation() + "/api/1.0/temp/leaderboard.php");
 		} catch (IOException e1) {
 			e1.printStackTrace();
 		}
@@ -115,7 +115,7 @@ public class RoketGamerWindow extends JFrame{
 
 		JTextPane textPane_1 = new JTextPane();
 		try {
-			textPane_1.setPage(Constants.SERVER_LOCATION + "/api/1.0/temp/achievement.php");
+			textPane_1.setPage(NavalBattle.getRoketGamer().getServerLocation() + "/api/1.0/temp/achievement.php");
 		} catch (IOException e1) {}
 		textPane_1.setBounds(0, 0, 396, 344);
 		achievementTab.add(textPane_1);
@@ -157,7 +157,7 @@ public class RoketGamerWindow extends JFrame{
 			public void mouseClicked(MouseEvent e) {
 				NavalBattle.getDebugWindow().printInfo("Opening RoketGamer page...");
 
-				String url = Constants.SERVER_LOCATION;
+				String url = NavalBattle.getRoketGamer().getServerLocation();
 				String os = System.getProperty("os.name").toLowerCase();
 				Runtime rt = Runtime.getRuntime();
 

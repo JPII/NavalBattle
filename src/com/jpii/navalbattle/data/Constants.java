@@ -59,8 +59,4 @@ public class Constants {
 	 */
 	public static final boolean ENABLE_ROKETGAMER = false;
 	public static final String API_KEY = "35B4531F87C549F23C5444566C7E5";
-	public static final String SERVER_LOCATION = "http://www.roketgamer.com";
-	public static final String ACHIEVEMENT_URL = "";
-	public static final String LEADERBOARD_URL = "";
-	public static final String FRIENDS_URL = "";
 }

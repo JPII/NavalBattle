@@ -5,7 +5,6 @@ import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
 
-import com.jpii.navalbattle.data.Constants;
 import com.jpii.roketgamer.achievement.Achievement;
 import com.jpii.roketgamer.analytics.Analytics;
 import com.jpii.roketgamer.rauth.APIKey;
@@ -16,12 +15,16 @@ import com.jpii.roketgamer.leaderboard.Leaderboard;
 public class RoketGamer {
 	
 	private String version = "0.1a";
-	private String serverLocation = Constants.SERVER_LOCATION;
 	private APIKey key;
 	private Player player;
 	private AuthStatus status;
 	private Session session;
 	private Analytics analytics;
+	
+	public static final String SERVER_LOCATION = "http://www.roketgamer.com";
+	public static final String ACHIEVEMENT_URL = "";
+	public static final String LEADERBOARD_URL = "";
+	public static final String FRIENDS_URL = "";
 	
 	/**
 	 * Initialize RoketGamer. Returns <code>AuthStatus</code>.
@@ -35,7 +38,7 @@ public class RoketGamer {
 		this.player = player;
 		
 		try {
-			URL url = new URL(serverLocation + "/api/1.0/auth/login.php?key=" + key.getKey() + "&username=" + player.getName()
+			URL url = new URL(SERVER_LOCATION + "/api/1.0/auth/login.php?key=" + key.getKey() + "&username=" + player.getName()
 					+ "&password=" + player.getPassword().getPassword());
 			
 			URLConnection connection = url.openConnection();
@@ -118,7 +121,7 @@ public class RoketGamer {
 	 * @return
 	 */
 	public String getServerLocation() {
-		return serverLocation;
+		return SERVER_LOCATION;
 	}
 	
 	/**

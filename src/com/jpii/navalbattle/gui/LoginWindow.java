@@ -100,7 +100,7 @@ public class LoginWindow extends Window {
 		registerButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent ae) {			
 				NavalBattle.getDebugWindow().printInfo("Opening register page");
-				URLUtils.openURL(Constants.SERVER_LOCATION + "/register.php?game=1&name=NavalBattle");
+				URLUtils.openURL(NavalBattle.getRoketGamer().getServerLocation() + "/register.php?game=1&name=NavalBattle");
 			}
 		});
 		
