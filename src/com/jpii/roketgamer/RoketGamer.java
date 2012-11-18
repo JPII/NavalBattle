@@ -14,17 +14,16 @@ import com.jpii.roketgamer.leaderboard.Leaderboard;
 
 public class RoketGamer {
 	
-	private String version = "0.1a";
+	/** RoketGamer components */
 	private APIKey key;
 	private Player player;
 	private AuthStatus status;
 	private Session session;
 	private Analytics analytics;
 	
-	public static final String SERVER_LOCATION = "http://www.roketgamer.com";
-	public static final String ACHIEVEMENT_URL = "";
-	public static final String LEADERBOARD_URL = "";
-	public static final String FRIENDS_URL = "";
+	/** Constants */
+	private static final String VERSION = "1.0";
+	private static final String SERVER_LOCATION = "http://www.roketgamer.com";
 	
 	/**
 	 * Initialize RoketGamer. Returns <code>AuthStatus</code>.
@@ -38,7 +37,7 @@ public class RoketGamer {
 		this.player = player;
 		
 		try {
-			URL url = new URL(SERVER_LOCATION + "/api/1.0/auth/login.php?key=" + key.getKey() + "&username=" + player.getName()
+			URL url = new URL(SERVER_LOCATION + "/api/" + VERSION + "/auth/login.php?key=" + key.getKey() + "&username=" + player.getName()
 					+ "&password=" + player.getPassword().getPassword());
 			
 			URLConnection connection = url.openConnection();
@@ -113,7 +112,7 @@ public class RoketGamer {
 	 * @return
 	 */
 	public String getVersion() {
-		return version;
+		return VERSION;
 	}
 	
 	/**
@@ -132,7 +131,7 @@ public class RoketGamer {
 	 */
 	public boolean submitScore(Leaderboard leaderboard, int score) {
 		try {
-			URL url = new URL(leaderboard.getLocation() + "?session=" + session.getSessionID().trim()  + "&score=" + score);
+			URL url = new URL(SERVER_LOCATION + "/api/" + VERSION + "/leaderboard/submit.php?id=" + leaderboard.getID() + "?session=" + session.getSessionID().trim()  + "&score=" + score);
 			
 			BufferedReader in = new BufferedReader(new InputStreamReader(url.openStream()));
 
@@ -160,7 +159,7 @@ public class RoketGamer {
 	 */
 	public boolean submitAchievement(Achievement achievement, int id) {
 		try {
-			URL url = new URL(achievement.getLocation() + "?session=" + session.getSessionID().trim() + "&id=" + id);
+			URL url = new URL(SERVER_LOCATION + "/api/" + VERSION + "/achievement/submit.php?id=" + achievement.getID() + "?session=" + session.getSessionID().trim() + "&id=" + id);
 
 			BufferedReader in = new BufferedReader(new InputStreamReader(url.openStream()));
 
