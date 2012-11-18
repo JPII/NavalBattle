@@ -1,21 +1,21 @@
 package com.jpii.roketgamer.leaderboard;
 
 public class Leaderboard {
-	private String location;
+	private int id;
 	
 	/**
 	 * Create a new <code>Leaderboard</code>
-	 * @param location
+	 * @param id
 	 */
-	public Leaderboard(String location) {
-		this.location = location;
+	public Leaderboard(int id) {
+		this.id = id;
 	}
 	
 	/**
-	 * Get <code>Leaderboard</code> location
+	 * Get <code>Leaderboard</code> ID
 	 * @return
 	 */
-	public String getLocation() {
-		return location;
+	public int getID() {
+		return id;
 	}
 }

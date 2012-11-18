@@ -1,21 +1,21 @@
 package com.jpii.roketgamer.achievement;
 
 public class Achievement {
-	private String location;
+	private int id;
 	
 	/**
 	 * Create a new <code>Achievement</code>
-	 * @param location
+	 * @param id
 	 */
-	public Achievement(String location) {
-		this.location = location;
+	public Achievement(int id) {
+		this.id = id;
 	}
 	
 	/**
-	 * Get <code>Achievement</code> location
-	 * @return
+	 * Get <code>Achievement</code> ID
+	 * @return id
 	 */
-	public String getLocation() {
-		return location;
+	public int getID() {
+		return id;
 	}
 }
