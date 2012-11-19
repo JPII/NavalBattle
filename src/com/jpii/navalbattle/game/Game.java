@@ -119,7 +119,7 @@ public class Game implements Runnable {
     	else
     		RenderConstants.CURRENT_TIME_OF_DAY = 0;
     	
-    	int alph = Helper.ComputTime();
+    	int alph = Helper.ComputeTime();
     	RenderConstants.TIME_OVERLAY = new BufferedImage(Constants.CHUNK_SIZE,Constants.CHUNK_SIZE,BufferedImage.TYPE_INT_ARGB);
     	Graphics timeO = RenderConstants.TIME_OVERLAY.getGraphics();
     	if (alph != 0)
@@ -235,10 +235,7 @@ public class Game implements Runnable {
     int lastmy = -1;
     boolean mouseDown = false;
     GameStatus state;
-    /**
-     * The FPS. Currently not implemented. Should be in a getter/setter methods.
-     */
-    public int FPS = 0;
+
     /**
      * Fired when the mouse is dragged. 
      */

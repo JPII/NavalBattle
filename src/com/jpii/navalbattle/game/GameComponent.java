@@ -23,6 +23,7 @@ import java.awt.event.*;
 
 import javax.swing.*;
 
+import com.jpii.navalbattle.renderer.Console;
 import com.jpii.navalbattle.renderer.Helper;
 import com.jpii.navalbattle.renderer.RepaintType;
 
@@ -99,6 +100,12 @@ public class GameComponent extends JComponent {
 
 		long end = System.currentTimeMillis() - start;
 		double fps = (1.0/end) * 1000.0;
-		game.FPS = (int)fps;
+		//game.FPS = (int)fps;
+		Console.getInstance().setFPS((int)fps);
+		int f = (int)fps;
+		if (f < 40)
+			Console.getInstance().printWarn("FPS spiked below 40.");
+		if (f == Integer.MAX_VALUE)
+			Console.getInstance().printWarn("FPS unstable. Please limit FPS.");
 	}
 }

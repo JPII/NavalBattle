@@ -297,11 +297,12 @@ public class Helper {
 	    return new Color(r,g,b,a);
     }
 
-    public static int ComputTime() {
+    public static int ComputeTime() {
     	int le = RenderConstants.DAYNIGHT_LENGTH_IN_SECONDS;
     	int alph = 0;
     	double tofd = RenderConstants.CURRENT_TIME_OF_DAY;
     	int nightl = 5;
+    	boolean changed = false;
     	if (tofd > 0 && tofd < le / nightl/2)
     	{
     		double t = tofd;
@@ -310,10 +311,20 @@ public class Helper {
     			alph = 0;
     		if (alph > 255)
     			alph = 255;
+    		if (!last.equals("Sunset"))
+    		{
+    			last = "Sunset";
+    			changed = true;
+    		}
     	}
     	if (tofd > le / nightl/2 && tofd < le / nightl * 2)
     	{
     		alph = 130;
+    		if (!last.equals("Night"))
+    		{
+    			last = "Night";
+    			changed = true;
+    		}
     	}
     	if (tofd > le / nightl * 2 && tofd < (le / nightl * 2) + (le / nightl / 2))
     	{
@@ -323,9 +334,17 @@ public class Helper {
     			alph = 0;
     		if (alph > 255)
     			alph = 255;
+    		if (!last.equals("Sunrise"))
+    		{
+    			last = "Sunrise";
+    			changed = true;
+    		}
     	}
+    	if (changed)
+    		Console.getInstance().printInfo("Time of Day-" + last);
     	return alph;
     }
+    private static String last = "s";
     
     /**
      * Randomise a preset color, by the maximum differencial as the maximum absolute value, with the random provider.
