@@ -22,8 +22,8 @@ public class LoggingInWindow extends Window {
 		JProgressBar progressBar = new JProgressBar();
 		final JLabel label = new JLabel("");
 		
-		progressBar.setBounds(0, 297, 485, 14);
-		label.setBounds(0, 0, 485, 311);
+		progressBar.setBounds(0, 326, 492, 14);
+		label.setBounds(0, 0, 492, 340);
 		
 		progressBar.setIndeterminate(true);
 		
