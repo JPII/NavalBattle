@@ -43,8 +43,9 @@ public class CreditsWindow extends Window {
 		licenseNotice.setHorizontalAlignment(SwingConstants.CENTER);
 		btnClose.setHorizontalAlignment(SwingConstants.CENTER);
 		
-		getContentPane().add(licenseNotice);
-		getContentPane().add(btnClose);	
+		//hide for now.
+		//getContentPane().add(licenseNotice);
+		//getContentPane().add(btnClose);	
 		
 		
 		btnClose.setFocusable(false);

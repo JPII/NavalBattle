@@ -19,6 +19,7 @@ public class CreditsBackground extends JComponent implements MouseListener{
 	Random r;
 	Timer timer;
 	ArrayList<star> stars;
+	long ticks = 0;
 	
 	public CreditsBackground(int width, int height) {
 		system = new ParticleEngine(50,width,height);
@@ -29,13 +30,18 @@ public class CreditsBackground extends JComponent implements MouseListener{
 		this.width = width;
 		this.height = height;
 		setSize(width,height);
-		for (int c = 0; c < r.nextInt(4) + 5; c++) {
+		for (int c = 0; c < r.nextInt(5) + 8; c++) {
 			stars.add(new star(width,height));
 		}
 		ActionListener al = new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				tick();
 				repaint();
+				ticks+= 50;
+				if (ticks % 250 == 0)
+					for (int c = 0; c < stars.size(); c++) {
+						stars.get(c).update();
+					}
 			}
 		};
 		timer = new Timer(50,al);
@@ -59,12 +65,17 @@ public class CreditsBackground extends JComponent implements MouseListener{
 		buffer = new BufferedImage(getWidth(),getHeight(),BufferedImage.TYPE_INT_ARGB);
 		Graphics2D g = (Graphics2D)buffer.getGraphics();
 		g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-		g.setColor(new Color(5,5,15));
+		g.setColor(new Color(25,25,35));
 		g.fillRect(0,0,getWidth(),getHeight()/2);
-		GradientPaint paint = new GradientPaint(0, (getHeight()/2)-45, new Color(5,5,15),0, getHeight(), new Color(30,51,108));
+		GradientPaint paint = new GradientPaint(0, (getHeight()/2)-45, new Color(25,25,35),0, getHeight(), new Color(30,51,108));
         g.setPaint(paint);
         g.fillRect(0,(getHeight()/2)-45,getWidth(),(getHeight()/2)+45);
         g.setPaint(null);
+        
+        g.setColor(new Color(235,235,224));
+        for (int c = 0; c < 50; c++) {
+        	g.drawArc(100+c, 50+c, 40-c, 75-c, 90, -180);
+        }
         
         for (int c = 0; c < stars.size(); c++) {
         	stars.get(c).draw(g);
@@ -103,7 +114,7 @@ class star {
 	public star(int width, int height) {
 		x = (int)(width*Math.random());
 		y = (int)((height/2)*Math.random());
-		stage = 0;
+		stage = (int)(Math.random() * 2);
 	}
 	public void draw(Graphics2D g) {
 		g.setColor(new Color(225,225,240));
@@ -117,7 +128,15 @@ class star {
 			g.fillRect(x-6,y-2,4,4);
 			g.fillRect(x+2,y-2,4,4);
 		}
-		if (stage != 1)
+		else if (stage == 2) {
+			g.fillRect(x-8,y-8, 4,4);
+			g.fillRect(x-8, y+4, 4,4);
+			g.fillRect(x+4,y-8,4,4);
+			g.fillRect(x+4,y+4,4,4);
+		}
+	}
+	public void update() {
+		if (stage != 3)
 			stage++;
 		else
 			stage = 0;

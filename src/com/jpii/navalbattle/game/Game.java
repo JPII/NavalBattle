@@ -52,6 +52,8 @@ public class Game implements Runnable {
         eng.setSmoothFactor(5);
         eng.generate(Constants.MAIN_SEED, RenderConstants.GEN_TERRAIN_ROUGHNESS);
         
+        Console.getInstance().printError("Saving mode disabled. SaveMe API not functional.");
+        
         for (int c = 0; c < 100; c++) {
 	        SimpleBrownian river = new SimpleBrownian(600,800);
 	        river.setMaxIterations(1000000);
@@ -101,6 +103,8 @@ public class Game implements Runnable {
             }
         }
         repaint(RepaintType.REPAINT_INDV_ENTITIES);
+        
+        Console.getInstance().printInfo("Generator finished. Game constructor finished.");
     }
     /**
      * Gets the game grid.
