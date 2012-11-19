@@ -3,6 +3,7 @@ package com.jpii.navalbattle.data;
 import java.util.*;
 import javax.swing.*;
 
+import com.jpii.navalbattle.game.SinglePlayerGame;
 import com.jpii.navalbattle.gui.*;
 
 public class WindowHandler {
@@ -23,6 +24,7 @@ public class WindowHandler {
 		windows.add(new SPOptions());
 		windows.add(new HelpWindow());
 		windows.add(new CreditsWindow());
+		new SinglePlayerGame();
 	}
 	
 	public void setNewWindow(String a){
