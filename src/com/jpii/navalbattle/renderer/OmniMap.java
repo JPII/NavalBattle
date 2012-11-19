@@ -24,6 +24,9 @@ public class OmniMap {
     public static boolean[][] treeLocs;
     public static int[][] grassLocs;
     public int px, py;
+    boolean[][] waveLocations;
+    double[] pulseLine;
+    Random rw;
     /**
      * Constructs a new instance of OmniMap
      * @param eng The current engine that is being used in the game.
@@ -55,6 +58,14 @@ public class OmniMap {
         		}
         	}
         }
+        rw = new Random(Constants.MAIN_SEED + 42);
+		waveLocations = new boolean[width][height];
+		pulseLine = new double[height];
+		for (int y = 0; y < height; y+=rw.nextInt(2)+2) {
+			for (int x = 0; x < width; x++) {
+					waveLocations[x][y] = true;
+			}
+		}
         for (int xt = 0; xt < eng.getWidth(); xt += swa) {
             for (int zt = 0; zt < eng.getHeight(); zt += sha) {
                 double y = eng.getPoint(xt, zt);
@@ -238,6 +249,29 @@ public class OmniMap {
                     }
                 }
             }
+        	boolean[][] visible = new boolean[width][height];
+        	for (int x22 = -20; x22 < 20; x22++) {
+                for (int z22 = -20; z22 < 20; z22++) {
+                    int ttx = (x22 + p.x);
+                    int tty = (z22 + p.y);
+                    int x = x22 + 20;
+                    int z = z22 + 20;
+                    if (eng.getPoint(ttx,tty) < RenderConstants.GEN_WATER_HEIGHT)
+                    	visible[x][z] = true;
+                }
+        	}
+        	for (int x = 0; x < width; x++) {
+    			pulseLine[x] += rw.nextInt(2) + 1;//rdouble(2.5,3.0);
+    			for (int y = 0; y < height; y++) {
+    				if (waveLocations[x][y] && visible[x][y]) {
+    					double cdfloat = Math.sin(x + pulseLine[x]);
+    					//g.setColor(new Color(buffer.getRGB(x*3, y*3)).brighter());
+    					g.setColor(Color.blue);
+    					g.fillRect(x*3, (int)((y *3) + cdfloat), 3,3);
+    				}
+    			}
+    		}
+    		
         	g2.drawImage(bb3,2,2,null);
         }
         Graphics g = g2;
