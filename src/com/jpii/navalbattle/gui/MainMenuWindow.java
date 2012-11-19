@@ -129,14 +129,22 @@ public class MainMenuWindow extends Window {
 			}
 		};
 		ticker = new Timer(100,listener);
-		ticker.start();
+		if(isVisible()){
+			ticker.start();
+		}
 	}
 	
 	public void setVisible(boolean visible){
 		super.setVisible(visible);
-		if(isVisible())
+		if(isVisible()){
+			ticker.start();
 			if(NavalBattle.getGameState().isOffline()) {
 				btnRoketGamer.setEnabled(false);
 			}
+		}
+		else{
+			if(ticker!=null)
+				ticker.stop();
+		}
 	}
 }
