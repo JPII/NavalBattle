@@ -15,6 +15,7 @@ public class LoggingInWindow extends Window {
 	private Timer timer;
 	private int currentImage = 0;
 	private int length = 0;
+	
 	public LoggingInWindow() {
 		setUndecorated(true);
 		getContentPane().setLayout(null);
@@ -51,6 +52,7 @@ public class LoggingInWindow extends Window {
 			}
 		};
 		timer = new Timer(Constants.SPLASH_DURATION,al);
+		timer.setInitialDelay(0);
 		timer.start();
 		
 		label.addMouseListener(new MouseAdapter() {
@@ -58,6 +60,8 @@ public class LoggingInWindow extends Window {
 				openMenu();
 			}
 		});
+		if(!isVisible())
+			timer.stop();
 	}
 	
 	boolean alreadyOpened = false;
@@ -65,13 +69,22 @@ public class LoggingInWindow extends Window {
 	public void openMenu() {
 		if (!alreadyOpened) {
 			alreadyOpened = true;
-			new MainMenuWindow().setVisible(true);
-			setVisible(false);
-			dispose();
+			nextWindow("MainMenuWindow");
 		}
 	}
-	
-	public void setVisible(boolean visible){
-		super.setVisible(visible);
+
+public void setVisible(boolean visible){
+	super.setVisible(visible);
+	if(isVisible()){
+		alreadyOpened = false;
+		timer.start();
 	}
+	else{
+		if(timer!=null)
+			timer.stop();
+	}
+}
+	
+	
+	
 }
