@@ -30,6 +30,8 @@ public class Constants {
 	
 	public static final int SPLASH_DURATION = 1000;
 	
+	public static final int SPLASH_SCREEN_TIMEOUT = 3000;
+	
 	/*
 	 * Game engine
 	 */
