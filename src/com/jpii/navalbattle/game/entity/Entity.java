@@ -21,6 +21,7 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 
 import com.jpii.navalbattle.game.*;
+import com.jpii.navalbattle.renderer.Helper;
 
 public class Entity implements Runnable {
 	
@@ -172,10 +173,12 @@ public class Entity implements Runnable {
 	}
 	
 	public void onMouseHover(int localMX, int localMY) {
-		//TamaleEntity tamale = new TamaleEntity();
-		//tamale.setLocation(getLocation());
-		//GameComponent.game.getGrid().setEntity(tamale);
-		//System.out.println("Hello! Entity at " + getLocation().getCol() + "," + getLocation().getRow() + " speaking!!!");
+		setImage(new BufferedImage(50,50,BufferedImage.TYPE_INT_ARGB));
+		Graphics g = getImage().getGraphics();
+		g.setColor(new Color(127,0,0,20));
+		g.fillRect(0,0,50,50);
+		g.setColor(Color.black);
+		g.drawRect(0,0,50,50);
 	}
 	
 	public void onMouseDown(int localMX, int localMY) {

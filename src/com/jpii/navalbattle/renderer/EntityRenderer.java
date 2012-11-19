@@ -59,6 +59,7 @@ public class EntityRenderer {
      * Converts a grid location to screen coordinates.
      * @param l The location to convert.
      * @param g The game.
+     * @deprecated See Game.java instead.
      * @return A point on the screen (its possible that it might not be on the screen).
      */
     public Point gridLocationToScreen(Location l, Game g) {
@@ -70,6 +71,7 @@ public class EntityRenderer {
      * Converts a point on the screen to a grid location. UNTESTED and MAY NOT WORK AT ALL.
      * @param px The x coordinate.
      * @param py The y coordinate.
+     * @deprecated See Game.java instead.
      * @return The Location on the grid. Its possible that it may not be a valid location at all.
      */
     public Location pointToGridLocation(int px, int py) {
@@ -81,6 +83,7 @@ public class EntityRenderer {
      * Converts a grid location into a point (not on screen, so it may not be useful at all).
      * @param l The location to convert.
      * @return The point in the world.
+     * @deprecated See Game.java instead.
      */
     public Point gridLocationToPoint(Location l) {
         int px = l.getRow();
@@ -95,6 +98,7 @@ public class EntityRenderer {
      * @param py The y point in the world.
      * @param g The game.
      * @return A point. (May not physically be on the screen, and may be negative.)
+     * @deprecated See Game.java instead.
      */
     public Point pointToScreen(int px, int py, Game g) {
         Point p = g.getMouseSet();
@@ -107,6 +111,14 @@ public class EntityRenderer {
         return y;
     }
     
+    /**
+     * 
+     * @param px
+     * @param py
+     * @param g
+     * @deprecated See Game.java instead.
+     * @return
+     */
     public Point screenToPoint(int px, int py, Game g) {
     	Point p = g.getMouseSet();
         Point y = new Point((p.x) + (px/2), (p.y) + (py/2));

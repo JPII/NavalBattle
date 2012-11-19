@@ -28,6 +28,7 @@ public class Game implements Runnable {
     //private int zoom;
     private CloudRelator cr;
     private int msax, msay;
+    private Thread CHUNK_OVERHEAD;
     private OmniMap omniMap;
     private String timeStatus = "Night";
     /**
@@ -127,7 +128,15 @@ public class Game implements Runnable {
     	else
     		timeStatus = "Day";
     	setStatus(GameStatus.STATUS_CHUNK_RENDER);
-    	run();
+    	//run();
+    	boolean allowOverhead = false;
+    	if (allowOverhead && (CHUNK_OVERHEAD == null || !CHUNK_OVERHEAD.isAlive() || CHUNK_OVERHEAD.getState() == Thread.State.TERMINATED)) {
+	    	CHUNK_OVERHEAD = new Thread(this);
+	    	CHUNK_OVERHEAD.setPriority(Thread.MAX_PRIORITY);
+	    	CHUNK_OVERHEAD.start();
+    	}
+    	else
+    		run();
     	
     	setStatus(GameStatus.STATUS_CHUNK_UPDATES);
     	run();
@@ -174,26 +183,43 @@ public class Game implements Runnable {
     		repaint(RepaintType.REPAINT_BUFFERS);
     	}
     	else if (getStatus() == GameStatus.STATUS_CHUNK_UPDATES) {
-    		for (int x = msax; x < 800+msax; x += 50) {
-    			for (int y = msay; y < 600+msay; y += 50) {
-    				Point p = pointToScreen(x,y);
-    				Location l = pointToGridLocation(p.x,p.y);
-    				if (Location.validate(l)) {
-    					Entity ti = getGrid().getEntity(l.getRow(),l.getCol());
-    					ti.invokeUpdate();
+    		/*for (int x = msax; x < (Constants.WINDOW_WIDTH)+msax; x += 50) {
+    			for (int y = msay; y < (Constants.WINDOW_WIDTH)+msay; y += 50) {
+    				Location l = new Location(x,y);
+    				if (isLocationInScreen(l)) {
+    					Entity e = getGrid().getEntity(l.getCol(),l.getRow());
+    					if (e != null) {
+    						//e.invokeUpdate();
+    					}
     				}
+    				//Point p = pointToScreen(x,y);
+    				//Location l = pointToGridLocation(p.x,p.y);
+    				//this.
+    				//if (Location.validate(l)) {
+    					//Entity ti = getGrid().getEntity(l.getRow(),l.getCol());
+    					//ti.invokeUpdate();
+    				//}
     			}
-    		}
+    		}*/
     	}
     	else if (getStatus() == GameStatus.STATUS_CHUNK_EVENTS) {
-    		for (int x = 0; x < grid.getWidth(); x++) {
+    		Point mp = mouseToGrid();
+    		Location l = new Location(mp.x,mp.y);
+    		if (Location.validate(l)) {
+    			Entity e = getGrid().getEntity(l.getCol(), l.getRow());
+    			if (e != null) {
+    				e.onMouseHover(0,0);
+    			}
+    		}
+    		/*for (int x = 0; x < grid.getWidth(); x++) {
     			for (int y = 0; y < grid.getHeight(); y++) {
     				Entity ent = grid.getEntity(x, y);
-    				Location l = pointToGridLocation(lastmx,lastmy);
+    				//Location l = pointToGridLocation(lastmx,lastmy);
+    				Location
     				if (l.getCol() == ent.getLocation().getCol() && l.getRow() == ent.getLocation().getRow())
     					ent.onMouseHover(lastmx,lastmy);
     			}
-    		}
+    		}*/
     	}
     }
     public void setStatus(GameStatus state) {
@@ -247,28 +273,6 @@ public class Game implements Runnable {
             g.drawImage(clouds, 0, 0, null);
             g.drawImage(shadow, 0, 0, null);
             g.drawImage(omniMap.getBuffer(), omniMap.px, omniMap.py, null);
-            
-            g.setFont(Helper.GUI_GAME_FONT);
-            
-            g.setColor(new Color(0,0,0,120));
-            g.fillRect(Constants.WINDOW_WIDTH - 300, 5, 150, 100);
-            
-            g.setColor(Color.red);
-            g.drawRect(Constants.WINDOW_WIDTH - 300, 5, 150, 100);
-            g.drawString("------- Console -------", Constants.WINDOW_WIDTH - 300, 20);
-            g.drawLine(Constants.WINDOW_WIDTH - 300, 22, Constants.WINDOW_WIDTH - 150, 22);
-            
-            float height = Helper.GUI_GAME_FONT.getSize2D() * 1.1f;
-            
-            int ftsx = Constants.WINDOW_WIDTH - 295;
-            int ftsy = 48;
-            
-            g.setColor(RenderConstants.GUI_GAME_FONT_COLOR);
-            g.drawString("X = " + msax + " Y = " + msay, ftsx,ftsy);
-            ftsy += (int)height;
-            g.drawString("FPS: " + FPS, ftsx, ftsy);
-            ftsy += (int)height;
-            g.drawString("Time of day = " + (int)(RenderConstants.CURRENT_TIME_OF_DAY) + " " + timeStatus, ftsx,ftsy);
         }
         if (type == RepaintType.REPAINT_CHUNKS) {
             for (int v = 0; v < chunks.size(); v++) {
@@ -307,7 +311,8 @@ public class Game implements Runnable {
         return buffer;
     }
     /**
-     * Gets the current mouse coordinates.
+     * Gets the current mouse coordinates. MAY NOT WORK.
+     * @deprecated May not work.
      * @return
      */
     public Point getMouseSet() {
@@ -315,10 +320,11 @@ public class Game implements Runnable {
     }
     
     /**
-     * Converts a grid location to screen coordinates.
+     * Converts a grid location to screen coordinates. MAY NOT WORK.
      * @param l The location to convert.
      * @param g The game.
      * @return A point on the screen (its possible that it might not be on the screen).
+     * @deprecated May not work.
      */
     public Point gridLocationToScreen(Location l) {
         Point p = gridLocationToPoint(l);
@@ -326,21 +332,10 @@ public class Game implements Runnable {
         return s;
     }
     /**
-     * Converts a point on the screen to a grid location.
-     * @param px The x coordinate.
-     * @param py The y coordinate.
-     * @return The Location on the grid. Its possible that it may not be a valid location at all.
-     */
-    public Location pointToGridLocation(int px, int py) {
-    	int x = (px/Constants.CHUNK_SIZE) + (msax/Constants.CHUNK_SIZE);
-    	int y = (py/Constants.CHUNK_SIZE) + (msay/Constants.CHUNK_SIZE);
-    	Location l = new Location(x*2,y*2);
-    	return l;
-    }
-    /**
-     * Converts a grid location into a point (not on screen, so it may not be useful at all).
+     * Converts a grid location into a point (not on screen, so it may not be useful at all). MAY NOT WORK.
      * @param l The location to convert.
      * @return The point in the world.
+     * @deprecated May not work.
      */
     public Point gridLocationToPoint(Location l) {
         int px = l.getRow();
@@ -350,10 +345,11 @@ public class Game implements Runnable {
         return new Point(x, y);
     }
     /**
-     * Converts a point in the world, into a point in the screen.
+     * Converts a point in the world, into a point in the screen. MAY NOT WORK.
      * @param px The x point in the world.
      * @param py The y point in the world.
      * @param g The game.
+     * @deprecated May not work.
      * @return A point. (May not physically be on the screen, and may be negative.)
      */
     public Point pointToScreen(int px, int py) {
@@ -361,10 +357,36 @@ public class Game implements Runnable {
         Point y = new Point((px / 2) - p.x, (py / 2) - p.y);
         return y;
     }
- 
-    public Point screenToPoint(int px, int py) {
-    	Point p = getMouseSet();
-        Point y = new Point((p.x) + (px/2), (p.y) + (py/2));
-        return y;
+    
+    /**
+     * Gets the mouse point in the World. (A Mouse at (60,70) could return something like (660,670)). Works fine.
+     * @return The mouse point in the World.
+     */
+    public Point mouseToPoint() {
+    	Point y = new Point(msax+lastmx,msay+lastmy);
+    	return y;
     }
+    
+    public Point mouseToGrid() {
+    	Point world = mouseToPoint();
+    	Point w = new Point(world.x/50,world.y/50);
+    	return w;
+    }
+    
+   // public boolean isLocationInScreen(Location l) {
+    //	return true;
+    	/*
+    	if (!Location.validate(l))
+    		return false;
+    	
+    	int px = l.getCol() * Constants.CHUNK_SIZE / 2;
+    	int py = l.getRow() * Constants.CHUNK_SIZE / 2;
+    	px -= msax;
+    	py -= msay;
+    	if (px < Constants.WINDOW_WIDTH && py < Constants.WINDOW_HEIGHT && px > 0 && py > 0)
+    		return true;
+    	else
+    		return false;
+    		*/
+    //}
 }

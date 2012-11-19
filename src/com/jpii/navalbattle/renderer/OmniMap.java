@@ -132,9 +132,10 @@ public class OmniMap {
         	Graphics2D g = (Graphics2D) bb3.getGraphics();
             g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
         	r = new Random(Constants.MAIN_SEED);
-        	Point p = GameComponent.game.screenToPoint(mx,my);
-        	p.x += 250 + 50;
-        	p.y += 200 + 50;
+        	//Point p = GameComponent.game.screenToPoint(mx,my);
+        	Point p = GameComponent.game.mouseToPoint();
+        	//p.x += 250 + 50;
+        	//p.y += 200 + 50;
         	for (int x22 = -20; x22 < 20; x22++) {
                 for (int z22 = -20; z22 < 20; z22++) {
                     int ttx = (x22 + p.x);
