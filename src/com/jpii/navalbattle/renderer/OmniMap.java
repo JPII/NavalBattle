@@ -53,7 +53,10 @@ public class OmniMap {
         		if (z >= RenderConstants.GEN_MOUNTAIN_HEIGHT - 0.15 && treeSeeder.nextInt(50) == 1) {
         			treeLocs[x][y] = true;
         		}
-        		if (z > RenderConstants.GEN_WATER_HEIGHT && treeSeeder.nextInt(10) == 1) {
+        		if (y >= RenderConstants.GEN_WATER_HEIGHT - 0.01 && y <= RenderConstants.GEN_WATER_HEIGHT + 0.05 && treeSeeder.nextInt(50) == 1) {
+        			treeLocs[x][y] = true;
+                }
+        		if (z > RenderConstants.GEN_WATER_HEIGHT - 0.01 && treeSeeder.nextInt(30) == 1) {
         			grassLocs[x][y] = treeSeeder.nextInt(4902)+2;
         		}
         	}
@@ -266,8 +269,8 @@ public class OmniMap {
     				if (waveLocations[x][y] && visible[x][y]) {
     					double cdfloat = Math.sin(x + pulseLine[x]);
     					//g.setColor(new Color(buffer.getRGB(x*3, y*3)).brighter());
-    					g.setColor(Color.blue);
-    					g.fillRect(x*3, (int)((y *3) + cdfloat), 3,3);
+    					//g.setColor(Color.blue);
+    					//g.fillRect(x*3, (int)((y *3) + cdfloat), 3,3);
     				}
     			}
     		}
