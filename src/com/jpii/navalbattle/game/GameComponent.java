@@ -41,7 +41,8 @@ public class GameComponent extends JComponent {
 		this.frame = frame;
 		ActionListener al = new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				game.update();
+				if(game!=null)
+					game.update();
 				repaint();
 			}
 		};

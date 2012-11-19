@@ -21,7 +21,6 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 
 import com.jpii.navalbattle.game.*;
-import com.jpii.navalbattle.renderer.Helper;
 
 public class Entity implements Runnable {
 	

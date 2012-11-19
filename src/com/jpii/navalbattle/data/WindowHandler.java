@@ -2,6 +2,7 @@ package com.jpii.navalbattle.data;
 
 import java.util.*;
 import javax.swing.*;
+
 import com.jpii.navalbattle.gui.*;
 
 public class WindowHandler {

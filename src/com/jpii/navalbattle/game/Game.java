@@ -30,7 +30,8 @@ public class Game implements Runnable {
     private int msax, msay;
     private Thread CHUNK_OVERHEAD;
     private OmniMap omniMap;
-    private String timeStatus = "Night";
+    @SuppressWarnings("unused")
+	private String timeStatus = "Night";
     /**
      * Creates <b>THE</b> game.
      */

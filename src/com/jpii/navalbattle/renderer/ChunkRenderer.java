@@ -69,7 +69,9 @@ public class ChunkRenderer implements Runnable {
     public BufferedImage getChunkBuffer() {
         return chunk;
     }
-    private void update() {
+    
+    @SuppressWarnings("deprecation")
+	private void update() {
         int s = 3;
         if (GameComponent.game != null && GameComponent.game.getMouseSet() != null) {
         	r = new Random(seed+GameComponent.game.getMouseSet().x+GameComponent.game.getMouseSet().y);//+xpos+zpos);
