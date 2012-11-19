@@ -82,6 +82,7 @@ public void setVisible(boolean visible){
 	else{
 		if(timer!=null)
 			timer.stop();
+		length = 0;
 	}
 }
 	

@@ -69,6 +69,7 @@ public class Window extends JFrame {
 		super.setVisible(visible);
 		if(isVisible()){
 			printDebug("Showing "+parseString());
+			setLocation(xloc,yloc);
 		}
 	}
 	
