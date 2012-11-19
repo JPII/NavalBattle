@@ -16,6 +16,7 @@ public class LoggingInWindow extends Window {
 	private int currentImage = 0;
 	private int length = 0;
 	public LoggingInWindow() {
+		setUndecorated(true);
 		getContentPane().setLayout(null);
 		
 		JProgressBar progressBar = new JProgressBar();
