@@ -21,6 +21,7 @@ import java.util.ArrayList;
 
 import com.jpii.navalbattle.NavalBattle;
 import com.jpii.navalbattle.debug.*;
+import com.jpii.navalbattle.game.SinglePlayerGame;
 import com.jpii.navalbattle.gui.*;
 import com.jpii.navalbattle.gui.listeners.WindowCloser;
 
@@ -140,31 +141,36 @@ public class Commands {
 	    	}}
 	    
 	    ));
-	       
+	    
 	    add(new Command("openwindow", "<windowid>", "Force a window to appear", new CommandAction() { 
 	    	public void onRun(Command c, String[] args) {
-	    		if(args[0].equals("login") || args[0].equals("0")) {
-	    			new LoginWindow();
+	    		args[0] = args[0].toLowerCase();
+	    		if(args[0].equals("login") || args[0].equals("0") || args[0].equals("loginwindow")) {
+	    			NavalBattle.getWindowHandler().add(new LoginWindow());
 	    		}
 	    		
-	    		if(args[0].equals("main") || args[0].equals("1")) {
-	    			new MainMenuWindow();
+	    		if(args[0].equals("main") || args[0].equals("1") || args[0].equals("mainmenu") || args[0].equals("mainmenuwindow")) {
+	    			NavalBattle.getWindowHandler().add(new MainMenuWindow());
 	    		}
 	    		
-	    		if(args[0].equals("credits") || args[0].equals("2")) {
-	    			new CreditsWindow();
+	    		if(args[0].equals("credits") || args[0].equals("2") || args[0].equals("creditswindow")) {
+	    			NavalBattle.getWindowHandler().add(new CreditsWindow());
 	    		}
 	    		
-	    		if(args[0].equals("help") || args[0].equals("3")) {
-	    			new HelpWindow();
+	    		if(args[0].equals("help") || args[0].equals("3") || args[0].equals("helpwindow")) {
+	    			NavalBattle.getWindowHandler().add(new HelpWindow());
 	    		}
 	    		
-	    		if(args[0].equals("roketgamer") || args[0].equals("4")) {
+	    		if(args[0].equals("roketgamer") || args[0].equals("4") || args[0].equals("roketgamerwindow")) {
 	    			new RoketGamerWindow();
 	    		}
 	    		
-	    		if(args[0].equals("spoptions") || args[0].equals("5")) {
-	    			new SPOptions();
+	    		if(args[0].equals("spoptions") || args[0].equals("5") || args[0].equals("spoptionswindow")) {
+	    			NavalBattle.getWindowHandler().add(new SPOptions());
+	    		}
+	    		
+	    		if(args[0].equals("game") || args[0].equals("6") || args[0].equals("gamewindow") || args[0].equals("newgame")) {
+	    			new SinglePlayerGame();
 	    		}
 	    	}}
 	    ));

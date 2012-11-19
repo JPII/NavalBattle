@@ -30,12 +30,17 @@ public class WindowHandler {
 	public void setNewWindow(String a){
 		for(int index = 0; index<windows.size(); index++){
 			JFrame temp = (Window) windows.get(index);
-			if(a.equals( temp.getClass().toString().substring((getClass().toString().lastIndexOf("."))) )){
+			if(a.toLowerCase().equals( temp.getClass().toString().substring((getClass().toString().lastIndexOf("."))).toLowerCase() )){
 				temp.setVisible(true);
 			}
 			else{
 				temp.setVisible(false);
 			}
 		}
+	}
+	
+	public void add(Window w){
+		windows.add(w);
+		w.setVisible(true);
 	}
 }
