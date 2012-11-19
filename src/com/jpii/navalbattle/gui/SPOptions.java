@@ -49,9 +49,13 @@ public class SPOptions extends Window{
 		JButton btnBack = new JButton("Back");
 		JButton btnAdvancedOptions = new JButton("Advanced Options");
 		
-		btnOpenSave.setBounds(201, 11, 90, 25);
-		btnAdvancedOptions.setBounds(331, 11, 150, 25);
-		btnBack.setBounds(33, 10, 90, 25);
+		btnOpenSave.setBounds(201, 7, 90, 30);
+		btnAdvancedOptions.setBounds(331, 7, 150, 30);
+		btnBack.setBounds(33, 7, 90, 30);
+		
+		btnOpenSave.setFocusable(false);
+		btnBack.setFocusable(false);
+		btnAdvancedOptions.setFocusable(false);
 		
 		getContentPane().add(btnOpenSave);
 		getContentPane().add(btnBack);
@@ -223,20 +227,21 @@ public class SPOptions extends Window{
 		radioButton_7.setBounds(386, 142, 40, 25);
 		radioButton_8.setBounds(386, 167, 40, 25);
 		radioButton_9.setBounds(386, 193, 40, 25);
-		btnNewButton.setBounds(201, 155, 90, 25);
+		btnNewButton.setBounds(201, 155, 90, 30);
 		
 		opponents.add(radioButton_6);
 		opponents.add(radioButton_7);
 		opponents.add(radioButton_8);
 		opponents.add(radioButton_9);
 		
+		radioButton_6.setSelected(true);
+		btnNewButton.setFocusable(false);
+		
 		getContentPane().add(radioButton_6);
 		getContentPane().add(radioButton_7);
 		getContentPane().add(radioButton_8);
 		getContentPane().add(radioButton_9);
-		getContentPane().add(btnNewButton);
-		
-		radioButton_6.setSelected(true);		
+		getContentPane().add(btnNewButton);		
 		
 		btnNewButton.addMouseListener(new MouseAdapter() {
 			@Override
