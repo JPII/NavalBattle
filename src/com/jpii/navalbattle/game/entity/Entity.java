@@ -172,12 +172,22 @@ public class Entity implements Runnable {
 	}
 	
 	public void onMouseHover(int localMX, int localMY) {
-		setImage(new BufferedImage(50,50,BufferedImage.TYPE_INT_ARGB));
-		Graphics g = getImage().getGraphics();
-		g.setColor(new Color(127,0,0,80));
-		g.fillRect(0,0,50,50);
-		g.setColor(Color.black);
-		g.drawRect(0,0,50,50);
+		if (!getTag().equals("red")) {
+			setImage(new BufferedImage(50,50,BufferedImage.TYPE_INT_ARGB));
+			Graphics g = getImage().getGraphics();
+			g.setColor(new Color(127,0,0,80));
+			g.fillRect(0,0,50,50);
+			g.setColor(Color.black);
+			g.drawRect(0,0,50,50);
+			setTag("red");
+		}
+		else {
+			setImage(new BufferedImage(50,50,BufferedImage.TYPE_INT_ARGB));
+			Graphics g = getImage().getGraphics();
+			g.setColor(Color.black);
+			g.drawRect(0,0,50,50);
+			setTag("grid");
+		}
 	}
 	
 	public void onMouseDown(int localMX, int localMY) {

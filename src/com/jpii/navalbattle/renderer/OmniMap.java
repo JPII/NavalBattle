@@ -21,6 +21,8 @@ public class OmniMap {
     BufferedImage buffer, map;
     public boolean entireWorldMode = true;
     Random treeSeeder;
+    public static boolean[][] treeLocs;
+    public static int[][] grassLocs;
     public int px, py;
     /**
      * Constructs a new instance of OmniMap
@@ -33,12 +35,26 @@ public class OmniMap {
         this.width = width;
         this.height = height;
         r = new Random(Constants.MAIN_SEED);
+        treeSeeder = new Random((-Constants.MAIN_SEED)+22);
         buffer = new BufferedImage(width, height + 25, BufferedImage.TYPE_INT_RGB);
         map = new BufferedImage(width-2, height-2, BufferedImage.TYPE_INT_RGB);
         Graphics g = map.getGraphics();
         int s = 3;
         int swa = Constants.WINDOW_WIDTH / width * 10;
         int sha = Constants.WINDOW_HEIGHT / height * 10;
+        treeLocs = new boolean[eng.getWidth()+1][eng.getHeight()+1];
+        grassLocs = new int[eng.getWidth()+1][eng.getHeight()+1];
+        for (int x = 0; x < eng.getWidth(); x++) {
+        	for (int y = 0; y < eng.getHeight(); y++) {
+        		double z = eng.getPoint(x, y);
+        		if (z >= RenderConstants.GEN_MOUNTAIN_HEIGHT - 0.15 && treeSeeder.nextInt(50) == 1) {
+        			treeLocs[x][y] = true;
+        		}
+        		if (z > RenderConstants.GEN_WATER_HEIGHT && treeSeeder.nextInt(10) == 1) {
+        			grassLocs[x][y] = treeSeeder.nextInt(4902)+2;
+        		}
+        	}
+        }
         for (int xt = 0; xt < eng.getWidth(); xt += swa) {
             for (int zt = 0; zt < eng.getHeight(); zt += sha) {
                 double y = eng.getPoint(xt, zt);
@@ -191,25 +207,34 @@ public class OmniMap {
                     }
                 }
         	}
-        	p = GameComponent.game.mouseToPoint();
         	for (int x22 = -20; x22 < 20; x22++) {
                 for (int z22 = -20; z22 < 20; z22++) {
                     int ttx = (x22 + p.x);
                     int tty = (z22 + p.y);
                     int x = x22 + 20;
                     int z = z22 + 20;
-                    treeSeeder = new Random((-Constants.MAIN_SEED)+ttx+tty+((int)(10*eng.getPoint(ttx,tty))));
-                    boolean poller = treeSeeder.nextInt(50) == 1;
-                    //if (x * s > )
-                    int s = 3;
-                    if (ttx < 0 || tty < 0 || ttx > (Constants.WINDOW_WIDTH * 4) || tty > (Constants.WINDOW_HEIGHT * 4)) {
-
-                    } else {
-                        
-		                if (eng.getPoint(ttx,tty) >= RenderConstants.GEN_MOUNTAIN_HEIGHT - 0.05 && poller) {
-		                	g.setColor(Color.orange);
-		                	g.fillRect(x*s,z*s,3,5);
-		                }
+                    if (treeLocs != null) {
+                    	
+                    	if (ttx > 0 && tty > 0 && ttx < (Constants.WINDOW_WIDTH * 4) &&
+                    			tty < (Constants.WINDOW_HEIGHT * 4) && treeLocs[ttx][tty]) {
+                    		g.setColor(Color.orange);
+                    		g.fillRect(x*3,z*3, 3,5);
+                    	}
+                    	
+                    	if (ttx > 0 && tty > 0 && ttx < (Constants.WINDOW_WIDTH * 4) &&
+                    			tty < (Constants.WINDOW_HEIGHT * 4) && grassLocs[ttx][tty] != 0) {
+                    		Random t = new Random(grassLocs[ttx][tty]);
+                    		for (int v = 0; v < t.nextInt(4)+3; v++) {
+	                    		g.setColor(Color.green.darker().darker());
+	                    		int x1 = t.nextInt(8) - 4;
+	                    		int y1 = t.nextInt(8) - 4;
+	                    		int length = t.nextInt(4) + 4;
+	                    		int diff1 = t.nextInt(2) - 1;
+	                    		int diff2 = t.nextInt(2) - 1;
+	                    		int diff3 = t.nextInt(2) - 1;
+	                    		g.drawLine((x*3)+x1+diff3,(z*3)+diff1+y1, (x*3)+diff2+x1,(z*3)+length+y1);
+                    		}
+                    	}
                     }
                 }
             }
