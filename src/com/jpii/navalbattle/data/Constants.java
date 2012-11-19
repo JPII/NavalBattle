@@ -57,6 +57,5 @@ public class Constants {
 	/*
 	 * RoketGamer
 	 */
-	public static final boolean ENABLE_ROKETGAMER = false;
 	public static final String API_KEY = "35B4531F87C549F23C5444566C7E5";
 }
