@@ -39,9 +39,21 @@ public class CreditsBackground extends JComponent implements MouseListener{
 			}
 		};
 		timer = new Timer(50,al);
-		timer.start();
+		if(isVisible()){
+			timer.start();
+		}
 	}
-
+	
+	public void setVisible(boolean visible){
+		super.setVisible(visible);
+		if(isVisible()){
+			timer.start();
+		}
+		else{
+			if(timer!=null)
+				timer.stop();
+		}
+	}
 	
 	public void tick() {
 		buffer = new BufferedImage(getWidth(),getHeight(),BufferedImage.TYPE_INT_ARGB);
