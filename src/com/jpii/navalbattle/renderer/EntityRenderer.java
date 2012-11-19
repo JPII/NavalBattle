@@ -47,10 +47,11 @@ public class EntityRenderer {
                 // Do entity rendering here.
                 Entity ent = grid.getEntity(x, y);
                 if (ent != null) {
-                    Point p = gridLocationToScreen(ent.getLocation(), game);
+                    //Point p = gridLocationToScreen(ent.getLocation(), game);
+                	Point p = game.gridLocationToScreen(ent.getLocation());
                     int px = p.x;
                     int py = p.y;
-                    g.drawImage(ent.getImage(), px, py, null);
+                    g.drawImage(ent.getImage(), px,py, null);
                 }
             }
         }

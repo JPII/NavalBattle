@@ -7,6 +7,7 @@ import java.util.Random;
 import com.jpii.dagen.*;
 import com.jpii.navalbattle.NavalBattle;
 import com.jpii.navalbattle.data.Constants;
+import com.jpii.navalbattle.game.GameComponent;
 
 /**
  * The chunk renderer. Useful for rendering chunks.
@@ -70,7 +71,11 @@ public class ChunkRenderer implements Runnable {
     }
     private void update() {
         int s = 3;
-        r = new Random(seed+xpos+zpos);
+        if (GameComponent.game != null && GameComponent.game.getMouseSet() != null) {
+        	r = new Random(seed+GameComponent.game.getMouseSet().x+GameComponent.game.getMouseSet().y);//+xpos+zpos);
+        }
+        else
+        	r = new Random(seed+xpos+zpos);
         Graphics g = chunk.getGraphics();
         g.setColor(Color.black);
         g.fillRect(0, 0, Constants.CHUNK_SIZE, Constants.CHUNK_SIZE);

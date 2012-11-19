@@ -204,7 +204,7 @@ public class Game implements Runnable {
     	}
     	else if (getStatus() == GameStatus.STATUS_CHUNK_EVENTS) {
     		Point mp = mouseToGrid();
-    		Location l = new Location(mp.x,mp.y);
+    		Location l = new Location(mp.y,mp.x);
     		if (Location.validate(l)) {
     			Entity e = getGrid().getEntity(l.getCol(), l.getRow());
     			if (e != null) {
@@ -326,11 +326,11 @@ public class Game implements Runnable {
      * @return A point on the screen (its possible that it might not be on the screen).
      * @deprecated May not work.
      */
-    public Point gridLocationToScreen(Location l) {
+    /*public Point gridLocationToScreen(Location l) {
         Point p = gridLocationToPoint(l);
         Point s = pointToScreen(p.x, p.y);
         return s;
-    }
+    }*/
     /**
      * Converts a grid location into a point (not on screen, so it may not be useful at all). MAY NOT WORK.
      * @param l The location to convert.
@@ -367,10 +367,23 @@ public class Game implements Runnable {
     	return y;
     }
     
+    /**
+     * Gets the location of the mouse in the grid. Should return a Location. Works fine.
+     * @return The location of the mouse.
+     */
     public Point mouseToGrid() {
     	Point world = mouseToPoint();
     	Point w = new Point(world.x/50,world.y/50);
     	return w;
+    }
+    
+    /**
+     * Converts a grid location, to a point on the screen. Works fine.
+     * @param l The location to convert.
+     * @return A point that may or may not actually be on the screen.
+     */
+    public Point gridLocationToScreen(Location l) {
+    	return new Point((l.getRow() * (Constants.CHUNK_SIZE / 2)) - msax,(l.getCol() * (Constants.CHUNK_SIZE / 2)) - msay);
     }
     
    // public boolean isLocationInScreen(Location l) {
