@@ -45,9 +45,13 @@ public class Console extends JFrame {
 		g.drawString("Seed: " + seed + ". FPS: " + fps,10,44);
 		
 		int buffer = h+(18*2);
+		if (attrs == null)
+			return;
 		for (int c = 0; c < attrs.size(); c++) {
 			if (attrs.size() - c - 1 < attrs.size()) {
 				cnsl_attr a = attrs.get(attrs.size() - c - 1);
+				if (a == null)
+					continue;
 				///int s = getWidthCnsl(g,a);
 				//int f = s / getWidth();
 				//f++;

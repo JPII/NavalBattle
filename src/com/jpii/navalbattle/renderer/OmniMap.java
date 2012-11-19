@@ -20,7 +20,7 @@ public class OmniMap {
     Random r;
     BufferedImage buffer, map;
     public boolean entireWorldMode = true;
-    boolean[][] trees;
+    Random treeSeeder;
     public int px, py;
     /**
      * Constructs a new instance of OmniMap
@@ -39,7 +39,6 @@ public class OmniMap {
         int s = 3;
         int swa = Constants.WINDOW_WIDTH / width * 10;
         int sha = Constants.WINDOW_HEIGHT / height * 10;
-        trees = new boolean[eng.getWidth()+1][eng.getHeight()+1];
         for (int xt = 0; xt < eng.getWidth(); xt += swa) {
             for (int zt = 0; zt < eng.getHeight(); zt += sha) {
                 double y = eng.getPoint(xt, zt);
@@ -60,12 +59,6 @@ public class OmniMap {
                 }
                 if (y >= RenderConstants.GEN_WATER_HEIGHT - 0.01 && y <= RenderConstants.GEN_WATER_HEIGHT + 0.05 && r.nextInt(3) == 1) {
                     flag = false;
-                }
-                trees[xt][zt] = false;
-                if (y >= RenderConstants.GEN_WATER_HEIGHT + 0.2) {
-                	if (r.nextInt(5) == 1) {
-                    	trees[xt][zt] = true;
-                    }
                 }
                 if (!flag) {
                     Color groundSample = Helper.adjust(Helper.randomise(RenderConstants.GEN_GRASS_COLOR,
@@ -198,22 +191,25 @@ public class OmniMap {
                     }
                 }
         	}
+        	p = GameComponent.game.mouseToPoint();
         	for (int x22 = -20; x22 < 20; x22++) {
                 for (int z22 = -20; z22 < 20; z22++) {
                     int ttx = (x22 + p.x);
                     int tty = (z22 + p.y);
                     int x = x22 + 20;
                     int z = z22 + 20;
+                    treeSeeder = new Random((-Constants.MAIN_SEED)+ttx+tty+((int)(10*eng.getPoint(ttx,tty))));
+                    boolean poller = treeSeeder.nextInt(50) == 1;
                     //if (x * s > )
                     int s = 3;
                     if (ttx < 0 || tty < 0 || ttx > (Constants.WINDOW_WIDTH * 4) || tty > (Constants.WINDOW_HEIGHT * 4)) {
 
                     } else {
                         
-	                if (trees[ttx][tty]) {
-	                	g.setColor(Color.orange);
-	                	g.fillRect(x*s,z*s,3,5);
-	                }
+		                if (eng.getPoint(ttx,tty) >= RenderConstants.GEN_MOUNTAIN_HEIGHT - 0.05 && poller) {
+		                	g.setColor(Color.orange);
+		                	g.fillRect(x*s,z*s,3,5);
+		                }
                     }
                 }
             }
