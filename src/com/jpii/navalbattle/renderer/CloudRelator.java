@@ -27,6 +27,7 @@ public class CloudRelator implements Runnable {
             if (r.nextBoolean()) xm *= -1;
             if (r.nextBoolean()) zm *= -1;
         }
+        Console.getInstance().printInfo("Cloud kernel used: (" + xm + "," + xm + ").");
         if (xm < 0) signxm = true;
         if (zm < 0) signzm = true;
         eng = new Engine(Constants.WINDOW_WIDTH, Constants.WINDOW_HEIGHT);
@@ -69,7 +70,11 @@ public class CloudRelator implements Runnable {
     public void update() {
         for (int c = 0; c < clouds.size(); c++) {
             Cloud poll = clouds.get(c);
-            poll.x += xm;
+            if (xm < 1.0f && xm > -1.0f)
+            	poll.x += (xm*4);
+            if (zm < 1.0f && zm > -1.0f)
+            	poll.z += (zm*4);
+            poll.x += (xm);
             poll.z += zm;
             if (poll.x <= 0 && xm < 0) poll.x = Constants.WINDOW_WIDTH;
             if (poll.x >= Constants.WINDOW_WIDTH && xm > 0) poll.x = 0;
