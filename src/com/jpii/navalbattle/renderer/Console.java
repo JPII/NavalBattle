@@ -8,6 +8,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
+@SuppressWarnings("serial")
 public class Console extends JFrame {
 	private static Console instance = null;
 	public static Console getInstance() {
@@ -90,6 +91,7 @@ public class Console extends JFrame {
 		attrs.add(new cnsl_attr(v,2));
 		repaint();
 	}
+	@SuppressWarnings("unused")
 	private int getWidthCnsl(Graphics2D g,cnsl_attr ams) {
 		FontMetrics metrics = g.getFontMetrics(Helper.GUI_GAME_FONT);
 		return metrics.stringWidth(ams.v);

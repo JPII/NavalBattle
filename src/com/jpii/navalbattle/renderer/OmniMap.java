@@ -267,7 +267,7 @@ public class OmniMap {
     			pulseLine[x] += rw.nextInt(2) + 1;//rdouble(2.5,3.0);
     			for (int y = 0; y < height; y++) {
     				if (waveLocations[x][y] && visible[x][y]) {
-    					double cdfloat = Math.sin(x + pulseLine[x]);
+    					//double cdfloat = Math.sin(x + pulseLine[x]);
     					//g.setColor(new Color(buffer.getRGB(x*3, y*3)).brighter());
     					//g.setColor(Color.blue);
     					//g.fillRect(x*3, (int)((y *3) + cdfloat), 3,3);
