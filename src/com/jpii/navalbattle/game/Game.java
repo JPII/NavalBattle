@@ -76,6 +76,8 @@ public class Game implements Runnable {
         NavalBattle.getDebugWindow().printInfo("Generated map. Size: " + (4*Constants.WINDOW_WIDTH/50) + "x" +
         (4*Constants.WINDOW_HEIGHT/50) + ". Used seed: " + Constants.MAIN_SEED);
         
+        Console.getInstance().setSeed(Constants.MAIN_SEED);
+        
         omniMap = new OmniMap(eng, 100, 100);
         omniMap.px = Constants.WINDOW_WIDTH - 120;
         omniMap.py = 5;
