@@ -2,7 +2,11 @@ package com.jpii.navalbattle.renderer;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class Console extends JFrame {
 	private static Console instance = null;
@@ -17,13 +21,16 @@ public class Console extends JFrame {
 	public Console() {
 		setSize(465,365);
 		setLocation(0,380);
-		setTitle("Rendering Console");
+		setTitle("Debug Rendering Console");
 		setVisible(true);
 		attrs = new ArrayList<cnsl_attr>();
 		attrs.add(new cnsl_attr("Started Console!",0));
 	}
 	public void paint(Graphics g2) {
-		Graphics2D g = (Graphics2D)g2;
+		BufferedImage b = new BufferedImage(getWidth(),getHeight(),BufferedImage.TYPE_INT_ARGB);
+		Graphics g3 = b.getGraphics();
+		Graphics2D g = (Graphics2D)g3;
+		g.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING,RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
 		int h = 30;
 		
 		g.setColor(Color.black);
@@ -35,15 +42,15 @@ public class Console extends JFrame {
 		g.drawLine(0,19+h,getWidth(),19+h);
 		
 		g.setColor(Color.white);
-		g.drawString("Seed: " + seed + ". FPS: " + fps,2,18);
+		g.drawString("Seed: " + seed + ". FPS: " + fps,10,44);
 		
-		int buffer = 40;
-		for (int c = (getHeight() - 21) / 18; c > 0; c--) {
-			if (c < attrs.size()) {
-				cnsl_attr a = attrs.get(c);
-				int s = getWidthCnsl(g,a);
-				int f = s / getWidth();
-				f++;
+		int buffer = h+(18*2);
+		for (int c = 0; c < attrs.size(); c++) {
+			if (attrs.size() - c - 1 < attrs.size()) {
+				cnsl_attr a = attrs.get(attrs.size() - c - 1);
+				///int s = getWidthCnsl(g,a);
+				//int f = s / getWidth();
+				//f++;
 				if (a.type == 0) {
 					g.setColor(Color.yellow);
 				}
@@ -52,10 +59,11 @@ public class Console extends JFrame {
 				}
 				else
 					g.setColor(Color.green);
-				g.drawString(a.v, 2, buffer);
-				buffer += (f*20);	
+				g.drawString(a.v, 10, buffer);
+				buffer += 20;	
 			}
 		}
+		g2.drawImage(b, 0, 0, null);
 	}
 	int seed = 0;
 	int fps = 0;
@@ -64,15 +72,19 @@ public class Console extends JFrame {
 	}
 	public void setFPS(int fps) {
 		this.fps = fps;
+		repaint();
 	}
 	public void printWarn(String v) {
 		attrs.add(new cnsl_attr(v,0));
+		repaint();
 	}
 	public void printError(String v) {
 		attrs.add(new cnsl_attr(v,1));
+		repaint();
 	}
 	public void printInfo(String v) {
 		attrs.add(new cnsl_attr(v,2));
+		repaint();
 	}
 	private int getWidthCnsl(Graphics2D g,cnsl_attr ams) {
 		FontMetrics metrics = g.getFontMetrics(Helper.GUI_GAME_FONT);
@@ -86,7 +98,10 @@ class cnsl_attr {
 	public String v;
 	public int type;
 	public cnsl_attr(String v, int type) {
-		this.v = v;
+		DateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
+        Date date = new Date();
+        String h =  dateFormat.format(date);
+		this.v = "[" + h + "]: " + v;
 		this.type = type;
 	}
 
