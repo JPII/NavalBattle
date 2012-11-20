@@ -77,6 +77,10 @@ public class Window extends JFrame {
 		printDebug("Hiding "+parseString());
 		NavalBattle.getWindowHandler().setNewWindow(next);
 	}
+	
+	public void donewithMe(){
+		super.dispose();
+	}
 	/**
 	 * Get method for Window
 	 * 

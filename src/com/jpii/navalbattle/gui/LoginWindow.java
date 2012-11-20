@@ -94,6 +94,7 @@ public class LoginWindow extends Window {
 				NavalBattle.getDebugWindow().printWarning("RoketGamer disabled");
 				NavalBattle.getGameState().setOffline(true);
 				nextWindow("LoggingInWindow");
+				donewithMe();
 			}
 		});
 		
@@ -126,6 +127,7 @@ public class LoginWindow extends Window {
 			NavalBattle.getDebugWindow().printInfo("Logged in as: " + NavalBattle.getRoketGamer().getPlayer().getName());
 			NavalBattle.getGameState().setOffline(false);
 			nextWindow("LoggingInWindow");
+			donewithMe();
 		} else {
 			if(status == AuthStatus.BAD) {
 				NavalBattle.getDebugWindow().printWarning("Authentication failed: AuthStatus.BAD");	

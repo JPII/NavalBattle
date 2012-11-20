@@ -70,6 +70,7 @@ public class LoggingInWindow extends Window {
 		if (!alreadyOpened) {
 			alreadyOpened = true;
 			nextWindow("MainMenuWindow");
+			donewithMe();
 		}
 	}
 
