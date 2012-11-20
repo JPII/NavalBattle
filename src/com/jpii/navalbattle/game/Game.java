@@ -47,16 +47,27 @@ public class Game implements Runnable {
         BufferedImage.TYPE_INT_RGB);
         buffer = new BufferedImage(Constants.WINDOW_WIDTH, Constants.WINDOW_HEIGHT,
         BufferedImage.TYPE_INT_RGB);
-        if (RenderConstants.OPT_CLOUDS_ON) clouds = new BufferedImage(Constants.WINDOW_WIDTH, Constants.WINDOW_HEIGHT, BufferedImage.TYPE_INT_ARGB);
+        if (RenderConstants.OPT_CLOUDS_ON)
+        	clouds = new BufferedImage(Constants.WINDOW_WIDTH, Constants.WINDOW_HEIGHT, BufferedImage.TYPE_INT_ARGB);
         eng = new Engine(Constants.WINDOW_WIDTH * 4,
         Constants.WINDOW_HEIGHT * 4);
         shadow = Helper.genInnerShadow(Constants.WINDOW_WIDTH, Constants.WINDOW_HEIGHT);
         eng.setSmoothFactor(5);
         eng.generate(Constants.MAIN_SEED, RenderConstants.GEN_TERRAIN_ROUGHNESS);
+        eng.setWaterLevel(RenderConstants.GEN_WATER_HEIGHT);
+        eng.reRunStats();
+        while (eng.getStats().getPercentWater() < 70) {
+        	Console.getInstance().printError("Seed " + Constants.MAIN_SEED + " has too much land ("
+        			+ eng.getStats().getPercentWater() + "% water). Prepairing to regenerate.");
+        	Constants.MAIN_SEED = (int)(Math.random() * Integer.MAX_VALUE);
+        	eng.generate(Constants.MAIN_SEED, RenderConstants.GEN_TERRAIN_ROUGHNESS);
+            eng.reRunStats();
+        }
         simpleSeeder = new Random(Constants.MAIN_SEED);
         
         Console.getInstance().printError("Saving mode disabled. SaveMe API not functional.");
         
+        /*try {
         for (int c = 0; c < 10; c++) {
         	Random rand = new Random(Constants.MAIN_SEED+c-23);
         	int ox = (rand.nextInt(eng.getWidth() - 200) + 300)/3;
@@ -107,6 +118,10 @@ public class Game implements Runnable {
     		}
     		Runtime.getRuntime().gc();
         }
+        }
+        catch (Exception ex) {
+        	
+        }*/
         bird0 = new FlyingRenderer(this,simpleSeeder.nextInt(25)+75,450);
         
         NavalBattle.getDebugWindow().printInfo("Generated map. Size: " + (4*Constants.WINDOW_WIDTH/50) + "x" +
@@ -185,6 +200,8 @@ public class Game implements Runnable {
     	run();
         if (!RenderConstants.OPT_CLOUDS_ON) return;
         	cr.run();
+        	
+        Runtime.getRuntime().gc();
     }
     /**
      * Fired when the mouse moves.
