@@ -73,7 +73,7 @@ public class ToasterTest {
 		// Border color
 		borderColor = Color.GRAY;
 		toasterColor = Color.BLACK;
-		messageColor = Color.GREEN;
+		messageColor = Color.WHITE;
 		useAlwaysOnTop = true;
 		// Verify AlwaysOnTop Flag...
 		try {
@@ -93,6 +93,7 @@ public class ToasterTest {
 			singleToaster.iconLabel.setIcon(icon);
 		}
 		singleToaster.message.setText(msg);
+		singleToaster.message.setBorder(null);
 		singleToaster.animate();
 	}
 
