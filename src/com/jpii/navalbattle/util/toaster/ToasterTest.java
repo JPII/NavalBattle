@@ -92,7 +92,7 @@ public class ToasterTest {
 		if (icon != null) {
 			singleToaster.iconLabel.setIcon(icon);
 		}
-		singleToaster.message.setText(msg);
+		singleToaster.message.setText("\n" + msg);
 		singleToaster.message.setBorder(null);
 		singleToaster.animate();
 	}
