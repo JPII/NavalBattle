@@ -4,14 +4,11 @@ import java.awt.*;
 import java.awt.event.*;
 import java.awt.image.*;
 import javax.swing.JComponent;
-import com.jpii.navalbattle.util.*;
 
 @SuppressWarnings("serial")
 public class MenuBackground extends JComponent implements MouseListener{
 	int width, height, pixel;
 	BufferedImage buffer;
-	
-	Sound s = new Sound();
 	
 	double boatx;
 	int boaty;
