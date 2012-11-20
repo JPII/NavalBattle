@@ -30,6 +30,8 @@ public class Game implements Runnable {
     private int msax, msay;
     private Thread CHUNK_OVERHEAD;
     private OmniMap omniMap;
+    FlyingRenderer bird0;
+    Random simpleSeeder;
     @SuppressWarnings("unused")
 	private String timeStatus = "Night";
     /**
@@ -51,12 +53,13 @@ public class Game implements Runnable {
         shadow = Helper.genInnerShadow(Constants.WINDOW_WIDTH, Constants.WINDOW_HEIGHT);
         eng.setSmoothFactor(5);
         eng.generate(Constants.MAIN_SEED, RenderConstants.GEN_TERRAIN_ROUGHNESS);
+        simpleSeeder = new Random(Constants.MAIN_SEED);
         
         Console.getInstance().printError("Saving mode disabled. SaveMe API not functional.");
         
-        for (int c = 0; c < 100; c++) {
+        for (int c = 0; c < 10; c++) {
 	        SimpleBrownian river = new SimpleBrownian(600,800);
-	        river.setMaxIterations(1000000);
+	        river.setMaxIterations(10);
 	        int sx = (int)(Math.random() * 700);
 	        int sy = (int)(Math.random() * 500);
 	        river.generate(Constants.MAIN_SEED + (sx & sy) + sx, 0.9);
@@ -74,6 +77,7 @@ public class Game implements Runnable {
 	        	}
 	        }
         }
+        bird0 = new FlyingRenderer(this,simpleSeeder.nextInt(25)+75,450);
         
         NavalBattle.getDebugWindow().printInfo("Generated map. Size: " + (4*Constants.WINDOW_WIDTH/50) + "x" +
         (4*Constants.WINDOW_HEIGHT/50) + ". Used seed: " + Constants.MAIN_SEED);
@@ -122,6 +126,8 @@ public class Game implements Runnable {
     		RenderConstants.CURRENT_TIME_OF_DAY += (le/1000.0);
     	else
     		RenderConstants.CURRENT_TIME_OF_DAY = 0;
+    	
+    	bird0.update();
     	
     	int alph = Helper.ComputeTime();
     	RenderConstants.TIME_OVERLAY = new BufferedImage(Constants.CHUNK_SIZE,Constants.CHUNK_SIZE,BufferedImage.TYPE_INT_ARGB);
@@ -275,6 +281,7 @@ public class Game implements Runnable {
             g.drawImage(eRender.getBuffer(), 0, 0, null);
             //g.drawImage(grid.getFeasibleGrid(),0,0,null);
             g.drawImage(clouds, 0, 0, null);
+            bird0.draw(g);
             g.drawImage(shadow, 0, 0, null);
             g.drawImage(omniMap.getBuffer(), omniMap.px, omniMap.py, null);
         }
