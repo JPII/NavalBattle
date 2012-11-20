@@ -21,7 +21,7 @@ public class Game implements Runnable {
     private ArrayList < ChunkRenderer > chunks;
     private Engine eng;
     private EntityRenderer eRender;
-    private BufferedImage map;
+    public BufferedImage map,lastMap;
     private BufferedImage buffer;
     private BufferedImage clouds;
     private BufferedImage shadow;
@@ -185,23 +185,22 @@ public class Game implements Runnable {
     	}
     	else
     		timeStatus = "Day";
-    	setStatus(GameStatus.STATUS_CHUNK_RENDER);
+    	//setStatus(GameStatus.STATUS_CHUNK_RENDER);
     	//run();
     	boolean allowOverhead = false;
-    	if (allowOverhead && (CHUNK_OVERHEAD == null || !CHUNK_OVERHEAD.isAlive() || CHUNK_OVERHEAD.getState() == Thread.State.TERMINATED)) {
-	    	CHUNK_OVERHEAD = new Thread(this);
-	    	CHUNK_OVERHEAD.setPriority(Thread.MAX_PRIORITY);
-	    	CHUNK_OVERHEAD.start();
-    	}
-    	else
-    		run();
-    	
+    	//if (allowOverhead && (CHUNK_OVERHEAD == null || !CHUNK_OVERHEAD.isAlive() || CHUNK_OVERHEAD.getState() == Thread.State.TERMINATED)) {
+	    	//CHUNK_OVERHEAD = new Thread(this);
+	    //	CHUNK_OVERHEAD.setPriority(Thread.MAX_PRIORITY);
+	    	//CHUNK_OVERHEAD.start();
+    	//}
+    	//else
+    		//run();
     	setStatus(GameStatus.STATUS_CHUNK_UPDATES);
     	run();
         if (!RenderConstants.OPT_CLOUDS_ON) return;
         	cr.run();
         	
-        Runtime.getRuntime().gc();
+        //Runtime.getRuntime().gc();
     }
     /**
      * Fired when the mouse moves.
@@ -227,12 +226,14 @@ public class Game implements Runnable {
         omniMap.mouseClick(me);
         omniMap.update();
     }
+    public boolean chunkrenderfinished = true;
     /**
      * Runs the OmniMap updater and chunk updator.
      */
     public void run() {
     	
     	if (getStatus() == GameStatus.STATUS_CHUNK_RENDER) {
+    		chunkrenderfinished = false;
     		omniMap.msax = msax;
     		omniMap.msay = msay;
     		if (omniMap.entireWorldMode)
@@ -241,6 +242,8 @@ public class Game implements Runnable {
     		repaint(RepaintType.REPAINT_MAP);
     		repaint(RepaintType.REPAINT_INDV_ENTITIES);
     		repaint(RepaintType.REPAINT_BUFFERS);
+    		lastMap = buffer;
+    		chunkrenderfinished = true;
     	}
     	else if (getStatus() == GameStatus.STATUS_FULL_UPDATE) {
     		update();

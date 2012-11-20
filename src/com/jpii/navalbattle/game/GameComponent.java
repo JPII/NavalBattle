@@ -49,42 +49,51 @@ public class GameComponent extends JComponent {
 		this.frame = frame;
 		ActionListener al = new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				while (lastUpdate + 100 > System.currentTimeMillis()) {
+				while (lastUpdate + 10 > System.currentTimeMillis()) {
 					
 				}
 				if(game!=null) {
+					if (game.chunkrenderfinished) {
 					if (updator0 == null || updator0.getState() == State.TERMINATED || !updator0.isAlive()) {
 						updator0 = new Thread(game);
 						updator0.setPriority(Thread.MAX_PRIORITY);
-						game.setStatus(GameStatus.STATUS_FULL_UPDATE);
+						//game.setStatus(GameStatus.STATUS_FULL_UPDATE);
+						game.setStatus(GameStatus.STATUS_CHUNK_RENDER);
 						updator0.start();
 					}
 					else if (updator1 == null || updator1.getState() == State.TERMINATED || !updator1.isAlive()) {
 						updator1 = new Thread(game);
 						updator1.setPriority(Thread.MAX_PRIORITY);
-						game.setStatus(GameStatus.STATUS_FULL_UPDATE);
+						//game.setStatus(GameStatus.STATUS_FULL_UPDATE);
+						game.setStatus(GameStatus.STATUS_CHUNK_RENDER);
 						updator1.start();
 					}
 					else if (updator2 == null || updator2.getState() == State.TERMINATED || !updator2.isAlive()) {
 						updator2 = new Thread(game);
 						updator2.setPriority(Thread.MAX_PRIORITY);
-						game.setStatus(GameStatus.STATUS_FULL_UPDATE);
+						//game.setStatus(GameStatus.STATUS_FULL_UPDATE);
+						game.setStatus(GameStatus.STATUS_CHUNK_RENDER);
 						updator2.start();
 					}
 					else if (updator3 == null || updator3.getState() == State.TERMINATED || !updator3.isAlive()) {
 						updator3 = new Thread(game);
 						updator3.setPriority(Thread.MAX_PRIORITY);
-						game.setStatus(GameStatus.STATUS_FULL_UPDATE);
+						//game.setStatus(GameStatus.STATUS_FULL_UPDATE);
+						game.setStatus(GameStatus.STATUS_CHUNK_RENDER);
 						updator3.start();
 					}
 					else if (updator4 == null || updator4.getState() == State.TERMINATED || !updator4.isAlive()) {
 						updator4 = new Thread(game);
 						updator4.setPriority(Thread.MAX_PRIORITY);
-						game.setStatus(GameStatus.STATUS_FULL_UPDATE);
+						//game.setStatus(GameStatus.STATUS_FULL_UPDATE);
+						game.setStatus(GameStatus.STATUS_CHUNK_RENDER);
 						updator4.start();
 					}
-					else
+					}
+					//else
 						game.update();
+					//game.setStatus(GameStatus.STATUS_CHUNK_RENDER);
+					//game.run();
 				}
 				repaint();
 				lastUpdate = System.currentTimeMillis();
@@ -129,10 +138,14 @@ public class GameComponent extends JComponent {
 	{
 		long start = System.currentTimeMillis();
 		
-		game.repaint(RepaintType.REPAINT_MAP);
-		game.repaint(RepaintType.REPAINT_CLOUDS);
-		game.repaint(RepaintType.REPAINT_BUFFERS);
+		//game.repaint(RepaintType.REPAINT_MAP);
+		//game.repaint(RepaintType.REPAINT_CLOUDS);
+		//game.repaint(RepaintType.REPAINT_BUFFERS);
+		if (game.chunkrenderfinished) {
 		g.drawImage(game.getBuffer(),0,0,null);
+		}
+		else
+			g.drawImage(game.lastMap,0,0,null);
 		
 		/*g.setColor(Color.black);
 		g.fillRect(0,0,getWidth(),40);
