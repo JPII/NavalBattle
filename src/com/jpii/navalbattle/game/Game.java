@@ -57,24 +57,24 @@ public class Game implements Runnable {
         
         Console.getInstance().printError("Saving mode disabled. SaveMe API not functional.");
         
-        for (int c = 0; c < 200; c++) {
+        for (int c = 0; c < 10; c++) {
         	Random rand = new Random(Constants.MAIN_SEED+c-23);
-        	int ox = rand.nextInt(eng.getWidth() - 200) + 100;
-        	int oy = rand.nextInt(200);//rand.nextInt(eng.getHeight() - 200) + 100;
-    		double[][] points = new double[eng.getWidth()][eng.getHeight()];
+        	int ox = (rand.nextInt(eng.getWidth() - 200) + 300)/3;
+        	int oy = (rand.nextInt(200))/3;//rand.nextInt(eng.getHeight() - 200) + 100;
+    		double[][] points = new double[eng.getWidth()/3][eng.getHeight()/3];
     		points[ox][oy] = 1;
     		int lastx = ox;
     		int lasty = oy;
     		int ppx = 0;
     		int ppy = 0;
-    		for (int v = 0; v < 100; v++)
+    		for (int v = 0; v < 200; v++)
     		{
-    			int nx = lastx + rand.nextInt(4)-2;
-    			int ny = lasty + rand.nextInt(4)+1;
-    			if (nx >= eng.getWidth())
-    				nx = eng.getWidth()-1;
-    			if (ny >= eng.getHeight())
-    				ny = eng.getHeight()-1;
+    			int nx = lastx + rand.nextInt(5)-2;
+    			int ny = lasty + rand.nextInt(2)+1;
+    			if (nx >= eng.getWidth()/3)
+    				nx = (eng.getWidth()/3)-1;
+    			if (ny >= eng.getHeight()/3)
+    				ny = (eng.getHeight()/3)-1;
     			if (nx < 1)
     				nx = 1;
     			if (ny < 1)
@@ -86,20 +86,20 @@ public class Game implements Runnable {
     			}
     			points[nx][ny] = 1.0;
     			if (nx != lastx && ny != lasty) {
-    			SimpleBrownian.drawLine(nx,ny,lastx,lasty,eng.getWidth(),eng.getHeight(),points);
-    			//SimpleBrownian.drawLine(nx-1,ny-1,lastx-1,lasty-1,eng.getWidth(),eng.getHeight(),points);
-    			//SimpleBrownian.drawLine(nx+1,ny+1,lastx+1,lasty+1,eng.getWidth(),eng.getHeight(),points);
-    			//SimpleBrownian.drawLine(nx-1,ny-1,lastx+1,lasty+1,eng.getWidth(),eng.getHeight(),points);
-    			//SimpleBrownian.drawLine(nx+1,ny+1,lastx-1,lasty-1,eng.getWidth(),eng.getHeight(),points);
+    			SimpleBrownian.drawLine(nx,ny,lastx,lasty,eng.getWidth()/3,eng.getHeight()/3,points);
+    			SimpleBrownian.drawLine(nx-1,ny-1,lastx-1,lasty-1,eng.getWidth()/3,eng.getHeight()/3,points);
+    			SimpleBrownian.drawLine(nx+1,ny+1,lastx+1,lasty+1,eng.getWidth()/3,eng.getHeight()/3,points);
+    			SimpleBrownian.drawLine(nx-1,ny-1,lastx+1,lasty+1,eng.getWidth()/3,eng.getHeight()/3,points);
+    			SimpleBrownian.drawLine(nx+1,ny+1,lastx-1,lasty-1,eng.getWidth(),eng.getHeight(),points);
     			}
     			lastx = nx;
     			lasty = ny;
     		}
-    		for (int x = 0; x < eng.getWidth(); x++) {
-    			for (int y = 0; y < eng.getHeight(); y++) {
+    		for (int x = 0; x < eng.getWidth()/3; x++) {
+    			for (int y = 0; y < eng.getHeight()/3; y++) {
     				if (points[x][y] == 1.0) {
     					if (eng.getPoint(x,y) >= RenderConstants.GEN_WATER_HEIGHT) {
-    						eng.setPoint(x,y,RenderConstants.GEN_WATER_HEIGHT - 0.05);
+    						eng.setPoint(x,y,(RenderConstants.GEN_WATER_HEIGHT - 0.3));
     					//eng.setPoint(x,y,1);
     					}
     				}
