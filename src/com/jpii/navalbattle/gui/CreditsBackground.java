@@ -30,7 +30,7 @@ public class CreditsBackground extends JComponent implements MouseListener{
 		this.width = width;
 		this.height = height;
 		setSize(width,height);
-		for (int c = 0; c < r.nextInt(5) + 8; c++) {
+		for (int c = 0; c < r.nextInt(9) + 10; c++) {
 			stars.add(new star(width,height));
 		}
 		ActionListener al = new ActionListener() {
@@ -72,9 +72,25 @@ public class CreditsBackground extends JComponent implements MouseListener{
         g.fillRect(0,(getHeight()/2)-45,getWidth(),(getHeight()/2)+45);
         g.setPaint(null);
         
-        g.setColor(new Color(235,235,224));
-        for (int c = 0; c < 50; c++) {
-        	g.drawArc(100+c, 50+c, 40-c, 75-c, 90, -180);
+        int s = 8;
+        int sx = 10*s;
+        int sy = (getHeight()/2)+(s*10);
+        for (int z = -4; z < 4; z++) {
+        	for (int x = Math.abs(z); x < 10-Math.abs(z); x++) {
+        		g.setColor(new Color(66 + (z * 4),89 + (z * 4),40 + (z * 4)));
+        		g.fillRect((sx+(s*x)),(sy+(s*z/2)),s,s);
+        	}
+        }
+        sy = (getHeight()/2)+(s*9);
+        for (int z = -3; z < 3; z++) {
+        	for (int x = Math.abs(z)+(2); x < 6-Math.abs(z)+(2); x++) {
+        		g.setColor(new Color(110 + (z * 5),150 + (z * 5),70 + (z * 5)));
+        		g.fillRect((sx+(s*x)),(sy+(s*z/2)),s,s);
+        	}
+        }
+        for (int c = 32; c > 0; c-=8) {
+        	g.setColor(new Color(116-(c),73-c,35-c));
+        	g.fillRect(8+sx,sy-(c-8),8,8);
         }
         
         for (int c = 0; c < stars.size(); c++) {
@@ -113,8 +129,8 @@ class star {
 	int x, y, stage;
 	public star(int width, int height) {
 		x = (int)(width*Math.random());
-		y = (int)((height/2)*Math.random());
-		stage = (int)(Math.random() * 2);
+		y = (int)(((height/2)-45)*Math.random());
+		stage = (int)(Math.random() * 3);
 	}
 	public void draw(Graphics2D g) {
 		g.setColor(new Color(225,225,240));
