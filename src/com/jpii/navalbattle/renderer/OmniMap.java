@@ -151,10 +151,8 @@ public class OmniMap {
         g2.drawImage(Helper.GUI_OMNIMAP_BACKGROUND1,0,0,100,125,null);
         if (entireWorldMode) {
             g2.drawImage(map, 1,1, null);
-            int vx = (msax - 200) * 100 / (Constants.WINDOW_WIDTH * 4);
-            int vy = (msay - 200) * 100 / (Constants.WINDOW_HEIGHT * 4);
-            vx += 20;
-            vy += 20;
+            int vx = (msax) * 100 / ((Constants.WINDOW_WIDTH * 4)+1);
+            int vy = (msay) * 100 / ((Constants.WINDOW_HEIGHT * 4)+1);
             g2.setColor(Color.red);
             g2.drawRect(vx, vy, Constants.WINDOW_WIDTH / 100 * 2, Constants.WINDOW_HEIGHT / 100 * 2);
         } else {

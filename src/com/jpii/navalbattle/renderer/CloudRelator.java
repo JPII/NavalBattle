@@ -27,7 +27,7 @@ public class CloudRelator implements Runnable {
             if (r.nextBoolean()) xm *= -1;
             if (r.nextBoolean()) zm *= -1;
         }
-        Console.getInstance().printInfo("Cloud kernel used: (" + xm + "," + xm + ").");
+        Console.getInstance().printInfo("Cloud kernel used: (" + xm + "," + zm + ").");
         if (xm < 0) signxm = true;
         if (zm < 0) signzm = true;
         eng = new Engine(Constants.WINDOW_WIDTH, Constants.WINDOW_HEIGHT);
