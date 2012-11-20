@@ -38,7 +38,7 @@ public class RenderConstants {
 
     // Currently not fully implemented:
     public static boolean OPT_HIGH_PRIORITY_SCHEDULING = true;
-    public static boolean OPT_MULTITHREADING = true;
+    public static boolean OPT_MULTITHREADING = false;
     public static boolean OPT_NOISY_BACKGROUND_ON = true;
     public static boolean OPT_SHOW_OMNIMAP = true;
     public static int OPT_NUM_UPDATES = 10;

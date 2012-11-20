@@ -26,6 +26,7 @@ import javax.swing.*;
 
 import com.jpii.navalbattle.renderer.Console;
 import com.jpii.navalbattle.renderer.Helper;
+import com.jpii.navalbattle.renderer.RenderConstants;
 import com.jpii.navalbattle.renderer.RepaintType;
 
 
@@ -53,7 +54,7 @@ public class GameComponent extends JComponent {
 					
 				}
 				if(game!=null) {
-					if (game.chunkrenderfinished) {
+					if (game.chunkrenderfinished && RenderConstants.OPT_MULTITHREADING) {
 					if (updator0 == null || updator0.getState() == State.TERMINATED || !updator0.isAlive()) {
 						updator0 = new Thread(game);
 						updator0.setPriority(Thread.MAX_PRIORITY);
@@ -89,6 +90,14 @@ public class GameComponent extends JComponent {
 						game.setStatus(GameStatus.STATUS_CHUNK_RENDER);
 						updator4.start();
 					}
+					else {
+						game.setStatus(GameStatus.STATUS_CHUNK_RENDER);
+						game.run();
+					}
+					}
+					else if (!RenderConstants.OPT_MULTITHREADING) {
+						game.setStatus(GameStatus.STATUS_CHUNK_RENDER);
+						game.run();
 					}
 					//else
 						game.update();
