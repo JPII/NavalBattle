@@ -16,6 +16,11 @@
  */
 
 package com.jpii.navalbattle;
+import java.io.File;
+import java.net.MalformedURLException;
+import java.util.ArrayList;
+
+import javax.print.DocFlavor.URL;
 import javax.swing.UIManager.*;
 import javax.swing.*;
 
@@ -23,6 +28,8 @@ import com.jpii.roketgamer.*;
 import com.jpii.navalbattle.data.*;
 import com.jpii.navalbattle.debug.*;
 import com.jpii.navalbattle.game.SinglePlayerGame;
+import com.jpii.navalbattle.io.SettingsAttribute;
+import com.jpii.navalbattle.io.SettingsReader;
 import com.jpii.navalbattle.renderer.*;
 import com.jpii.navalbattle.util.toaster.*;
 
@@ -37,7 +44,7 @@ public class NavalBattle {
 	
 	public static void main(String[] args) {
 		
-		/*
+		
 		ArrayList<SettingsAttribute> attrs = new ArrayList<SettingsAttribute>();
 		SettingsAttribute a = new SettingsAttribute("lastGoodUserName");
 		attrs.add(a);
@@ -47,9 +54,15 @@ public class NavalBattle {
 		attrs.add(a);
 		a = new SettingsAttribute("gameWindowHeight");
 		attrs.add(a);
-		URL url = NavalBattle.class.getResource("/com/jpii/navalbattle/res/settings.ini");
-		//SettingsReader reader = new SettingsReader(url.getPath(),attrs);
-		//reader.read(); */
+		java.net.URL url = null;
+		try {
+			url = new java.net.URL("C:\\navalbattle\\settings.ini");
+		} catch (Exception e) {
+		}
+		if (url != null && new File(url.getPath()).exists()) {
+		SettingsReader reader = new SettingsReader(url.getPath(),attrs);
+		reader.read();
+		}
 		
 		Helper.LoadStaticResources();
 		setDefaultLookAndFeel();
