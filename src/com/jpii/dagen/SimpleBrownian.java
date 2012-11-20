@@ -57,11 +57,11 @@ public class SimpleBrownian extends Engine {
 				ppy = ny;
 			}
 			points[nx][ny] = 1.0;
-			drawLine(nx,ny,lastx,lasty);
-			drawLine(nx-1,ny-1,lastx-1,lasty-1);
-			drawLine(nx+1,ny+1,lastx+1,lasty+1);
-			drawLine(nx-1,ny-1,lastx+1,lasty+1);
-			drawLine(nx+1,ny+1,lastx-1,lasty-1);
+			drawLine(nx,ny,lastx,lasty,width,height,points);
+			drawLine(nx-1,ny-1,lastx-1,lasty-1,width,height,points);
+			drawLine(nx+1,ny+1,lastx+1,lasty+1,width,height,points);
+			drawLine(nx-1,ny-1,lastx+1,lasty+1,width,height,points);
+			drawLine(nx+1,ny+1,lastx-1,lasty-1,width,height,points);
 			//drawLine(nx-1,ny-1,lastx-1,lasty-1);
 			//drawLine(nx-1,ny-1,lastx,lasty);
 			//drawLine(nx,ny,lastx-1,lasty-1);
@@ -69,11 +69,11 @@ public class SimpleBrownian extends Engine {
 			lasty = ny;
 		}
 	}
-	private int Sign(int Number)
+	private static int Sign(int Number)
 	{
 		if (Number < 0) return -1; else return +1;
 	}
-	private void drawLine(int p1x, int p1y, int p2x, int p2y)
+	public static void drawLine(int p1x, int p1y, int p2x, int p2y, int width, int height, double[][] points)
 	{
 		int X1 = p1x;
 		int Y1 = p1y;
