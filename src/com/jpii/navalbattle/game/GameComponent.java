@@ -20,6 +20,7 @@ package com.jpii.navalbattle.game;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.event.*;
+import java.lang.Thread.State;
 
 import javax.swing.*;
 
@@ -36,15 +37,57 @@ import com.jpii.navalbattle.renderer.RepaintType;
 public class GameComponent extends JComponent {
 	JFrame frame;
 	Timer ticker;
+	Thread updator0;
+	Thread updator1;
+	Thread updator2;
+	Thread updator3;
+	Thread updator4;
 	public static Game game;
+	long lastUpdate = 0;
 	//int mouseDown = 0;
 	public GameComponent(JFrame frame) {
 		this.frame = frame;
 		ActionListener al = new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				if(game!=null)
-					game.update();
+				while (lastUpdate + 100 > System.currentTimeMillis()) {
+					
+				}
+				if(game!=null) {
+					if (updator0 == null || updator0.getState() == State.TERMINATED || !updator0.isAlive()) {
+						updator0 = new Thread(game);
+						updator0.setPriority(Thread.MAX_PRIORITY);
+						game.setStatus(GameStatus.STATUS_FULL_UPDATE);
+						updator0.start();
+					}
+					else if (updator1 == null || updator1.getState() == State.TERMINATED || !updator1.isAlive()) {
+						updator1 = new Thread(game);
+						updator1.setPriority(Thread.MAX_PRIORITY);
+						game.setStatus(GameStatus.STATUS_FULL_UPDATE);
+						updator1.start();
+					}
+					else if (updator2 == null || updator2.getState() == State.TERMINATED || !updator2.isAlive()) {
+						updator2 = new Thread(game);
+						updator2.setPriority(Thread.MAX_PRIORITY);
+						game.setStatus(GameStatus.STATUS_FULL_UPDATE);
+						updator2.start();
+					}
+					else if (updator3 == null || updator3.getState() == State.TERMINATED || !updator3.isAlive()) {
+						updator3 = new Thread(game);
+						updator3.setPriority(Thread.MAX_PRIORITY);
+						game.setStatus(GameStatus.STATUS_FULL_UPDATE);
+						updator3.start();
+					}
+					else if (updator4 == null || updator4.getState() == State.TERMINATED || !updator4.isAlive()) {
+						updator4 = new Thread(game);
+						updator4.setPriority(Thread.MAX_PRIORITY);
+						game.setStatus(GameStatus.STATUS_FULL_UPDATE);
+						updator4.start();
+					}
+					else
+						game.update();
+				}
 				repaint();
+				lastUpdate = System.currentTimeMillis();
 			}
 		};
 		
@@ -75,7 +118,8 @@ public class GameComponent extends JComponent {
 			}
 		});
 
-		ticker = new Timer(10, al);
+		ticker = new Timer(1, al);
+		lastUpdate = System.currentTimeMillis();
 		ticker.start();
 		game = new Game();
 		//game.repaint(RepaintType.REPAINT_CHUNKS);

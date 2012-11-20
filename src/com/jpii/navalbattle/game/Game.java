@@ -242,6 +242,9 @@ public class Game implements Runnable {
     		repaint(RepaintType.REPAINT_INDV_ENTITIES);
     		repaint(RepaintType.REPAINT_BUFFERS);
     	}
+    	else if (getStatus() == GameStatus.STATUS_FULL_UPDATE) {
+    		update();
+    	}
     	else if (getStatus() == GameStatus.STATUS_CHUNK_UPDATES) {
     		/*for (int x = msax; x < (Constants.WINDOW_WIDTH)+msax; x += 50) {
     			for (int y = msay; y < (Constants.WINDOW_WIDTH)+msay; y += 50) {
