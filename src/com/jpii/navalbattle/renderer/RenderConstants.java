@@ -28,6 +28,8 @@ public class RenderConstants {
     public static boolean OPT_INVERSE_MOUSE = false;
     public static boolean OPT_CLOUDS_ON = true;
     
+    public static int NIGHT_MAX_DARKNESS = 100;
+    
     public static Color GUI_GAME_FONT_COLOR = new Color(188,169,95);
     
     public static double CURRENT_TIME_OF_DAY = 60;

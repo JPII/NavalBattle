@@ -306,7 +306,7 @@ public class Helper {
     	if (tofd > 0 && tofd < le / nightl/2)
     	{
     		double t = tofd;
-    		alph = (int)(t * 130 / (le / nightl/2));
+    		alph = (int)(t * RenderConstants.NIGHT_MAX_DARKNESS / (le / nightl/2));
     		if (alph < 0)
     			alph = 0;
     		if (alph > 255)
@@ -317,19 +317,19 @@ public class Helper {
     			changed = true;
     		}
     	}
-    	if (tofd > le / nightl/2 && tofd < le / nightl * 2)
+    	else if (tofd > le / nightl/2 && tofd < le / nightl * 2)
     	{
-    		alph = 130;
+    		alph = RenderConstants.NIGHT_MAX_DARKNESS;
     		if (!last.equals("Night"))
     		{
     			last = "Night";
     			changed = true;
     		}
     	}
-    	if (tofd > le / nightl * 2 && tofd < (le / nightl * 2) + (le / nightl / 2))
+    	else if (tofd > le / nightl * 2 && tofd < (le / nightl * 2) + (le / nightl / 2))
     	{
     		double t = ((le / nightl * 2) + (le / nightl / 2))- tofd;
-    		alph = (int)(t * 130 / (le / nightl /2));
+    		alph = (int)(t * RenderConstants.NIGHT_MAX_DARKNESS / (le / nightl /2));
     		if (alph < 0)
     			alph = 0;
     		if (alph > 255)
@@ -337,6 +337,13 @@ public class Helper {
     		if (!last.equals("Sunrise"))
     		{
     			last = "Sunrise";
+    			changed = true;
+    		}
+    	}
+    	else {
+    		if (!last.equals("Daytime"))
+    		{
+    			last = "Daytime";
     			changed = true;
     		}
     	}
