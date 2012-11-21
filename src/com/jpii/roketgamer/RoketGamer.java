@@ -75,6 +75,22 @@ public class RoketGamer {
 		return status;
 	}
 	
+	public void logout() {
+		try {
+			URL url = new URL(SERVER_LOCATION + "/api/" + VERSION + "/auth/logout.php?key=" + key.getKey());
+			
+			URLConnection connection = url.openConnection();
+		    connection.addRequestProperty("Protocol", "Http/1.1");
+		    connection.addRequestProperty("Connection", "keep-alive");
+		    connection.addRequestProperty("Keep-Alive", "1000");
+		    connection.addRequestProperty("User-Agent", "Web-Agent");
+
+			BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+
+			in.close();
+		} catch (Exception e) { }
+	}
+	
 	/**
 	 * Returns current <code>APIKey</code>
 	 * @return
