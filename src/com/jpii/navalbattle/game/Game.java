@@ -28,7 +28,7 @@ public class Game implements Runnable {
     //private int zoom;
     private CloudRelator cr;
     private int msax, msay;
-    private Thread CHUNK_OVERHEAD;
+    //private Thread CHUNK_OVERHEAD;
     private OmniMap omniMap;
     FlyingRenderer bird0;
     Random simpleSeeder;
@@ -187,7 +187,7 @@ public class Game implements Runnable {
     		timeStatus = "Day";
     	//setStatus(GameStatus.STATUS_CHUNK_RENDER);
     	//run();
-    	boolean allowOverhead = false;
+    	//boolean allowOverhead = false;
     	//if (allowOverhead && (CHUNK_OVERHEAD == null || !CHUNK_OVERHEAD.isAlive() || CHUNK_OVERHEAD.getState() == Thread.State.TERMINATED)) {
 	    	//CHUNK_OVERHEAD = new Thread(this);
 	    //	CHUNK_OVERHEAD.setPriority(Thread.MAX_PRIORITY);

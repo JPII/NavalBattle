@@ -80,6 +80,7 @@ public class Window extends JFrame {
 	
 	public void donewithMe(){
 		super.dispose();
+		printDebug("Disposing "+parseString());
 	}
 	/**
 	 * Get method for Window

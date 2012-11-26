@@ -17,10 +17,8 @@
 
 package com.jpii.navalbattle;
 import java.io.File;
-import java.net.MalformedURLException;
 import java.util.ArrayList;
 
-import javax.print.DocFlavor.URL;
 import javax.swing.UIManager.*;
 import javax.swing.*;
 
@@ -74,6 +72,8 @@ public class NavalBattle {
 		toasterManager = new ToasterTest();
 		debugWindow.printInfo("NavalBattle " + Constants.NAVALBATTLE_VERSION + " initialized");
 		windowHandler = new WindowHandler();
+		
+		
 		new SinglePlayerGame();
 	}
 	
