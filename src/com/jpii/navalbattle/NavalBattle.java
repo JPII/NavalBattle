@@ -16,8 +16,6 @@
  */
 
 package com.jpii.navalbattle;
-import java.io.File;
-import java.util.ArrayList;
 
 import javax.swing.UIManager.*;
 import javax.swing.*;
@@ -26,8 +24,6 @@ import com.jpii.roketgamer.*;
 import com.jpii.navalbattle.data.*;
 import com.jpii.navalbattle.debug.*;
 import com.jpii.navalbattle.game.SinglePlayerGame;
-import com.jpii.navalbattle.io.SettingsAttribute;
-import com.jpii.navalbattle.io.SettingsReader;
 import com.jpii.navalbattle.renderer.*;
 import com.jpii.navalbattle.util.toaster.*;
 
@@ -43,7 +39,7 @@ public class NavalBattle {
 	public static void main(String[] args) {
 		
 		
-		ArrayList<SettingsAttribute> attrs = new ArrayList<SettingsAttribute>();
+		/*ArrayList<SettingsAttribute> attrs = new ArrayList<SettingsAttribute>();
 		SettingsAttribute a = new SettingsAttribute("lastGoodUserName");
 		attrs.add(a);
 		a = new SettingsAttribute("lastGoodPassword");
@@ -55,12 +51,13 @@ public class NavalBattle {
 		java.net.URL url = null;
 		try {
 			url = new java.net.URL("C:\\navalbattle\\settings.ini");
-		} catch (Exception e) {
+		} catch (Exception e) { 
+			e.printStackTrace();
 		}
 		if (url != null && new File(url.getPath()).exists()) {
 		SettingsReader reader = new SettingsReader(url.getPath(),attrs);
 		reader.read();
-		}
+		}*/
 		
 		Helper.LoadStaticResources();
 		setDefaultLookAndFeel();
