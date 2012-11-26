@@ -71,18 +71,15 @@ public class Window extends JFrame {
 			printDebug("Showing "+parseString());
 			setLocation(xloc,yloc);
 		}
-		if(!isVisible()){
-			printDebug("Hiding "+parseString());
-		}
 	}
 	
 	public void nextWindow(String next){
+		printDebug("Hiding "+parseString());
 		NavalBattle.getWindowHandler().setNewWindow(next);
 	}
 	
 	public void donewithMe(){
 		super.dispose();
-		printDebug("Disposing "+parseString());
 	}
 	/**
 	 * Get method for Window
