@@ -22,9 +22,9 @@ public class Constants {
 	/*
 	 * General
 	 */
-	public static final String NAVALBATTLE_VERSION = "0.2a";
-	public static final String VERSION_CODE = "2";
-	public static final String NAVALBATTLE_CODENAME = "Typhoon";
+	public static final String NAVALBATTLE_VERSION = "0.3a";
+	public static final String VERSION_CODE = "3";
+	public static final String NAVALBATTLE_CODENAME = "Seawolf";
 	public static final String NAVALBATTLE_VERSION_TITLE = "NavalBattle " + NAVALBATTLE_VERSION + " (" + NAVALBATTLE_CODENAME + ")";
 	public static final boolean DEBUG_MODE = true;
 	
