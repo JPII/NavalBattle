@@ -1,5 +1,29 @@
 package com.jpii.navalbattle.rendererbeta;
 
-public class Renderable {
+import java.awt.image.*;
+import java.awt.*;
 
+public class Renderable implements Runnable {
+	BufferedImage buffer;
+	public Renderable() {
+		
+	}
+	public void syncRender() {
+		render();
+	}
+	public void aSyncRender() {
+		Thread thread;
+		try {
+		thread = new Thread(this);
+		}
+		catch (OutOfMemoryError oome) {
+			syncRender();
+		}
+	}
+	public void run() {
+		syncRender();
+	}
+	public void render() {
+		render();
+	}
 }
