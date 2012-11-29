@@ -1,7 +1,6 @@
 package com.jpii.navalbattle.rendererbeta;
 
 import java.awt.image.*;
-import java.awt.*;
 
 public class Renderable implements Runnable {
 	BufferedImage buffer;

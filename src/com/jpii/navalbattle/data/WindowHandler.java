@@ -4,12 +4,15 @@ import java.util.*;
 import javax.swing.*;
 
 import com.jpii.navalbattle.gui.*;
+import com.jpii.navalbattle.util.toaster.ToasterTest;
 
 public class WindowHandler {
 	
 	private ArrayList<Window> windows;
+	private static ToasterTest toasterManager;
 	
 	public WindowHandler(){
+		toasterManager = new ToasterTest();
 		windows = new ArrayList<Window>();
 		initArray();
 		windows.get(0).setVisible(true);
@@ -40,5 +43,14 @@ public class WindowHandler {
 	public void add(Window w){
 		windows.add(w);
 		w.setVisible(true);
+	}
+	
+	/**
+	 * Returns current instance of Toaster. Used to send desktop notifications.
+	 * 
+	 * @return toasterManager
+	 */
+	public ToasterTest getToasterManager() {
+		return toasterManager;
 	}
 }

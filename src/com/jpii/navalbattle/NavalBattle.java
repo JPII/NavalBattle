@@ -25,7 +25,6 @@ import com.jpii.navalbattle.data.*;
 import com.jpii.navalbattle.debug.*;
 import com.jpii.navalbattle.game.SinglePlayerGame;
 import com.jpii.navalbattle.renderer.*;
-import com.jpii.navalbattle.util.toaster.*;
 
 public class NavalBattle {
 
@@ -33,7 +32,6 @@ public class NavalBattle {
 	private static DebugWindow debugWindow;
 	private static GameState gameState;
 	private static CommandHandler commandHandler;
-	private static ToasterTest toasterManager;
 	private static WindowHandler windowHandler;
 	
 	public static void main(String[] args) {
@@ -66,7 +64,6 @@ public class NavalBattle {
 		gameState = new GameState();
 		roketGamer = new RoketGamer();
 		commandHandler = new CommandHandler(Commands.COMMANDS);	
-		toasterManager = new ToasterTest();
 		debugWindow.printInfo("NavalBattle " + Constants.NAVALBATTLE_VERSION + " initialized");
 		windowHandler = new WindowHandler();
 		
@@ -108,15 +105,6 @@ public class NavalBattle {
 	 */
 	public static CommandHandler getCommandHandler() {
 		return commandHandler;
-	}
-	
-	/**
-	 * Returns current instance of Toaster. Used to send desktop notifications.
-	 * 
-	 * @return toasterManager
-	 */
-	public static ToasterTest getToasterManager() {
-		return toasterManager;
 	}
 	
 	/**
