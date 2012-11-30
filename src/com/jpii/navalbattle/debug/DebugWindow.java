@@ -23,8 +23,8 @@ import java.awt.event.*;
 import javax.swing.*;
 
 import com.jpii.navalbattle.data.Commands;
+import com.jpii.navalbattle.data.Constants;
 import com.jpii.navalbattle.gui.Window;
-import com.jpii.navalbattle.gui.listeners.KeyboardListener;
 
 @SuppressWarnings("serial")
 public class DebugWindow extends Window {
@@ -42,8 +42,6 @@ public class DebugWindow extends Window {
 	public DebugWindow() {		
 		super(465,365,0,0);
 		getContentPane().setLayout(null);
-		
-		commandHandler = new CommandHandler(Commands.COMMANDS);	
 		
 		lblNavalBattle = new JLabel("NavalBattle");
 		lblDebugMode = new JLabel("Debug Mode");
@@ -73,7 +71,7 @@ public class DebugWindow extends Window {
 		getContentPane().add(btnSubmit);
 		
 		commandField.grabFocus();
-		commandField.addKeyListener(new KeyboardListener(this));
+		commandField.addKeyListener(Constants.keys);
 		btnSubmit.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -85,6 +83,8 @@ public class DebugWindow extends Window {
 		});
 		printInfo("Debug mode enabled");
 		setDefaults();
+		
+		commandHandler = new CommandHandler(Commands.COMMANDS);	
 	}
 	
 	/**

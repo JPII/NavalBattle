@@ -30,14 +30,10 @@ public class CommandHandler {
 	 * 
 	 * @param commands
 	 */
-	public CommandHandler(ArrayList<Command> commands) {
-		NavalBattle.getDebugWindow().printInfo("Registering commands");
-		
+	public CommandHandler(ArrayList<Command> commands) {		
 		for(Command c : commands) {
 			registerCommand(c);
 		}
-		
-		NavalBattle.getDebugWindow().printInfo(commands.size() + " commands registered");
 	}
 	
 	/**

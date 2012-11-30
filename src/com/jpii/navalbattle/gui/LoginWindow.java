@@ -24,7 +24,6 @@ import com.jpii.navalbattle.data.Constants;
 import com.jpii.navalbattle.util.URLUtils;
 import com.jpii.roketgamer.Player;
 import com.jpii.roketgamer.rauth.*;
-import com.jpii.navalbattle.gui.listeners.KeyboardListener;
 
 @SuppressWarnings("serial")
 public class LoginWindow extends Window {
@@ -75,8 +74,8 @@ public class LoginWindow extends Window {
 		offlineButton.setFocusable(false);
 		optionsButton.setFocusable(false);	
 		
-		passwordField.addKeyListener(new KeyboardListener(this));
-		usernameField.addKeyListener(new KeyboardListener(this));
+		passwordField.addKeyListener(Constants.keys);
+		usernameField.addKeyListener(Constants.keys);
 		
 		setDefaults();	
 		setSize(500,190);

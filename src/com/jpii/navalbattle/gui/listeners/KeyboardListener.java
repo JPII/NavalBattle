@@ -18,31 +18,44 @@
 package com.jpii.navalbattle.gui.listeners;
 
 import java.awt.event.*;
+import java.util.ArrayList;
+
 import com.jpii.navalbattle.debug.DebugWindow;
 import com.jpii.navalbattle.gui.*;
 
 public class KeyboardListener implements KeyListener {
 	
-	Object window;
+	ArrayList<Object> windows;
 	
-	public KeyboardListener(Object classname) {
-		window = classname;
+	public KeyboardListener() {
+		windows = new ArrayList<Object>();
+	}
+	
+	public void add(Object classname){
+		windows.add(classname);
+	}
+	
+	public void remove(Object classname){
+		windows.remove(classname);
 	}
 	
 	public void keyPressed(KeyEvent k) {	
 		if(k.getKeyCode() == KeyEvent.VK_ESCAPE) {
 			WindowCloser.close();
 		}
-		if(window instanceof LoginWindow) {
-			LoginWindow l = (LoginWindow) window;
-			if(k.getKeyCode() == KeyEvent.VK_ENTER) {
-				l.login();
+		for(int index=0; index<windows.size();index++) {
+			Object window = windows.get(index);
+			if(window instanceof LoginWindow) {
+				LoginWindow l = (LoginWindow) window;
+				if(k.getKeyCode() == KeyEvent.VK_ENTER) {
+					l.login();
+				}
 			}
-		}
-		if(window instanceof DebugWindow) {
-			DebugWindow d = (DebugWindow) window;
-			if(k.getKeyCode() == KeyEvent.VK_ENTER) {
-				d.submitCommandRemote();
+			if(window instanceof DebugWindow) {
+				DebugWindow d = (DebugWindow) window;
+				if(k.getKeyCode() == KeyEvent.VK_ENTER) {
+					d.submitCommandRemote();
+				}
 			}
 		}
 	}

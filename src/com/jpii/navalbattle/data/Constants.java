@@ -17,6 +17,8 @@
 
 package com.jpii.navalbattle.data;
 
+import com.jpii.navalbattle.gui.listeners.KeyboardListener;
+
 public class Constants {
 	
 	/*
@@ -31,6 +33,8 @@ public class Constants {
 	public static final int SPLASH_DURATION = 1000;
 	
 	public static final int SPLASH_SCREEN_TIMEOUT = 3000;
+	
+	public static final KeyboardListener keys = new KeyboardListener();
 	
 	/*
 	 * Game engine

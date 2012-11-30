@@ -4,6 +4,7 @@ import javax.swing.*;
 
 import com.jpii.navalbattle.NavalBattle;
 import com.jpii.navalbattle.renderer.Helper;
+import com.jpii.navalbattle.data.Constants;
 import com.jpii.navalbattle.gui.listeners.*;
 
 @SuppressWarnings("serial")
@@ -61,15 +62,21 @@ public class Window extends JFrame {
 		setLocation(xloc,yloc);
 		setResizable(false);
 		setFocusable(true);
-		addKeyListener(new KeyboardListener(this));
+		addKeyListener(Constants.keys);
 		addWindowListener(new WindowCloser());
 		setVisible(false);
+		addActionListner
 	}
+	
 	public void setVisible(boolean visible){
 		super.setVisible(visible);
 		if(isVisible()){
 			printDebug("Showing "+parseString());
 			setLocation(xloc,yloc);
+			Constants.keys.add(this);
+		}
+		if(!isVisible()){
+			Constants.keys.remove(this);
 		}
 	}
 	

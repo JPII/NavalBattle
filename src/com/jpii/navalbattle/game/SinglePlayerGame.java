@@ -40,7 +40,6 @@ public class SinglePlayerGame extends JFrame {
 
 		this.setSize(491, 339);
 		//this.setUndecorated(true);
-		this.setVisible(true);
 		this.setResizable(true);
 		this.setLocation(Toolkit.getDefaultToolkit().getScreenSize().width / 2
 				- this.getWidth() / 2, 800 / 2 - Toolkit.getDefaultToolkit()
@@ -51,7 +50,7 @@ public class SinglePlayerGame extends JFrame {
 		this.addWindowListener(new WindowCloser());
 
 		this.setFocusable(true);
-		this.addKeyListener(new KeyboardListener(this));
+		addKeyListener(Constants.keys);
 		
 		
 		setSize(Constants.WINDOW_WIDTH,Constants.WINDOW_HEIGHT+40);
@@ -61,5 +60,16 @@ public class SinglePlayerGame extends JFrame {
 		setLocation((int)(Toolkit.getDefaultToolkit().getScreenSize().getWidth()/2) - (getWidth()/2),
 				(int)(Toolkit.getDefaultToolkit().getScreenSize().getHeight()/2) - (getHeight()/2));
 		
+		this.setVisible(true);
+	}
+	
+	public void setVisible(boolean visible){
+		super.setVisible(visible);
+		if(isVisible()){
+			Constants.keys.add(this);
+		}
+		if(!isVisible()){
+			Constants.keys.remove(this);
+		}
 	}
 }
