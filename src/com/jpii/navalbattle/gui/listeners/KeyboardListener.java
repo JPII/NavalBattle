@@ -28,6 +28,7 @@ public class KeyboardListener implements KeyListener {
 	ArrayList<Object> windows;
 	
 	public KeyboardListener() {
+		super();
 		windows = new ArrayList<Object>();
 	}
 	

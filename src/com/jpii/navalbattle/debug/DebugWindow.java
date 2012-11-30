@@ -25,6 +25,7 @@ import javax.swing.*;
 import com.jpii.navalbattle.data.Commands;
 import com.jpii.navalbattle.data.Constants;
 import com.jpii.navalbattle.gui.Window;
+import com.jpii.navalbattle.gui.listeners.Focus;
 
 @SuppressWarnings("serial")
 public class DebugWindow extends Window {
@@ -69,9 +70,7 @@ public class DebugWindow extends Window {
 		getContentPane().add(scrollPane);
 		getContentPane().add(commandField);
 		getContentPane().add(btnSubmit);
-		
-		commandField.grabFocus();
-		commandField.addKeyListener(Constants.keys);
+
 		btnSubmit.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -84,6 +83,9 @@ public class DebugWindow extends Window {
 		printInfo("Debug mode enabled");
 		setDefaults();
 		
+		commandField.grabFocus();
+		commandField.addKeyListener(Constants.keys);
+		commandField.addFocusListener(new Focus(this));
 		commandHandler = new CommandHandler(Commands.COMMANDS);	
 	}
 	

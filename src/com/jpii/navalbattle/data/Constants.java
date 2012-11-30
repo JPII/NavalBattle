@@ -17,7 +17,7 @@
 
 package com.jpii.navalbattle.data;
 
-import com.jpii.navalbattle.gui.listeners.KeyboardListener;
+import com.jpii.navalbattle.gui.listeners.*;
 
 public class Constants {
 	
