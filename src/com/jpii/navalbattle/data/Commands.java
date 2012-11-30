@@ -35,7 +35,7 @@ public class Commands {
 	    add(new Command("help", "", "View all commands", new CommandAction() { 
 	    	public void onRun(Command c, String[] args) {
 	    		NavalBattle.getDebugWindow().println("----------------- NavalBattle Debug Help -----------------");
-	    		for(Command cmd : NavalBattle.getCommandHandler().getCommands()) {
+	    		for(Command cmd : NavalBattle.getDebugWindow().getCommandHandler().getCommands()) {
 	    			NavalBattle.getDebugWindow().println(cmd.getCommand() + " " + cmd.getArgs() + " - " + cmd.getDescription());
 	    		}
 	    	}}

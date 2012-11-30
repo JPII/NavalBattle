@@ -31,7 +31,6 @@ public class NavalBattle {
 	private static RoketGamer roketGamer;
 	private static DebugWindow debugWindow;
 	private static GameState gameState;
-	private static CommandHandler commandHandler;
 	private static WindowHandler windowHandler;
 	
 	public static void main(String[] args) {
@@ -63,7 +62,6 @@ public class NavalBattle {
 		debugWindow.setVisible(true);
 		gameState = new GameState();
 		roketGamer = new RoketGamer();
-		commandHandler = new CommandHandler(Commands.COMMANDS);	
 		debugWindow.printInfo("NavalBattle " + Constants.NAVALBATTLE_VERSION + " initialized");
 		windowHandler = new WindowHandler();
 		
@@ -96,15 +94,6 @@ public class NavalBattle {
 	 */
 	public static GameState getGameState() {
 		return gameState;
-	}
-	
-	/**
-	 * Returns current instance of CommandHandler.
-	 * 
-	 * @return commandHandler
-	 */
-	public static CommandHandler getCommandHandler() {
-		return commandHandler;
 	}
 	
 	/**

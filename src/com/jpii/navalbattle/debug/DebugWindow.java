@@ -22,7 +22,7 @@ import java.awt.event.*;
 
 import javax.swing.*;
 
-import com.jpii.navalbattle.NavalBattle;
+import com.jpii.navalbattle.data.Commands;
 import com.jpii.navalbattle.gui.Window;
 import com.jpii.navalbattle.gui.listeners.KeyboardListener;
 
@@ -33,14 +33,18 @@ public class DebugWindow extends Window {
 	private JTextPane debugPrinter;
 	private JTextField commandField;
 	private boolean paused = false;
-
+	
+	private CommandHandler commandHandler;
+	
 	/**
 	 * Constructor for DebugWindow.
 	 */
-	public DebugWindow() {
+	public DebugWindow() {		
 		super(465,365,0,0);
 		getContentPane().setLayout(null);
-
+		
+		commandHandler = new CommandHandler(Commands.COMMANDS);	
+		
 		lblNavalBattle = new JLabel("NavalBattle");
 		lblDebugMode = new JLabel("Debug Mode");
 		JScrollPane scrollPane = new JScrollPane();
@@ -81,6 +85,15 @@ public class DebugWindow extends Window {
 		});
 		printInfo("Debug mode enabled");
 		setDefaults();
+	}
+	
+	/**
+	 * Returns current instance of CommandHandler.
+	 * 
+	 * @return commandHandler
+	 */
+	public CommandHandler getCommandHandler() {
+		return commandHandler;
 	}
 
 	/**
@@ -156,7 +169,7 @@ public class DebugWindow extends Window {
 	 * @param command
 	 */
 	public void submitCommand(String command) {
-		NavalBattle.getCommandHandler().parseCommand(command);
+		getCommandHandler().parseCommand(command);
 	}
 
 	/**
