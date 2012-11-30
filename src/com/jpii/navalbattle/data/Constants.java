@@ -35,6 +35,7 @@ public class Constants {
 	public static final int SPLASH_SCREEN_TIMEOUT = 3000;
 	
 	public static final KeyboardListener keys = new KeyboardListener();
+	public static final WindowCloser closer = new WindowCloser();
 	
 	/*
 	 * Game engine

@@ -51,7 +51,7 @@ public class SinglePlayerGame extends JFrame {
 
 		this.setFocusable(true);
 		addKeyListener(Constants.keys);
-		
+		Constants.keys.add(this);
 		
 		setSize(Constants.WINDOW_WIDTH,Constants.WINDOW_HEIGHT+40);
 		
@@ -65,11 +65,5 @@ public class SinglePlayerGame extends JFrame {
 	
 	public void setVisible(boolean visible){
 		super.setVisible(visible);
-		if(isVisible()){
-			Constants.keys.add(this);
-		}
-		if(!isVisible()){
-			Constants.keys.remove(this);
-		}
 	}
 }

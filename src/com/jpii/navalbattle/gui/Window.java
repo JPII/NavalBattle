@@ -61,7 +61,7 @@ public class Window extends JFrame {
 		setLocation(xloc,yloc);
 		setResizable(false);
 		setFocusable(true);
-		addWindowListener(new WindowCloser());
+		addWindowListener(Constants.closer);
 		addKeyListener(Constants.keys);
 		addFocusListener(new Focus(this));
 		setVisible(false);

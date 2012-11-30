@@ -18,6 +18,7 @@ public class Focus implements FocusListener{
 	public void focusGained(FocusEvent e) {
 		if(window instanceof Window) {
 			Constants.keys.add(window);
+			Constants.closer.add(window);
 		}
 	}
 
@@ -25,6 +26,7 @@ public class Focus implements FocusListener{
 	public void focusLost(FocusEvent e) {
 		if(window instanceof Window) {
 			Constants.keys.remove(window);
+			Constants.closer.remove(window);
 		}
 	}
 
