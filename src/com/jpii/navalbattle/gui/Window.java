@@ -55,15 +55,15 @@ public class Window extends JFrame {
 	}
 	
 	protected void setDefaults(){
-		
 		this.setIconImage(Helper.GUI_WINDOW_ICON);
 		setTitle("NavalBattle");
 		setSize(width, height);
 		setLocation(xloc,yloc);
 		setResizable(false);
 		setFocusable(true);
-		addKeyListener(Constants.keys);
 		addWindowListener(new WindowCloser());
+		addKeyListener(Constants.keys);
+		addFocusListener(new Focus(this));
 		setVisible(false);
 	}
 	
@@ -72,10 +72,6 @@ public class Window extends JFrame {
 		if(isVisible()){
 			printDebug("Showing "+parseString());
 			setLocation(xloc,yloc);
-			Constants.keys.add(this);
-		}
-		if(!isVisible()){
-			Constants.keys.remove(this);
 		}
 	}
 	
