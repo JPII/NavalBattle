@@ -13,7 +13,9 @@ public class Renderable implements Runnable {
 	public void aSyncRender() {
 		Thread thread;
 		try {
-		thread = new Thread(this);
+			thread = new Thread(this);
+			thread.setPriority(Thread.MAX_PRIORITY);
+			thread.run();
 		}
 		catch (OutOfMemoryError oome) {
 			syncRender();
@@ -23,6 +25,6 @@ public class Renderable implements Runnable {
 		syncRender();
 	}
 	public void render() {
-		render();
+		
 	}
 }
