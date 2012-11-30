@@ -65,7 +65,6 @@ public class Window extends JFrame {
 		addKeyListener(Constants.keys);
 		addWindowListener(new WindowCloser());
 		setVisible(false);
-		addActionListner
 	}
 	
 	public void setVisible(boolean visible){
