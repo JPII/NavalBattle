@@ -63,6 +63,9 @@ public class Window extends JFrame {
 		setFocusable(true);
 		addWindowListener(Constants.closer);
 		addKeyListener(Constants.keys);
+		addMouseListener(Constants.click);
+		addMouseMotionListener(Constants.movement);
+		addMouseWheelListener(Constants.wheel);
 		addFocusListener(new Focus(this));
 		setVisible(false);
 	}

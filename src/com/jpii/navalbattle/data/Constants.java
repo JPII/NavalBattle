@@ -36,6 +36,9 @@ public class Constants {
 	
 	public static final KeyboardListener keys = new KeyboardListener();
 	public static final WindowCloser closer = new WindowCloser();
+	public static final MouseClick click = new MouseClick();
+	public static final MouseMove movement = new MouseMove();
+	public static final MouseWheel wheel = new MouseWheel();
 	
 	/*
 	 * Game engine

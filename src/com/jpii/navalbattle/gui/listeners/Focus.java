@@ -19,6 +19,9 @@ public class Focus implements FocusListener{
 		if(window instanceof Window) {
 			Constants.keys.add(window);
 			Constants.closer.add(window);
+			Constants.click.add(window);
+			Constants.movement.add(window);
+			Constants.wheel.add(window);
 		}
 	}
 
@@ -27,6 +30,9 @@ public class Focus implements FocusListener{
 		if(window instanceof Window) {
 			Constants.keys.remove(window);
 			Constants.closer.remove(window);
+			Constants.click.remove(window);
+			Constants.movement.remove(window);
+			Constants.wheel.remove(window);
 		}
 	}
 
