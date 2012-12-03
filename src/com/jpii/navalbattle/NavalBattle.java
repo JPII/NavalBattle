@@ -57,11 +57,6 @@ public class NavalBattle {
 		reader.read();
 		}*/
 		
-		String abc123 = "abcdefghijklmnopqrstuvwxyz".toUpperCase();
-		for (int c = 0; c < abc123.length(); c++) {
-			int u = HelperBeta.convertCharToInt(abc123.charAt(c));
-		}
-		
 		Helper.LoadStaticResources();
 		setDefaultLookAndFeel();
 		debugWindow = new DebugWindow();

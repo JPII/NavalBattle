@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class EntityManager {
 	ArrayList<Entity> entities;
-	public EntityManager() {
+	private EntityManager() {
 		entities = new ArrayList<Entity>();
 	}
 	
@@ -17,5 +17,12 @@ public class EntityManager {
 				return e;
 		}
 		return null;
+	}
+	private static EntityManager em;
+	static {
+		em = new EntityManager();
+	}
+	public static EntityManager getInstance(){
+		return em;
 	}
 }

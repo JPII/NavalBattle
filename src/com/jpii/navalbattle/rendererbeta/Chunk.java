@@ -1,5 +1,6 @@
 package com.jpii.navalbattle.rendererbeta;
 
+import com.jpii.navalbattle.game.entity.EntityManager;
 import com.jpii.navalbattle.game.entity.EntityReference;
 
 public class Chunk extends StaticRenderable {
@@ -26,5 +27,11 @@ public class Chunk extends StaticRenderable {
 	}
 	public void render() {
 		
+	}
+	public void update() {
+		EntityManager.getInstance().getEntityByReference(EntityReference00).update();
+		EntityManager.getInstance().getEntityByReference(EntityReference01).update();
+		EntityManager.getInstance().getEntityByReference(EntityReference10).update();
+		EntityManager.getInstance().getEntityByReference(EntityReference11).update();
 	}
 }
