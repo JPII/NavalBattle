@@ -51,7 +51,7 @@ public class GameComponent extends JComponent {
 				}
 			}
 		};
-		ticker = new Timer(100, al);
+		ticker = new Timer(40, al);
 		ticker.start();
 		game = new GameBeta();
 		waitingForGen = true;
@@ -65,6 +65,10 @@ public class GameComponent extends JComponent {
 			g.fillRect(0,290,800,20);
 			g.setColor(Color.green);
 			g.fillRect(1,291,(game.getGenerationComplete() * 8)-2,18);
+		}
+		else {
+			g.setColor(Color.black);
+			g.fillRect(0,0,800,600);
 		}
 	}
 }

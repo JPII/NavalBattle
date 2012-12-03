@@ -37,6 +37,7 @@ public class WorldGen implements Runnable {
                 	b = 0;
                 data[ttx][tty] = b;
             }
+            pr_cd_dn = ttx * 30 / (HelperBeta.getWorldWidth(getSize())*200);
         }
 	}
 	private void genChunks() {
@@ -52,6 +53,7 @@ public class WorldGen implements Runnable {
         		c.activate();
         		chnks.add(c);
         	}
+        	pr_cd_dn = 60+(x * 38 / HelperBeta.getWorldWidth(getSize()));
         }
 	}
 	private void genTerrain() {
@@ -94,10 +96,10 @@ public class WorldGen implements Runnable {
 		genVegetation();
 		pr_cd_dn = 60;
 		genChunks();
-		pr_cd_dn = 100;
 		long start = System.currentTimeMillis();
 		while (start + 1500 > System.currentTimeMillis()) {
 			;;;
 		}
+		pr_cd_dn = 100;
 	}
 }
