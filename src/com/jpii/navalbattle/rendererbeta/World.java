@@ -7,9 +7,14 @@ public class World {
 	ArrayList<Chunk> chunks;
 	WorldGen gen;
 	int currentX,currentY,offsetx,offsetz;
-	public World(WorldGen generated) {
+	public World() {
 		chunks = new ArrayList<Chunk>();
+	}
+	public void setWorldGen(WorldGen generated) {
 		gen = generated;
+	}
+	public WorldGen getWorldGen() {
+		return gen;
 	}
 	public WorldSize getWorldSize() {
 		return gen.getSize();

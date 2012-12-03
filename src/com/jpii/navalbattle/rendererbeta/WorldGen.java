@@ -22,7 +22,7 @@ public class WorldGen implements Runnable {
 	private void genVegetation() {
 		
 	}
-	private void genTerrain() {
+	private void genTerrainData() {
 		eng.generate(Constants.MAIN_SEED, RenderConstants.GEN_TERRAIN_ROUGHNESS);
         for (int ttx = 0; ttx < HelperBeta.getWorldWidth(getSize())*200; ttx++) {
             for (int tty = 0; tty < HelperBeta.getWorldHeight(getSize())*200; tty++) {
@@ -35,7 +35,9 @@ public class WorldGen implements Runnable {
                 data[ttx][tty] = b;
             }
         }
-        for (int x = 0; x < HelperBeta.getWorldWidth(getSize()); x++) {
+	}
+	private void genChunks() {
+		for (int x = 0; x < HelperBeta.getWorldWidth(getSize()); x++) {
         	for (int z = 0; z < HelperBeta.getWorldHeight(getSize()); z++) {
         		Chunk c = new Chunk(w);
         		for (int sx = 0; sx < 200; sx++) {
@@ -43,10 +45,13 @@ public class WorldGen implements Runnable {
         				c.setDataPoint(sx, sz, data[(x*200)+sx][(z*200)+sz]);
         			}
         		}
+        		//c.aSyncRender();
+        		c.activate();
+        		chnks.add(c);
         	}
         }
 	}
-	private void genWater() {
+	private void genTerrain() {
 		
 	}
 	private void genGrid() {
@@ -71,13 +76,17 @@ public class WorldGen implements Runnable {
 	}
 	public void run() {
 		pr_cd_dn = 0;
+		genTerrainData();
+		pr_cd_dn = 30;
 		genTerrain();
-		pr_cd_dn = 20;
-		genWater();
-		pr_cd_dn = 40;
+		pr_cd_dn = 55;
 		genVegetation();
-		pr_cd_dn = 90;
-		genGrid();
+		pr_cd_dn = 60;
+		genChunks();
 		pr_cd_dn = 100;
+		long start = System.currentTimeMillis();
+		while (start + 1500 > System.currentTimeMillis()) {
+			;;;
+		}
 	}
 }
