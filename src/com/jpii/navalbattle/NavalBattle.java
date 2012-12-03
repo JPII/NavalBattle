@@ -35,8 +35,6 @@ public class NavalBattle {
 	private static WindowHandler windowHandler;
 	
 	public static void main(String[] args) {
-		
-		
 		/*ArrayList<SettingsAttribute> attrs = new ArrayList<SettingsAttribute>();
 		SettingsAttribute a = new SettingsAttribute("lastGoodUserName");
 		attrs.add(a);
