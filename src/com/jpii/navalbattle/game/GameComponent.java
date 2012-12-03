@@ -18,6 +18,7 @@
 package com.jpii.navalbattle.game;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.event.*;
 import java.lang.Thread.State;
@@ -65,6 +66,15 @@ public class GameComponent extends JComponent {
 			g.fillRect(0,290,800,20);
 			g.setColor(Color.green);
 			g.fillRect(1,291,(game.getGenerationComplete() * 8)-2,18);
+			g.setColor(Color.white);
+			Font f = new Font("Courier New",0,24);
+			g.setFont(f);
+			String s = "Percent complete: " + game.getGenerationComplete() + "%";
+			int w = g.getFontMetrics(f).stringWidth(s);
+			g.drawString(s, 400 - (w/2), 80);
+			s = "Generating, please wait a while.";
+			w = g.getFontMetrics(f).stringWidth(s);
+			g.drawString(s,400 - (w/2),132);
 		}
 		else {
 			g.setColor(Color.black);
