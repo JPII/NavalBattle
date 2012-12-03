@@ -1,10 +1,14 @@
 package com.jpii.navalbattle.rendererbeta;
 
+import com.jpii.dagen.Engine;
+
 public class WorldGen implements Runnable {
 	int pr_cd_dn = 0;
 	WorldSize ws;
+	Engine eng;
 	public WorldGen(WorldSize ws) {
 		this.ws = ws;
+		eng = new Engine(HelperBeta.getWorldWidth(ws),HelperBeta.getWorldHeight(ws));
 	}
 	private void genVegetation() {
 		

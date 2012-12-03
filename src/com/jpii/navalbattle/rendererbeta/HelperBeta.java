@@ -40,8 +40,8 @@ public class HelperBeta {
 	public static Point convertChunkToWorldSpace(Chunk c) {
 		int w = c.width;
 		int h = c.height;
-		int x = convertCharToInt(c.x);
-		int z = convertCharToInt(c.z);
+		int x = c.x;//convertCharToInt(c.x);
+		int z = c.z;//convertCharToInt(c.z);
 		return new Point(x*w,z*h);
 	}
 	public static Point convertChunkToWorld(World w, Chunk c) {
