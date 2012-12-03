@@ -65,7 +65,7 @@ public class GameComponent extends JComponent {
 			g.setColor(Color.black);
 			g.fillRect(0,290,800,20);
 			g.setColor(Color.green);
-			g.fillRect(1,291,(game.getGenerationComplete() * 8)-2,18);
+			g.fillRect(1,291,(game.getGenerationComplete() * 8) - 2,18);
 			g.setColor(Color.white);
 			Font f = new Font("Courier New",0,24);
 			g.setFont(f);
