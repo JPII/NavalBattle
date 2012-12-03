@@ -71,7 +71,9 @@ public class WorldGen implements Runnable {
 			thread.start();
 		}
 		catch (OutOfMemoryError oome) {
-			run();
+			System.err.println("Cannot create a new thread. This is an essential thread, and must exist for the game to perform immediate ~ctor generation. See WorldGen.java for details.");
+			System.exit(-1);
+			//run();
 		}
 	}
 	public void run() {

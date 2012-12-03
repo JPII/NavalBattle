@@ -38,19 +38,24 @@ import com.jpii.navalbattle.renderer.RepaintType;
 public class GameComponent extends JComponent {
 	JFrame frame;
 	Timer ticker;
-	Thread updator0;
+	/*Thread updator0;
 	Thread updator1;
 	Thread updator2;
 	Thread updator3;
 	Thread updator4;
+	*/
 	public static Game game;
-	long lastUpdate = 0;
+	boolean waitingForGen = true;
+	//long lastUpdate = 0;
 	//int mouseDown = 0;
 	public GameComponent(JFrame frame) {
 		this.frame = frame;
 		ActionListener al = new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				while (lastUpdate + 10 > System.currentTimeMillis()) {
+				if (waitingForGen) {
+					
+				}
+				/*while (lastUpdate + 10 > System.currentTimeMillis()) {
 					
 				}
 				if(game!=null) {
@@ -105,8 +110,9 @@ public class GameComponent extends JComponent {
 					//game.run();
 				}
 				repaint();
-				lastUpdate = System.currentTimeMillis();
+				lastUpdate = System.currentTimeMillis();*/
 			}
+
 		};
 		
 		addMouseMotionListener(new MouseAdapter(){
@@ -136,15 +142,16 @@ public class GameComponent extends JComponent {
 			}
 		});
 
-		ticker = new Timer(1, al);
-		lastUpdate = System.currentTimeMillis();
+		ticker = new Timer(100, al);
+		//lastUpdate = System.currentTimeMillis();
 		ticker.start();
-		game = new Game();
+		//game = new Game();
 		//game.repaint(RepaintType.REPAINT_CHUNKS);
 		//game.repaint(RepaintType.REPAINT_MAP);
 	}
 	public void paintComponent(Graphics g)
 	{
+		/*
 		long start = System.currentTimeMillis();
 		
 		//game.repaint(RepaintType.REPAINT_MAP);
@@ -162,7 +169,7 @@ public class GameComponent extends JComponent {
 		g.fillRect(getWidth()-55,0,55,40);
 		g.setColor(Color.white);
 		g.drawLine(getWidth() - 50, 5, getWidth() - 5, 35);
-		g.drawLine(getWidth() - 5, 5, getWidth() - 50, 35);*/
+		g.drawLine(getWidth() - 5, 5, getWidth() - 50, 35);*
 
 		long end = System.currentTimeMillis() - start;
 		double fps = (1.0/end) * 1000.0;
@@ -173,5 +180,6 @@ public class GameComponent extends JComponent {
 			Console.getInstance().printWarn("FPS spiked below 40.");
 		if (f == Integer.MAX_VALUE)
 			Console.getInstance().printWarn("FPS unstable. Please limit FPS.");
+		*/
 	}
 }
