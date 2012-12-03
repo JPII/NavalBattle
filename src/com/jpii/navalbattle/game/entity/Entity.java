@@ -28,6 +28,7 @@ public class Entity implements Runnable {
 	private Image image;
 	private boolean active;
 	private String tag;
+	private EntityReference ref;
 	private BufferedImage detailedImage;
 	
 	/**
@@ -48,6 +49,14 @@ public class Entity implements Runnable {
 		setImage(image);
 		setTag(tag);
 		setActive(true);
+		setReference(new EntityReference(-1,-1));
+	}
+	
+	public void setReference(EntityReference r) {
+		ref = r;
+	}
+	public EntityReference getReference() {
+		return ref;
 	}
 	
 	public void invokeUpdate() {
