@@ -6,6 +6,7 @@ import java.util.ArrayList;
 public class World {
 	ArrayList<Chunk> chunks;
 	WorldGen gen;
+	int currentX,currentY,offsetx,offsetz;
 	public World(WorldGen generated) {
 		chunks = new ArrayList<Chunk>();
 		gen = generated;
@@ -30,5 +31,17 @@ public class World {
 	}
 	public void draw(Graphics2D g) {
 		
+	}
+	public int getOffsetX() {
+		return offsetx;
+	}
+	public int getOffsetZ() {
+		return offsetz;
+	}
+	public int getScreenX() {
+		return currentX;
+	}
+	public int getScreenY() {
+		retunr currentY;
 	}
 }
