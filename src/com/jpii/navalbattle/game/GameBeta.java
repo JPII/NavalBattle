@@ -33,4 +33,7 @@ public class GameBeta extends Renderable {
 	public int getGenerationComplete() {
 		return gen.getPecentComplete();
 	}
+	public String getGenerationString() {
+		return gen.getStatusString();
+	}
 }

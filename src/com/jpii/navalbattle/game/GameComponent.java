@@ -72,7 +72,8 @@ public class GameComponent extends JComponent {
 			String s = "Percent complete: " + game.getGenerationComplete() + "%";
 			int w = g.getFontMetrics(f).stringWidth(s);
 			g.drawString(s, 400 - (w/2), 80);
-			s = "Generating, please wait a while.";
+			//s = "Generating, please wait a while.";
+			s = game.getGenerationString();
 			w = g.getFontMetrics(f).stringWidth(s);
 			g.drawString(s,400 - (w/2),132);
 		}
