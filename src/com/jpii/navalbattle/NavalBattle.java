@@ -25,6 +25,7 @@ import com.jpii.navalbattle.data.*;
 import com.jpii.navalbattle.debug.*;
 import com.jpii.navalbattle.game.SinglePlayerGame;
 import com.jpii.navalbattle.renderer.*;
+import com.jpii.navalbattle.rendererbeta.HelperBeta;
 
 public class NavalBattle {
 
@@ -55,6 +56,11 @@ public class NavalBattle {
 		SettingsReader reader = new SettingsReader(url.getPath(),attrs);
 		reader.read();
 		}*/
+		
+		String abc123 = "abcdefghijklmnopqrstuvwxyz".toUpperCase();
+		for (int c = 0; c < abc123.length(); c++) {
+			int u = HelperBeta.convertCharToInt(abc123.charAt(c));
+		}
 		
 		Helper.LoadStaticResources();
 		setDefaultLookAndFeel();
