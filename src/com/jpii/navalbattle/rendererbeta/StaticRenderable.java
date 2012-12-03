@@ -1,5 +1,5 @@
 package com.jpii.navalbattle.rendererbeta;
 
-public class StaticRenderable {
+public class StaticRenderable extends Renderable {
 
 }
