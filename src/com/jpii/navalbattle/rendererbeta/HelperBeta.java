@@ -19,6 +19,9 @@ public class HelperBeta {
 		int v = (int)c;
 		return v;
 	}
+	public static char convertIntToChar(int i) {
+		return (char)i;
+	}
 	public static Point convertChunkToWorldSpace(Chunk c) {
 		int w = c.width;
 		int h = c.height;
