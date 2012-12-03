@@ -73,10 +73,10 @@ public class ChunkRenderer implements Runnable {
     @SuppressWarnings("deprecation")
 	private void update() {
         int s = 3;
-        if (GameComponent.game != null && GameComponent.game.getMouseSet() != null) {
-        	r = new Random(seed+GameComponent.game.getMouseSet().x+GameComponent.game.getMouseSet().y);//+xpos+zpos);
-        }
-        else
+        //if (GameComponent.game != null && GameComponent.game.getMouseSet() != null) {
+        	//r = new Random(seed+GameComponent.game.getMouseSet().x+GameComponent.game.getMouseSet().y);//+xpos+zpos);
+        //}
+        //else
         	r = new Random(seed+xpos+zpos);
         Graphics g = chunk.getGraphics();
         g.setColor(Color.black);

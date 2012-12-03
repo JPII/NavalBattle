@@ -161,7 +161,7 @@ public class OmniMap {
             g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
         	r = new Random(Constants.MAIN_SEED);
         	//Point p = GameComponent.game.screenToPoint(mx,my);
-        	Point p = GameComponent.game.mouseToPoint();
+        	Point p = null;//GameComponent.game.mouseToPoint();
         	//p.x += 250 + 50;
         	//p.y += 200 + 50;
         	for (int x22 = -20; x22 < 20; x22++) {

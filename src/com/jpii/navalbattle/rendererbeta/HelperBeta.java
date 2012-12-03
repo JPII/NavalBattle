@@ -5,15 +5,15 @@ import java.awt.Point;
 public class HelperBeta {
 	public static int getWorldWidth(WorldSize ws) {
 		if (ws == WorldSize.WORLD_LARGE)
-			return 61;
-		else
 			return 32;
+		else
+			return 16;
 	}
 	public static int getWorldHeight(WorldSize ws) {
 		if (ws == WorldSize.WORLD_LARGE)
-			return 61;
-		else
 			return 32;
+		else
+			return 16;
 	}
 	public static int convertCharToInt(char c) {
 		int v = (int)c;

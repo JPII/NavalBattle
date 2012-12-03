@@ -243,8 +243,8 @@ public class Location
     	if (l.getCol() < 0 || l.getRow() < 0)
     		return false;
     	
-    	if (l.getCol() > GameComponent.game.getGrid().getWidth() || l.getRow() > GameComponent.game.getGrid().getHeight())
-    		return false;
+    	//if (l.getCol() > GameComponent.game.getGrid().getWidth() || l.getRow() > GameComponent.game.getGrid().getHeight())
+    		//return false;
     	
     	return true;
     }

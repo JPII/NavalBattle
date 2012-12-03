@@ -38,148 +38,33 @@ import com.jpii.navalbattle.renderer.RepaintType;
 public class GameComponent extends JComponent {
 	JFrame frame;
 	Timer ticker;
-	/*Thread updator0;
-	Thread updator1;
-	Thread updator2;
-	Thread updator3;
-	Thread updator4;
-	*/
-	public static Game game;
-	boolean waitingForGen = true;
-	//long lastUpdate = 0;
-	//int mouseDown = 0;
+	boolean waitingForGen = false;
+	GameBeta game;
 	public GameComponent(JFrame frame) {
 		this.frame = frame;
 		ActionListener al = new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				if (waitingForGen) {
-					
+					if (game.getGenerationComplete() >= 100)
+						waitingForGen = false;
+					repaint();
 				}
-				/*while (lastUpdate + 10 > System.currentTimeMillis()) {
-					
-				}
-				if(game!=null) {
-					if (game.chunkrenderfinished && RenderConstants.OPT_MULTITHREADING) {
-					if (updator0 == null || updator0.getState() == State.TERMINATED || !updator0.isAlive()) {
-						updator0 = new Thread(game);
-						updator0.setPriority(Thread.MAX_PRIORITY);
-						//game.setStatus(GameStatus.STATUS_FULL_UPDATE);
-						game.setStatus(GameStatus.STATUS_CHUNK_RENDER);
-						updator0.start();
-					}
-					else if (updator1 == null || updator1.getState() == State.TERMINATED || !updator1.isAlive()) {
-						updator1 = new Thread(game);
-						updator1.setPriority(Thread.MAX_PRIORITY);
-						//game.setStatus(GameStatus.STATUS_FULL_UPDATE);
-						game.setStatus(GameStatus.STATUS_CHUNK_RENDER);
-						updator1.start();
-					}
-					else if (updator2 == null || updator2.getState() == State.TERMINATED || !updator2.isAlive()) {
-						updator2 = new Thread(game);
-						updator2.setPriority(Thread.MAX_PRIORITY);
-						//game.setStatus(GameStatus.STATUS_FULL_UPDATE);
-						game.setStatus(GameStatus.STATUS_CHUNK_RENDER);
-						updator2.start();
-					}
-					else if (updator3 == null || updator3.getState() == State.TERMINATED || !updator3.isAlive()) {
-						updator3 = new Thread(game);
-						updator3.setPriority(Thread.MAX_PRIORITY);
-						//game.setStatus(GameStatus.STATUS_FULL_UPDATE);
-						game.setStatus(GameStatus.STATUS_CHUNK_RENDER);
-						updator3.start();
-					}
-					else if (updator4 == null || updator4.getState() == State.TERMINATED || !updator4.isAlive()) {
-						updator4 = new Thread(game);
-						updator4.setPriority(Thread.MAX_PRIORITY);
-						//game.setStatus(GameStatus.STATUS_FULL_UPDATE);
-						game.setStatus(GameStatus.STATUS_CHUNK_RENDER);
-						updator4.start();
-					}
-					else {
-						game.setStatus(GameStatus.STATUS_CHUNK_RENDER);
-						game.run();
-					}
-					}
-					else if (!RenderConstants.OPT_MULTITHREADING) {
-						game.setStatus(GameStatus.STATUS_CHUNK_RENDER);
-						game.run();
-					}
-					//else
-						game.update();
-					//game.setStatus(GameStatus.STATUS_CHUNK_RENDER);
-					//game.run();
-				}
-				repaint();
-				lastUpdate = System.currentTimeMillis();*/
 			}
-
 		};
-		
-		addMouseMotionListener(new MouseAdapter(){
-			public void mouseMoved(MouseEvent me)
-			{
-				game.mouseMoved(me);
-				//if (mouseDown > 0)
-					//game.mouseDrag(me);
-			}
-			public void mouseDragged(MouseEvent me)
-			{
-				game.mouseDrag(me);
-				//mouseDown = 0;
-			}
-		});
-		addMouseListener(new MouseAdapter() {
-			public void mousePressed(MouseEvent me) {
-				//game.mouseDrag(me);
-				game.mouseClick(me);
-				//if (mouseDown > 1)
-					//mouseDown = 0;
-				//else
-					//mouseDown++;
-			}
-			public void mouseReleased(MouseEvent me) {
-				//mouseDown++;
-			}
-		});
-
 		ticker = new Timer(100, al);
-		//lastUpdate = System.currentTimeMillis();
 		ticker.start();
-		//game = new Game();
-		//game.repaint(RepaintType.REPAINT_CHUNKS);
-		//game.repaint(RepaintType.REPAINT_MAP);
+		game = new GameBeta();
+		waitingForGen = true;
+		game.generate();
 	}
-	public void paintComponent(Graphics g)
-	{
-		/*
-		long start = System.currentTimeMillis();
-		
-		//game.repaint(RepaintType.REPAINT_MAP);
-		//game.repaint(RepaintType.REPAINT_CLOUDS);
-		//game.repaint(RepaintType.REPAINT_BUFFERS);
-		if (game.chunkrenderfinished) {
-		g.drawImage(game.getBuffer(),0,0,null);
+	public void paintComponent(Graphics g) {
+		if (waitingForGen) {
+			g.setColor(new Color(61,64,38));
+			g.fillRect(0,0,800,600);
+			g.setColor(Color.black);
+			g.fillRect(0,290,800,20);
+			g.setColor(Color.green);
+			g.fillRect(1,291,(game.getGenerationComplete() * 8)-2,18);
 		}
-		else
-			g.drawImage(game.lastMap,0,0,null);
-		
-		/*g.setColor(Color.black);
-		g.fillRect(0,0,getWidth(),40);
-		g.setColor(Color.darkGray);
-		g.fillRect(getWidth()-55,0,55,40);
-		g.setColor(Color.white);
-		g.drawLine(getWidth() - 50, 5, getWidth() - 5, 35);
-		g.drawLine(getWidth() - 5, 5, getWidth() - 50, 35);*
-
-		long end = System.currentTimeMillis() - start;
-		double fps = (1.0/end) * 1000.0;
-		//game.FPS = (int)fps;
-		Console.getInstance().setFPS((int)fps);
-		int f = (int)fps;
-		if (f < 40)
-			Console.getInstance().printWarn("FPS spiked below 40.");
-		if (f == Integer.MAX_VALUE)
-			Console.getInstance().printWarn("FPS unstable. Please limit FPS.");
-		*/
 	}
 }

@@ -15,12 +15,15 @@ public class WorldGen implements Runnable {
 	public WorldGen(World w,WorldSize ws) {
 		this.ws = ws;
 		eng = new Engine(HelperBeta.getWorldWidth(ws)*200,HelperBeta.getWorldHeight(ws)*200);
-		data = new byte[HelperBeta.getWorldWidth(ws)*2][HelperBeta.getWorldHeight(ws)*2];
+		data = new byte[HelperBeta.getWorldWidth(ws)*200][HelperBeta.getWorldHeight(ws)*200];
 		chnks = new ArrayList<Chunk>();
 		this.w = w;
 	}
 	private void genVegetation() {
-		
+		long start = System.currentTimeMillis();
+		while (start + 1000 > System.currentTimeMillis()) {
+			;;;
+		}
 	}
 	private void genTerrainData() {
 		eng.generate(Constants.MAIN_SEED, RenderConstants.GEN_TERRAIN_ROUGHNESS);
@@ -52,10 +55,16 @@ public class WorldGen implements Runnable {
         }
 	}
 	private void genTerrain() {
-		
+		long start = System.currentTimeMillis();
+		while (start + 1000 > System.currentTimeMillis()) {
+			;;;
+		}
 	}
 	private void genGrid() {
-		
+		long start = System.currentTimeMillis();
+		while (start + 1000 > System.currentTimeMillis()) {
+			;;;
+		}
 	}
 	public WorldSize getSize() {
 		return ws;

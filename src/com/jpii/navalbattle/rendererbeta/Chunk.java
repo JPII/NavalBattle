@@ -14,6 +14,7 @@ public class Chunk extends StaticRenderable {
 	byte[][] data;
 	public Chunk(World w) {
 		this.w = w;
+		data = new byte[200][200];
 	}
 	public int getX() {
 		return x;
