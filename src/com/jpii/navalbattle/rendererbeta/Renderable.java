@@ -6,6 +6,7 @@ public class Renderable implements Runnable {
 	BufferedImage buffer;
 	boolean ready = true;
 	boolean needsNewRender = false;
+	boolean needsNewParentDraw = false;
 	int x,z,width,height,rst;
 	boolean active = true;
 	public Renderable() {
@@ -21,12 +22,14 @@ public class Renderable implements Runnable {
 		active = false;
 	}
 	public void syncRender() {
-		if (!active)
+		if (!active || !ready)
 			return;
+		ready = false;
 		render();
+		ready = true;
 	}
 	public void aSyncRender() {
-		if (!active)
+		if (!active || !ready)
 			return;
 		Thread thread;
 		try {
@@ -40,7 +43,7 @@ public class Renderable implements Runnable {
 		}
 	}
 	public void aSyncUpdate() {
-		if (!active)
+		if (!active || !ready)
 			return;
 		Thread thread;
 		try {
@@ -57,9 +60,11 @@ public class Renderable implements Runnable {
 		rst = id;
 	}
 	public void syncUpdate() {
-		if (!active)
+		if (!active || !ready)
 			return;
+		ready = false;
 		update();
+		ready = true;
 	}
 	public void run() {
 		if (rst == 0)
@@ -94,6 +99,9 @@ public class Renderable implements Runnable {
 	}
 	public boolean isReRenderRequired() {
 		return needsNewRender;
+	}
+	public boolean isParentReRenderRequired() {
+		return needsNewParentDraw;
 	}
 	public void setWidth(int w) {
 		width = w;

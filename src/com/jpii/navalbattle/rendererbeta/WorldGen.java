@@ -1,20 +1,50 @@
 package com.jpii.navalbattle.rendererbeta;
 
+import java.awt.*;
+import java.util.ArrayList;
 import com.jpii.dagen.Engine;
-
+import com.jpii.navalbattle.data.Constants;
+import com.jpii.navalbattle.renderer.*;
 public class WorldGen implements Runnable {
 	int pr_cd_dn = 0;
 	WorldSize ws;
 	Engine eng;
-	public WorldGen(WorldSize ws) {
+	byte[][] data;
+	ArrayList<Chunk> chnks;
+	World w;
+	public WorldGen(World w,WorldSize ws) {
 		this.ws = ws;
-		eng = new Engine(HelperBeta.getWorldWidth(ws),HelperBeta.getWorldHeight(ws));
+		eng = new Engine(HelperBeta.getWorldWidth(ws)*200,HelperBeta.getWorldHeight(ws)*200);
+		data = new byte[HelperBeta.getWorldWidth(ws)*2][HelperBeta.getWorldHeight(ws)*2];
+		chnks = new ArrayList<Chunk>();
+		this.w = w;
 	}
 	private void genVegetation() {
 		
 	}
 	private void genTerrain() {
-		
+		eng.generate(Constants.MAIN_SEED, RenderConstants.GEN_TERRAIN_ROUGHNESS);
+        for (int ttx = 0; ttx < HelperBeta.getWorldWidth(getSize())*200; ttx++) {
+            for (int tty = 0; tty < HelperBeta.getWorldHeight(getSize())*200; tty++) {
+                double y = eng.getPoint(ttx, tty);
+                byte b = (byte)(y*255);
+                if (b > 255)
+                	b = (byte)255;
+                if (b < 0)
+                	b = 0;
+                data[ttx][tty] = b;
+            }
+        }
+        for (int x = 0; x < HelperBeta.getWorldWidth(getSize()); x++) {
+        	for (int z = 0; z < HelperBeta.getWorldHeight(getSize()); z++) {
+        		Chunk c = new Chunk(w);
+        		for (int sx = 0; sx < 200; sx++) {
+        			for (int sz = 0; sz < 200; sz++) {
+        				c.setDataPoint(sx, sz, data[(x*200)+sx][(z*200)+sz]);
+        			}
+        		}
+        	}
+        }
 	}
 	private void genWater() {
 		

@@ -28,7 +28,33 @@ public class Chunk extends StaticRenderable {
 		this.z = z;
 	}
 	public void render() {
+		ready = false;
 		buffer = ChunkRenderer.genChunk(w, getX()*100, getZ()*100, 100,100);
+		ready = true;
+		needsNewParentDraw = true;
+	}
+	public void setData(byte[][] data) {
+		this.data = data;
+	}
+	public byte[][] getData() {
+		return data;
+	}
+	public void setDataPoint(int x, int z, byte val) {
+		if (x < 200 && z < 200 && x > 0 && z > 0)
+			data[x][z] = val;
+	}
+	public void setDataPoint(int x, int z, double d) {
+		if (d > 1)
+			d = 1;
+		if (d < 0)
+			d = 0;
+		setDataPoint(x,z,(byte)(d*255));
+	}
+	public byte getDataPoint(int x, int z) {
+		if (x < 200 && z < 200 && x > 0 && z > 0)
+			return data[x][z];
+		else
+			return 0;
 	}
 	public void update() {
 		EntityManager.getInstance().getEntityByReference(EntityReference00).update();
