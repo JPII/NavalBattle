@@ -1,5 +1,7 @@
 package maximusvladimir.dagen;
 
+import java.awt.Color;
+
 public class Rand {
 	long localkey = 0L;
 	long original = 0L;
@@ -38,6 +40,9 @@ public class Rand {
 	}
 	public void setSeed(long seed) {
 		init(seed);
+	}
+	public Color nextColor() {
+		return new Color(nextInt(255),nextInt(255),nextInt(255));
 	}
 	public long getSeed() {
 		return original;

@@ -1,8 +1,10 @@
 package com.jpii.navalbattle.game;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 
+import com.jpii.navalbattle.data.Constants;
 import com.jpii.navalbattle.pavo.Chunk;
 import com.jpii.navalbattle.pavo.WorldGen;
 
@@ -11,11 +13,15 @@ public class World {
 	Chunk[] chunks;
 	BufferedImage buffer;
 	boolean needsNewRender = false;
+	boolean[] generated;
+	boolean bufferLock = false;
 	public World() {
 		chunks = new Chunk[65];
 		for (int c = 0; c < chunks.length; c++) {
 			chunks[c] = new Chunk();
 		}
+		generated = new boolean[chunks.length];
+		buffer = new BufferedImage(800,600,BufferedImage.TYPE_INT_RGB);
 	}
 	public void setWorldGen(WorldGen wg) {
 		gen = wg;
@@ -25,54 +31,47 @@ public class World {
 	}
 	public boolean hasMoreChunks() {
 		for (int c = 0; c < chunks.length; c++) {
-			while (chunks[c].isLocked()) {
-				
-			}
-			chunks[c].lock();
-			if (!chunks[c].isGenerated()) {
-				chunks[c].unlock();
+			if (!generated[c])
 				return true;
-			}
-			chunks[c].unlock();
 		}
 		return false;
 	}
 	public void genNextChunk() {
-		for (int c = 0; c < chunks.length; c++) {
+		Graphics g = buffer.getGraphics();
+		g.setColor(Constants.MAIN_RAND.nextColor());
+		g.fillRect(0,0,800,600);
+		return;
+		/*for (int c = 0; c < chunks.length; c++) {
 			Chunk chunk = chunks[c];
 			while (chunk.isLocked()) {
 				
 			}
 			chunk.lock();
-			if (!chunk.isGenerated()){
+			if (!generated[c]){
 				//System.out.println("Chunk at " + c + " generated.");
 				chunk.render();
+				generated[c] = true;
 				needsNewRender = true;
 				//break;
 			}
 			chunk.unlock();
 			chunks[c] = chunk;
-		}
+		}*/
 	}
 	public void render() {
-		//if (!needsNewRender)
-			//return;
-		buffer = new BufferedImage(800,600,BufferedImage.TYPE_INT_RGB);
+		while (bufferLock) {
+			
+		}
+		bufferLock = true;
 		Graphics g = buffer.getGraphics();
 		for (int c = 0; c < chunks.length; c++) {
-		//for (int x = 0; x < 8; x++) {
-			//for (int z = 0; z < 8; z++) {
 			Chunk chunk = chunks[c];
-			while (chunk.isLocked())
-			{
-				
-			}
+			while (chunk.isLocked()) { }
 			chunk.lock();
-				g.drawImage(chunk.getBuffer(), c*100,0,null);
-				chunk.unlock();
-			//}
+			g.drawImage(chunk.getBuffer(), c*100,0,null);
+			chunk.unlock();
 		}
-		needsNewRender = false;
+		bufferLock = false;
 	}
 	public BufferedImage getBuffer() {
 		return buffer;

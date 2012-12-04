@@ -10,7 +10,7 @@ public class Renderable {
 	protected boolean ready;
 	protected Lock _lock = new ReentrantLock();
 	private boolean locked = false;
-	private long lockerTime;
+	//private long lockerTime = 0L;
 	public Renderable() {
 		
 	}
@@ -31,7 +31,7 @@ public class Renderable {
 	}
 	public void lock() {
 		_lock.lock();
-		lockerTime = System.currentTimeMillis();
+		//lockerTime = System.currentTimeMillis();
 		locked = true;
 	}
 	public void unlock() {
