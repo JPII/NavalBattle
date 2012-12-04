@@ -48,6 +48,10 @@ public class Chunk extends Renderable {
 				g.fillRect(lsx*3,lsz*3,3,3);
 			}
 		}
+		long d = System.currentTimeMillis();
+		while (d + 100 > System.currentTimeMillis()) {
+			
+		}
 		//g.setColor(Color.red);
 		//g.fillRect(0,0,50,50);
 		//ready = true;
