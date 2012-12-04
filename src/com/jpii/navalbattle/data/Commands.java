@@ -75,7 +75,7 @@ public class Commands {
 	    		NavalBattle.getDebugWindow().println("Max \"maximusvladimir\" Kirkby - TBD");
 	    		NavalBattle.getDebugWindow().println("JR \"DarkWarHero\" Vetus - TBD");
 	    		NavalBattle.getDebugWindow().println("Matt \"Matthis5point0\" Waller - TBD");
-	    		NavalBattle.getDebugWindow().println("Zach \"smeagle42\" Mathewson - TBD");
+	    		NavalBattle.getDebugWindow().println("Zach \"smeagle42\" Mathewson - Ship Designer");
 	    		NavalBattle.getDebugWindow().println("");
 	    		NavalBattle.getDebugWindow().println("GitHub - source code hosting");
 	    		NavalBattle.getDebugWindow().println("RoketGamer - online social gaming");

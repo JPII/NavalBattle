@@ -83,9 +83,9 @@ public class DebugWindow extends Window {
 		printInfo("Debug mode enabled");
 		setDefaults();
 		
-		commandField.grabFocus();
 		commandField.addKeyListener(Constants.keys);
 		commandField.addFocusListener(new Focus(this));
+		commandField.grabFocus();
 		commandHandler = new CommandHandler(Commands.COMMANDS);	
 	}
 	
