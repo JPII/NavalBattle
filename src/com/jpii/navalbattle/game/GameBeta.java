@@ -64,7 +64,7 @@ public class GameBeta extends Renderable implements Runnable {
 					world.genNextChunk();
 					// Make a small break between each generation.
 					long start = System.currentTimeMillis();
-					while (start + 100 > System.currentTimeMillis()) {
+					while (start + 650 > System.currentTimeMillis()) {
 						;;;
 					}
 				}

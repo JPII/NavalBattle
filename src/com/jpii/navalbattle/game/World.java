@@ -37,11 +37,11 @@ public class World {
 		return false;
 	}
 	public void genNextChunk() {
-		Graphics g = buffer.getGraphics();
+		/*Graphics g = buffer.getGraphics();
 		g.setColor(Constants.MAIN_RAND.nextColor());
 		g.fillRect(0,0,800,600);
-		return;
-		/*for (int c = 0; c < chunks.length; c++) {
+		return;*/
+		for (int c = 0; c < chunks.length; c++) {
 			Chunk chunk = chunks[c];
 			while (chunk.isLocked()) {
 				
@@ -56,7 +56,7 @@ public class World {
 			}
 			chunk.unlock();
 			chunks[c] = chunk;
-		}*/
+		}
 	}
 	public void render() {
 		while (bufferLock) {
@@ -64,12 +64,17 @@ public class World {
 		}
 		bufferLock = true;
 		Graphics g = buffer.getGraphics();
-		for (int c = 0; c < chunks.length; c++) {
-			Chunk chunk = chunks[c];
+		g.setColor(Color.blue);
+		g.fillRect(100,100,100,100);
+		g.drawImage(chunks[0].getBuffer(),0,0,null);
+		for (int x = 0; x < 8; x++) {
+			for (int z = 0; z < 8; z++) {
+			Chunk chunk = chunks[z*8+x];
 			while (chunk.isLocked()) { }
 			chunk.lock();
-			g.drawImage(chunk.getBuffer(), c*100,0,null);
+			g.drawImage(chunk.getBuffer(), x*100,z*100,null);
 			chunk.unlock();
+			}
 		}
 		bufferLock = false;
 	}

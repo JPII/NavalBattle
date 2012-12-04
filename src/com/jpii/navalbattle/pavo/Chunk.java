@@ -30,25 +30,26 @@ public class Chunk extends Renderable {
 		this.x = x;
 		this.z = z;
 	}
-	public byte getPoint(int x, int z) {
-		return (byte)(p.noise2(x+(this.x*300), z+(this.z*300)));
+	public float getPoint(int x, int z) {
+		return (p.noise2(x+(this.x*300), z+(this.z*300)));
 	}
 	public void render() {
-		if (!ready || generated)
-			return;
-		ready = false;
+		//if (!ready)
+			//return;
+		//ready = false;
 		buffer = new BufferedImage(100,100,BufferedImage.TYPE_INT_RGB);
 		Graphics g = buffer.getGraphics();
-		/*for (int lsx = 0; lsx < 300; lsx+=3) {
-			for (int lsz = 0; lsz < 300; lsz+=3) {
-				int opcode = getPoint(lsx,lsz);
+		for (int lsx = 0; lsx < 100; lsx++) {
+			for (int lsz = 0; lsz < 100; lsz++) {
+				int opcode = (int)(getPoint(lsx,lsz)*255);
+				
 				g.setColor(new Color(opcode,opcode,opcode));
 				g.fillRect(lsx*3,lsz*3,3,3);
 			}
-		}*/
+		}
 		g.setColor(Color.red);
-		g.fillRect(0,0,100,100);
-		ready = true;
+		g.fillRect(0,0,50,50);
+		//ready = true;
 		generated = true;
 	}
 	public boolean isGenerated() {
