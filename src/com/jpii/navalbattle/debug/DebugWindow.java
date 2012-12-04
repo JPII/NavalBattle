@@ -19,7 +19,7 @@ package com.jpii.navalbattle.debug;
 
 import java.awt.*;
 import java.awt.event.*;
-
+import java.util.ArrayList;
 import javax.swing.*;
 
 import com.jpii.navalbattle.data.Commands;
@@ -36,14 +36,17 @@ public class DebugWindow extends Window {
 	private boolean paused = false;
 	
 	private CommandHandler commandHandler;
+	private ArrayList<String> resume;
 	
 	/**
 	 * Constructor for DebugWindow.
 	 */
-	public DebugWindow() {		
+	public DebugWindow() {	
 		super(465,365,0,0);
 		getContentPane().setLayout(null);
 		
+		resume = new ArrayList<String>();
+		pause();
 		commandHandler = new CommandHandler(Commands.COMMANDS);
 		
 		lblNavalBattle = new JLabel("NavalBattle");
@@ -88,6 +91,7 @@ public class DebugWindow extends Window {
 		commandField.addKeyListener(Constants.keys);
 		commandField.addFocusListener(new Focus(this));
 		commandField.grabFocus();
+		resume();
 	}
 	
 	/**
@@ -104,7 +108,7 @@ public class DebugWindow extends Window {
 	 * @param message
 	 */
 	public void print(String message) {
-		debugPrinter.setText(debugPrinter.getText() + message);
+		addText(message);
 	}
 
 	/**
@@ -112,7 +116,7 @@ public class DebugWindow extends Window {
 	 * @param message
 	 */
 	public void println(String message) {
-		debugPrinter.setText(debugPrinter.getText() + message + "\n");
+		addText(message + "\n");
 	}
 
 	/**
@@ -120,8 +124,7 @@ public class DebugWindow extends Window {
 	 * @param message
 	 */
 	public void printInfo(String message) {
-		if(!paused)
-			debugPrinter.setText(debugPrinter.getText() + "[INFO] " + message + "\n");
+		addText("[INFO] " + message + "\n");
 	}
 
 	/**
@@ -129,8 +132,7 @@ public class DebugWindow extends Window {
 	 * @param message
 	 */
 	public void printWarning(String message) {
-		if(!paused)
-			debugPrinter.setText(debugPrinter.getText() + "[WARN] " + message + "\n");
+		addText("[WARN] " + message + "\n");
 	}
 
 	/**
@@ -138,8 +140,7 @@ public class DebugWindow extends Window {
 	 * @param message
 	 */
 	public void printError(String message) {
-		if(!paused)
-			debugPrinter.setText(debugPrinter.getText() + "[ERROR] " + message + "\n");
+		addText("[ERROR] " + message + "\n");
 	}
 
 	/**
@@ -147,8 +148,7 @@ public class DebugWindow extends Window {
 	 * @param message
 	 */
 	public void printOther(String message) {
-		if(!paused)
-			debugPrinter.setText(debugPrinter.getText() + "[OTHER] " + message + "\n");
+		addText("[OTHER] " + message + "\n");
 	}
 
 	/**
@@ -156,7 +156,20 @@ public class DebugWindow extends Window {
 	 * @param message
 	 */
 	public void printNew(String message) {
-		debugPrinter.setText(message + "\n");
+		clearText();
+		addText(message + "\n");
+	}
+	
+	private void addText(String message){
+		if(!paused)
+			debugPrinter.setText(debugPrinter.getText() + message);
+		else {
+			resume.add(message);
+		}
+	}
+	
+	private void clearText(){
+		debugPrinter.setText("");
 	}
 
 	/**
@@ -182,6 +195,10 @@ public class DebugWindow extends Window {
 	 */
 	public void resume() {
 		this.paused = false;
+		for(int index = 0; index<resume.size(); index=0){
+			print(resume.get(index));
+			resume.remove(index);
+		}
 	}
 
 	/**
