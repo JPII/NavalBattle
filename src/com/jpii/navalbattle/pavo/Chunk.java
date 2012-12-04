@@ -42,19 +42,15 @@ public class Chunk extends Renderable {
 		for (int lsx = 0; lsx < 100; lsx++) {
 			for (int lsz = 0; lsz < 100; lsz++) {
 				int opcode = (int)(Math.abs(getPoint(lsx,lsz))*127);
-				//System.out.println(opcode + "c");
-				//opcode = Constants.MAIN_RAND.nextInt(255);
+				int h = 0;
+				int j = 0;
+				h = lsx % 5;
+				j = lsz % 5;
+				opcode = 110+(int)((opcode * 5) + p.noise(h, j)*95)/100;
 				g.setColor(new Color(opcode,opcode,opcode));
-				//g.setColor(Constants.MAIN_RAND.nextColor());
 				g.fillRect(lsx*3,lsz*3,3,3);
 			}
 		}
-		long d = System.currentTimeMillis();
-		while (d + 100 > System.currentTimeMillis()) {
-			
-		}
-		//g.setColor(Color.red);
-		//g.fillRect(0,0,50,50);
 		//ready = true;
 		generated = true;
 	}
