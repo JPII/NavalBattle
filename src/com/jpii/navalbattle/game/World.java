@@ -4,7 +4,6 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 
-import com.jpii.navalbattle.data.Constants;
 import com.jpii.navalbattle.pavo.Chunk;
 import com.jpii.navalbattle.pavo.DynamicConstants;
 import com.jpii.navalbattle.pavo.WorldGen;
