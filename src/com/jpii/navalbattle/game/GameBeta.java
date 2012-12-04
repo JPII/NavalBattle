@@ -1,7 +1,10 @@
 package com.jpii.navalbattle.game;
 
+import java.awt.Graphics2D;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
+
 import javax.swing.Timer;
 
 import com.jpii.navalbattle.rendererbeta.Renderable;
@@ -21,10 +24,12 @@ public class GameBeta extends Renderable {
 		};
 		timer = new Timer(100,al);
 		timer.start();
-		w = new World();
+		w = new World(WorldSize.WORLD_LARGE);
 	}
 	public void update() {
-		
+		w.updateChunks(false);
+		if (w.isRedrawNeeded())
+			render();
 	}
 	public void generate() {
 		gen = new WorldGen(w, WorldSize.WORLD_LARGE);
@@ -35,5 +40,13 @@ public class GameBeta extends Renderable {
 	}
 	public String getGenerationString() {
 		return gen.getStatusString();
+	}
+	public void render() {
+		buffer = new BufferedImage(800,600,BufferedImage.TYPE_INT_RGB);
+		Graphics2D g = (Graphics2D)buffer.getGraphics();
+		w.draw(g);
+	}
+	public void finalisor() {
+		w.setWorldGen(gen);
 	}
 }

@@ -46,8 +46,11 @@ public class GameComponent extends JComponent {
 		ActionListener al = new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				if (waitingForGen) {
-					if (game.getGenerationComplete() >= 100)
+					if (game.getGenerationComplete() >= 100){
+						game.finalisor();
+						game.syncRender();
 						waitingForGen = false;
+					}
 					repaint();
 				}
 			}
@@ -80,6 +83,7 @@ public class GameComponent extends JComponent {
 		else {
 			g.setColor(Color.black);
 			g.fillRect(0,0,800,600);
+			g.drawImage(game.getBuffer(), 0, 0, null);
 		}
 	}
 }

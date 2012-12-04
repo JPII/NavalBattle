@@ -10,10 +10,9 @@ public class Chunk extends StaticRenderable {
 	public EntityReference EntityReference01;
 	public EntityReference EntityReference10;
 	public EntityReference EntityReference11;
-	private World w;
+	private boolean generated = false;
 	byte[][] data;
 	public Chunk(World w) {
-		this.w = w;
 		data = new byte[200][200];
 	}
 	public int getX() {
@@ -30,9 +29,13 @@ public class Chunk extends StaticRenderable {
 	}
 	public void render() {
 		ready = false;
-		buffer = ChunkRenderer.genChunk(w, getX()*100, getZ()*100, 100,100);
+		buffer = ChunkRenderer.genChunk(data);
 		ready = true;
 		needsNewParentDraw = true;
+		generated = true;
+	}
+	public boolean isRendered() {
+		return generated;
 	}
 	public void setData(byte[][] data) {
 		this.data = data;

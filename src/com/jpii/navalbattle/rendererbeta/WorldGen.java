@@ -45,6 +45,13 @@ public class WorldGen implements Runnable {
         for (int v = 0; v < 55; v++)
         	System.gc();
 	}
+	public Chunk[] getChunks() {
+		Chunk[] memcpy = new Chunk[chnks.size()+1];
+		for (int v = 0; v < chnks.size(); v++) {
+			memcpy[v] = chnks.get(v);
+		}
+		return memcpy;
+	}
 	private void genChunks() {
 		for (int x = 0; x < HelperBeta.getWorldWidth(getSize()); x++) {
         	for (int z = 0; z < HelperBeta.getWorldHeight(getSize()); z++) {
@@ -102,10 +109,6 @@ public class WorldGen implements Runnable {
 		pr_cd_dn = 60;
 		status = "Cleaning up world...";
 		genChunks();
-		long start = System.currentTimeMillis();
-		while (start + 1500 > System.currentTimeMillis()) {
-			;;;
-		}
 		pr_cd_dn = 100;
 	}
 }

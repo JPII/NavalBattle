@@ -3,11 +3,11 @@ package com.jpii.navalbattle.rendererbeta;
 import java.awt.image.*;
 
 public class Renderable implements Runnable {
-	BufferedImage buffer;
-	boolean ready = true;
-	boolean needsNewRender = false;
-	boolean needsNewParentDraw = false;
-	int x,z,width,height,rst;
+	protected BufferedImage buffer;
+	protected boolean ready = true;
+	protected boolean needsNewRender = false;
+	protected boolean needsNewParentDraw = false;
+	protected int x,z,width,height,rst;
 	boolean active = true;
 	public Renderable() {
 		
