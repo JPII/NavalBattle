@@ -42,13 +42,14 @@ public class Chunk extends Renderable {
 		for (int lsx = 0; lsx < 100; lsx++) {
 			for (int lsz = 0; lsz < 100; lsz++) {
 				int opcode = (int)(getPoint(lsx,lsz)*255);
-				
+				opcode = Constants.MAIN_RAND.nextInt(255);
 				g.setColor(new Color(opcode,opcode,opcode));
+				g.setColor(Constants.MAIN_RAND.nextColor());
 				g.fillRect(lsx*3,lsz*3,3,3);
 			}
 		}
-		g.setColor(Color.red);
-		g.fillRect(0,0,50,50);
+		//g.setColor(Color.red);
+		//g.fillRect(0,0,50,50);
 		//ready = true;
 		generated = true;
 	}
