@@ -9,6 +9,7 @@ import com.jpii.navalbattle.data.Constants;
 
 public class Chunk extends Renderable {
 	int x,z;
+	boolean generated = false;
 	static Perlin p = new Perlin(Constants.MAIN_RAND.nextLong(),0,0);
 	public Chunk() {
 		
@@ -33,7 +34,7 @@ public class Chunk extends Renderable {
 		return (byte)(p.noise2(x+(this.x*300), z+(this.z*300)));
 	}
 	public void render() {
-		if (!ready)
+		if (!ready || generated)
 			return;
 		ready = false;
 		buffer = new BufferedImage(100,100,BufferedImage.TYPE_INT_RGB);
@@ -46,5 +47,9 @@ public class Chunk extends Renderable {
 			}
 		}
 		ready = true;
+		generated = true;
+	}
+	public boolean isGenerated() {
+		return generated;
 	}
 }

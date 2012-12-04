@@ -39,20 +39,23 @@ import com.jpii.navalbattle.renderer.RepaintType;
 public class GameComponent extends JComponent {
 	JFrame frame;
 	Timer ticker;
+	GameBeta game;
 	public GameComponent(JFrame frame) {
 		this.frame = frame;
+		game = new GameBeta();
 		ActionListener al = new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				update();
+				repaint();
 			}
 		};
-		ticker = new Timer(40, al);
+		ticker = new Timer(100, al);
 		ticker.start();
 	}
 	public void update() {
-		
+		game.render();
 	}
 	public void paintComponent(Graphics g) {
-		
+		g.drawImage(game.getBuffer(),0,0,null);
 	}
 }
