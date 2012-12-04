@@ -7,7 +7,6 @@ import java.util.*;
 
 import com.jpii.dagen.Engine;
 import com.jpii.navalbattle.data.Constants;
-import com.jpii.navalbattle.game.GameComponent;
 
 /**
  * The OmniMap (previously known as MiniZoomMap). Essential is map of the world and binoculars.
@@ -144,7 +143,8 @@ public class OmniMap {
     /**
      * Updates the player location in the map, and the location that the mouse is at.
      */
-    public void update() {
+    @SuppressWarnings("null")
+	public void update() {
         buffer = new BufferedImage(width, height + 25, BufferedImage.TYPE_INT_RGB);
         Graphics2D g2 = (Graphics2D) buffer.getGraphics();
         g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);

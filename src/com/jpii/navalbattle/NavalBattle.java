@@ -25,7 +25,6 @@ import com.jpii.navalbattle.data.*;
 import com.jpii.navalbattle.debug.*;
 import com.jpii.navalbattle.game.SinglePlayerGame;
 import com.jpii.navalbattle.renderer.*;
-import com.jpii.navalbattle.rendererbeta.HelperBeta;
 
 public class NavalBattle {
 

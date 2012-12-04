@@ -1,6 +1,5 @@
 package com.jpii.navalbattle.rendererbeta;
 
-import java.awt.*;
 import java.util.ArrayList;
 import com.jpii.dagen.Engine;
 import com.jpii.navalbattle.data.Constants;
