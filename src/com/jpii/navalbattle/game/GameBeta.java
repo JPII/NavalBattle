@@ -3,6 +3,7 @@ package com.jpii.navalbattle.game;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 
+import com.jpii.navalbattle.pavo.DynamicConstants;
 import com.jpii.navalbattle.pavo.Renderable;
 import com.jpii.navalbattle.pavo.WorldGen;
 
@@ -87,7 +88,7 @@ public class GameBeta extends Renderable implements Runnable {
 		return 1;
 	}
 	public void render() {
-		buffer = new BufferedImage(800,600,BufferedImage.TYPE_INT_RGB);
+		buffer = new BufferedImage(DynamicConstants.WND_WDTH,DynamicConstants.WND_HGHT,BufferedImage.TYPE_INT_RGB);
 		Graphics g = buffer.getGraphics();
 		world.render();
 		g.drawImage(world.getBuffer(),0,0,null);

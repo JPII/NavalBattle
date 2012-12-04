@@ -31,7 +31,7 @@ public class Chunk extends Renderable {
 		this.z = z;
 	}
 	public float getPoint(int x, int z) {
-		return (p.noise2(x+(this.x*300), z+(this.z*300)));
+		return (p.noise(x+(this.x*100), z+(this.z*100)));
 	}
 	public void render() {
 		//if (!ready)
@@ -41,10 +41,11 @@ public class Chunk extends Renderable {
 		Graphics g = buffer.getGraphics();
 		for (int lsx = 0; lsx < 100; lsx++) {
 			for (int lsz = 0; lsz < 100; lsz++) {
-				int opcode = (int)(getPoint(lsx,lsz)*255);
-				opcode = Constants.MAIN_RAND.nextInt(255);
+				int opcode = (int)(Math.abs(getPoint(lsx,lsz))*127);
+				//System.out.println(opcode + "c");
+				//opcode = Constants.MAIN_RAND.nextInt(255);
 				g.setColor(new Color(opcode,opcode,opcode));
-				g.setColor(Constants.MAIN_RAND.nextColor());
+				//g.setColor(Constants.MAIN_RAND.nextColor());
 				g.fillRect(lsx*3,lsz*3,3,3);
 			}
 		}

@@ -1,10 +1,10 @@
 package maximusvladimir.dagen;
 
 public class Perlin extends Generator {
-	private static final int B = 0x1000;
-    private static final int BM = 0xff;
-    private static final int N = 0x1000;
-    private static final int DEFAULT_SAMPLE_SIZE = 256;
+	private static int B = 0x1000;
+    private static int BM = 0xff;
+    private static int N = 0x1000;
+    private static int DEFAULT_SAMPLE_SIZE = 256;
     private int[] p_imp;
     private int[] p;
     private float[][] g3;
@@ -24,6 +24,9 @@ public class Perlin extends Generator {
             p_imp[j] = k;
         }
         initPerlin1();
+	}
+	public float noise(int x, int z) {
+		return noise2(x,z);
 	}
 
 	public void generate() {
@@ -107,8 +110,8 @@ public class Perlin extends Generator {
         q = g2[b11];
         v = rx1 * q[0] + ry1 * q[1];
         float b = lerp(sx, u, v);
-
-        return lerp(sy, a, b);
+        //System.out.print("sy="+sy + "a="+a+"b="+b+ "sx="+sx+"u"+u+"v"+v);
+        return b;//lerp(sy, a, b);
     }
     private float noise3(float x, float y, float z)
     {

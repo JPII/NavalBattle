@@ -25,6 +25,7 @@ import java.lang.Thread.State;
 
 import javax.swing.*;
 
+import com.jpii.navalbattle.pavo.DynamicConstants;
 import com.jpii.navalbattle.renderer.Console;
 import com.jpii.navalbattle.renderer.Helper;
 import com.jpii.navalbattle.renderer.RenderConstants;
@@ -54,8 +55,13 @@ public class GameComponent extends JComponent {
 	}
 	public void update() {
 		game.render();
+		DynamicConstants.WND_WDTH = frame.getWidth();
+		DynamicConstants.WND_HGHT = frame.getHeight();
+		setSize(frame.getWidth(), frame.getHeight());
 	}
 	public void paintComponent(Graphics g) {
+		g.setColor(Color.black);
+		g.fillRect(0,0,DynamicConstants.WND_WDTH,DynamicConstants.WND_HGHT);
 		g.drawImage(game.getBuffer(),0,0,null);
 	}
 }

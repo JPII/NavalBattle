@@ -6,6 +6,7 @@ import java.awt.image.BufferedImage;
 
 import com.jpii.navalbattle.data.Constants;
 import com.jpii.navalbattle.pavo.Chunk;
+import com.jpii.navalbattle.pavo.DynamicConstants;
 import com.jpii.navalbattle.pavo.WorldGen;
 
 public class World {
@@ -16,12 +17,20 @@ public class World {
 	boolean[] generated;
 	boolean bufferLock = false;
 	public World() {
-		chunks = new Chunk[65];
-		for (int c = 0; c < chunks.length; c++) {
-			chunks[c] = new Chunk();
+		chunks = new Chunk[64];
+		//for (int c = 0; c < chunks.length; c++) {
+		//	chunks[c] = new Chunk();
+		//}
+		for (int x = 0;x < 8; x++) {
+			for (int z = 0; z < 8; z++) {
+				int i = z*8+x;
+				chunks[i] = new Chunk();
+				chunks[i].setX(x);
+				chunks[i].setZ(z);
+			}
 		}
 		generated = new boolean[chunks.length];
-		buffer = new BufferedImage(800,600,BufferedImage.TYPE_INT_RGB);
+		buffer = new BufferedImage(DynamicConstants.WND_WDTH,DynamicConstants.WND_HGHT,BufferedImage.TYPE_INT_RGB);
 	}
 	public void setWorldGen(WorldGen wg) {
 		gen = wg;
@@ -64,8 +73,8 @@ public class World {
 		}
 		bufferLock = true;
 		Graphics g = buffer.getGraphics();
-		g.setColor(Color.blue);
-		g.fillRect(100,100,100,100);
+		g.setColor(Color.cyan);
+		g.fillRect(0,0,DynamicConstants.WND_WDTH,DynamicConstants.WND_HGHT);
 		g.drawImage(chunks[0].getBuffer(),0,0,null);
 		for (int x = 0; x < 8; x++) {
 			for (int z = 0; z < 8; z++) {
