@@ -39,13 +39,15 @@ public class Chunk extends Renderable {
 		ready = false;
 		buffer = new BufferedImage(100,100,BufferedImage.TYPE_INT_RGB);
 		Graphics g = buffer.getGraphics();
-		for (int lsx = 0; lsx < 300; lsx+=3) {
+		/*for (int lsx = 0; lsx < 300; lsx+=3) {
 			for (int lsz = 0; lsz < 300; lsz+=3) {
 				int opcode = getPoint(lsx,lsz);
 				g.setColor(new Color(opcode,opcode,opcode));
 				g.fillRect(lsx*3,lsz*3,3,3);
 			}
-		}
+		}*/
+		g.setColor(Color.red);
+		g.fillRect(0,0,100,100);
 		ready = true;
 		generated = true;
 	}

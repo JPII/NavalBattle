@@ -25,20 +25,32 @@ public class World {
 	}
 	public boolean hasMoreChunks() {
 		for (int c = 0; c < chunks.length; c++) {
-			if (!chunks[c].isGenerated())
+			while (chunks[c].isLocked()) {
+				
+			}
+			chunks[c].lock();
+			if (!chunks[c].isGenerated()) {
+				chunks[c].unlock();
 				return true;
+			}
+			chunks[c].unlock();
 		}
 		return false;
 	}
 	public void genNextChunk() {
 		for (int c = 0; c < chunks.length; c++) {
 			Chunk chunk = chunks[c];
+			while (chunk.isLocked()) {
+				
+			}
+			chunk.lock();
 			if (!chunk.isGenerated()){
 				//System.out.println("Chunk at " + c + " generated.");
 				chunk.render();
 				needsNewRender = true;
 				//break;
 			}
+			chunk.unlock();
 			chunks[c] = chunk;
 		}
 	}
@@ -47,10 +59,18 @@ public class World {
 			//return;
 		buffer = new BufferedImage(800,600,BufferedImage.TYPE_INT_RGB);
 		Graphics g = buffer.getGraphics();
-		for (int x = 0; x < 8; x++) {
-			for (int z = 0; z < 8; z++) {
-				g.drawImage(chunks[z*8+x].getBuffer(), 0,0,null);
+		for (int c = 0; c < chunks.length; c++) {
+		//for (int x = 0; x < 8; x++) {
+			//for (int z = 0; z < 8; z++) {
+			Chunk chunk = chunks[c];
+			while (chunk.isLocked())
+			{
+				
 			}
+			chunk.lock();
+				g.drawImage(chunk.getBuffer(), c*100,0,null);
+				chunk.unlock();
+			//}
 		}
 		needsNewRender = false;
 	}
