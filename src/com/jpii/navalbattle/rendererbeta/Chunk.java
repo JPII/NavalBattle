@@ -3,7 +3,7 @@ package com.jpii.navalbattle.rendererbeta;
 import com.jpii.navalbattle.game.entity.EntityManager;
 import com.jpii.navalbattle.game.entity.EntityReference;
 
-public class Chunk extends StaticRenderable {
+public class Chunk extends Renderable {
 	public int x;
 	public int z;
 	public EntityReference EntityReference00;
@@ -12,7 +12,7 @@ public class Chunk extends StaticRenderable {
 	public EntityReference EntityReference11;
 	private boolean generated = false;
 	byte[][] data;
-	public Chunk(World w) {
+	public Chunk() {
 		data = new byte[200][200];
 	}
 	public int getX() {
@@ -28,11 +28,7 @@ public class Chunk extends StaticRenderable {
 		this.z = z;
 	}
 	public void render() {
-		ready = false;
-		buffer = ChunkRenderer.genChunk(data);
-		ready = true;
-		needsNewParentDraw = true;
-		generated = true;
+
 	}
 	public boolean isRendered() {
 		return generated;

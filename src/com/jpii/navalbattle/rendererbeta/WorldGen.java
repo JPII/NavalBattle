@@ -9,21 +9,15 @@ public class WorldGen implements Runnable {
 	WorldSize ws;
 	Engine eng;
 	byte[][] data;
-	ArrayList<Chunk> chnks;
-	World w;
+	Chunk[][] chunks;
 	String status;
-	public WorldGen(World w,WorldSize ws) {
+	public WorldGen(WorldSize ws) {
 		this.ws = ws;
 		eng = new Engine(HelperBeta.getWorldWidth(ws)*200,HelperBeta.getWorldHeight(ws)*200);
 		data = new byte[HelperBeta.getWorldWidth(ws)*200][HelperBeta.getWorldHeight(ws)*200];
-		chnks = new ArrayList<Chunk>();
-		this.w = w;
 	}
 	private void genVegetation() {
-		long start = System.currentTimeMillis();
-		while (start + 1000 > System.currentTimeMillis()) {
-			;;;
-		}
+		
 	}
 	private void genTerrainData() {
 		pr_cd_dn = 5;
@@ -45,28 +39,8 @@ public class WorldGen implements Runnable {
         for (int v = 0; v < 55; v++)
         	System.gc();
 	}
-	public Chunk[] getChunks() {
-		Chunk[] memcpy = new Chunk[chnks.size()+1];
-		for (int v = 0; v < chnks.size(); v++) {
-			memcpy[v] = chnks.get(v);
-		}
-		return memcpy;
-	}
-	private void genChunks() {
-		for (int x = 0; x < HelperBeta.getWorldWidth(getSize()); x++) {
-        	for (int z = 0; z < HelperBeta.getWorldHeight(getSize()); z++) {
-        		Chunk c = new Chunk(w);
-        		for (int sx = 0; sx < 200; sx++) {
-        			for (int sz = 0; sz < 200; sz++) {
-        				c.setDataPoint(sx, sz, data[(x*200)+sx][(z*200)+sz]);
-        			}
-        		}
-        		//c.aSyncRender();
-        		c.activate();
-        		chnks.add(c);
-        	}
-        	pr_cd_dn = 60+(x * 38 / HelperBeta.getWorldWidth(getSize()));
-        }
+	public Chunk[][] getChunks() {
+		return chunks;
 	}
 	private void genTerrain() {
 		long start = System.currentTimeMillis();
@@ -108,7 +82,7 @@ public class WorldGen implements Runnable {
 		genVegetation();
 		pr_cd_dn = 60;
 		status = "Cleaning up world...";
-		genChunks();
+		//genChunks();
 		pr_cd_dn = 100;
 	}
 }

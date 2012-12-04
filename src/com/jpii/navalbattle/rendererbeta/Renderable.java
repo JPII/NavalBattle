@@ -2,7 +2,7 @@ package com.jpii.navalbattle.rendererbeta;
 
 import java.awt.image.*;
 
-public class Renderable implements Runnable {
+public class Renderable {
 	protected BufferedImage buffer;
 	protected boolean ready = true;
 	protected boolean needsNewRender = false;
@@ -28,49 +28,12 @@ public class Renderable implements Runnable {
 		render();
 		ready = true;
 	}
-	public void aSyncRender() {
-		if (!active || !ready)
-			return;
-		Thread thread;
-		try {
-			thread = new Thread(this);
-			thread.setPriority(Thread.MAX_PRIORITY);
-			setState(0);
-			thread.run();
-		}
-		catch (OutOfMemoryError oome) {
-			syncRender();
-		}
-	}
-	public void aSyncUpdate() {
-		if (!active || !ready)
-			return;
-		Thread thread;
-		try {
-			thread = new Thread(this);
-			thread.setPriority(Thread.MAX_PRIORITY);
-			setState(1);
-			thread.run();
-		}
-		catch (OutOfMemoryError oome) {
-			syncUpdate();
-		}
-	}
-	private void setState(int id) {
-		rst = id;
-	}
 	public void syncUpdate() {
 		if (!active || !ready)
 			return;
 		ready = false;
 		update();
 		ready = true;
-	}
-	public void run() {
-		if (rst == 0)
-			syncRender();
-		if (rst == 1)
-			syncUpdate();
 	}
 	public void update() {
 		
