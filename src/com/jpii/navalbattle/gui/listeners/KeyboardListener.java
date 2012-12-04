@@ -55,7 +55,7 @@ public class KeyboardListener implements KeyListener {
 			if(window instanceof DebugWindow) {
 				DebugWindow d = (DebugWindow) window;
 				if(k.getKeyCode() == KeyEvent.VK_ENTER) {
-					d.submitCommandRemote();
+					d.submitCommand();
 				}
 			}
 		}

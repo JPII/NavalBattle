@@ -44,6 +44,8 @@ public class DebugWindow extends Window {
 		super(465,365,0,0);
 		getContentPane().setLayout(null);
 		
+		commandHandler = new CommandHandler(Commands.COMMANDS);
+		
 		lblNavalBattle = new JLabel("NavalBattle");
 		lblDebugMode = new JLabel("Debug Mode");
 		JScrollPane scrollPane = new JScrollPane();
@@ -75,7 +77,7 @@ public class DebugWindow extends Window {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				if(!commandField.getText().isEmpty()) {
-					submitCommand(commandField.getText());
+					submitCommand();
 					commandField.setText("");
 				}
 			}
@@ -86,7 +88,6 @@ public class DebugWindow extends Window {
 		commandField.addKeyListener(Constants.keys);
 		commandField.addFocusListener(new Focus(this));
 		commandField.grabFocus();
-		commandHandler = new CommandHandler(Commands.COMMANDS);	
 	}
 	
 	/**
@@ -159,27 +160,12 @@ public class DebugWindow extends Window {
 	}
 
 	/**
-	 * Get current JFrame.
-	 * @return JFrame
-	 */
-	public JFrame getFrame() {
-		return this;
-	}
-
-	/**
 	 * Parses command.
 	 * @param command
 	 */
-	public void submitCommand(String command) {
-		getCommandHandler().parseCommand(command);
-	}
-
-	/**
-	 * Remotely grabs entered in <code>commandField</code> and parses.
-	 */
-	public void submitCommandRemote() {
+	public void submitCommand() {
 		if(!commandField.getText().isEmpty()) {
-			submitCommand(commandField.getText());
+			getCommandHandler().parseCommand(commandField.getText());
 			commandField.setText("");
 		}
 	}
@@ -197,11 +183,12 @@ public class DebugWindow extends Window {
 	public void resume() {
 		this.paused = false;
 	}
-	
+
 	/**
-	 * Grab focus of the <code>commandField</code>.
+	 * Get current JFrame.
+	 * @return JFrame
 	 */
-	public void focusOnField() {
-		commandField.grabFocus();
+	public JFrame getFrame() {
+		return this;
 	}
 }
