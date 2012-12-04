@@ -30,10 +30,11 @@ public class Chunk extends Renderable {
 	public void render() {
 
 	}
-	public boolean isRendered() {
+	public boolean isGenerated() {
 		return generated;
 	}
 	public void setData(byte[][] data) {
+		generated = true;
 		this.data = data;
 	}
 	public byte[][] getData() {

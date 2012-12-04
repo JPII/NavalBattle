@@ -39,51 +39,20 @@ import com.jpii.navalbattle.renderer.RepaintType;
 public class GameComponent extends JComponent {
 	JFrame frame;
 	Timer ticker;
-	boolean waitingForGen = false;
-	GameBeta game;
 	public GameComponent(JFrame frame) {
 		this.frame = frame;
 		ActionListener al = new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				if (waitingForGen) {
-					if (game.getGenerationComplete() >= 100){
-						game.finalisor();
-						game.syncRender();
-						waitingForGen = false;
-					}
-					repaint();
-				}
+				update();
 			}
 		};
 		ticker = new Timer(40, al);
 		ticker.start();
-		game = new GameBeta();
-		waitingForGen = true;
-		game.generate();
+	}
+	public void update() {
+		
 	}
 	public void paintComponent(Graphics g) {
-		if (waitingForGen) {
-			g.setColor(new Color(61,64,38));
-			g.fillRect(0,0,800,600);
-			g.setColor(Color.black);
-			g.fillRect(0,290,800,20);
-			g.setColor(Color.green);
-			g.fillRect(1,291,(game.getGenerationComplete() * 8) - 2,18);
-			g.setColor(Color.white);
-			Font f = new Font("Courier New",0,24);
-			g.setFont(f);
-			String s = "Percent complete: " + game.getGenerationComplete() + "%";
-			int w = g.getFontMetrics(f).stringWidth(s);
-			g.drawString(s, 400 - (w/2), 80);
-			//s = "Generating, please wait a while.";
-			s = game.getGenerationString();
-			w = g.getFontMetrics(f).stringWidth(s);
-			g.drawString(s,400 - (w/2),132);
-		}
-		else {
-			g.setColor(Color.black);
-			g.fillRect(0,0,800,600);
-			g.drawImage(game.getBuffer(), 0, 0, null);
-		}
+		
 	}
 }

@@ -17,6 +17,8 @@
 
 package com.jpii.navalbattle.data;
 
+import maximusvladimir.dagen.Rand;
+
 import com.jpii.navalbattle.gui.listeners.*;
 
 public class Constants {
@@ -47,6 +49,7 @@ public class Constants {
 	public static int WINDOW_HEIGHT = 600;
 	public static int CHUNK_SIZE = 100;
 	public static int MAIN_SEED = (int)(Math.random() * (Integer.MAX_VALUE - 1));// NEVER 4 GET DRAGON SEED: 2081742719;
+	public static Rand MAIN_RAND = new Rand("34892u8ewdniohrqi3jowd9ehui");
 	
 	/*
 	 * Gameplay
