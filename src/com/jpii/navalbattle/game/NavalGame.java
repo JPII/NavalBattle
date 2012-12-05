@@ -35,15 +35,27 @@ public class NavalGame extends GameBeta {
 			}
 		}
 	}
+	/**
+	 * Called right when sunset starts.
+	 */
 	public void becomingSunset() {
 		
 	}
+	/**
+	 * Called right when sunrise starts.
+	 */
 	public void becomingSunrise() {
 		
 	}
+	/**
+	 * Called right when nighttime starts.
+	 */
 	public void becomingNight() {
 		
 	}
+	/**
+	 * Called right when daytime starts.
+	 */
 	public void becomingDay() {
 		for (int r = 0; r < PavoHelper.getGameWidth(getWorld().getWorldSize()); r++) {
 			for (int c = 0; c < PavoHelper.getGameHeight(getWorld().getWorldSize()); c++) {
@@ -53,5 +65,11 @@ public class NavalGame extends GameBeta {
 				}
 			}
 		}
+	}
+	/**
+	 * Called... all the time.
+	 */
+	public void becomingDave() {
+		// Just kidding.
 	}
 }
