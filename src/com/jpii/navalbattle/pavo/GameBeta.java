@@ -63,6 +63,7 @@ public class GameBeta extends Renderable implements Runnable {
 				}
 				numUpdates += 100;
 				long updateStart = System.currentTimeMillis();
+				world.update();
 				update();
 				long updateFinish = System.currentTimeMillis() - updateStart;
 				getStats().SmSK280K99(updateFinish);
@@ -104,6 +105,7 @@ public class GameBeta extends Renderable implements Runnable {
 		Graphics g = buffer.getGraphics();
 		world.render();
 		g.drawImage(world.getBuffer(),0,0,null);
+		g.drawImage(world.getTimeManager().getBuffer(),0,0,null);
 		
 		GameStatistics gs = getStats();
 		Console.getInstance().printInfo("Idling (should be low):" + gs.getDrawIdling() + ". Draw time:" + gs.getDrawTime() + " Live chunks:" + gs.getLiveChunks());
@@ -123,4 +125,5 @@ public class GameBeta extends Renderable implements Runnable {
 	public void becomingDay() {
 		
 	}
+	
 }

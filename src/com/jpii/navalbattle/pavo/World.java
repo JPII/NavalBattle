@@ -17,15 +17,16 @@ public class World {
 	int lww = 800;
 	int lwh = 600;
 	EntityManager em = new EntityManager();
+	TimeManager time = new TimeManager();
 	int sx = 0, anisx = 0, anisy = 0,sy = 0;
 	public World() {
-		chunks = new Chunk[width*height];
 		//for (int c = 0; c < chunks.length; c++) {
 		//	chunks[c] = new Chunk();
 		//}
 		ws = WorldSize.WORLD_LARGE;
 		width = PavoHelper.getGameWidth(getWorldSize());
 		height = PavoHelper.getGameHeight(getWorldSize());
+		chunks = new Chunk[(width)*(height)];
 		for (int x = 0;x < width; x++) {
 			for (int z = 0; z < height; z++) {
 				int i = z*width+x;
@@ -42,6 +43,9 @@ public class World {
 	}
 	public WorldGen getWorldGen() {
 		return gen;
+	}
+	public void update() {
+		time.update();
 	}
 	public boolean hasMoreChunks() {
 		for (int c = 0; c < chunks.length; c++) {
@@ -126,5 +130,8 @@ public class World {
 	}
 	public EntityManager getEntityManager() {
 		return em;
+	}
+	public TimeManager getTimeManager() {
+		return time;
 	}
 }

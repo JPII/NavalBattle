@@ -1,5 +1,6 @@
 package com.jpii.navalbattle.pavo;
 
+import java.awt.Color;
 import java.awt.Point;
 
 import com.jpii.navalbattle.game.entity.Entity;
@@ -48,6 +49,48 @@ public class PavoHelper {
 	public static Point convertWorldSpaceToScreen(World w, Point wsp) {
 		return new Point(wsp.x - w.getScreenX(), wsp.y - w.getScreenY());
 	}
+	/**
+	 * Linear interpolation.
+	 * @param num0
+	 * @param num1
+	 * @param amount
+	 * @return
+	 */
+	public static double Lerp(int num0, int num1, double amount)
+    {
+    	return num0 + (amount*(num1-num0));
+    }
+	/**
+	 * Linear interpolation.
+	 * @param color0
+	 * @param color1
+	 * @param amount
+	 * @return
+	 */
+    public static Color Lerp(Color color0, Color color1, double amount)
+    {
+	    int r = (int)Lerp(color0.getRed(), color1.getRed(), amount);
+	    int g = (int)Lerp(color0.getGreen(), color1.getGreen(), amount);
+	    int b = (int)Lerp(color0.getBlue(), color1.getBlue(), amount);
+	    int a = (int)Lerp(color0.getAlpha(), color1.getAlpha(), amount);
+	    if (r > 255)
+	    	r = 255;
+	    if (r < 0)
+	    	r = 0;
+	    if (g > 255)
+	    	g = 255;
+	    if (g < 0)
+	    	g = 0;
+	    if (b > 255)
+	    	b = 255;
+	    if (b < 0)
+	    	b = 0;
+	    if (a > 255)
+	    	a = 255;
+	    if (a < 0)
+	    	a = 0;
+	    return new Color(r,g,b,a);
+    }
 	public static boolean isEntityVisibleOnScreen(World w, Entity ent) {
 		if (w == null || ent == null)
 			return false;
