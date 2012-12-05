@@ -15,14 +15,16 @@ public class World {
 	boolean needsNewRender = false;
 	boolean[] generated;
 	boolean bufferLock = false;
+	int width = 16;
+	int height = 8;
 	public World() {
-		chunks = new Chunk[64];
+		chunks = new Chunk[width*height];
 		//for (int c = 0; c < chunks.length; c++) {
 		//	chunks[c] = new Chunk();
 		//}
-		for (int x = 0;x < 8; x++) {
-			for (int z = 0; z < 8; z++) {
-				int i = z*8+x;
+		for (int x = 0;x < width; x++) {
+			for (int z = 0; z < height; z++) {
+				int i = z*width+x;
 				chunks[i] = new Chunk();
 				chunks[i].setX(x);
 				chunks[i].setZ(z);
@@ -71,13 +73,14 @@ public class World {
 			
 		}
 		bufferLock = true;
+		buffer = new BufferedImage(DynamicConstants.WND_WDTH,DynamicConstants.WND_HGHT,BufferedImage.TYPE_INT_RGB);
 		Graphics g = buffer.getGraphics();
 		g.setColor(Color.cyan);
 		g.fillRect(0,0,DynamicConstants.WND_WDTH,DynamicConstants.WND_HGHT);
 		g.drawImage(chunks[0].getBuffer(),0,0,null);
-		for (int x = 0; x < 8; x++) {
-			for (int z = 0; z < 8; z++) {
-			Chunk chunk = chunks[z*8+x];
+		for (int x = 0; x < width; x++) {
+			for (int z = 0; z < height; z++) {
+			Chunk chunk = chunks[z*width+x];
 			while (chunk.isLocked()) { }
 			chunk.lock();
 			g.drawImage(chunk.getBuffer(), x*100,z*100,null);
