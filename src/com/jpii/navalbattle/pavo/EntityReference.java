@@ -1,4 +1,4 @@
-package com.jpii.navalbattle.game.entity;
+package com.jpii.navalbattle.pavo;
 
 public class EntityReference {
 	public int referenceId = 0;

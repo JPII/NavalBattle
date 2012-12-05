@@ -26,6 +26,7 @@ import java.lang.Thread.State;
 import javax.swing.*;
 
 import com.jpii.navalbattle.pavo.DynamicConstants;
+import com.jpii.navalbattle.pavo.GameBeta;
 import com.jpii.navalbattle.renderer.Console;
 import com.jpii.navalbattle.renderer.Helper;
 import com.jpii.navalbattle.renderer.RenderConstants;

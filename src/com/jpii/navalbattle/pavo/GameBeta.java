@@ -1,11 +1,10 @@
-package com.jpii.navalbattle.game;
+package com.jpii.navalbattle.pavo;
 
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 
-import com.jpii.navalbattle.pavo.DynamicConstants;
-import com.jpii.navalbattle.pavo.Renderable;
-import com.jpii.navalbattle.pavo.WorldGen;
+import com.jpii.navalbattle.renderer.Console;
+import com.jpii.navalbattle.util.GameStatistics;
 
 public class GameBeta extends Renderable implements Runnable {
 	Thread updator;
@@ -16,10 +15,14 @@ public class GameBeta extends Renderable implements Runnable {
 	int state = 0;
 	World world;
 	WorldGen gen;
+	long numUpdates = 0;
 	public GameBeta() {
 		world = new World();
 		gen = new WorldGen();
 		threadInit();
+	}
+	public long getNumUpdates() {
+		return numUpdates;
 	}
 	private void threadInit() {
 		updator = new Thread(this);
@@ -46,6 +49,10 @@ public class GameBeta extends Renderable implements Runnable {
 		generator.setName("generatorThread");
 		generator.start();
 	}
+	private static GameStatistics stats = new GameStatistics();
+	public static GameStatistics getStats() {
+		return stats;
+	}
 	public void run() {
 		// Game updator
 		if (state == 1) {
@@ -54,6 +61,11 @@ public class GameBeta extends Renderable implements Runnable {
 				while (timeLastUpdate + 100 > System.currentTimeMillis()) {
 					;;;
 				}
+				numUpdates += 100;
+				long updateStart = System.currentTimeMillis();
+				update();
+				long updateFinish = System.currentTimeMillis() - updateStart;
+				getStats().SmSK280K99(updateFinish);
 				timeLastUpdate = System.currentTimeMillis();
 			}
 		}
@@ -92,5 +104,23 @@ public class GameBeta extends Renderable implements Runnable {
 		Graphics g = buffer.getGraphics();
 		world.render();
 		g.drawImage(world.getBuffer(),0,0,null);
+		
+		GameStatistics gs = getStats();
+		Console.getInstance().printInfo("Idling (should be low):" + gs.getDrawIdling() + ". Draw time:" + gs.getDrawTime() + " Live chunks:" + gs.getLiveChunks());
+	}
+	public World getWorld() {
+		return world;
+	}
+	public void becomingSunset() {
+		
+	}
+	public void becomingSunrise() {
+		
+	}
+	public void becomingNight() {
+		
+	}
+	public void becomingDay() {
+		
 	}
 }
