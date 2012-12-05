@@ -86,6 +86,7 @@ public class TimeManager extends Renderable {
     		g.fillRect(0,0,DynamicConstants.WND_WDTH,DynamicConstants.WND_HGHT);
     		lcd = cdr;
     	}
+    	hour = (int)((tofd * 24) / DayNightTotalLengthSeconds);
 	}
 	public String getTimeDescription() {
 		return desc;

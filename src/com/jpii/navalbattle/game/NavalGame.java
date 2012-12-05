@@ -7,6 +7,7 @@ import com.jpii.navalbattle.game.entity.Entity;
 import com.jpii.navalbattle.game.entity.Whale;
 import com.jpii.navalbattle.pavo.GameBeta;
 import com.jpii.navalbattle.pavo.PavoHelper;
+import com.jpii.navalbattle.renderer.Console;
 
 /**
  * @author MKirkby
@@ -20,6 +21,7 @@ public class NavalGame extends GameBeta {
 	 * Mulithreaded updator.
 	 */
 	public void update() {
+		Console.getInstance().printWarn(getWorld().getTimeManager().getTimeDescription() + " " + getWorld().getTimeManager().getCurrentHour() + ":--");
 		for (int r = 0; r < PavoHelper.getGameWidth(getWorld().getWorldSize()); r++) {
 			for (int c = 0; c < PavoHelper.getGameHeight(getWorld().getWorldSize()); c++) {
 				Entity ent = getWorld().getEntityManager().getEntity(r,c);

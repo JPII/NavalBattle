@@ -44,7 +44,7 @@ public class GameComponent extends JComponent {
 	GameBeta game;
 	public GameComponent(JFrame frame) {
 		this.frame = frame;
-		game = new GameBeta();
+		game = new NavalGame();
 		ActionListener al = new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				update();
