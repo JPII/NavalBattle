@@ -34,25 +34,7 @@ public class NavalBattle {
 	private static WindowHandler windowHandler;
 	
 	public static void main(String[] args) {
-		/*ArrayList<SettingsAttribute> attrs = new ArrayList<SettingsAttribute>();
-		SettingsAttribute a = new SettingsAttribute("lastGoodUserName");
-		attrs.add(a);
-		a = new SettingsAttribute("lastGoodPassword");
-		attrs.add(a);
-		a = new SettingsAttribute("gameWindowWidth");
-		attrs.add(a);
-		a = new SettingsAttribute("gameWindowHeight");
-		attrs.add(a);
-		java.net.URL url = null;
-		try {
-			url = new java.net.URL("C:\\navalbattle\\settings.ini");
-		} catch (Exception e) { 
-			e.printStackTrace();
-		}
-		if (url != null && new File(url.getPath()).exists()) {
-		SettingsReader reader = new SettingsReader(url.getPath(),attrs);
-		reader.read();
-		}*/
+		MaxTests.run();
 		
 		Helper.LoadStaticResources();
 		setDefaultLookAndFeel();
