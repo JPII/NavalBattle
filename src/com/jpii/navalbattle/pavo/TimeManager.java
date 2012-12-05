@@ -24,7 +24,7 @@ public class TimeManager extends Renderable {
     	if (currentTime < DayNightTotalLengthSeconds)
     		currentTime += (DayNightTotalLengthSeconds/1000.0);
     	else
-    		RenderConstants.CURRENT_TIME_OF_DAY = 0;
+    		currentTime = 0;
     	int nightl = 5;
     	if (tofd > 0 && tofd < le / nightl/2)
     	{
