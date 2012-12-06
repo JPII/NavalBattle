@@ -15,8 +15,10 @@ public class TimeManager extends Renderable {
 	private Color lcd = new Color(0,0,0,0);
 	private int timeD = 0;
 	private int minute = 0;
+	private int lsw, lsh;
 	public TimeManager() {
-		
+		lsw = DynamicConstants.WND_WDTH;
+		lsh = DynamicConstants.WND_HGHT;
 	}
 	public void update() {
 		int le = DayNightTotalLengthSeconds;
@@ -60,28 +62,10 @@ public class TimeManager extends Renderable {
     		timeD = 3;
     	}
     	cdr = new Color(11,15,23,alph);
-    	/*if (timeD == 0) {
-    		double j = alph / ((double)(NightDarkness));
-    		if (j < 0.5)
-    			cdr = PavoHelper.Lerp(new Color(255,255,255,alph), new Color(242,193,149,alph), j*2);
-    		else
-    			cdr = PavoHelper.Lerp(new Color(242,193,149,alph),new Color(11,15,23,alph),(1-j)*2);
-    	}
-    	else if (timeD == 2) {
-    		double j = alph / ((double)(NightDarkness));
-    		if (j > 0.5)
-    			cdr = PavoHelper.Lerp(new Color(255,255,255,alph), new Color(242,193,149,alph), (j)*2);
-    		else
-    			cdr = PavoHelper.Lerp(new Color(242,193,149,alph),new Color(11,15,23,alph),(1-j) *2);
-    	}
-    	else if (timeD == 3) {
-    		cdr = new Color(255,255,255,0);
-    	}
-    	else if (timeD == 1) {
-    		cdr = new Color(11,15,23,alph);
-    	}*/
-    	if (!lcd.equals(cdr)) {
+    	if (!lcd.equals(cdr) || lsw != DynamicConstants.WND_WDTH || lsh != DynamicConstants.WND_HGHT) {
     		buffer = new BufferedImage(DynamicConstants.WND_WDTH,DynamicConstants.WND_HGHT,BufferedImage.TYPE_INT_ARGB);
+    		lsw = DynamicConstants.WND_WDTH;
+    		lsh = DynamicConstants.WND_HGHT;
     		Graphics g = buffer.getGraphics();
     		g.setColor(cdr);
     		g.fillRect(0,0,DynamicConstants.WND_WDTH,DynamicConstants.WND_HGHT);
