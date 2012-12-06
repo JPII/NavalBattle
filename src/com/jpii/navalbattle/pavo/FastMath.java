@@ -1,4 +1,4 @@
-package com.jpii.navalbattle.renderer;
+package com.jpii.navalbattle.pavo;
 
 public class FastMath {
 	/**

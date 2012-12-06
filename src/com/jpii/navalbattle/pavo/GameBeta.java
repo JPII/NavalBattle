@@ -1,9 +1,13 @@
 package com.jpii.navalbattle.pavo;
 
+import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
+import java.text.DecimalFormat;
 
 import com.jpii.navalbattle.renderer.Console;
+import com.jpii.navalbattle.renderer.Helper;
 import com.jpii.navalbattle.util.GameStatistics;
 
 public class GameBeta extends Renderable implements Runnable {
@@ -63,7 +67,10 @@ public class GameBeta extends Renderable implements Runnable {
 				}
 				numUpdates += 100;
 				long updateStart = System.currentTimeMillis();
-				world.update();
+				while (getWorld().isLocked()) {}
+				getWorld().lock();
+				getWorld().update();
+				getWorld().unlock();
 				update();
 				long updateFinish = System.currentTimeMillis() - updateStart;
 				getStats().SmSK280K99(updateFinish);
@@ -74,8 +81,8 @@ public class GameBeta extends Renderable implements Runnable {
 		else if (state == 2) {
 			while (gameRunning) {
 				//System.out.println("Chunk gen firing..." + Thread.currentThread().getName());
-				if (world.hasMoreChunks()) {
-					world.genNextChunk();
+				if (getWorld().hasMoreChunks()) {
+					getWorld().genNextChunk();
 					// Make a small break between each generation.
 					long start = System.currentTimeMillis();
 					while (start + 650 > System.currentTimeMillis()) {
@@ -91,7 +98,7 @@ public class GameBeta extends Renderable implements Runnable {
 		else if (state == 3) {
 			//System.out.println("World gen firing..." + Thread.currentThread().getName());
 			gen.generateChunk();
-			world.setWorldGen(gen);
+			getWorld().setWorldGen(gen);
 		}
 	}
 	public String getGenStatus() {
@@ -102,13 +109,22 @@ public class GameBeta extends Renderable implements Runnable {
 	}
 	public void render() {
 		buffer = new BufferedImage(DynamicConstants.WND_WDTH,DynamicConstants.WND_HGHT,BufferedImage.TYPE_INT_RGB);
-		Graphics g = buffer.getGraphics();
-		world.render();
-		g.drawImage(world.getBuffer(),0,0,null);
-		g.drawImage(world.getTimeManager().getBuffer(),0,0,null);
+		Graphics2D g = PavoHelper.createGraphics(buffer);
+		while (getWorld().isLocked()) {
+			
+		}
+		getWorld().lock();
+		getWorld().render();
+		g.drawImage(getWorld().getBuffer(),0,0,null);
+		g.drawImage(getWorld().getTimeManager().getBuffer(),0,0,null);
 		
 		GameStatistics gs = getStats();
-		Console.getInstance().printInfo("Idling (should be low):" + gs.getDrawIdling() + ". Draw time:" + gs.getDrawTime() + " Live chunks:" + gs.getLiveChunks());
+		g.setColor(Color.red);
+		g.setFont(Helper.GUI_GAME_FONT);
+		String frmtn = new DecimalFormat("00").format(getWorld().getTimeManager().getCurrentMinutes());
+		g.drawString((getWorld().getTimeManager().getTimeDescription() + " " + getWorld().getTimeManager().getCurrentHour() + ":"+frmtn),100,100);
+		g.drawString("Idling (should be low):" + gs.getDrawIdling() + ". Draw time:" + gs.getDrawTime() + " Live chunks:" + gs.getLiveChunks(),100,130);
+		getWorld().unlock();
 	}
 	public World getWorld() {
 		return world;

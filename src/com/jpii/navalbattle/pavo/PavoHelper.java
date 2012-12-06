@@ -1,9 +1,9 @@
 package com.jpii.navalbattle.pavo;
 
-import java.awt.Color;
-import java.awt.Point;
+import java.awt.*;
+import java.awt.image.*;
 
-import com.jpii.navalbattle.game.entity.Entity;
+import com.jpii.navalbattle.game.entity.*;
 
 
 public class PavoHelper {
@@ -103,5 +103,14 @@ public class PavoHelper {
 		else
 			return false;
 		
+	}
+	public static Graphics2D createGraphics(BufferedImage b) {
+		if (b == null)
+			return null;
+		
+		Graphics2D g = (Graphics2D) b.getGraphics();
+		g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+		g.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
+		return g;
 	}
 }

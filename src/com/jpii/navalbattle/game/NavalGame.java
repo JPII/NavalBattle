@@ -21,7 +21,7 @@ public class NavalGame extends GameBeta {
 	 * Mulithreaded updator.
 	 */
 	public void update() {
-		Console.getInstance().printWarn(getWorld().getTimeManager().getTimeDescription() + " " + getWorld().getTimeManager().getCurrentHour() + ":--");
+		//Console.getInstance().printWarn(getWorld().getTimeManager().getTimeDescription() + " " + getWorld().getTimeManager().getCurrentHour() + ":00");
 		for (int r = 0; r < PavoHelper.getGameWidth(getWorld().getWorldSize()); r++) {
 			for (int c = 0; c < PavoHelper.getGameHeight(getWorld().getWorldSize()); c++) {
 				Entity ent = getWorld().getEntityManager().getEntity(r,c);

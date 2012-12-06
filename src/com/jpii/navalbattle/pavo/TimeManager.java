@@ -14,6 +14,7 @@ public class TimeManager extends Renderable {
 	private Color cdr = new Color(0,0,0,0);
 	private Color lcd = new Color(0,0,0,0);
 	private int timeD = 0;
+	private int minute = 0;
 	public TimeManager() {
 		
 	}
@@ -86,12 +87,24 @@ public class TimeManager extends Renderable {
     		g.fillRect(0,0,DynamicConstants.WND_WDTH,DynamicConstants.WND_HGHT);
     		lcd = cdr;
     	}
-    	hour = (int)((tofd * 24) / DayNightTotalLengthSeconds);
+    	double thour = (((tofd) * 24) / DayNightTotalLengthSeconds)+18.0;
+    	if (thour > 24) {
+    		thour = 24 - thour;
+    	}
+    	if (thour < 0)
+    		thour = thour * -1;
+    	//minute = ((int)((tofd * 1440) / DayNightTotalLengthSeconds));// - (hour * 60);
+    	int d = (int)(thour);
+    	minute = (int)((thour - d) * 60);
+    	hour = d;
 	}
 	public String getTimeDescription() {
 		return desc;
 	}
 	public int getCurrentHour() {
 		return hour;
+	}
+	public int getCurrentMinutes() {
+		return minute;
 	}
 }

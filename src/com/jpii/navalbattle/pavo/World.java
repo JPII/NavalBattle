@@ -4,7 +4,7 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 
 
-public class World {
+public class World extends Renderable {
 	WorldGen gen;
 	Chunk[] chunks;
 	BufferedImage buffer;
