@@ -9,10 +9,13 @@ import maximusvladimir.dagen.Rand;
  */
 public class GrammarManager {
 	private static String[] titles = {
-		"Sargent",
-		"Kernel",
-		"General",
-		"Admiral"};
+		"Head Admiral",
+		"Admiral",
+		"Commodore",
+		"Captain",
+		"Commander",
+		"Lieutenant",
+		"Land Blubber"};
 	private static String[] fName = {
 		"Adam",
 		"Charles",
