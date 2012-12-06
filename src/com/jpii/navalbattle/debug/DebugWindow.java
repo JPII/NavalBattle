@@ -176,6 +176,10 @@ public class DebugWindow extends Window {
 	 * Parses command.
 	 * @param command
 	 */
+	public void submitCommand(String s) {
+		getCommandHandler().parseCommand(s);
+	}
+	
 	public void submitCommand() {
 		if(!commandField.getText().isEmpty()) {
 			getCommandHandler().parseCommand(commandField.getText());
