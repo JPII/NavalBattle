@@ -21,9 +21,11 @@ public class RoketGamer {
 	private Session session;
 	private Analytics analytics;
 	
+	private static RoketGamer instance;
+	
 	/** Constants */
-	private static final String VERSION = "1.0";
-	private static final String SERVER_LOCATION = "http://www.roketgamer.com";
+	public static final String VERSION = "1.0";
+	public static final String SERVER_LOCATION = "http://www.roketgamer.com";
 	
 	/**
 	 * Initialize RoketGamer. Returns <code>AuthStatus</code>.
@@ -33,6 +35,8 @@ public class RoketGamer {
 	 * @return
 	 */
 	public AuthStatus init(APIKey key, Player player) {
+		instance = this;
+		
 		this.key = key;
 		this.player = player;
 		
@@ -168,39 +172,17 @@ public class RoketGamer {
 	}
 	
 	/**
-	 * Submit an achievement. Returns if operation is successful.
-	 * @param achievement
-	 * @param id
-	 * @return
-	 */
-	public boolean submitAchievement(Achievement achievement, int id) {
-		try {
-			URL url = new URL(SERVER_LOCATION + "/api/" + VERSION + "/achievement/submit.php?id=" + achievement.getID() + "?session=" + session.getSessionID().trim() + "&id=" + id);
-
-			BufferedReader in = new BufferedReader(new InputStreamReader(url.openStream()));
-
-			String result = in.readLine();
-			if (result.contains("true")) {
-				in.close();
-				return true;
-				
-			} else {
-				in.close();
-				return false;
-			}
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		
-		return false;
-	}
-	
-	/**
 	 * Get current <code>Analytics</code> instance.
 	 * @return
 	 */
 	public Analytics getAnalytics() {
 		return analytics;
+	}
+	
+	/**
+	 * Get current <code>RoketGamer</code> instance.
+	 */
+	public static RoketGamer getInstance() {
+		return instance;
 	}
 }
