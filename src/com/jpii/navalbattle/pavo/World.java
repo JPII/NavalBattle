@@ -23,7 +23,7 @@ public class World extends Renderable {
 		//for (int c = 0; c < chunks.length; c++) {
 		//	chunks[c] = new Chunk();
 		//}
-		ws = WorldSize.WORLD_HUGE;
+		ws = WorldSize.WORLD_LARGE;
 		width = PavoHelper.getGameWidth(getWorldSize());
 		height = PavoHelper.getGameHeight(getWorldSize());
 		chunks = new Chunk[(width)*(height)];
