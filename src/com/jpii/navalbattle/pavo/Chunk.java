@@ -30,19 +30,16 @@ public class Chunk extends Renderable {
 		this.x = x;
 		this.z = z;
 	}
-	public float getPoint(int x, int z) {
-		return (p.noise(x+(this.x*100), z+(this.z*100)));
-	}
 	public void render() {
 		//if (!ready)
 			//return;
 		//ready = false;
 		buffer = new BufferedImage(100,100,BufferedImage.TYPE_INT_RGB);
 		Graphics g = buffer.getGraphics();
-		for (int lsx = 0; lsx < 100; lsx++) {
-			for (int lsz = 0; lsz < 100; lsz++) {
-				int opcode = (int)(Math.abs(getPoint(lsx/10,lsz/10))*127);
-				opcode = (int)(McRegion.getPoint(lsx+(this.x*100), lsz+(this.z*100))*255.0f);//(int)((getPoint(lsx,lsz)+1)*127);
+		for (int lsx = 0; lsx < 100/3; lsx++) {
+			for (int lsz = 0; lsz < 100/3; lsz++) {
+				int opcode = (int)(McRegion.getPoint(lsx+(100.0f/3.0f*x), lsz+(100.0f/3.0f*z))*255.0f);
+				//opcode = (opcode+(int)(McRegion.getPoint((this.x*100), (this.z*100))*255.0f))/2;
 				if (opcode > 255)
 					opcode = 255;
 				if (opcode < 0)
