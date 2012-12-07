@@ -27,7 +27,7 @@ public class Perlin extends Generator {
         }
         initPerlin1();
 	}
-	public float noise(int x, int z) {
+	public float noise(float x, float z) {
 		return (float) improvedNoise(x,Constants.MAIN_RAND.nextDouble(),z);
 	}
 

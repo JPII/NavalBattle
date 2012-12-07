@@ -50,7 +50,7 @@ public class Chunk extends Renderable {
 				//double cz = hn * z;
 				//h = p.lerp(lsx/100.0, cx,cx+hn);
 				//j = p.lerp(lsx/100.0, cz,cz+hn);
-				opcode = (int)((getPoint(lsx,lsz)+1)*127);
+				opcode = (int)(McRegion.getPoint(lsx+(this.x*100), lsz+(this.z*100))*255.0f);//(int)((getPoint(lsx,lsz)+1)*127);
 				/*opcode = (int)(((opcode*4.0) + (getPoint(lsx,lsz)*6.0*127)) / 10.0);
 				opcode = (int)(((opcode*2.75)+(Math.abs(getPoint(lsx/4,lsz/4)*127.0*2.25)))/10.0);
 				opcode = (int)(((opcode*6.0) + (Math.abs(getPoint(lsx/50,lsz/50)*4.0)))/10.0);
