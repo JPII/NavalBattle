@@ -20,8 +20,6 @@ package com.jpii.navalbattle.gui;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
-import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
 
 @SuppressWarnings("serial")
 public class CreditsWindow extends Window {
@@ -64,9 +62,11 @@ public class CreditsWindow extends Window {
 		FocusListener fl = new FocusListener() {
 			public void focusGained(FocusEvent arg0) {
 				cb.start();
+				System.out.println("StartCredits");
 			}
 			public void focusLost(FocusEvent arg0) {
 				cb.stop();
+				System.out.println("NoCredits");
 			}		
 		};
 		addFocusListener(fl);
