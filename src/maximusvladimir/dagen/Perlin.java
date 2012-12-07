@@ -28,7 +28,7 @@ public class Perlin extends Generator {
         initPerlin1();
 	}
 	public float noise(float x, float z) {
-		return (float) improvedNoise(x,Constants.MAIN_RAND.nextDouble(),z);
+		return (float)noise2(x,z); //improvedNoise(x,Constants.MAIN_RAND.nextDouble(),z);
 	}
 
 	public void generate() {
@@ -112,8 +112,8 @@ public class Perlin extends Generator {
         q = g2[b11];
         v = rx1 * q[0] + ry1 * q[1];
         float b = lerp(sx, u, v);
-        System.out.print("sy="+sy + "a="+a+"b="+b+ "sx="+sx+"u"+u+"v"+v);
-        return b;//lerp(sy, a, b);
+        //System.out.print("sy="+sy + "a="+a+"b="+b+ "sx="+sx+"u"+u+"v"+v);
+        return lerp(sy, a, b);
     }
     private float noise3(float x, float y, float z)
     {

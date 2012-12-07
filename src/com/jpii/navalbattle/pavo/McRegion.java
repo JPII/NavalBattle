@@ -17,21 +17,21 @@ public class McRegion {
 		return (mixer+1)/2.0f;
 	}
 	private static float getLevel0(float x, float z) {
-		return berlin.noise(x, z);
+		return berlin.noise(x/2, z/2);
 	}
 	private static float getLevel1(float x, float z) {
-		return berlin.noise(x/2,z/2);
-	}
-	private static float getLevel2(float x, float z) {
 		return berlin.noise(x/4,z/4);
 	}
-	private static float getLevel3(float x, float z) {
+	private static float getLevel2(float x, float z) {
 		return berlin.noise(x/8,z/8);
 	}
-	private static float getLevel4(float x, float z) {
+	private static float getLevel3(float x, float z) {
 		return berlin.noise(x/16,z/16);
 	}
-	private static float getLevel5(float x, float z) {
+	private static float getLevel4(float x, float z) {
 		return berlin.noise(x/32,z/32);
+	}
+	private static float getLevel5(float x, float z) {
+		return berlin.noise(x/64,z/64);
 	}
 }
