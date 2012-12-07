@@ -74,19 +74,16 @@ public class LoggingInWindow extends Window {
 		}
 	}
 
-public void setVisible(boolean visible){
-	super.setVisible(visible);
-	if(isVisible()){
-		alreadyOpened = false;
-		timer.start();
+	public void setVisible(boolean visible){
+		super.setVisible(visible);
+		if(isVisible()){
+			alreadyOpened = false;
+			timer.start();
+		}
+		else{
+			if(timer!=null)
+				timer.stop();
+			length = 0;
+		}
 	}
-	else{
-		if(timer!=null)
-			timer.stop();
-		length = 0;
-	}
-}
-	
-	
-	
 }

@@ -47,8 +47,7 @@ public class CreditsWindow extends Window {
 		
 		//hide for now.
 		//getContentPane().add(licenseNotice);
-		//getContentPane().add(btnClose);	
-		
+		getContentPane().add(btnClose);	
 		
 		btnClose.setFocusable(false);
 		
@@ -62,11 +61,9 @@ public class CreditsWindow extends Window {
 		FocusListener fl = new FocusListener() {
 			public void focusGained(FocusEvent arg0) {
 				cb.start();
-				System.out.println("StartCredits");
 			}
 			public void focusLost(FocusEvent arg0) {
 				cb.stop();
-				System.out.println("NoCredits");
 			}		
 		};
 		addFocusListener(fl);
