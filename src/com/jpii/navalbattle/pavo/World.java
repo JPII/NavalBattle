@@ -3,6 +3,8 @@ package com.jpii.navalbattle.pavo;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
+import com.jpii.navalbattle.data.Constants;
+
 
 public class World extends Renderable {
 	WorldGen gen;
@@ -55,10 +57,6 @@ public class World extends Renderable {
 		return false;
 	}
 	public void genNextChunk() {
-		/*Graphics g = buffer.getGraphics();
-		g.setColor(Constants.MAIN_RAND.nextColor());
-		g.fillRect(0,0,800,600);
-		return;*/
 		for (int c = 0; c < chunks.length; c++) {
 			Chunk chunk = chunks[c];
 			while (chunk.isLocked()) {
@@ -93,14 +91,19 @@ public class World extends Renderable {
 		Graphics g = buffer.getGraphics();
 		g.setColor(Color.darkGray);
 		g.fillRect(0,0,DynamicConstants.WND_WDTH,DynamicConstants.WND_HGHT);
-		g.drawImage(chunks[0].getBuffer(),0,0,null);
 		for (int x = 0; x < width; x++) {
 			for (int z = 0; z < height; z++) {
 				Chunk chunk = chunks[z*width+x];
 				if (PavoHelper.isChunkVisibleOnScreen(this, chunk)) {
 					while (chunk.isLocked()) { }
 					chunk.lock();
-					g.drawImage(chunk.getBuffer(), x*100,z*100,null);
+					if (!chunk.isGenerated()) {
+						int rgb = Constants.MAIN_RAND.nextInt(255);
+						g.setColor(new Color(rgb,rgb,rgb));
+						g.fillRect(x*100,z*100,100,100);
+					}
+					else
+						g.drawImage(chunk.getBuffer(), x*100,z*100,null);
 					chunk.unlock();
 					liveChunks++;
 				}
