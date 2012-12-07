@@ -1,4 +1,4 @@
-package com.jpii.roketgamer.rauth;
+package com.roketgamer.rauth;
 
 public class APIKey {
 	

@@ -1,6 +1,6 @@
-package com.jpii.roketgamer.leaderboard;
+package com.roketgamer.leaderboard;
 
-import com.jpii.roketgamer.Player;
+import com.roketgamer.Player;
 
 public class Leaderboard {
 	private int id;

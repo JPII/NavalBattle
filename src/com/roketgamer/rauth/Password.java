@@ -1,6 +1,6 @@
-package com.jpii.roketgamer.rauth;
+package com.roketgamer.rauth;
 
-import com.jpii.roketgamer.util.HashUtils;
+import com.roketgamer.util.HashUtils;
 
 public class Password {
 	private String password;

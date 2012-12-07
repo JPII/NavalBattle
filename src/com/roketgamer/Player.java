@@ -1,6 +1,6 @@
-package com.jpii.roketgamer;
+package com.roketgamer;
 
-import com.jpii.roketgamer.rauth.Password;
+import com.roketgamer.rauth.Password;
 
 public class Player {
 

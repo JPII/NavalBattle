@@ -1,4 +1,4 @@
-package com.jpii.roketgamer.util;
+package com.roketgamer.util;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;

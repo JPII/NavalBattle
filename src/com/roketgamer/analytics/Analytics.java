@@ -1,4 +1,4 @@
-package com.jpii.roketgamer.analytics;
+package com.roketgamer.analytics;
 
 import com.jpii.navalbattle.NavalBattle;
 import com.jpii.navalbattle.data.Constants;

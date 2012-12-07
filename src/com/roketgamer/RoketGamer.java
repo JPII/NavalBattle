@@ -1,16 +1,13 @@
-package com.jpii.roketgamer;
+package com.roketgamer;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
 
-import com.jpii.roketgamer.achievement.Achievement;
-import com.jpii.roketgamer.analytics.Analytics;
-import com.jpii.roketgamer.rauth.APIKey;
-import com.jpii.roketgamer.rauth.AuthStatus;
-import com.jpii.roketgamer.rauth.Session;
-import com.jpii.roketgamer.leaderboard.Leaderboard;
+import com.roketgamer.analytics.Analytics;
+import com.roketgamer.leaderboard.Leaderboard;
+import com.roketgamer.rauth.*;
 
 public class RoketGamer {
 	

@@ -1,11 +1,11 @@
-package com.jpii.roketgamer.achievement;
+package com.roketgamer.achievement;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.URL;
 
-import com.jpii.roketgamer.Player;
-import com.jpii.roketgamer.RoketGamer;
+import com.roketgamer.Player;
+import com.roketgamer.RoketGamer;
 
 public class Achievement {
 	private int id;
