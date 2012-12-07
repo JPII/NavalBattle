@@ -99,7 +99,10 @@ public class World extends Renderable {
 					chunk.lock();
 					if (!chunk.isGenerated()) {
 						int rgb = Constants.MAIN_RAND.nextInt(255);
-						g.setColor(new Color(rgb,rgb,rgb));
+						if (Constants.MAIN_RAND.nextBoolean())
+							g.setColor(new Color(6,rgb,13));
+						else
+							g.setColor(new Color(6,13,rgb));
 						g.fillRect(x*100,z*100,100,100);
 					}
 					else

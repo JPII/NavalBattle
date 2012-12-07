@@ -17,7 +17,7 @@ public class McRegion {
 		return (mixer+1)/2.0f;
 	}
 	private static float getLevel0(float x, float z) {
-		return berlin.noise(x/2, z/2);
+		return berlin.noise(x/16, z/16);
 	}
 	private static float getLevel1(float x, float z) {
 		return berlin.noise(x/4,z/4);
