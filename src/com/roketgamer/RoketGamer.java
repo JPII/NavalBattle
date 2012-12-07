@@ -6,7 +6,6 @@ import java.net.URL;
 import java.net.URLConnection;
 
 import com.roketgamer.analytics.Analytics;
-import com.roketgamer.leaderboard.Leaderboard;
 import com.roketgamer.rauth.*;
 
 public class RoketGamer {
@@ -138,34 +137,6 @@ public class RoketGamer {
 	 */
 	public String getServerLocation() {
 		return SERVER_LOCATION;
-	}
-	
-	/**
-	 * Submit a leaderboard score. Returns if operation is successful.
-	 * @param leaderboard
-	 * @param score
-	 * @return
-	 */
-	public boolean submitScore(Leaderboard leaderboard, int score) {
-		try {
-			URL url = new URL(SERVER_LOCATION + "/api/" + VERSION + "/leaderboard/submit.php?id=" + leaderboard.getID() + "?session=" + session.getSessionID().trim()  + "&score=" + score);
-			
-			BufferedReader in = new BufferedReader(new InputStreamReader(url.openStream()));
-
-			String result = in.readLine();
-			if (result.contains("true")) {
-				in.close();
-				return true;
-				
-			} else {
-				in.close();
-				return false;
-			}
-
-		} catch (Exception e) {
-		}
-		
-		return false;
 	}
 	
 	/**
