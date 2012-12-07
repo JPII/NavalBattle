@@ -20,16 +20,20 @@ package com.jpii.navalbattle.gui;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 
 @SuppressWarnings("serial")
 public class CreditsWindow extends Window {
 	private JLabel gameTitle;
 	private JLabel licenseNotice;
 	private JButton btnClose;
+	private CreditsBackground cb;
 
 	public CreditsWindow() {
 		setSize(800,600);
-		setContentPane(new CreditsBackground(800,600));
+		cb = new CreditsBackground(800,600);
+		setContentPane(cb);
 		getContentPane().setLayout(null);
 		gameTitle = new JLabel("NavalBattle");
 		licenseNotice = new JLabel("NavalBattle is open source under the GNU General Public License v3.");
@@ -56,5 +60,15 @@ public class CreditsWindow extends Window {
 				nextWindow("MainMenuWindow");
 			}
 		});
+		
+		FocusListener fl = new FocusListener() {
+			public void focusGained(FocusEvent arg0) {
+				cb.start();
+			}
+			public void focusLost(FocusEvent arg0) {
+				cb.stop();
+			}		
+		};
+		addFocusListener(fl);
 	}
 }

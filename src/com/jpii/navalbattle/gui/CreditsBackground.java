@@ -50,6 +50,13 @@ public class CreditsBackground extends JComponent implements MouseListener{
 		}
 	}
 	
+	public void start() {
+		timer.start();
+	}
+	public void stop() {
+		timer.stop();
+	}
+	
 	public void setVisible(boolean visible){
 		super.setVisible(visible);
 		if(isVisible()){
