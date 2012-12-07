@@ -29,6 +29,11 @@ public class WindowCloser extends WindowAdapter {
 	
 	public static void close(){
 		NavalBattle.getDebugWindow().printInfo("Someone is closing me!");
+		
+		if(!NavalBattle.getGameState().isOffline()) {
+			NavalBattle.getRoketGamer().getSession().logout();
+		}
+		
 		System.exit(0);
 	}
 }
