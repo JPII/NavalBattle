@@ -36,6 +36,6 @@ public class MaxTests {
 		}
 	}
 	public static boolean isFirstRun() {
-		
+		return true;
 	}
 }
