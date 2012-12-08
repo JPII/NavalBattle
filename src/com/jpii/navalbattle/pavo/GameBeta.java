@@ -3,6 +3,7 @@ package com.jpii.navalbattle.pavo;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 import java.text.DecimalFormat;
 
@@ -20,6 +21,7 @@ public class GameBeta extends Renderable implements Runnable {
 	World world;
 	WorldGen gen;
 	long numUpdates = 0;
+	boolean forceUpdate = false;
 	private int lastTime = -1;
 	public GameBeta() {
 		world = new World();
@@ -63,10 +65,11 @@ public class GameBeta extends Renderable implements Runnable {
 		if (state == 1) {
 			while (gameRunning) {
 				//System.out.println("Game updator firing..." + Thread.currentThread().getName());
-				while (timeLastUpdate + 10 > System.currentTimeMillis()) {
+				while (timeLastUpdate + 100 > System.currentTimeMillis() || !forceUpdate) {
 					;;;
 				}
-				numUpdates += 10;
+				numUpdates += 100;
+				forceUpdate = false;
 				long updateStart = System.currentTimeMillis();
 				while (getWorld().isLocked()) {}
 				getWorld().lock();
@@ -156,6 +159,26 @@ public class GameBeta extends Renderable implements Runnable {
 		
 	}
 	public void becomingDay() {
+		
+	}
+	/**
+	 * This method should be called sparsingly (which means DO NOT OVER USE). This method is multithreaded, so it puts no stress on the calling thread.
+	 * This method is not actually deprecated, but it is called so to ensure that the above message is read.
+	 * @deprecated
+	 */
+	public void forceUpdate() {
+		forceUpdate = true;
+	}
+	public void mouseMove(MouseEvent me) {
+		
+	}
+	public void mouseDown(MouseEvent me) {
+		
+	}
+	public void mouseUp(MouseEvent me) {
+		
+	}
+	public void mouseDragged(MouseEvent me) {
 		
 	}
 }

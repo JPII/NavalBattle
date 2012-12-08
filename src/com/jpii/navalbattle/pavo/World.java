@@ -42,6 +42,16 @@ public class World extends Renderable implements Interactable {
 		generated = new boolean[chunks.length];
 		buffer = new BufferedImage(DynamicConstants.WND_WDTH,DynamicConstants.WND_HGHT,BufferedImage.TYPE_INT_RGB);
 	}
+	public void setLoc(int x, int y) {
+		sx = x;
+		sy = y;
+	}
+	public void setLocX(int x) {
+		sx = x;
+	}
+	public void setLocY(int y) {
+		sy = y;
+	}
 	public void setWorldGen(WorldGen wg) {
 		gen = wg;
 	}

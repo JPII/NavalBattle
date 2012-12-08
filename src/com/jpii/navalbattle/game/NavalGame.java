@@ -3,11 +3,10 @@
  */
 package com.jpii.navalbattle.game;
 
-import com.jpii.navalbattle.game.entity.Entity;
-import com.jpii.navalbattle.game.entity.Whale;
-import com.jpii.navalbattle.pavo.GameBeta;
-import com.jpii.navalbattle.pavo.PavoHelper;
-import com.jpii.navalbattle.renderer.Console;
+import java.awt.event.MouseEvent;
+
+import com.jpii.navalbattle.game.entity.*;
+import com.jpii.navalbattle.pavo.*;
 
 /**
  * @author MKirkby
@@ -73,5 +72,11 @@ public class NavalGame extends GameBeta {
 	 */
 	public void becomingDave() {
 		// Just kidding.
+	}
+
+	@SuppressWarnings("deprecation")
+	public void mouseDragged(MouseEvent me) {
+		getWorld().setLoc(getWorld().getScreenX()+1,getWorld().getScreenY()+1); // Add one to the screen position in the world.
+		forceUpdate(); // SEE WARNING IN DESCRIPTION!!! THIS METHOD IS NOT ACTUALLY DECREPATED!!!
 	}
 }
