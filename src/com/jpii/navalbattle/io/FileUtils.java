@@ -1,4 +1,4 @@
-package com.jpii.navalbattle.util;
+package com.jpii.navalbattle.io;
 
 import java.io.*;
 import java.net.*;
