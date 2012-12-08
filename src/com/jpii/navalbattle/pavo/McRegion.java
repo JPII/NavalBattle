@@ -13,25 +13,41 @@ public class McRegion {
 		float lvl3 = getLevel3(x,z);
 		float lvl4 = getLevel4(x,z);
 		float lvl5 = getLevel5(x,z);
-		float mixer = ((lvl0*30.0f)+(lvl1*20.0f)+(lvl2*15.0f)+(lvl3*13.0f)+(lvl4*10.0f)+(lvl5*2.0f))/90.0f;
+		float lvl6 = getLevel6(x,z);
+		float lvl7 = getLevel7(x,z);
+		float mixer = ((lvl0*30.0f)+(lvl1*20.0f)+(lvl2*5.0f)+(lvl3*3.0f)+
+				(lvl4*5.0f)+(lvl5*2.0f)+(lvl6*1.5f)-(lvl7*12.0f))/98.5f;
 		return (mixer+1)/2.0f;
 	}
+	private static float ld0 = 4096;
+	private static float ld1 = 128;
+	private static float ld2 = 2;
+	private static float ld3 = 4;
+	private static float ld4 = 32;
+	private static float ld5 = 1024;
+	private static float ld7 = 8196;
+	private static float getLevel7(float x, float z) {
+		return berlin.noise(x/ld7,z/ld7);
+	}
 	private static float getLevel0(float x, float z) {
-		return berlin.noise(x/16, z/16);
+		return berlin.noise(x/ld0, z/ld0);
+	}
+	private static float getLevel6(float x, float z) {
+		return berlin.noise(x,z);
 	}
 	private static float getLevel1(float x, float z) {
-		return berlin.noise(x/4,z/4);
+		return berlin.noise(x/ld1,z/ld1);
 	}
 	private static float getLevel2(float x, float z) {
-		return berlin.noise(x/8,z/8);
+		return berlin.noise(x/ld2,z/ld2);
 	}
 	private static float getLevel3(float x, float z) {
-		return berlin.noise(x/16,z/16);
+		return berlin.noise(x/ld3,z/ld3);
 	}
 	private static float getLevel4(float x, float z) {
-		return berlin.noise(x/32,z/32);
+		return berlin.noise(x/ld4,z/ld4);
 	}
 	private static float getLevel5(float x, float z) {
-		return berlin.noise(x/64,z/64);
+		return berlin.noise(x/ld5,z/ld5);
 	}
 }

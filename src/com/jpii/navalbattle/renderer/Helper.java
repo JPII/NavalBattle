@@ -8,6 +8,8 @@ import java.io.*;
 import java.util.*;
 import javax.imageio.*;
 
+import maximusvladimir.dagen.Rand;
+
 /**
  * The rendering helper. Consists of static methods.
  * @author MKirkby
@@ -412,5 +414,23 @@ public class Helper {
         g = colorSnap(g);
         b = colorSnap(b);
         return new Color(r, g, b, orig.getAlpha());
+    }
+	public static Color randomise(Color orig, int maxDiff, Rand rand, boolean includeAlpha) {
+		int r = orig.getRed();
+        int g = orig.getGreen();
+        int b = orig.getBlue();
+        int a = orig.getAlpha();
+
+        r += rand.nextInt(maxDiff + maxDiff) - maxDiff;
+        g += rand.nextInt(maxDiff + maxDiff) - maxDiff;
+        b += rand.nextInt(maxDiff + maxDiff) - maxDiff;
+        if (includeAlpha) a += rand.nextInt(maxDiff + maxDiff) - maxDiff;
+
+        r = colorSnap(r);
+        g = colorSnap(g);
+        b = colorSnap(b);
+        a = colorSnap(a);
+
+        return new Color(r, g, b, a);
     }
 }
