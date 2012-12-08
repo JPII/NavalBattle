@@ -2,11 +2,13 @@ package com.jpii.navalbattle.pavo;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.io.File;
 
 import com.jpii.navalbattle.data.Constants;
+import com.jpii.navalbattle.io.Interactable;
 
 
-public class World extends Renderable {
+public class World extends Renderable implements Interactable {
 	WorldGen gen;
 	Chunk[] chunks;
 	BufferedImage buffer;
@@ -139,5 +141,26 @@ public class World extends Renderable {
 	}
 	public TimeManager getTimeManager() {
 		return time;
+	}
+	public void save(String path) {
+		File file = new File(path);
+		boolean throwError = false;
+		try {
+			if (!file.exists()) {
+				if (!file.createNewFile()) {
+					throwError = true;
+				}
+			}
+		}
+		catch (Error err) {
+		}
+		catch (Exception ex) {
+		}
+		if (throwError)
+			throw new java.lang.IllegalArgumentException("Unable to save file. See store for details");
+	}
+	public void load(String path) {
+	}
+	public void peekElements() {
 	}
 }

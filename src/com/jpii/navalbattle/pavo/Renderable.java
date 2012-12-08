@@ -45,6 +45,22 @@ public class Renderable {
 	public void setHeight(int h) {
 		height = h;
 	}
+	/**
+	 * This method is called when data needs to be sent to the server. It is added to the stack, to be prepaired to be sent to the server.
+	 * @param packetId The identifier to send to the server.
+	 * @param data The data to be sent to the server.
+	 */
+	public void uplink(byte packetId, String data) {
+		
+	}
+	/**
+	 * This method is called when data has arrived from the server, and is ready to be handed to this object.
+	 * @param packetId The id number of the packet that was sent.
+	 * @param data The data contained within the packet.
+	 */
+	public void readLink(byte packetId, String data) {
+		
+	}
 	public void setSize(int w, int h) {
 		width = w;
 		height = h;

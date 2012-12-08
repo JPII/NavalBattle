@@ -35,4 +35,7 @@ public class MaxTests {
 			System.out.println(GrammarManager.generateFullName(r.nextInt()));
 		}
 	}
+	public static boolean isFirstRun() {
+		
+	}
 }
