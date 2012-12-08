@@ -20,6 +20,7 @@ public class GameBeta extends Renderable implements Runnable {
 	World world;
 	WorldGen gen;
 	long numUpdates = 0;
+	private int lastTime = -1;
 	public GameBeta() {
 		world = new World();
 		gen = new WorldGen();
@@ -71,6 +72,22 @@ public class GameBeta extends Renderable implements Runnable {
 				getWorld().lock();
 				getWorld().update();
 				getWorld().unlock();
+				TimeManager tim = getWorld().getTimeManager();
+				if (tim.getState() != lastTime) {
+					lastTime = tim.getState();
+					if (lastTime == 3) {
+						becomingDay();
+					}
+					else if (lastTime == 2) {
+						becomingSunrise();
+					}
+					else if (lastTime == 1) {
+						becomingNight();
+					}
+					else if (lastTime == 0) {
+						becomingSunset();
+					}
+				}
 				update();
 				long updateFinish = System.currentTimeMillis() - updateStart;
 				getStats().SmSK280K99(updateFinish);
@@ -80,7 +97,7 @@ public class GameBeta extends Renderable implements Runnable {
 		// Chunk renderer
 		else if (state == 2) {
 			while (gameRunning) {
-				//System.out.println("Chunk gen firing..." + Thread.currentThread().getName());
+				//System. out.println("Chunk gen firing..." + Thread.currentThread().getName());
 				if (getWorld().hasMoreChunks()) {
 					getWorld().genNextChunk();
 					// Make a small break between each generation.
@@ -141,5 +158,4 @@ public class GameBeta extends Renderable implements Runnable {
 	public void becomingDay() {
 		
 	}
-	
 }

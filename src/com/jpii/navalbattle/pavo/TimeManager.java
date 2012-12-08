@@ -82,6 +82,9 @@ public class TimeManager extends Renderable {
     	minute = (int)((thour - d) * 60);
     	hour = d;
 	}
+	public int getState() {
+		return timeD;
+	}
 	public String getTimeDescription() {
 		return desc;
 	}
