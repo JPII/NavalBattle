@@ -10,7 +10,7 @@ public class TimeManager extends Renderable {
 	public static int NightDarkness = 175;
 	private int hour = 0;
 	private String desc = "";
-	private double currentTime = 0.0;
+	private double currentTime = ((double)DayNightTotalLengthSeconds)/2;
 	private Color cdr = new Color(0,0,0,0);
 	private Color lcd = new Color(0,0,0,0);
 	private int timeD = 0;
