@@ -9,7 +9,7 @@ public class PlayerUtils {
 	 * @param username
 	 * @return
 	 */
-	public int toId(String username) {
+	public static int toId(String username) {
 		// TODO: Implement
 		return 0;
 	}
@@ -19,7 +19,7 @@ public class PlayerUtils {
 	 * @param id
 	 * @return
 	 */
-	public String toString(int id) {
+	public static String toString(int id) {
 		// TODO: Implement
 		return "";
 	}
@@ -29,7 +29,7 @@ public class PlayerUtils {
 	 * @param username
 	 * @return
 	 */
-	public int getFriendCount(String username) {
+	public static int getFriendCount(String username) {
 		// TODO: Implement
 		return 0;
 	}
@@ -39,7 +39,7 @@ public class PlayerUtils {
 	 * @param id
 	 * @return
 	 */
-	public int getFriendCount(int id) {
+	public static int getFriendCount(int id) {
 		// TODO: Implement
 		return 0;
 	}
@@ -49,7 +49,7 @@ public class PlayerUtils {
 	 * @param player
 	 * @return
 	 */
-	public int getFriendCount(Player player) {
+	public static int getFriendCount(Player player) {
 		// TODO: Implement
 		return 0;
 	}
@@ -59,7 +59,7 @@ public class PlayerUtils {
 	 * @param username
 	 * @return
 	 */
-	public String getGravatarUrl(String username) {
+	public static String getGravatarUrl(String username) {
 		// TODO: Implement
 		return "";
 	}
@@ -69,7 +69,7 @@ public class PlayerUtils {
 	 * @param id
 	 * @return
 	 */
-	public String getGravatarUrl(int id) {
+	public static String getGravatarUrl(int id) {
 		// TODO: Implement
 		return "";
 	}
@@ -79,7 +79,7 @@ public class PlayerUtils {
 	 * @param player
 	 * @return
 	 */
-	public String getGravatarUrl(Player player) {
+	public static String getGravatarUrl(Player player) {
 		// TODO: Implement
 		return "";
 	}
