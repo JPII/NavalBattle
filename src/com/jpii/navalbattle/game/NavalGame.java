@@ -83,7 +83,7 @@ public class NavalGame extends GameBeta {
 	}
 	@SuppressWarnings("deprecation")
 	public void mouseDragged(MouseEvent me) {
-		getWorld().setLoc(getWorld().getScreenX()+1,getWorld().getScreenY()+1); // Add one to the screen position in the world.
+		getWorld().setLoc(getWorld().getScreenX()-1,getWorld().getScreenY()-1); // Add one to the screen position in the world.
 		forceUpdate(); // SEE WARNING IN DESCRIPTION!!! THIS METHOD IS NOT ACTUALLY DECREPATED!!!
 	}
 }
