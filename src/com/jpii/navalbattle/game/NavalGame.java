@@ -3,6 +3,7 @@
  */
 package com.jpii.navalbattle.game;
 
+import java.awt.Graphics2D;
 import java.awt.event.MouseEvent;
 
 import com.jpii.navalbattle.game.entity.*;
@@ -13,8 +14,10 @@ import com.jpii.navalbattle.pavo.*;
  * A sample game file.
  */
 public class NavalGame extends GameBeta {
+	PlayerProfileWindow ppw;
 	public NavalGame() {
 		super();
+		ppw = new PlayerProfileWindow();
 	}
 	/**
 	 * Mulithreaded updator.
@@ -73,7 +76,11 @@ public class NavalGame extends GameBeta {
 	public void becomingDave() {
 		// Just kidding.
 	}
-
+	public void render() {
+		super.render();
+		Graphics2D g = PavoHelper.createGraphics(getBuffer());
+		g.drawImage(ppw.getBuffer(),200,50,null);
+	}
 	@SuppressWarnings("deprecation")
 	public void mouseDragged(MouseEvent me) {
 		getWorld().setLoc(getWorld().getScreenX()+1,getWorld().getScreenY()+1); // Add one to the screen position in the world.
