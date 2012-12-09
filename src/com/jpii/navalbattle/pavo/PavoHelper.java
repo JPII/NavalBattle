@@ -10,12 +10,14 @@ public class PavoHelper {
 	public static boolean isChunkVisibleOnScreen(World w, Chunk c) {
 		if (w == null || c == null)
 			return false;
-		int sx = w.getScreenX();
-		int sy = w.getScreenY();
+		int sx = Math.abs(w.getScreenX());
+		int sy = Math.abs(w.getScreenY());
 		int px = c.getX() * 100;
 		int py = c.getZ() * 100;
-		if (px >= sx && py >= sy && px <= sx + DynamicConstants.WND_WDTH && py <= sy + DynamicConstants.WND_HGHT)
+		if (sx+px >= 0 && sy+py >= 0 && px-sx <= DynamicConstants.WND_WDTH && py-sy <= DynamicConstants.WND_HGHT){
+			//System.out.println("px="+px+"sx="+sx+"py="+py+"sy="+sy);
 			return true;
+		}
 		else
 			return false;
 	}
