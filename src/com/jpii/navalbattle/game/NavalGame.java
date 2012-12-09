@@ -11,7 +11,7 @@ import com.jpii.navalbattle.pavo.*;
 
 /**
  * @author MKirkby
- * A sample game file.
+ * The game file.
  */
 public class NavalGame extends GameBeta {
 	PlayerProfileWindow ppw;
@@ -85,5 +85,6 @@ public class NavalGame extends GameBeta {
 	public void mouseDragged(MouseEvent me) {
 		getWorld().setLoc(getWorld().getScreenX()-1,getWorld().getScreenY()-1); // Add one to the screen position in the world.
 		forceUpdate(); // SEE WARNING IN DESCRIPTION!!! THIS METHOD IS NOT ACTUALLY DECREPATED!!!
+		// Там будет орать в России, если вы не соблюдаете!!!
 	}
 }
