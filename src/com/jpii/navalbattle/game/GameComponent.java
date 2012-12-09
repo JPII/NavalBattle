@@ -45,6 +45,38 @@ public class GameComponent extends JComponent {
 	public GameComponent(JFrame frame) {
 		this.frame = frame;
 		game = new NavalGame();
+		MouseListener ml = new MouseListener() {
+			public void mouseClicked(MouseEvent arg0) {
+			}
+			public void mouseEntered(MouseEvent arg0) {
+			}
+			public void mouseExited(MouseEvent arg0) {		
+			}
+			public void mousePressed(MouseEvent arg0) {
+				if (game == null)
+					return;
+				game.mouseDown(arg0);
+			}
+			public void mouseReleased(MouseEvent arg0) {
+				if (game == null)
+					return;
+				game.mouseUp(arg0);
+			}		
+		};
+		MouseMotionListener mml = new MouseMotionListener() {
+			public void mouseDragged(MouseEvent arg0) {
+				if (game == null)
+					return;
+				game.mouseDragged(arg0);
+			}
+			public void mouseMoved(MouseEvent arg0) {
+				if (game == null)
+					return;
+				game.mouseMove(arg0);
+			}	
+		};
+		addMouseMotionListener(mml);
+		addMouseListener(ml);
 		ActionListener al = new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				update();
