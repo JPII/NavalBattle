@@ -11,7 +11,7 @@ public class Achievement {
 	private int id;
 	
 	/**
-	 * Create a new <code>Achievement</code>
+	 * Create a new <code>Achievement</code>.
 	 * @param id
 	 */
 	public Achievement(int id) {
@@ -19,7 +19,7 @@ public class Achievement {
 	}
 	
 	/**
-	 * Get <code>Achievement</code> ID
+	 * Get <code>Achievement</code> ID.
 	 * @return id
 	 */
 	public int getID() {
@@ -62,5 +62,14 @@ public class Achievement {
 		}
 		
 		return false;
+	}
+	
+	/**
+	 * Returns the number of users who have completed the achievement.
+	 * @return
+	 */
+	public int numberAchieved() {
+		// TODO: Implement
+		return 0;
 	}
 }
