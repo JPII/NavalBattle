@@ -11,7 +11,7 @@ public class Leaderboard {
 	private int id;
 	
 	/**
-	 * Create a new <code>Leaderboard</code>
+	 * Create a new <code>Leaderboard</code>.
 	 * @param id
 	 */
 	public Leaderboard(int id) {
@@ -19,7 +19,7 @@ public class Leaderboard {
 	}
 	
 	/**
-	 * Get <code>Leaderboard</code> ID
+	 * Get <code>Leaderboard</code> ID.
 	 * @return
 	 */
 	public int getID() {

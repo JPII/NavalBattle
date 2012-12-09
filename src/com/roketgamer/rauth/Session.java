@@ -12,7 +12,7 @@ public class Session {
 	private String sessionID;
 	
 	/**
-	 * Create a new <code>Session</code>
+	 * Create a new <code>Session</code>.
 	 * @param sessionID
 	 */
 	public Session(String sessionID) {
@@ -20,7 +20,7 @@ public class Session {
 	}
 	
 	/**
-	 * Get session ID
+	 * Get session ID.
 	 * @return
 	 */
 	public String getSessionID() {

@@ -5,7 +5,7 @@ public class APIKey {
 	private String key;
 	
 	/**
-	 * Create a new <code>APIKey</code>
+	 * Create a new <code>APIKey</code>.
 	 * @param key
 	 */
 	public APIKey(String key) {
@@ -13,7 +13,7 @@ public class APIKey {
 	}
 	
 	/**
-	 * Get API key
+	 * Get API key.
 	 * @return
 	 */
 	public String getKey() {
@@ -21,7 +21,7 @@ public class APIKey {
 	}
 	
 	/**
-	 * Set API key
+	 * Set API key.
 	 * @param key
 	 */
 	public void setKey(String key) {

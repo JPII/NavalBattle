@@ -76,7 +76,7 @@ public class RoketGamer {
 	}
 	
 	/**
-	 * Returns current <code>APIKey</code>
+	 * Returns current <code>APIKey</code>.
 	 * @return
 	 */
 	public APIKey getKey() {
@@ -84,7 +84,7 @@ public class RoketGamer {
 	}
 	
 	/**
-	 * Return current <code>Player</code>
+	 * Return current <code>Player</code>.
 	 * @return
 	 */
 	public Player getPlayer() {
@@ -92,7 +92,7 @@ public class RoketGamer {
 	}
 	
 	/**
-	 * Return current <code>Session</code>
+	 * Return current <code>Session</code>.
 	 * @return
 	 */
 	public Session getSession() {
@@ -100,7 +100,7 @@ public class RoketGamer {
 	}
 	
 	/**
-	 * Return current <code>AuthStatus</code>
+	 * Return current <code>AuthStatus</code>.
 	 * @return
 	 */
 	public AuthStatus getStatus() {
@@ -108,7 +108,7 @@ public class RoketGamer {
 	}
 	
 	/**
-	 * Return RoketGamer version
+	 * Return RoketGamer version.
 	 * @return
 	 */
 	public String getVersion() {
@@ -116,7 +116,7 @@ public class RoketGamer {
 	}
 	
 	/**
-	 * Return RoketGamer server location
+	 * Return RoketGamer server location.
 	 * @return
 	 */
 	public String getServerLocation() {

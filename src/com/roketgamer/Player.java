@@ -8,7 +8,7 @@ public class Player {
 	private Password password;
 
 	/**
-	 * Create a new <code>Player</code>
+	 * Create a new <code>Player</code>.
 	 * @param username
 	 * @param password
 	 */
@@ -18,7 +18,7 @@ public class Player {
 	}
 
 	/**
-	 * Get player name
+	 * Get player name.
 	 * @return
 	 */
 	public String getName() {
@@ -26,7 +26,7 @@ public class Player {
 	}
 
 	/**
-	 * Get player <code>Password</code>
+	 * Get player <code>Password</code>.
 	 * @return
 	 */
 	public Password getPassword() {

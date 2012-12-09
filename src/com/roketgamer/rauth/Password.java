@@ -6,7 +6,7 @@ public class Password {
 	private String password;
 	
 	/**
-	 * Create a new <code>Password</code>
+	 * Create a new <code>Password</code>.
 	 * @param password
 	 */
 	public Password(String password) {
@@ -15,7 +15,7 @@ public class Password {
 	}
 	
 	/**
-	 * Set password
+	 * Set password.
 	 * @param password
 	 */
 	public void setPassword(String password) {

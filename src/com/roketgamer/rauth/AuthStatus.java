@@ -2,17 +2,17 @@ package com.roketgamer.rauth;
 
 public enum AuthStatus {
 	/**
-	 * Authentication was successful
+	 * Authentication was successful.
 	 */
 	GOOD,
 	
 	/**
-	 * Authentication failed
+	 * Authentication failed.
 	 */
 	BAD,
 	
 	/**
-	 * Server is offline (API is disabled, but the server could be found)
+	 * Server is offline (API is disabled, but the server could be found).
 	 */
 	OFFLINE,
 	
