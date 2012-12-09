@@ -4,6 +4,8 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 
+import maximusvladimir.dagen.Rand;
+
 import com.jpii.navalbattle.data.Constants;
 import com.jpii.navalbattle.io.Interactable;
 
@@ -23,6 +25,7 @@ public class World extends Renderable implements Interactable {
 	EntityManager em = new EntityManager();
 	TimeManager time = new TimeManager();
 	int sx = 0, anisx = 0, anisy = 0,sy = 0;
+	BufferedImage noise;
 	public World() {
 		//for (int c = 0; c < chunks.length; c++) {
 		//	chunks[c] = new Chunk();
@@ -41,6 +44,16 @@ public class World extends Renderable implements Interactable {
 		}
 		generated = new boolean[chunks.length];
 		buffer = new BufferedImage(DynamicConstants.WND_WDTH,DynamicConstants.WND_HGHT,BufferedImage.TYPE_INT_RGB);
+		noise = new BufferedImage(DynamicConstants.WND_WDTH,DynamicConstants.WND_HGHT,BufferedImage.TYPE_INT_RGB);
+		Rand ras = new Rand(Constants.MAIN_SEED+22);
+		Graphics gs2 = noise.getGraphics(); // Q and D
+		for (int x = 0; x < DynamicConstants.WND_WDTH; x+= 2) {
+			for (int y = 0; y < DynamicConstants.WND_HGHT; y+=2) {
+				int rgb = ras.nextInt(127);
+				gs2.setColor(new Color(rgb,rgb,rgb));
+				gs2.fillRect(x,y,2,2);
+			}
+		}
 	}
 	public void setLoc(int x, int y) {
 		sx = x;
@@ -98,11 +111,20 @@ public class World extends Renderable implements Interactable {
 			buffer = new BufferedImage(DynamicConstants.WND_WDTH,DynamicConstants.WND_HGHT,BufferedImage.TYPE_INT_RGB);
 			lww = DynamicConstants.WND_WDTH;
 			lwh = DynamicConstants.WND_HGHT;
+			noise = new BufferedImage(DynamicConstants.WND_WDTH,DynamicConstants.WND_HGHT,BufferedImage.TYPE_INT_RGB);
+			Rand ras = new Rand(Constants.MAIN_SEED+22);
+			Graphics gs2 = noise.getGraphics(); // Q and D
+			for (int x = 0; x < DynamicConstants.WND_WDTH; x+= 2) {
+				for (int y = 0; y < DynamicConstants.WND_HGHT; y+=2) {
+					int rgb = ras.nextInt(127);
+					gs2.setColor(new Color(rgb,rgb,rgb));
+					gs2.fillRect(x,y,2,2);
+				}
+			}
 		}
 		int liveChunks = 0;
 		Graphics g = buffer.getGraphics();
-		g.setColor(Color.darkGray);
-		g.fillRect(0,0,DynamicConstants.WND_WDTH,DynamicConstants.WND_HGHT);
+		g.drawImage(noise, 0, 0, null);
 		for (int x = 0; x < width; x++) {
 			for (int z = 0; z < height; z++) {
 				Chunk chunk = chunks[z*width+x];
