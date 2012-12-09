@@ -22,15 +22,13 @@ public class World extends Renderable implements Interactable {
 	int height = 8;
 	int lww = 800;
 	int lwh = 600;
-	EntityManager em = new EntityManager();
+	EntityManager em;
 	TimeManager time = new TimeManager();
 	int sx = 0, anisx = 0, anisy = 0,sy = 0;
 	BufferedImage noise;
 	public World() {
-		//for (int c = 0; c < chunks.length; c++) {
-		//	chunks[c] = new Chunk();
-		//}
 		ws = WorldSize.WORLD_LARGE;
+		em = new EntityManager(ws);
 		width = PavoHelper.getGameWidth(getWorldSize());
 		height = PavoHelper.getGameHeight(getWorldSize());
 		chunks = new Chunk[(width)*(height)];
@@ -44,6 +42,9 @@ public class World extends Renderable implements Interactable {
 		}
 		generated = new boolean[chunks.length];
 		buffer = new BufferedImage(DynamicConstants.WND_WDTH,DynamicConstants.WND_HGHT,BufferedImage.TYPE_INT_RGB);
+		makeNoise();
+	}
+	public void makeNoise(){
 		noise = new BufferedImage(DynamicConstants.WND_WDTH,DynamicConstants.WND_HGHT,BufferedImage.TYPE_INT_RGB);
 		Rand ras = new Rand(Constants.MAIN_SEED+22);
 		Graphics gs2 = noise.getGraphics(); // Q and D
@@ -111,16 +112,7 @@ public class World extends Renderable implements Interactable {
 			buffer = new BufferedImage(DynamicConstants.WND_WDTH,DynamicConstants.WND_HGHT,BufferedImage.TYPE_INT_RGB);
 			lww = DynamicConstants.WND_WDTH;
 			lwh = DynamicConstants.WND_HGHT;
-			noise = new BufferedImage(DynamicConstants.WND_WDTH,DynamicConstants.WND_HGHT,BufferedImage.TYPE_INT_RGB);
-			Rand ras = new Rand(Constants.MAIN_SEED+22);
-			Graphics gs2 = noise.getGraphics(); // Q and D
-			for (int x = 0; x < DynamicConstants.WND_WDTH; x+= 2) {
-				for (int y = 0; y < DynamicConstants.WND_HGHT; y+=2) {
-					int rgb = ras.nextInt(127);
-					gs2.setColor(new Color(rgb,rgb,rgb));
-					gs2.fillRect(x,y,2,2);
-				}
-			}
+			makeNoise();
 		}
 		int liveChunks = 0;
 		Graphics g = buffer.getGraphics();
@@ -194,5 +186,6 @@ public class World extends Renderable implements Interactable {
 	public void load(String path) {
 	}
 	public void peekElements() {
+		
 	}
 }
