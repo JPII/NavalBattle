@@ -65,7 +65,9 @@ public class GameBeta extends Renderable implements Runnable {
 		if (state == 1) {
 			while (gameRunning) {
 				//System.out.println("Game updator firing..." + Thread.currentThread().getName());
-				while (timeLastUpdate + 100 > System.currentTimeMillis() || !forceUpdate) {
+				while (timeLastUpdate + 100 > System.currentTimeMillis()) {
+					if (forceUpdate)
+						break;
 					;;;
 				}
 				numUpdates += 100;
