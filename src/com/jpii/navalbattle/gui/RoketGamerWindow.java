@@ -202,7 +202,7 @@ public class RoketGamerWindow extends JFrame{
 		roketgamerTab.add(btnRoketgamer);
 
 		JLabel lblNewLabel = new JLabel("");
-		lblNewLabel.setIcon(new ImageIcon(RoketGamerWindow.class.getResource("/com/jpii/roketgamer/res/logo_50px.png")));
+		lblNewLabel.setIcon(new ImageIcon(RoketGamerWindow.class.getResource("/com/roketgamer/res/logo_50px.png")));
 		lblNewLabel.setBounds(10, 11, 54, 50);
 		roketgamerTab.add(lblNewLabel);
 
