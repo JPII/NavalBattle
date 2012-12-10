@@ -78,8 +78,8 @@ public class NavalGame extends GameBeta {
 	}
 	public void render() {
 		super.render();
-		//Graphics2D g = PavoHelper.createGraphics(getBuffer());
-		//g.drawImage(ppw.getBuffer(),200,50,null);
+		Graphics2D g = PavoHelper.createGraphics(getBuffer());
+		g.drawImage(ppw.getBuffer(),200,50,null);
 	}
 	@SuppressWarnings("deprecation")
 	public void mouseDragged(MouseEvent me) {
