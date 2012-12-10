@@ -1,18 +1,20 @@
-package com.jpii.navalbattle.io;
+package com.jpii.navalbattle.util;
 
+import java.awt.Image;
 import java.io.*;
 import java.net.*;
+
+import javax.imageio.ImageIO;
 
 public class FileUtils {
 	private static File workDir = null;
 
-	public static File getWorkingDirectory() {
+	public static File getSavingDirectory() {
 		if (workDir == null)
-			workDir = getWorkingDirectory("navalbattle");
+			workDir = getSavingDirectory("navalbattle");
 		return workDir;
 	}
-
-	public static File getWorkingDirectory(String applicationName) {
+	public static File getSavingDirectory(String applicationName) {
 		String userHome = System.getProperty("user.home", ".");
 		File workingDirectory;
 		switch (getPlatform()) {
@@ -42,7 +44,27 @@ public class FileUtils {
 							+ workingDirectory);
 		return workingDirectory;
 	}
-
+	
+	public static File getResource(String s){
+		File f=null;
+		try {
+			f= new File(FileUtils.class.getResource("/com/jpii/navalbattle/res/" + s).toURI());
+		} catch (URISyntaxException e) {
+			e.printStackTrace();
+		}
+		return f;
+	}
+	
+	public static Image getImage(String s){
+		Image i = null;
+		try {
+			i = ImageIO.read(FileUtils.class.getResource("/com/jpii/navalbattle/res/"+s));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return i;
+	}
+	
 	private static OS getPlatform() {
 		String osName = System.getProperty("os.name").toLowerCase();
 		if (osName.contains("win"))
@@ -59,11 +81,9 @@ public class FileUtils {
 			return OS.linux;
 		return OS.unknown;
 	}
-
 	public static boolean isEmpty(String str) {
 		return (str == null) || (str.length() == 0);
 	}
-
 	public static void openLink(URI uri) {
 		try {
 			Object o = Class.forName("java.awt.Desktop")
@@ -75,7 +95,6 @@ public class FileUtils {
 			System.out.println("Failed to open link " + uri.toString());
 		}
 	}
-
 	private static enum OS {
 		linux, solaris, windows, macos, unknown;
 	}
