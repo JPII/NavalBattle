@@ -1,6 +1,6 @@
 package com.jpii.navalbattle.util;
 
-import java.awt.Image;
+import java.awt.image.BufferedImage;
 import java.io.*;
 import java.net.*;
 
@@ -55,11 +55,14 @@ public class FileUtils {
 		return f;
 	}
 	
-	public static Image getImage(String s){
-		Image i = null;
+	public static BufferedImage getImage(String s){
+		BufferedImage i = null;
+		System.out.println(FileUtils.class.getResource("/com/jpii/navalbattle/res/"+s));
 		try {
 			i = ImageIO.read(FileUtils.class.getResource("/com/jpii/navalbattle/res/"+s));
 		} catch (IOException e) {
+			System.out.println(FileUtils.class.getResource("/com/jpii/navalbattle/res/"+s));
+			System.out.println("here");
 			e.printStackTrace();
 		}
 		return i;

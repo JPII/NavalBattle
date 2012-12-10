@@ -6,7 +6,8 @@ import java.awt.geom.*;
 import java.awt.image.*;
 import java.io.*;
 import java.util.*;
-import javax.imageio.*;
+
+import com.jpii.navalbattle.util.FileUtils;
 
 import maximusvladimir.dagen.Rand;
 
@@ -46,13 +47,14 @@ public class Helper {
 		GUI_MENU_TITLE_FONT = new Font("Munro",0,56);
 		try {
 			GUI_OMNIMAP_BACKGROUND1 = 
-					ImageIO.read(Helper.class.getResource("/com/jpii/navalbattle/res/gui_omnimap_background1.png"));
+					FileUtils.getImage(("drawable-gui/gui_omnimap_background1.png"));
 			GUI_OMNIMAP_BACKGROUND2 = 
-					ImageIO.read(Helper.class.getResource("/com/jpii/navalbattle/res/gui_omnimap_background2.png"));
-			GUI_WINDOW_ICON = ImageIO.read(Helper.class.getResource("/com/jpii/navalbattle/res/gui_window_icon.png"));
-			GUI_GLYPHS = ImageIO.read(Helper.class.getResource("/com/jpii/navalbattle/res/glyphs.bmp"));
+					FileUtils.getImage(("drawable-gui/gui_omnimap_background2.png"));
+			GUI_WINDOW_ICON = FileUtils.getImage(("drawable-gui/gui_window_icon.png"));
+			GUI_GLYPHS= FileUtils.getImage(("font/glyphs.bmp"));
 			
 		} catch (Exception e) {
+			e.printStackTrace();
 		}
 		
 		
