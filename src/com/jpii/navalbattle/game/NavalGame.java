@@ -103,6 +103,6 @@ public class NavalGame extends GameBeta {
 		else
 			mzy = -((my-wh))/ad;
 		getWorld().setLoc(getWorld().getScreenX()+mzx,getWorld().getScreenY()+mzy); // Add one to the screen position in the world.
-		forceUpdate(); // SEE WARNING IN DESCRIPTION!!! THIS METHOD IS NOT ACTUALLY DECREPATED!!!
+		//forceUpdate(); // SEE WARNING IN DESCRIPTION!!! THIS METHOD IS NOT ACTUALLY DECREPATED!!!
 	}
 }
