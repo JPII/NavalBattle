@@ -16,10 +16,12 @@ public class GameWindow extends Renderable {
 	Color bck_clr;
 	boolean showTitle;
 	String title;
+	boolean visible;
 	public GameWindow() {
 		bck_clr = new Color(193,172,134);
 		showTitle = true;
 		title = "GameWindow";
+		visible = true;
 	}
 	public void render() {
 		buffer = new BufferedImage(getWidth()+1,getHeight()+1,BufferedImage.TYPE_INT_ARGB);
@@ -78,6 +80,26 @@ public class GameWindow extends Renderable {
 		width = w;
 		height = h;
 		render();
+	}
+	public void setVisible(boolean vale) {
+		visible = vale;
+	}
+	public boolean isVisible() {
+		return visible;
+	}
+	public void onCloseCalled() {
+		setVisible(false);
+	}
+	int x,y;
+	public int getX() {
+		return x;
+	}
+	public int getY() {
+		return y;
+	}
+	public void setLoc(int x, int y) {
+		this.x = x;
+		this.y = y;
 	}
 
 }
