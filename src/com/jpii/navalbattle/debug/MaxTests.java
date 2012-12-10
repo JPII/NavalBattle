@@ -1,5 +1,6 @@
 package com.jpii.navalbattle.debug;
 
+import com.jpii.navalbattle.pavo.FastMath;
 import com.jpii.navalbattle.util.GrammarManager;
 
 import maximusvladimir.dagen.Rand;
@@ -31,9 +32,11 @@ public class MaxTests {
 		reader.read();
 		}*/
 		Rand r = new Rand();
-		for (int c = 0; c < 10; c++) {
+		for (int c = 0; c < 3; c++) {
 			System.out.println(GrammarManager.generateFullName(r.nextInt()));
 		}
+		System.out.println("Fast Math calc: " + FastMath.sin(0.14235));
+		System.out.println("Java Math calc: " + Math.sin(0.14235*(Math.PI/2)));
 	}
 	public static boolean isFirstRun() {
 		return true;

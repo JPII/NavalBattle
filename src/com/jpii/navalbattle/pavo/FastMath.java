@@ -25,13 +25,12 @@ public class FastMath {
 	}
 	/**
 	 * Trig sine function estimator.
-	 * @param x
+	 * @param x The value to sine. Accurate to about 7 digits.
 	 * @return
 	 */
 	public static double sin(double x) {
-		//x *= (Math.PI/2);
-		double x2 = x;// * x;
-		return ((((.00015148419 * x2 - .00467376557) * x2 + .07968967928) * x2 - .64596371106) * x2 + 1.57079631847) * x;
+		  double p = x * x;
+		  return (((((0.00015148419 * p - 0.00467376557) * p + 0.07968967928) * p - 0.64596371106) * p + 1.57079631847) * x);
 	}
 	/**
 	 * Trig cosine function estimator.
@@ -41,7 +40,60 @@ public class FastMath {
 	public static double cos(double x) {
 		return Math.sqrt(1 - sin(x));
 	}
-	
+	public static double atan2(double y, double x)
+	  {
+	    double d2 = x*x + y*y;
+	    if (Double.isNaN(d2) ||
+	        (Double.doubleToRawLongBits(d2) < 0x10000000000000L))
+	    {
+	      return Double.NaN;
+	    }
+	    boolean negY = y < 0.0;
+	    if (negY) {y = -y;}
+	    boolean negX = x < 0.0;
+	    if (negX) {x = -x;}
+	    boolean steep = y > x;
+	    if (steep)
+	    {
+	      double t = x;
+	      x = y;
+	      y = t;
+	    }
+	    double rinv = invSqrt(d2);
+	    x *= rinv;
+	    y *= rinv;
+	    double yp = FRAC_BIAS + y;
+	    int ind = (int) Double.doubleToRawLongBits(yp);
+	    double yt = ASIN_TAB[ind];
+	    double csz = COS_TAB[ind];
+	    double sz = yp - FRAC_BIAS;
+	    double sd = y * csz - x * sz;
+	    double d = (6.0 + sd * sd) * sd * ONE_SIXTH;
+	    double tr = yt + d;
+	    if (steep) { tr = Math.PI * 0.5 - tr; }
+	    if (negX) { tr = Math.PI - tr; }
+	    if (negY) { tr = -tr; }
+
+	    return tr;
+	  }
+	private static final double ONE_SIXTH = 1.0 / 6.0;
+	  private static final int FRAC_EXP = 8;
+	  private static final int LUT_SIZE = (1 << FRAC_EXP) + 1;
+	  private static final double FRAC_BIAS =
+	    Double.longBitsToDouble((0x433L - FRAC_EXP) << 52);
+	  private static final double[] ASIN_TAB = new double[LUT_SIZE];
+	  private static final double[] COS_TAB = new double[LUT_SIZE];
+
+	  static
+	  {
+	    for (int ind = 0; ind < LUT_SIZE; ++ ind)
+	    {
+	      double v = ind / (double) (1 << FRAC_EXP);
+	      double asinv = Math.asin(v);
+	      COS_TAB[ind] = Math.cos(asinv);
+	      ASIN_TAB[ind] = asinv;
+	    }
+	  }
 	/*public static double atan2(double y, double x)
 	{
 	         double absx, absy, val, M_PI, M_PI_2;
