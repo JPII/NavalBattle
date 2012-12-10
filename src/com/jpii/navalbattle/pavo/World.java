@@ -28,14 +28,14 @@ public class World extends Renderable implements Interactable {
 	BufferedImage noise;
 	public World() {
 		ws = WorldSize.WORLD_LARGE;
-		em = new EntityManager(ws);
+		em = new EntityManager(this);
 		width = PavoHelper.getGameWidth(getWorldSize());
 		height = PavoHelper.getGameHeight(getWorldSize());
 		chunks = new Chunk[(width)*(height)];
 		for (int x = 0;x < width; x++) {
 			for (int z = 0; z < height; z++) {
 				int i = z*width+x;
-				chunks[i] = new Chunk();
+				chunks[i] = new Chunk(this);
 				chunks[i].setX(x);
 				chunks[i].setZ(z);
 			}
