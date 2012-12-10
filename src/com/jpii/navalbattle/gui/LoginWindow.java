@@ -22,6 +22,7 @@ import java.awt.event.*;
 import com.jpii.navalbattle.NavalBattle;
 import com.jpii.navalbattle.data.Constants;
 import com.jpii.navalbattle.gui.listeners.Focus;
+import com.jpii.navalbattle.util.FileUtils;
 import com.jpii.navalbattle.util.URLUtils;
 import com.roketgamer.Player;
 import com.roketgamer.rauth.*;
@@ -124,7 +125,7 @@ public class LoginWindow extends Window {
 				new Password(passwordField.getText())));
 		
 		if (status == AuthStatus.GOOD) {
-			NavalBattle.getWindowHandler().getToasterManager().showToaster(new ImageIcon(getClass().getResource("/com/roketgamer/res/logo_100px.png")), "Logged in as " + NavalBattle.getRoketGamer().getPlayer().getName());
+			NavalBattle.getWindowHandler().getToasterManager().showToaster(new ImageIcon(FileUtils.getResourcePath("drawable-gui/logo_100px.png")), "Logged in as " + NavalBattle.getRoketGamer().getPlayer().getName());
 			NavalBattle.getDebugWindow().printInfo("User authenticated");
 			NavalBattle.getDebugWindow().printInfo("Logged in as: " + NavalBattle.getRoketGamer().getPlayer().getName());
 			NavalBattle.getGameState().setOffline(false);

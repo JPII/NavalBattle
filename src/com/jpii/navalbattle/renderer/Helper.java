@@ -105,7 +105,6 @@ public class Helper {
 							}
 						}
 					}
-					//GUI_GLYPH_CHARS[c] = copy;
 					c++;
 				}
 			}
@@ -210,7 +209,6 @@ public class Helper {
 				img = GUI_GLYPH_CHARS[58];
 			break;
 		}
-		
 		g.drawImage(img,x,y,null);
 	}
 	/**

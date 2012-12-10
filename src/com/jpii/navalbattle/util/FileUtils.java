@@ -45,10 +45,14 @@ public class FileUtils {
 		return workingDirectory;
 	}
 	
+	public static URL getResourcePath(String s){
+		return FileUtils.class.getResource("/com/jpii/navalbattle/res/" + s);
+	}
+	
 	public static File getResource(String s){
 		File f=null;
 		try {
-			f= new File(FileUtils.class.getResource("/com/jpii/navalbattle/res/" + s).toURI());
+			f= new File((getResourcePath(s).toURI()));
 		} catch (URISyntaxException e) {
 			e.printStackTrace();
 		}
@@ -57,12 +61,9 @@ public class FileUtils {
 	
 	public static BufferedImage getImage(String s){
 		BufferedImage i = null;
-		System.out.println(FileUtils.class.getResource("/com/jpii/navalbattle/res/"+s));
 		try {
 			i = ImageIO.read(FileUtils.class.getResource("/com/jpii/navalbattle/res/"+s));
 		} catch (IOException e) {
-			System.out.println(FileUtils.class.getResource("/com/jpii/navalbattle/res/"+s));
-			System.out.println("here");
 			e.printStackTrace();
 		}
 		return i;

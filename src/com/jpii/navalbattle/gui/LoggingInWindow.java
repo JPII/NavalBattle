@@ -8,6 +8,7 @@ import java.awt.event.MouseEvent;
 import javax.swing.*;
 
 import com.jpii.navalbattle.data.Constants;
+import com.jpii.navalbattle.util.FileUtils;
 
 @SuppressWarnings("serial")
 public class LoggingInWindow extends Window {
@@ -35,13 +36,13 @@ public class LoggingInWindow extends Window {
 			public void actionPerformed(ActionEvent arg0) {
 				length += Constants.SPLASH_DURATION;
 				if (currentImage == 0) {
-					label.setIcon(new ImageIcon(LoggingInWindow.class.getResource("/com/jpii/navalbattle/res/jpii_title.png")));
+					label.setIcon(new ImageIcon(FileUtils.getResourcePath(("drawable-gui/jpii_title.png"))));
 				}
 				else if (currentImage == 1) {
-					label.setIcon(new ImageIcon(LoggingInWindow.class.getResource("/com/jpii/navalbattle/res/roketgamer_title.png")));
+					label.setIcon(new ImageIcon(FileUtils.getResourcePath(("drawable-gui/roketgamer_title.png"))));
 				}
 				else {
-					label.setIcon(new ImageIcon(LoggingInWindow.class.getResource("/com/jpii/navalbattle/res/navalbattle_title.png")));
+					label.setIcon(new ImageIcon(FileUtils.getResourcePath(("drawable-gui/navalbattle_title.png"))));
 				}
 				if (currentImage == 2)
 					currentImage = 0;
