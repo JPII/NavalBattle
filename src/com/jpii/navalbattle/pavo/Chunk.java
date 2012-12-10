@@ -42,7 +42,7 @@ public class Chunk extends Renderable {
 			//return;
 		//ready = false;
 		rand.setSeed(Constants.MAIN_SEED+(x&z));
-		terrain = new BufferedImage(100,100,BufferedImage.TYPE_INT_RGB);
+		terrain = new BufferedImage(34,34,BufferedImage.TYPE_INT_RGB);
 		Graphics g = terrain.getGraphics();
 		for (int lsx = 0; lsx < 100/3; lsx++) {
 			for (int lsz = 0; lsz < 100/3; lsz++) {
@@ -62,9 +62,10 @@ public class Chunk extends Renderable {
 					g.setColor(Helper.adjust(Helper.randomise(RenderConstants.GEN_GRASS_COLOR,
 	                        RenderConstants.GEN_COLOR_DIFF, rand, false), (1.0-frsh)/2, 50));
 				}
-				g.fillRect(lsx*3,lsz*3,4,4);
+				g.drawLine(lsx,lsz,lsx,lsz);
+				//g.fillRect(lsx*3,lsz*3,4,4);
 			}
-		}
+		} 
 		writeBuffer();
 		//ready = true;
 		generated = true;

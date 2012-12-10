@@ -115,7 +115,8 @@ public class World extends Renderable implements Interactable {
 			makeNoise();
 		}
 		int liveChunks = 0;
-		Graphics g = buffer.getGraphics();
+		Graphics2D g = PavoHelper.createGraphics(buffer);
+		//g.drawIm
 		g.drawImage(noise, 0, 0, null);
 		for (int x = 0; x < width; x++) {
 			for (int z = 0; z < height; z++) {
@@ -132,7 +133,7 @@ public class World extends Renderable implements Interactable {
 						g.fillRect(x*100,z*100,100,100);
 					}
 					else
-						g.drawImage(chunk.getBuffer(), sx+(x*100),sy+(z*100),null);
+						g.drawImage(chunk.getBuffer(), sx+(x*100),sy+(z*100), 303, 303,null);
 					chunk.unlock();
 					liveChunks++;
 				}
