@@ -6,7 +6,6 @@ package com.jpii.navalbattle.game;
 import java.awt.*;
 
 import com.jpii.navalbattle.pavo.*;
-import com.roketgamer.util.PlayerUtils;
 
 /**
  * @author MKirkby

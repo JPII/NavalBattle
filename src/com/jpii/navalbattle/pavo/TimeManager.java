@@ -3,8 +3,6 @@ package com.jpii.navalbattle.pavo;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
-import com.jpii.navalbattle.renderer.RenderConstants;
-
 public class TimeManager extends Renderable {
 	public static int DayNightTotalLengthSeconds = 120;
 	public static int NightDarkness = 175;

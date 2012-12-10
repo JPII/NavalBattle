@@ -1,13 +1,11 @@
 package com.jpii.navalbattle.pavo;
 
 import java.awt.Color;
-import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 import java.text.DecimalFormat;
 
-import com.jpii.navalbattle.renderer.Console;
 import com.jpii.navalbattle.renderer.Helper;
 import com.jpii.navalbattle.util.GameStatistics;
 

@@ -1,7 +1,6 @@
 package maximusvladimir.dagen;
 
-import com.jpii.navalbattle.data.Constants;
-
+@SuppressWarnings("unused")
 public class Perlin extends Generator {
 	private static int B = 0x1000;
     private static int BM = 0xff;
@@ -12,6 +11,7 @@ public class Perlin extends Generator {
     private float[][] g3;
     private float[][] g2;
     private float[] g1;
+    
 	public Perlin(long seed, int width, int height) {
 		super(seed, width, height);
 		p_imp = new int[DEFAULT_SAMPLE_SIZE << 1];
@@ -178,7 +178,7 @@ public class Perlin extends Generator {
         return lerp(sz, c, d);
     }
     
-    private float noise3(double x, double y, double z) {
+	private float noise3(double x, double y, double z) {
         return noise3((float)x,(float)y,(float)z);
     }
     private double imporvedTurbulence(double x,

@@ -3,7 +3,6 @@
  */
 package com.jpii.navalbattle.game;
 
-import java.awt.*;
 import java.awt.event.MouseEvent;
 
 import com.jpii.navalbattle.game.entity.*;
@@ -78,7 +77,6 @@ public class NavalGame extends GameBeta {
 	public void becomingDave() {
 		// Just kidding.
 	}
-	@SuppressWarnings("deprecation")
 	public void mouseDragged(MouseEvent me) {
 		if (getWinMan().mouseDragged(me))
 			return;
