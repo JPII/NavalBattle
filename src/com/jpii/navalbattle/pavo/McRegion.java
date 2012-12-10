@@ -6,6 +6,13 @@ import com.jpii.navalbattle.data.Constants;
 
 public class McRegion {
 	private static Perlin berlin = new Perlin(Constants.MAIN_SEED,0,0);
+	private static River[] rivers;
+	static {
+		rivers = new River[1000];
+		for (int r = 0; r < rivers.length; r++) {
+			rivers[r] = new River();
+		}
+	}
 	public static float getPoint(float x, float z) {
 		float lvl0 = getLevel0(x,z);
 		float lvl1 = getLevel1(x,z);
