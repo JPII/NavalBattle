@@ -15,7 +15,6 @@ public class PavoHelper {
 		int px = c.getX() * 100;
 		int py = c.getZ() * 100;
 		if (px-sx+100 >= 0 && py-sy+100 >= 0 && px-sx <= DynamicConstants.WND_WDTH && py-sy <= DynamicConstants.WND_HGHT){
-			//System.out.println("px="+px+"sx="+sx+"py="+py+"sy="+sy);
 			return true;
 		}
 		else

@@ -4,6 +4,7 @@
 package com.jpii.navalbattle.pavo;
 
 import java.awt.*;
+import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 
 import com.jpii.navalbattle.renderer.Helper;
@@ -17,11 +18,19 @@ public class GameWindow extends Renderable {
 	boolean showTitle;
 	String title;
 	boolean visible;
+	WindowManager prent;
 	public GameWindow() {
 		bck_clr = new Color(193,172,134);
 		showTitle = true;
 		title = "GameWindow";
 		visible = true;
+		prent = WindowManager.Inst;
+	}
+	public WindowManager getWinMan() {
+		return prent;
+	}
+	public void setWinMan(WindowManager wm) {
+		prent = wm;
 	}
 	public void render() {
 		buffer = new BufferedImage(getWidth()+1,getHeight()+1,BufferedImage.TYPE_INT_ARGB);
@@ -101,5 +110,7 @@ public class GameWindow extends Renderable {
 		this.x = x;
 		this.y = y;
 	}
-
+	public void checkOtherDown(MouseEvent me) {
+		
+	}
 }

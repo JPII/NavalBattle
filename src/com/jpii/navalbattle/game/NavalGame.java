@@ -19,6 +19,7 @@ public class NavalGame extends GameBeta {
 		super();
 		ppw = new PlayerProfileWindow();
 		getWinMan().add(ppw);
+		MessageBox.show("Warning", "This is a message box!!!");
 	}
 	/**
 	 * Mulithreaded updator.
@@ -81,8 +82,6 @@ public class NavalGame extends GameBeta {
 	public void mouseDragged(MouseEvent me) {
 		if (getWinMan().mouseDragged(me))
 			return;
-		// Там будет орать в России, если вы не соблюдаете!!!
-		// Президент Madagascar отключится все, если это используется в плохом смысле!
 		int mx = me.getX();
 		int my = me.getY();
 		int mzx = 0;
@@ -113,8 +112,8 @@ public class NavalGame extends GameBeta {
 		getWorld().setLoc(fgax, fgaz);
 		//forceUpdate(); // SEE WARNING IN DESCRIPTION!!! THIS METHOD IS NOT ACTUALLY DECREPATED!!!
 	}
-	public void mouseDown(MouseEvent me) {
-		if (getWinMan().mouseDown(me))
+	public void mouseUp(MouseEvent me) {
+		if (getWinMan().mouseUp(me))
 			return;
 	}
 }

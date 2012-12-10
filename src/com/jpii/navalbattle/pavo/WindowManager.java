@@ -9,6 +9,7 @@ public class WindowManager extends Renderable{
 	ArrayList<GameWindow> wins;
 	public WindowManager() {
 		wins = new ArrayList<GameWindow>();
+		Inst = this;
 	}
 	public void add(GameWindow wnd) {
 		wins.add(wnd);
@@ -25,7 +26,8 @@ public class WindowManager extends Renderable{
 	public void mouseMove(MouseEvent me) {
 		
 	}
-	public boolean mouseDown(MouseEvent me) {
+	public static WindowManager Inst;
+	public boolean mouseUp(MouseEvent me) {
 		int mx = me.getX();
 		int my = me.getY();
 		boolean flag = false;
@@ -38,12 +40,13 @@ public class WindowManager extends Renderable{
 						
 						flag = true;
 					}
+					gw.checkOtherDown(me);
 				}
 			}
 		}
 		return flag;
 	}
-	public void mouseUp(MouseEvent me) {
+	public void mouseDown(MouseEvent me) {
 		
 	}
 	public boolean mouseDragged(MouseEvent me) {
@@ -56,7 +59,7 @@ public class WindowManager extends Renderable{
 				if (gw.isTitleShown()) {
 					if (mx >= gw.getX() - 10 && mx <= gw.getX()+gw.getWidth()+10 && my >= gw.getY()-10 && my <= gw.getY()+34) {
 						gw.setLoc(mx - (gw.getWidth()/2), my - 12);
-						flag = true;
+						return true;
 					}
 				}
 			}
