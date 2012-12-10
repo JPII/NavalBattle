@@ -24,10 +24,18 @@ public class GameBeta extends Renderable implements Runnable {
 	boolean forceUpdate = false;
 	boolean forceRender = false;
 	private int lastTime = -1;
+	private WindowManager windows;
 	public GameBeta() {
+		windows = new WindowManager();
 		world = new World();
 		gen = new WorldGen();
 		threadInit();
+	}
+	public WindowManager getWinMan() {
+		return windows;
+	}
+	public void setWinMan(WindowManager wm) {
+		windows = wm;
 	}
 	public long getNumUpdates() {
 		return numUpdates;
@@ -136,6 +144,7 @@ public class GameBeta extends Renderable implements Runnable {
 		while (getWorld().isLocked()) {
 			
 		}
+		
 		getWorld().lock();
 		getWorld().render();
 		g.drawImage(getWorld().getBuffer(),0,0,null);
@@ -148,6 +157,14 @@ public class GameBeta extends Renderable implements Runnable {
 		g.drawString((getWorld().getTimeManager().getTimeDescription() + " " + getWorld().getTimeManager().getCurrentHour() + ":"+frmtn),100,100);
 		g.drawString("Idling (should be low):" + gs.getDrawIdling() + ". Draw time:" + gs.getDrawTime() + " Live chunks:" + gs.getLiveChunks(),100,130);
 		getWorld().unlock();
+		
+		while (getWinMan().isLocked()) {
+			
+		}
+		getWinMan().lock();
+		getWinMan().render();
+		g.drawImage(getWinMan().getBuffer(), 0, 0, null);
+		getWinMan().unlock();
 	}
 	public World getWorld() {
 		return world;

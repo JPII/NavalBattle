@@ -3,7 +3,7 @@
  */
 package com.jpii.navalbattle.game;
 
-import java.awt.Graphics2D;
+import java.awt.*;
 import java.awt.event.MouseEvent;
 
 import com.jpii.navalbattle.game.entity.*;
@@ -18,6 +18,7 @@ public class NavalGame extends GameBeta {
 	public NavalGame() {
 		super();
 		ppw = new PlayerProfileWindow();
+		getWinMan().add(ppw);
 	}
 	/**
 	 * Mulithreaded updator.
@@ -76,13 +77,10 @@ public class NavalGame extends GameBeta {
 	public void becomingDave() {
 		// Just kidding.
 	}
-	public void render() {
-		super.render();
-		//Graphics2D g = PavoHelper.createGraphics(getBuffer());
-		//g.drawImage(ppw.getBuffer(),200,50,null);
-	}
 	@SuppressWarnings("deprecation")
 	public void mouseDragged(MouseEvent me) {
+		if (getWinMan().mouseDragged(me))
+			return;
 		// Там будет орать в России, если вы не соблюдаете!!!
 		// Президент Madagascar отключится все, если это используется в плохом смысле!
 		int mx = me.getX();
@@ -114,5 +112,9 @@ public class NavalGame extends GameBeta {
 			fgaz = -((PavoHelper.getGameHeight(getWorld().getWorldSize()) * 100)-100);
 		getWorld().setLoc(fgax, fgaz);
 		//forceUpdate(); // SEE WARNING IN DESCRIPTION!!! THIS METHOD IS NOT ACTUALLY DECREPATED!!!
+	}
+	public void mouseDown(MouseEvent me) {
+		if (getWinMan().mouseDown(me))
+			return;
 	}
 }

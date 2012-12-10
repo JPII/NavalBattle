@@ -35,6 +35,7 @@ public class WindowManager extends Renderable{
 				if (gw.isTitleShown()) {
 					if (mx >= gw.getWidth()-23+gw.getX() && mx <= gw.getWidth()-3+gw.getX() && my >= gw.getY() + 2 && my <= gw.getY() + 20) {
 						gw.onCloseCalled();
+						
 						flag = true;
 					}
 				}
