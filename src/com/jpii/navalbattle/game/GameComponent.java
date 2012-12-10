@@ -83,7 +83,7 @@ public class GameComponent extends JComponent {
 				repaint();
 			}
 		};
-		ticker = new Timer(100, al);
+		ticker = new Timer(75, al);
 		ticker.start();
 	}
 	public void update() {

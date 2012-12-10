@@ -102,7 +102,17 @@ public class NavalGame extends GameBeta {
 		}
 		else
 			mzy = -((my-wh))/ad;
-		getWorld().setLoc(getWorld().getScreenX()+mzx,getWorld().getScreenY()+mzy); // Add one to the screen position in the world.
+		int fgax = getWorld().getScreenX()+mzx;
+		int fgaz = getWorld().getScreenY()+mzy;
+		if (fgax > 200)
+			fgax = 200;
+		if (fgaz > 200)
+			fgaz = 200;
+		if (fgax < -((PavoHelper.getGameWidth(getWorld().getWorldSize()) * 100)-100))
+			fgax = -((PavoHelper.getGameWidth(getWorld().getWorldSize()) * 100)-100);
+		if (fgaz < -((PavoHelper.getGameHeight(getWorld().getWorldSize()) * 100)-100))
+			fgaz = -((PavoHelper.getGameHeight(getWorld().getWorldSize()) * 100)-100);
+		getWorld().setLoc(fgax, fgaz);
 		//forceUpdate(); // SEE WARNING IN DESCRIPTION!!! THIS METHOD IS NOT ACTUALLY DECREPATED!!!
 	}
 }

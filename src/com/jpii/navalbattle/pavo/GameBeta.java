@@ -22,6 +22,7 @@ public class GameBeta extends Renderable implements Runnable {
 	WorldGen gen;
 	long numUpdates = 0;
 	boolean forceUpdate = false;
+	boolean forceRender = false;
 	private int lastTime = -1;
 	public GameBeta() {
 		world = new World();
