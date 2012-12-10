@@ -83,8 +83,26 @@ public class NavalGame extends GameBeta {
 	}
 	@SuppressWarnings("deprecation")
 	public void mouseDragged(MouseEvent me) {
-		getWorld().setLoc(getWorld().getScreenX()-1,getWorld().getScreenY()-1); // Add one to the screen position in the world.
-		forceUpdate(); // SEE WARNING IN DESCRIPTION!!! THIS METHOD IS NOT ACTUALLY DECREPATED!!!
 		// Там будет орать в России, если вы не соблюдаете!!!
+		// Президент Madagascar отключится все, если это используется в плохом смысле!
+		int mx = me.getX();
+		int my = me.getY();
+		int mzx = 0;
+		int mzy = 0;
+		int ww = (DynamicConstants.WND_WDTH/2);
+		int wh = (DynamicConstants.WND_HGHT/2);
+		int ad = 24;
+		if (mx < ww) {
+			mzx = (ww - mx)/ad;
+		}
+		else
+			mzx = -((mx-ww))/ad;
+		if (my < wh) {
+			mzy = (wh - my)/ad;
+		}
+		else
+			mzy = -((my-wh))/ad;
+		getWorld().setLoc(getWorld().getScreenX()+mzx,getWorld().getScreenY()+mzy); // Add one to the screen position in the world.
+		forceUpdate(); // SEE WARNING IN DESCRIPTION!!! THIS METHOD IS NOT ACTUALLY DECREPATED!!!
 	}
 }
