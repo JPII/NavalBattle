@@ -66,7 +66,7 @@ public class NavalGame extends GameBeta {
 			for (int c = 0; c < PavoHelper.getGameHeight(getWorld().getWorldSize()); c++) {
 				Entity ent = getWorld().getEntityManager().getEntity(r,c);
 				if (ent != null) {
-					ent.setImage(null); // The daytime image would go here.
+					//ent.setImage(null); // The daytime image would go here.
 				}
 			}
 		}

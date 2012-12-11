@@ -44,6 +44,7 @@ public class Chunk extends Renderable {
 		rand.setSeed(Constants.MAIN_SEED+(x&z));
 		terrain = new BufferedImage(34,34,BufferedImage.TYPE_INT_RGB);
 		Graphics g = terrain.getGraphics();
+		int water00 = 0,water01 = 0,water10 = 0,water11 = 0;
 		for (int lsx = 0; lsx < 100/3; lsx++) {
 			for (int lsz = 0; lsz < 100/3; lsz++) {
 				float frsh = McRegion.getPoint(lsx+(100.0f/3.0f*x), lsz+(100.0f/3.0f*z));
@@ -58,19 +59,40 @@ public class Chunk extends Renderable {
 					int nawo = rand.nextInt(-5, 8);
 					g.setColor(Helper.adjust(Helper.randomise(new Color(83+nawo,83+nawo,132+nawo),
 	                        5, rand, false), 1 - ((frsh)/2 / RenderConstants.GEN_WATER_HEIGHT), 30));
+					
 				}
 				else if (opcode < 135) {
 					g.setColor(Helper.adjust(Helper.randomise(RenderConstants.GEN_SAND_COLOR,
 	                        RenderConstants.GEN_COLOR_DIFF, rand, false), (1.0-frsh)/2, 50));
+					if (lsx < 16.6666666666666666 && lsz < 16.666666666666666)
+						water00 = 1;
+					else if (lsx >= 16.666666666666 && lsz < 16.666666666666666)
+						water10 = 1;
+					else if (lsx < 16.666666666666 && lsz >= 16.666666666666666)
+						water01 = 1;
+					else if (lsx >= 16.666666666666 && lsz >= 16.666666666666666)
+						water11 = 1;
 				}
 				else{
 					g.setColor(Helper.adjust(Helper.randomise(RenderConstants.GEN_GRASS_COLOR,
 	                        RenderConstants.GEN_COLOR_DIFF, rand, false), (1.0-frsh)/2, 50));
+					if (lsx < 16.6666666666666666 && lsz < 16.666666666666666)
+						water00 = 1;
+					else if (lsx >= 16.666666666666 && lsz < 16.666666666666666)
+						water10 = 1;
+					else if (lsx < 16.666666666666 && lsz >= 16.666666666666666)
+						water01 = 1;
+					else if (lsx >= 16.666666666666 && lsz >= 16.666666666666666)
+						water11 = 1;
 				}
 				g.drawLine(lsx,lsz,lsx,lsz);
 				//g.fillRect(lsx*3,lsz*3,4,4);
 			}
-		} 
+		}
+		w.getEntityManager().AQms03KampOQ9103nmJMs((getZ()*2), (getX()*2), water00);
+		w.getEntityManager().AQms03KampOQ9103nmJMs((getZ()*2)+1, (getX()*2), water10);
+		w.getEntityManager().AQms03KampOQ9103nmJMs((getZ()*2), (getX()*2)+1, water01);
+		w.getEntityManager().AQms03KampOQ9103nmJMs((getZ()*2)+1, (getX()*2)+1, water11);
 		writeBuffer();
 		//ready = true;
 		generated = true;

@@ -32,7 +32,7 @@ public class Grid {
         int c = 0;
         for (int x = 0; x < width; x++) {
             for (int y = 0; y < height; y++) {
-                entities[x][y] = new Entity(new Location(x, y), bu, "gridRect" + c);
+                //entities[x][y] = new Entity(new Location(x, y), bu, "gridRect" + c);
                 c++;
             }
         }

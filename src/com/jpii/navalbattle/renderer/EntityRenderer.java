@@ -51,7 +51,7 @@ public class EntityRenderer {
                 	Point p = game.gridLocationToScreen(ent.getLocation());
                     int px = p.x;
                     int py = p.y;
-                    g.drawImage(ent.getImage(), px,py, null);
+                    g.drawImage(null, px,py, null);
                 }
             }
         }

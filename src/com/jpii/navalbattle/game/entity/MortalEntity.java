@@ -35,7 +35,7 @@ public class MortalEntity extends Entity {
 	 * @param health
 	 */
 	public MortalEntity(Location location, Image image, String tag, int health) {
-		super(location, image, tag);
+		super(location, 0x24B, tag);
 		maxHealth = health;
 		dead = false;
 		setHealth(health);

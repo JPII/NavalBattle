@@ -26,11 +26,9 @@ import com.jpii.navalbattle.pavo.EntityReference;
 public class Entity implements Runnable {
 	
 	private Location location;
-	private Image image;
 	private boolean active;
 	private String tag;
 	private EntityReference ref;
-	private BufferedImage detailedImage;
 	
 	/**
 	 * Default constructor. Sets instance to inactive.
@@ -45,12 +43,11 @@ public class Entity implements Runnable {
 	 * @param image
 	 * @param tag
 	 */
-	public Entity(Location location, Image image, String tag) {
+	public Entity(Location location, int id, String tag) {
 		setLocation(location);
-		setImage(image);
 		setTag(tag);
 		setActive(true);
-		setReference(new EntityReference(-1,-1));
+		setReference(new EntityReference(id,-1));
 	}
 	
 	public void setReference(EntityReference r) {
@@ -58,16 +55,6 @@ public class Entity implements Runnable {
 	}
 	public EntityReference getReference() {
 		return ref;
-	}
-	
-	public void invokeUpdate() {
-		run();
-		/*if (latestThread == null || !latestThread.isAlive() || latestThread.getState() == State.TERMINATED) {
-			latestThread = new Thread(this);
-			latestThread.run();
-		}
-		else
-			update();*/
 	}
 	
 	public void update() {
@@ -80,13 +67,6 @@ public class Entity implements Runnable {
 	 */
 	public String getTag() {
 		return tag;
-	}
-	
-	/**
-	 * Ticks the entity (updates info).
-	 */
-	public void tick() {
-		
 	}
 	
 	/**
@@ -138,30 +118,6 @@ public class Entity implements Runnable {
 	}
 	
 	/**
-	 * Set current <code>Image</code>
-	 * @param image
-	 */
-	public void setImage(Image image) {
-		this.image = image;
-	}
-	
-	public void setDetailedImage(BufferedImage img) {
-		this.detailedImage = img;
-	}
-	
-	/**
-	 * Get current <code>Image</code>
-	 * @return
-	 */
-	public Image getImage() {
-		return image;
-	}
-	
-	public BufferedImage getDetailedImage() {
-		return detailedImage;
-	}
-	
-	/**
 	 * Set active
 	 * @param active
 	 */
@@ -182,26 +138,11 @@ public class Entity implements Runnable {
 	}
 	
 	public void onMouseHover(int localMX, int localMY) {
-		if (!getTag().equals("red")) {
-			setImage(new BufferedImage(50,50,BufferedImage.TYPE_INT_ARGB));
-			Graphics g = getImage().getGraphics();
-			g.setColor(new Color(127,0,0,80));
-			g.fillRect(0,0,50,50);
-			g.setColor(Color.black);
-			g.drawRect(0,0,50,50);
-			setTag("red");
-		}
-		else {
-			setImage(new BufferedImage(50,50,BufferedImage.TYPE_INT_ARGB));
-			Graphics g = getImage().getGraphics();
-			g.setColor(Color.black);
-			g.drawRect(0,0,50,50);
-			setTag("grid");
-		}
+		
 	}
 	
 	public void onMouseDown(int localMX, int localMY) {
-		// TODO needs to be implemented in Game.java
+		
 	}
 
 	@Override
