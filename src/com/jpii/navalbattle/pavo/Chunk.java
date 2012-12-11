@@ -2,6 +2,7 @@ package com.jpii.navalbattle.pavo;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.util.Random;
 
 import maximusvladimir.dagen.*;
 
@@ -41,7 +42,8 @@ public class Chunk extends Renderable {
 		//if (!ready)
 			//return;
 		//ready = false;
-		rand = new Rand(Constants.MAIN_SEED+(x&z));
+		Random rp = new Random(Constants.MAIN_SEED+(x&z)+x-z+(z|x));
+		rand = new Rand(rp.nextLong());
 		terrain = new BufferedImage(34,34,BufferedImage.TYPE_INT_RGB);
 		Graphics g = terrain.getGraphics();
 		int water00 = 0,water01 = 0,water10 = 0,water11 = 0;
