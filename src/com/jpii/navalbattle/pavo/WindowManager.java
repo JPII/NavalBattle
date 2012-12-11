@@ -34,7 +34,7 @@ public class WindowManager extends Renderable{
 		for (int c = 0; c < wins.size(); c++) {
 			GameWindow gw = wins.get(c);
 			if (gw!=null) {
-				if (gw.isTitleShown()) {
+				if (gw.isTitleShown() && gw.isVisible()) {
 					if (mx >= gw.getWidth()-23+gw.getX() && mx <= gw.getWidth()-3+gw.getX() && my >= gw.getY() + 2 && my <= gw.getY() + 20) {
 						gw.onCloseCalled();
 						
@@ -56,7 +56,7 @@ public class WindowManager extends Renderable{
 		for (int c = 0; c < wins.size(); c++) {
 			GameWindow gw = wins.get(c);
 			if (gw!=null) {
-				if (gw.isTitleShown()) {
+				if (gw.isTitleShown() && gw.isVisible()) {
 					if (mx >= gw.getX() - 10 && mx <= gw.getX()+gw.getWidth()+10 && my >= gw.getY()-10 && my <= gw.getY()+34) {
 						gw.setLoc(mx - (gw.getWidth()/2), my - 12);
 						return true;

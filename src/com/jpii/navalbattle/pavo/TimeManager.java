@@ -5,7 +5,7 @@ import java.awt.image.BufferedImage;
 
 public class TimeManager extends Renderable {
 	public static int DayNightTotalLengthSeconds = 120;
-	public static int NightDarkness = 175;
+	public static int NightDarkness = 70;
 	private int hour = 0;
 	private String desc = "";
 	private double currentTime = ((double)DayNightTotalLengthSeconds)/2;

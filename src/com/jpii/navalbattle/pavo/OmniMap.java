@@ -40,18 +40,21 @@ public class OmniMap extends Renderable {
 					opcode = 0;
 				g.setColor(new Color(opcode,opcode,opcode));
 				if (opcode < 130) {
-					int nawo = rand.nextInt(-5, 8);
-					g.setColor(Helper.adjust(Helper.randomise(new Color(83+nawo,83+nawo,132+nawo),
-	                        5, rand, false), 1 - ((frsh)/2 / RenderConstants.GEN_WATER_HEIGHT), 30));
+					g.setColor(new Color(83,83,132));
+					//int nawo = rand.nextInt(-5, 8);
+					//g.setColor(Helper.adjust(Helper.randomise(new Color(83+nawo,83+nawo,132+nawo),
+	                        //5, rand, false), 1 - ((frsh)/2 / RenderConstants.GEN_WATER_HEIGHT), 30));
 					
 				}
 				else if (opcode < 135) {
-					g.setColor(Helper.adjust(Helper.randomise(RenderConstants.GEN_SAND_COLOR,
-	                        RenderConstants.GEN_COLOR_DIFF, rand, false), (1.0-frsh)/2, 50));
+					g.setColor(RenderConstants.GEN_SAND_COLOR);
+					//g.setColor(Helper.adjust(Helper.randomise(RenderConstants.GEN_SAND_COLOR,
+	                        //RenderConstants.GEN_COLOR_DIFF, rand, false), (1.0-frsh)/2, 50));
 				}
 				else{
-					g.setColor(Helper.adjust(Helper.randomise(RenderConstants.GEN_GRASS_COLOR,
-	                        RenderConstants.GEN_COLOR_DIFF, rand, false), (1.0-frsh)/2, 50));
+					g.setColor(RenderConstants.GEN_GRASS_COLOR);
+					//g.setColor(Helper.adjust(Helper.randomise(RenderConstants.GEN_GRASS_COLOR,
+	                  //      RenderConstants.GEN_COLOR_DIFF, rand, false), (1.0-frsh)/2, 50));
 				}
 				g.fillRect(x*3,y*3,4,4);
 				//g.drawLine(x,y,x,y);
