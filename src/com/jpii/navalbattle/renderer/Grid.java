@@ -7,7 +7,6 @@ import java.util.ArrayList;
 
 import com.jpii.navalbattle.NavalBattle;
 import com.jpii.navalbattle.data.Constants;
-import com.jpii.navalbattle.game.Location;
 import com.jpii.navalbattle.game.entity.*;
 
 /**
@@ -21,7 +20,8 @@ public class Grid {
     /**
      * Creates a new instance of the Grid.
      */
-    public Grid() {
+    @SuppressWarnings("unused")
+	public Grid() {
         width = (Constants.WINDOW_WIDTH * 4) / (Constants.CHUNK_SIZE / 2);
         height = (Constants.WINDOW_HEIGHT * 4) / (Constants.CHUNK_SIZE / 2);
         entities = new Entity[width + 1][height + 1];

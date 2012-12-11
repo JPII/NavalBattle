@@ -17,9 +17,6 @@
 
 package com.jpii.navalbattle.game.entity;
 
-import java.awt.*;
-import java.awt.image.BufferedImage;
-
 import com.jpii.navalbattle.game.*;
 import com.jpii.navalbattle.pavo.EntityReference;
 
