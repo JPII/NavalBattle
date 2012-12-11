@@ -127,6 +127,6 @@ public class NavalGame extends GameBeta {
 	public void render() {
 		super.render();
 		Graphics2D g = PavoHelper.createGraphics(getBuffer());
-		g.drawImage(omnimap.getBuffer(), 0, 0, null);
+		g.drawImage(omnimap.getBuffer(), DynamicConstants.WND_WDTH-108, 0, null);
 	}
 }
