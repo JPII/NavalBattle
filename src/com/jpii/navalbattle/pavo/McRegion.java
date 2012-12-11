@@ -22,14 +22,14 @@ public class McRegion {
 		float lvl5 = getLevel5(x,z);
 		float lvl6 = getLevel6(x,z);
 		float lvl7 = getLevel7(x,z);
-		float mixer = ((lvl0*25.0f)+(lvl4*5)) / 30.0f;//(lvl1*20.0f)+(lvl2*5.0f)+(lvl3*3.0f)+
+		float mixer = ((lvl0*25.0f)+(lvl4*5)+(lvl2*2.5f)+(lvl3*2.5f)) / 35.0f;//(lvl1*20.0f)+(lvl2*5.0f)+(lvl3*3.0f)+
 				//(lvl4*5.0f)+(lvl5*5.0f)+(lvl6*1.5f)-(lvl7*12.0f))/98.5f;
-		return (mixer+1)/2.0f;
+		return ((mixer+1)/2.0f)-0.1f;
 	}
 	private static float ld0 = 1024;
 	private static float ld1 = 128;
-	private static float ld2 = 2;
-	private static float ld3 = 4;
+	private static float ld2 = 32;
+	private static float ld3 = 64;
 	private static float ld4 = 512;
 	private static float ld5 = 1024;
 	private static float ld7 = 8196;
