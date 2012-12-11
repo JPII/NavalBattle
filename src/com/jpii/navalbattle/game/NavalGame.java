@@ -3,7 +3,9 @@
  */
 package com.jpii.navalbattle.game;
 
+import java.awt.Graphics2D;
 import java.awt.event.MouseEvent;
+import java.awt.image.BufferedImage;
 
 import com.jpii.navalbattle.game.entity.*;
 import com.jpii.navalbattle.pavo.*;
@@ -14,8 +16,10 @@ import com.jpii.navalbattle.pavo.*;
  */
 public class NavalGame extends GameBeta {
 	PlayerProfileWindow ppw;
+	OmniMap omnimap;
 	public NavalGame() {
 		super();
+		omnimap = new OmniMap(getWorld());
 		ppw = new PlayerProfileWindow();
 		getWinMan().add(ppw);
 		MessageBox.show("Warning", "This is a message box!!!");
@@ -39,6 +43,9 @@ public class NavalGame extends GameBeta {
 				}
 			}
 		}
+		if (omnimap == null)
+			omnimap = new OmniMap(getWorld());
+		omnimap.render();
 	}
 	/**
 	 * Called right when sunset starts.
@@ -113,5 +120,13 @@ public class NavalGame extends GameBeta {
 	public void mouseUp(MouseEvent me) {
 		if (getWinMan().mouseUp(me))
 			return;
+	}
+	public void mouseMove(MouseEvent me) {
+		omnimap.mouseMoved(me);
+	}
+	public void render() {
+		super.render();
+		Graphics2D g = PavoHelper.createGraphics(getBuffer());
+		g.drawImage(omnimap.getBuffer(), 0, 0, null);
 	}
 }

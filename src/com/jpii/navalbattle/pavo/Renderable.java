@@ -20,6 +20,9 @@ public class Renderable {
 	public BufferedImage getBuffer() {
 		return buffer;
 	}
+	protected void setBuffer(BufferedImage obtainableBuffer) {
+		buffer = obtainableBuffer;
+	}
 	public void render() {
 		
 	}
