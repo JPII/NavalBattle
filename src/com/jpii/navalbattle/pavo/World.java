@@ -133,27 +133,7 @@ public class World extends Renderable implements Interactable {
 						g.fillRect(x*100,z*100,100,100);
 					}
 					else {
-						boolean s00 = getEntityManager().isTileFilledWithWater(z*2,x*2);
-						boolean s10 = getEntityManager().isTileFilledWithWater((z*2),(x*2)+1);
-						boolean s01 = getEntityManager().isTileFilledWithWater((z*2)+1,(x*2));
-						boolean s11 = getEntityManager().isTileFilledWithWater((z*2)+1,(x*2)+1);
 						g.drawImage(chunk.getBuffer(), sx+(x*100),sy+(z*100), 303, 303,null);
-						if (!s00) {
-							g.setColor(new Color(200,0,0,40));
-							g.fillRect(sx+(x*100),sy+(z*100),50,50);
-						}
-						if (!s10) {
-							g.setColor(new Color(200,0,0,40));
-							g.fillRect(sx+(x*100)+50,sy+(z*100),50,50);
-						}
-						if (!s01) {
-							g.setColor(new Color(200,0,0,40));
-							g.fillRect(sx+(x*100),sy+(z*100)+50,50,50);
-						}
-						if (!s11) {
-							g.setColor(new Color(200,0,0,40));
-							g.fillRect(sx+(x*100)+50,sy+(z*100)+50,50,50);
-						}
 					}
 					chunk.unlock();
 					liveChunks++;
