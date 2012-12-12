@@ -23,6 +23,7 @@ import java.awt.*;
 
 import com.jpii.navalbattle.data.Constants;
 import com.jpii.navalbattle.gui.listeners.*;
+import com.jpii.navalbattle.pavo.DynamicConstants;
 import com.jpii.navalbattle.renderer.Helper;
 
 @SuppressWarnings("serial")
@@ -53,7 +54,7 @@ public class SinglePlayerGame extends JFrame {
 		addKeyListener(Constants.keys);
 		Constants.keys.add(this);
 		
-		setSize(Constants.WINDOW_WIDTH,Constants.WINDOW_HEIGHT+40);
+		setSize(DynamicConstants.WND_WDTH,DynamicConstants.WND_HGHT);
 		
 		//setSize((int) Toolkit.getDefaultToolkit().getScreenSize().getWidth(),
 			//	(int) Toolkit.getDefaultToolkit().getScreenSize().getHeight() - 48);

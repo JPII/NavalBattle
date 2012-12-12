@@ -89,7 +89,7 @@ public class Chunk extends Renderable {
 				if (opcode > 216) {
 					Color base = Helper.adjust(Helper.randomise(new Color(121+nawo,131+nawo,112+nawo),
                         5, rand, false), 1 - ((frsh)/2 / RenderConstants.GEN_WATER_HEIGHT), 30);
-					base = PavoHelper.Lerp(base, RenderConstants.GEN_GRASS_COLOR, ((opcode)/39.0));
+					base = PavoHelper.Lerp(base, RenderConstants.GEN_GRASS_COLOR, (opcode/39.0));
 					g.setColor(base);
 				}
 				g.drawLine(lsx,lsz,lsx,lsz);
