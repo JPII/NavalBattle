@@ -50,26 +50,22 @@ public class Chunk extends Renderable {
 		for (int lsx = 0; lsx < 100/3; lsx++) {
 			for (int lsz = 0; lsz < 100/3; lsz++) {
 				float frsh = McRegion.getPoint(lsx+(100.0f/3.0f*x), lsz+(100.0f/3.0f*z));
-				double actwater = (frsh - 0.3)/0.3;
-				double actland = (frsh - 0.5)/0.04;
-				int opcode = (int)(frsh*255.0f);
-				//opcode = (opcode+(int)(McRegion.getPoint((this.x*100), (this.z*100))*255.0f))/2;
-				if (opcode > 255)
-					opcode = 255;
-				if (opcode < 0)
-					opcode = 0;
-				//g.setColor(new Color(opcode,opcode,opcode));
+				float lsy = (float) ((frsh - 0.3)/0.21);
+				if (lsy > 1)
+					lsy = 1;
+				if (lsy < 0)
+					lsy = 0;
 				int nawo = rand.nextInt(-5, 8);
-				if (opcode < 130) {
-					int rgs = Helper.colorSnap((int)(actwater*64));
+				if (lsy < 0.4) {
+					int rgs = Helper.colorSnap((int)(lsy*102));
 					g.setColor(new Color(63+rand.nextInt(-7,7),60+rand.nextInt(-7,7),rand.nextInt(90, 100)+rgs));
-					//System.out.println(act);
-					//g.setColor(Helper.adjust2(/*Helper.randomise(new Color(83+nawo,83+nawo,132+nawo),
-	                  //      5, rand, false)*/ new Color(83,83,132), act, 30));
 				}
-				else if (opcode < 135) {
-					g.setColor(Helper.adjust(Helper.randomise(RenderConstants.GEN_SAND_COLOR,
-	                        RenderConstants.GEN_COLOR_DIFF, rand, false), actland, 50));
+				else if (lsy < 0.6) {
+					Color base1 = PavoHelper.Lerp(RenderConstants.GEN_SAND_COLOR,new Color(52,79,13),((lsy-0.4)/0.2));
+					base1 = Helper.randomise(base1, 8, rand, false);
+					g.setColor(base1);
+					//Color start = Helper.adjust(Helper.randomise(RenderConstants.GEN_SAND_COLOR,7
+	                        ///*RenderConstants.GEN_COLOR_DIFF*/, rand, false), ((lsy-0.4)/0.1), 50);
 					if (lsx < 16.6666666666666666 && lsz < 16.666666666666666)
 						water00 = 1;
 					else if (lsx >= 16.666666666666 && lsz < 16.666666666666666)
@@ -78,11 +74,21 @@ public class Chunk extends Renderable {
 						water01 = 1;
 					else if (lsx >= 16.666666666666 && lsz >= 16.666666666666666)
 						water11 = 1;
+					if (lsy > 0.7) {
+						Color base = new Color(67,66,46);
+						double actmountain = (lsy - 0.7)/0.3;
+						base = PavoHelper.Lerp(base, new Color(10,60,7), 1.0-actmountain);
+						base = Helper.randomise(base, 8, rand, false);
+						g.setColor(base);
+					}
 				}
 				else{
+					Color base1 = PavoHelper.Lerp(new Color(52,79,13),new Color(100,92,40),((lsy-0.6)/0.3));
+					base1 = Helper.randomise(base1, 8, rand, false);
+					g.setColor(base1);
 					//System.out.println(frsh);
-					g.setColor(Helper.adjust(Helper.randomise(RenderConstants.GEN_GRASS_COLOR,
-	                        RenderConstants.GEN_COLOR_DIFF, rand, false), actland, 40));
+					//g.setColor(Helper.adjust(Helper.randomise(new Color(40,61,4),
+	                  //      RenderConstants.GEN_COLOR_DIFF, rand, false), ((lsy-0.6)/0.3), 40));
 					if (lsx < 16.6666666666666666 && lsz < 16.666666666666666)
 						water00 = 1;
 					else if (lsx >= 16.666666666666 && lsz < 16.666666666666666)
@@ -91,14 +97,6 @@ public class Chunk extends Renderable {
 						water01 = 1;
 					else if (lsx >= 16.666666666666 && lsz >= 16.666666666666666)
 						water11 = 1;
-				}
-				if (opcode > 216) {
-					Color base = new Color(67,66,46);// = Helper.adjust(Helper.randomise(new Color(121+nawo,131+nawo,112+nawo),
-                        //5, rand, false), 1 - ((frsh)/2 / RenderConstants.GEN_WATER_HEIGHT), 30);
-					double actmountain = (frsh - 0.85) / 0.02;
-					base = PavoHelper.Lerp(base, new Color(10,60,7), 1.0-actmountain);
-					base = Helper.randomise(base, 8, rand, false);
-					g.setColor(base);
 				}
 				g.drawLine(lsx,lsz,lsx,lsz);
 				//g.fillRect(lsx*3,lsz*3,4,4);
