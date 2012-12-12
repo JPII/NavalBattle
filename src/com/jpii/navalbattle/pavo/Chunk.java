@@ -50,21 +50,25 @@ public class Chunk extends Renderable {
 		for (int lsx = 0; lsx < 100/3; lsx++) {
 			for (int lsz = 0; lsz < 100/3; lsz++) {
 				float frsh = McRegion.getPoint(lsx+(100.0f/3.0f*x), lsz+(100.0f/3.0f*z));
+				double act = (frsh - 0.3)/0.3;
 				int opcode = (int)(frsh*255.0f);
 				//opcode = (opcode+(int)(McRegion.getPoint((this.x*100), (this.z*100))*255.0f))/2;
 				if (opcode > 255)
 					opcode = 255;
 				if (opcode < 0)
 					opcode = 0;
-				g.setColor(new Color(opcode,opcode,opcode));
+				//g.setColor(new Color(opcode,opcode,opcode));
 				int nawo = rand.nextInt(-5, 8);
 				if (opcode < 130) {
-					g.setColor(Helper.adjust(Helper.randomise(new Color(83+nawo,83+nawo,132+nawo),
-	                        5, rand, false), 1 - ((frsh)/2 / RenderConstants.GEN_WATER_HEIGHT), 30));
+					int rgs = Helper.colorSnap((int)(act*64));
+					g.setColor(new Color(63+rand.nextInt(-7,7),60+rand.nextInt(-7,7),rand.nextInt(90, 100)+rgs));
+					//System.out.println(act);
+					//g.setColor(Helper.adjust2(/*Helper.randomise(new Color(83+nawo,83+nawo,132+nawo),
+	                  //      5, rand, false)*/ new Color(83,83,132), act, 30));
 				}
 				else if (opcode < 135) {
 					g.setColor(Helper.adjust(Helper.randomise(RenderConstants.GEN_SAND_COLOR,
-	                        RenderConstants.GEN_COLOR_DIFF, rand, false), (1.0-frsh)/2, 50));
+	                        RenderConstants.GEN_COLOR_DIFF, rand, false), (1.0-act)/2, 50));
 					if (lsx < 16.6666666666666666 && lsz < 16.666666666666666)
 						water00 = 1;
 					else if (lsx >= 16.666666666666 && lsz < 16.666666666666666)
@@ -76,7 +80,7 @@ public class Chunk extends Renderable {
 				}
 				else{
 					g.setColor(Helper.adjust(Helper.randomise(RenderConstants.GEN_GRASS_COLOR,
-	                        RenderConstants.GEN_COLOR_DIFF, rand, false), (1.0-frsh)/2, 60));
+	                        RenderConstants.GEN_COLOR_DIFF, rand, false), (1.0-act)/2, 60));
 					if (lsx < 16.6666666666666666 && lsz < 16.666666666666666)
 						water00 = 1;
 					else if (lsx >= 16.666666666666 && lsz < 16.666666666666666)

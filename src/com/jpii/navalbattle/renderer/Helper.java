@@ -415,6 +415,25 @@ public class Helper {
         b = colorSnap(b);
         return new Color(r, g, b, orig.getAlpha());
     }
+    public static Color adjust2(Color original, double value, int maximumrange) {
+    	 if (value > 1) value = 1;
+         if (value < 0) value = 0;
+
+         int r = original.getRed();
+         int g = original.getGreen();
+         int b = original.getBlue();
+         
+         double nah = value * maximumrange;
+         
+         r += (int)nah;
+         g += (int)nah;
+         b += (int)nah;
+         
+         r = colorSnap(r);
+         g = colorSnap(g);
+         b = colorSnap(b);
+         return new Color(r, g, b, original.getAlpha());
+    }
 	public static Color randomise(Color orig, int maxDiff, Rand rand, boolean includeAlpha) {
 		int r = orig.getRed();
         int g = orig.getGreen();
