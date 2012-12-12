@@ -80,9 +80,9 @@ public class Chunk extends Renderable {
 						water11 = 1;
 				}
 				else{
-					System.out.println(frsh);
+					//System.out.println(frsh);
 					g.setColor(Helper.adjust(Helper.randomise(RenderConstants.GEN_GRASS_COLOR,
-	                        RenderConstants.GEN_COLOR_DIFF, rand, false), actland, 60));
+	                        RenderConstants.GEN_COLOR_DIFF, rand, false), actland, 40));
 					if (lsx < 16.6666666666666666 && lsz < 16.666666666666666)
 						water00 = 1;
 					else if (lsx >= 16.666666666666 && lsz < 16.666666666666666)
@@ -93,9 +93,11 @@ public class Chunk extends Renderable {
 						water11 = 1;
 				}
 				if (opcode > 216) {
-					Color base = Helper.adjust(Helper.randomise(new Color(121+nawo,131+nawo,112+nawo),
-                        5, rand, false), 1 - ((frsh)/2 / RenderConstants.GEN_WATER_HEIGHT), 30);
-					base = PavoHelper.Lerp(base, RenderConstants.GEN_GRASS_COLOR, (opcode/39.0));
+					Color base = new Color(67,66,46);// = Helper.adjust(Helper.randomise(new Color(121+nawo,131+nawo,112+nawo),
+                        //5, rand, false), 1 - ((frsh)/2 / RenderConstants.GEN_WATER_HEIGHT), 30);
+					double actmountain = (frsh - 0.85) / 0.02;
+					base = PavoHelper.Lerp(base, new Color(10,60,7), 1.0-actmountain);
+					base = Helper.randomise(base, 8, rand, false);
 					g.setColor(base);
 				}
 				g.drawLine(lsx,lsz,lsx,lsz);

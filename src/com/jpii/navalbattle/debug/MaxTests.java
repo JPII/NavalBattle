@@ -1,5 +1,6 @@
 package com.jpii.navalbattle.debug;
 
+import com.jpii.navalbattle.data.Constants;
 import com.jpii.navalbattle.pavo.FastMath;
 import com.jpii.navalbattle.util.GrammarManager;
 
@@ -37,6 +38,7 @@ public class MaxTests {
 		}
 		System.out.println("Fast Math calc: " + FastMath.sin(0.14235));
 		System.out.println("Java Math calc: " + Math.sin(0.14235*(Math.PI/2)));
+		System.out.println("Seed:" + Constants.MAIN_SEED);
 	}
 	public static boolean isFirstRun() {
 		return true;
