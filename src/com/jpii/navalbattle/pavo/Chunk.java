@@ -51,6 +51,7 @@ public class Chunk extends Renderable {
 			for (int lsz = 0; lsz < 100/3; lsz++) {
 				float frsh = McRegion.getPoint(lsx+(100.0f/3.0f*x), lsz+(100.0f/3.0f*z));
 				double actwater = (frsh - 0.3)/0.3;
+				double actland = (frsh - 0.5)/0.04;
 				int opcode = (int)(frsh*255.0f);
 				//opcode = (opcode+(int)(McRegion.getPoint((this.x*100), (this.z*100))*255.0f))/2;
 				if (opcode > 255)
@@ -67,9 +68,8 @@ public class Chunk extends Renderable {
 	                  //      5, rand, false)*/ new Color(83,83,132), act, 30));
 				}
 				else if (opcode < 135) {
-					System.out.println(frsh);
 					g.setColor(Helper.adjust(Helper.randomise(RenderConstants.GEN_SAND_COLOR,
-	                        RenderConstants.GEN_COLOR_DIFF, rand, false), (1.0-actwater)/2, 50));
+	                        RenderConstants.GEN_COLOR_DIFF, rand, false), actland, 50));
 					if (lsx < 16.6666666666666666 && lsz < 16.666666666666666)
 						water00 = 1;
 					else if (lsx >= 16.666666666666 && lsz < 16.666666666666666)
@@ -80,8 +80,9 @@ public class Chunk extends Renderable {
 						water11 = 1;
 				}
 				else{
+					System.out.println(frsh);
 					g.setColor(Helper.adjust(Helper.randomise(RenderConstants.GEN_GRASS_COLOR,
-	                        RenderConstants.GEN_COLOR_DIFF, rand, false), (1.0-actwater)/2, 60));
+	                        RenderConstants.GEN_COLOR_DIFF, rand, false), actland, 60));
 					if (lsx < 16.6666666666666666 && lsz < 16.666666666666666)
 						water00 = 1;
 					else if (lsx >= 16.666666666666 && lsz < 16.666666666666666)
