@@ -65,8 +65,8 @@ public class Chunk extends Renderable {
 						g.setColor(new Color(143,141,h));
 					}
 				}
-				else if (lsy < 0.6) {
-					Color base1 = PavoHelper.Lerp(RenderConstants.GEN_SAND_COLOR,new Color(52,79,13),((lsy-0.4)/0.2));
+				else if (lsy < 0.55) {
+					Color base1 = PavoHelper.Lerp(RenderConstants.GEN_SAND_COLOR,new Color(52,79,13),((lsy-0.4)/0.15));
 					base1 = Helper.randomise(base1, 8, rand, false);
 					g.setColor(base1);
 					//Color start = Helper.adjust(Helper.randomise(RenderConstants.GEN_SAND_COLOR,7
@@ -79,18 +79,18 @@ public class Chunk extends Renderable {
 						water01 = 1;
 					else if (lsx >= 16.666666666666 && lsz >= 16.666666666666666)
 						water11 = 1;
-					if (lsy > 0.7) {
-						Color base = new Color(67,66,46);
-						double actmountain = (lsy - 0.7)/0.3;
-						base = PavoHelper.Lerp(base, new Color(10,60,7), 1.0-actmountain);
-						base = Helper.randomise(base, 8, rand, false);
-						g.setColor(base);
-					}
 				}
 				else{
-					Color base1 = PavoHelper.Lerp(new Color(52,79,13),new Color(100,92,40),((lsy-0.6)/0.3));
+					Color base1 = PavoHelper.Lerp(new Color(52,79,13),new Color(100,92,40),((lsy-0.55)/0.45));
 					base1 = Helper.randomise(base1, 8, rand, false);
 					g.setColor(base1);
+					/*if (lsy == 1) {
+						Color base = new Color(52,79,13);
+						double actmountain = (lsy - 0.95)/0.05;
+						base = PavoHelper.Lerp(base, new Color(164,133,70), actmountain);
+						base = Helper.randomise(base, 8, rand, false);
+						g.setColor(base);
+					}*/
 					//System.out.println(frsh);
 					//g.setColor(Helper.adjust(Helper.randomise(new Color(40,61,4),
 	                  //      RenderConstants.GEN_COLOR_DIFF, rand, false), ((lsy-0.6)/0.3), 40));
