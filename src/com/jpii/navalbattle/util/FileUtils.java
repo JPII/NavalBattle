@@ -69,7 +69,7 @@ public class FileUtils {
 		return i;
 	}
 	
-	private static OS getPlatform() {
+	public static OS getPlatform() {
 		String osName = System.getProperty("os.name").toLowerCase();
 		if (osName.contains("win"))
 			return OS.windows;
@@ -98,8 +98,5 @@ public class FileUtils {
 		} catch (Exception e) {
 			System.out.println("Failed to open link " + uri.toString());
 		}
-	}
-	private static enum OS {
-		linux, solaris, windows, macos, unknown;
 	}
 }
