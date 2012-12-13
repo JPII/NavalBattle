@@ -31,6 +31,7 @@ import com.jpii.navalbattle.renderer.Console;
 import com.jpii.navalbattle.renderer.Helper;
 import com.jpii.navalbattle.renderer.RenderConstants;
 import com.jpii.navalbattle.renderer.RepaintType;
+import com.jpii.navalbattle.util.WindowLib;
 
 
 /**
@@ -42,8 +43,27 @@ public class GameComponent extends JComponent {
 	JFrame frame;
 	Timer ticker;
 	GameBeta game;
+	WindowLib winlib;
+	boolean isFullscreen = false;
 	public GameComponent(JFrame frame) {
 		this.frame = frame;
+		winlib = new WindowLib(frame);
+		JButton btnToggleFullscren = new JButton("Toggle fullscren");
+		btnToggleFullscren.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent arg0) {
+				if (isFullscreen) {
+					isFullscreen = false;
+					winlib.hideFullscreen();
+				}
+				else {
+					winlib.showFullscreen();
+					isFullscreen = true;
+				}
+			}
+		});
+		btnToggleFullscren.setBounds(10, 11, 116, 23);
+		add(btnToggleFullscren);
 		game = new NavalGame();
 		MouseListener ml = new MouseListener() {
 			public void mouseClicked(MouseEvent arg0) {

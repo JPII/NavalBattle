@@ -1,5 +1,6 @@
 package com.jpii.navalbattle.util;
 
+import java.awt.DisplayMode;
 import java.awt.Toolkit;
 
 import javax.swing.JFrame;
@@ -11,7 +12,7 @@ public class WindowLib {
 	public WindowLib(JFrame wnd) {
 		this.wnd = wnd;
 	}
-	public boolean showFullscreen(JFrame wnd) {
+	public boolean showFullscreen() {
 		if (FileUtils.getPlatform() == OS.windows) {
 			ready = true;
 			if (wnd == null)
@@ -20,8 +21,10 @@ public class WindowLib {
 			int clientHeight = Toolkit.getDefaultToolkit().getScreenSize().height;
 			sizew = wnd.getWidth();
 			sizeh = wnd.getHeight();
-			wnd.setSize(clientWidth, clientHeight);
+			wnd.dispose();
 			wnd.setUndecorated(true);
+			wnd.setSize(clientWidth, clientHeight);
+			wnd.setVisible(true);
 			try
 			{
 				wnd.toFront();
@@ -35,11 +38,11 @@ public class WindowLib {
 		return false;
 	}
 	public void hideFullscreen() {
-		if (!ready || wnd == null)
-			return;
+		wnd.dispose();
+		wnd.setUndecorated(false);
+		wnd.setVisible(true);
 		wnd.setSize(sizew, sizeh);
 		wnd.setAlwaysOnTop(false);
 		wnd.toFront();
-		ready = false;
 	}
 }
