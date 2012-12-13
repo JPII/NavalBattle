@@ -20,13 +20,17 @@ package com.jpii.navalbattle.game;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.event.*;
+import java.awt.image.BufferedImage;
 import java.lang.Thread.State;
 
 import javax.swing.*;
 
+import com.jpii.navalbattle.data.Constants;
 import com.jpii.navalbattle.pavo.DynamicConstants;
 import com.jpii.navalbattle.pavo.GameBeta;
+import com.jpii.navalbattle.pavo.PavoHelper;
 import com.jpii.navalbattle.renderer.Console;
 import com.jpii.navalbattle.renderer.Helper;
 import com.jpii.navalbattle.renderer.RenderConstants;
@@ -45,25 +49,12 @@ public class GameComponent extends JComponent {
 	GameBeta game;
 	WindowLib winlib;
 	boolean isFullscreen = false;
+	Timer alert;
+	boolean startDialog = false;
+	BufferedImage notifier;
 	public GameComponent(JFrame frame) {
 		this.frame = frame;
 		winlib = new WindowLib(frame);
-		JButton btnToggleFullscren = new JButton("Toggle fullscren");
-		btnToggleFullscren.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mousePressed(MouseEvent arg0) {
-				if (isFullscreen) {
-					isFullscreen = false;
-					winlib.hideFullscreen();
-				}
-				else {
-					winlib.showFullscreen();
-					isFullscreen = true;
-				}
-			}
-		});
-		btnToggleFullscren.setBounds(10, 11, 116, 23);
-		add(btnToggleFullscren);
 		game = new NavalGame();
 		MouseListener ml = new MouseListener() {
 			public void mouseClicked(MouseEvent arg0) {
@@ -100,6 +91,7 @@ public class GameComponent extends JComponent {
 		ActionListener al = new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				update();
+				updateDialog();
 				repaint();
 			}
 		};
@@ -116,5 +108,45 @@ public class GameComponent extends JComponent {
 		g.setColor(Color.black);
 		g.fillRect(0,0,DynamicConstants.WND_WDTH,DynamicConstants.WND_HGHT);
 		g.drawImage(game.getBuffer(),0,0,null);
+		if (notifier != null)
+			g.drawImage(notifier,(DynamicConstants.WND_WDTH/2)-(notifier.getWidth()/2),
+				(DynamicConstants.WND_HGHT/2)-(notifier.getHeight()/2),null);
+	}
+	float transparency = 200;
+	long ticks = 0;
+	public void updateDialog() {
+		if (startDialog) {
+			ticks++;
+			if (transparency <= 1) {
+				startDialog = false;
+				transparency = 200;
+				return;
+			}
+			else
+				transparency -= 2.0f;
+			notifier = new BufferedImage(550,100,BufferedImage.TYPE_INT_ARGB);
+			Graphics2D g = PavoHelper.createGraphics(notifier);
+			g.setColor(new Color(0,0,0,(int)transparency));
+			g.fillRoundRect(0,0,550,100,60,60);
+			g.setColor(new Color(255,255,255,(int)transparency));
+			g.setFont(new Font("Arial",Font.BOLD,28));
+			g.drawString("Press F11 to exit fullscreen mode.", 42,60);
+		}
+		else
+			notifier = null;
+	}
+	public void toggleFullscreen() {
+		if (isFullscreen) {
+			isFullscreen = false;
+			winlib.hideFullscreen();
+			transparency = 200;
+			startDialog = false;
+		}
+		else {
+			ticks = 0;
+			winlib.showFullscreen();
+			isFullscreen = true;
+			startDialog = true;
+		}
 	}
 }

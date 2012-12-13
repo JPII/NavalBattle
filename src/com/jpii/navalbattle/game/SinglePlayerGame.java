@@ -20,6 +20,8 @@ package com.jpii.navalbattle.game;
 import javax.swing.*;
 
 import java.awt.*;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
 import com.jpii.navalbattle.data.Constants;
 import com.jpii.navalbattle.gui.listeners.*;
@@ -51,8 +53,8 @@ public class SinglePlayerGame extends JFrame {
 		this.addWindowListener(new WindowCloser());
 
 		this.setFocusable(true);
-		addKeyListener(Constants.keys);
-		Constants.keys.add(this);
+		//addKeyListener(Constants.keys);
+		//Constants.keys.add(this);
 		
 		setSize(DynamicConstants.WND_WDTH,DynamicConstants.WND_HGHT);
 		
@@ -62,6 +64,18 @@ public class SinglePlayerGame extends JFrame {
 				(int)(Toolkit.getDefaultToolkit().getScreenSize().getHeight()/2) - (getHeight()/2));
 		
 		this.setVisible(true);
+		KeyListener keyListener = new KeyListener() {
+			public void keyPressed(KeyEvent arg0) {
+				if (arg0.getKeyCode() == KeyEvent.VK_F11) {
+					game.toggleFullscreen();
+				}
+			}
+			public void keyReleased(KeyEvent arg0) {
+			}
+			public void keyTyped(KeyEvent arg0) {
+			}
+		};
+		this.addKeyListener(keyListener);
 	}
 	
 	public void setVisible(boolean visible){
