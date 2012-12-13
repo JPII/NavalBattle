@@ -110,7 +110,7 @@ public class GameWindow extends Renderable {
 		this.x = x;
 		this.y = y;
 	}
-	public void checkOtherDown(MouseEvent me) {
-		
+	public boolean checkOtherDown(MouseEvent me) {
+		return false;
 	}
 }

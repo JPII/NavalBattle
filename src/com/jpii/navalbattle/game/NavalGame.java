@@ -22,7 +22,8 @@ public class NavalGame extends GameBeta {
 		omnimap = new OmniMap(getWorld());
 		ppw = new PlayerProfileWindow();
 		getWinMan().add(ppw);
-		MessageBox.show("Warning", "This is a message box!!!");
+		//MessageBox.show("Warning", "This is a message box!!!");
+		MessageBox.show("Hey there!","Could not connect to RocketGamer servers.\n\nTrying again in 10 seconds.", MessageBoxIcon.Error, true);
 	}
 	/**
 	 * Mulithreaded updator.
