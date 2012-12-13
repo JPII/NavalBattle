@@ -60,9 +60,9 @@ public class Chunk extends Renderable {
 					int rgs = Helper.colorSnap((int)(lsy*102));
 					g.setColor(new Color(63+rand.nextInt(-7,7),60+rand.nextInt(-7,7),rand.nextInt(90, 100)+rgs));
 					if (lsy > 0.38 && rand.nextInt(1,15) == 2) {
-						int h = rand.nextInt(252,255);
+						int h = rand.nextInt(200,210);
 						int rg2s = Helper.colorSnap((int)(lsy*102));
-						g.setColor(new Color(250,250,rg2s));
+						g.setColor(new Color(143,141,h));
 					}
 				}
 				else if (lsy < 0.6) {
