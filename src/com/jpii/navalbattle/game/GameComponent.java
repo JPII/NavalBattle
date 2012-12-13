@@ -123,7 +123,7 @@ public class GameComponent extends JComponent {
 				return;
 			}
 			else
-				transparency -= 2.0f;
+				transparency -= 5.0f;
 			notifier = new BufferedImage(550,100,BufferedImage.TYPE_INT_ARGB);
 			Graphics2D g = PavoHelper.createGraphics(notifier);
 			g.setColor(new Color(0,0,0,(int)transparency));
