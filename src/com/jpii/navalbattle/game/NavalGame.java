@@ -23,7 +23,8 @@ public class NavalGame extends GameBeta {
 		ppw = new PlayerProfileWindow();
 		getWinMan().add(ppw);
 		//MessageBox.show("Warning", "This is a message box!!!");
-		MessageBox.show("Hey there!","Could not connect to RocketGamer servers.\n\nTrying again in 10 seconds.", MessageBoxIcon.Error, true);
+		MessageBox.show("Hey there!","Could not connect to RocketGamer servers.\n\nTrying again in 10 seconds.",
+				MessageBoxIcon.Notify, true);
 	}
 	/**
 	 * Mulithreaded updator.
@@ -128,6 +129,6 @@ public class NavalGame extends GameBeta {
 	public void render() {
 		super.render();
 		Graphics2D g = PavoHelper.createGraphics(getBuffer());
-		g.drawImage(omnimap.getBuffer(), DynamicConstants.WND_WDTH-108, 0, null);
+		g.drawImage(omnimap.getBuffer(), DynamicConstants.WND_WDTH-158, 0, null);
 	}
 }

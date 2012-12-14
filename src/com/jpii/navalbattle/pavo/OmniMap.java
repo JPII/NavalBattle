@@ -16,8 +16,8 @@ public class OmniMap extends Renderable {
 	public OmniMap(World w) {
 		super();
 		this.w = w;
-		setSize(100,100);
-		buffer =   (new BufferedImage(getWidth(), getHeight(),BufferedImage.TYPE_INT_RGB));
+		setSize(150,150);
+		buffer = (new BufferedImage(getWidth(), getHeight(),BufferedImage.TYPE_INT_RGB));
 	}
 	public void mouseMoved(MouseEvent me) {
 		mx = me.getX();
@@ -28,33 +28,35 @@ public class OmniMap extends Renderable {
 	public void render() {
 		Graphics2D g = PavoHelper.createGraphics(getBuffer());
 		Rand rand = new Rand(Constants.MAIN_SEED);
-		for (int x = 0; x < 100/3; x++) {
-			for (int y = 0; y < 100/3; y++) {
+		for (int x = 0; x < 150/3; x++) {
+			for (int y = 0; y < 150/3; y++) {
 				int strx = x * PavoHelper.getGameWidth(w.getWorldSize());
 				int stry = y * PavoHelper.getGameHeight(w.getWorldSize());
 				float frsh = McRegion.getPoint(strx,stry);
-				int opcode = (int)(frsh*255.0f);
-				if (opcode > 255)
-					opcode = 255;
-				if (opcode < 0)
-					opcode = 0;
-				g.setColor(new Color(opcode,opcode,opcode));
-				if (opcode < 130) {
-					g.setColor(new Color(83,83,132));
-					//int nawo = rand.nextInt(-5, 8);
-					//g.setColor(Helper.adjust(Helper.randomise(new Color(83+nawo,83+nawo,132+nawo),
-	                        //5, rand, false), 1 - ((frsh)/2 / RenderConstants.GEN_WATER_HEIGHT), 30));
-					
+				float lsy = (float) ((frsh - 0.3)/0.21);
+				if (lsy > 1)
+					lsy = 1;
+				if (lsy < 0)
+					lsy = 0;
+				int nawo = rand.nextInt(-5, 8);
+				if (lsy < 0.4) {
+					int rgs = Helper.colorSnap((int)(lsy*102));
+					g.setColor(new Color(63+rand.nextInt(-7,7),60+rand.nextInt(-7,7),rand.nextInt(90, 100)+rgs));
+					if (lsy > 0.38 && rand.nextInt(1,15) == 2) {
+						int h = rand.nextInt(200,210);
+						int rg2s = Helper.colorSnap((int)(lsy*102));
+						g.setColor(new Color(143,141,h));
+					}
 				}
-				else if (opcode < 135) {
-					g.setColor(RenderConstants.GEN_SAND_COLOR);
-					//g.setColor(Helper.adjust(Helper.randomise(RenderConstants.GEN_SAND_COLOR,
-	                        //RenderConstants.GEN_COLOR_DIFF, rand, false), (1.0-frsh)/2, 50));
+				else if (lsy < 0.55) {
+					Color base1 = PavoHelper.Lerp(RenderConstants.GEN_SAND_COLOR,new Color(52,79,13),((lsy-0.4)/0.15));
+					base1 = Helper.randomise(base1, 8, rand, false);
+					g.setColor(base1);
 				}
 				else{
-					g.setColor(RenderConstants.GEN_GRASS_COLOR);
-					//g.setColor(Helper.adjust(Helper.randomise(RenderConstants.GEN_GRASS_COLOR,
-	                  //      RenderConstants.GEN_COLOR_DIFF, rand, false), (1.0-frsh)/2, 50));
+					Color base1 = PavoHelper.Lerp(new Color(52,79,13),new Color(100,92,40),((lsy-0.55)/0.45));
+					base1 = Helper.randomise(base1, 8, rand, false);
+					g.setColor(base1);
 				}
 				g.fillRect(x*3,y*3,4,4);
 				//g.drawLine(x,y,x,y);
