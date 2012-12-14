@@ -16,7 +16,7 @@ public class OmniMap extends Renderable {
 	public OmniMap(World w) {
 		super();
 		this.w = w;
-		setSize(150,150);
+		setSize(100,100);
 		buffer = (new BufferedImage(getWidth(), getHeight(),BufferedImage.TYPE_INT_RGB));
 	}
 	public void mouseMoved(MouseEvent me) {
@@ -28,8 +28,8 @@ public class OmniMap extends Renderable {
 	public void render() {
 		Graphics2D g = PavoHelper.createGraphics(getBuffer());
 		Rand rand = new Rand(Constants.MAIN_SEED);
-		for (int x = 0; x < 150/3; x++) {
-			for (int y = 0; y < 150/3; y++) {
+		for (int x = 0; x < 100/3; x++) {
+			for (int y = 0; y < 100/3; y++) {
 				int strx = x * PavoHelper.getGameWidth(w.getWorldSize());
 				int stry = y * PavoHelper.getGameHeight(w.getWorldSize());
 				float frsh = McRegion.getPoint(strx,stry);
@@ -66,5 +66,6 @@ public class OmniMap extends Renderable {
 		int rwy = (int) (Math.abs(w.getScreenY()) * 33.333333 / (PavoHelper.getGameHeight(w.getWorldSize()) * 100))*3;
 		g.setColor(Color.red);
 		g.fillRect(rwx-1,rwy-1,2,2);
+		g.draw3DRect(0,0,getWidth()-1,getHeight()-1,true);
 	}
 }
