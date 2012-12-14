@@ -13,11 +13,14 @@ import com.jpii.navalbattle.renderer.RenderConstants;
 public class OmniMap extends Renderable {
 	int mx,my;
 	World w;
+	BufferedImage terrain;
 	public OmniMap(World w) {
 		super();
 		this.w = w;
 		setSize(100,100);
 		buffer = (new BufferedImage(getWidth(), getHeight(),BufferedImage.TYPE_INT_RGB));
+		terrain = (new BufferedImage(getWidth(), getHeight(),BufferedImage.TYPE_INT_RGB));
+		writeBuffer();
 	}
 	public void mouseMoved(MouseEvent me) {
 		mx = me.getX();
@@ -25,8 +28,8 @@ public class OmniMap extends Renderable {
 		
 		render();
 	}
-	public void render() {
-		Graphics2D g = PavoHelper.createGraphics(getBuffer());
+	public void writeBuffer() {
+		Graphics2D g = PavoHelper.createGraphics(terrain);
 		Rand rand = new Rand(Constants.MAIN_SEED);
 		for (int x = 0; x < 100/3; x++) {
 			for (int y = 0; y < 100/3; y++) {
@@ -62,6 +65,10 @@ public class OmniMap extends Renderable {
 				//g.drawLine(x,y,x,y);
 			}
 		}
+	}
+	public void render() {
+		Graphics2D g = PavoHelper.createGraphics(getBuffer());
+		g.drawImage(getBuffer(), 0,0,null);
 		int rwx = (int) (Math.abs(w.getScreenX()) * 33.333333 / (PavoHelper.getGameWidth(w.getWorldSize()) * 100))*3;
 		int rwy = (int) (Math.abs(w.getScreenY()) * 33.333333 / (PavoHelper.getGameHeight(w.getWorldSize()) * 100))*3;
 		g.setColor(Color.red);
