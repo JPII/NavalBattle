@@ -45,11 +45,6 @@ public class OmniMap extends Renderable {
 				if (lsy < 0.4) {
 					int rgs = Helper.colorSnap((int)(lsy*102));
 					g.setColor(new Color(63+rand.nextInt(-7,7),60+rand.nextInt(-7,7),rand.nextInt(90, 100)+rgs));
-					if (lsy > 0.38 && rand.nextInt(1,15) == 2) {
-						int h = rand.nextInt(200,210);
-						int rg2s = Helper.colorSnap((int)(lsy*102));
-						g.setColor(new Color(143,141,h));
-					}
 				}
 				else if (lsy < 0.55) {
 					Color base1 = PavoHelper.Lerp(RenderConstants.GEN_SAND_COLOR,new Color(52,79,13),((lsy-0.4)/0.15));
