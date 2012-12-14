@@ -68,7 +68,7 @@ public class OmniMap extends Renderable {
 	}
 	public void render() {
 		Graphics2D g = PavoHelper.createGraphics(getBuffer());
-		g.drawImage(getBuffer(), 0,0,null);
+		g.drawImage(terrain, 0,0,null);
 		int rwx = (int) (Math.abs(w.getScreenX()) * 33.333333 / (PavoHelper.getGameWidth(w.getWorldSize()) * 100))*3;
 		int rwy = (int) (Math.abs(w.getScreenY()) * 33.333333 / (PavoHelper.getGameHeight(w.getWorldSize()) * 100))*3;
 		g.setColor(Color.red);
