@@ -8,6 +8,9 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.event.MouseEvent;
 
+import javax.swing.ImageIcon;
+
+import com.jpii.navalbattle.NavalBattle;
 import com.jpii.navalbattle.renderer.Helper;
 
 /**
@@ -102,6 +105,7 @@ public class MessageBox extends com.jpii.navalbattle.pavo.GameWindow {
 		return false;
 	}
 	public void onCloseCalled() {
+		NavalBattle.getWindowHandler().getToasterManager().showToaster(new ImageIcon(getClass().getResource("/com/roketgamer/res/logo_100px.png")), "Pop-up closed");
 		getWinMan().remove(this);
 	}
 }
