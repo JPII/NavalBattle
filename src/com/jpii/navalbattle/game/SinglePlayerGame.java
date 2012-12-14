@@ -56,14 +56,15 @@ public class SinglePlayerGame extends JFrame {
 		//addKeyListener(Constants.keys);
 		//Constants.keys.add(this);
 		
-		setSize(DynamicConstants.WND_WDTH,DynamicConstants.WND_HGHT);
+		setSize(DynamicConstants.WND_WDTH,DynamicConstants.WND_HGHT-80);
 		
 		//setSize((int) Toolkit.getDefaultToolkit().getScreenSize().getWidth(),
 			//	(int) Toolkit.getDefaultToolkit().getScreenSize().getHeight() - 48);
-		setLocation((int)(Toolkit.getDefaultToolkit().getScreenSize().getWidth()/2) - (getWidth()/2),
-				(int)(Toolkit.getDefaultToolkit().getScreenSize().getHeight()/2) - (getHeight()/2));
-		
-		this.setVisible(true);
+		//setLocation((int)(Toolkit.getDefaultToolkit().getScreenSize().getWidth()/2) - (getWidth()/2),
+			//	(int)(Toolkit.getDefaultToolkit().getScreenSize().getHeight()/2) - (getHeight()/2));
+		setLocation(0,0);
+		setVisible(true);
+		setExtendedState(JFrame.MAXIMIZED_BOTH);
 		KeyListener keyListener = new KeyListener() {
 			public void keyPressed(KeyEvent arg0) {
 				if (arg0.getKeyCode() == KeyEvent.VK_F11) {
