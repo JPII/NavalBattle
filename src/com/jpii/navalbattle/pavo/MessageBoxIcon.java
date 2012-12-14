@@ -4,5 +4,6 @@ public enum MessageBoxIcon {
 	Warning,
 	Information,
 	Error,
-	None
+	None,
+	Notify
 }

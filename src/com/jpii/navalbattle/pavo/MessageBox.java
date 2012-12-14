@@ -7,6 +7,7 @@ import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.event.MouseEvent;
+import java.awt.image.BufferedImage;
 
 import javax.swing.ImageIcon;
 
@@ -20,6 +21,7 @@ import com.jpii.navalbattle.renderer.Helper;
 public class MessageBox extends com.jpii.navalbattle.pavo.GameWindow {
 	String message = "no msg";
 	MessageBoxIcon icon;
+	private static BufferedImage msg_error = null,msg_warn = null,msg_notify = null,msg_info = null;
 	private MessageBox(String title, String message,MessageBoxIcon icon) {
 		super();
 		this.icon = icon;
@@ -37,6 +39,18 @@ public class MessageBox extends com.jpii.navalbattle.pavo.GameWindow {
 		setSize(w,h);
 		setLoc((DynamicConstants.WND_WDTH/2)-(w/2),(DynamicConstants.WND_HGHT/2)-(h/2));
 		render();
+	}
+	public static void setMessageBoxErrorIcon(BufferedImage icon) {
+		msg_error = icon;
+	}
+	public static void setMessageBoxWarnIcon(BufferedImage icon) {
+		msg_warn = icon;
+	}
+	public static void setMessageBoxInfoIcon(BufferedImage icon) {
+		msg_info = icon;
+	}
+	public static void setMessageBoxNotifyIcon(BufferedImage icon) {
+		msg_notify = icon;
 	}
 	/**
 	 * Shows a message box on the active Game window, with a title and message.
@@ -74,14 +88,23 @@ public class MessageBox extends com.jpii.navalbattle.pavo.GameWindow {
 	public void render() {
 		super.render();
 		Graphics2D g = PavoHelper.createGraphics(getBuffer());
+		BufferedImage hs = null;
+		g.setColor(Color.red);
 		if (icon == MessageBoxIcon.Error) {
-			g.setColor(Color.red);
+			hs = msg_error;
+		}
+		if (icon == MessageBoxIcon.Warning) {
+			hs = msg_warn;
+		}
+		if (icon == MessageBoxIcon.Information) {
+			hs = msg_info;
+		}
+		if (icon == MessageBoxIcon.Notify) {
+			hs = msg_notify;
+		}
+		if (hs != null) {
 			int size = (getHeight()/2);
-			g.setStroke(new BasicStroke(9));
-			g.drawOval(getWidth()-(size+8), ((size+13)/2), size,size);
-			g.setStroke(new BasicStroke(4));
-			g.drawLine(getWidth()-(size+8)+15, ((size+13)/2)+15, getWidth()-(size+8)+size-15, ((size+13)/2)+size-15);
-			g.setStroke(new BasicStroke(1));
+			g.drawImage(hs,getWidth()-(size+8), ((size+13)/2), size,size,null);
 		}
 		g.setColor(Color.black);
 		g.setFont(Helper.GUI_GAME_FONT);

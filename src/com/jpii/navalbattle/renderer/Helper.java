@@ -7,6 +7,7 @@ import java.awt.image.*;
 import java.io.*;
 import java.util.*;
 
+import com.jpii.navalbattle.pavo.MessageBox;
 import com.jpii.navalbattle.util.FileUtils;
 
 import maximusvladimir.dagen.Rand;
@@ -52,6 +53,14 @@ public class Helper {
 					FileUtils.getImage(("drawable-gui/gui_omnimap_background2.png"));
 			GUI_WINDOW_ICON = FileUtils.getImage(("drawable-gui/gui_window_icon.png"));
 			GUI_GLYPHS= FileUtils.getImage(("font/glyphs.bmp"));
+			MessageBox.setMessageBoxErrorIcon(
+					FileUtils.getImageFromOtherPath("/com/jpii/navalbattle/pavo/res/msg_error.png"));
+			MessageBox.setMessageBoxWarnIcon(
+					FileUtils.getImageFromOtherPath("/com/jpii/navalbattle/pavo/res/msg_warn.png"));
+			MessageBox.setMessageBoxNotifyIcon(
+					FileUtils.getImageFromOtherPath("/com/jpii/navalbattle/pavo/res/msg_notify.png"));
+			MessageBox.setMessageBoxInfoIcon(
+					FileUtils.getImageFromOtherPath("/com/jpii/navalbattle/pavo/res/msg_info.png"));
 			
 		} catch (Exception e) {
 			e.printStackTrace();

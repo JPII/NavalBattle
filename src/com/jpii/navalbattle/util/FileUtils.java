@@ -68,6 +68,15 @@ public class FileUtils {
 		}
 		return i;
 	}
+	public static BufferedImage getImageFromOtherPath(String s) {
+		BufferedImage i = null;
+		try {
+			i = ImageIO.read(FileUtils.class.getResource(s));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return i;
+	}
 	
 	public static OS getPlatform() {
 		String osName = System.getProperty("os.name").toLowerCase();
