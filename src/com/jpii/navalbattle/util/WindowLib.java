@@ -16,6 +16,7 @@ public class WindowLib {
 	boolean ready = false;
 	boolean fullscreen = false;
 	Timer evilHackTimer;
+	int h = 0;
 	public WindowLib(JFrame wnd) {
 		this.wnd = wnd;
 		ActionListener al = new ActionListener() {
@@ -28,7 +29,7 @@ public class WindowLib {
 				public void focusGained(FocusEvent arg0) {
 				}
 				public void focusLost(FocusEvent arg0) {
-					if (isFullscreen())
+					if (isFullscreen() && ++h >= 2)
 						hideFullscreen();
 				}
 			};
