@@ -22,7 +22,7 @@ public class PavoHelper {
 	}
 	public static int getGameWidth(WorldSize ws) {
 		if (ws == WorldSize.WORLD_HUGE)
-			return 128;
+			return 86;
 		else if (ws == WorldSize.WORLD_LARGE)
 			return 64;
 		else if (ws == WorldSize.WORLD_MEDIUM)
@@ -34,7 +34,7 @@ public class PavoHelper {
 	}
 	public static int getGameHeight(WorldSize ws) {
 		if (ws == WorldSize.WORLD_HUGE)
-			return 128;
+			return 86;
 		else if (ws == WorldSize.WORLD_LARGE)
 			return 64;
 		else if (ws == WorldSize.WORLD_MEDIUM)
