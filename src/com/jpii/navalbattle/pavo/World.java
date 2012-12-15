@@ -26,6 +26,7 @@ public class World extends Renderable implements Interactable {
 	TimeManager time = new TimeManager();
 	int sx = 0, anisx = 0, anisy = 0,sy = 0;
 	BufferedImage noise;
+	int zlevel;
 	public World() {
 		ws = WorldSize.WORLD_LARGE;
 		em = new EntityManager(this);
@@ -43,6 +44,12 @@ public class World extends Renderable implements Interactable {
 		generated = new boolean[chunks.length];
 		buffer = new BufferedImage(DynamicConstants.WND_WDTH,DynamicConstants.WND_HGHT,BufferedImage.TYPE_INT_RGB);
 		makeNoise();
+	}
+	public void setZoomLevel(int level) {
+		zlevel = level;
+	}
+	public int getZoomLevel() {
+		return zlevel;
 	}
 	public void makeNoise(){
 		noise = new BufferedImage(DynamicConstants.WND_WDTH,DynamicConstants.WND_HGHT,BufferedImage.TYPE_INT_RGB);
