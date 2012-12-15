@@ -152,7 +152,7 @@ public class GameBeta extends Renderable implements Runnable {
 		
 		GameStatistics gs = getStats();
 		g.setColor(Color.red);
-		g.setFont(Helper.GUI_GAME_FONT);
+		//g.setFont(Helper.GUI_GAME_FONT);
 		String frmtn = new DecimalFormat("00").format(getWorld().getTimeManager().getCurrentMinutes());
 		int ma = 38;
 		g.drawString((getWorld().getTimeManager().getTimeDescription() + " " + getWorld().getTimeManager().getCurrentHour() + ":"+frmtn),12,ma+30);

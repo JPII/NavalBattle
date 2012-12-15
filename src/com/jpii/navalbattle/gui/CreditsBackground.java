@@ -17,7 +17,7 @@ public class CreditsBackground extends JComponent implements MouseListener{
 	BufferedImage buffer;
 	ParticleEngine system;
 	Random r;
-	Timer timer;
+	//Timer timer;
 	ArrayList<star> stars;
 	long ticks = 0;
 	
@@ -44,27 +44,27 @@ public class CreditsBackground extends JComponent implements MouseListener{
 					}
 			}
 		};
-		timer = new Timer(50,al);
-		if(isVisible()){
-			timer.start();
-		}
+		//timer = new Timer(50,al);
+		//if(isVisible()){
+			//timer.start();
+		//}
 	}
 	
 	public void start() {
-		timer.start();
+		//timer.start();
 	}
 	public void stop() {
-		timer.stop();
+		//timer.stop();
 	}
 	
 	public void setVisible(boolean visible){
 		super.setVisible(visible);
 		if(isVisible()){
-			timer.start();
+			//timer.start();
 		}
 		else{
-			if(timer!=null)
-				timer.stop();
+			//if(timer!=null)
+				//timer.stop();
 		}
 	}
 	
