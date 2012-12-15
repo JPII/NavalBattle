@@ -139,6 +139,7 @@ public class GameBeta extends Renderable implements Runnable {
 		return 1;
 	}
 	public void render() {
+		buffer = new BufferedImage(DynamicConstants.WND_WDTH,DynamicConstants.WND_HGHT,BufferedImage.TYPE_INT_RGB);
 		Graphics2D g = PavoHelper.createGraphics(buffer);
 		while (getWorld().isLocked()) {
 			

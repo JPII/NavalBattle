@@ -110,6 +110,7 @@ public class World extends Renderable implements Interactable {
 				needsNewRender = true;
 				//break;
 			}
+			chunkrender = true;
 			chunk.unlock();
 			chunks[c] = chunk;
 		}
@@ -119,6 +120,8 @@ public class World extends Renderable implements Interactable {
 		return chunkrender;
 	}
 	public void render() {
+		if (!needsReChunkRender())
+			return;
 		long waitStart = System.currentTimeMillis();
 		while (bufferLock) {
 			
@@ -132,8 +135,6 @@ public class World extends Renderable implements Interactable {
 			lwh = DynamicConstants.WND_HGHT;
 			makeNoise();
 		}
-		if (!needsReChunkRender())
-			return;
 		int liveChunks = 0;
 		Graphics2D g = PavoHelper.createGraphics(buffer);
 		//g.drawIm
