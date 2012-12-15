@@ -70,7 +70,7 @@ public class OmniMap extends Renderable {
 		int sh = (int)((PavoHelper.getGameHeight(w.getWorldSize()) * 100)/DynamicConstants.WND_HGHT);
 		g.setColor(Color.red);
 		g.drawRect(rwx-1,rwy-1,sw,sh);
-		GraphicsLib.drawThick3DRect(g, 0,0,getWidth()-1,getHeight()-1,5);
+		//GraphicsLib.drawThick3DRect(g, 0,0,getWidth()-1,getHeight()-1,5);
 		//g.draw3DRect(0,0,getWidth()-1,getHeight()-1,true);
 	}
 }
