@@ -105,8 +105,8 @@ public class GameComponent extends JComponent {
 		setSize(frame.getWidth(), frame.getHeight());
 	}
 	public void paintComponent(Graphics g) {
-		g.setColor(Color.black);
-		g.fillRect(0,0,DynamicConstants.WND_WDTH,DynamicConstants.WND_HGHT);
+		//g.setColor(Color.black);
+		//g.fillRect(0,0,DynamicConstants.WND_WDTH,DynamicConstants.WND_HGHT);
 		g.drawImage(game.getBuffer(),0,0,null);
 		if (notifier != null)
 			g.drawImage(notifier,(DynamicConstants.WND_WDTH/2)-(notifier.getWidth()/2),
