@@ -117,9 +117,10 @@ public class GameComponent extends JComponent {
 	public void updateDialog() {
 		if (startDialog) {
 			ticks++;
-			if (transparency <= 1) {
+			if (transparency <= 10) {
 				startDialog = false;
 				transparency = 200;
+				notifier = null;
 				return;
 			}
 			else
