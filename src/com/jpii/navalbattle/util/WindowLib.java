@@ -22,7 +22,7 @@ public class WindowLib {
 			}
 		};
 		evilHackTimer = new Timer(75,al);
-		evilHackTimer.start();
+		//evilHackTimer.start();
 	}
 	private void update() {
 		if (wnd != null) {
