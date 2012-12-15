@@ -64,13 +64,19 @@ public class World extends Renderable implements Interactable {
 		}
 	}
 	public void setLoc(int x, int y) {
+		if (sx != x || sy != y)
+			chunkrender = true;
 		sx = x;
 		sy = y;
 	}
 	public void setLocX(int x) {
+		if (sx != x)
+			chunkrender = true;
 		sx = x;
 	}
 	public void setLocY(int y) {
+		if (sy != y)
+			chunkrender = true;
 		sy = y;
 	}
 	public void setWorldGen(WorldGen wg) {
@@ -108,6 +114,10 @@ public class World extends Renderable implements Interactable {
 			chunks[c] = chunk;
 		}
 	}
+	boolean chunkrender = false;
+	public boolean needsReChunkRender() {
+		return chunkrender;
+	}
 	public void render() {
 		long waitStart = System.currentTimeMillis();
 		while (bufferLock) {
@@ -122,6 +132,8 @@ public class World extends Renderable implements Interactable {
 			lwh = DynamicConstants.WND_HGHT;
 			makeNoise();
 		}
+		if (!needsReChunkRender())
+			return;
 		int liveChunks = 0;
 		Graphics2D g = PavoHelper.createGraphics(buffer);
 		//g.drawIm
@@ -149,6 +161,7 @@ public class World extends Renderable implements Interactable {
 				}
 			}
 		}
+		chunkrender = false;
 		long endDraw = System.currentTimeMillis() - startDraw;
 		GameBeta.getStats().SmKAk10(endDraw);
 		GameBeta.getStats().SmoOa01kwL(liveChunks);
