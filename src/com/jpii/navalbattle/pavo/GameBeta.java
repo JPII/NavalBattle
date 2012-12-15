@@ -54,14 +54,14 @@ public class GameBeta extends Renderable implements Runnable {
 		chunkrender.setName("chunkGenThread");
 		chunkrender.start();
 		lastStart = System.currentTimeMillis();
-		while (lastStart + 500 > System.currentTimeMillis()) {
-			
-		}
-		state = 3;
-		generator = new Thread(this);
-		generator.setPriority(Thread.MAX_PRIORITY);
-		generator.setName("generatorThread");
-		generator.start();
+		//while (lastStart + 500 > System.currentTimeMillis()) {
+		//	
+		//}
+		//state = 3;
+		//generator = new Thread(this);
+		//generator.setPriority(Thread.MAX_PRIORITY);
+		//generator.setName("generatorThread");
+		//generator.start();
 	}
 	private static GameStatistics stats = new GameStatistics();
 	public static GameStatistics getStats() {
@@ -125,11 +125,11 @@ public class GameBeta extends Renderable implements Runnable {
 			}
 		}
 		// World generator
-		else if (state == 3) {
+		//else if (state == 3) {
 			//System.out.println("World gen firing..." + Thread.currentThread().getName());
-			gen.generateChunk();
-			getWorld().setWorldGen(gen);
-		}
+			//gen.generateChunk();
+			//getWorld().setWorldGen(gen);
+		//}
 	}
 	public String getGenStatus() {
 		return "";
