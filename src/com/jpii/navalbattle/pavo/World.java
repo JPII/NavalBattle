@@ -92,6 +92,7 @@ public class World extends Renderable implements Interactable {
 	public void genNextChunk() {
 		for (int c = 0; c < chunks.length; c++) {
 			Chunk chunk = chunks[c];
+			GameBeta.getStats().SmKdn02nOaP(c*2);
 			while (chunk.isLocked()) {
 				
 			}

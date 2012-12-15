@@ -114,11 +114,12 @@ public class GameBeta extends Renderable implements Runnable {
 					getWorld().genNextChunk();
 					// Make a small break between each generation.
 					long start = System.currentTimeMillis();
-					while (start + 650 > System.currentTimeMillis()) {
+					while (start + 50 > System.currentTimeMillis()) {
 						;;;
 					}
 				}
 				else {
+					GameBeta.getStats().SmKdn02nOaP(1);
 					break;
 				}
 			}
@@ -152,8 +153,10 @@ public class GameBeta extends Renderable implements Runnable {
 		g.setColor(Color.red);
 		g.setFont(Helper.GUI_GAME_FONT);
 		String frmtn = new DecimalFormat("00").format(getWorld().getTimeManager().getCurrentMinutes());
-		g.drawString((getWorld().getTimeManager().getTimeDescription() + " " + getWorld().getTimeManager().getCurrentHour() + ":"+frmtn),100,100);
-		g.drawString("Idling (should be low):" + gs.getDrawIdling() + ". Draw time:" + gs.getDrawTime() + " Live chunks:" + gs.getLiveChunks(),100,130);
+		int ma = 38;
+		g.drawString((getWorld().getTimeManager().getTimeDescription() + " " + getWorld().getTimeManager().getCurrentHour() + ":"+frmtn),12,ma+30);
+		g.drawString("Idling (should be low):" + gs.getDrawIdling() + ". Draw time:" + gs.getDrawTime() + " Live chunks:" + gs.getLiveChunks(),12,ma+60);
+		g.drawString("Is generating? " + gs.isGenerating(), 12,ma+90);
 		getWorld().unlock();
 		
 		while (getWinMan().isLocked()) {
