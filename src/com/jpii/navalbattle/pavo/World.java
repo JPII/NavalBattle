@@ -143,8 +143,8 @@ public class World extends Renderable implements Interactable {
 			for (int z = 0; z < height; z++) {
 				Chunk chunk = chunks[z*width+x];
 				if (PavoHelper.isChunkVisibleOnScreen(this, chunk)) {
-					while (chunk.isLocked()) { }
-					chunk.lock();
+					//while (chunk.isLocked()) { }
+					//chunk.lock();
 					if (!chunk.isGenerated()) {
 						int rgb = Constants.MAIN_RAND.nextInt(255);
 						if (Constants.MAIN_RAND.nextBoolean())
@@ -157,7 +157,7 @@ public class World extends Renderable implements Interactable {
 						if (chunk.getBuffer() != null)
 							g.drawImage(chunk.getBuffer(), sx+(x*100),sy+(z*100), 303, 303,null);
 					}
-					chunk.unlock();
+					//chunk.unlock();
 					liveChunks++;
 				}
 			}
