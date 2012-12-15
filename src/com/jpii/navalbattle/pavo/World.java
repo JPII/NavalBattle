@@ -119,7 +119,7 @@ public class World extends Renderable implements Interactable {
 	public boolean needsReChunkRender() {
 		return chunkrender;
 	}
-	public void render() {
+	public synchronized void render() {
 		if (!needsReChunkRender())
 			return;
 		long waitStart = System.currentTimeMillis();
