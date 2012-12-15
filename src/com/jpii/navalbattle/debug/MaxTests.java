@@ -4,6 +4,12 @@ import com.jpii.navalbattle.data.Constants;
 import com.jpii.navalbattle.pavo.FastMath;
 import com.jpii.navalbattle.util.GrammarManager;
 
+import java.awt.event.*;
+import java.awt.Color;
+import java.awt.AlphaComposite;
+import javax.swing.*;
+import javax.swing.UIManager.LookAndFeelInfo;
+
 import maximusvladimir.dagen.Rand;
 
 /**

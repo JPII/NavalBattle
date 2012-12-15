@@ -38,7 +38,8 @@ public class WindowLib {
 		}
 	}
 	public boolean showFullscreen() {
-		evilHackTimer.start();
+		//evilHackTimer.start();
+		NativeLib.setTransparency(wnd, 0.5f);
 		if (FileUtils.getPlatform() == OS.windows) {
 			ready = true;
 			if (wnd == null)
