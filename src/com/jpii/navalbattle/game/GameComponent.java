@@ -46,6 +46,7 @@ import com.jpii.navalbattle.util.WindowLib;
 public class GameComponent extends JComponent {
 	JFrame frame;
 	Timer ticker;
+	Timer logicUpdator;
 	GameBeta game;
 	WindowLib winlib;
 	boolean isFullscreen = false;
@@ -95,14 +96,24 @@ public class GameComponent extends JComponent {
 				repaint();
 			}
 		};
+		ActionListener al2 = new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				updateGame();
+			}
+		};
 		ticker = new Timer(75, al);
 		ticker.start();
+		logicUpdator = new Timer(100,al2);
+		logicUpdator.start();
 	}
 	public void update() {
 		game.render();
 		DynamicConstants.WND_WDTH = frame.getWidth();
 		DynamicConstants.WND_HGHT = frame.getHeight();
 		setSize(frame.getWidth(), frame.getHeight());
+	}
+	public void updateGame() {
+		game.forceUpdate();
 	}
 	public void paintComponent(Graphics g) {
 		//g.setColor(Color.black);
