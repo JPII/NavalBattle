@@ -8,6 +8,7 @@ import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 
 import com.jpii.navalbattle.game.entity.*;
+import com.jpii.navalbattle.game.gui.PlayerProfileWindow;
 import com.jpii.navalbattle.pavo.*;
 
 /**

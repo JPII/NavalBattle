@@ -153,6 +153,9 @@ public class World extends Renderable implements Interactable {
 							g.setColor(new Color(6,13,rgb));
 						g.fillRect(x*100,z*100,100,100);
 					}
+					else if (x-2 == width || z-2 == height) {
+						g.fillRect(sx+(x*100),sy+(z*100), 303, 303);
+					}
 					else {
 						if (chunk.getBuffer() != null)
 							g.drawImage(chunk.getBuffer(), sx+(x*100),sy+(z*100), 303, 303,null);
