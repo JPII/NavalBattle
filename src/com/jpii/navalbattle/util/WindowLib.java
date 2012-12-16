@@ -57,6 +57,7 @@ public class WindowLib {
 	public boolean showFullscreen() {
 		//evilHackTimer.start();
 		if (FileUtils.getPlatform() == OS.windows) {
+			h = 0;
 			ready = true;
 			if (wnd == null)
 				return false;
@@ -85,6 +86,7 @@ public class WindowLib {
 		return false;
 	}
 	public void hideFullscreen() {
+		h = 0;
 		wnd.dispose();
 		wnd.setUndecorated(false);
 		wnd.setVisible(true);
