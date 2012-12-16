@@ -9,6 +9,7 @@ import java.awt.image.BufferedImage;
 
 import com.jpii.navalbattle.game.entity.*;
 import com.jpii.navalbattle.game.gui.PlayerProfileWindow;
+import com.jpii.navalbattle.game.gui.ShipInfoWindow;
 import com.jpii.navalbattle.pavo.*;
 
 /**
@@ -17,15 +18,20 @@ import com.jpii.navalbattle.pavo.*;
  */
 public class NavalGame extends GameBeta {
 	PlayerProfileWindow ppw;
+	ShipInfoWindow siw;
 	OmniMap omnimap;
 	public NavalGame() {
 		super();
 		omnimap = new OmniMap(getWorld());
 		ppw = new PlayerProfileWindow();
+		ppw.setLoc(200,200);
+		siw = new ShipInfoWindow();
+		siw.setLoc(350,350);
 		getWinMan().add(ppw);
+		getWinMan().add(siw);
 		//MessageBox.show("Warning", "This is a message box!!!");
 		MessageBox.show("Hey there!","Could not connect to RocketGamer servers.\n\nTrying again in 10 seconds.",
-				MessageBoxIcon.Notify, true);
+				MessageBoxIcon.Notify, false);
 	}
 	/**
 	 * Mulithreaded updator.
@@ -120,8 +126,8 @@ public class NavalGame extends GameBeta {
 		getWorld().setLoc(fgax, fgaz);
 		//forceUpdate(); // SEE WARNING IN DESCRIPTION!!! THIS METHOD IS NOT ACTUALLY DECREPATED!!!
 	}
-	public void mouseUp(MouseEvent me) {
-		if (getWinMan().mouseUp(me))
+	public void mouseDown(MouseEvent me) {
+		if (getWinMan().mouseDown(me))
 			return;
 	}
 	public void mouseMove(MouseEvent me) {

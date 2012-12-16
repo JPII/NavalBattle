@@ -32,7 +32,7 @@ public class WindowManager extends Renderable{
 		context = Ijsn9j20OKan01nJFNAnia;
 	}
 	public static WindowManager Inst;
-	public boolean mouseUp(MouseEvent me) {
+	public boolean mouseDown(MouseEvent me) {
 		int mx = me.getX();
 		int my = me.getY();
 		boolean flag = false;
@@ -50,20 +50,12 @@ public class WindowManager extends Renderable{
 		for (int c = 0; c < wins.size(); c++) {
 			GameWindow gw = wins.get(c);
 			if (gw!=null) {
-				if (gw.isTitleShown() && gw.isVisible()) {
-					if (mx >= gw.getWidth()-23+gw.getX() && mx <= gw.getWidth()-3+gw.getX() && my >= gw.getY() + 2 && my <= gw.getY() + 20) {
-						gw.onCloseCalled();
-						
-						flag = true;
-					}
-					gw.checkOtherDown(me);
-				}
+				gw.mouseDown(me);
+				if (gw.needsShutdown())
+					flag = true;
 			}
 		}
 		return flag;
-	}
-	public void mouseDown(MouseEvent me) {
-		
 	}
 	public boolean mouseDragged(MouseEvent me) {
 		int mx = me.getX();
