@@ -7,20 +7,21 @@ import java.util.Random;
 import maximusvladimir.dagen.*;
 
 import com.jpii.navalbattle.data.Constants;
+import com.jpii.navalbattle.game.entity.Entity;
 import com.jpii.navalbattle.renderer.Helper;
 import com.jpii.navalbattle.renderer.RenderConstants;
 
 public class Chunk extends Renderable {
 	int x,z;
 	boolean generated = false;
-	public EntityReference Tile00, Tile10, Tile01,Tile11;
+	public Entity Tile00, Tile10, Tile01,Tile11;
 	static Perlin p = new Perlin(GameBeta.Settings.rand.nextLong(),0,0);
 	Rand rand = new Rand();
 	World w;
 	BufferedImage terrain;
 	public Chunk(World w) {
 		this.w = w;
-		Tile00 = Tile10 = Tile01 = Tile11 = w.getEntityManager().getTypeById(0);
+		Tile00 = Tile10 = Tile01 = Tile11 = null;
 	}
 	public void setX(int x) {
 		this.x = x;
@@ -123,6 +124,14 @@ public class Chunk extends Renderable {
 		g.drawImage(w.getEntityManager().getImage(Tile10), 50, 0, null);
 		g.drawImage(w.getEntityManager().getImage(Tile01), 0, 50, null);
 		g.drawImage(w.getEntityManager().getImage(Tile11), 50, 50, null);
+		nesa = false;
+	}
+	boolean nesa = false;
+	public boolean needsBufferWrite() {
+		return nesa;
+	}
+	public void reDrawBuffer() {
+		nesa = true;
 	}
 	public boolean isGenerated() {
 		return generated;

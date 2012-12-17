@@ -93,7 +93,7 @@ public class PavoHelper {
 	    return new Color(r,g,b,a);
     }
 	public static boolean isEntityVisibleOnScreen(World w, Entity ent) {
-		if (w == null || ent == null)
+		if (w == null || ent == null || ent.getLocation() == null)
 			return false;
 		int sx = w.getScreenX();
 		int sy = w.getScreenY();

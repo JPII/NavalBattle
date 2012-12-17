@@ -45,6 +45,12 @@ public class World extends Renderable implements Interactable {
 		buffer = new BufferedImage(GameBeta.Settings.currentWidth,GameBeta.Settings.currentHeight,BufferedImage.TYPE_INT_RGB);
 		makeNoise();
 	}
+	public Chunk getChunk(int index) {
+		return chunks[index];
+	}
+	public Chunk getChunk(int x, int z) {
+		return getChunk(z*PavoHelper.getGameWidth(getWorldSize())+x);
+	}
 	public void setZoomLevel(int level) {
 		zlevel = level;
 	}
@@ -157,6 +163,8 @@ public class World extends Renderable implements Interactable {
 						g.fillRect(sx+(x*100),sy+(z*100), 303, 303);
 					}
 					else {
+						if (chunk.needsBufferWrite())
+							chunk.writeBuffer();
 						if (chunk.getBuffer() != null)
 							g.drawImage(chunk.getBuffer(), sx+(x*100),sy+(z*100), 303, 303,null);
 					}

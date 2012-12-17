@@ -26,12 +26,20 @@ public class Entity implements Runnable {
 	private boolean active;
 	private String tag;
 	private EntityReference ref;
+	private int id;
 	
 	/**
 	 * Default constructor. Sets instance to inactive.
 	 */
 	public Entity() {
 		setActive(false);
+	}
+	
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
 	}
 	
 	/**

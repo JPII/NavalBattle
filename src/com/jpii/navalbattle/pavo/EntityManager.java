@@ -1,5 +1,7 @@
 package com.jpii.navalbattle.pavo;
 
+import java.awt.Color;
+import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 
 import com.jpii.navalbattle.game.entity.Entity;
@@ -9,10 +11,15 @@ public class EntityManager {
 	Entity[][] ent;
 	World w;
 	int counter = 0;
+	BufferedImage grid;
 	public EntityManager(World w) {
 		this.w = w;
 		ent = new Entity[PavoHelper.getGameWidth(w.getWorldSize())*2][PavoHelper.getGameHeight(w.getWorldSize())*2];
 		tileAccessor = new boolean[PavoHelper.getGameWidth(w.getWorldSize())*2][PavoHelper.getGameHeight(w.getWorldSize())*2];
+		grid = new BufferedImage(50,50,BufferedImage.TYPE_INT_ARGB);
+		Graphics2D g = PavoHelper.createGraphics(grid);
+		g.setColor(new Color(255,0,0,100));
+		g.fillRect(0,0,50,50);
 	}
 	public Entity getEntity(int r, int c) {
 		return ent[c][r];
@@ -21,7 +28,18 @@ public class EntityManager {
 		ent[c][r] = e;
 		int x = c/2;
 		int z = c/2;
-		
+		Chunk chunk = w.getChunk(x, z);
+		int rx = c % 2;
+		int rz = r % 2;
+		if (rx == 0 && rz == 0)
+			chunk.Tile00 = e;
+		else if (rx != 0 && rz == 0)
+			chunk.Tile10 = e;
+		else if (rx == 0 && rz != 0)
+			chunk.Tile01 = e;
+		else if (rx != 0 && rz != 0)
+			chunk.Tile11 = e;
+		chunk.needsBufferWrite();
 	}
 	public boolean isTileFilledWithWater(int r, int c) {
 		return tileAccessor[c][r];
@@ -29,8 +47,16 @@ public class EntityManager {
 	public EntityReference getTypeById(int id) {
 		return new EntityReference(counter++,1);
 	}
-	public BufferedImage getImage(EntityReference ref) {
-		return null;
+	public BufferedImage getImage(Entity ent) {
+		if (ent == null)
+			return null;
+		BufferedImage ager = null;
+		switch (ent.getId()) {
+		case 0:
+			ager = grid;
+			break;
+		}
+		return ager;
 	}
 	public void AQms03KampOQ9103nmJMs(int snJMkqmd, int cKQK91nm38910JNFEWo, int traKQ91) {
 		tileAccessor[cKQK91nm38910JNFEWo][snJMkqmd] = mjMo1091(cKQK91nm38910JNFEWo, traKQ91);
