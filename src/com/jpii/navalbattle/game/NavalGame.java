@@ -33,7 +33,11 @@ public class NavalGame extends GameBeta {
 		MessageBox.show("Hey there!","Could not connect to RocketGamer servers.\n\nTrying again in 10 seconds.",
 				MessageBoxIcon.Notify, false);
 		
-		getWorld().getEntityManager().setEntity(3,3, new Entity());
+		for (int x = 0; x < PavoHelper.getGameWidth(getWorld().getWorldSize())*2; x++) {
+			for (int z = 0; z < PavoHelper.getGameHeight(getWorld().getWorldSize())*2; z++) {
+				getWorld().getEntityManager().setEntity(x,z, new Entity());
+			}
+		}
 	}
 	/**
 	 * Mulithreaded updator.

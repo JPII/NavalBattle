@@ -18,8 +18,8 @@ public class EntityManager {
 		tileAccessor = new boolean[PavoHelper.getGameWidth(w.getWorldSize())*2][PavoHelper.getGameHeight(w.getWorldSize())*2];
 		grid = new BufferedImage(50,50,BufferedImage.TYPE_INT_ARGB);
 		Graphics2D g = PavoHelper.createGraphics(grid);
-		g.setColor(new Color(255,0,0,100));
-		g.fillRect(0,0,50,50);
+		g.setColor(new Color(120,120,120,100));
+		g.drawRect(1,1,50,50);
 	}
 	public Entity getEntity(int r, int c) {
 		return ent[c][r];
@@ -27,7 +27,7 @@ public class EntityManager {
 	public void setEntity(int r, int c, Entity e) {
 		ent[c][r] = e;
 		int x = c/2;
-		int z = c/2;
+		int z = r/2;
 		Chunk chunk = w.getChunk(x, z);
 		int rx = c % 2;
 		int rz = r % 2;
