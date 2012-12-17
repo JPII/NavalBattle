@@ -43,7 +43,7 @@ public class GameBeta extends Renderable implements Runnable {
 	}
 	private void threadInit() {
 		int js = 0;
-		if (Constants.OVER_CLOCK)
+		if (Settings.OverClock)
 			js = Thread.MAX_PRIORITY;
 		else
 			js = Thread.NORM_PRIORITY;

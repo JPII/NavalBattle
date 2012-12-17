@@ -53,7 +53,7 @@ public class World extends Renderable implements Interactable {
 	}
 	public void makeNoise(){
 		noise = new BufferedImage(GameBeta.Settings.currentWidth,GameBeta.Settings.currentHeight,BufferedImage.TYPE_INT_RGB);
-		Rand ras = new Rand(Constants.MAIN_SEED+22);
+		Rand ras = new Rand(GameBeta.Settings.seed+22);
 		Graphics gs2 = noise.getGraphics(); // Q and D
 		for (int x = 0; x < GameBeta.Settings.currentWidth; x+= 2) {
 			for (int y = 0; y < GameBeta.Settings.currentHeight; y+=2) {
@@ -146,8 +146,8 @@ public class World extends Renderable implements Interactable {
 					//while (chunk.isLocked()) { }
 					//chunk.lock();
 					if (!chunk.isGenerated()) {
-						int rgb = Constants.MAIN_RAND.nextInt(255);
-						if (Constants.MAIN_RAND.nextBoolean())
+						int rgb = GameBeta.Settings.rand.nextInt(255);
+						if (GameBeta.Settings.rand.nextBoolean())
 							g.setColor(new Color(6,rgb,13));
 						else
 							g.setColor(new Color(6,13,rgb));

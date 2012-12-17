@@ -30,7 +30,7 @@ public class OmniMap extends Renderable {
 	}
 	public void writeBuffer() {
 		Graphics2D g = PavoHelper.createGraphics(terrain);
-		Rand rand = new Rand(Constants.MAIN_SEED);
+		Rand rand = new Rand(GameBeta.Settings.seed);
 		for (int x = 0; x < 100/3; x++) {
 			for (int y = 0; y < 100/3; y++) {
 				int strx = x * PavoHelper.getGameWidth(w.getWorldSize());

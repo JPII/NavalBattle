@@ -21,4 +21,5 @@ public class PavoSettings {
 	public int currentHeight = initialHeight;
 	public long seed = (long)(Math.random() * (Long.MAX_VALUE - 1));
 	public Rand rand = new Rand(seed);
+	public boolean OverClock = true;
 }

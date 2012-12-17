@@ -5,7 +5,7 @@ import maximusvladimir.dagen.Perlin;
 import com.jpii.navalbattle.data.Constants;
 
 public class McRegion {
-	private static Perlin berlin = new Perlin(Constants.MAIN_SEED,0,0);
+	private static Perlin berlin = new Perlin(GameBeta.Settings.seed,0,0);
 	private static River[] rivers;
 	static {
 		rivers = new River[1000];
