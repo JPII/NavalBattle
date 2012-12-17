@@ -119,11 +119,14 @@ public class Chunk extends Renderable {
 	public void writeBuffer() {
 		buffer = new BufferedImage(100,100,BufferedImage.TYPE_INT_RGB);
 		Graphics2D g = PavoHelper.createGraphics(buffer);
-		g.drawImage(terrain, 0, 0, null);
+		g.drawImage(terrain, 0, 0,103,103, null);
+		if (Tile00 != null || Tile10 != null || Tile11 != null || Tile01 != null) {
+			g.drawOval(0,0,33,33);
+		}
 		g.drawImage(w.getEntityManager().getImage(Tile00), 0, 0, null);
-		g.drawImage(w.getEntityManager().getImage(Tile10), 50, 0, null);
-		g.drawImage(w.getEntityManager().getImage(Tile01), 0, 50, null);
-		g.drawImage(w.getEntityManager().getImage(Tile11), 50, 50, null);
+		g.drawImage(w.getEntityManager().getImage(Tile10), 16, 0, null);
+		g.drawImage(w.getEntityManager().getImage(Tile01), 0, 16, null);
+		g.drawImage(w.getEntityManager().getImage(Tile11), 16, 16, null);
 		nesa = false;
 	}
 	boolean nesa = false;

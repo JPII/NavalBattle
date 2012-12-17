@@ -166,7 +166,7 @@ public class World extends Renderable implements Interactable {
 						if (chunk.needsBufferWrite())
 							chunk.writeBuffer();
 						if (chunk.getBuffer() != null)
-							g.drawImage(chunk.getBuffer(), sx+(x*100),sy+(z*100), 303, 303,null);
+							g.drawImage(chunk.getBuffer(), sx+(x*100),sy+(z*100),null);
 					}
 					//chunk.unlock();
 					liveChunks++;
