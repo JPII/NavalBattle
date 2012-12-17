@@ -50,6 +50,7 @@ public class Constants {
 	public static int CHUNK_SIZE = 100;
 	public static int MAIN_SEED = (int)(Math.random() * (256));// NEVER 4 GET DRAGON SEED: 2081742719;
 	public static Rand MAIN_RAND = new Rand("34892u8ewdniohrqi3jowd9ehui");
+	public static boolean OVER_CLOCK = false;
 	
 	/*
 	 * Gameplay

@@ -6,6 +6,7 @@ import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 import java.text.DecimalFormat;
 
+import com.jpii.navalbattle.data.Constants;
 import com.jpii.navalbattle.renderer.Helper;
 import com.jpii.navalbattle.util.GameStatistics;
 
@@ -40,9 +41,14 @@ public class GameBeta extends Renderable implements Runnable {
 		return numUpdates;
 	}
 	private void threadInit() {
+		int js = 0;
+		if (Constants.OVER_CLOCK)
+			js = Thread.MAX_PRIORITY;
+		else
+			js = Thread.NORM_PRIORITY;
 		updator = new Thread(this);
 		state = 1;
-		updator.setPriority(Thread.MAX_PRIORITY);
+		updator.setPriority(js);
 		updator.setName("updatorThread");
 		updator.start();
 		long lastStart = System.currentTimeMillis();
@@ -51,7 +57,7 @@ public class GameBeta extends Renderable implements Runnable {
 		}
 		chunkrender = new Thread(this);
 		state = 2;
-		chunkrender.setPriority(Thread.MAX_PRIORITY);
+		chunkrender.setPriority(js);
 		chunkrender.setName("chunkGenThread");
 		chunkrender.start();
 		lastStart = System.currentTimeMillis();
