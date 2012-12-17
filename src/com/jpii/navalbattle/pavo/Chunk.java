@@ -67,7 +67,10 @@ public class Chunk extends Renderable {
 					}
 				}
 				else if (lsy < 0.55) {
-					Color base1 = PavoHelper.Lerp(RenderConstants.GEN_SAND_COLOR,new Color(52,79,13),((lsy-0.4)/0.15));
+					Color base1 = PavoHelper.Lerp(RenderConstants.GEN_SAND_COLOR,new Color(52,79,13),((lsy-0.42)/0.15));
+					if (lsy < 0.42) {
+						base1 = PavoHelper.Lerp(new Color(199,189,122),RenderConstants.GEN_SAND_COLOR,((lsy-0.40)/0.02));
+					}
 					base1 = Helper.randomise(base1, 8, rand, false);
 					g.setColor(base1);
 					//Color start = Helper.adjust(Helper.randomise(RenderConstants.GEN_SAND_COLOR,7
