@@ -42,7 +42,7 @@ public class World extends Renderable implements Interactable {
 			}
 		}
 		generated = new boolean[chunks.length];
-		buffer = new BufferedImage(DynamicConstants.WND_WDTH,DynamicConstants.WND_HGHT,BufferedImage.TYPE_INT_RGB);
+		buffer = new BufferedImage(GameBeta.Settings.currentWidth,GameBeta.Settings.currentHeight,BufferedImage.TYPE_INT_RGB);
 		makeNoise();
 	}
 	public void setZoomLevel(int level) {
@@ -52,11 +52,11 @@ public class World extends Renderable implements Interactable {
 		return zlevel;
 	}
 	public void makeNoise(){
-		noise = new BufferedImage(DynamicConstants.WND_WDTH,DynamicConstants.WND_HGHT,BufferedImage.TYPE_INT_RGB);
+		noise = new BufferedImage(GameBeta.Settings.currentWidth,GameBeta.Settings.currentHeight,BufferedImage.TYPE_INT_RGB);
 		Rand ras = new Rand(Constants.MAIN_SEED+22);
 		Graphics gs2 = noise.getGraphics(); // Q and D
-		for (int x = 0; x < DynamicConstants.WND_WDTH; x+= 2) {
-			for (int y = 0; y < DynamicConstants.WND_HGHT; y+=2) {
+		for (int x = 0; x < GameBeta.Settings.currentWidth; x+= 2) {
+			for (int y = 0; y < GameBeta.Settings.currentHeight; y+=2) {
 				int rgb = ras.nextInt(127);
 				gs2.setColor(new Color(rgb,rgb,rgb));
 				gs2.fillRect(x,y,2,2);
@@ -129,10 +129,10 @@ public class World extends Renderable implements Interactable {
 		long endWait = System.currentTimeMillis() - waitStart;
 		bufferLock = true;
 		long startDraw = System.currentTimeMillis();
-		if (lww != DynamicConstants.WND_WDTH || lwh != DynamicConstants.WND_HGHT) {
-			buffer = new BufferedImage(DynamicConstants.WND_WDTH,DynamicConstants.WND_HGHT,BufferedImage.TYPE_INT_RGB);
-			lww = DynamicConstants.WND_WDTH;
-			lwh = DynamicConstants.WND_HGHT;
+		if (lww != GameBeta.Settings.currentWidth || lwh != GameBeta.Settings.currentHeight) {
+			buffer = new BufferedImage(GameBeta.Settings.currentWidth,GameBeta.Settings.currentHeight,BufferedImage.TYPE_INT_RGB);
+			lww = GameBeta.Settings.currentWidth;
+			lwh = GameBeta.Settings.currentHeight;
 			makeNoise();
 		}
 		int liveChunks = 0;

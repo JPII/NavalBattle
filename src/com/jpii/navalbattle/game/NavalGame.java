@@ -102,8 +102,8 @@ public class NavalGame extends GameBeta {
 		int my = me.getY();
 		int mzx = 0;
 		int mzy = 0;
-		int ww = (DynamicConstants.WND_WDTH/2);
-		int wh = (DynamicConstants.WND_HGHT/2);
+		int ww = (GameBeta.Settings.currentWidth/2);
+		int wh = (GameBeta.Settings.currentHeight/2);
 		int ad = 24;
 		if (mx < ww) {
 			mzx = (ww - mx)/ad;
@@ -138,6 +138,6 @@ public class NavalGame extends GameBeta {
 	public void render() {
 		super.render();
 		Graphics2D g = PavoHelper.createGraphics(getBuffer());
-		g.drawImage(omnimap.getBuffer(), DynamicConstants.WND_WDTH-158, 8, null);
+		g.drawImage(omnimap.getBuffer(), GameBeta.Settings.currentWidth-158, 8, null);
 	}
 }

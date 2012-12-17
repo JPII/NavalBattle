@@ -64,10 +64,10 @@ public class OmniMap extends Renderable {
 	public void render() {
 		Graphics2D g = PavoHelper.createGraphics(getBuffer());
 		g.drawImage(terrain, 0,0,null);
-		int rwx = (int) (Math.abs(w.getScreenX()-(DynamicConstants.WND_WDTH/2)) * 33.333333 / (PavoHelper.getGameWidth(w.getWorldSize()) * 100))*3;
-		int rwy = (int) (Math.abs(w.getScreenY()-(DynamicConstants.WND_HGHT/2)) * 33.333333 / (PavoHelper.getGameHeight(w.getWorldSize()) * 100))*3;
-		int sw = (int)((150 * DynamicConstants.WND_WDTH)/(PavoHelper.getGameWidth(w.getWorldSize())*100));
-		int sh = (int)(150 * DynamicConstants.WND_HGHT/(PavoHelper.getGameHeight(w.getWorldSize())*100));
+		int rwx = (int) (Math.abs(w.getScreenX()-(GameBeta.Settings.currentWidth/2)) * 33.333333 / (PavoHelper.getGameWidth(w.getWorldSize()) * 100))*3;
+		int rwy = (int) (Math.abs(w.getScreenY()-(GameBeta.Settings.currentHeight/2)) * 33.333333 / (PavoHelper.getGameHeight(w.getWorldSize()) * 100))*3;
+		int sw = (int)((150 * GameBeta.Settings.currentWidth)/(PavoHelper.getGameWidth(w.getWorldSize())*100));
+		int sh = (int)(150 * GameBeta.Settings.currentHeight/(PavoHelper.getGameHeight(w.getWorldSize())*100));
 		g.setColor(Color.red);
 		g.drawRect(rwx-1,rwy-1,sw/2,sh/2);
 		//GraphicsLib.drawThick3DRect(g, 0,0,getWidth()-1,getHeight()-1,5); 

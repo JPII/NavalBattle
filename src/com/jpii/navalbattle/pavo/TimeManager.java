@@ -15,8 +15,8 @@ public class TimeManager extends Renderable {
 	private int minute = 0;
 	private int lsw, lsh;
 	public TimeManager() {
-		lsw = DynamicConstants.WND_WDTH;
-		lsh = DynamicConstants.WND_HGHT;
+		lsw = GameBeta.Settings.currentWidth;
+		lsh = GameBeta.Settings.currentHeight;
 	}
 	public void update() {
 		int le = DayNightTotalLengthSeconds;
@@ -60,13 +60,13 @@ public class TimeManager extends Renderable {
     		timeD = 3;
     	}
     	cdr = new Color(11,15,23,alph);
-    	if (!lcd.equals(cdr) || lsw != DynamicConstants.WND_WDTH || lsh != DynamicConstants.WND_HGHT) {
-    		buffer = new BufferedImage(DynamicConstants.WND_WDTH,DynamicConstants.WND_HGHT,BufferedImage.TYPE_INT_ARGB);
-    		lsw = DynamicConstants.WND_WDTH;
-    		lsh = DynamicConstants.WND_HGHT;
+    	if (!lcd.equals(cdr) || lsw != GameBeta.Settings.currentWidth || lsh != GameBeta.Settings.currentHeight) {
+    		buffer = new BufferedImage(GameBeta.Settings.currentWidth,GameBeta.Settings.currentHeight,BufferedImage.TYPE_INT_ARGB);
+    		lsw = GameBeta.Settings.currentWidth;
+    		lsh = GameBeta.Settings.currentHeight;
     		Graphics g = buffer.getGraphics();
     		g.setColor(cdr);
-    		g.fillRect(0,0,DynamicConstants.WND_WDTH,DynamicConstants.WND_HGHT);
+    		g.fillRect(0,0,GameBeta.Settings.currentWidth,GameBeta.Settings.currentHeight);
     		lcd = cdr;
     	}
     	double thour = (((tofd) * 24) / DayNightTotalLengthSeconds)+18.0;

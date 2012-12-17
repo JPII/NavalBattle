@@ -24,12 +24,13 @@ public class GameBeta extends Renderable implements Runnable {
 	boolean forceRender = false;
 	private int lastTime = -1;
 	private WindowManager windows;
+	public static PavoSettings Settings = new PavoSettings();
 	public GameBeta() {
 		windows = new WindowManager();
 		world = new World();
 		gen = new WorldGen();
 		threadInit();
-		buffer = new BufferedImage(DynamicConstants.WND_WDTH,DynamicConstants.WND_HGHT,BufferedImage.TYPE_INT_RGB);
+		buffer = new BufferedImage(GameBeta.Settings.currentWidth,GameBeta.Settings.currentHeight,BufferedImage.TYPE_INT_RGB);
 	}
 	public WindowManager getWinMan() {
 		return windows;
@@ -148,7 +149,7 @@ public class GameBeta extends Renderable implements Runnable {
 		return 1;
 	}
 	public void render() {
-		buffer = new BufferedImage(DynamicConstants.WND_WDTH,DynamicConstants.WND_HGHT,BufferedImage.TYPE_INT_RGB);
+		buffer = new BufferedImage(GameBeta.Settings.currentWidth,GameBeta.Settings.currentHeight,BufferedImage.TYPE_INT_RGB);
 		Graphics2D g = PavoHelper.createGraphics(buffer);
 		while (getWorld().isLocked()) {
 			

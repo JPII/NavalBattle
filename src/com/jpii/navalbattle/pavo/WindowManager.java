@@ -87,18 +87,18 @@ public class WindowManager extends Renderable{
 	int lwsw = 0;
 	int lwsh = 0;
 	public void render() {
-		buffer = new BufferedImage(DynamicConstants.WND_WDTH,DynamicConstants.WND_HGHT,BufferedImage.TYPE_INT_ARGB);
-		if (grided == null || lwsw != DynamicConstants.WND_WDTH || lwsh != DynamicConstants.WND_HGHT) {
-			grided = new BufferedImage(DynamicConstants.WND_WDTH,DynamicConstants.WND_HGHT,BufferedImage.TYPE_INT_ARGB);
+		buffer = new BufferedImage(GameBeta.Settings.currentWidth,GameBeta.Settings.currentHeight,BufferedImage.TYPE_INT_ARGB);
+		if (grided == null || lwsw != GameBeta.Settings.currentWidth || lwsh != GameBeta.Settings.currentHeight) {
+			grided = new BufferedImage(GameBeta.Settings.currentWidth,GameBeta.Settings.currentHeight,BufferedImage.TYPE_INT_ARGB);
 			Graphics2D g4 = PavoHelper.createGraphics(grided);
 			g4.setColor(new Color(200,200,180,90));
-			g4.fillRect(0,0,DynamicConstants.WND_WDTH,DynamicConstants.WND_HGHT);
+			g4.fillRect(0,0,GameBeta.Settings.currentWidth,GameBeta.Settings.currentHeight);
 			g4.setColor(new Color(20,20,45));
-			for (int x = 0; x < DynamicConstants.WND_WDTH*2; x += 8) {
+			for (int x = 0; x < GameBeta.Settings.currentWidth*2; x += 8) {
 				g4.drawLine(x,0,0,x);
 			}
-			lwsw = DynamicConstants.WND_WDTH;
-			lwsh = DynamicConstants.WND_HGHT;
+			lwsw = GameBeta.Settings.currentWidth;
+			lwsh = GameBeta.Settings.currentHeight;
 		}
 		Graphics2D g2 = PavoHelper.createGraphics(getBuffer());
 		

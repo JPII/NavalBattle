@@ -28,7 +28,6 @@ import java.lang.Thread.State;
 import javax.swing.*;
 
 import com.jpii.navalbattle.data.Constants;
-import com.jpii.navalbattle.pavo.DynamicConstants;
 import com.jpii.navalbattle.pavo.GameBeta;
 import com.jpii.navalbattle.pavo.PavoHelper;
 import com.jpii.navalbattle.renderer.Console;
@@ -108,8 +107,8 @@ public class GameComponent extends JComponent {
 	}
 	public void update() {
 		game.render();
-		DynamicConstants.WND_WDTH = frame.getWidth();
-		DynamicConstants.WND_HGHT = frame.getHeight();
+		GameBeta.Settings.currentWidth = frame.getWidth();
+		GameBeta.Settings.currentHeight = frame.getHeight();
 		setSize(frame.getWidth(), frame.getHeight());
 	}
 	public void updateGame() {
@@ -120,8 +119,8 @@ public class GameComponent extends JComponent {
 		//g.fillRect(0,0,DynamicConstants.WND_WDTH,DynamicConstants.WND_HGHT);
 		g.drawImage(game.getBuffer(),0,0,null);
 		if (notifier != null)
-			g.drawImage(notifier,(DynamicConstants.WND_WDTH/2)-(notifier.getWidth()/2),
-				(DynamicConstants.WND_HGHT/2)-(notifier.getHeight()/2),null);
+			g.drawImage(notifier,(GameBeta.Settings.currentWidth/2)-(notifier.getWidth()/2),
+				(GameBeta.Settings.currentHeight/2)-(notifier.getHeight()/2),null);
 	}
 	float transparency = 200;
 	long ticks = 0;
