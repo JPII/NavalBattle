@@ -32,6 +32,8 @@ public class NavalGame extends GameBeta {
 		//MessageBox.show("Warning", "This is a message box!!!");
 		MessageBox.show("Hey there!","Could not connect to RocketGamer servers.\n\nTrying again in 10 seconds.",
 				MessageBoxIcon.Notify, false);
+		
+		//this.getWorld().getEntityManager().
 	}
 	/**
 	 * Mulithreaded updator.

@@ -17,6 +17,12 @@ public class EntityManager {
 	public Entity getEntity(int r, int c) {
 		return ent[c][r];
 	}
+	public void setEntity(int r, int c, Entity e) {
+		ent[c][r] = e;
+		int x = c/2;
+		int z = c/2;
+		
+	}
 	public boolean isTileFilledWithWater(int r, int c) {
 		return tileAccessor[c][r];
 	}
