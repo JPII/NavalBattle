@@ -157,7 +157,7 @@ public class Entity implements Runnable {
 		//System.out.println(getLocation() + "mouse: " + localMX + "," + localMY);
 		id = 1;
 		getManager().getAssociatedChunk(getLocation().getRow(),getLocation().getCol()).writeBuffer();
-		getManager().getWorld().reRender();
+		getManager().getWorld().forceRender();
 	}
 
 	@Override

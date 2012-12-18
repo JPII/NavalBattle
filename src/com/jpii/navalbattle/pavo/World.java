@@ -130,7 +130,7 @@ public class World extends Renderable implements Interactable {
 	 * This method is not actually deprecated, but it is called so to ensure that the above message is read.
 	 * @deprecated
 	 */
-	public void reRender() {
+	public void forceRender() {
 		chunkrender = true;
 	}
 	public synchronized void render() {
