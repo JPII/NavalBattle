@@ -274,7 +274,7 @@ public class Game implements Runnable {
     		if (Location.validate(l)) {
     			Entity e = getGrid().getEntity(l.getCol(), l.getRow());
     			if (e != null) {
-    				e.onMouseHover(0,0);
+    				//e.onMouseHover(0,0);
     			}
     		}
     		/*for (int x = 0; x < grid.getWidth(); x++) {

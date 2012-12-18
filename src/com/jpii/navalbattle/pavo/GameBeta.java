@@ -7,6 +7,7 @@ import java.awt.image.BufferedImage;
 import java.text.DecimalFormat;
 
 import com.jpii.navalbattle.data.Constants;
+import com.jpii.navalbattle.game.entity.Entity;
 import com.jpii.navalbattle.renderer.Helper;
 import com.jpii.navalbattle.util.GameStatistics;
 
@@ -202,7 +203,16 @@ public class GameBeta extends Renderable implements Runnable {
 		forceUpdate = true;
 	}
 	public void mouseMove(MouseEvent me) {
-		
+		int chx = (-getWorld().getScreenX()) + me.getX();
+		int chy = (-getWorld().getScreenY()) + me.getY(); 
+		chx /= 50;
+		chy /= 50;
+		if (chx < PavoHelper.getGameWidth(getWorld().getWorldSize()) * 2 && chy < PavoHelper.getGameHeight(getWorld().getWorldSize()) * 2 &&
+		chx >= 0 && chy >= 0) {
+			Entity e = getWorld().getEntityManager().getEntity(chy,chx);
+			e.onMouseMove((-getWorld().getScreenX()) + me.getX() - (e.getLocation().getCol()*50),
+					(-getWorld().getScreenY()) + me.getY() - (e.getLocation().getRow()*50));
+		}
 	}
 	public void mouseDown(MouseEvent me) {
 		

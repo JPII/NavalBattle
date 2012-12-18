@@ -39,7 +39,7 @@ public class NavalGame extends GameBeta {
 			}
 		}
 		
-		getWorld().getEntityManager().setEntity(6,6, new HumanMob(getWorld().getEntityManager()));
+		//getWorld().getEntityManager().setEntity(6,6, new HumanMob(getWorld().getEntityManager()));
 	}
 	/**
 	 * Mulithreaded updator.
@@ -63,7 +63,7 @@ public class NavalGame extends GameBeta {
 				}
 			}
 		}
-		System.out.println("ccalls"+ccall);
+		//System.out.println("ccalls"+ccall);
 		if (omnimap == null)
 			omnimap = new OmniMap(getWorld());
 		omnimap.render();
@@ -143,6 +143,7 @@ public class NavalGame extends GameBeta {
 			return;
 	}
 	public void mouseMove(MouseEvent me) {
+		super.mouseMove(me);
 		omnimap.mouseMoved(me);
 	}
 	public void render() {

@@ -149,12 +149,13 @@ public class Entity implements Runnable {
 		
 	}
 	
-	public void onMouseHover(int localMX, int localMY) {
+	public void onMouseDown(int localMX, int localMY) {
 		
 	}
 	
-	public void onMouseDown(int localMX, int localMY) {
-		
+	public void onMouseMove(int localMX, int localMY) {
+		//System.out.println(getLocation() + "mouse: " + localMX + "," + localMY);
+		id = 1;
 	}
 
 	@Override
