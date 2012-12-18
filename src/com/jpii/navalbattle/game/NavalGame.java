@@ -45,7 +45,7 @@ public class NavalGame extends GameBeta {
 	 * Mulithreaded updator.
 	 */
 	public void update() {
-		if (getNumUpdates() % 500 != 0) {
+		if (getNumUpdates() % 750 != 0) {
 			return;
 		}
 		long updatecode = getNumUpdates();

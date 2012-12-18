@@ -18,7 +18,7 @@ public class HumanMob extends Entity {
 			return;
 		}
 		
-		next = getManager().getEntity(getLocation().getRow(),getLocation().getCol()+1);
+		next = getManager().getEntity(getLocation() .getRow(),getLocation().getCol()+1);
 		if (next != null) {
 			getManager().setEntity(getLocation().getRow(), getLocation().getCol()+1,new HumanMob(getManager()));
 			return;
