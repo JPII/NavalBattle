@@ -35,7 +35,11 @@ public class NavalGame extends GameBeta {
 		
 		for (int x = 0; x < PavoHelper.getGameWidth(getWorld().getWorldSize())*2; x++) {
 			for (int z = 0; z < PavoHelper.getGameHeight(getWorld().getWorldSize())*2; z++) {
-				getWorld().getEntityManager().setEntity(x,z, new Entity(getWorld().getEntityManager()));
+				//System.out.println(getWorld().getEntityManager().getTilePercentLand(z, x));
+				//if (getWorld().getEntityManager().getTilePercentLand(z, x) >= 10)
+					//getWorld().getEntityManager().setEntity(x,z, new PortEntity(getWorld().getEntityManager(),new Location(z,x)));
+				//else
+					getWorld().getEntityManager().setEntity(x,z, new Entity(getWorld().getEntityManager(),new Location(z,x)));
 			}
 		}
 		

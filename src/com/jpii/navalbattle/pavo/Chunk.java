@@ -76,13 +76,13 @@ public class Chunk extends Renderable {
 					//Color start = Helper.adjust(Helper.randomise(RenderConstants.GEN_SAND_COLOR,7
 	                        ///*RenderConstants.GEN_COLOR_DIFF*/, rand, false), ((lsy-0.4)/0.1), 50);
 					if (lsx < 16.6666666666666666 && lsz < 16.666666666666666)
-						water00 = 1;
+						water00 += 1;
 					else if (lsx >= 16.666666666666 && lsz < 16.666666666666666)
-						water10 = 1;
+						water10 += 1;
 					else if (lsx < 16.666666666666 && lsz >= 16.666666666666666)
-						water01 = 1;
+						water01 += 1;
 					else if (lsx >= 16.666666666666 && lsz >= 16.666666666666666)
-						water11 = 1;
+						water11 += 1;
 				}
 				else{
 					Color base1 = PavoHelper.Lerp(new Color(52,79,13),new Color(100,92,40),((lsy-0.55)/0.45));
@@ -99,13 +99,13 @@ public class Chunk extends Renderable {
 					//g.setColor(Helper.adjust(Helper.randomise(new Color(40,61,4),
 	                  //      RenderConstants.GEN_COLOR_DIFF, rand, false), ((lsy-0.6)/0.3), 40));
 					if (lsx < 16.6666666666666666 && lsz < 16.666666666666666)
-						water00 = 1;
+						water00 += 1;
 					else if (lsx >= 16.666666666666 && lsz < 16.666666666666666)
-						water10 = 1;
+						water10 += 1;
 					else if (lsx < 16.666666666666 && lsz >= 16.666666666666666)
-						water01 = 1;
+						water01 += 1;
 					else if (lsx >= 16.666666666666 && lsz >= 16.666666666666666)
-						water11 = 1;
+						water11 += 1;
 				}
 				g.drawLine(lsx,lsz,lsx,lsz);
 				//g.fillRect(lsx*3,lsz*3,4,4);

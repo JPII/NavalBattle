@@ -17,6 +17,8 @@
 
 package com.jpii.navalbattle.game.entity;
 
+import java.awt.image.BufferedImage;
+
 import com.jpii.navalbattle.game.*;
 import com.jpii.navalbattle.pavo.EntityManager;
 import com.jpii.navalbattle.pavo.EntityReference;
@@ -29,13 +31,15 @@ public class Entity implements Runnable {
 	private EntityReference ref;
 	private int id;
 	private EntityManager man;
+	protected BufferedImage custom = null;
 	public long lastUpdate = 0;
 	
 	/**
 	 * Default constructor. Sets instance to inactive.
 	 */
-	public Entity(EntityManager eman) {
+	public Entity(EntityManager eman, Location l) {
 		setActive(false);
+		location = l;
 		man = eman;
 	}
 	public EntityManager getManager() {
@@ -148,12 +152,15 @@ public class Entity implements Runnable {
 	public void onMouseDown(int localMX, int localMY) {
 		
 	}
-	
+	public BufferedImage getCustomImage() {
+		return custom;
+	}
 	public void onMouseMove(int localMX, int localMY) {
 		if (getManager().isTileFilledWithWater(getLocation().getRow(),getLocation().getCol()))
 			return;
 		//System.out.println(getLocation() + "mouse: " + localMX + "," + localMY);
 		id = 1;
+		//System.out.println("loc" + getLocation());
 		getManager().getAssociatedChunk(getLocation().getRow(),getLocation().getCol()).writeBuffer();
 		getManager().getWorld().forceRender();
 	}

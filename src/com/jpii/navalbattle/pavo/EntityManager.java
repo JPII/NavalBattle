@@ -9,7 +9,7 @@ import com.jpii.navalbattle.game.entity.Entity;
 import com.jpii.navalbattle.util.FileUtils;
 
 public class EntityManager {
-	boolean[][] tileAccessor;
+	int[][] tileAccessor;
 	Entity[][] ent;
 	World w;
 	int counter = 0;
@@ -17,7 +17,7 @@ public class EntityManager {
 	public EntityManager(World w) {
 		this.w = w;
 		ent = new Entity[PavoHelper.getGameWidth(w.getWorldSize())*2][PavoHelper.getGameHeight(w.getWorldSize())*2];
-		tileAccessor = new boolean[PavoHelper.getGameWidth(w.getWorldSize())*2][PavoHelper.getGameHeight(w.getWorldSize())*2];
+		tileAccessor = new int[PavoHelper.getGameWidth(w.getWorldSize())*2][PavoHelper.getGameHeight(w.getWorldSize())*2];
 		grid = new BufferedImage(50,50,BufferedImage.TYPE_INT_ARGB);
 		Graphics2D g = PavoHelper.createGraphics(grid);
 		g.setColor(new Color(120,120,120,100));
@@ -59,7 +59,10 @@ public class EntityManager {
 		chunk.needsBufferWrite();
 	}
 	public boolean isTileFilledWithWater(int r, int c) {
-		return tileAccessor[c][r];
+		return tileAccessor[c][r] == 0;
+	}
+	public int getTilePercentLand(int r, int c) {
+		return tileAccessor[c][r] * 100 / 2500;
 	}
 	public EntityReference getTypeById(int id) {
 		return new EntityReference(counter++,1);
@@ -76,16 +79,19 @@ public class EntityManager {
 			ager = humanoid;
 			break;
 		}
+		BufferedImage s = ent.getCustomImage();
+		if (s != null)
+			ager = s;
 		return ager;
 	}
 	public void AQms03KampOQ9103nmJMs(int snJMkqmd, int cKQK91nm38910JNFEWo, int traKQ91) {
-		tileAccessor[cKQK91nm38910JNFEWo][snJMkqmd] = mjMo1091(cKQK91nm38910JNFEWo, traKQ91);
+		tileAccessor[cKQK91nm38910JNFEWo][snJMkqmd] = traKQ91;//mjMo1091(cKQK91nm38910JNFEWo, traKQ91);
 	}
-	public boolean mjMo1091(int Tj001, int Uim294) {
+	/*public boolean mjMo1091(int Tj001, int Uim294) {
 		if (Tj001 == Integer.MAX_VALUE || Uim294 == 0) return Boolean.TRUE;
 		if (Tj001 == Integer.MIN_VALUE || Uim294 == 1) return Boolean.FALSE;
 		return Boolean.FALSE;
-	}
+	}*/
 	public World getWorld() {
 		return w;
 	}
