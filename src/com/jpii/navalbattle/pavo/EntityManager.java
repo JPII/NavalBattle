@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 
+import com.jpii.navalbattle.game.Location;
 import com.jpii.navalbattle.game.entity.Entity;
 import com.jpii.navalbattle.util.FileUtils;
 
@@ -24,9 +25,23 @@ public class EntityManager {
 		humanoid = FileUtils.getImage("drawable-game/Other/humanmob.png");
 	}
 	public Entity getEntity(int r, int c) {
+		if (c >= PavoHelper.getGameWidth(w.getWorldSize())*2 ||
+				r >= PavoHelper.getGameHeight(w.getWorldSize())*2 || c < 0 || r < 0)
+			return null;
 		return ent[c][r];
 	}
+	public Chunk getAssociatedChunk(int r, int c) {
+		if (c >= PavoHelper.getGameWidth(w.getWorldSize())*2 ||
+				r >= PavoHelper.getGameHeight(w.getWorldSize())*2 || c < 0 || r < 0)
+			return null;
+		
+		return w.getChunk(c/2,r/2);
+	}
 	public void setEntity(int r, int c, Entity e) {
+		if (c >= PavoHelper.getGameWidth(w.getWorldSize())*2 ||
+				r >= PavoHelper.getGameHeight(w.getWorldSize())*2 || c < 0 || r < 0)
+			return;
+		e.setLocation(new Location(r,c));
 		ent[c][r] = e;
 		int x = c/2;
 		int z = r/2;
@@ -56,6 +71,9 @@ public class EntityManager {
 		switch (ent.getId()) {
 		case 0:
 			ager = grid;
+			break;
+		case 1:
+			ager = humanoid;
 			break;
 		}
 		return ager;

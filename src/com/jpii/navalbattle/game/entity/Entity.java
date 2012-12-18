@@ -18,6 +18,7 @@
 package com.jpii.navalbattle.game.entity;
 
 import com.jpii.navalbattle.game.*;
+import com.jpii.navalbattle.pavo.EntityManager;
 import com.jpii.navalbattle.pavo.EntityReference;
 
 public class Entity implements Runnable {
@@ -27,12 +28,18 @@ public class Entity implements Runnable {
 	private String tag;
 	private EntityReference ref;
 	private int id;
+	private EntityManager man;
+	public long lastUpdate = 0;
 	
 	/**
 	 * Default constructor. Sets instance to inactive.
 	 */
-	public Entity() {
+	public Entity(EntityManager eman) {
 		setActive(false);
+		man = eman;
+	}
+	public EntityManager getManager() {
+		return man;
 	}
 	
 	public int getId() {

@@ -35,29 +35,35 @@ public class NavalGame extends GameBeta {
 		
 		for (int x = 0; x < PavoHelper.getGameWidth(getWorld().getWorldSize())*2; x++) {
 			for (int z = 0; z < PavoHelper.getGameHeight(getWorld().getWorldSize())*2; z++) {
-				getWorld().getEntityManager().setEntity(x,z, new Entity());
+				getWorld().getEntityManager().setEntity(x,z, new Entity(getWorld().getEntityManager()));
 			}
 		}
+		
+		getWorld().getEntityManager().setEntity(6,6, new HumanMob(getWorld().getEntityManager()));
 	}
 	/**
 	 * Mulithreaded updator.
 	 */
 	public void update() {
+		if (getNumUpdates() % 500 != 0) {
+			return;
+		}
+		long updatecode = getNumUpdates();
+		int ccall = 0;
 		//Console.getInstance().printWarn(getWorld().getTimeManager().getTimeDescription() + " " + getWorld().getTimeManager().getCurrentHour() + ":00");
-		for (int r = 0; r < PavoHelper.getGameWidth(getWorld().getWorldSize()); r++) {
-			for (int c = 0; c < PavoHelper.getGameHeight(getWorld().getWorldSize()); c++) {
+		for (int r = 0; r < PavoHelper.getGameWidth(getWorld().getWorldSize())*2; r++) {
+			for (int c = 0; c < PavoHelper.getGameHeight(getWorld().getWorldSize())*2; c++) {
 				Entity ent = getWorld().getEntityManager().getEntity(r,c);
-				if (ent != null && PavoHelper.isEntityVisibleOnScreen(getWorld(), ent)) {
+				if (ent.getId() == 1 && ent.lastUpdate != updatecode) {
 					ent.update();
-					// If there is a whale, and 2 seconds have gone by, then...
-					if (ent instanceof Whale && getNumUpdates() % 2000 == 0) {
-						Whale w = (Whale)ent;
-						// Switch moods.
-						w.setAngry(!w.isAngry());
-					}
+					ent.lastUpdate = updatecode;
+					Chunk chunkysoup = getWorld().getEntityManager().getAssociatedChunk(r, c);
+					if (chunkysoup != null)
+						chunkysoup.writeBuffer();
 				}
 			}
 		}
+		System.out.println("ccalls"+ccall);
 		if (omnimap == null)
 			omnimap = new OmniMap(getWorld());
 		omnimap.render();
@@ -84,8 +90,8 @@ public class NavalGame extends GameBeta {
 	 * Called right when daytime starts.
 	 */
 	public void becomingDay() {
-		for (int r = 0; r < PavoHelper.getGameWidth(getWorld().getWorldSize()); r++) {
-			for (int c = 0; c < PavoHelper.getGameHeight(getWorld().getWorldSize()); c++) {
+		for (int r = 0; r < PavoHelper.getGameWidth(getWorld().getWorldSize())*2; r++) {
+			for (int c = 0; c < PavoHelper.getGameHeight(getWorld().getWorldSize())*2; c++) {
 				Entity ent = getWorld().getEntityManager().getEntity(r,c);
 				if (ent != null) {
 					//ent.setImage(null); // The daytime image would go here.
