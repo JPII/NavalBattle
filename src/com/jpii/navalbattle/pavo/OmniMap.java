@@ -17,7 +17,7 @@ public class OmniMap extends Renderable {
 	public OmniMap(World w) {
 		super();
 		this.w = w;
-		setSize(100,100);
+		setSize(100,150);
 		buffer = (new BufferedImage(getWidth(), getHeight(),BufferedImage.TYPE_INT_RGB));
 		terrain = (new BufferedImage(getWidth(), getHeight(),BufferedImage.TYPE_INT_RGB));
 		writeBuffer();
@@ -82,7 +82,10 @@ public class OmniMap extends Renderable {
 		int sh = (int)(150 * GameBeta.Settings.currentHeight/(PavoHelper.getGameHeight(w.getWorldSize())*100));
 		g.setColor(Color.red);
 		g.drawRect(rwx-1,rwy-1,sw/2,sh/2);
-		//GraphicsLib.drawThick3DRect(g, 0,0,getWidth()-1,getHeight()-1,5); 
-		//g.draw3DRect(0,0,getWidth()-1,getHeight()-1,true);
+		g.setColor(new Color(100, 78, 47));
+        g.drawRect(1, 1, width - 3, 100 - 3);
+        g.setColor(new Color(74, 30, 3));
+        g.drawRect(0, 0, width - 1, 100 - 1);
+        //g.fillRect(0, height, width, 25);
 	}
 }
