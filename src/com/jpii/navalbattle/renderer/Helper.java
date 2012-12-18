@@ -44,7 +44,7 @@ public class Helper {
 	}
 	public static void LoadStaticResources() {
 		loadFont("munro.ttf");
-		GUI_GAME_FONT = new Font("Munro",0,16);
+		GUI_GAME_FONT = new Font("Arial",0,16);
 		GUI_MENU_TITLE_FONT = new Font("Arial",0,56);
 		try {
 			GUI_OMNIMAP_BACKGROUND1 = 
