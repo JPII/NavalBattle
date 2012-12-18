@@ -16,6 +16,6 @@ public class Battleship extends IntelligentEntity {
 	
 	public void onMouseHover(int mx, int my) {
 		rotateTurrets();
-		updateImage();
+		//updateImage();
 	}
 }

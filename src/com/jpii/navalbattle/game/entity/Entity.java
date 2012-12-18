@@ -145,15 +145,13 @@ public class Entity implements Runnable {
 		return active;
 	}
 	
-	public void updateImage() {
-		
-	}
-	
 	public void onMouseDown(int localMX, int localMY) {
 		
 	}
 	
 	public void onMouseMove(int localMX, int localMY) {
+		if (getManager().isTileFilledWithWater(getLocation().getRow(),getLocation().getCol()))
+			return;
 		//System.out.println(getLocation() + "mouse: " + localMX + "," + localMY);
 		id = 1;
 		getManager().getAssociatedChunk(getLocation().getRow(),getLocation().getCol()).writeBuffer();
