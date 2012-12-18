@@ -86,4 +86,7 @@ public class EntityManager {
 		if (Tj001 == Integer.MIN_VALUE || Uim294 == 1) return Boolean.FALSE;
 		return Boolean.FALSE;
 	}
+	public World getWorld() {
+		return w;
+	}
 }
