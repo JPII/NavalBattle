@@ -5,13 +5,14 @@ import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 
 import com.jpii.navalbattle.game.entity.Entity;
+import com.jpii.navalbattle.util.FileUtils;
 
 public class EntityManager {
 	boolean[][] tileAccessor;
 	Entity[][] ent;
 	World w;
 	int counter = 0;
-	BufferedImage grid;
+	BufferedImage grid,humanoid;
 	public EntityManager(World w) {
 		this.w = w;
 		ent = new Entity[PavoHelper.getGameWidth(w.getWorldSize())*2][PavoHelper.getGameHeight(w.getWorldSize())*2];
@@ -19,7 +20,8 @@ public class EntityManager {
 		grid = new BufferedImage(50,50,BufferedImage.TYPE_INT_ARGB);
 		Graphics2D g = PavoHelper.createGraphics(grid);
 		g.setColor(new Color(120,120,120,100));
-		g.drawRect(1,1,50,50);
+		g.drawRect(1,1,49,49);
+		humanoid = FileUtils.getImage("drawable-game/Other/humanmob.png");
 	}
 	public Entity getEntity(int r, int c) {
 		return ent[c][r];
