@@ -46,7 +46,7 @@ public class GameWindow extends Renderable {
 			g.drawRect(0,0,getWidth()-1,24);
 			BufferedImage adapter = new BufferedImage(getWidth()-2,24,BufferedImage.TYPE_INT_ARGB);
 			Graphics2D g2 = PavoHelper.createGraphics(adapter);
-			g2.setColor(Color.black);
+			g2.setColor(Color.white);
 			g2.setFont(Helper.GUI_GAME_FONT);
 			g2.drawString(title,3,20);
 			g.drawImage(adapter, 1,1, null);
