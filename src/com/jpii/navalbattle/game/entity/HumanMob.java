@@ -11,17 +11,19 @@ public class HumanMob extends Entity {
 	}
 	public void update() {
 		super.update();
-		/*int code = GameBeta.Settings.rand.nextInt(3);
+		int code = GameBeta.Settings.rand.nextInt(3);
 		Entity next = getManager().getEntity(getLocation().getRow()+1,getLocation().getCol());
 		if (next != null && code == 1) {
-			getManager().setEntity(getLocation().getRow()+1, getLocation().getCol(),new HumanMob(getManager()));
+			getManager().setEntity(getLocation().getRow()+1, getLocation().getCol(),new HumanMob(getManager(),
+					new Location(getLocation().getRow()+1, getLocation().getCol())));
 			return;
 		}
 		
 		next = getManager().getEntity(getLocation() .getRow(),getLocation().getCol()+1);
 		if (next != null) {
-			getManager().setEntity(getLocation().getRow(), getLocation().getCol()+1,new HumanMob(getManager()));
+			getManager().setEntity(getLocation().getRow(), getLocation().getCol()+1,new HumanMob(getManager(),
+					new Location(getLocation().getRow()+1, getLocation().getCol())));
 			return;
-		}*/
+		}
 	}
 }

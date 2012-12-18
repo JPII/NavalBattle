@@ -158,8 +158,10 @@ public class Entity implements Runnable {
 	public void onMouseMove(int localMX, int localMY) {
 		if (getManager().isTileFilledWithWater(getLocation().getRow(),getLocation().getCol()))
 			return;
-		//System.out.println(getLocation() + "mouse: " + localMX + "," + localMY);
 		id = 1;
+		//System.out.println(getLocation() + "mouse: " + localMX + "," + localMY);
+		//getManager().setEntity(getLocation().getRow(), getLocation().getCol(), new HumanMob(getManager(),new Location(
+			//	getLocation().getRow(), getLocation().getCol())));
 		//System.out.println("loc" + getLocation());
 		getManager().getAssociatedChunk(getLocation().getRow(),getLocation().getCol()).writeBuffer();
 		getManager().getWorld().forceRender();
