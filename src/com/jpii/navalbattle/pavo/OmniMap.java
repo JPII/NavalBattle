@@ -28,6 +28,18 @@ public class OmniMap extends Renderable {
 		
 		render();
 	}
+	public boolean mouseDown(MouseEvent me) {
+		int ax = me.getX() - (GameBeta.Settings.currentWidth - 158);
+		int ay = me.getY() - 40;
+		if (ax > 100 || ay > 100 || ax < 0 || ay < 0)
+			return false;
+		w.setLoc(-ax*PavoHelper.getGameWidth(w.getWorldSize()),-ay*PavoHelper.getGameHeight(w.getWorldSize()));
+		w.forceRender();
+		return true;
+	}
+	public boolean mouseDragged(MouseEvent me) {
+		return mouseDown(me);
+	}
 	public void writeBuffer() {
 		Graphics2D g = PavoHelper.createGraphics(terrain);
 		Rand rand = new Rand(GameBeta.Settings.seed);

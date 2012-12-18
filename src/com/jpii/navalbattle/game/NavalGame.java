@@ -112,6 +112,8 @@ public class NavalGame extends GameBeta {
 	public void mouseDragged(MouseEvent me) {
 		if (getWinMan().mouseDragged(me))
 			return;
+		if (omnimap.mouseDragged(me))
+			return;
 		int mx = me.getX();
 		int my = me.getY();
 		int mzx = 0;
@@ -145,6 +147,7 @@ public class NavalGame extends GameBeta {
 	public void mouseDown(MouseEvent me) {
 		if (getWinMan().mouseDown(me))
 			return;
+		omnimap.mouseDown(me);
 	}
 	public void mouseMove(MouseEvent me) {
 		super.mouseMove(me);
@@ -153,6 +156,6 @@ public class NavalGame extends GameBeta {
 	public void render() {
 		super.render();
 		Graphics2D g = PavoHelper.createGraphics(getBuffer());
-		g.drawImage(omnimap.getBuffer(), GameBeta.Settings.currentWidth-158, 8, null);
+		g.drawImage(omnimap.getBuffer(), GameBeta.Settings.currentWidth-158, 40, null);
 	}
 }
