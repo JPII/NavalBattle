@@ -36,14 +36,14 @@ public class GameWindow extends Renderable {
 		buffer = new BufferedImage(getWidth()+1,getHeight()+1,BufferedImage.TYPE_INT_ARGB);
 		Graphics2D g = PavoHelper.createGraphics(buffer);
 		g.setColor(Color.black);
-		g.drawRect(0,0,getWidth(),getHeight());
+		g.drawRect(0,0,getWidth()-1,getHeight()-1);
 		g.setColor(getBackgroundColor());
 		g.fillRect(1,1,getWidth()-2,getHeight()-2);
 		if (isTitleShown()) {
 			g.setColor(getBackgroundColor().darker().darker());
 			g.fillRect(1,1,getWidth()-2,24);
 			g.setColor(Color.black);
-			g.drawRect(0,0,getWidth(),24);
+			g.drawRect(0,0,getWidth()-1,24);
 			BufferedImage adapter = new BufferedImage(getWidth()-2,24,BufferedImage.TYPE_INT_ARGB);
 			Graphics2D g2 = PavoHelper.createGraphics(adapter);
 			g2.setColor(Color.black);
