@@ -5,7 +5,7 @@ import java.awt.image.BufferedImage;
 
 public class TimeManager extends Renderable {
 	public static int DayNightTotalLengthSeconds = 120;
-	public static int NightDarkness = 70;
+	public static int NightDarkness = 80;
 	private int hour = 0;
 	private String desc = "";
 	private double currentTime = ((double)DayNightTotalLengthSeconds)/2;
@@ -59,7 +59,7 @@ public class TimeManager extends Renderable {
     		desc = "Day";
     		timeD = 3;
     	}
-    	cdr = new Color(11,15,23,alph);
+    	cdr = new Color(27,31,58,alph);
     	if (!lcd.equals(cdr) || lsw != GameBeta.Settings.currentWidth || lsh != GameBeta.Settings.currentHeight) {
     		buffer = new BufferedImage(GameBeta.Settings.currentWidth,GameBeta.Settings.currentHeight,BufferedImage.TYPE_INT_ARGB);
     		lsw = GameBeta.Settings.currentWidth;
