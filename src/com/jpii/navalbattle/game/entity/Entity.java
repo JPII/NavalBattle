@@ -156,6 +156,8 @@ public class Entity implements Runnable {
 	public void onMouseMove(int localMX, int localMY) {
 		//System.out.println(getLocation() + "mouse: " + localMX + "," + localMY);
 		id = 1;
+		getManager().getAssociatedChunk(getLocation().getRow(),getLocation().getCol()).writeBuffer();
+		getManager().getWorld().reRender();
 	}
 
 	@Override

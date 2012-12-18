@@ -125,6 +125,14 @@ public class World extends Renderable implements Interactable {
 	public boolean needsReChunkRender() {
 		return chunkrender;
 	}
+	/**
+	 * This method should be called sparsingly (which means DO NOT OVER USE). This method is multithreaded, so it puts no stress on the calling thread.
+	 * This method is not actually deprecated, but it is called so to ensure that the above message is read.
+	 * @deprecated
+	 */
+	public void reRender() {
+		chunkrender = true;
+	}
 	public synchronized void render() {
 		if (!needsReChunkRender())
 			return;
