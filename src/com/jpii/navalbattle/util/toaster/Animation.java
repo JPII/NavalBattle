@@ -1,3 +1,9 @@
+/*
+ * Copyright (C) 2012 Daniele Piras
+ *
+ * Modified under license by JPII and contributors.
+ */
+
 package com.jpii.navalbattle.util.toaster;
 
 import java.awt.*;
