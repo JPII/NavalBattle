@@ -21,4 +21,7 @@ public class SettingsAttribute {
 	public void setValue(String val) {
 		value = val;
 	}
+	public String toString() {
+		return name + ": " + value;
+	}
 }
