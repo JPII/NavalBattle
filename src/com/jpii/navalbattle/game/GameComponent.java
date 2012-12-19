@@ -152,12 +152,14 @@ public class GameComponent extends JComponent {
 			winlib.hideFullscreen();
 			transparency = 200;
 			startDialog = false;
+			GameBeta.Settings.isGameFullscreen = false;
 		}
 		else {
 			ticks = 0;
 			winlib.showFullscreen();
 			isFullscreen = true;
 			startDialog = true;
+			GameBeta.Settings.isGameFullscreen = true;
 		}
 	}
 }

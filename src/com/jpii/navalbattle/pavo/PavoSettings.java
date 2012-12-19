@@ -22,4 +22,5 @@ public class PavoSettings {
 	public long seed = (int)(Math.random() * 256);//(long)(Math.random() * (Long.MAX_VALUE - 1)); 234,130 are good seeds.
 	public Rand rand = new Rand(seed);
 	public boolean OverClock = true;
+	public boolean isGameFullscreen = false;
 }
