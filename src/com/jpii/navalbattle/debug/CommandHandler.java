@@ -26,8 +26,7 @@ public class CommandHandler {
 	private ArrayList<Command> commands = new ArrayList<Command>();
 	
 	/**
-	 * Construct a CommandHandler instance
-	 * 
+	 * Construct a <code>CommandHandler</code> instance
 	 * @param commands
 	 */
 	public CommandHandler(ArrayList<Command> commands) {		
@@ -37,8 +36,7 @@ public class CommandHandler {
 	}
 	
 	/**
-	 * Register command.
-	 * 
+	 * Register <code>Command</code>.
 	 * @param command
 	 */
 	public void registerCommand(Command command) {
@@ -47,8 +45,7 @@ public class CommandHandler {
 	}
 	
 	/**
-	 * Parse command.
-	 * 
+	 * Parse <code>Command</code>.
 	 * @param command
 	 */
 	public void parseCommand(String command) {
@@ -80,6 +77,10 @@ public class CommandHandler {
 		}
 	}
 	
+	/**
+	 * Sort <code>Commands</code> alphabetically by command name.
+	 * @param commands
+	 */
 	private void sort(ArrayList<Command> commands) {
 		for(int index = 1; index < commands.size(); index++) {
 			for(int count = 0; count < commands.size()-index; count++) {	
@@ -93,8 +94,7 @@ public class CommandHandler {
 	}
 	
 	/**
-	 * Get commands.
-	 * 
+	 * Get <code>Command</code>.
 	 * @return
 	 */
 	public ArrayList<Command> getCommands() {

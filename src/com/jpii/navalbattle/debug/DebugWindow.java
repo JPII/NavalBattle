@@ -96,7 +96,6 @@ public class DebugWindow extends Window {
 	
 	/**
 	 * Returns current instance of CommandHandler.
-	 * 
 	 * @return commandHandler
 	 */
 	public CommandHandler getCommandHandler() {

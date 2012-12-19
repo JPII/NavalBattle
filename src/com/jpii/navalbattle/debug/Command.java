@@ -25,7 +25,7 @@ public class Command implements Comparable<Command> {
 	private CommandAction commandAction;
 
 	/**
-	 * Construct a Command.
+	 * Construct a <code>Command</code>.
 	 * 
 	 * @param command
 	 * @param args
@@ -40,7 +40,7 @@ public class Command implements Comparable<Command> {
 	}
 
 	/**
-	 * Get command.
+	 * Get <code>Command</code>.
 	 * @return
 	 */
 	public String getCommand() {
@@ -48,7 +48,7 @@ public class Command implements Comparable<Command> {
 	}
 
 	/**
-	 * Set command.
+	 * Set <code>Command</code>.
 	 * @param command
 	 */
 	public void setCommand(String command) {
@@ -56,7 +56,7 @@ public class Command implements Comparable<Command> {
 	}
 
 	/**
-	 * Get arguments.
+	 * Get <code>Command</code> arguments.
 	 * @return
 	 */
 	public String getArgs() {
@@ -64,7 +64,7 @@ public class Command implements Comparable<Command> {
 	}
 
 	/**
-	 * Set arguments.
+	 * Set <code>Command</code> arguments.
 	 * @param args
 	 */
 	public void setArgs(String args) {
@@ -72,7 +72,7 @@ public class Command implements Comparable<Command> {
 	}
 
 	/**
-	 * Get command description.
+	 * Get <code>Command</code> description.
 	 * @return
 	 */
 	public String getDescription() {
@@ -80,7 +80,7 @@ public class Command implements Comparable<Command> {
 	}
 
 	/**
-	 * Set command description.
+	 * Set <code>Command</code> description.
 	 * @param description
 	 */
 	public void setDescription(String description) {
@@ -88,7 +88,7 @@ public class Command implements Comparable<Command> {
 	}
 
 	/**
-	 * Get CommandAction.
+	 * Get <code>CommandAction</code>.
 	 * @return
 	 */
 	public CommandAction getCommandAction() {
@@ -96,7 +96,7 @@ public class Command implements Comparable<Command> {
 	}
 
 	/**
-	 * Set CommandAction
+	 * Set <code>CommandAction</code>.
 	 * @param commandAction
 	 */
 	public void setCommandAction(CommandAction commandAction) {
@@ -104,7 +104,7 @@ public class Command implements Comparable<Command> {
 	}
 
 	/**
-	 * Compare two commands.
+	 * Compare two <code>Commands</code>.
 	 * @param cmd
 	 */
 	public int compareTo(Command cmd) {

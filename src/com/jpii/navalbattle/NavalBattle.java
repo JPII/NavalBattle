@@ -34,7 +34,12 @@ public class NavalBattle {
 	private static GameState gameState;
 	private static WindowHandler windowHandler;
 	
+	/**
+	 * <code>NavalBattle</code> main method. Ran on launch.
+	 * @param args
+	 */
 	public static void main(String[] args) {
+		// Debug purposes
 		MaxTests.run();
 		
 		Helper.LoadStaticResources();
@@ -46,13 +51,12 @@ public class NavalBattle {
 		debugWindow.printInfo("NavalBattle " + Constants.NAVALBATTLE_VERSION + " initialized");
 		windowHandler = new WindowHandler();
 		
-		
+		// Debug purposes
 		new SinglePlayerGame();
 	}
 	
 	/**
 	 * Returns current instance of RoketGamer.
-	 * 
 	 * @return roketGamer
 	 */
 	public static RoketGamer getRoketGamer() {
@@ -61,7 +65,6 @@ public class NavalBattle {
 	
 	/**
 	 * Returns current instance of DebugWindow.
-	 * 
 	 * @return debugWindow
 	 */
 	public static DebugWindow getDebugWindow() {
@@ -70,7 +73,6 @@ public class NavalBattle {
 	
 	/**
 	 * Returns current instance of GameState.
-	 * 
 	 * @return gameState
 	 */
 	public static GameState getGameState() {
@@ -79,13 +81,16 @@ public class NavalBattle {
 	
 	/**
 	 * Returns current instance of WindowHandler. Used to switch Windows.
-	 * 
 	 * @return windowHandler
 	 */
 	public static WindowHandler getWindowHandler() {
 		return windowHandler;
 	}
 	
+	/**
+	 * Attempt to set <code>DefaultLookAndFeel</code> to Nimbus and
+	 * alert the users if the process fails.
+	 */
 	private static void setDefaultLookAndFeel(){
 		try {
 		    for (LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {

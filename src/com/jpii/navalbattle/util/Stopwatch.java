@@ -19,7 +19,6 @@ package com.jpii.navalbattle.util;
 
 /**
  * A helpful debugging class for measuring the length of an operation.
- * @author MKirkby
  */
 public class Stopwatch {
 	long startTime = -1;

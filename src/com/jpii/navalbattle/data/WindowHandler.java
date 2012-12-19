@@ -28,6 +28,9 @@ public class WindowHandler {
 	private ArrayList<Window> windows;
 	private static ToasterTest toasterManager;
 	
+	/**
+	 * Default constructor for <code>WindowConstructor</code>
+	 */
 	public WindowHandler(){
 		toasterManager = new ToasterTest();
 		windows = new ArrayList<Window>();
@@ -35,6 +38,9 @@ public class WindowHandler {
 		windows.get(0).setVisible(true);
 	}
 	
+	/**
+	 * Initialize <code>ArrayList</code> of <code>Windows</code>.
+	 */
 	private void initArray(){
 		windows.add(new LoginWindow());
 		windows.add(new LoggingInWindow());
@@ -45,6 +51,10 @@ public class WindowHandler {
 		windows.add(new CreditsWindow());
 	}
 	
+	/**
+	 * Open a new window from <code>String</code>.
+	 * @param a
+	 */
 	public void setNewWindow(String a){
 		for(int index = 0; index<windows.size(); index++){
 			JFrame temp = (Window) windows.get(index);
@@ -57,14 +67,18 @@ public class WindowHandler {
 		}
 	}
 	
+	/**
+	 * Add a new <code>Window</code> to the <code>ArrayList</code>
+	 * and make it visible.
+	 * @param w
+	 */
 	public void add(Window w){
 		windows.add(w);
 		w.setVisible(true);
 	}
 	
 	/**
-	 * Returns current instance of Toaster. Used to send desktop notifications.
-	 * 
+	 * Returns current instance of <code>Toaster</code>. Used to send desktop notifications.
 	 * @return toasterManager
 	 */
 	public ToasterTest getToasterManager() {

@@ -18,7 +18,6 @@ public class Animation extends Thread {
 	/**
 	 * Animate vertically the toaster. The toaster could be moved from
 	 * bottom to upper or to upper to bottom
-	 * 
 	 * @param posx
 	 * @param fromy
 	 * @param toy
@@ -42,6 +41,9 @@ public class Animation extends Thread {
 		toaster.setLocation(posx, toY);
 	}
 
+	/**
+	 * Run animation thread.
+	 */
 	public void run() {
 		try {
 			boolean animateFromBottom = true;

@@ -9,12 +9,6 @@ package com.jpii.navalbattle.util.toaster;
 import java.awt.*;
 import javax.swing.*;
 
-/**
- * Class to show toasters in multi-platform
- * 
- * @author daniele piras
- * 
- */
 public class ToasterTest {
 	// Width of the toaster
 	private int toasterWidth = 300;
@@ -64,10 +58,6 @@ public class ToasterTest {
 
 	/**
 	 * Constructor to initialized toaster component...
-	 * 
-	 * @author daniele piras
-	 * @wbp.parser.entryPoint
-	 * 
 	 */
 	public ToasterTest() {
 		try{
@@ -91,7 +81,6 @@ public class ToasterTest {
 	}
 	/**
 	 * Show a toaster with the specified message and the associated icon.
-	 * @wbp.parser.entryPoint
 	 */
 	public void showToaster(Icon icon, String msg) {
 		SingleToaster singleToaster = new SingleToaster(this);
@@ -111,14 +100,14 @@ public class ToasterTest {
 	}
 
 	/**
-	 * @return Returns the font
+	 * @return Returns the font.
 	 */
 	public Font getToasterMessageFont() {
 		return font;
 	}
 
 	/**
-	 * Set the font for the message
+	 * Set the font for the message.
 	 */
 	public void setToasterMessageFont(Font f) {
 		font = f;
@@ -259,10 +248,18 @@ public class ToasterTest {
 		this.toasterWidth = toasterWidth;
 	}
 
+	/**
+	 * Get background image.
+	 * @return
+	 */
 	public Image getBackgroundImage() {
 		return backgroundImage;
 	}
 
+	/**
+	 * Set background image.
+	 * @param backgroundImage
+	 */
 	public void setBackgroundImage(Image backgroundImage) {
 		this.backgroundImage = backgroundImage;
 	}

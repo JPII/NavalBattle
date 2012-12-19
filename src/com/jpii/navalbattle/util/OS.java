@@ -18,5 +18,18 @@
 package com.jpii.navalbattle.util;
 
 public enum OS {
-	linux, solaris, windows, macos, unknown;
+	/** Linux */
+	linux, 
+	
+	/** Solaris */
+	solaris, 
+	
+	/** Windows */
+	windows, 
+	
+	/** Mac OSX */
+	macos, 
+	
+	/** Unknown OS */
+	unknown;
 }

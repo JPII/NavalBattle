@@ -18,6 +18,7 @@
 package com.jpii.navalbattle.data;
 
 public class GameState {
+	
 	private boolean offline = true;
 	private int score = 0;
 	private int waterLevel = 60;
@@ -25,8 +26,7 @@ public class GameState {
 	private int difficutly = 1;
 	
 	/**
-	 * Get if game is in Off-line mode.
-	 * 
+	 * Get if game is in offline mode.
 	 * @return offline
 	 */
 	public boolean isOffline() {
@@ -35,7 +35,6 @@ public class GameState {
 	
 	/**
 	 * Set game into Off-line mode.
-	 * 
 	 * @param offline
 	 */
 	public void setOffline(boolean offline) {
@@ -44,7 +43,6 @@ public class GameState {
 	
 	/**
 	 * Get current score.
-	 * 
 	 * @return score
 	 */
 	public int getScore() {
@@ -53,7 +51,6 @@ public class GameState {
 	
 	/**
 	 * Set score to specified amount.
-	 * 
 	 * @param score
 	 */
 	public void setScore(int score) {
@@ -62,7 +59,6 @@ public class GameState {
 	
 	/**
 	 * Add to current score.
-	 * 
 	 * @param score
 	 */
 	public void addScore(int score) {
@@ -71,7 +67,6 @@ public class GameState {
 	
 	/**
 	 * Subtract from current score.
-	 * 
 	 * @param score
 	 */
 	public void subtractScore(int score) {
@@ -80,15 +75,13 @@ public class GameState {
 	
 	/**
 	 * Reset score.
-	 * 
 	 */
 	public void resetScore() {
 		this.score = 0;
 	}
 	
 	/**
-	 * Sets waterLevel
-	 * 
+	 * Sets waterLevel.
 	 * @param waterLevel
 	 */
 	public void setWaterLevel(int waterLevel) {
@@ -96,8 +89,7 @@ public class GameState {
 	}
 	
 	/**
-	 * Gets waterLevel
-	 * 
+	 * Gets waterLevel.
 	 * @return waterLevel
 	 */
 	public int getWaterLevel() {
@@ -105,8 +97,7 @@ public class GameState {
 	}
 	
 	/**
-	 * Sets number of starting ships
-	 * 
+	 * Sets number of starting ships.
 	 * @param numShips
 	 */
 	public void setNumShips(int numShips) {
@@ -114,8 +105,7 @@ public class GameState {
 	}
 	
 	/**
-	 * Gets number of starting ships
-	 * 
+	 * Gets number of starting ships.
 	 * @return numShips
 	 */
 	public int getNumShips() {
@@ -123,8 +113,7 @@ public class GameState {
 	}
 	
 	/**
-	 * Sets the difficulty of the game
-	 * 
+	 * Sets the difficulty of the game.
 	 * @param difficulty
 	 */
 	public void setDifficulty(int difficulty) {
@@ -132,8 +121,7 @@ public class GameState {
 	}
 	
 	/**
-	 * Gets the difficulty of the game
-	 * 
+	 * Gets the difficulty of the game.
 	 * @return difficulty
 	 */
 	public int getDifficulty() {

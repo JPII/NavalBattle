@@ -28,12 +28,18 @@ import javax.swing.JFrame;
 import javax.swing.Timer;
 
 public class WindowLib {
+	
 	JFrame wnd;
 	int sizew, sizeh,ox,oy;
 	boolean ready = false;
 	boolean fullscreen = false;
 	Timer evilHackTimer;
 	int h = 0;
+	
+	/**
+	 * <code>WindowLib</code> constructor.
+	 * @param wnd
+	 */
 	public WindowLib(JFrame wnd) {
 		this.wnd = wnd;
 		ActionListener al = new ActionListener() {
@@ -55,9 +61,18 @@ public class WindowLib {
 		evilHackTimer = new Timer(75,al);
 		//evilHackTimer.start();
 	}
+	
+	/**
+	 * Returns if game is in fullscreen mode.
+	 * @return
+	 */
 	public boolean isFullscreen() {
 		return fullscreen;
 	}
+	
+	/**
+	 * Update.
+	 */
 	private void update() {
 		if (wnd != null) {
 			if (ready) {
@@ -71,6 +86,11 @@ public class WindowLib {
 			evilHackTimer.stop();
 		}
 	}
+	
+	/**
+	 * Get game to fullscreen.
+	 * @return
+	 */
 	public boolean showFullscreen() {
 		//evilHackTimer.start();
 		if (FileUtils.getPlatform() == OS.windows) {
@@ -102,6 +122,10 @@ public class WindowLib {
 		}
 		return false;
 	}
+	
+	/**
+	 * Exit fullscreen.
+	 */
 	public void hideFullscreen() {
 		h = 0;
 		wnd.dispose();

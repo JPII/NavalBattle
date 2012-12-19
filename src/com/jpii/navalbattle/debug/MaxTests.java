@@ -43,6 +43,10 @@ import maximusvladimir.dagen.Rand;
  *
  */
 public class MaxTests {
+	
+	/**
+	 * Run <code>MaxTests</code>.
+	 */
 	public static void run() {
 		Rand r = new Rand();
 		for (int c = 0; c < 3; c++) {
@@ -104,12 +108,22 @@ public class MaxTests {
 			}
 		}
 	}
+	
+	/**
+	 * Returns if program is running for the first time.
+	 * @return
+	 */
 	public static boolean isFirstRun() {
 		if (!new File(getSettingsPath()).exists())
 			return true;
 		else
 			return false;
 	}
+	
+	/**
+	 * Returns settings file path.
+	 * @return
+	 */
 	public static String getSettingsPath() {
 		return (FileUtils.getSavingDirectory().getAbsolutePath()+"\\settings.inf");
 	}

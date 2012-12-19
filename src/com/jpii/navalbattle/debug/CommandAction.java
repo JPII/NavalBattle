@@ -20,7 +20,7 @@ package com.jpii.navalbattle.debug;
 public class CommandAction {
 	
 	/**
-	 * Ran when command is issued.
+	 * Ran when <code>Command</code> is issued.
 	 */
 	public void onRun(Command c, String[] args) {
 		

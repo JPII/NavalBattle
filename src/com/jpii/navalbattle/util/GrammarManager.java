@@ -22,9 +22,9 @@ import maximusvladimir.dagen.Rand;
 /**
  * Primarly for the sake of AI name generation.
  * Any real life persons that this generator generates is purely coincidental, and should not be taken offensively.
- * @author MKirkby
  */
 public class GrammarManager {
+	
 	private static String[] titles = {
 		"Head Admiral",
 		"Admiral",
@@ -33,6 +33,7 @@ public class GrammarManager {
 		"Commander",
 		"Lieutenant",
 		"Land Blubber"};
+	
 	private static String[] fName = {
 		"Adam",
 		"Charles",
@@ -59,6 +60,7 @@ public class GrammarManager {
 		"John",
 		"Alfred",
 		"Joesph"};
+	
 	private static String[] lName = {
 		"Putin",
 		"Smith",
@@ -79,7 +81,14 @@ public class GrammarManager {
 		"Long",
 		"Davis",
 		"Crowe"};
+	
 	private static char[] bet = {'A','B','C','D','E','F','G','H','I','J','K','L','M','N','P','Q','R','S','T','W'};
+	
+	/**
+	 * Generates a full name.
+	 * @param seed
+	 * @return
+	 */
 	public static String generateFullName(int seed) {
 		Rand r = new Rand(seed);
 		String title = titles[r.nextInt(titles.length)];
