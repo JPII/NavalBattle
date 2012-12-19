@@ -42,6 +42,13 @@ public class Animation extends Thread {
 			GraphicsEnvironment ge = GraphicsEnvironment
 					.getLocalGraphicsEnvironment();
 			Rectangle screenRect = ge.getMaximumWindowBounds();
+			toaster.toFront();
+			try {
+				toaster.setAlwaysOnTop(true);
+			}
+			catch (Throwable thr){
+				
+			}
 
 			int screenHeight = (int) screenRect.height;
 
