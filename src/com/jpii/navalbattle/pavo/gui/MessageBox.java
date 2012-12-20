@@ -15,7 +15,7 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.jpii.navalbattle.pavo;
+package com.jpii.navalbattle.pavo.gui;
 
 import java.awt.BasicStroke;
 import java.awt.Color;
@@ -26,13 +26,15 @@ import java.awt.image.BufferedImage;
 import javax.swing.ImageIcon;
 
 import com.jpii.navalbattle.NavalBattle;
+import com.jpii.navalbattle.pavo.GameBeta;
+import com.jpii.navalbattle.pavo.PavoHelper;
 import com.jpii.navalbattle.renderer.Helper;
 
 /**
  * @author MKirkby
  *
  */
-public class MessageBox extends com.jpii.navalbattle.pavo.GameWindow {
+public class MessageBox extends com.jpii.navalbattle.pavo.gui.GameWindow {
 	String message = "no msg";
 	MessageBoxIcon icon;
 	private static BufferedImage msg_error = null,msg_warn = null,msg_notify = null,msg_info = null;

@@ -15,13 +15,17 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.jpii.navalbattle.pavo;
+package com.jpii.navalbattle.pavo.gui;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
+
+import com.jpii.navalbattle.pavo.GameBeta;
+import com.jpii.navalbattle.pavo.PavoHelper;
+import com.jpii.navalbattle.pavo.Renderable;
 
 public class WindowManager extends Renderable{
 	ArrayList<GameWindow> wins;

@@ -15,7 +15,7 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.jpii.navalbattle.pavo;
+package com.jpii.navalbattle.pavo.gui;
 
 import java.awt.event.*;
 import java.awt.image.*;
@@ -24,6 +24,11 @@ import java.awt.*;
 import maximusvladimir.dagen.Rand;
 
 import com.jpii.navalbattle.data.Constants;
+import com.jpii.navalbattle.pavo.GameBeta;
+import com.jpii.navalbattle.pavo.McRegion;
+import com.jpii.navalbattle.pavo.PavoHelper;
+import com.jpii.navalbattle.pavo.Renderable;
+import com.jpii.navalbattle.pavo.World;
 import com.jpii.navalbattle.renderer.Helper;
 import com.jpii.navalbattle.renderer.RenderConstants;
 

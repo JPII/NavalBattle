@@ -20,6 +20,7 @@ package com.jpii.navalbattle.game.gui;
 import java.awt.*;
 
 import com.jpii.navalbattle.pavo.*;
+import com.jpii.navalbattle.pavo.gui.GameWindow;
 
 /**
  * @author MKirkby

@@ -7,7 +7,7 @@ import java.awt.image.*;
 import java.io.*;
 import java.util.*;
 
-import com.jpii.navalbattle.pavo.MessageBox;
+import com.jpii.navalbattle.pavo.gui.MessageBox;
 import com.jpii.navalbattle.util.FileUtils;
 
 import maximusvladimir.dagen.Rand;

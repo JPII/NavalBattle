@@ -25,8 +25,8 @@ import java.awt.image.DataBufferInt;
 import java.awt.image.Raster;
 import java.nio.IntBuffer;
 
-import com.jpii.navalbattle.pavo.GameWindow;
 import com.jpii.navalbattle.pavo.PavoHelper;
+import com.jpii.navalbattle.pavo.gui.GameWindow;
 
 public class ShipInfoWindow extends GameWindow {
 	public ShipInfoWindow() {

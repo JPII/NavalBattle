@@ -25,6 +25,7 @@ import java.text.DecimalFormat;
 
 import com.jpii.navalbattle.data.Constants;
 import com.jpii.navalbattle.game.entity.Entity;
+import com.jpii.navalbattle.pavo.gui.WindowManager;
 import com.jpii.navalbattle.renderer.Helper;
 import com.jpii.navalbattle.util.GameStatistics;
 

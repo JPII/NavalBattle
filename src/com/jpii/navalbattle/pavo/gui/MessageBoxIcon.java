@@ -15,7 +15,7 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.jpii.navalbattle.pavo;
+package com.jpii.navalbattle.pavo.gui;
 
 public enum MessageBoxIcon {
 	Warning,

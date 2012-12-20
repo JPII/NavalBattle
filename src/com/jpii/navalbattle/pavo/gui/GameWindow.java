@@ -16,12 +16,14 @@
  */
 
 
-package com.jpii.navalbattle.pavo;
+package com.jpii.navalbattle.pavo.gui;
 
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 
+import com.jpii.navalbattle.pavo.PavoHelper;
+import com.jpii.navalbattle.pavo.Renderable;
 import com.jpii.navalbattle.renderer.Helper;
 
 /**

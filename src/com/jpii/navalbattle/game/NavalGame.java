@@ -25,6 +25,9 @@ import com.jpii.navalbattle.game.entity.*;
 import com.jpii.navalbattle.game.gui.PlayerProfileWindow;
 import com.jpii.navalbattle.game.gui.ShipInfoWindow;
 import com.jpii.navalbattle.pavo.*;
+import com.jpii.navalbattle.pavo.gui.MessageBox;
+import com.jpii.navalbattle.pavo.gui.MessageBoxIcon;
+import com.jpii.navalbattle.pavo.gui.OmniMap;
 
 /**
  * @author MKirkby
