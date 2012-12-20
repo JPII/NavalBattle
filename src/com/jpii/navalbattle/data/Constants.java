@@ -28,7 +28,7 @@ public class Constants {
 	 */
 	public static final String NAVALBATTLE_VERSION = "0.4a";
 	public static final String VERSION_CODE = "4";
-	public static final String NAVALBATTLE_CODENAME = "Seawolf";
+	public static final String NAVALBATTLE_CODENAME = "Makin Island";
 	public static final String NAVALBATTLE_VERSION_TITLE = "NavalBattle " + NAVALBATTLE_VERSION + " (" + NAVALBATTLE_CODENAME + ")";
 	public static final boolean DEBUG_MODE = true;
 	
