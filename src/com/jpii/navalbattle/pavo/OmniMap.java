@@ -34,7 +34,7 @@ public class OmniMap extends Renderable {
 	public OmniMap(World w) {
 		super();
 		this.w = w;
-		setSize(100,150);
+		setSize(100,100);
 		buffer = (new BufferedImage(getWidth(), getHeight(),BufferedImage.TYPE_INT_RGB));
 		terrain = (new BufferedImage(getWidth(), getHeight(),BufferedImage.TYPE_INT_RGB));
 		writeBuffer();
@@ -50,7 +50,10 @@ public class OmniMap extends Renderable {
 		int ay = me.getY() - 40;
 		if (ax > 100 || ay > 100 || ax < 0 || ay < 0)
 			return false;
-		w.setLoc(-ax*PavoHelper.getGameWidth(w.getWorldSize()),-ay*PavoHelper.getGameHeight(w.getWorldSize()));
+		int sw = (int)(((150 * GameBeta.Settings.currentWidth)/(PavoHelper.getGameWidth(w.getWorldSize())*100)))/2;
+		int sh = (int)(((150 * GameBeta.Settings.currentHeight)/(PavoHelper.getGameHeight(w.getWorldSize())*100)))/2;
+		w.setLoc((-(ax-sw)*PavoHelper.getGameWidth(w.getWorldSize()))+sw,(-(ay-sh)*PavoHelper.getGameHeight(w.getWorldSize())));
+		render();
 		w.forceRender();
 		return true;
 	}
@@ -96,7 +99,7 @@ public class OmniMap extends Renderable {
 		int rwx = (int) (Math.abs(w.getScreenX()-(GameBeta.Settings.currentWidth/2)) * 33.333333 / (PavoHelper.getGameWidth(w.getWorldSize()) * 100))*3;
 		int rwy = (int) (Math.abs(w.getScreenY()-(GameBeta.Settings.currentHeight/2)) * 33.333333 / (PavoHelper.getGameHeight(w.getWorldSize()) * 100))*3;
 		int sw = (int)((150 * GameBeta.Settings.currentWidth)/(PavoHelper.getGameWidth(w.getWorldSize())*100));
-		int sh = (int)(150 * GameBeta.Settings.currentHeight/(PavoHelper.getGameHeight(w.getWorldSize())*100));
+		int sh = (int)((150 * GameBeta.Settings.currentHeight)/(PavoHelper.getGameHeight(w.getWorldSize())*100));
 		g.setColor(Color.red);
 		g.drawRect(rwx-1,rwy-1,sw/2,sh/2);
 		g.setColor(new Color(100, 78, 47));
