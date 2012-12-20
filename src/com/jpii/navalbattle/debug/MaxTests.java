@@ -92,15 +92,17 @@ public class MaxTests {
 			a = new SettingsAttribute("gameWindowHeight");
 			attrs.add(a);
 			java.net.URL url = null;
+			File f = null;
 			try {
-				url = new java.net.URL(getSettingsPath());
+				//url = new java.net.URL(getSettingsPath());
+				f = new File(getSettingsPath());
 			} catch (Exception e) { 
-				e.printStackTrace();
+				//e.printStackTrace();
 			}
-			if (url != null && new File(url.getPath()).exists()) {
-				SettingsReader reader = new SettingsReader(url.getPath(),attrs);
+			//if (url != null && f.exists()) {
+				SettingsReader reader = new SettingsReader(f.getAbsolutePath(),attrs);
 				reader.read();
-			}
+			//}
 			for (SettingsAttribute sa : attrs) {
 				if (sa != null) {
 					System.out.println(sa);
