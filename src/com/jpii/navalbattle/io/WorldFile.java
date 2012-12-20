@@ -21,15 +21,34 @@ import java.util.*;
 import com.jpii.navalbattle.renderer.*;
 
 public class WorldFile {
+	
+	/**
+	 * <code>WorldFile</code> constructor.
+	 * @param worldName
+	 */
 	public WorldFile(String worldName) {
 		
 	}
+	
+	/**
+	 * Read chunks. Returns null for now.
+	 * @return
+	 */
 	public ChunkRenderer[] readChunks() {
 		return null;
 	}
+	
+	/**
+	 * Read <code>Grid</code>. Returns null for now.
+	 */
 	public Grid readGrid() {
 		return null;
 	}
+	
+	/**
+	 * Set chunks. Not implemented.
+	 * @param chunks
+	 */
 	public void setChunks(ArrayList<ChunkRenderer> chunks) {
 		
 	}

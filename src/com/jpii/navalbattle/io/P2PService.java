@@ -23,10 +23,16 @@ import java.awt.event.ActionListener;
 import javax.swing.Timer;
 
 public class P2PService {
+	
 	int status = 0;
 	Timer ticker;
 	boolean isByteStreamComplete = false;
 	byte[] currentBytes;
+	
+	/**
+	 * <code>P2PService</code> constructor.
+	 * @param client
+	 */
 	public P2PService(String client) {
 		ActionListener l = new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -35,20 +41,46 @@ public class P2PService {
 		};
 		ticker = new Timer(100,l);
 	}
+	
+	/**
+	 * Update.
+	 */
 	private void update() {
-		
+	
 	}
+	
+	/**
+	 * Connect to partner.
+	 * @throws java.net.SocketException
+	 */
 	public void connect() throws java.net.SocketException {
 		status = 1;
 	}
+	
+	/**
+	 * Disconnect from partner.
+	 */
 	public void disconnect() {
 		if (status != 1)
 			return;
 		status = 0;
 	}
+	
+	/**
+	 * Send bytes to partner.
+	 * @param packetId
+	 * @param data
+	 * @return
+	 */
 	public boolean sendBytes(byte packetId, byte[] data) {
 		return false;
 	}
+	
+	/**
+	 * Check for newly received bytes.
+	 * @param data
+	 * @return
+	 */
 	public byte checkForNewBytes(byte[] data) {
 		if (!isByteStreamComplete) {
 			data = null;

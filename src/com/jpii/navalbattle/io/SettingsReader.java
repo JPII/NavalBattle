@@ -21,8 +21,15 @@ import java.io.*;
 import java.util.*;
 
 public class SettingsReader {
+	
 	ArrayList<SettingsAttribute> attributes;
 	String path;
+	
+	/**
+	 * <code>SettingsReader</code> constructor.
+	 * @param filePath		Location to store the file
+	 * @param attributes	Attributes to save
+	 */
 	public SettingsReader(String filePath, ArrayList<SettingsAttribute> attributes) {
 		path = filePath;
 		this.attributes = attributes;
@@ -33,6 +40,10 @@ public class SettingsReader {
 			throw new IllegalArgumentException("The file doesn't exist at the specified location: " + path);
 		}
 	}
+	
+	/**
+	 * Read settings file.
+	 */
 	public void read() {
 		try {
 			FileInputStream fstream = new FileInputStream(path);
@@ -63,6 +74,12 @@ public class SettingsReader {
 			System.err.println(ex.getMessage());
 		}
 	}
+	
+	/**
+	 * Find attribute location.
+	 * @param str
+	 * @return
+	 */
 	private int findLineAttributeLocation(String str) {
 		for (int c = 0; c < attributes.size(); c++) {
 			SettingsAttribute attr = attributes.get(c);
@@ -71,6 +88,11 @@ public class SettingsReader {
 		}
 		return -1;
 	}
+	
+	/**
+	 * Returns data read from the settings file.
+	 * @return
+	 */
 	public ArrayList<SettingsAttribute> getData() {
 		return attributes;
 	}
