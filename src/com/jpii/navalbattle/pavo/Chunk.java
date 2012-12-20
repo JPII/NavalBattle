@@ -28,6 +28,11 @@ import com.jpii.navalbattle.game.entity.Entity;
 import com.jpii.navalbattle.renderer.Helper;
 import com.jpii.navalbattle.renderer.RenderConstants;
 
+/**
+ * The main file dealing with Chunks, which the world depends on for visuals.
+ * @author MKirkby
+ *
+ */
 public class Chunk extends Renderable {
 	int x,z;
 	boolean generated = false;
@@ -36,22 +41,47 @@ public class Chunk extends Renderable {
 	Rand rand = new Rand();
 	World w;
 	BufferedImage terrain;
+	/**
+	 * Creates a new instance of Chunk.
+	 * @param w The active world to apply the chunk to.
+	 */
 	public Chunk(World w) {
 		this.w = w;
 		Tile00 = Tile10 = Tile01 = Tile11 = null;
 	}
+	/**
+	 * Sets the x-location for the chunk.
+	 * @param x the value
+	 */
 	public void setX(int x) {
 		this.x = x;
 	}
+	/**
+	 * Sets the z-location for the chunk.
+	 * @param z the value 
+	 */
 	public void setZ(int z) {
 		this.z = z;
 	}
+	/**
+	 * Gets the x-location for the chunk.
+	 * @return
+	 */
 	public int getX() {
 		return x;
 	}
+	/**
+	 * Gets the z-location for the chunk.
+	 * @return
+	 */
 	public int getZ() {
 		return z;
 	}
+	/**
+	 * Sets both location values for the chunk.
+	 * @param x The x location value.
+	 * @param z The z location value.
+	 */
 	public void setLoc(int x, int z) {
 		this.x = x;
 		this.z = z;
@@ -136,6 +166,9 @@ public class Chunk extends Renderable {
 		//ready = true;
 		generated = true;
 	}
+	/**
+	 * Writes a value to the actual buffer.
+	 */
 	public void writeBuffer() {
 		buffer = new BufferedImage(100,100,BufferedImage.TYPE_INT_RGB);
 		Graphics2D g = PavoHelper.createGraphics(buffer);
@@ -150,12 +183,23 @@ public class Chunk extends Renderable {
 		nesa = false;
 	}
 	boolean nesa = false;
+	/**
+	 * Does the buffer need to be rewritten?
+	 * @return
+	 */
 	public boolean needsBufferWrite() {
 		return nesa;
 	}
+	/**
+	 * Redraws the buffer on next cycle.
+	 */
 	public void reDrawBuffer() {
 		nesa = true;
 	}
+	/**
+	 * Has the chunk been generated yet?
+	 * @return
+	 */
 	public boolean isGenerated() {
 		return generated;
 	}

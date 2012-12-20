@@ -43,6 +43,9 @@ public class GameBeta extends Renderable implements Runnable {
 	private int lastTime = -1;
 	private WindowManager windows;
 	public static PavoSettings Settings = new PavoSettings();
+	/**
+	 * Creates a new instance of the game.
+	 */
 	public GameBeta() {
 		windows = new WindowManager();
 		world = new World();
@@ -50,15 +53,30 @@ public class GameBeta extends Renderable implements Runnable {
 		threadInit();
 		buffer = new BufferedImage(GameBeta.Settings.currentWidth,GameBeta.Settings.currentHeight,BufferedImage.TYPE_INT_RGB);
 	}
+	/**
+	 * Gets the window manager for the Game.
+	 * @return
+	 */
 	public WindowManager getWinMan() {
 		return windows;
 	}
+	/**
+	 * Sets the window manager for the Game.
+	 * @param wm
+	 */
 	public void setWinMan(WindowManager wm) {
 		windows = wm;
 	}
+	/**
+	 * Gets the total number of updates that the updator has performed.
+	 * @return
+	 */
 	public long getNumUpdates() {
 		return numUpdates;
 	}
+	/**
+	 * Don't play with.
+	 */
 	private void threadInit() {
 		int js = 0;
 		if (Settings.OverClock)
@@ -90,9 +108,16 @@ public class GameBeta extends Renderable implements Runnable {
 		//generator.start();
 	}
 	private static GameStatistics stats = new GameStatistics();
+	/**
+	 * The graphics statistics for the game.
+	 * @return
+	 */
 	public static GameStatistics getStats() {
 		return stats;
 	}
+	/**
+	 * Immortal caller.
+	 */
 	public void run() {
 		// Game updator
 		if (state == 1) {
@@ -166,6 +191,9 @@ public class GameBeta extends Renderable implements Runnable {
 	public int getGenAmount() {
 		return 1;
 	}
+	/**
+	 * Renders the Game.
+	 */
 	public void render() {
 		buffer = new BufferedImage(GameBeta.Settings.currentWidth,GameBeta.Settings.currentHeight,BufferedImage.TYPE_INT_RGB);
 		Graphics2D g = PavoHelper.createGraphics(buffer);
@@ -196,18 +224,34 @@ public class GameBeta extends Renderable implements Runnable {
 		g.drawImage(getWinMan().getBuffer(), 0, 0, null);
 		getWinMan().unlock();
 	}
+	/**
+	 * Gets the active world for the Game.
+	 * @return
+	 */
 	public World getWorld() {
 		return world;
 	}
+	/**
+	 * Occurs when the game is going into sunset stage.
+	 */
 	public void becomingSunset() {
 		
 	}
+	/**
+	 * Occurs when the game is going into sunrise stage.
+	 */
 	public void becomingSunrise() {
 		
 	}
+	/**
+	 * Occurs when the game is going into night stage.
+	 */
 	public void becomingNight() {
 		
 	}
+	/**
+	 * Occurs when the game is going into day time stage.
+	 */
 	public void becomingDay() {
 		
 	}

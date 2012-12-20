@@ -31,6 +31,10 @@ public class EntityManager {
 	World w;
 	int counter = 0;
 	BufferedImage grid,humanoid;
+	/**
+	 * Creates a new entity manager for the desired world.
+	 * @param w The world to create the entity manager.
+	 */
 	public EntityManager(World w) {
 		this.w = w;
 		ent = new Entity[PavoHelper.getGameWidth(w.getWorldSize())*2][PavoHelper.getGameHeight(w.getWorldSize())*2];
@@ -41,12 +45,24 @@ public class EntityManager {
 		g.drawRect(1,1,49,49);
 		humanoid = FileUtils.getImage("drawable-game/Other/humanmob.png");
 	}
+	/**
+	 * Gets the entity at the given row and column.
+	 * @param r The row the entity is at.
+	 * @param c The column the entity is at.
+	 * @return The entity. Will return null if the entity is null, or the location is out of bounds.
+	 */
 	public Entity getEntity(int r, int c) {
 		if (c >= PavoHelper.getGameWidth(w.getWorldSize())*2 ||
 				r >= PavoHelper.getGameHeight(w.getWorldSize())*2 || c < 0 || r < 0)
 			return null;
 		return ent[c][r];
 	}
+	/**
+	 * Gets the chunk associated with the given entity location.
+	 * @param r The row of the entity.
+	 * @param c The column of the entity.
+	 * @return The chunk. Will return null if the desired location is out of bounds.
+	 */
 	public Chunk getAssociatedChunk(int r, int c) {
 		if (c >= PavoHelper.getGameWidth(w.getWorldSize())*2 ||
 				r >= PavoHelper.getGameHeight(w.getWorldSize())*2 || c < 0 || r < 0)
@@ -54,6 +70,12 @@ public class EntityManager {
 		
 		return w.getChunk(c/2,r/2);
 	}
+	/**
+	 * Sets the entity at the desired location.
+	 * @param r The row the entity should be at.
+	 * @param c The column the entity should be at.
+	 * @param e The entity to replace it with.
+	 */
 	public void setEntity(int r, int c, Entity e) {
 		if (c >= PavoHelper.getGameWidth(w.getWorldSize())*2 ||
 				r >= PavoHelper.getGameHeight(w.getWorldSize())*2 || c < 0 || r < 0)
@@ -75,15 +97,32 @@ public class EntityManager {
 			chunk.Tile11 = e;
 		chunk.needsBufferWrite();
 	}
+	/**
+	 * Determines whether the selected tile is filled with water.
+	 * @param r The row of the tile.
+	 * @param c The column of the tile.
+	 * @return
+	 */
 	public boolean isTileFilledWithWater(int r, int c) {
 		return tileAccessor[c][r] == 0;
 	}
+	/**
+	 * Gets the amount of land in the given tile.
+	 * @param r The row of the tile.
+	 * @param c The column of the tile.
+	 * @return
+	 */
 	public int getTilePercentLand(int r, int c) {
 		return tileAccessor[c][r] * 100 / 2500;
 	}
 	public EntityReference getTypeById(int id) {
 		return new EntityReference(counter++,1);
 	}
+	/**
+	 * Gets the image for the type of given entity.
+	 * @param ent The entity to get the image for.
+	 * @return
+	 */
 	public BufferedImage getImage(Entity ent) {
 		if (ent == null)
 			return null;
@@ -101,6 +140,12 @@ public class EntityManager {
 			ager = s;
 		return ager;
 	}
+	/**
+	 * Don't play with this.
+	 * @param snJMkqmd Don't play with this.
+	 * @param cKQK91nm38910JNFEWo Don't play with this.
+	 * @param traKQ91 Don't play with this.
+	 */
 	public void AQms03KampOQ9103nmJMs(int snJMkqmd, int cKQK91nm38910JNFEWo, int traKQ91) {
 		tileAccessor[cKQK91nm38910JNFEWo][snJMkqmd] = traKQ91;//mjMo1091(cKQK91nm38910JNFEWo, traKQ91);
 	}
@@ -109,6 +154,10 @@ public class EntityManager {
 		if (Tj001 == Integer.MIN_VALUE || Uim294 == 1) return Boolean.FALSE;
 		return Boolean.FALSE;
 	}*/
+	/**
+	 * Get the world instance for the Entity Manager.
+	 * @return
+	 */
 	public World getWorld() {
 		return w;
 	}
