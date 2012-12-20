@@ -26,11 +26,21 @@ import javax.imageio.ImageIO;
 public class FileUtils {
 	private static File workDir = null;
 
+	/**
+	 * Get directory to save files to based on OS.
+	 * @return
+	 */
 	public static File getSavingDirectory() {
 		if (workDir == null)
 			workDir = getSavingDirectory("navalbattle");
 		return workDir;
 	}
+	
+	/**
+	 * Finds specific directory based on OS.
+	 * @param applicationName
+	 * @return
+	 */
 	public static File getSavingDirectory(String applicationName) {
 		String userHome = System.getProperty("user.home", ".");
 		File workingDirectory;
@@ -62,10 +72,20 @@ public class FileUtils {
 		return workingDirectory;
 	}
 	
+	/**
+	 * Get resource path.
+	 * @param s
+	 * @return
+	 */
 	public static URL getResourcePath(String s){
 		return FileUtils.class.getResource("/com/jpii/navalbattle/res/" + s);
 	}
 	
+	/**
+	 * Get resource at location.
+	 * @param s
+	 * @return
+	 */
 	public static File getResource(String s){
 		File f=null;
 		try {
@@ -76,6 +96,11 @@ public class FileUtils {
 		return f;
 	}
 	
+	/**
+	 * Get image at location.
+	 * @param s
+	 * @return
+	 */
 	public static BufferedImage getImage(String s){
 		BufferedImage i = null;
 		try {
@@ -85,6 +110,12 @@ public class FileUtils {
 		}
 		return i;
 	}
+	
+	/**
+	 * Get image from other locations.
+	 * @param s
+	 * @return
+	 */
 	public static BufferedImage getImageFromOtherPath(String s) {
 		BufferedImage i = null;
 		try {
@@ -95,6 +126,10 @@ public class FileUtils {
 		return i;
 	}
 	
+	/**
+	 * Get platform.
+	 * @return
+	 */
 	public static OS getPlatform() {
 		String osName = System.getProperty("os.name").toLowerCase();
 		if (osName.contains("win"))
@@ -111,9 +146,20 @@ public class FileUtils {
 			return OS.linux;
 		return OS.unknown;
 	}
+	
+	/**
+	 * Returns if a String is "empty".
+	 * @param str
+	 * @return
+	 */
 	public static boolean isEmpty(String str) {
 		return (str == null) || (str.length() == 0);
 	}
+	
+	/**
+	 * Open file browser based on OS.
+	 * @param uri
+	 */
 	public static void openLink(URI uri) {
 		try {
 			Object o = Class.forName("java.awt.Desktop")
