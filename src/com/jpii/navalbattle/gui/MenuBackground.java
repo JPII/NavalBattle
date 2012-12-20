@@ -37,6 +37,12 @@ public class MenuBackground extends JComponent implements MouseListener{
 	double whaletheta = 0.0;
 	boolean happy = true;
 	
+	/**
+	 * <code>MenuBackground</code> constructor.
+	 * @param width
+	 * @param height
+	 * @param pixelSize
+	 */
 	public MenuBackground(int width, int height, int pixelSize) {
 		addMouseListener(this);
 		this.width = width;
@@ -50,7 +56,9 @@ public class MenuBackground extends JComponent implements MouseListener{
 		tick();
 	}
 
-	
+	/**
+	 * Ran at every iteration.
+	 */
 	public void tick() {
 		theta += 0.5;
 		theta2 += 1.1;
@@ -158,15 +166,24 @@ public class MenuBackground extends JComponent implements MouseListener{
 		g.fillRect(0,((height/3) * 2)+(minx), width, ((height/3)));
 	}
 	
+	/**
+	 * Get <code>BufferedImage</code>.
+	 * @return
+	 */
 	public BufferedImage getImage() {
 		return buffer;
 	}
 	
+	/**
+	 * Paint current <code>BufferedImage</code>.
+	 */
 	public void paintComponent(Graphics g) {
 		g.drawImage(buffer, 0, 0, null);
 	}
 
-
+	/**
+	 * Called when mouse clicked.
+	 */
 	public void mouseClicked(MouseEvent arg0) {	
 		int mx = arg0.getX();
 		int my = arg0.getY();
@@ -175,12 +192,10 @@ public class MenuBackground extends JComponent implements MouseListener{
 			happy = !happy;
 		}
 	}
-	public void mouseEntered(MouseEvent arg0) {	
-	}
-	public void mouseExited(MouseEvent arg0) {
-	}
-	public void mousePressed(MouseEvent arg0) {
-	}
-	public void mouseReleased(MouseEvent arg0) {
-	}
+	
+	/* UNIMPLEMENTED METHODS */
+	public void mouseEntered(MouseEvent arg0) {	}
+	public void mouseExited(MouseEvent arg0) { }
+	public void mousePressed(MouseEvent arg0) { }
+	public void mouseReleased(MouseEvent arg0) { }
 }

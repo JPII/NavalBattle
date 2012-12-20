@@ -38,6 +38,9 @@ public class CreditsBackground extends JComponent implements MouseListener{
 	ArrayList<star> stars;
 	long ticks = 0;
 	
+	/**
+	 * <code>CreditsBackground</code> constructor.
+	 */
 	public CreditsBackground(int width, int height) {
 		system = new ParticleEngine(50,width,height);
 		system.setMaxParticles(500);
@@ -67,13 +70,23 @@ public class CreditsBackground extends JComponent implements MouseListener{
 		//}
 	}
 	
+	/**
+	 * Start background.
+	 */
 	public void start() {
 		//timer.start();
 	}
+	
+	/**
+	 * Stop background.
+	 */
 	public void stop() {
 		//timer.stop();
 	}
 	
+	/**
+	 * Set visible.
+	 */
 	public void setVisible(boolean visible){
 		super.setVisible(visible);
 		if(isVisible()){
@@ -85,6 +98,9 @@ public class CreditsBackground extends JComponent implements MouseListener{
 		}
 	}
 	
+	/**
+	 * Ran every iteration.
+	 */
 	public void tick() {
 		buffer = new BufferedImage(getWidth(),getHeight(),BufferedImage.TYPE_INT_ARGB);
 		Graphics2D g = (Graphics2D)buffer.getGraphics();
@@ -129,33 +145,47 @@ public class CreditsBackground extends JComponent implements MouseListener{
         g.drawImage(system.getBuffer(),0,0,null);
 	}
 	
+	/**
+	 * Returns <code>BufferedImage</code>.
+	 * @return
+	 */
 	public BufferedImage getImage() {
 		return buffer;
 	}
 	
+	/**
+	 * Paint current <code>BufferedImage</code>.
+	 */
 	public void paintComponent(Graphics g) {
 		g.drawImage(buffer, 0, 0, null);
 	}
 
-
-	public void mouseClicked(MouseEvent arg0) {	
-	}
-	public void mouseEntered(MouseEvent arg0) {	
-	}
-	public void mouseExited(MouseEvent arg0) {
-	}
-	public void mousePressed(MouseEvent arg0) {
-	}
-	public void mouseReleased(MouseEvent arg0) {
-	}
+	/* UNIMPLEMENTED METHODS */
+	public void mouseClicked(MouseEvent arg0) {	 }
+	public void mouseEntered(MouseEvent arg0) {	 }
+	public void mouseExited(MouseEvent arg0) { }
+	public void mousePressed(MouseEvent arg0) { }
+	public void mouseReleased(MouseEvent arg0) { }
 }
+
 class star {
 	int x, y, stage;
+	
+	/**
+	 * <code>Star</code> constructor.
+	 * @param width
+	 * @param height
+	 */
 	public star(int width, int height) {
 		x = (int)(width*Math.random());
 		y = (int)(((height/2)-45)*Math.random());
 		stage = (int)(Math.random() * 3);
 	}
+	
+	/**
+	 * Draw star.
+	 * @param g
+	 */
 	public void draw(Graphics2D g) {
 		g.setColor(new Color(225,225,240));
 		if (stage == 0) {
@@ -175,6 +205,10 @@ class star {
 			g.fillRect(x+4,y+4,4,4);
 		}
 	}
+	
+	/**
+	 * Update.
+	 */
 	public void update() {
 		if (stage != 3)
 			stage++;

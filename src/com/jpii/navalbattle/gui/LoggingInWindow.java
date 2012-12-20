@@ -34,6 +34,9 @@ public class LoggingInWindow extends Window {
 	private int currentImage = 0;
 	private int length = 0;
 	
+	/**
+	 * <code>LoggingInWindow</code> constructor.
+	 */
 	public LoggingInWindow() {
 		setUndecorated(true);
 		getContentPane().setLayout(null);
@@ -84,6 +87,9 @@ public class LoggingInWindow extends Window {
 	
 	boolean alreadyOpened = false;
 	
+	/**
+	 * Open <code>MainMenuWindow</code>
+	 */
 	public void openMenu() {
 		if (!alreadyOpened) {
 			alreadyOpened = true;
@@ -92,6 +98,9 @@ public class LoggingInWindow extends Window {
 		}
 	}
 
+	/**
+	 * Set <code>Window</code> visible.
+	 */
 	public void setVisible(boolean visible){
 		super.setVisible(visible);
 		if(isVisible()){

@@ -39,6 +39,9 @@ public class Window extends JFrame {
 	protected int xloc;
 	protected int yloc;
 	
+	/**
+	 * Default <code>Window</code> constructor.
+	 */
 	public Window() {
 		width = 492;
 		height = 340;
@@ -47,6 +50,11 @@ public class Window extends JFrame {
 		setDefaults();
 	}
 	
+	/**
+	 * <code>Window</code> constructor which creates a <code>Window</code> with a specific size.
+	 * @param x		width
+	 * @param y		height
+	 */
 	public Window(int x, int y) {
 		width = x;
 		height = y;
@@ -54,6 +62,13 @@ public class Window extends JFrame {
 		yloc = 800/2-height/2;
 	}
 	
+	/**
+	 * <code>Window</code> constructor which creates a <code>Window</code> at a specific location and size.
+	 * @param x			width
+	 * @param y			height
+	 * @param xloc		x-coordinate
+	 * @param yloc		y-coordinate
+	 */
 	public Window(int x, int y,int xloc,int yloc) {
 		width = x;
 		height = y;
@@ -61,16 +76,27 @@ public class Window extends JFrame {
 		this.yloc = yloc;
 	}
 	
+	/**
+	 * Handle Strings appropriately.
+	 * @return
+	 */
 	private String parseString(){
 			return getClass().toString().substring((getClass().toString().lastIndexOf(".")+1));
 	}
 	
+	/**
+	 * Print to <code>DebugWindow</code>.
+	 * @param msg
+	 */
 	private void printDebug(String msg){
 		if(NavalBattle.getDebugWindow()!=null){
 			NavalBattle.getDebugWindow().printInfo(msg);
 		}
 	}
 	
+	/**
+	 * Set defaults for all <code>Windows</code>.
+	 */
 	protected void setDefaults(){
 		this.setIconImage(Helper.GUI_WINDOW_ICON);
 		setTitle("NavalBattle");
@@ -87,26 +113,36 @@ public class Window extends JFrame {
 		setVisible(false);
 	}
 	
+	/**
+	 * Set window to visible and log the event.
+	 */
 	public void setVisible(boolean visible){
 		super.setVisible(visible);
 		if(isVisible()){
-			printDebug("Showing "+parseString());
+			printDebug("Showing " + parseString());
 			setLocation(xloc,yloc);
 		}
 	}
 	
+	/**
+	 * Show next <code>Window</code> based on string supplied.
+	 * @param next		Name of <code>Window</code> to open. Do not include <code>.java</code>.
+	 */
 	public void nextWindow(String next){
 		printDebug("Hiding "+parseString());
 		NavalBattle.getWindowHandler().setNewWindow(next);
 	}
 	
+	/**
+	 * Dispose of <code>Window</code>.
+	 */
 	public void donewithMe(){
 		super.dispose();
 		printDebug("Disposing "+parseString());
 	}
+	
 	/**
-	 * Get method for Window
-	 * 
+	 * Get method for <code>Window</code>.
 	 * @return Window
 	 */
 	public JFrame getFrame() {

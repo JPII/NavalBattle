@@ -34,6 +34,9 @@ public class MainMenuWindow extends Window {
 	int ticks;
 	JButton btnRoketGamer;
 	
+	/**
+	 * <code>MainMenuWindow</code> constructor.
+	 */
 	public MainMenuWindow() {
 		super();
 		
@@ -133,6 +136,9 @@ public class MainMenuWindow extends Window {
 		}
 	}
 	
+	/**
+	 * Set visible.
+	 */
 	public void setVisible(boolean visible){
 		super.setVisible(visible);
 		if(isVisible()){

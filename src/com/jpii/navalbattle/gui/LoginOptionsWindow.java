@@ -31,6 +31,9 @@ public class LoginOptionsWindow extends Window {
 	
 	private JTextField txtHttproketgamercocc;
 	
+	/**
+	 * <code>LoginOptionsWindow</code> constructor.
+	 */
 	public LoginOptionsWindow() {
 		getContentPane().setLayout(null);
 		

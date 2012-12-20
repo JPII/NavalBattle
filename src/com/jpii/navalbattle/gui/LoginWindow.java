@@ -34,6 +34,9 @@ public class LoginWindow extends Window {
 	JTextField usernameField;
 	JPasswordField passwordField;
 
+	/**
+	 * <code>LoginWindow</code> constructor.
+	 */
 	public LoginWindow() {
 		super(500,190);
 		getContentPane().setLayout(null);
@@ -116,7 +119,7 @@ public class LoginWindow extends Window {
 	}
 	
 	/**
-	 *  Method for handling login.
+	 *  Method for handling login with RoketGamer.
 	 */
 	public void login() {
 		@SuppressWarnings("deprecation")

@@ -31,6 +31,9 @@ import java.io.IOException;
 public class RoketGamerWindow extends JFrame{
 	private JTable overallLeaderboard;
 
+	/**
+	 * <code>RoketGamerWindow</code> constructor.
+	 */
 	public RoketGamerWindow() {
 		try {
 			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());

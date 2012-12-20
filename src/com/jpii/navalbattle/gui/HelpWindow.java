@@ -29,6 +29,9 @@ import java.awt.event.*;
 public class HelpWindow extends Window {
 	private JLabel lblTitle;
 
+	/**
+	 * <code>HelpWindow</code> constructor.
+	 */
 	public HelpWindow() {
 		getContentPane().setLayout(null);
 		

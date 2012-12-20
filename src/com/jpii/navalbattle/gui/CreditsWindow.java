@@ -28,6 +28,9 @@ public class CreditsWindow extends Window {
 	private JButton btnClose;
 	private CreditsBackground cb;
 
+	/**
+	 * <code>CreditsWindow</code> constructor.
+	 */
 	public CreditsWindow() {
 		setSize(800,600);
 		cb = new CreditsBackground(800,600);

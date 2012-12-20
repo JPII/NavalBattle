@@ -42,6 +42,9 @@ public class SPOptions extends Window{
 	JRadioButton rdbtnWater_1;
 	JRadioButton rdbtnWater_2;
 	
+	/**
+	 * <code>SPOptions</code> constructor.
+	 */
 	public SPOptions() {
 		getContentPane().setLayout(null);
 		
@@ -274,6 +277,9 @@ public class SPOptions extends Window{
 		/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////		
 	}
 	
+	/**
+	 * Saves selected options.
+	 */
 	private void saveOptions() {
 
 		if(rdbtnWater.isSelected()) {
