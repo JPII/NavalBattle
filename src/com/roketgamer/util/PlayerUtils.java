@@ -17,28 +17,51 @@
 
 package com.roketgamer.util;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.net.URL;
+
 import com.roketgamer.Player;
+import com.roketgamer.RoketGamer;
 
 public class PlayerUtils {
 	
 	/**
-	 * Convert username to user ID.
+	 * Convert username to user ID. Returns -1 if not found or
+	 * if operation fails.
 	 * @param username
 	 * @return
 	 */
 	public static int toId(String username) {
-		// TODO: Implement
-		return 0;
+		try {
+			URL url = new URL(RoketGamer.SERVER_LOCATION + "/api/" + RoketGamer.VERSION + "/public/getuserid.php?user=" + username);
+			
+			BufferedReader in = new BufferedReader(new InputStreamReader(url.openStream()));
+
+			String result = in.readLine();
+			return Integer.parseInt(result);
+		} catch (Exception e) { 
+			return -1;
+		}
 	}
 	
 	/**
-	 * Convert user ID to username.
+	 * Convert user ID to username. Returns an empty String
+	 * if not found or if operation fails.
 	 * @param id
 	 * @return
 	 */
 	public static String toString(int id) {
-		// TODO: Implement
-		return "";
+		try {
+			URL url = new URL(RoketGamer.SERVER_LOCATION + "/api/" + RoketGamer.VERSION + "/public/getusername.php?id=" + id);
+			
+			BufferedReader in = new BufferedReader(new InputStreamReader(url.openStream()));
+
+			String result = in.readLine();
+			return result;
+		} catch (Exception e) { 
+			return "";
+		}
 	}
 	
 	/**
