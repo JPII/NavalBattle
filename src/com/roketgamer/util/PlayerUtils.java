@@ -39,7 +39,10 @@ public class PlayerUtils {
 			BufferedReader in = new BufferedReader(new InputStreamReader(url.openStream()));
 
 			String result = in.readLine();
-			return Integer.parseInt(result);
+			if(!result.equals(null))
+				return Integer.parseInt(result);
+			else
+				return -1;
 		} catch (Exception e) { 
 			return -1;
 		}
@@ -58,7 +61,11 @@ public class PlayerUtils {
 			BufferedReader in = new BufferedReader(new InputStreamReader(url.openStream()));
 
 			String result = in.readLine();
-			return result;
+			
+			if(!result.equals(null))
+				return result;
+			else
+				return "";
 		} catch (Exception e) { 
 			return "";
 		}

@@ -10,13 +10,13 @@ public class PlayerUtilsTests {
 
 	@Test
 	public void testUsernameToId() {
-		assertEquals("Result", "1", PlayerUtils.toId("TexasGamer"));
-		assertEquals("Result", "-1", PlayerUtils.toId("notauser"));
+		assertEquals("Result", 1, PlayerUtils.toId("TexasGamer"));
+		assertEquals("Result", -1, PlayerUtils.toId("notauser"));
 	}
 	
 	@Test
 	public void testIdToUsername() {
 		assertEquals("Result", "TexasGamer", PlayerUtils.toString(1));
-		assertEquals("Result", "-1", PlayerUtils.toId("98765"));
+		assertEquals("Result", "", PlayerUtils.toString(98765));
 	}
 }
