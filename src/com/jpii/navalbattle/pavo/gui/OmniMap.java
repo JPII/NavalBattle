@@ -25,7 +25,7 @@ import maximusvladimir.dagen.Rand;
 
 import com.jpii.navalbattle.data.Constants;
 import com.jpii.navalbattle.pavo.GameBeta;
-import com.jpii.navalbattle.pavo.McRegion;
+import com.jpii.navalbattle.pavo.ProceduralLayeredMapGenerator;
 import com.jpii.navalbattle.pavo.PavoHelper;
 import com.jpii.navalbattle.pavo.Renderable;
 import com.jpii.navalbattle.pavo.World;
@@ -72,7 +72,7 @@ public class OmniMap extends Renderable {
 			for (int y = 0; y < 100/3; y++) {
 				int strx = x * PavoHelper.getGameWidth(w.getWorldSize());
 				int stry = y * PavoHelper.getGameHeight(w.getWorldSize());
-				float frsh = McRegion.getPoint(strx,stry);
+				float frsh = ProceduralLayeredMapGenerator.getPoint(strx,stry);
 				float lsy = (float) ((frsh - 0.3)/0.21);
 				if (lsy > 1)
 					lsy = 1;

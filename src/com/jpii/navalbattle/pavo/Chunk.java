@@ -97,7 +97,7 @@ public class Chunk extends Renderable {
 		int water00 = 0,water01 = 0,water10 = 0,water11 = 0;
 		for (int lsx = 0; lsx < 100/3; lsx++) {
 			for (int lsz = 0; lsz < 100/3; lsz++) {
-				float frsh = McRegion.getPoint(lsx+(100.0f/3.0f*x), lsz+(100.0f/3.0f*z));
+				float frsh = ProceduralLayeredMapGenerator.getPoint(lsx+(100.0f/3.0f*x), lsz+(100.0f/3.0f*z));
 				float lsy = (float) ((frsh - 0.3)/0.21);
 				if (lsy > 1)
 					lsy = 1;

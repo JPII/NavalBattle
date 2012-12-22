@@ -19,26 +19,19 @@ package com.jpii.navalbattle.pavo;
 
 import maximusvladimir.dagen.Perlin;
 
-import com.jpii.navalbattle.data.Constants;
+//import com.jpii.navalbattle.data.Constants;
 
-public class McRegion {
+public class ProceduralLayeredMapGenerator {
 	private static Perlin berlin = new Perlin(GameBeta.Settings.seed,0,0);
-	private static River[] rivers;
-	static {
-		rivers = new River[1000];
-		for (int r = 0; r < rivers.length; r++) {
-			rivers[r] = new River();
-		}
-	}
 	public static float getPoint(float x, float z) {
 		float lvl0 = getLevel0(x,z);
-		float lvl1 = getLevel1(x,z);
+		//float lvl1 = getLevel1(x,z);
 		float lvl2 = getLevel2(x,z);
 		float lvl3 = getLevel3(x,z);
 		float lvl4 = getLevel4(x,z);
-		float lvl5 = getLevel5(x,z);
-		float lvl6 = getLevel6(x,z);
-		float lvl7 = getLevel7(x,z);
+		//float lvl5 = getLevel5(x,z);
+		//float lvl6 = getLevel6(x,z);
+		//float lvl7 = getLevel7(x,z);
 		float mixer = ((lvl0*25.0f)+(lvl4*5)+(lvl2*2.5f)+(lvl3*2.5f)) / 38.0f;//(lvl1*20.0f)+(lvl2*5.0f)+(lvl3*3.0f)+
 				//(lvl4*5.0f)+(lvl5*5.0f)+(lvl6*1.5f)-(lvl7*12.0f))/98.5f;
 		float mixed = ((mixer+1)/2.0f)-0.1f;

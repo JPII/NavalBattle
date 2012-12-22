@@ -24,7 +24,7 @@ import java.awt.image.BufferedImage;
 import com.jpii.navalbattle.game.Location;
 import com.jpii.navalbattle.pavo.EntityManager;
 import com.jpii.navalbattle.pavo.GameBeta;
-import com.jpii.navalbattle.pavo.McRegion;
+import com.jpii.navalbattle.pavo.ProceduralLayeredMapGenerator;
 import com.jpii.navalbattle.pavo.PavoHelper;
 
 public class PortEntity extends Entity {
@@ -45,7 +45,7 @@ public class PortEntity extends Entity {
 		for (int c = 0; c < GameBeta.Settings.rand.nextInt(5,10); c++) {
 			int x = GameBeta.Settings.rand.nextInt(40);
 			int y = GameBeta.Settings.rand.nextInt(40);
-			if (McRegion.getPoint(x+(getLocation().getCol()*50), y+(getLocation().getRow()*50)) >= 0.4) {
+			if (ProceduralLayeredMapGenerator.getPoint(x+(getLocation().getCol()*50), y+(getLocation().getRow()*50)) >= 0.4) {
 				g.setColor(GameBeta.Settings.rand.nextColor());
 				g.fillRect(x,y,5,5);
 			}
