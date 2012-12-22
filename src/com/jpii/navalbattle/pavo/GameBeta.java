@@ -27,6 +27,7 @@ import com.jpii.navalbattle.data.Constants;
 import com.jpii.navalbattle.game.entity.Entity;
 import com.jpii.navalbattle.pavo.gui.WindowManager;
 import com.jpii.navalbattle.renderer.Helper;
+import com.jpii.navalbattle.renderer.weather.WeatherMode;
 import com.jpii.navalbattle.util.GameStatistics;
 
 public class GameBeta extends Renderable implements Runnable {
@@ -53,6 +54,7 @@ public class GameBeta extends Renderable implements Runnable {
 		gen = new WorldGen();
 		threadInit();
 		buffer = new BufferedImage(GameBeta.Settings.currentWidth,GameBeta.Settings.currentHeight,BufferedImage.TYPE_INT_RGB);
+		world.getWeather().setWeather(WeatherMode.Raining);
 	}
 	/**
 	 * Gets the window manager for the Game.
@@ -206,6 +208,7 @@ public class GameBeta extends Renderable implements Runnable {
 		getWorld().render();
 		g.drawImage(getWorld().getBuffer(),0,0,null);
 		g.drawImage(getWorld().getTimeManager().getBuffer(),0,0,null);
+		g.drawImage(getWorld().getWeather().getBuffer(),0,0,null);
 		
 		GameStatistics gs = getStats();
 		g.setColor(Color.red);

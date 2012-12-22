@@ -25,6 +25,7 @@ import maximusvladimir.dagen.Rand;
 
 import com.jpii.navalbattle.data.Constants;
 import com.jpii.navalbattle.io.Interactable;
+import com.jpii.navalbattle.renderer.weather.WeatherManager;
 
 
 public class World extends Renderable implements Interactable {
@@ -41,6 +42,7 @@ public class World extends Renderable implements Interactable {
 	int lwh = 600;
 	EntityManager em;
 	TimeManager time = new TimeManager();
+	WeatherManager wm;
 	int sx = 0, anisx = 0, anisy = 0,sy = 0;
 	BufferedImage noise;
 	int zlevel;
@@ -61,6 +63,7 @@ public class World extends Renderable implements Interactable {
 		generated = new boolean[chunks.length];
 		buffer = new BufferedImage(GameBeta.Settings.currentWidth,GameBeta.Settings.currentHeight,BufferedImage.TYPE_INT_RGB);
 		makeNoise();
+		wm = new WeatherManager();
 	}
 	public Chunk getChunk(int index) {
 		return chunks[index];
@@ -110,6 +113,10 @@ public class World extends Renderable implements Interactable {
 	}
 	public void update() {
 		time.update();
+		wm.update();
+	}
+	public WeatherManager getWeather() {
+		return wm;
 	}
 	public boolean hasMoreChunks() {
 		for (int c = 0; c < chunks.length; c++) {
