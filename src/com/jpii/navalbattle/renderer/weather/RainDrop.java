@@ -19,7 +19,8 @@ public class RainDrop {
 		x2 = x1 + windir + r.nextInt(-3, 3);
 		y2 = r.nextInt(10,40) + y1;
 		length = (int)(Math.sqrt(Math.pow(x1-x2,2)+Math.pow(y1-y2,2)));
+		dir = windir;
 	}
-	public int x1, y1, x2, y2, length;
+	public int x1, y1, x2, y2, length,dir;
 	public Color colour;
 }

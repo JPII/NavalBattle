@@ -36,8 +36,11 @@ public class WeatherManager {
 			for (int r = 0; r < rain.length; r++) {
 				RainDrop rd = rain[r];
 				int inc = rd.length / 5;
+				int sws = -rd.dir;
 				rd.y1 += inc;
 				rd.y2 += inc;
+				rd.x1 += sws;
+				rd.x2 += sws;
 				if (rd.y1 > GameBeta.Settings.currentHeight) {
 					rd.y1 -= (GameBeta.Settings.currentHeight + 60);
 					rd.y2 -= (GameBeta.Settings.currentHeight + 60);
