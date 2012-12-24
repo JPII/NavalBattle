@@ -89,20 +89,32 @@ public class World extends Renderable implements Interactable {
 			}
 		}
 	}
+	private void runLocLock(int x, int y) {
+		int cx = 0;
+		int cy = 0;
+		if (x != 0)
+			cx = x - sx;
+		if (y != 0)
+			cy = y - sy;
+		getWeather().applyFix(cx,cy);
+	}
 	public void setLoc(int x, int y) {
 		if (sx != x || sy != y)
 			chunkrender = true;
+		runLocLock(x,y);
 		sx = x;
 		sy = y;
 	}
 	public void setLocX(int x) {
 		if (sx != x)
 			chunkrender = true;
+		runLocLock(x,0);
 		sx = x;
 	}
 	public void setLocY(int y) {
 		if (sy != y)
 			chunkrender = true;
+		runLocLock(0,y);
 		sy = y;
 	}
 	public void setWorldGen(WorldGen wg) {

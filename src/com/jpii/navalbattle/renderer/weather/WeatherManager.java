@@ -43,6 +43,10 @@ public class WeatherManager {
 				rd.y2 += inc;
 				rd.x1 += sws;
 				rd.x2 += sws;
+				rd.x1 += prefixx;
+				rd.x2 += prefixx;
+				rd.y1 += prefixy;
+				rd.y2 += prefixy;
 				if (rd.y1 > Game.Settings.currentHeight) {
 					rd.y1 -= (Game.Settings.currentHeight + 60);
 					rd.y2 -= (Game.Settings.currentHeight + 60);
@@ -55,10 +59,21 @@ public class WeatherManager {
 					rd.x1 -= Game.Settings.currentWidth;
 					rd.x2 -= Game.Settings.currentWidth;
 				}
+				if (prefixx > 0 && rd.x1 > Game.Settings.currentWidth) {
+					rd.x1 -= Game.Settings.currentWidth;
+					rd.x2 -= Game.Settings.currentWidth;
+				}
+				if (prefixx < 0 && rd.x1 < 0) {
+					rd.x1 += Game.Settings.currentWidth;
+					rd.x2 += Game.Settings.currentWidth;
+				}
+					
 				rain[r] = rd;
 				g.setColor(rd.colour);
 				g.drawLine(rd.x1,rd.y1,rd.x2,rd.y2);
 			}
+			prefixx = 0;
+			prefixy = 0;
 		}
 		else
 			buffer = null;
@@ -68,5 +83,11 @@ public class WeatherManager {
 			return null;
 		else
 			return buffer;
+	}
+	int prefixx = 0;
+	int prefixy = 0;
+	public void applyFix(int x, int y) {
+		prefixx = x;
+		prefixy = y;
 	}
 }
