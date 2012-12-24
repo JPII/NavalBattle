@@ -4,11 +4,11 @@ import java.awt.Color;
 
 import maximusvladimir.dagen.Rand;
 
-import com.jpii.navalbattle.pavo.GameBeta;
+import com.jpii.navalbattle.pavo.Game;
 
 public class RainDrop {
 	public RainDrop(int windir, int width,int height) {
-		Rand r = GameBeta.Settings.rand;
+		Rand r = Game.Settings.rand;
 		int red = 139 + r.nextInt(-5,5);
 		int green = 155 + r.nextInt(-5,5);
 		int blue = 182 + r.nextInt(-5,5);

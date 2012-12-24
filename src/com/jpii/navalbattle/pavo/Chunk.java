@@ -37,7 +37,7 @@ public class Chunk extends Renderable {
 	int x,z;
 	boolean generated = false;
 	public Entity Tile00, Tile10, Tile01,Tile11;
-	static Perlin p = new Perlin(GameBeta.Settings.rand.nextLong(),0,0);
+	static Perlin p = new Perlin(Game.Settings.rand.nextLong(),0,0);
 	Rand rand = new Rand();
 	World w;
 	BufferedImage terrain;
@@ -90,7 +90,7 @@ public class Chunk extends Renderable {
 		//if (!ready)
 			//return;
 		//ready = false;
-		Random rp = new Random(GameBeta.Settings.seed+(x&z)+x-z+(z|x));
+		Random rp = new Random(Game.Settings.seed+(x&z)+x-z+(z|x));
 		rand = new Rand(rp.nextLong());
 		terrain = new BufferedImage(34,34,BufferedImage.TYPE_INT_RGB);
 		Graphics g = terrain.getGraphics();

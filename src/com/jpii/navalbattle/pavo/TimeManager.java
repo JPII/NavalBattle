@@ -32,8 +32,8 @@ public class TimeManager extends Renderable {
 	private int minute = 0;
 	private int lsw, lsh;
 	public TimeManager() {
-		lsw = GameBeta.Settings.currentWidth;
-		lsh = GameBeta.Settings.currentHeight;
+		lsw = Game.Settings.currentWidth;
+		lsh = Game.Settings.currentHeight;
 	}
 	public void update() {
 		int le = DayNightTotalLengthSeconds;
@@ -77,13 +77,13 @@ public class TimeManager extends Renderable {
     		timeD = 3;
     	}
     	cdr = new Color(27,31,58,alph);
-    	if (!lcd.equals(cdr) || lsw != GameBeta.Settings.currentWidth || lsh != GameBeta.Settings.currentHeight) {
-    		buffer = new BufferedImage(GameBeta.Settings.currentWidth,GameBeta.Settings.currentHeight,BufferedImage.TYPE_INT_ARGB);
-    		lsw = GameBeta.Settings.currentWidth;
-    		lsh = GameBeta.Settings.currentHeight;
+    	if (!lcd.equals(cdr) || lsw != Game.Settings.currentWidth || lsh != Game.Settings.currentHeight) {
+    		buffer = new BufferedImage(Game.Settings.currentWidth,Game.Settings.currentHeight,BufferedImage.TYPE_INT_ARGB);
+    		lsw = Game.Settings.currentWidth;
+    		lsh = Game.Settings.currentHeight;
     		Graphics g = buffer.getGraphics();
     		g.setColor(cdr);
-    		g.fillRect(0,0,GameBeta.Settings.currentWidth,GameBeta.Settings.currentHeight);
+    		g.fillRect(0,0,Game.Settings.currentWidth,Game.Settings.currentHeight);
     		lcd = cdr;
     	}
     	double thour = (((tofd) * 24) / DayNightTotalLengthSeconds)+18.0;

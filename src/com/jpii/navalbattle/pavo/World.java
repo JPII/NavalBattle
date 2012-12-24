@@ -61,7 +61,7 @@ public class World extends Renderable implements Interactable {
 			}
 		}
 		generated = new boolean[chunks.length];
-		buffer = new BufferedImage(GameBeta.Settings.currentWidth,GameBeta.Settings.currentHeight,BufferedImage.TYPE_INT_RGB);
+		buffer = new BufferedImage(Game.Settings.currentWidth,Game.Settings.currentHeight,BufferedImage.TYPE_INT_RGB);
 		makeNoise();
 		wm = new WeatherManager();
 	}
@@ -78,11 +78,11 @@ public class World extends Renderable implements Interactable {
 		return zlevel;
 	}
 	public void makeNoise(){
-		noise = new BufferedImage(GameBeta.Settings.currentWidth,GameBeta.Settings.currentHeight,BufferedImage.TYPE_INT_RGB);
-		Rand ras = new Rand(GameBeta.Settings.seed+22);
+		noise = new BufferedImage(Game.Settings.currentWidth,Game.Settings.currentHeight,BufferedImage.TYPE_INT_RGB);
+		Rand ras = new Rand(Game.Settings.seed+22);
 		Graphics gs2 = noise.getGraphics(); // Q and D
-		for (int x = 0; x < GameBeta.Settings.currentWidth; x+= 2) {
-			for (int y = 0; y < GameBeta.Settings.currentHeight; y+=2) {
+		for (int x = 0; x < Game.Settings.currentWidth; x+= 2) {
+			for (int y = 0; y < Game.Settings.currentHeight; y+=2) {
 				int rgb = ras.nextInt(127);
 				gs2.setColor(new Color(rgb,rgb,rgb));
 				gs2.fillRect(x,y,2,2);
@@ -128,7 +128,7 @@ public class World extends Renderable implements Interactable {
 	public void genNextChunk() {
 		for (int c = 0; c < chunks.length; c++) {
 			Chunk chunk = chunks[c];
-			GameBeta.getStats().SmKdn02nOaP(c*2);
+			Game.getStats().SmKdn02nOaP(c*2);
 			while (chunk.isLocked()) {
 				
 			}
@@ -167,10 +167,10 @@ public class World extends Renderable implements Interactable {
 		long endWait = System.currentTimeMillis() - waitStart;
 		bufferLock = true;
 		long startDraw = System.currentTimeMillis();
-		if (lww != GameBeta.Settings.currentWidth || lwh != GameBeta.Settings.currentHeight) {
-			buffer = new BufferedImage(GameBeta.Settings.currentWidth,GameBeta.Settings.currentHeight,BufferedImage.TYPE_INT_RGB);
-			lww = GameBeta.Settings.currentWidth;
-			lwh = GameBeta.Settings.currentHeight;
+		if (lww != Game.Settings.currentWidth || lwh != Game.Settings.currentHeight) {
+			buffer = new BufferedImage(Game.Settings.currentWidth,Game.Settings.currentHeight,BufferedImage.TYPE_INT_RGB);
+			lww = Game.Settings.currentWidth;
+			lwh = Game.Settings.currentHeight;
 			makeNoise();
 		}
 		int liveChunks = 0;
@@ -184,8 +184,8 @@ public class World extends Renderable implements Interactable {
 					//while (chunk.isLocked()) { }
 					//chunk.lock();
 					if (!chunk.isGenerated()) {
-						int rgb = GameBeta.Settings.rand.nextInt(255);
-						if (GameBeta.Settings.rand.nextBoolean())
+						int rgb = Game.Settings.rand.nextInt(255);
+						if (Game.Settings.rand.nextBoolean())
 							g.setColor(new Color(6,rgb,13));
 						else
 							g.setColor(new Color(6,13,rgb));
@@ -207,9 +207,9 @@ public class World extends Renderable implements Interactable {
 		}
 		chunkrender = false;
 		long endDraw = System.currentTimeMillis() - startDraw;
-		GameBeta.getStats().SmKAk10(endDraw);
-		GameBeta.getStats().SmoOa01kwL(liveChunks);
-		GameBeta.getStats().Smw2e33AK(endWait);
+		Game.getStats().SmKAk10(endDraw);
+		Game.getStats().SmoOa01kwL(liveChunks);
+		Game.getStats().Smw2e33AK(endWait);
 		bufferLock = false;
 	}
 	public BufferedImage getBuffer() {

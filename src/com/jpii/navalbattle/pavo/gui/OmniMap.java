@@ -24,7 +24,7 @@ import java.awt.*;
 import maximusvladimir.dagen.Rand;
 
 import com.jpii.navalbattle.data.Constants;
-import com.jpii.navalbattle.pavo.GameBeta;
+import com.jpii.navalbattle.pavo.Game;
 import com.jpii.navalbattle.pavo.ProceduralLayeredMapGenerator;
 import com.jpii.navalbattle.pavo.PavoHelper;
 import com.jpii.navalbattle.pavo.Renderable;
@@ -51,12 +51,12 @@ public class OmniMap extends Renderable {
 		render();
 	}
 	public boolean mouseDown(MouseEvent me) {
-		int ax = me.getX() - (GameBeta.Settings.currentWidth - 158);
+		int ax = me.getX() - (Game.Settings.currentWidth - 158);
 		int ay = me.getY() - 40;
 		if (ax > 100 || ay > 100 || ax < 0 || ay < 0)
 			return false;
-		int sw = (int)(((150 * GameBeta.Settings.currentWidth)/(PavoHelper.getGameWidth(w.getWorldSize())*100)))/2;
-		int sh = (int)(((150 * GameBeta.Settings.currentHeight)/(PavoHelper.getGameHeight(w.getWorldSize())*100)))/2;
+		int sw = (int)(((150 * Game.Settings.currentWidth)/(PavoHelper.getGameWidth(w.getWorldSize())*100)))/2;
+		int sh = (int)(((150 * Game.Settings.currentHeight)/(PavoHelper.getGameHeight(w.getWorldSize())*100)))/2;
 		w.setLoc((-(ax-sw)*PavoHelper.getGameWidth(w.getWorldSize()))+sw,(-(ay-sh)*PavoHelper.getGameHeight(w.getWorldSize())));
 		render();
 		w.forceRender();
@@ -67,7 +67,7 @@ public class OmniMap extends Renderable {
 	}
 	public void writeBuffer() {
 		Graphics2D g = PavoHelper.createGraphics(terrain);
-		Rand rand = new Rand(GameBeta.Settings.seed);
+		Rand rand = new Rand(Game.Settings.seed);
 		for (int x = 0; x < 100/3; x++) {
 			for (int y = 0; y < 100/3; y++) {
 				int strx = x * PavoHelper.getGameWidth(w.getWorldSize());
@@ -101,10 +101,10 @@ public class OmniMap extends Renderable {
 	public void render() {
 		Graphics2D g = PavoHelper.createGraphics(getBuffer());
 		g.drawImage(terrain, 0,0,null);
-		int rwx = (int) (Math.abs(w.getScreenX()-(GameBeta.Settings.currentWidth/2)) * 33.333333 / (PavoHelper.getGameWidth(w.getWorldSize()) * 100))*3;
-		int rwy = (int) (Math.abs(w.getScreenY()-(GameBeta.Settings.currentHeight/2)) * 33.333333 / (PavoHelper.getGameHeight(w.getWorldSize()) * 100))*3;
-		int sw = (int)((150 * GameBeta.Settings.currentWidth)/(PavoHelper.getGameWidth(w.getWorldSize())*100));
-		int sh = (int)((150 * GameBeta.Settings.currentHeight)/(PavoHelper.getGameHeight(w.getWorldSize())*100));
+		int rwx = (int) (Math.abs(w.getScreenX()-(Game.Settings.currentWidth/2)) * 33.333333 / (PavoHelper.getGameWidth(w.getWorldSize()) * 100))*3;
+		int rwy = (int) (Math.abs(w.getScreenY()-(Game.Settings.currentHeight/2)) * 33.333333 / (PavoHelper.getGameHeight(w.getWorldSize()) * 100))*3;
+		int sw = (int)((150 * Game.Settings.currentWidth)/(PavoHelper.getGameWidth(w.getWorldSize())*100));
+		int sh = (int)((150 * Game.Settings.currentHeight)/(PavoHelper.getGameHeight(w.getWorldSize())*100));
 		g.setColor(Color.red);
 		g.drawRect(rwx-1,rwy-1,sw/2,sh/2);
 		g.setColor(new Color(100, 78, 47));

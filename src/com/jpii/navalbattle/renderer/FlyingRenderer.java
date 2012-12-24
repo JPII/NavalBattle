@@ -13,8 +13,8 @@ public class FlyingRenderer {
 	double xinc;
 	BufferedImage localBuffer;
 	Random r;
-	Game gme;
-	public FlyingRenderer(Game g,int size, int yloc) {
+	Game22 gme;
+	public FlyingRenderer(Game22 g,int size, int yloc) {
 		r = new Random(Constants.MAIN_SEED+size-999);
 		xinc = (r.nextDouble() * 2)+1;
 		this.size = size;

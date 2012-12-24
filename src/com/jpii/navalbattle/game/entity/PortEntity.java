@@ -23,7 +23,7 @@ import java.awt.image.BufferedImage;
 
 import com.jpii.navalbattle.game.Location;
 import com.jpii.navalbattle.pavo.EntityManager;
-import com.jpii.navalbattle.pavo.GameBeta;
+import com.jpii.navalbattle.pavo.Game;
 import com.jpii.navalbattle.pavo.ProceduralLayeredMapGenerator;
 import com.jpii.navalbattle.pavo.PavoHelper;
 
@@ -42,11 +42,11 @@ public class PortEntity extends Entity {
 		Graphics2D g = PavoHelper.createGraphics(custom);
 		g.setColor(Color.cyan);
 		g.fillRect(0,0,50,50);
-		for (int c = 0; c < GameBeta.Settings.rand.nextInt(5,10); c++) {
-			int x = GameBeta.Settings.rand.nextInt(40);
-			int y = GameBeta.Settings.rand.nextInt(40);
+		for (int c = 0; c < Game.Settings.rand.nextInt(5,10); c++) {
+			int x = Game.Settings.rand.nextInt(40);
+			int y = Game.Settings.rand.nextInt(40);
 			if (ProceduralLayeredMapGenerator.getPoint(x+(getLocation().getCol()*50), y+(getLocation().getRow()*50)) >= 0.4) {
-				g.setColor(GameBeta.Settings.rand.nextColor());
+				g.setColor(Game.Settings.rand.nextColor());
 				g.fillRect(x,y,5,5);
 			}
 		}

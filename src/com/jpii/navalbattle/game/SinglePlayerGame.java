@@ -25,7 +25,7 @@ import java.awt.event.KeyListener;
 
 import com.jpii.navalbattle.data.Constants;
 import com.jpii.navalbattle.gui.listeners.*;
-import com.jpii.navalbattle.pavo.GameBeta;
+import com.jpii.navalbattle.pavo.Game;
 import com.jpii.navalbattle.renderer.Helper;
 
 @SuppressWarnings("serial")
@@ -56,7 +56,7 @@ public class SinglePlayerGame extends JFrame {
 		//addKeyListener(Constants.keys);
 		//Constants.keys.add(this);
 		
-		setSize(GameBeta.Settings.currentWidth,GameBeta.Settings.currentHeight-80);
+		setSize(Game.Settings.currentWidth,Game.Settings.currentHeight-80);
 		
 		//setSize((int) Toolkit.getDefaultToolkit().getScreenSize().getWidth(),
 			//	(int) Toolkit.getDefaultToolkit().getScreenSize().getHeight() - 48);

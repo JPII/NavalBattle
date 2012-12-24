@@ -22,7 +22,7 @@ import maximusvladimir.dagen.Perlin;
 //import com.jpii.navalbattle.data.Constants;
 
 public class ProceduralLayeredMapGenerator {
-	private static Perlin berlin = new Perlin(GameBeta.Settings.seed,0,0);
+	private static Perlin berlin = new Perlin(Game.Settings.seed,0,0);
 	public static float getPoint(float x, float z) {
 		float lvl0 = getLevel0(x,z);
 		//float lvl1 = getLevel1(x,z);

@@ -28,7 +28,7 @@ import java.lang.Thread.State;
 import javax.swing.*;
 
 import com.jpii.navalbattle.data.Constants;
-import com.jpii.navalbattle.pavo.GameBeta;
+import com.jpii.navalbattle.pavo.Game;
 import com.jpii.navalbattle.pavo.PavoHelper;
 import com.jpii.navalbattle.renderer.Console;
 import com.jpii.navalbattle.renderer.Helper;
@@ -46,7 +46,7 @@ public class GameComponent extends JComponent {
 	JFrame frame;
 	Timer ticker;
 	Timer logicUpdator;
-	GameBeta game;
+	Game game;
 	WindowLib winlib;
 	boolean isFullscreen = false;
 	Timer alert;
@@ -107,8 +107,8 @@ public class GameComponent extends JComponent {
 	}
 	public void update() {
 		game.render();
-		GameBeta.Settings.currentWidth = frame.getWidth();
-		GameBeta.Settings.currentHeight = frame.getHeight();
+		Game.Settings.currentWidth = frame.getWidth();
+		Game.Settings.currentHeight = frame.getHeight();
 		setSize(frame.getWidth(), frame.getHeight());
 	}
 	public void updateGame() {
@@ -119,8 +119,8 @@ public class GameComponent extends JComponent {
 		//g.fillRect(0,0,DynamicConstants.WND_WDTH,DynamicConstants.WND_HGHT);
 		g.drawImage(game.getBuffer(),0,0,null);
 		if (notifier != null)
-			g.drawImage(notifier,(GameBeta.Settings.currentWidth/2)-(notifier.getWidth()/2),
-				(GameBeta.Settings.currentHeight/2)-(notifier.getHeight()/2),null);
+			g.drawImage(notifier,(Game.Settings.currentWidth/2)-(notifier.getWidth()/2),
+				(Game.Settings.currentHeight/2)-(notifier.getHeight()/2),null);
 	}
 	float transparency = 200;
 	long ticks = 0;
@@ -152,14 +152,14 @@ public class GameComponent extends JComponent {
 			winlib.hideFullscreen();
 			transparency = 200;
 			startDialog = false;
-			GameBeta.Settings.isGameFullscreen = false;
+			Game.Settings.isGameFullscreen = false;
 		}
 		else {
 			ticks = 0;
 			winlib.showFullscreen();
 			isFullscreen = true;
 			startDialog = true;
-			GameBeta.Settings.isGameFullscreen = true;
+			Game.Settings.isGameFullscreen = true;
 		}
 	}
 }

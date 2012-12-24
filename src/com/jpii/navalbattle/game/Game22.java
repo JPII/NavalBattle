@@ -33,7 +33,7 @@ import com.jpii.navalbattle.renderer.*;
  * @author MKirkby
  *
  */
-public class Game implements Runnable {
+public class Game22 implements Runnable {
     private Grid grid;
     private ArrayList < ChunkRenderer > chunks;
     private Engine eng;
@@ -54,7 +54,7 @@ public class Game implements Runnable {
     /**
      * Creates <b>THE</b> game.
      */
-    public Game() {
+    public Game22() {
         msax = Constants.WINDOW_WIDTH * 2;
         msay = Constants.WINDOW_HEIGHT * 2;
         grid = new Grid();
@@ -139,7 +139,7 @@ public class Game implements Runnable {
         catch (Exception ex) {
         	
         }*/
-        bird0 = new FlyingRenderer(this,simpleSeeder.nextInt(25)+75,450);
+        //bird0 = new FlyingRenderer(this,simpleSeeder.nextInt(25)+75,450);
         
         NavalBattle.getDebugWindow().printInfo("Generated map. Size: " + (4*Constants.WINDOW_WIDTH/50) + "x" +
         (4*Constants.WINDOW_HEIGHT/50) + ". Used seed: " + Constants.MAIN_SEED);
@@ -374,7 +374,7 @@ public class Game implements Runnable {
             }
         }
         if (type == RepaintType.REPAINT_INDV_ENTITIES) {
-            eRender.render(this);
+            //eRender.render(this);
         }
         if (type == RepaintType.REPAINT_CLOUDS) {
             if (!RenderConstants.OPT_CLOUDS_ON) return;

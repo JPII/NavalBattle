@@ -4,7 +4,7 @@ import java.awt.BasicStroke;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 
-import com.jpii.navalbattle.pavo.GameBeta;
+import com.jpii.navalbattle.pavo.Game;
 import com.jpii.navalbattle.pavo.PavoHelper;
 
 public class WeatherManager {
@@ -23,16 +23,16 @@ public class WeatherManager {
 		return wm;
 	}
 	private void repopulateRain() {
-		rain = new RainDrop[GameBeta.Settings.rand.nextInt(150,200)];
-		int dir = GameBeta.Settings.rand.nextInt(-6,6);
+		rain = new RainDrop[Game.Settings.rand.nextInt(150,200)];
+		int dir = Game.Settings.rand.nextInt(-6,6);
 		for (int r = 0; r < rain.length; r++) {
-			rain[r] = new RainDrop(dir,GameBeta.Settings.currentWidth,GameBeta.Settings.currentHeight);
+			rain[r] = new RainDrop(dir,Game.Settings.currentWidth,Game.Settings.currentHeight);
 		}
 	}
 	public void update() {
 		if (getWeather() == WeatherMode.Raining) {
-			buffer = new BufferedImage(GameBeta.Settings.currentWidth,
-					GameBeta.Settings.currentHeight,BufferedImage.TYPE_INT_ARGB);
+			buffer = new BufferedImage(Game.Settings.currentWidth,
+					Game.Settings.currentHeight,BufferedImage.TYPE_INT_ARGB);
 			Graphics2D g = PavoHelper.createGraphics(buffer);
 			g.setStroke(new BasicStroke(2.5f));
 			for (int r = 0; r < rain.length; r++) {
@@ -43,17 +43,17 @@ public class WeatherManager {
 				rd.y2 += inc;
 				rd.x1 += sws;
 				rd.x2 += sws;
-				if (rd.y1 > GameBeta.Settings.currentHeight) {
-					rd.y1 -= (GameBeta.Settings.currentHeight + 60);
-					rd.y2 -= (GameBeta.Settings.currentHeight + 60);
+				if (rd.y1 > Game.Settings.currentHeight) {
+					rd.y1 -= (Game.Settings.currentHeight + 60);
+					rd.y2 -= (Game.Settings.currentHeight + 60);
 				}
 				if (sws < 0 && rd.x2 < 0) {
-					rd.x1 += GameBeta.Settings.currentWidth;
-					rd.x2 += GameBeta.Settings.currentWidth;
+					rd.x1 += Game.Settings.currentWidth;
+					rd.x2 += Game.Settings.currentWidth;
 				}
-				if (sws > 0 && rd.x1 > GameBeta.Settings.currentWidth) {
-					rd.x1 -= GameBeta.Settings.currentWidth;
-					rd.x2 -= GameBeta.Settings.currentWidth;
+				if (sws > 0 && rd.x1 > Game.Settings.currentWidth) {
+					rd.x1 -= Game.Settings.currentWidth;
+					rd.x2 -= Game.Settings.currentWidth;
 				}
 				rain[r] = rd;
 				g.setColor(rd.colour);

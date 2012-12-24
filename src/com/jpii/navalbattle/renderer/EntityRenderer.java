@@ -5,7 +5,7 @@ import java.awt.Point;
 import java.awt.image.BufferedImage;
 
 import com.jpii.navalbattle.data.Constants;
-import com.jpii.navalbattle.game.Game;
+import com.jpii.navalbattle.game.Game22;
 import com.jpii.navalbattle.game.Location;
 import com.jpii.navalbattle.game.entity.Entity;
 import com.jpii.navalbattle.game.entity.Whale;
@@ -39,7 +39,7 @@ public class EntityRenderer {
      * Renders the Entity to the screen.
      * @param game
      */
-    public void render(Game game) {
+    public void render(Game22 game) {
         buffer = new BufferedImage(Constants.WINDOW_WIDTH, Constants.WINDOW_HEIGHT, BufferedImage.TYPE_INT_ARGB);
         Graphics g = buffer.getGraphics();
         for (int x = 0; x < grid.getWidth(); x++) {
@@ -63,7 +63,7 @@ public class EntityRenderer {
      * @deprecated See Game.java instead.
      * @return A point on the screen (its possible that it might not be on the screen).
      */
-    public Point gridLocationToScreen(Location l, Game g) {
+    public Point gridLocationToScreen(Location l, Game22 g) {
         Point p = gridLocationToPoint(l);
         Point s = pointToScreen(p.x, p.y, g);
         return s;
@@ -101,7 +101,7 @@ public class EntityRenderer {
      * @return A point. (May not physically be on the screen, and may be negative.)
      * @deprecated See Game.java instead.
      */
-    public Point pointToScreen(int px, int py, Game g) {
+    public Point pointToScreen(int px, int py, Game22 g) {
         Point p = g.getMouseSet();
         // p = 40
         // v = 5
@@ -120,7 +120,7 @@ public class EntityRenderer {
      * @deprecated See Game.java instead.
      * @return
      */
-    public Point screenToPoint(int px, int py, Game g) {
+    public Point screenToPoint(int px, int py, Game22 g) {
     	Point p = g.getMouseSet();
         Point y = new Point((p.x) + (px/2), (p.y) + (py/2));
         return y;

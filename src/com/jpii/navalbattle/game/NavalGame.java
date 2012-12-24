@@ -33,7 +33,7 @@ import com.jpii.navalbattle.pavo.gui.OmniMap;
  * @author MKirkby
  * The game file.
  */
-public class NavalGame extends GameBeta {
+public class NavalGame extends Game {
 	PlayerProfileWindow ppw;
 	ShipInfoWindow siw;
 	OmniMap omnimap;
@@ -135,8 +135,8 @@ public class NavalGame extends GameBeta {
 		int my = me.getY();
 		int mzx = 0;
 		int mzy = 0;
-		int ww = (GameBeta.Settings.currentWidth/2);
-		int wh = (GameBeta.Settings.currentHeight/2);
+		int ww = (Game.Settings.currentWidth/2);
+		int wh = (Game.Settings.currentHeight/2);
 		int ad = 24;
 		if (mx < ww) {
 			mzx = (ww - mx)/ad;
@@ -173,6 +173,6 @@ public class NavalGame extends GameBeta {
 	public void render() {
 		super.render();
 		Graphics2D g = PavoHelper.createGraphics(getBuffer());
-		g.drawImage(omnimap.getBuffer(), GameBeta.Settings.currentWidth-158, 40, null);
+		g.drawImage(omnimap.getBuffer(), Game.Settings.currentWidth-158, 40, null);
 	}
 }

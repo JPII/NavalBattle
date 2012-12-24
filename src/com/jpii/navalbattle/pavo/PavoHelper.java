@@ -31,7 +31,7 @@ public class PavoHelper {
 		int sy = Math.abs(w.getScreenY());
 		int px = c.getX() * 100;
 		int py = c.getZ() * 100;
-		if (px-sx+100 >= 0 && py-sy+100 >= 0 && px-sx <= GameBeta.Settings.currentWidth && py-sy <= GameBeta.Settings.currentHeight){
+		if (px-sx+100 >= 0 && py-sy+100 >= 0 && px-sx <= Game.Settings.currentWidth && py-sy <= Game.Settings.currentHeight){
 			return true;
 		}
 		else
@@ -116,7 +116,7 @@ public class PavoHelper {
 		int sy = w.getScreenY();
 		int px = ent.getLocation().getCol() * 50;
 		int py = ent.getLocation().getRow() * 50;
-		if (px >= sx && py >= sy && px <= sx + GameBeta.Settings.currentWidth && py <= sy + GameBeta.Settings.currentHeight)
+		if (px >= sx && py >= sy && px <= sx + Game.Settings.currentWidth && py <= sy + Game.Settings.currentHeight)
 			return true;
 		else
 			return false;

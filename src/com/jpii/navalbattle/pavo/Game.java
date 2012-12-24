@@ -30,7 +30,7 @@ import com.jpii.navalbattle.renderer.Helper;
 import com.jpii.navalbattle.renderer.weather.WeatherMode;
 import com.jpii.navalbattle.util.GameStatistics;
 
-public class GameBeta extends Renderable implements Runnable {
+public class Game extends Renderable implements Runnable {
 	Thread updator;
 	Thread chunkrender;
 	Thread generator;
@@ -48,12 +48,12 @@ public class GameBeta extends Renderable implements Runnable {
 	/**
 	 * Creates a new instance of the game.
 	 */
-	public GameBeta() {
+	public Game() {
 		windows = new WindowManager();
 		world = new World();
 		gen = new WorldGen();
 		threadInit();
-		buffer = new BufferedImage(GameBeta.Settings.currentWidth,GameBeta.Settings.currentHeight,BufferedImage.TYPE_INT_RGB);
+		buffer = new BufferedImage(Game.Settings.currentWidth,Game.Settings.currentHeight,BufferedImage.TYPE_INT_RGB);
 		world.getWeather().setWeather(WeatherMode.Raining);
 	}
 	/**
@@ -176,7 +176,7 @@ public class GameBeta extends Renderable implements Runnable {
 					}
 				}
 				else {
-					GameBeta.getStats().SmKdn02nOaP(1);
+					Game.getStats().SmKdn02nOaP(1);
 					break;
 				}
 			}
@@ -199,7 +199,7 @@ public class GameBeta extends Renderable implements Runnable {
 	 */
 	public void render() {
 		long sjan = System.currentTimeMillis();
-		buffer = new BufferedImage(GameBeta.Settings.currentWidth,GameBeta.Settings.currentHeight,BufferedImage.TYPE_INT_RGB);
+		buffer = new BufferedImage(Game.Settings.currentWidth,Game.Settings.currentHeight,BufferedImage.TYPE_INT_RGB);
 		Graphics2D g = PavoHelper.createGraphics(buffer);
 		while (getWorld().isLocked()) {
 			
@@ -228,7 +228,7 @@ public class GameBeta extends Renderable implements Runnable {
 		getWinMan().render();
 		g.drawImage(getWinMan().getBuffer(), 0, 0, null);
 		getWinMan().unlock();
-		GameBeta.getStats().sBm3ns02AKa99mqp392(System.currentTimeMillis() - sjan);
+		Game.getStats().sBm3ns02AKa99mqp392(System.currentTimeMillis() - sjan);
 	}
 	/**
 	 * Gets the active world for the Game.

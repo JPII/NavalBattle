@@ -26,7 +26,7 @@ import java.awt.image.BufferedImage;
 import javax.swing.ImageIcon;
 
 import com.jpii.navalbattle.NavalBattle;
-import com.jpii.navalbattle.pavo.GameBeta;
+import com.jpii.navalbattle.pavo.Game;
 import com.jpii.navalbattle.pavo.PavoHelper;
 import com.jpii.navalbattle.renderer.Helper;
 
@@ -53,7 +53,7 @@ public class MessageBox extends com.jpii.navalbattle.pavo.gui.GameWindow {
 		int w = lg * 10;
 		int h = 125 + (16 * lines.length);
 		setSize(w,h);
-		setLoc((GameBeta.Settings.currentWidth/2)-(w/2),(GameBeta.Settings.currentHeight/2)-(h/2));
+		setLoc((Game.Settings.currentWidth/2)-(w/2),(Game.Settings.currentHeight/2)-(h/2));
 		render();
 	}
 	public static void setMessageBoxErrorIcon(BufferedImage icon) {

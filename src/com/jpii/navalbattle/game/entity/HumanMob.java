@@ -19,7 +19,7 @@ package com.jpii.navalbattle.game.entity;
 
 import com.jpii.navalbattle.game.Location;
 import com.jpii.navalbattle.pavo.EntityManager;
-import com.jpii.navalbattle.pavo.GameBeta;
+import com.jpii.navalbattle.pavo.Game;
 
 public class HumanMob extends Entity {
 	public HumanMob(EntityManager em,Location l) {
@@ -28,7 +28,7 @@ public class HumanMob extends Entity {
 	}
 	public void update() {
 		super.update();
-		int code = GameBeta.Settings.rand.nextInt(3);
+		int code = Game.Settings.rand.nextInt(3);
 		Entity next = getManager().getEntity(getLocation().getRow()+1,getLocation().getCol());
 		if (next != null && code == 1) {
 			getManager().setEntity(getLocation().getRow()+1, getLocation().getCol(),new HumanMob(getManager(),
