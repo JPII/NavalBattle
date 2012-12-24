@@ -198,6 +198,7 @@ public class GameBeta extends Renderable implements Runnable {
 	 * Renders the Game.
 	 */
 	public void render() {
+		long sjan = System.currentTimeMillis();
 		buffer = new BufferedImage(GameBeta.Settings.currentWidth,GameBeta.Settings.currentHeight,BufferedImage.TYPE_INT_RGB);
 		Graphics2D g = PavoHelper.createGraphics(buffer);
 		while (getWorld().isLocked()) {
@@ -217,7 +218,7 @@ public class GameBeta extends Renderable implements Runnable {
 		int ma = 38;
 		g.drawString((getWorld().getTimeManager().getTimeDescription() + " " + getWorld().getTimeManager().getCurrentHour() + ":"+frmtn),12,ma+30);
 		g.drawString("Idling (should be low):" + gs.getDrawIdling() + ". Draw time:" + gs.getDrawTime() + " Live chunks:" + gs.getLiveChunks(),12,ma+60);
-		g.drawString("Is generating? " + gs.isGenerating() + ". Total update time:" + gs.getUpdateTime(), 12,ma+90);
+		g.drawString("Is generating? " + gs.isGenerating() + ". Total update time:" + gs.getUpdateTime() + ". Last render length:" + gs.getTotalUpdate(), 12,ma+90);
 		getWorld().unlock();
 		
 		while (getWinMan().isLocked()) {
@@ -227,6 +228,7 @@ public class GameBeta extends Renderable implements Runnable {
 		getWinMan().render();
 		g.drawImage(getWinMan().getBuffer(), 0, 0, null);
 		getWinMan().unlock();
+		GameBeta.getStats().sBm3ns02AKa99mqp392(System.currentTimeMillis() - sjan);
 	}
 	/**
 	 * Gets the active world for the Game.
