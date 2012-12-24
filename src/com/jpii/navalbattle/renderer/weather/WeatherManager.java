@@ -39,12 +39,12 @@ public class WeatherManager {
 			Graphics2D g = PavoHelper.createGraphics(buffer);
 			g.setStroke(new BasicStroke(2.5f));
 			lightticks += 1;
-			if (lightticks > 6) {
+			if (lightticks > 9) {
 				lightticks = 0;
 				lighting = false;
 			}
 			if (lighting) {
-				g.setColor(new Color(237,234,222,lightticks*100/6));
+				g.setColor(new Color(237,234,222,lightticks*100/9));
 				g.fillOval(Game.Settings.currentWidth-125,-Game.Settings.currentHeight,500,Game.Settings.currentHeight*2);
 			}
 			if (Game.Settings.rand.nextInt(0,50) == 10) {
