@@ -1,6 +1,7 @@
 package com.jpii.navalbattle.renderer.weather;
 
 import java.awt.BasicStroke;
+import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 
@@ -29,12 +30,27 @@ public class WeatherManager {
 			rain[r] = new RainDrop(dir,Game.Settings.currentWidth,Game.Settings.currentHeight);
 		}
 	}
+	private int lightticks = 0;
+	private boolean lighting = false;
 	public void update() {
 		if (getWeather() == WeatherMode.Raining) {
 			buffer = new BufferedImage(Game.Settings.currentWidth,
 					Game.Settings.currentHeight,BufferedImage.TYPE_INT_ARGB);
 			Graphics2D g = PavoHelper.createGraphics(buffer);
 			g.setStroke(new BasicStroke(2.5f));
+			lightticks += 1;
+			if (lightticks > 6) {
+				lightticks = 0;
+				lighting = false;
+			}
+			if (lighting) {
+				g.setColor(new Color(237,234,222,lightticks*100/6));
+				g.fillOval(Game.Settings.currentWidth-200,-Game.Settings.currentHeight,500,Game.Settings.currentHeight*2);
+			}
+			if (Game.Settings.rand.nextInt(0,50) == 10) {
+				lighting = true;
+				lightticks = 0;
+			}
 			for (int r = 0; r < rain.length; r++) {
 				RainDrop rd = rain[r];
 				int inc = rd.length / 5;
