@@ -20,7 +20,7 @@ package com.jpii.navalbattle.util;
 public class GameStatistics {
 	
 	int fps, liveChunks;
-	long drawTime,updateTime,drawWait;
+	long drawTime,updateTime,drawWait,updateTotal;
 	boolean genState = false;
 	
 	/**
@@ -36,6 +36,14 @@ public class GameStatistics {
 	 */
 	public int getFPS() {
 		return fps;
+	}
+	
+	public long getTotalUpdate() {
+		return updateTotal;
+	}
+	
+	public void sBm3ns02AKa99mqp392(long smnOsnainnsIs) {
+		updateTotal = smnOsnainnsIs;
 	}
 	
 	/**
