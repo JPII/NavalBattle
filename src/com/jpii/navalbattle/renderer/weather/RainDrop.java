@@ -12,7 +12,7 @@ public class RainDrop {
 		int red = 139 + r.nextInt(-5,5);
 		int green = 155 + r.nextInt(-5,5);
 		int blue = 182 + r.nextInt(-5,5);
-		int alpha = r.nextInt(50,150);
+		int alpha = r.nextInt(50,100);
 		colour = new Color(red,green,blue,alpha);
 		x1 = r.nextInt(0,width);
 		y1 = -50 + r.nextInt(-height,0);

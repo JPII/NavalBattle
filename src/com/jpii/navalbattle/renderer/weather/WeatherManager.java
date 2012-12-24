@@ -47,6 +47,14 @@ public class WeatherManager {
 					rd.y1 -= (GameBeta.Settings.currentHeight + 60);
 					rd.y2 -= (GameBeta.Settings.currentHeight + 60);
 				}
+				if (sws < 0 && rd.x2 < 0) {
+					rd.x1 += GameBeta.Settings.currentWidth;
+					rd.x2 += GameBeta.Settings.currentWidth;
+				}
+				if (sws > 0 && rd.x1 > GameBeta.Settings.currentWidth) {
+					rd.x1 -= GameBeta.Settings.currentWidth;
+					rd.x2 -= GameBeta.Settings.currentWidth;
+				}
 				rain[r] = rd;
 				g.setColor(rd.colour);
 				g.drawLine(rd.x1,rd.y1,rd.x2,rd.y2);
