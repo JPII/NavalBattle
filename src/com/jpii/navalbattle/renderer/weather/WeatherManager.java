@@ -47,7 +47,7 @@ public class WeatherManager {
 				g.setColor(new Color(237,234,222,lightticks*100/9));
 				g.fillOval(Game.Settings.currentWidth-125,-Game.Settings.currentHeight,500,Game.Settings.currentHeight*2);
 			}
-			if (Game.Settings.rand.nextInt(0,50) == 10) {
+			if (Game.Settings.rand.nextInt(0,30) == 10 && !lighting) {
 				lighting = true;
 				lightticks = 0;
 			}
