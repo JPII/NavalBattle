@@ -189,31 +189,38 @@ public class World extends Renderable implements Interactable {
 		Graphics2D g = PavoHelper.createGraphics(buffer);
 		//g.drawIm
 		g.drawImage(noise, 0, 0, null);
-		for (int x = 0; x < width; x++) {
-			for (int z = 0; z < height; z++) {
-				Chunk chunk = chunks[z*width+x];
-				if (PavoHelper.isChunkVisibleOnScreen(this, chunk)) {
-					//while (chunk.isLocked()) { }
-					//chunk.lock();
-					if (!chunk.isGenerated()) {
-						int rgb = Game.Settings.rand.nextInt(255);
-						if (Game.Settings.rand.nextBoolean())
-							g.setColor(new Color(6,rgb,13));
-						else
-							g.setColor(new Color(6,13,rgb));
-						g.fillRect(x*100,z*100,100,100);
+		int startsyncx = (-sx) / 100;
+		int startsyncz = (-sy) / 100;
+		int syncwidth = (Game.Settings.currentWidth/100)+2;
+		int syncheight = (Game.Settings.currentHeight/100)+2;
+		for (int x = startsyncx; x < syncwidth+startsyncx; x++) {
+			for (int z = startsyncz; z < syncheight+startsyncz; z++) {
+				int index = z*width+x;
+				if (index >= 0 && index < chunks.length) {
+					Chunk chunk = chunks[index];
+					if (PavoHelper.isChunkVisibleOnScreen(this, chunk)) {
+						//while (chunk.isLocked()) { }
+						//chunk.lock();
+						if (!chunk.isGenerated()) {
+							int rgb = Game.Settings.rand.nextInt(255);
+							if (Game.Settings.rand.nextBoolean())
+								g.setColor(new Color(6,rgb,13));
+							else
+								g.setColor(new Color(6,13,rgb));
+							g.fillRect(x*100,z*100,100,100);
+						}
+						else if (x-2 == width || z-2 == height) {
+							g.fillRect(sx+(x*100),sy+(z*100), 303, 303);
+						}
+						else {
+							if (chunk.needsBufferWrite())
+								chunk.writeBuffer();
+							if (chunk.getBuffer() != null)
+								g.drawImage(chunk.getBuffer(), sx+(x*100),sy+(z*100),null);
+						}
+						//chunk.unlock();
+						liveChunks++;
 					}
-					else if (x-2 == width || z-2 == height) {
-						g.fillRect(sx+(x*100),sy+(z*100), 303, 303);
-					}
-					else {
-						if (chunk.needsBufferWrite())
-							chunk.writeBuffer();
-						if (chunk.getBuffer() != null)
-							g.drawImage(chunk.getBuffer(), sx+(x*100),sy+(z*100),null);
-					}
-					//chunk.unlock();
-					liveChunks++;
 				}
 			}
 		}
