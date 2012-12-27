@@ -111,6 +111,8 @@ public class NavalBattle {
 			NavalBattle.getDebugWindow().printError("NimbusLookAndFeel has encountered an error, " + e.getMessage());	
 		} catch (Error e) {
 			NavalBattle.getDebugWindow().printError("NimbusLookAndFeel has encountered an error, " + e.getMessage());	
+		} catch (Throwable thr) {
+			NavalBattle.getDebugWindow().printError("NimbusLookAndFeel has encountered an error, " + thr.getMessage());
 		}
 	}
 }
