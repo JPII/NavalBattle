@@ -54,7 +54,7 @@ public class Game extends Renderable implements Runnable {
 		gen = new WorldGen();
 		threadInit();
 		buffer = new BufferedImage(Game.Settings.currentWidth,Game.Settings.currentHeight,BufferedImage.TYPE_INT_RGB);
-		world.getWeather().setWeather(WeatherMode.Raining);
+		world.getWeather().setWeather(WeatherMode.Sunny);
 	}
 	/**
 	 * Gets the window manager for the Game.
