@@ -58,6 +58,32 @@ public class EntityManager {
 		return ent[c][r];
 	}
 	/**
+	 * Moves an entity to another location.
+	 * @param cr The current row.
+	 * @param cc The current column.
+	 * @param nr The new row.
+	 * @param nc The new column.
+	 * @return A value indicating whether the operation was sucessful or not.
+	 */
+	public boolean moveEntity(int cr, int cc, int nr, int nc) {
+		if (cr >= PavoHelper.getGameWidth(w.getWorldSize())*2 ||
+				cc >= PavoHelper.getGameHeight(w.getWorldSize())*2 || cc < 0 || cr < 0)
+			return false;
+		if (nr >= PavoHelper.getGameWidth(w.getWorldSize())*2 ||
+				nc >= PavoHelper.getGameHeight(w.getWorldSize())*2 || nc < 0 || nr < 0)
+			return false;
+		try {
+			ent[nc][nr] = ent[cc][cr];
+			ent[cc][cr].setId(0);
+		}
+		catch (Throwable throwable) {
+			return false;
+		}
+		getAssociatedChunk(nr,nc).reDrawBuffer();
+		getAssociatedChunk(cr,cc).reDrawBuffer();
+		return true;
+	}
+	/**
 	 * Gets the chunk associated with the given entity location.
 	 * @param r The row of the entity.
 	 * @param c The column of the entity.
