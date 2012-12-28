@@ -58,7 +58,7 @@ public class EntityManager {
 		return ent[c][r];
 	}
 	/**
-	 * Moves an entity to another location.
+	 * Moves an entity to another location. Be aware that any entity that was in the new location will be overriden.
 	 * @param cr The current row.
 	 * @param cc The current column.
 	 * @param nr The new row.
