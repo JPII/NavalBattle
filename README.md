@@ -3,7 +3,7 @@ NavalBattle
 
 A new RoketGamer-powered game. Coming soon.
 
-[![Build Status](https://travis-ci.org/JPII/NavalBattle.png)](https://travis-ci.org/JPII/NavalBattle)
+[![Build Status](https://travis-ci.org/JPII/NavalBattle.png?branch=master)](https://travis-ci.org/JPII/NavalBattle)
 
 
 ## Members
