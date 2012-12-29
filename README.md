@@ -5,6 +5,7 @@ A new RoketGamer-powered game. Coming soon.
 
 [![Build Status](https://travis-ci.org/JPII/NavalBattle.png?branch=master)](https://travis-ci.org/JPII/NavalBattle)
 
+[For visiual snapshots of the latest commits and information see the snapshots wiki page](https://github.com/JPII/NavalBattle/wiki/Snapshots)
 
 ## Members
 * **TexasGamer** - SCM manager, RoketGamer lead
