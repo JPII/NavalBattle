@@ -61,7 +61,7 @@ public class NavalGame extends Game {
 		}
 		
 		getWorld().getEntityManager().setEntity(5,5, new TankTestEntity(getWorld().getEntityManager(), new Location(5,5)));
-		
+		getWorld().getEntityManager().getAssociatedChunk(5,5).reDrawBuffer();
 		//getWorld().getEntityManager().setEntity(6,6, new HumanMob(getWorld().getEntityManager()));
 	}
 	/**

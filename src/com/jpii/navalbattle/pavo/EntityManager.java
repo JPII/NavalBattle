@@ -44,7 +44,7 @@ public class EntityManager {
 		g.setColor(new Color(120,120,120,100));
 		g.drawRect(1,1,49,49);
 		humanoid = FileUtils.getImage("drawable-game/Other/humanmob.png");
-		staticTank = FileUtils.getImage("drawable-game/Other/humanmob.png");
+		staticTank = FileUtils.getImage("drawable-game/Other/TankBase.png");
 	}
 	/**
 	 * Gets the entity at the given row and column.
@@ -161,7 +161,7 @@ public class EntityManager {
 		case 1:
 			ager = humanoid;
 			break;
-		case 9678747:
+		case 0x93AF9B:
 			ager = staticTank;
 			break;
 		}
