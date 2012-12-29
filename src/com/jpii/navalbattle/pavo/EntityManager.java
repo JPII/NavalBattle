@@ -23,6 +23,7 @@ import java.awt.image.BufferedImage;
 
 import com.jpii.navalbattle.game.Location;
 import com.jpii.navalbattle.game.entity.Entity;
+import com.jpii.navalbattle.game.entity.TankTestEntity;
 import com.jpii.navalbattle.util.FileUtils;
 
 public class EntityManager {
@@ -45,6 +46,24 @@ public class EntityManager {
 		g.drawRect(1,1,49,49);
 		humanoid = FileUtils.getImage("drawable-game/Other/humanmob.png");
 		staticTank = FileUtils.getImage("drawable-game/Other/TankBase.png");
+	}
+	public void update(long ticksPassed) {
+		// Every 8/10ths of a second, perform an update on the tank.
+		if (ticksPassed % 800 == 0) {
+			TankTestEntity tte = (TankTestEntity) findEntity("tank-test-1");
+			if (tte != null) {
+				
+			}
+		}
+	}
+	public Entity findEntity(String tag) {
+		for (int x = 0; x < PavoHelper.getGameWidth(w.getWorldSize())*2; x++) {
+			for (int y = 0; y < PavoHelper.getGameHeight(w.getWorldSize())*2; y++) {
+				if (ent[x][y] != null && ent[x][y].getTag().equals(tag))
+					return ent[x][y];
+			}
+		}
+		return null;
 	}
 	/**
 	 * Gets the entity at the given row and column.

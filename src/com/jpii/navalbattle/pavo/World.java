@@ -123,9 +123,12 @@ public class World extends Renderable implements Interactable {
 	public WorldGen getWorldGen() {
 		return gen;
 	}
+	long smallTicks = 0;
 	public void update() {
+		smallTicks += 100;
 		time.update();
 		wm.update();
+		em.update(smallTicks);
 	}
 	public WeatherManager getWeather() {
 		return wm;
