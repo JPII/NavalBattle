@@ -30,7 +30,7 @@ public class EntityManager {
 	Entity[][] ent;
 	World w;
 	int counter = 0;
-	BufferedImage grid,humanoid;
+	BufferedImage grid,humanoid,staticTank;
 	/**
 	 * Creates a new entity manager for the desired world.
 	 * @param w The world to create the entity manager.
@@ -44,6 +44,7 @@ public class EntityManager {
 		g.setColor(new Color(120,120,120,100));
 		g.drawRect(1,1,49,49);
 		humanoid = FileUtils.getImage("drawable-game/Other/humanmob.png");
+		staticTank = FileUtils.getImage("drawable-game/Other/tankmob.png");
 	}
 	/**
 	 * Gets the entity at the given row and column.
@@ -159,6 +160,9 @@ public class EntityManager {
 			break;
 		case 1:
 			ager = humanoid;
+			break;
+		case 9678747:
+			ager = staticTank;
 			break;
 		}
 		BufferedImage s = ent.getCustomImage();
