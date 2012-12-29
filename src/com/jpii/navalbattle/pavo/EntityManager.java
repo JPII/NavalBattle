@@ -52,14 +52,22 @@ public class EntityManager {
 		if (ticksPassed % 800 == 0) {
 			TankTestEntity tte = (TankTestEntity) findEntity("tank-test-1");
 			if (tte != null) {
-				
+				int cr = tte.getLocation().getRow();
+				int cc = tte.getLocation().getCol();
+				int ay = Game.Settings.rand.nextInt(-1,2);
+				int ax = Game.Settings.rand.nextInt(-1,2);
+				if (cr+ay > 3 && cr+ay < (PavoHelper.getGameHeight(w.getWorldSize())*2)-3 && cc+ax > 3
+						&& cc+ax < (PavoHelper.getGameWidth(w.getWorldSize())*2)-3) {
+					moveEntity(cr,cc,cr+ay,cc+ax);
+					System.out.println("moved the tank to: r=" + (cr+ay) + " c=" + (cc+ax));
+				}
 			}
 		}
 	}
 	public Entity findEntity(String tag) {
 		for (int x = 0; x < PavoHelper.getGameWidth(w.getWorldSize())*2; x++) {
 			for (int y = 0; y < PavoHelper.getGameHeight(w.getWorldSize())*2; y++) {
-				if (ent[x][y] != null && ent[x][y].getTag().equals(tag))
+				if (ent[x][y] != null && ent[x][y].getTag() != null && ent[x][y].getTag().equals(tag))
 					return ent[x][y];
 			}
 		}
