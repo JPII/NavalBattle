@@ -74,8 +74,8 @@ public class EntityManager {
 				nc >= PavoHelper.getGameHeight(w.getWorldSize())*2 || nc < 0 || nr < 0)
 			return false;
 		try {
-			ent[nc][nr] = ent[cc][cr];
-			ent[cc][cr].setId(0);
+			setEntity(nr,nc,ent[cc][cr]);
+			setEntity(cr,cc,new Entity(this,new Location(cr,cc)));
 		}
 		catch (Throwable throwable) {
 			return false;

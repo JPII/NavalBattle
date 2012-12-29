@@ -11,4 +11,7 @@ public class TankTestEntity extends Entity {
 		super(eman, l);
 		setId(0x93AF9B);
 	}
+	public void onMouseMove(int x, int y) {
+		getManager().moveEntity(getLocation().getRow(),getLocation().getCol(),getLocation().getRow()+1,getLocation().getCol());
+	}
 }
