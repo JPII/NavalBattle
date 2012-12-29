@@ -44,7 +44,7 @@ public class EntityManager {
 		g.setColor(new Color(120,120,120,100));
 		g.drawRect(1,1,49,49);
 		humanoid = FileUtils.getImage("drawable-game/Other/humanmob.png");
-		staticTank = FileUtils.getImage("drawable-game/Other/tankmob.png");
+		staticTank = FileUtils.getImage("drawable-game/Other/humanmob.png");
 	}
 	/**
 	 * Gets the entity at the given row and column.
