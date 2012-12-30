@@ -51,17 +51,18 @@ public class EntityManager {
 	public void update(long ticksPassed) {
 		// Every 8/10ths of a second, perform an update on the tank.
 		if (ticksPassed % 800 == 0) {
-			TankTestEntity tte = (TankTestEntity) findEntity("tank-test-1");
-			if (tte != null) {
-				int cr = tte.getLocation().getRow();
-				int cc = tte.getLocation().getCol();
-				int ay = Game.Settings.rand.nextInt(-1,2);
-				int ax = Game.Settings.rand.nextInt(-1,2);
-				if (tte.moveTo(cr+ay,cc+ax))
-					getWorld().forceRender();
+			ArrayList<Entity> ents = findEntities("tank-test");
+			for (int e = 0; e < ents.size(); e++) {
+				TankTestEntity tte = (TankTestEntity) ents.get(e);
+				if (tte != null) {
+					int cr = tte.getLocation().getRow();
+					int cc = tte.getLocation().getCol();
+					int ay = Game.Settings.rand.nextInt(-1,2);
+					int ax = Game.Settings.rand.nextInt(-1,2);
+					if (tte.moveTo(cr+ay,cc+ax))
+						getWorld().forceRender();
+				}
 			}
-			else
-				System.out.println("The tank no longer exists.");
 		}
 	}
 	/**

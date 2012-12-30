@@ -10,7 +10,7 @@ public class TankTestEntity extends Entity {
 	public TankTestEntity(EntityManager eman, Location l) {
 		super(eman, l);
 		setId(0x93AF9B);
-		setTag("tank-test-1");
+		setTag("tank-test");
 	}
 	public void onMouseMove(int x, int y) {
 		// If the mouse is in the upper left quadrant, then move is back towards that way....etc.
