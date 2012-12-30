@@ -59,11 +59,18 @@ public class EntityManager {
 				if (cr+ay > 3 && cr+ay < (PavoHelper.getGameHeight(w.getWorldSize())*2)-3 && cc+ax > 3
 						&& cc+ax < (PavoHelper.getGameWidth(w.getWorldSize())*2)-3) {
 					moveEntity(cr,cc,cr+ay,cc+ax);
-					System.out.println("moved the tank to: r=" + (cr+ay) + " c=" + (cc+ax));
+					getWorld().forceRender();
 				}
 			}
+			else
+				System.out.println("The tank no longer exists.");
 		}
 	}
+	/**
+	 * Finds the first occuring entity with the given tag.
+	 * @param tag The tag to search for.
+	 * @return The entity. May return a null value if the entity is not found.
+	 */
 	public Entity findEntity(String tag) {
 		for (int x = 0; x < PavoHelper.getGameWidth(w.getWorldSize())*2; x++) {
 			for (int y = 0; y < PavoHelper.getGameHeight(w.getWorldSize())*2; y++) {
@@ -94,6 +101,8 @@ public class EntityManager {
 	 * @return A value indicating whether the operation was sucessful or not.
 	 */
 	public boolean moveEntity(int cr, int cc, int nr, int nc) {
+		if (cr == nr && cc == nc)
+			return true;
 		if (cr >= PavoHelper.getGameWidth(w.getWorldSize())*2 ||
 				cc >= PavoHelper.getGameHeight(w.getWorldSize())*2 || cc < 0 || cr < 0)
 			return false;
