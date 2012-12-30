@@ -20,6 +20,7 @@ package com.jpii.navalbattle.pavo;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
 
 import com.jpii.navalbattle.game.Location;
 import com.jpii.navalbattle.game.entity.Entity;
@@ -76,6 +77,21 @@ public class EntityManager {
 			}
 		}
 		return null;
+	}
+	/**
+	 * Finds all occuring instances of entities with the given tags.
+	 * @param tag The tag to search for.
+	 * @return The list of entities that were found.
+	 */
+	public ArrayList<Entity> findEntities(String tag) {
+		ArrayList<Entity> es = new ArrayList<Entity>();
+		for (int x = 0; x < PavoHelper.getGameWidth(w.getWorldSize())*2; x++) {
+			for (int y = 0; y < PavoHelper.getGameHeight(w.getWorldSize())*2; y++) {
+				if (ent[x][y] != null && ent[x][y].getTag() != null && ent[x][y].getTag().equals(tag))
+					es.add(ent[x][y]);
+			}
+		}
+		return es;
 	}
 	/**
 	 * Gets the entity at the given row and column.
