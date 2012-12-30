@@ -56,11 +56,8 @@ public class EntityManager {
 				int cc = tte.getLocation().getCol();
 				int ay = Game.Settings.rand.nextInt(-1,2);
 				int ax = Game.Settings.rand.nextInt(-1,2);
-				if (cr+ay > 3 && cr+ay < (PavoHelper.getGameHeight(w.getWorldSize())*2)-3 && cc+ax > 3
-						&& cc+ax < (PavoHelper.getGameWidth(w.getWorldSize())*2)-3) {
-					moveEntity(cr,cc,cr+ay,cc+ax);
+				if (tte.moveTo(cr+ay,cc+ax))
 					getWorld().forceRender();
-				}
 			}
 			else
 				System.out.println("The tank no longer exists.");
@@ -94,11 +91,13 @@ public class EntityManager {
 	}
 	/**
 	 * Moves an entity to another location. Be aware that any entity that was in the new location will be overriden.
+	 * You should now use Entity.moveTo(int r, int c). This method will not be removed, but is now declared deprecated.
 	 * @param cr The current row.
 	 * @param cc The current column.
 	 * @param nr The new row.
 	 * @param nc The new column.
 	 * @return A value indicating whether the operation was sucessful or not.
+	 * @deprecated
 	 */
 	public boolean moveEntity(int cr, int cc, int nr, int nc) {
 		if (cr == nr && cc == nc)

@@ -22,6 +22,7 @@ import java.awt.image.BufferedImage;
 import com.jpii.navalbattle.game.*;
 import com.jpii.navalbattle.pavo.EntityManager;
 import com.jpii.navalbattle.pavo.EntityReference;
+import com.jpii.navalbattle.pavo.PavoHelper;
 
 public class Entity implements Runnable {
 	
@@ -165,6 +166,13 @@ public class Entity implements Runnable {
 		//System.out.println("loc" + getLocation());
 		getManager().getAssociatedChunk(getLocation().getRow(),getLocation().getCol()).writeBuffer();
 		getManager().getWorld().forceRender();
+	}
+	public boolean moveTo(int r, int c) {
+		if (r >= 0 && r < (PavoHelper.getGameHeight(getManager().getWorld().getWorldSize())*2)-3 && c >= 0
+				&& c < (PavoHelper.getGameWidth(getManager().getWorld().getWorldSize())*2)-3) {
+			return getManager().moveEntity(getLocation().getRow(),getLocation().getCol(),r,c);
+		}
+		return false;
 	}
 
 	@Override
