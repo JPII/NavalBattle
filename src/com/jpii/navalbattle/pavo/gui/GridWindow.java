@@ -11,7 +11,7 @@ import com.jpii.navalbattle.game.Location;
  */
 public class GridWindow extends GameWindow {
 	Location local;
-	double dconstraint = 600;
+	double dconstraint = 900;
 	/**
 	 * 
 	 */
