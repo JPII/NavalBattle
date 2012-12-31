@@ -141,7 +141,12 @@ public class NavalGame extends Game {
 	public void becomingDave() {
 		// Just kidding.
 	}
+	public void mouseHeldDown(MouseEvent me) {
+		super.mouseHeldDown(me);
+		mouseDragged(me);
+	}
 	public void mouseDragged(MouseEvent me) {
+		super.mouseDragged(me);
 		if (getWinMan().mouseDragged(me))
 			return;
 		if (omnimap.mouseDragged(me))
@@ -177,6 +182,7 @@ public class NavalGame extends Game {
 		//forceUpdate(); // SEE WARNING IN DESCRIPTION!!! THIS METHOD IS NOT ACTUALLY DECREPATED!!!
 	}
 	public void mouseDown(MouseEvent me) {
+		super.mouseDown(me);
 		if (getWinMan().mouseDown(me))
 			return;
 		omnimap.mouseDown(me);

@@ -23,6 +23,9 @@ import java.awt.Polygon;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 import java.text.DecimalFormat;
+import java.util.Timer;
+import java.util.TimerTask;
+
 
 import com.jpii.navalbattle.data.Constants;
 import com.jpii.navalbattle.game.Location;
@@ -312,13 +315,26 @@ public class Game extends Renderable implements Runnable {
 					(-getWorld().getScreenY()) + me.getY() - (e.getLocation().getRow()*50));
 		}
 	}
+	Timer mouseLogicTimer = new Timer();
+	TimerTask mouseLogicTask = new $$$MouseLogicTimer();
+	MouseEvent mouseEventSchedule;
+	private class $$$MouseLogicTimer extends TimerTask {
+	    public void run() {
+	        mouseHeldDown(mouseEventSchedule);
+	    }
+	}
 	public void mouseDown(MouseEvent me) {
-		
+		mouseEventSchedule = me;
+		mouseLogicTask = new $$$MouseLogicTimer();
+		mouseLogicTimer.scheduleAtFixedRate(mouseLogicTask, 0, 10);
 	}
 	public void mouseUp(MouseEvent me) {
-		
+		mouseLogicTask.cancel();
 	}
 	public void mouseDragged(MouseEvent me) {
+		
+	}
+	public void mouseHeldDown(MouseEvent me) {
 		
 	}
 }
