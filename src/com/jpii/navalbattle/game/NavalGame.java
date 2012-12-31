@@ -123,14 +123,17 @@ public class NavalGame extends Game {
 	 * Called right when daytime starts.
 	 */
 	public void becomingDay() {
-		for (int r = 0; r < PavoHelper.getGameWidth(getWorld().getWorldSize())*2; r++) {
+		/*
+		 * No longer used:
+		 * 
+		 for (int r = 0; r < PavoHelper.getGameWidth(getWorld().getWorldSize())*2; r++) {
 			for (int c = 0; c < PavoHelper.getGameHeight(getWorld().getWorldSize())*2; c++) {
 				Entity ent = getWorld().getEntityManager().getEntity(r,c);
 				if (ent != null) {
 					//ent.setImage(null); // The daytime image would go here.
 				}
 			}
-		}
+		}*/
 	}
 	/**
 	 * Called... all the time.
@@ -181,6 +184,11 @@ public class NavalGame extends Game {
 	public void mouseMove(MouseEvent me) {
 		super.mouseMove(me);
 		omnimap.mouseMoved(me);
+		int chx = (-getWorld().getScreenX()) + me.getX();
+		int chy = (-getWorld().getScreenY()) + me.getY(); 
+		chx /= 50;
+		chy /= 50;
+		sb.setMouseTileLocation(chx,chy);
 	}
 	public void render() {
 		super.render();
