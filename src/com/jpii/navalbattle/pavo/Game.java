@@ -242,14 +242,16 @@ public class Game extends Renderable implements Runnable {
 						int ssy = (getWorld().getScreenY())+(l.getRow()*50)+25;
 						int midx = gr.getX()+(gr.getWidth()/2);
 						int midy = gr.getY()+(gr.getHeight()/2);
-						Polygon p = new Polygon();
-						p.addPoint(ssx,ssy);
-						p.addPoint(midx-10,midy-10);
-						p.addPoint(midx+10,midy+10);
-						p.addPoint(ssx,ssy);
-						g.fillPolygon(p);
-						g.setColor(Color.black);
-						g.drawPolygon(p);
+						if (Math.sqrt(Math.pow(ssx-midx,2)+Math.pow(ssy-midy,2)) <= gr.getDistanceConstraint()) {
+							Polygon p = new Polygon();
+							p.addPoint(ssx,ssy);
+							p.addPoint(midx-10,midy-10);
+							p.addPoint(midx+10,midy+10);
+							p.addPoint(ssx,ssy);
+							g.fillPolygon(p);
+							g.setColor(Color.black);
+							g.drawPolygon(p);
+						}
 					}
 				}
 			}
