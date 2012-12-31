@@ -24,6 +24,7 @@ import java.awt.image.BufferedImage;
 import com.jpii.navalbattle.game.entity.*;
 import com.jpii.navalbattle.game.gui.PlayerProfileWindow;
 import com.jpii.navalbattle.game.gui.ShipInfoWindow;
+import com.jpii.navalbattle.game.gui.StatusBar;
 import com.jpii.navalbattle.pavo.*;
 import com.jpii.navalbattle.pavo.gui.MessageBox;
 import com.jpii.navalbattle.pavo.gui.MessageBoxIcon;
@@ -37,15 +38,18 @@ public class NavalGame extends Game {
 	PlayerProfileWindow ppw;
 	ShipInfoWindow siw;
 	OmniMap omnimap;
+	StatusBar sb;
 	public NavalGame() {
 		super();
 		omnimap = new OmniMap(getWorld());
 		ppw = new PlayerProfileWindow();
+		sb = new StatusBar();
 		ppw.setLoc(200,200);
 		siw = new ShipInfoWindow();
 		siw.setLoc(350,350);
 		getWinMan().add(ppw);
 		getWinMan().add(siw);
+		getWinMan().add(sb);
 		//MessageBox.show("Warning", "This is a message box!!!");
 		MessageBox.show("Hey there!","Could not connect to RocketGamer servers.\n\nTrying again in 10 seconds.",
 				MessageBoxIcon.Notify, false);

@@ -40,6 +40,7 @@ public class SinglePlayerGame extends JFrame {
 		setContentPane(game);
 
 		this.getContentPane().setLayout(null);
+		
 
 		this.setSize(491, 339);
 		//this.setUndecorated(true);
