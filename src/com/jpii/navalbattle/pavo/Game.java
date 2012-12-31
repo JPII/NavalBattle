@@ -19,12 +19,16 @@ package com.jpii.navalbattle.pavo;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
+import java.awt.Polygon;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 import java.text.DecimalFormat;
 
 import com.jpii.navalbattle.data.Constants;
+import com.jpii.navalbattle.game.Location;
 import com.jpii.navalbattle.game.entity.Entity;
+import com.jpii.navalbattle.pavo.gui.GameWindow;
+import com.jpii.navalbattle.pavo.gui.GridWindow;
 import com.jpii.navalbattle.pavo.gui.WindowManager;
 import com.jpii.navalbattle.renderer.Helper;
 import com.jpii.navalbattle.renderer.weather.WeatherMode;
@@ -225,6 +229,31 @@ public class Game extends Renderable implements Runnable {
 			
 		}
 		getWinMan().lock();
+		for (int c = 0; c < getWinMan().size(); c++) {
+			GameWindow gw = getWinMan().get(c);
+			if (gw instanceof GridWindow && gw.isVisible()) {
+				GridWindow gr = (GridWindow)gw;
+				Location l = gr.getGridLocation();
+				if (l != null) {
+					Chunk chunk = PavoHelper.convertGridLocationToChunk(getWorld(), l);
+					if (PavoHelper.isChunkVisibleOnScreen(getWorld(), chunk)) {
+						g.setColor(Color.red);
+						int ssx = (getWorld().getScreenX())+(l.getCol()*50)+25;
+						int ssy = (getWorld().getScreenY())+(l.getRow()*50)+25;
+						int midx = gr.getX()+(gr.getWidth()/2);
+						int midy = gr.getY()+(gr.getHeight()/2);
+						Polygon p = new Polygon();
+						p.addPoint(ssx,ssy);
+						p.addPoint(midx-10,midy-10);
+						p.addPoint(midx+10,midy+10);
+						p.addPoint(ssx,ssy);
+						g.fillPolygon(p);
+						g.setColor(Color.black);
+						g.drawPolygon(p);
+					}
+				}
+			}
+		}
 		getWinMan().render();
 		g.drawImage(getWinMan().getBuffer(), 0, 0, null);
 		getWinMan().unlock();

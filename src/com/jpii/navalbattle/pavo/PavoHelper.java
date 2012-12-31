@@ -20,6 +20,7 @@ package com.jpii.navalbattle.pavo;
 import java.awt.*;
 import java.awt.image.*;
 
+import com.jpii.navalbattle.game.Location;
 import com.jpii.navalbattle.game.entity.*;
 
 
@@ -36,6 +37,13 @@ public class PavoHelper {
 		}
 		else
 			return false;
+	}
+	public static Chunk convertGridLocationToChunk(World w, Location l) {
+		if (l == null || w == null)
+			return null;
+		int x = l.getCol()/2;
+		int y = l.getRow()/2;
+		return w.getChunk(x, y);
 	}
 	public static int getGameWidth(WorldSize ws) {
 		if (ws == WorldSize.WORLD_HUGE)
