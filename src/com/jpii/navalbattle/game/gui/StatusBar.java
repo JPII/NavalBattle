@@ -41,7 +41,9 @@ public class StatusBar extends GameWindow {
 		g.draw3DRect(19,2,60,20,true);
 		g.draw3DRect(20,3,58,18,true);
 		g.setColor(Color.white);
-		g.drawString("("+mx+","+my+")", 20, 17);
+		String mstr = "("+mx+","+my+")";
+		int wd = (60-g.getFontMetrics().stringWidth(mstr))/2;
+		g.drawString(mstr, 20+wd, 17);
 	}
 	public void setMouseTileLocation(int x, int y) {
 		boolean flag = false;
