@@ -34,7 +34,7 @@ public class StatusBar extends GameWindow {
 	public void render() {
 		super.render();
 		Graphics2D g = PavoHelper.createGraphics(getBuffer());
-		g.drawImage(icn_mouse,1,6,null);
+		g.drawImage(icn_mouse,1,3,null);
 		g.setColor(Color.black);
 		g.fillRect(19,2,60,20);
 		g.setColor(Color.darkGray);
