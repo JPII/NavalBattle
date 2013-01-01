@@ -25,7 +25,11 @@ import com.jpii.navalbattle.game.entity.component.IntelligenceModule;
 public class IntelligentEntity extends MortalEntity {
 	
 	private IntelligenceModule intelligenceModule;
-
+	
+	public IntelligentEntity() {
+		super(null,null,null,0);
+	}
+	
 	/**
 	 * Construct <code>IntelligentEntity</code>.
 	 * @param location

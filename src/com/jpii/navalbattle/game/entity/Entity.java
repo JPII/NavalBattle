@@ -30,7 +30,7 @@ public class Entity implements Runnable {
 	private boolean active;
 	private String tag;
 	private EntityReference ref;
-	private int id;
+	public int id;
 	private EntityManager man;
 	protected BufferedImage custom = null;
 	public long lastUpdate = 0;

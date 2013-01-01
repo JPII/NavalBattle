@@ -22,7 +22,10 @@ import java.awt.Image;
 import com.jpii.navalbattle.game.Location;
 
 public class PlayerEntity extends MortalEntity {
-
+	
+	public PlayerEntity() {
+		this(null,null,null,0);
+	}
 	/**
 	 * Construct <code>PlayerEntity</code>.
 	 * @param location
@@ -32,6 +35,7 @@ public class PlayerEntity extends MortalEntity {
 	 */
 	public PlayerEntity(Location location, Image image, String tag, int health) {
 		super(location, image, tag, health);
+		setId(0x582AA);
 	}
 	
 	/**

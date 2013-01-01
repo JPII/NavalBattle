@@ -22,6 +22,9 @@ import com.jpii.navalbattle.pavo.EntityManager;
 import com.jpii.navalbattle.pavo.Game;
 
 public class HumanMob extends Entity {
+	public HumanMob() {
+		this(null,null);
+	}
 	public HumanMob(EntityManager em,Location l) {
 		super(em,l);
 		setId(1);

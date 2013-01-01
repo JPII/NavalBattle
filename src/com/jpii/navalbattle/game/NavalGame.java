@@ -196,6 +196,7 @@ public class NavalGame extends Game {
 		chy /= 50;
 		sb.setMouseTileLocation(chx,chy);
 		test.setGridLocation(chy, chx);
+		test.render();
 	}
 	public void render() {
 		super.render();

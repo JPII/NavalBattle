@@ -27,6 +27,10 @@ public class MortalEntity extends Entity {
 	private boolean dead;
 	private int maxHealth;
 	
+	public MortalEntity() {
+		this(null,null,null,0);
+	}
+	
 	/**
 	 * Construct <code>MortalEntity</code>.
 	 * @param location

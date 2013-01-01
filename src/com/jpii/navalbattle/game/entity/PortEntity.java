@@ -28,6 +28,9 @@ import com.jpii.navalbattle.pavo.ProceduralLayeredMapGenerator;
 import com.jpii.navalbattle.pavo.PavoHelper;
 
 public class PortEntity extends Entity {
+	public PortEntity() {
+		this(null,null);
+	}
 	public PortEntity(EntityManager em,Location l) {
 		super(em,l);
 		setId(2);

@@ -27,7 +27,8 @@ public class ProceduralLayeredMapGenerator {
 	static {
 		json = new $JSNAO9JW10SKJF194OI[4];
 		for (int c = 0; c < json.length; c++) {
-			json[c] = new $JSNAO9JW10SKJF194OI(1000,1000);
+			json[c] = new $JSNAO9JW10SKJF194OI(PavoHelper.getGameWidth(WorldSize.WORLD_LARGE)*32,
+					PavoHelper.getGameHeight(WorldSize.WORLD_LARGE)*32);
 		}
 	}
 	private static Perlin berlin = new Perlin(Game.Settings.seed,0,0);
@@ -47,8 +48,13 @@ public class ProceduralLayeredMapGenerator {
 		if (mixed > 0.57)
 			mixed += 0.28;
 		
-		if (blitRiver(x,z))
-			mixed = 0.2f;
+		if (blitRiver(x,z)){
+			mixed = getLevel2(mixer,mixed+z)+0.2f;
+			if (mixed < 0.0f)
+				mixed = 0;
+			if (mixed > 0.5f)
+				mixed = 0.5f;
+		}
 		return mixed;
 	}
 	private static float ld0 = 1024;

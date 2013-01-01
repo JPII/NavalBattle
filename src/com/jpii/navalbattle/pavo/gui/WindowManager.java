@@ -30,9 +30,14 @@ import com.jpii.navalbattle.pavo.Renderable;
 public class WindowManager extends Renderable{
 	ArrayList<GameWindow> wins;
 	MessageBox context = null;
-	public WindowManager() {
+	Game g;
+	public WindowManager(Game g) {
+		this.g = g;
 		wins = new ArrayList<GameWindow>();
 		Inst = this;
+	}
+	public Game getGame() {
+		return g;
 	}
 	public void add(GameWindow wnd) {
 		wins.add(wnd);

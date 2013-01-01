@@ -56,7 +56,7 @@ public class Game extends Renderable implements Runnable {
 	 * Creates a new instance of the game.
 	 */
 	public Game() {
-		windows = new WindowManager();
+		windows = new WindowManager(this);
 		world = new World();
 		gen = new WorldGen();
 		threadInit();

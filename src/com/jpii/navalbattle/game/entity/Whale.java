@@ -27,7 +27,9 @@ import com.jpii.navalbattle.game.entity.component.IntelligenceModule;
 public class Whale extends IntelligentEntity {
 	
 	private boolean angry = false;
-
+	public Whale() {
+		this(null,null,null,null,0);
+	}
 	/**
 	 * Construct <code>IntelligentEntity</code>.
 	 * @param location
@@ -37,6 +39,7 @@ public class Whale extends IntelligentEntity {
 	 */
 	public Whale(Location location, Image image, IntelligenceModule intelligenceModule, String tag, int health) {
 		super(location, image, intelligenceModule, tag, health);
+		setId(0xF217A);
 	}
 	
 	/**
