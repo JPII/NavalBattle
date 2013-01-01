@@ -47,6 +47,9 @@ public class ProceduralLayeredMapGenerator {
 	private static float ld4 = 512;
 	private static float ld5 = 1024;
 	private static float ld7 = 8196;
+	private static boolean blitRiver(float x, float z) {
+		return false;
+	}
 	private static float getLevel7(float x, float z) {
 		return berlin.noise(x/ld7,z/ld7);
 	}
