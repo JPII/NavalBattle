@@ -143,7 +143,7 @@ public class NavalGame extends Game {
 	}
 	public void mouseHeldDown(MouseEvent me) {
 		super.mouseHeldDown(me);
-		mouseDragged(me);
+		//mouseDragged(me);
 	}
 	public void mouseDragged(MouseEvent me) {
 		super.mouseDragged(me);
