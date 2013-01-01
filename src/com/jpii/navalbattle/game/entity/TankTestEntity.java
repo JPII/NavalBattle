@@ -1,6 +1,3 @@
-/**
- * 
- */
 package com.jpii.navalbattle.game.entity;
 
 import com.jpii.navalbattle.game.Location;
