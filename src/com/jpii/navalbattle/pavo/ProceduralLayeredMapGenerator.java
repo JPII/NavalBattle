@@ -18,10 +18,18 @@
 package com.jpii.navalbattle.pavo;
 
 import maximusvladimir.dagen.Perlin;
+import maximusvladimir.dagen.Rand;
 
 //import com.jpii.navalbattle.data.Constants;
 
 public class ProceduralLayeredMapGenerator {
+	private static $JSNAO9JW10SKJF194OI[] json;
+	static {
+		json = new $JSNAO9JW10SKJF194OI[4];
+		for (int c = 0; c < json.length; c++) {
+			json[c] = new $JSNAO9JW10SKJF194OI(1000,1000);
+		}
+	}
 	private static Perlin berlin = new Perlin(Game.Settings.seed,0,0);
 	public static float getPoint(float x, float z) {
 		float lvl0 = getLevel0(x,z);
@@ -38,6 +46,9 @@ public class ProceduralLayeredMapGenerator {
 		
 		if (mixed > 0.57)
 			mixed += 0.28;
+		
+		if (blitRiver(x,z))
+			mixed = 0.2f;
 		return mixed;
 	}
 	private static float ld0 = 1024;
@@ -48,6 +59,13 @@ public class ProceduralLayeredMapGenerator {
 	private static float ld5 = 1024;
 	private static float ld7 = 8196;
 	private static boolean blitRiver(float x, float z) {
+		for (int v = 0; v < json.length; v++) {
+			int cx = (int) (x - json[v].TInaOAJNqi0930142);
+			int cy = (int) (z - json[v].TIXXXXX93jOfna91);
+			if (cx < 256 && cy < 256 && cx >= 0 && cy >= 0) {
+				return json[v].c(cx,cy);
+			}
+		}
 		return false;
 	}
 	private static float getLevel7(float x, float z) {
@@ -73,5 +91,32 @@ public class ProceduralLayeredMapGenerator {
 	}
 	private static float getLevel5(float x, float z) {
 		return berlin.noise(x/ld5,z/ld5);
+	}
+}
+class $JSNAO9JW10SKJF194OI {
+	private Rand r;
+	public boolean[][] ASOGLICAL_9201;
+	public int TInaOAJNqi0930142, TIXXXXX93jOfna91;
+	public $JSNAO9JW10SKJF194OI(int LEEsiILIE, int PLwmajwifKW) {
+		____b(PLwmajwifKW,LEEsiILIE);
+		try {
+			Thread.sleep(1);
+		} catch (Throwable t) {
+		}
+		a();
+	}
+	public void ____b(int UJ4DNw92IF34JAOfn29jnr0n, int JFNaoiwu2OAnq29nf) {
+		r = Game.Settings.rand;
+		TInaOAJNqi0930142 = r.nextInt(0,JFNaoiwu2OAnq29nf);
+		TIXXXXX93jOfna91 = r.nextInt(0,UJ4DNw92IF34JAOfn29jnr0n);
+		ASOGLICAL_9201 = new boolean[256][256];
+	}
+	private void a() {
+		for (int y = 0; y < 256; y++) {
+			ASOGLICAL_9201[128][y] = true;
+		}
+	}
+	public boolean c(int CKasnaOwn, int USJaimw) {
+		return ASOGLICAL_9201[CKasnaOwn][USJaimw];
 	}
 }
