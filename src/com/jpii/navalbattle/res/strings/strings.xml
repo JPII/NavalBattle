@@ -1,4 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <resources>
+    <!-- Global strings -->
 	<string name="game_title">NavalBattle</string>
+	<string name="yes">Yes</string>
+	<string name="no">No</string>
+	<string name="close">Close</string>
+	<string name="back">Back</string>
+	
+	<!-- Toast strings -->
+	<string name="toast_offline_mode">Offline mode enabled</string>
+	<string name="toast_popup_closed">Pop-up closed</string>
+	
+	<!-- LoginWindow strings -->
+	<string name="login_username">Username</string>
+	<string name="login_password">Password</string>
+	<string name="login_offline">Offline</string>
+	<string name="login_register">Register</string>
+	<string name="login_login">Login</string>
+	<string name="login_options">Options</string>
+	<string name="login_exit">Exit</string>
+	
+	<!-- MainMenuWindow strings -->
+	<string name="mainmenu_singleplayer">Singleplayer</string>
+	<string name="mainmenu_multiplayer">Multiplayer</string>
+	<string name="mainmenu_help">Help</string>
+	<string name="mainmenu_roketgamer">RoketGamer</string>
+	<string name="mainmenu_quit">quit</string>
+	<string name="mainmenu_credits">Credits</string>
+	
+	<!-- HelpWindow strings -->
+	<string name="help_title">NavalBattle Help</string>
+	<string name="help_subtitle">YouTube Tutorials</string>
+	<string name="help_overview">Exit</string>
+	<string name="help_combat">Combat</string>
+	<string name="help_upgrades">Upgrades</string>
+	<string name="help_multiplayer">Multiplayer</string>
+	<string name="help_roketgamer">RoketGamer</string>
 </resources>
