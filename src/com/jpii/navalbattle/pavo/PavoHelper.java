@@ -43,6 +43,8 @@ public class PavoHelper {
 			return null;
 		int x = l.getCol()/2;
 		int y = l.getRow()/2;
+		if (x < 0 || y < 0 || x > PavoHelper.getGameWidth(w.getWorldSize()) || y > PavoHelper.getGameHeight(w.getWorldSize()))
+			return null;
 		return w.getChunk(x, y);
 	}
 	public static int getGameWidth(WorldSize ws) {

@@ -239,7 +239,7 @@ public class Game extends Renderable implements Runnable {
 				Location l = gr.getGridLocation();
 				if (l != null) {
 					Chunk chunk = PavoHelper.convertGridLocationToChunk(getWorld(), l);
-					if (PavoHelper.isChunkVisibleOnScreen(getWorld(), chunk)) {
+					if (chunk != null && PavoHelper.isChunkVisibleOnScreen(getWorld(), chunk)) {
 						g.setColor(Color.red);
 						int ssx = (getWorld().getScreenX())+(l.getCol()*50)+25;
 						int ssy = (getWorld().getScreenY())+(l.getRow()*50)+25;
