@@ -25,7 +25,7 @@ import maximusvladimir.dagen.Rand;
 public class ProceduralLayeredMapGenerator {
 	private static $JSNAO9JW10SKJF194OI[] json;
 	static {
-		json = new $JSNAO9JW10SKJF194OI[4];
+		json = new $JSNAO9JW10SKJF194OI[10];
 		for (int c = 0; c < json.length; c++) {
 			json[c] = new $JSNAO9JW10SKJF194OI(PavoHelper.getGameWidth(WorldSize.WORLD_LARGE)*32,
 					PavoHelper.getGameHeight(WorldSize.WORLD_LARGE)*32);
