@@ -40,4 +40,6 @@ public class PavoSettings {
 	public Rand rand = new Rand(seed);
 	public boolean OverClock = true;
 	public boolean isGameFullscreen = false;
+	
+	public boolean hasGameBeenModded = false;
 }
