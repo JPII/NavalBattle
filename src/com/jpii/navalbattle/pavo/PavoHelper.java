@@ -23,8 +23,61 @@ import java.awt.image.*;
 import com.jpii.navalbattle.game.Location;
 import com.jpii.navalbattle.game.entity.*;
 
-
+/**
+ * 
+ * @author maximusvladimir
+ *
+ */
 public class PavoHelper {
+	private static SystemSpeed calcs;
+	public static SystemSpeed getCalculatedSystemSpeed() {
+		if (calcs == null) {
+			long a = System.nanoTime();
+			a = System.nanoTime();
+			a = System.nanoTime();
+			a = System.nanoTime();
+			a = System.nanoTime();
+			long sb = 0;
+			for (int b = 0; b < 10000; b++) {
+				sb = Double.doubleToLongBits(Math.sqrt(b >> 2) * Math.log(b));
+			}
+			a = System.nanoTime() - a;
+			//System.out.println("sb"+sb+"time:"+a);
+			if (a < 2000000)
+				calcs = SystemSpeed.WHALE;
+			else if (a < 2500000)
+				calcs = SystemSpeed.CHEETAH;
+			else if (a < 3100000)
+				calcs = SystemSpeed.HARE;
+			else if (a < 3500000)
+				calcs = SystemSpeed.CREEPER;
+			else
+				calcs = SystemSpeed.TURTLE;
+			if (calcs == SystemSpeed.TURTLE) {
+				a = System.nanoTime();
+				a = System.nanoTime();
+				a = System.nanoTime();
+				a = System.nanoTime();
+				sb = 0;
+				for (int b = 0; b < 10000; b++) {
+					sb = Double.doubleToLongBits(Math.sqrt(b >> 2) * Math.log(b));
+				}
+				a = System.nanoTime() - a;
+				System.out.println("Speed time:"+a);
+				if (a < 2000000)
+					calcs = SystemSpeed.WHALE;
+				else if (a < 2500000)
+					calcs = SystemSpeed.CHEETAH;
+				else if (a < 3100000)
+					calcs = SystemSpeed.HARE;
+				else if (a < 3500000)
+					calcs = SystemSpeed.CREEPER;
+				else
+					calcs = SystemSpeed.TURTLE;
+			}
+		}
+		return calcs;
+	}
 	public static boolean isChunkVisibleOnScreen(World w, Chunk c) {
 		if (w == null || c == null)
 			return false;

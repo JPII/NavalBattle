@@ -22,6 +22,7 @@ import com.jpii.navalbattle.io.SettingsAttribute;
 import com.jpii.navalbattle.io.SettingsReader;
 import com.jpii.navalbattle.pavo.FastMath;
 import com.jpii.navalbattle.pavo.Game;
+import com.jpii.navalbattle.pavo.PavoHelper;
 import com.jpii.navalbattle.util.FileUtils;
 import com.jpii.navalbattle.util.GrammarManager;
 
@@ -55,6 +56,8 @@ public class MaxTests {
 		System.out.println("Fast Math calc: " + FastMath.sin(0.14235));
 		System.out.println("Java Math calc: " + Math.sin(0.14235*(Math.PI/2)));
 		System.out.println("Seed:" + Game.Settings.seed);
+		
+		System.out.println("fs"+PavoHelper.getCalculatedSystemSpeed().toString());
 		
 		if (isFirstRun()) {
 			String settingsPath = getSettingsPath();
