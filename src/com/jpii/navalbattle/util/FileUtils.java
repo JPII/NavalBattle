@@ -105,8 +105,9 @@ public class FileUtils {
 		BufferedImage i = null;
 		try {
 			i = ImageIO.read(FileUtils.class.getResource("/com/jpii/navalbattle/res/"+s));
-		} catch (IOException e) {
-			e.printStackTrace();
+		} catch (Throwable e) {
+			//e.printStackTrace();
+			System.out.println(e.getMessage());
 		}
 		return i;
 	}
@@ -120,8 +121,9 @@ public class FileUtils {
 		BufferedImage i = null;
 		try {
 			i = ImageIO.read(FileUtils.class.getResource(s));
-		} catch (IOException e) {
-			e.printStackTrace();
+		} catch (Throwable e) {
+			//e.printStackTrace();
+			System.out.println(e.getMessage());
 		}
 		return i;
 	}

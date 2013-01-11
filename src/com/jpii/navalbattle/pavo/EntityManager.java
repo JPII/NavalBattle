@@ -45,8 +45,8 @@ public class EntityManager {
 		Graphics2D g = PavoHelper.createGraphics(grid);
 		g.setColor(new Color(120,120,120,100));
 		g.drawRect(1,1,49,49);
-		humanoid = FileUtils.getImage("drawable-game/Other/humanmob.png");
-		staticTank = FileUtils.getImage("drawable-game/Other/TankBase.png");
+		humanoid = FileUtils.getImage("drawable-game/other/humanmob.png");
+		staticTank = FileUtils.getImage("drawable-game/other/TankBase.png");
 	}
 	public void update(long ticksPassed) {
 		// Every 8/10ths of a second, perform an update on the tank.

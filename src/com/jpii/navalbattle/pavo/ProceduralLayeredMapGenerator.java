@@ -25,7 +25,7 @@ import maximusvladimir.dagen.Rand;
 public class ProceduralLayeredMapGenerator {
 	private static $JSNAO9JW10SKJF194OI[] json;
 	static {
-		json = new $JSNAO9JW10SKJF194OI[10];
+		json = new $JSNAO9JW10SKJF194OI[60];
 		for (int c = 0; c < json.length; c++) {
 			json[c] = new $JSNAO9JW10SKJF194OI(PavoHelper.getGameWidth(WorldSize.WORLD_LARGE)*32,
 					PavoHelper.getGameHeight(WorldSize.WORLD_LARGE)*32);
@@ -50,10 +50,10 @@ public class ProceduralLayeredMapGenerator {
 		
 		if (blitRiver(x,z)){
 			mixed = getLevel2(mixer,mixed+z)+0.2f;
-			if (mixed < 0.0f)
+			//if (mixed < 0.0f)
 				mixed = 0;
-			if (mixed > 0.5f)
-				mixed = 0.5f;
+			//if (mixed > 0.4f)
+				//mixed = 0.4f;
 		}
 		return mixed;
 	}
@@ -118,8 +118,31 @@ class $JSNAO9JW10SKJF194OI {
 		ASOGLICAL_9201 = new boolean[256][256];
 	}
 	private void a() {
-		for (int y = 0; y < 256; y++) {
-			ASOGLICAL_9201[128][y] = true;
+		int lastx = 128;
+		int lasty = 128;
+		for (int y = 0; y < 128; y++) {
+			int dx = -1;
+			while (dx < 0 || dx >= 256)
+				dx = lastx+r.nextInt(-1,3);
+			int dy = -1;
+			while (dy < 0 || dy >= 256)
+				dy = lasty+r.nextInt(-1,3);
+			f(dx,dy);
+			lastx = dx;
+			lasty = dy;
+		}
+	}
+	private void f(int cx, int cy) {
+		ASOGLICAL_9201[cx][cy] = true;
+		if (cx >= 2 && cx < 254 && cy >= 2 && cy < 254) {
+			ASOGLICAL_9201[cx-1][cy-1] = true;
+			ASOGLICAL_9201[cx+1][cy-1] = true;
+			ASOGLICAL_9201[cx-1][cy+1] = true;
+			ASOGLICAL_9201[cx+1][cy+1] = true;
+			ASOGLICAL_9201[cx-1][cy] = true;
+			ASOGLICAL_9201[cx+1][cy] = true;
+			ASOGLICAL_9201[cx][cy+1] = true;
+			ASOGLICAL_9201[cx][cy-1] = true;
 		}
 	}
 	public boolean c(int CKasnaOwn, int USJaimw) {
