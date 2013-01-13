@@ -42,7 +42,7 @@ public class ProceduralLayeredMapGenerator {
 			json[c] = new $JSNAO9JW10SKJF194OI(PavoHelper.getGameWidth(WorldSize.WORLD_LARGE)*32,
 					PavoHelper.getGameHeight(WorldSize.WORLD_LARGE)*32);
 		}
-		barracades = new $kdOWj20Janro2[20];
+		/*barracades = new $kdOWj20Janro2[20];
 		for (int c = 0; c < barracades.length; c++) {
 			$kdOWj20Janro2 h = new $kdOWj20Janro2();
 			int x2 = 0;
@@ -63,7 +63,7 @@ public class ProceduralLayeredMapGenerator {
 			h.z = z2;
 			h.size = (byte)s;
 			barracades[c] = h;
-		}
+		}*/
 	}
 	private static int[] pSnwonUJa() {
 		int x2 = 0, z2 = 0;
@@ -78,11 +78,11 @@ public class ProceduralLayeredMapGenerator {
 	}
 	private static Perlin berlin;
 	public static byte getValidHouse(int x, int z) {
-		for (int bjwI = 0; bjwI < barracades.length; bjwI++) {
+		/*for (int bjwI = 0; bjwI < barracades.length; bjwI++) {
 			$kdOWj20Janro2 p = barracades[bjwI];
 			if (x == p.x && z == p.z)
 				return p.size;
-		}
+		}*/
 		return 0;
 	}
 	public static float getPoint(float x, float z) {
