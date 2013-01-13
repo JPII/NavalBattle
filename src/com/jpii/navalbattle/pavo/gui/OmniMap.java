@@ -73,11 +73,11 @@ public class OmniMap extends Renderable {
 				int strx = x * PavoHelper.getGameWidth(w.getWorldSize());
 				int stry = y * PavoHelper.getGameHeight(w.getWorldSize());
 				float frsh = ProceduralLayeredMapGenerator.getPoint(strx,stry);
-				float lsy = (float) ((frsh - 0.3)/0.21);
+				float lsy = frsh;/*(float) ((frsh - 0.3)/0.21);
 				if (lsy > 1)
 					lsy = 1;
 				if (lsy < 0)
-					lsy = 0;
+					lsy = 0;*/
 				int nawo = rand.nextInt(-5, 8);
 				if (lsy < 0.4) {
 					int rgs = Helper.colorSnap((int)(lsy*102));

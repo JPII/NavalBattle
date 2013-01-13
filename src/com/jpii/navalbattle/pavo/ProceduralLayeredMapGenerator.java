@@ -22,16 +22,69 @@ import maximusvladimir.dagen.Rand;
 
 //import com.jpii.navalbattle.data.Constants;
 
+/**
+ * Procedural-layer map generator for Pavo
+ * @author maximusvladimir
+ *
+ */
 public class ProceduralLayeredMapGenerator {
 	private static $JSNAO9JW10SKJF194OI[] json;
+	private static $kdOWj20Janro2[] barracades;
+	private static Rand rand = Game.Settings.rand;
+	public static final int RIVERSIZE = 512;
 	static {
+		doInit();
+	}
+	private static void doInit() {
+		berlin = new Perlin(Game.Settings.seed,0,0);
 		json = new $JSNAO9JW10SKJF194OI[60];
 		for (int c = 0; c < json.length; c++) {
 			json[c] = new $JSNAO9JW10SKJF194OI(PavoHelper.getGameWidth(WorldSize.WORLD_LARGE)*32,
 					PavoHelper.getGameHeight(WorldSize.WORLD_LARGE)*32);
 		}
+		barracades = new $kdOWj20Janro2[20];
+		for (int c = 0; c < barracades.length; c++) {
+			$kdOWj20Janro2 h = new $kdOWj20Janro2();
+			int x2 = 0;
+			int z2 = 0;
+			int s = rand.nextInt(5,10);
+			boolean flag = false;
+			while (!flag) {
+				int[] mem = pSnwonUJa();
+				x2 = mem[0];
+				z2 = mem[1];
+				//System.out.println("x2="+x2+"z2="+z2);
+				//if (getPoint(x2-s,z2-s) > 0.2 && getPoint(x2+s,z2-s) > 0.2
+					//	&& getPoint(x2+s,z2+s) > 0.2 && getPoint(x2-s,z2+s) > 0.2) {
+					flag = true;
+				//}
+			}
+			h.x = x2;
+			h.z = z2;
+			h.size = (byte)s;
+			barracades[c] = h;
+		}
 	}
-	private static Perlin berlin = new Perlin(Game.Settings.seed,0,0);
+	private static int[] pSnwonUJa() {
+		int x2 = 0, z2 = 0;
+		while (x2 <= 12 || z2 <= 12 || getPoint(x2,z2) < 0.5) {
+			x2 = rand.nextInt(0, (PavoHelper.getGameWidth(WorldSize.WORLD_LARGE)*32)-12);
+			z2 = rand.nextInt(0, (PavoHelper.getGameHeight(WorldSize.WORLD_LARGE)*32)-12);
+		}
+		int[] c = new int[2];
+		c[0] = x2;
+		c[1] = z2;
+		return c;
+	}
+	private static Perlin berlin;
+	public static byte getValidHouse(int x, int z) {
+		for (int bjwI = 0; bjwI < barracades.length; bjwI++) {
+			$kdOWj20Janro2 p = barracades[bjwI];
+			if (x == p.x && z == p.z)
+				return p.size;
+		}
+		return 0;
+	}
 	public static float getPoint(float x, float z) {
 		float lvl0 = getLevel0(x,z);
 		//float lvl1 = getLevel1(x,z);
@@ -48,14 +101,30 @@ public class ProceduralLayeredMapGenerator {
 		if (mixed > 0.57)
 			mixed += 0.28;
 		
-		if (blitRiver(x,z)){
+		/*if (blitRiver(x,z)){
 			mixed = getLevel2(mixer,mixed+z)+0.2f;
 			//if (mixed < 0.0f)
 				mixed = 0;
 			//if (mixed > 0.4f)
 				//mixed = 0.4f;
+		}*/
+		
+		float res = (float) ((mixed - 0.3)/0.21);
+		if (res > 1)
+			res = 1;
+		if (res < 0)
+			res = 0;
+		
+		if (blitRiver(x,z) && res > 0.4){
+			//mixed = getLevel2(mixer,mixed+z)+0.2f;
+			res = res - 0.4f;
+			if (res > 1)
+				res = 1;
+			if (res < 0)
+				res = 0;
 		}
-		return mixed;
+		
+		return res;
 	}
 	private static float ld0 = 1024;
 	private static float ld1 = 128;
@@ -68,7 +137,7 @@ public class ProceduralLayeredMapGenerator {
 		for (int v = 0; v < json.length; v++) {
 			int cx = (int) (x - json[v].TInaOAJNqi0930142);
 			int cy = (int) (z - json[v].TIXXXXX93jOfna91);
-			if (cx < 256 && cy < 256 && cx >= 0 && cy >= 0) {
+			if (cx < RIVERSIZE && cy < RIVERSIZE && cx >= 0 && cy >= 0) {
 				return json[v].c(cx,cy);
 			}
 		}
@@ -99,6 +168,13 @@ public class ProceduralLayeredMapGenerator {
 		return berlin.noise(x/ld5,z/ld5);
 	}
 }
+class $kdOWj20Janro2 {
+	public int x, z;
+	public byte size;
+	public $kdOWj20Janro2() {
+		
+	}
+}
 class $JSNAO9JW10SKJF194OI {
 	private Rand r;
 	public boolean[][] ASOGLICAL_9201;
@@ -115,17 +191,17 @@ class $JSNAO9JW10SKJF194OI {
 		r = Game.Settings.rand;
 		TInaOAJNqi0930142 = r.nextInt(0,JFNaoiwu2OAnq29nf);
 		TIXXXXX93jOfna91 = r.nextInt(0,UJ4DNw92IF34JAOfn29jnr0n);
-		ASOGLICAL_9201 = new boolean[256][256];
+		ASOGLICAL_9201 = new boolean[ProceduralLayeredMapGenerator.RIVERSIZE][ProceduralLayeredMapGenerator.RIVERSIZE];
 	}
 	private void a() {
-		int lastx = 128;
-		int lasty = 128;
-		for (int y = 0; y < 128; y++) {
+		int lastx = ProceduralLayeredMapGenerator.RIVERSIZE/2;
+		int lasty = ProceduralLayeredMapGenerator.RIVERSIZE/2;
+		for (int y = 0; y < (ProceduralLayeredMapGenerator.RIVERSIZE/3)*2; y++) {
 			int dx = -1;
-			while (dx < 0 || dx >= 256)
+			while (dx < 0 || dx >= ProceduralLayeredMapGenerator.RIVERSIZE)
 				dx = lastx+r.nextInt(-1,3);
 			int dy = -1;
-			while (dy < 0 || dy >= 256)
+			while (dy < 0 || dy >= ProceduralLayeredMapGenerator.RIVERSIZE)
 				dy = lasty+r.nextInt(-1,3);
 			f(dx,dy);
 			lastx = dx;
@@ -134,7 +210,7 @@ class $JSNAO9JW10SKJF194OI {
 	}
 	private void f(int cx, int cy) {
 		ASOGLICAL_9201[cx][cy] = true;
-		if (cx >= 2 && cx < 254 && cy >= 2 && cy < 254) {
+		if (cx >= 2 && cx < ProceduralLayeredMapGenerator.RIVERSIZE - 2 && cy >= 2 && cy < ProceduralLayeredMapGenerator.RIVERSIZE - 2) {
 			ASOGLICAL_9201[cx-1][cy-1] = true;
 			ASOGLICAL_9201[cx+1][cy-1] = true;
 			ASOGLICAL_9201[cx-1][cy+1] = true;

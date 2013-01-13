@@ -98,11 +98,8 @@ public class Chunk extends Renderable {
 		for (int lsx = 0; lsx < 100/3; lsx++) {
 			for (int lsz = 0; lsz < 100/3; lsz++) {
 				float frsh = ProceduralLayeredMapGenerator.getPoint(lsx+(100.0f/3.0f*x), lsz+(100.0f/3.0f*z));
-				float lsy = (float) ((frsh - 0.3)/0.21);
-				if (lsy > 1)
-					lsy = 1;
-				if (lsy < 0)
-					lsy = 0;
+				byte slip = ProceduralLayeredMapGenerator.getValidHouse((int)(lsx+(100.0f/3.0f*x)), (int)(lsz+(100.0f/3.0f*z)));
+				float lsy = frsh;
 				int nawo = rand.nextInt(-5, 8);
 				if (lsy < 0.4) {
 					int rgs = Helper.colorSnap((int)(lsy*102));
@@ -155,6 +152,10 @@ public class Chunk extends Renderable {
 						water11 += 1;
 				}
 				g.drawLine(lsx,lsz,lsx,lsz);
+				if (slip > 0) {
+					g.setColor(Color.red);
+					g.drawRect(lsx-(slip/2),lsz-(slip/2),slip,slip);
+				}
 				//g.fillRect(lsx*3,lsz*3,4,4);
 			}
 		}
