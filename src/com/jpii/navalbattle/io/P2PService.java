@@ -22,6 +22,8 @@ import java.awt.event.ActionListener;
 
 import javax.swing.Timer;
 
+import com.jpii.navalbattle.util.OSUtil;
+
 public class P2PService {
 	
 	int status = 0;
@@ -89,5 +91,12 @@ public class P2PService {
 		else {
 			return 0;
 		}
+	}
+	
+	public String encrypt(String message) {
+		return OSUtil.xorEncode(message, "RiN7VXKb5hjgWiZltq1xijaTHKrZnJxlEwgnBMyHDETDHrCDILRG4ilZH9Ip5PVtqI9NlXeFnZKlcfDx");
+	}
+	public String decrypt(String message) {
+		return OSUtil.xorDecode(message, "RiN7VXKb5hjgWiZltq1xijaTHKrZnJxlEwgnBMyHDETDHrCDILRG4ilZH9Ip5PVtqI9NlXeFnZKlcfDx");
 	}
 }

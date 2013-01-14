@@ -17,11 +17,15 @@
 
 package com.jpii.navalbattle.pavo;
 
-import java.awt.*;
-import java.awt.image.*;
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.Point;
+import java.awt.RenderingHints;
+import java.awt.image.BufferedImage;
 
 import com.jpii.navalbattle.game.Location;
-import com.jpii.navalbattle.game.entity.*;
+import com.jpii.navalbattle.game.entity.Entity;
 
 /**
  * 
@@ -193,5 +197,14 @@ public class PavoHelper {
 		g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 		g.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
 		return g;
+	}
+
+	public static final BufferedImage OneByOnePixel = create1x1Pixel();
+	public static BufferedImage create1x1Pixel() {
+		BufferedImage b = new BufferedImage(1,1,BufferedImage.TYPE_INT_RGB);
+		Graphics g = b.getGraphics();
+		g.setColor(Color.white);
+		g.fillRect(0,0,2,2);
+		return b;
 	}
 }
