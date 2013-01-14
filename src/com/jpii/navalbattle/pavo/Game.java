@@ -261,6 +261,7 @@ public class Game extends Renderable implements Runnable {
 		}
 		getWinMan().render();
 		g.drawImage(getWinMan().getBuffer(), 0, 0, null);
+		g.dispose();
 		getWinMan().unlock();
 		Game.getStats().sBm3ns02AKa99mqp392(System.currentTimeMillis() - sjan);
 	}

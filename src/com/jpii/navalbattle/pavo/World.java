@@ -88,6 +88,7 @@ public class World extends Renderable implements Interactable {
 				gs2.fillRect(x,y,2,2);
 			}
 		}
+		gs2.dispose();
 	}
 	private void runLocLock(int x, int y) {
 		int cx = 0;
@@ -227,6 +228,7 @@ public class World extends Renderable implements Interactable {
 				}
 			}
 		}
+		g.dispose();
 		chunkrender = false;
 		long endDraw = System.currentTimeMillis() - startDraw;
 		Game.getStats().SmKAk10(endDraw);

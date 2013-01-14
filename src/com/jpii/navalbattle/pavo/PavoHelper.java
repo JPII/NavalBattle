@@ -17,6 +17,7 @@
 
 package com.jpii.navalbattle.pavo;
 
+import java.awt.AlphaComposite;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -205,6 +206,38 @@ public class PavoHelper {
 		Graphics g = b.getGraphics();
 		g.setColor(Color.white);
 		g.fillRect(0,0,2,2);
+		g.dispose();
 		return b;
+	}
+	public static BufferedImage imgUtilAdjustImageTransparency(BufferedImage src, float opacity) {
+		AlphaComposite ac = AlphaComposite.getInstance(AlphaComposite.SRC_OVER, opacity);
+		BufferedImage cpy = new BufferedImage(src.getWidth(), src.getHeight(), BufferedImage.TYPE_INT_ARGB);
+		Graphics2D g = (Graphics2D)cpy.getGraphics();
+	    g.setComposite(ac);
+	    g.drawImage(src,0,0,null);
+	    g.dispose();
+	    return cpy;
+	}
+	
+	public static BufferedImage imgUtilFastCopy(BufferedImage src) {
+		if (src == null)
+			return null;
+		BufferedImage b = new BufferedImage(src.getWidth(), src.getHeight(), src.getType());
+		b.setData(src.getRaster());
+		return b;
+	}
+	
+	public static BufferedImage imgUtilFastCrop(BufferedImage src, int x, int y, int width, int height) {
+		if (src == null)
+			return null;
+		if (x == 0 && y == 0 && width == src.getWidth() && height == src.getHeight())
+			return imgUtilFastCopy(src);
+		else {
+			BufferedImage b = new BufferedImage(width, height, src.getType());
+			Graphics g = b.getGraphics();
+			g.drawImage(src,-x,-y,null);
+			g.dispose();
+			return b;
+		}
 	}
 }

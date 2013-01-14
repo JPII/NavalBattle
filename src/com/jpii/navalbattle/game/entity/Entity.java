@@ -33,6 +33,7 @@ public class Entity implements Runnable {
 	public int id;
 	private EntityManager man;
 	protected BufferedImage custom = null;
+	private int[] ids;
 	public long lastUpdate = 0;
 	
 	/**
@@ -45,6 +46,10 @@ public class Entity implements Runnable {
 	}
 	public EntityManager getManager() {
 		return man;
+	}
+	
+	public void setIds(int... ids) {
+		this.ids = ids;
 	}
 	
 	public int getId() {

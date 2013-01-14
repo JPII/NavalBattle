@@ -33,6 +33,7 @@ public class EntityManager {
 	World w;
 	int counter = 0;
 	BufferedImage grid,humanoid,staticTank;
+	BufferedImage sub01,sub02;
 	/**
 	 * Creates a new entity manager for the desired world.
 	 * @param w The world to create the entity manager.
@@ -47,6 +48,9 @@ public class EntityManager {
 		g.drawRect(1,1,49,49);
 		humanoid = FileUtils.getImage("drawable-game/other/humanmob.png");
 		staticTank = FileUtils.getImage("drawable-game/other/TankBase.png");
+		BufferedImage submarine = FileUtils.getImage("drawable-game/submarine/submarine.png");
+		sub01 = PavoHelper.imgUtilFastCrop(submarine, 0, 0, 50,50);
+		sub02 = PavoHelper.imgUtilFastCrop(submarine, 50, 0, 50,50);
 	}
 	public void update(long ticksPassed) {
 		// Every 8/10ths of a second, perform an update on the tank.
@@ -218,6 +222,10 @@ public class EntityManager {
 		case 0x93AF9B:
 			ager = staticTank;
 			break;
+		case 8:
+			ager = sub01;
+		case 9:
+			ager = sub02;
 		}
 		BufferedImage s = ent.getCustomImage();
 		if (s != null)
