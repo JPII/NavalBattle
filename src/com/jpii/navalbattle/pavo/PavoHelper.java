@@ -22,7 +22,10 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Point;
+import java.awt.RadialGradientPaint;
 import java.awt.RenderingHints;
+import java.awt.MultipleGradientPaint.CycleMethod;
+import java.awt.geom.Point2D;
 import java.awt.image.BufferedImage;
 
 import com.jpii.navalbattle.game.Location;
@@ -35,6 +38,19 @@ import com.jpii.navalbattle.game.entity.Entity;
  */
 public class PavoHelper {
 	private static SystemSpeed calcs;
+	public static BufferedImage createInnerShadow(int width, int height) {
+		BufferedImage b = new BufferedImage(width,height,BufferedImage.TYPE_INT_ARGB);
+		Graphics2D g2 = (Graphics2D)b.getGraphics();
+		Point2D center = new Point2D.Float(width/2, height/2);
+        float radius = width;
+        Point2D focus = new Point2D.Float(width/2, height/2);
+        float[] dist = {0.0f,0.3f, 1.0f};
+        Color[] colors = {new Color(0,0,0,0),new Color(0,0,0,0), new Color(0,0,0,255)};
+        RadialGradientPaint p = new RadialGradientPaint(center, radius, focus, dist, colors, CycleMethod.NO_CYCLE);
+        g2.setPaint(p);
+        g2.fillRect(0, 0,width, height);
+        return b;
+	}
 	public static SystemSpeed getCalculatedSystemSpeed() {
 		if (calcs == null) {
 			long a = System.nanoTime();

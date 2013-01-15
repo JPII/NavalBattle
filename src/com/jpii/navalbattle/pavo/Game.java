@@ -50,7 +50,9 @@ public class Game extends Renderable implements Runnable {
 	boolean forceUpdate = false;
 	boolean forceRender = false;
 	private int lastTime = -1;
+	int lastw = 0, lasth = 0;
 	private WindowManager windows;
+	BufferedImage shadow;
 	public static PavoSettings Settings = new PavoSettings();
 	/**
 	 * Creates a new instance of the game.
@@ -62,6 +64,7 @@ public class Game extends Renderable implements Runnable {
 		threadInit();
 		buffer = new BufferedImage(Game.Settings.currentWidth,Game.Settings.currentHeight,BufferedImage.TYPE_INT_RGB);
 		world.getWeather().setWeather(WeatherMode.Sunny);
+		shadow = PavoHelper.createInnerShadow(Game.Settings.currentWidth,Game.Settings.currentHeight);
 	}
 	/**
 	 * Gets the window manager for the Game.
@@ -139,6 +142,11 @@ public class Game extends Renderable implements Runnable {
 				//}
 				while (!forceUpdate) {
 					;;;
+				}
+				if (lastw != Settings.currentWidth || lasth != Settings.currentHeight) {
+					lastw = Settings.currentWidth;
+					lasth = Settings.currentHeight;
+					shadow = PavoHelper.createInnerShadow(Game.Settings.currentWidth,Game.Settings.currentHeight);
 				}
 				//System.out.println("winupdate");
 				numUpdates += 100;
@@ -258,6 +266,10 @@ public class Game extends Renderable implements Runnable {
 					}
 				}
 			}
+		}
+		if (PavoHelper.getCalculatedSystemSpeed() != SystemSpeed.CREEPER && 
+				PavoHelper.getCalculatedSystemSpeed() != SystemSpeed.TURTLE) {
+			g.drawImage(shadow,0,0,null);
 		}
 		getWinMan().render();
 		g.drawImage(getWinMan().getBuffer(), 0, 0, null);
