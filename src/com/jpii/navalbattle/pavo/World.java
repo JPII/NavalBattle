@@ -65,6 +65,9 @@ public class World extends Renderable implements Interactable {
 		makeNoise();
 		wm = new WeatherManager();
 	}
+	public void setEntityManager(EntityManager em) {
+		this.em = em;
+	}
 	public Chunk getChunk(int index) {
 		return chunks[index];
 	}

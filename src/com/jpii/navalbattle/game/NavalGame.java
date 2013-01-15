@@ -40,10 +40,13 @@ public class NavalGame extends Game {
 	ShipInfoWindow siw;
 	OmniMap omnimap;
 	StatusBar sb;
+	NavalManager nm;
 	
 	GridWindow test;
 	public NavalGame() {
 		super();
+		nm = new NavalManager(getWorld());
+		getWorld().setEntityManager(nm);
 		omnimap = new OmniMap(getWorld());
 		ppw = new PlayerProfileWindow();
 		sb = new StatusBar();
