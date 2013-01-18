@@ -22,7 +22,19 @@ class ImageStore {
 		store = new ArrayList<$99u234rjie0230r9u330rj902rh308h209redh390hfr>();
 	}
 	public void sellImage(BufferedImage img, int asIndex) {
+		$99u234rjie0230r9u330rj902rh308h209redh390hfr gnw = new $99u234rjie0230r9u330rj902rh308h209redh390hfr();
+		gnw.mjw9jJEWrih2 = img;
+		gnw.iehgr890023jf90q = asIndex;
 		
+	}
+	public BufferedImage buyImage(int asIndex) {
+		for (int c = 0; c < store.size(); c++) {
+			$99u234rjie0230r9u330rj902rh308h209redh390hfr gnw = store.get(c);
+			if (asIndex == gnw.iehgr890023jf90q) {
+				return gnw.mjw9jJEWrih2;
+			}
+		}
+		return null;
 	}
 }
 class $99u234rjie0230r9u330rj902rh308h209redh390hfr {
