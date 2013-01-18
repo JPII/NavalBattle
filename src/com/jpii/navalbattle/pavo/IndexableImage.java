@@ -25,7 +25,16 @@ class ImageStore {
 		$99u234rjie0230r9u330rj902rh308h209redh390hfr gnw = new $99u234rjie0230r9u330rj902rh308h209redh390hfr();
 		gnw.mjw9jJEWrih2 = img;
 		gnw.iehgr890023jf90q = asIndex;
-		
+		for (int c = 0; c < store.size(); c++) {
+			$99u234rjie0230r9u330rj902rh308h209redh390hfr gs = store.get(c);
+			if (asIndex == gs.iehgr890023jf90q) {
+				throw new IllegalArgumentException("There is already an image in the store that has the same id.");
+			}
+			if (img.equals(gs.mjw9jJEWrih2)) {
+				throw new IllegalArgumentException("There is already the same image in the store. It has the id " + gs.iehgr890023jf90q + ".");
+			}
+		}
+		store.add(gnw);
 	}
 	public BufferedImage buyImage(int asIndex) {
 		for (int c = 0; c < store.size(); c++) {
