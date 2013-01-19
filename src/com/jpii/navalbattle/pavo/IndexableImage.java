@@ -11,8 +11,22 @@ import java.util.ArrayList;
  *
  */
 public class IndexableImage {
-	
+	public static ImageStore Store = new ImageStore();
+	int id;
+	public IndexableImage(int id) {
+		this.id = id;
+	}
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
+	public BufferedImage getActualImage() {
+		return Store.buyImage(getId());
+	}
 }
+
 class ImageStore {
 	ArrayList<$99u234rjie0230r9u330rj902rh308h209redh390hfr> store;
 	/**
