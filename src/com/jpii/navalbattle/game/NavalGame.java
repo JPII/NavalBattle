@@ -30,6 +30,7 @@ import com.jpii.navalbattle.pavo.gui.GridWindow;
 import com.jpii.navalbattle.pavo.gui.MessageBox;
 import com.jpii.navalbattle.pavo.gui.MessageBoxIcon;
 import com.jpii.navalbattle.pavo.gui.OmniMap;
+import com.jpii.navalbattle.renderer.weather.WeatherMode;
 
 /**
  * @author MKirkby
@@ -55,6 +56,7 @@ public class NavalGame extends Game {
 		ppw.setLoc(200,200);
 		siw = new ShipInfoWindow();
 		siw.setLoc(350,350);
+		getWorld().getWeather().setWeather(WeatherMode.Raining);
 		getWinMan().add(ppw);
 		getWinMan().add(siw);
 		getWinMan().add(sb);
