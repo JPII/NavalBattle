@@ -36,7 +36,7 @@ import com.jpii.navalbattle.renderer.RenderConstants;
 public class Chunk extends Renderable {
 	int x,z;
 	boolean generated = false;
-	public Entity Tile00, Tile10, Tile01,Tile11;
+	public Tile Tile00, Tile10, Tile01,Tile11;
 	static Perlin p = new Perlin(Game.Settings.rand.nextLong(),0,0);
 	Rand rand = new Rand();
 	World w;

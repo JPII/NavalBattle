@@ -8,7 +8,6 @@ import com.jpii.navalbattle.data.Constants;
 import com.jpii.navalbattle.game.Game22;
 import com.jpii.navalbattle.game.Location;
 import com.jpii.navalbattle.game.entity.Entity;
-import com.jpii.navalbattle.game.entity.Whale;
 
 /**
  * Renders entities to the screen. Has some very useful methods.
@@ -25,7 +24,7 @@ public class EntityRenderer {
     public EntityRenderer(Grid grid) {
         this.grid = grid;
         BufferedImage whale = new BufferedImage(50, 50, BufferedImage.TYPE_INT_RGB);
-        grid.setEntity(new Whale(new Location(3, 3), whale, null, "whale1", 100));
+        //grid.setEntity(new Whale(new Location(3, 3), whale, null, "whale1", 100));
         buffer = new BufferedImage(Constants.WINDOW_WIDTH, Constants.WINDOW_HEIGHT, BufferedImage.TYPE_INT_ARGB);
     }
     /**

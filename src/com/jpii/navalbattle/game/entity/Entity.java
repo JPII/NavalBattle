@@ -20,168 +20,148 @@ package com.jpii.navalbattle.game.entity;
 import java.awt.image.BufferedImage;
 
 import com.jpii.navalbattle.game.*;
-import com.jpii.navalbattle.pavo.EntityManager;
-import com.jpii.navalbattle.pavo.EntityReference;
-import com.jpii.navalbattle.pavo.PavoHelper;
+import com.jpii.navalbattle.pavo.*;
 
-public class Entity implements Runnable {
+public class Entity {
 	
-	private Location location;
-	private boolean active;
+	private Location location = Location.Unknown;
 	private String tag;
-	private EntityReference ref;
-	public int id;
-	private EntityManager man;
-	protected BufferedImage custom = null;
-	private int[] ids;
 	public long lastUpdate = 0;
+	private int width, height;
+	private EntityManager manager;
+	private int id;
 	
-	/**
-	 * Default constructor. Sets instance to inactive.
+	public Entity(EntityManager em) {
+		manager = em;
+	}
+	public Entity(EntityManager em,Location loc, int superId) {
+		manager = em;
+		location = loc;
+		setWidth(4);
+		setHeight(1);
+		try
+		{
+			moveTo(loc,true);
+		}
+		catch (Throwable throwable) {}
+		setId(superId);
+	}
+	
+	/*
+	 * Actions:
 	 */
-	public Entity(EntityManager eman, Location l) {
-		setActive(false);
-		location = l;
-		man = eman;
-	}
-	public EntityManager getManager() {
-		return man;
-	}
 	
-	public void setIds(int... ids) {
-		this.ids = ids;
-	}
-	
-	public int getId() {
-		return id;
+	public void moveTo(int r, int c) {
+		moveTo(new Location(r,c));
 	}
 	public void setId(int id) {
 		this.id = id;
+		for (int w = 0; w < getWidth(); w++) {
+			for (int h = 0; h < getHeight(); h++) {
+				Tile t = new Tile(this,location.getRow()+h, location.getCol()+w);
+				t.setId(new Id(id,w));
+				manager.setTile(location.getRow()+h, location.getCol()+w, t);
+				System.out.println("efretgfd");
+			}
+		}
+	}
+	public void moveTo(Location loc) {
+		moveTo(loc,true);
+	}
+	public boolean moveTo(int r, int c, boolean override) {
+		return moveTo(new Location(r,c),override);
+	}
+	public boolean moveTo(Location loc, boolean override) {
+		if (loc == null || loc == Location.Unknown)
+			return false;
+		Tile<Entity> t = manager.getTile(loc);
+		if (t == null || ((t.getSuperId() != 0 || t.getEntity() != null) && override))
+			return false;
+		if (getWidth() + loc.getCol() + 1 >= PavoHelper.getGameWidth(manager.getWorld().getWorldSize())*2 ||
+				getHeight() + loc.getRow() + 1 >= PavoHelper.getGameHeight(manager.getWorld().getWorldSize())*2)
+			return false;
+		if (loc.getRow() < 0 || loc.getCol() < 0)
+			return false;
+		for (int w = 0; w < getWidth(); w++) {
+			for (int h = 0; h < getHeight(); h++) {
+				Tile<Entity> ttmp = (Tile<Entity>)manager.getTile(h+getLocation().getRow(), w+getLocation().getCol());
+				manager.setTile(loc.getRow()+h, loc.getCol()+w,ttmp);
+				System.out.println("efretgfd");
+			}
+		}
+		setLocation(loc);
+		return true;
 	}
 	
-	/**
-	 * Construct an <code>Entity</code>
-	 * @param location
-	 * @param image
-	 * @param tag
+	public void truncate() {
+		if (getLocation() == null || getLocation() == Location.Unknown)
+			return;
+		Tile t = (new Tile(null,getLocation().getRow(),getLocation().getCol()));
+		t.setId(new Id(0,0));
+		manager.setTile(getLocation(), t);
+	}
+	
+	public void dispose() {
+		truncate();
+	}
+	
+	/*
+	 * Attributes:
 	 */
-	public Entity(Location location, int id, String tag) {
-		setLocation(location);
-		setTag(tag);
-		setActive(true);
-		setReference(new EntityReference(id,-1));
-	}
 	
-	public void setReference(EntityReference r) {
-		ref = r;
-	}
-	public EntityReference getReference() {
-		return ref;
-	}
-	
-	public void update() {
-		
+	private void setLocation(Location loc) {
+		location = loc;
 	}
 	
 	/**
-	 * Gets the tag for the entity.
-	 * @return
-	 */
-	public String getTag() {
-		return tag;
-	}
-	
-	/**
-	 * Sets the tag for the Entity.
-	 * @param tag
-	 */
-	public void setTag(String tag) {
-		this.tag = tag;
-	}
-	
-	/**
-	 * Called when moving
-	 * @param location
-	 */
-	public void onMove(Location location) {
-		
-	}
-	
-	/**
-	 * Called when attacked
-	 * @param attacker
-	 */
-	public void onAttacked(Entity attacker) {
-		
-	}
-	
-	/**
-	 * Called when attacking
-	 * @param target
-	 */
-	public void onAttack(Entity target) {
-		
-	}
-	
-	/**
-	 * Set current <code>Location</code>
-	 * @param location
-	 */
-	public void setLocation(Location location) {
-		this.location = location;
-	}
-	
-	/**
-	 * Get current <code>Location</code>.
-	 * @return
+	 * Gets the upper left tile of the Entity's location.
+	 * @return The location. Could be "Unknown", if the Entity is not in the Grid.
 	 */
 	public Location getLocation() {
 		return location;
 	}
 	
-	/**
-	 * Set active
-	 * @param active
-	 */
-	public void setActive(boolean active) {
-		this.active = active;
+	protected final void setWidth(int width) {
+		this.width = width;
 	}
 	
-	/**
-	 * Get if active
-	 * @return
-	 */
-	public boolean isActive() {
-		return active;
+	protected final void setHeight(int height) {
+		this.height = height;
 	}
 	
-	public void onMouseDown(int localMX, int localMY) {
+	public int getWidth() {
+		return width;
+	}
+	
+	public int getHeight() {
+		return height;
+	}
+	
+	/*
+	 * Events:
+	 */
+	
+	/**
+	 * Occurs when the mouse moves over the entity.
+	 * @param x The local x location.
+	 * @param y The local y location.
+	 */
+	public void onMouseMove(int x, int y) {
+	}
+	
+	public void onMove(Location original) {
 		
 	}
-	public BufferedImage getCustomImage() {
-		return custom;
+	
+	public void onMouseDown(int x, int y, boolean leftClick) {
+		
 	}
-	public void onMouseMove(int localMX, int localMY) {
-		if (getManager().isTileFilledWithWater(getLocation().getRow(),getLocation().getCol()))
-			return;
-		id = 1;
-		//System.out.println(getLocation() + "mouse: " + localMX + "," + localMY);
-		//getManager().setEntity(getLocation().getRow(), getLocation().getCol(), new HumanMob(getManager(),new Location(
-			//	getLocation().getRow(), getLocation().getCol())));
-		//System.out.println("loc" + getLocation());
-		getManager().getAssociatedChunk(getLocation().getRow(),getLocation().getCol()).writeBuffer();
-		getManager().getWorld().forceRender();
+	
+	public void onHit(Entity attackingEntity) {
+		
 	}
-	public boolean moveTo(int r, int c) {
-		if (r >= 0 && r < (PavoHelper.getGameHeight(getManager().getWorld().getWorldSize())*2)-3 && c >= 0
-				&& c < (PavoHelper.getGameWidth(getManager().getWorld().getWorldSize())*2)-3) {
-			return getManager().moveEntity(getLocation().getRow(),getLocation().getCol(),r,c);
-		}
-		return false;
-	}
-
-	@Override
-	public void run() {
-		update();		
+	
+	public void onAttack(Entity entityBeingAttacked) {
+		
 	}
 }

@@ -22,8 +22,17 @@ public class IndexableImage {
 	public void setId(int id) {
 		this.id = id;
 	}
+	public static void populateStore(int mutexId, BufferedImage img) {
+		Store.sellImage(img, mutexId);
+	}
+	public static BufferedImage getImage(int mutexId) {
+		return Store.buyImage(mutexId);
+	}
 	public BufferedImage getActualImage() {
 		return Store.buyImage(getId());
+	}
+	public static int getStoreSize() {
+		return Store.$934uthfreIw9oihifreh90qajpr9otqh9o3q();
 	}
 }
 
@@ -49,6 +58,9 @@ class ImageStore {
 			}
 		}
 		store.add(gnw);
+	}
+	public int $934uthfreIw9oihifreh90qajpr9otqh9o3q() {
+		return store.size();
 	}
 	public BufferedImage buyImage(int asIndex) {
 		for (int c = 0; c < store.size(); c++) {

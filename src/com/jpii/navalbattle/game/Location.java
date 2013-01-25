@@ -21,7 +21,21 @@ public class Location
 {
     private int row; // row location in grid
     private int col; // column location in grid
-
+    private boolean isunknown = false;
+    
+    public static Location Unknown = new Location(5,5,5,5);
+    
+    private Location(int c, int d, int a, int b) {
+    	row = -1;
+    	col = -1;
+    	isunknown = true;
+    }
+    
+    public boolean isUnknown() {
+    	return isunknown;
+    }
+    
+    
     /**
      * The turn angle for turning 90 degrees to the left.
      */

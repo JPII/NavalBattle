@@ -64,21 +64,6 @@ public class NavalGame extends Game {
 		//MessageBox.show("Warning", "This is a message box!!!");
 		MessageBox.show("Hey there!","Could not connect to RocketGamer servers.\n\nTrying again in 10 seconds.",
 				MessageBoxIcon.Notify, false);
-		
-		for (int x = 0; x < PavoHelper.getGameWidth(getWorld().getWorldSize())*2; x++) {
-			for (int z = 0; z < PavoHelper.getGameHeight(getWorld().getWorldSize())*2; z++) {
-				//System.out.println(getWorld().getEntityManager().getTilePercentLand(z, x));
-				//if (getWorld().getEntityManager().getTilePercentLand(z, x) >= 10)
-					//getWorld().getEntityManager().setEntity(x,z, new PortEntity(getWorld().getEntityManager(),new Location(z,x)));
-				//else
-					getWorld().getEntityManager().setEntity(x,z, new Entity(getWorld().getEntityManager(),new Location(z,x)));
-			}
-		}
-		//getWorld().getEntityManager().setEntity(5,5, new TankTestEntity(getWorld().getEntityManager(), new Location(5,5)));
-		//getWorld().getEntityManager().setEntity(8,8, new TankTestEntity(getWorld().getEntityManager(), new Location(8,8)));
-		//getWorld().getEntityManager().setEntity(5,10, new TankTestEntity(getWorld().getEntityManager(), new Location(5,10)));
-		//getWorld().getEntityManager().setEntity(2,10, new PortEntity(getWorld().getEntityManager(), new Location(2,10)));
-		//getWorld().getEntityManager().setEntity(6,6, new HumanMob(getWorld().getEntityManager()));
 	}
 	/**
 	 * Mulithreaded updator.
@@ -89,20 +74,6 @@ public class NavalGame extends Game {
 		}
 		long updatecode = getNumUpdates();
 		int ccall = 0;
-		//Console.getInstance().printWarn(getWorld().getTimeManager().getTimeDescription() + " " + getWorld().getTimeManager().getCurrentHour() + ":00");
-		for (int r = 0; r < PavoHelper.getGameWidth(getWorld().getWorldSize())*2; r++) {
-			for (int c = 0; c < PavoHelper.getGameHeight(getWorld().getWorldSize())*2; c++) {
-				Entity ent = getWorld().getEntityManager().getEntity(r,c);
-				if (ent.getId() == 1 && ent.lastUpdate != updatecode) {
-					ent.update();
-					ent.lastUpdate = updatecode;
-					Chunk chunkysoup = getWorld().getEntityManager().getAssociatedChunk(r, c);
-					if (chunkysoup != null)
-						chunkysoup.writeBuffer();
-				}
-			}
-		}
-		//System.out.println("ccalls"+ccall);
 		if (omnimap == null)
 			omnimap = new OmniMap(getWorld());
 		omnimap.render();

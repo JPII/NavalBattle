@@ -323,9 +323,10 @@ public class Game extends Renderable implements Runnable {
 		chy /= 50;
 		if (chx < PavoHelper.getGameWidth(getWorld().getWorldSize()) * 2 && chy < PavoHelper.getGameHeight(getWorld().getWorldSize()) * 2 &&
 		chx >= 0 && chy >= 0) {
-			Entity e = getWorld().getEntityManager().getEntity(chy,chx);
-			e.onMouseMove((-getWorld().getScreenX()) + me.getX() - (e.getLocation().getCol()*50),
-					(-getWorld().getScreenY()) + me.getY() - (e.getLocation().getRow()*50));
+			Tile<Entity> e = getWorld().getEntityManager().getTile(chy,chx);
+			if (e != null)
+				e.getEntity().onMouseMove((-getWorld().getScreenX()) + me.getX() - (chx*50),
+					(-getWorld().getScreenY()) + me.getY() - (chy*50));
 		}
 	}
 	Timer mouseLogicTimer = new Timer();

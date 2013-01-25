@@ -129,12 +129,12 @@ public class Grid {
     		for (int y = 0; y < height; y++) {
     			Entity a = entities[x][y];
     			if (caseMatters) {
-    				if (a.getTag().equals(tag))
-    					return a;
+    				//if (a.getTag().equals(tag))
+    					//return a;
     			}
     			else {
-    				if (a.getTag().toLowerCase().equals(tag.toLowerCase()))
-    					return a;
+    				//if (a.getTag().toLowerCase().equals(tag.toLowerCase()))
+    					//return a;
     			}
     		}
     	}
