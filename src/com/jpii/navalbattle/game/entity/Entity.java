@@ -33,18 +33,24 @@ public class Entity {
 	
 	public Entity(EntityManager em) {
 		manager = em;
+		init();
 	}
 	public Entity(EntityManager em,Location loc, int superId) {
 		manager = em;
 		location = loc;
-		setWidth(4);
-		setHeight(1);
 		try
 		{
 			moveTo(loc,true);
 		}
 		catch (Throwable throwable) {}
+		manager.addEntity(this);
+		init();
 		setId(superId);
+	}
+	
+	public void init() {
+		setWidth(1);
+		setHeight(1);
 	}
 	
 	/*
@@ -121,11 +127,11 @@ public class Entity {
 		return location;
 	}
 	
-	protected final void setWidth(int width) {
+	public final void setWidth(int width) {
 		this.width = width;
 	}
 	
-	protected final void setHeight(int height) {
+	public final void setHeight(int height) {
 		this.height = height;
 	}
 	
@@ -162,6 +168,10 @@ public class Entity {
 	}
 	
 	public void onAttack(Entity entityBeingAttacked) {
+		
+	}
+	
+	public void onUpdate() {
 		
 	}
 }

@@ -7,6 +7,7 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 
+import com.jpii.navalbattle.game.entity.BattleShip;
 import com.jpii.navalbattle.game.entity.Entity;
 import com.jpii.navalbattle.pavo.EntityManager;
 import com.jpii.navalbattle.pavo.IndexableImage;
@@ -26,23 +27,22 @@ public class NavalManager extends EntityManager {
 	 */
 	public NavalManager(World w) {
 		super(w);
-		int battleshipId = 0;
-		//try {
-			battleshipId = registerEntity(FileUtils.getImage("drawable-game/battleship/battleship.png"));
-		/*}
-		catch (Throwable throwable) {
-			System.out.println("mssage:" + throwable.getMessage());
-		}*/
+		int battleshipId = registerEntity(FileUtils.getImage("drawable-game/battleship/battleship.png"));
 		if (battleshipId != 0) {
-			new Entity(this,new Location(3,3),battleshipId).moveTo(new Location(3,3));
+			BattleShip e = new BattleShip(this,new Location(3,3),battleshipId);
+			e.moveTo(new Location(3,3));
 		}
 		else {
 			System.out.println("not a battleship");
 		}
 	}
-	public BufferedImage getImage(Entity ent) {
-		if (ent == null)
-			return null;
-		return null;
+	
+	public void update(long ticksPassed) {
+		for (int c = 0; c < this.getTotalEntities(); c++) {
+			Entity e = getEntity(c);
+			if (e instanceof BattleShip) {
+				e.onUpdate();
+			}
+		}
 	}
 }

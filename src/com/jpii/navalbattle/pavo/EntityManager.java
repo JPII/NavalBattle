@@ -31,6 +31,7 @@ public class EntityManager {
 	private Tile[][] ent;
 	private World w;
 	private ArrayList<Integer> entityRegister;
+	private ArrayList<Entity> entities;
 	int counter = 0;
 	/**
 	 * Creates a new entity manager for the desired world.
@@ -38,6 +39,7 @@ public class EntityManager {
 	 */
 	public EntityManager(World w) {
 		this.w = w;
+		entities = new ArrayList<Entity>();
 		ent = new Tile[PavoHelper.getGameWidth(w.getWorldSize())*2][PavoHelper.getGameHeight(w.getWorldSize())*2];
 		BufferedImage grid = new BufferedImage(50,50,BufferedImage.TYPE_INT_ARGB);
 		Graphics2D g = PavoHelper.createGraphics(grid);
@@ -55,6 +57,28 @@ public class EntityManager {
 	}
 	public void update(long ticksPassed) {
 		//System.out.println(Integer.bitCount(IndexableImage.getStoreSize())+"."+Integer.toHexString(IndexableImage.getStoreSize()));
+	}
+	public Entity getEntity(int index) {
+		return entities.get(index);
+	}
+	public void removeEntity(Entity e) {
+		entities.remove(e);
+	}
+	public void removeEntity(int index) {
+		entities.remove(index);
+	}
+	/**
+	 * DO NOT CALL INDIVIDUALLY
+	 * @param e The entity.
+	 * @deprecated
+	 */
+	public void addEntity(Entity e) {
+		if (e == null)
+			return;
+		entities.add(e);
+	}
+	public int getTotalEntities() {
+		return entities.size();
 	}
 	/**
 	 * Gets the chunk associated with the given entity location.
