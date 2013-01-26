@@ -17,6 +17,8 @@
 
 package com.jpii.navalbattle.game;
 
+import com.jpii.navalbattle.pavo.Game;
+
 public class Location
 {
     private int row; // row location in grid
@@ -255,6 +257,9 @@ public class Location
     
     public static boolean validate(Location l) {
     	if (l.getCol() < 0 || l.getRow() < 0)
+    		return false;
+    	
+    	if (l.getCol() > 128 || l.getRow() > 128)
     		return false;
     	
     	//if (l.getCol() > GameComponent.game.getGrid().getWidth() || l.getRow() > GameComponent.game.getGrid().getHeight())

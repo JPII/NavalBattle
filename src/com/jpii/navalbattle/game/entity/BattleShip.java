@@ -35,8 +35,8 @@ public class BattleShip extends Entity {
 	}
 	
 	public void onUpdate() {
-		int r = Game.Settings.rand.nextInt(2,4);
-		int c = Game.Settings.rand.nextInt(2,4);
+		int r = 1;
+		int c = 1;
 		moveTo(r+getLocation().getRow(),c+getLocation().getCol());
 	}
 

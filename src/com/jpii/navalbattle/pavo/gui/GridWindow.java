@@ -69,11 +69,13 @@ public class GridWindow extends GameWindow {
 		//System.out.println("world not null");
 		if (game.getWorld().getEntityManager() == null)
 			return;
+		if (Location.validate(local)) {
 		if (game.getWorld().getEntityManager().isTileFilledWithWater(local.getRow(),local.getCol())) {
 			g.drawString("Tile has water.", 10, 60);
 		}
 		else {
 			g.drawString("Tile doesn't have water.", 10, 60);
+		}
 		}
 	}
 }

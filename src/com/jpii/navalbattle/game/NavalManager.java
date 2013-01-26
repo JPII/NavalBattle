@@ -40,7 +40,7 @@ public class NavalManager extends EntityManager {
 	public void update(long ticksPassed) {
 		for (int c = 0; c < this.getTotalEntities(); c++) {
 			Entity e = getEntity(c);
-			if (e instanceof BattleShip) {
+			if (e != null && e instanceof BattleShip) {
 				e.onUpdate();
 			}
 		}
