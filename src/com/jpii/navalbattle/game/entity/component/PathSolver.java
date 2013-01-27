@@ -19,7 +19,7 @@ package com.jpii.navalbattle.game.entity.component;
 
 import com.jpii.navalbattle.game.*;
 import com.jpii.navalbattle.game.entity.*;
-import com.jpii.navalbattle.pavo.Entity;
+import com.jpii.navalbattle.pavo.grid.Entity;
 import com.jpii.navalbattle.renderer.Grid;
 
 public class PathSolver

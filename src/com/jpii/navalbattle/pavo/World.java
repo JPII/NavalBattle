@@ -25,6 +25,7 @@ import maximusvladimir.dagen.Rand;
 
 import com.jpii.navalbattle.data.Constants;
 import com.jpii.navalbattle.io.Interactable;
+import com.jpii.navalbattle.pavo.grid.EntityManager;
 import com.jpii.navalbattle.renderer.weather.WeatherManager;
 
 

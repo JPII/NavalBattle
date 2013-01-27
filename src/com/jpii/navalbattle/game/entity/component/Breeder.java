@@ -17,7 +17,7 @@
 
 package com.jpii.navalbattle.game.entity.component;
 
-import com.jpii.navalbattle.pavo.Entity;
+import com.jpii.navalbattle.pavo.grid.Entity;
 
 public abstract class Breeder<E> {
 	Entity parent1,parent2;

@@ -20,6 +20,7 @@
  */
 package com.jpii.navalbattle.pavo;
 
+import java.awt.Color;
 import java.awt.Toolkit;
 
 import maximusvladimir.dagen.Rand;
@@ -40,6 +41,6 @@ public class PavoSettings {
 	public Rand rand = new Rand(seed);
 	public boolean OverClock = true;
 	public boolean isGameFullscreen = false;
-	
+	public Color GridColor = new Color(120,120,120,100);
 	public boolean hasGameBeenModded = false;
 }

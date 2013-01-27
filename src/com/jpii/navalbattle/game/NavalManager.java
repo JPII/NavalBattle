@@ -8,12 +8,12 @@ import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 
 import com.jpii.navalbattle.game.entity.BattleShip;
-import com.jpii.navalbattle.pavo.Entity;
-import com.jpii.navalbattle.pavo.EntityManager;
-import com.jpii.navalbattle.pavo.IndexableImage;
 import com.jpii.navalbattle.pavo.PavoHelper;
-import com.jpii.navalbattle.pavo.Tile;
 import com.jpii.navalbattle.pavo.World;
+import com.jpii.navalbattle.pavo.grid.Entity;
+import com.jpii.navalbattle.pavo.grid.EntityManager;
+import com.jpii.navalbattle.pavo.grid.IndexableImage;
+import com.jpii.navalbattle.pavo.grid.Tile;
 import com.jpii.navalbattle.util.FileUtils;
 
 /**

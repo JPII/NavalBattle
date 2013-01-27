@@ -15,7 +15,7 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.jpii.navalbattle.pavo;
+package com.jpii.navalbattle.pavo.grid;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
@@ -24,6 +24,10 @@ import java.util.ArrayList;
 
 import com.jpii.navalbattle.game.Location;
 import com.jpii.navalbattle.game.entity.*;
+import com.jpii.navalbattle.pavo.Chunk;
+import com.jpii.navalbattle.pavo.Game;
+import com.jpii.navalbattle.pavo.PavoHelper;
+import com.jpii.navalbattle.pavo.World;
 import com.jpii.navalbattle.util.FileUtils;
 
 public class EntityManager {
@@ -43,7 +47,7 @@ public class EntityManager {
 		ent = new Tile[PavoHelper.getGameWidth(w.getWorldSize())*2][PavoHelper.getGameHeight(w.getWorldSize())*2];
 		BufferedImage grid = new BufferedImage(50,50,BufferedImage.TYPE_INT_ARGB);
 		Graphics2D g = PavoHelper.createGraphics(grid);
-		g.setColor(new Color(120,120,120,100));
+		g.setColor(Game.Settings.GridColor);
 		g.drawRect(1,1,49,49);
 		try
 		{

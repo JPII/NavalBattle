@@ -1,4 +1,4 @@
-package com.jpii.navalbattle.pavo;
+package com.jpii.navalbattle.pavo.grid;
 
 public class Id {
 	short superId, subId;

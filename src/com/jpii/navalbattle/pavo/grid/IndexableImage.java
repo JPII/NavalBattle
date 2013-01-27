@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.jpii.navalbattle.pavo;
+package com.jpii.navalbattle.pavo.grid;
 
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
