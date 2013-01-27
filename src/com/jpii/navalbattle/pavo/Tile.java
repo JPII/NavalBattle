@@ -3,7 +3,6 @@
  */
 package com.jpii.navalbattle.pavo;
 
-import com.jpii.navalbattle.game.entity.Entity;
 
 /**
  * @author maximusvladimir

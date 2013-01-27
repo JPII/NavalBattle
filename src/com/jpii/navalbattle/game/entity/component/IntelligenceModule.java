@@ -19,7 +19,7 @@ package com.jpii.navalbattle.game.entity.component;
 
 import java.util.ArrayList;
 
-import com.jpii.navalbattle.game.entity.Entity;
+import com.jpii.navalbattle.pavo.Entity;
 
 public class IntelligenceModule {
 	

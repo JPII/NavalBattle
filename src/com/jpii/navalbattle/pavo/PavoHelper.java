@@ -29,7 +29,6 @@ import java.awt.geom.Point2D;
 import java.awt.image.BufferedImage;
 
 import com.jpii.navalbattle.game.Location;
-import com.jpii.navalbattle.game.entity.Entity;
 
 /**
  * 

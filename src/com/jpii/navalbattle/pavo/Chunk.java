@@ -24,7 +24,6 @@ import java.util.Random;
 import maximusvladimir.dagen.*;
 
 import com.jpii.navalbattle.data.Constants;
-import com.jpii.navalbattle.game.entity.Entity;
 import com.jpii.navalbattle.renderer.Helper;
 import com.jpii.navalbattle.renderer.RenderConstants;
 

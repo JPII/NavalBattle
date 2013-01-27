@@ -15,7 +15,7 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.jpii.navalbattle.game.entity;
+package com.jpii.navalbattle.pavo;
 
 import java.awt.image.BufferedImage;
 
