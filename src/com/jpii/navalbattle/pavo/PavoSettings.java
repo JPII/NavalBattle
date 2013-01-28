@@ -43,4 +43,5 @@ public class PavoSettings {
 	public boolean isGameFullscreen = false;
 	public Color GridColor = new Color(120,120,120,100);
 	public boolean hasGameBeenModded = false;
+	public boolean isFinishedGenerating = false;
 }

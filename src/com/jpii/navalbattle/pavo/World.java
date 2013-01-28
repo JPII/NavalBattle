@@ -143,6 +143,7 @@ public class World extends Renderable implements Interactable {
 			if (!generated[c])
 				return true;
 		}
+		Game.Settings.isFinishedGenerating = true;
 		return false;
 	}
 	public void genNextChunk() {
