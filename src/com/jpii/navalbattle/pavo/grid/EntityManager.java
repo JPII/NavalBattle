@@ -36,6 +36,7 @@ public class EntityManager {
 	private World w;
 	private ArrayList<Integer> entityRegister;
 	private ArrayList<Entity> entities;
+	private int currentId = 0;
 	int counter = 0;
 	/**
 	 * Creates a new entity manager for the desired world.
@@ -58,6 +59,13 @@ public class EntityManager {
 		entityRegister.add(0);
 		//System.out.println(Integer.bitCount(IndexableImage.getStoreSize())+"."+Integer.toHexString(IndexableImage.getStoreSize())+"swapspace");
 		tileAccessor = new int[PavoHelper.getGameWidth(w.getWorldSize())*2][PavoHelper.getGameHeight(w.getWorldSize())*2];
+	}
+	public void setId(int id){
+		if(currentId != id)
+			currentId = id;
+	}
+	public int getId(){
+		return currentId;
 	}
 	public void update(long ticksPassed) {
 		//System.out.println(Integer.bitCount(IndexableImage.getStoreSize())+"."+Integer.toHexString(IndexableImage.getStoreSize()));

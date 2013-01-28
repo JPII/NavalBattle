@@ -27,9 +27,10 @@ public class NavalManager extends EntityManager {
 	 */
 	public NavalManager(World w) {
 		super(w);
-		int battleshipId = registerEntity(FileUtils.getImage("drawable-game/battleship/battleship.png"));
-		if (battleshipId != 0) {
-			BattleShip e = new BattleShip(this,new Location(3,3),battleshipId);
+		setId(registerEntity(FileUtils.getImage("drawable-game/battleship/battleship.png")));
+		if (getId() != 0) {
+			System.out.println(getId());
+			BattleShip e = new BattleShip(this,new Location(3,3),getId());
 			e.moveTo(new Location(3,3));
 		}
 		else {
