@@ -90,6 +90,7 @@ public class WeatherManager {
 			}
 			prefixx = 0;
 			prefixy = 0;
+			g.dispose();
 		}
 		else
 			buffer = null;
