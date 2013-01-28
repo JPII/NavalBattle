@@ -37,7 +37,7 @@ public class ProceduralLayeredMapGenerator {
 	}
 	private static void doInit() {
 		berlin = new Perlin(Game.Settings.seed,0,0);
-		json = new $JSNAO9JW10SKJF194OI[60];
+		json = new $JSNAO9JW10SKJF194OI[2];
 		for (int c = 0; c < json.length; c++) {
 			json[c] = new $JSNAO9JW10SKJF194OI(PavoHelper.getGameWidth(WorldSize.WORLD_LARGE)*32,
 					PavoHelper.getGameHeight(WorldSize.WORLD_LARGE)*32);
