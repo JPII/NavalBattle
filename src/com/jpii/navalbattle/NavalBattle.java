@@ -52,7 +52,7 @@ public class NavalBattle {
 		windowHandler = new WindowHandler();
 		
 		// Debug purposes
-		new SinglePlayerGame();
+		// new SinglePlayerGame();
 	}
 	
 	/**
