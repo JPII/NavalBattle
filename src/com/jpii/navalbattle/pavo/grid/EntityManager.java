@@ -17,15 +17,18 @@
 
 package com.jpii.navalbattle.pavo.grid;
 
+import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
 import com.jpii.navalbattle.game.Location;
+import com.jpii.navalbattle.game.entity.*;
 import com.jpii.navalbattle.pavo.Chunk;
 import com.jpii.navalbattle.pavo.Game;
 import com.jpii.navalbattle.pavo.PavoHelper;
 import com.jpii.navalbattle.pavo.World;
+import com.jpii.navalbattle.util.FileUtils;
 
 public class EntityManager {
 	private int[][] tileAccessor;
@@ -33,7 +36,7 @@ public class EntityManager {
 	private World w;
 	private ArrayList<Integer> entityRegister;
 	private ArrayList<Entity> entities;
-	public int battleShipId;
+	private int currentId = 0;
 	int counter = 0;
 	/**
 	 * Creates a new entity manager for the desired world.
@@ -56,6 +59,13 @@ public class EntityManager {
 		entityRegister.add(0);
 		//System.out.println(Integer.bitCount(IndexableImage.getStoreSize())+"."+Integer.toHexString(IndexableImage.getStoreSize())+"swapspace");
 		tileAccessor = new int[PavoHelper.getGameWidth(w.getWorldSize())*2][PavoHelper.getGameHeight(w.getWorldSize())*2];
+	}
+	public void setId(int id){
+		if(currentId != id)
+			currentId = id;
+	}
+	public int getId(){
+		return currentId;
 	}
 	public void update(long ticksPassed) {
 		//System.out.println(Integer.bitCount(IndexableImage.getStoreSize())+"."+Integer.toHexString(IndexableImage.getStoreSize()));

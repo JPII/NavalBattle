@@ -3,10 +3,17 @@
  */
 package com.jpii.navalbattle.game;
 
+import java.awt.Color;
+import java.awt.Graphics2D;
+import java.awt.image.BufferedImage;
+
 import com.jpii.navalbattle.game.entity.BattleShip;
+import com.jpii.navalbattle.pavo.PavoHelper;
 import com.jpii.navalbattle.pavo.World;
 import com.jpii.navalbattle.pavo.grid.Entity;
 import com.jpii.navalbattle.pavo.grid.EntityManager;
+import com.jpii.navalbattle.pavo.grid.IndexableImage;
+import com.jpii.navalbattle.pavo.grid.Tile;
 import com.jpii.navalbattle.util.FileUtils;
 
 /**
@@ -20,9 +27,10 @@ public class NavalManager extends EntityManager {
 	 */
 	public NavalManager(World w) {
 		super(w);
-		battleShipId = registerEntity(FileUtils.getImage("drawable-game/battleship/battleship.png"));
-		if (battleShipId != 0) {
-			BattleShip e = new BattleShip(this,new Location(3,3),battleShipId);
+		setId(registerEntity(FileUtils.getImage("drawable-game/battleship/battleship.png")));
+		if (getId() != 0) {
+			System.out.println(getId());
+			BattleShip e = new BattleShip(this,new Location(3,3),getId());
 			e.moveTo(new Location(3,3));
 		}
 		else {

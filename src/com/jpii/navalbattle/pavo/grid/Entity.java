@@ -17,6 +17,8 @@
 
 package com.jpii.navalbattle.pavo.grid;
 
+import java.awt.image.BufferedImage;
+
 import com.jpii.navalbattle.game.*;
 import com.jpii.navalbattle.game.entity.BattleShip;
 import com.jpii.navalbattle.pavo.*;
@@ -167,8 +169,8 @@ public class Entity {
 	}
 	
 	public void onMouseDown(int x, int y, boolean leftClick) {
-		System.out.println(manager.battleShipId);
-		new BattleShip(manager,location,manager.battleShipId);
+		System.out.println(manager.getId());
+		new BattleShip(manager,location,manager.getId());
 	}
 	
 	public void onHit(Entity attackingEntity) {
