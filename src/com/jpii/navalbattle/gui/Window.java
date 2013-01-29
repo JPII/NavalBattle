@@ -43,10 +43,7 @@ public class Window extends JFrame {
 	 * Default <code>Window</code> constructor.
 	 */
 	public Window() {
-		width = 492;
-		height = 340;
-		xloc = 1280/2-width/2;
-		yloc = 800/2-height/2;
+		setsize(492,340);
 		setDefaults();
 	}
 	
@@ -56,10 +53,7 @@ public class Window extends JFrame {
 	 * @param y		height
 	 */
 	public Window(int x, int y) {
-		width = x;
-		height = y;
-		xloc = 1280/2-width/2;
-		yloc = 800/2-height/2;
+		setsize(x,y);
 	}
 	
 	/**
@@ -70,10 +64,33 @@ public class Window extends JFrame {
 	 * @param yloc		y-coordinate
 	 */
 	public Window(int x, int y,int xloc,int yloc) {
-		width = x;
-		height = y;
-		this.xloc = xloc;
-		this.yloc = yloc;
+		setsize(x,y);
+		setlocation(xloc,yloc);
+	}
+	
+	/**
+	 * Sets the size of the <code>Window</code>
+	 * @param width		width
+	 * @param height	height
+	 */
+	public void setsize(int width, int height){
+		this.width = width;
+		this.height = height;
+		xloc = 1280/2-width/2;
+		yloc = 800/2-height/2;
+		setSize(width, height);
+		setLocation(xloc,yloc);
+	}
+	
+	/**
+	 * Sets the location of the <code>Window</code>
+	 * @param x		x
+	 * @param y		y
+	 */
+	public void setlocation(int x, int y){
+		xloc = x;
+		yloc = y;
+		setLocation(xloc,yloc);
 	}
 	
 	/**

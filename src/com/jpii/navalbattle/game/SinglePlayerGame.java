@@ -23,64 +23,22 @@ import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
-import com.jpii.navalbattle.data.Constants;
 import com.jpii.navalbattle.gui.listeners.*;
 import com.jpii.navalbattle.pavo.Game;
 import com.jpii.navalbattle.renderer.Helper;
+import com.jpii.navalbattle.gui.Window;
 
 @SuppressWarnings("serial")
-public class SinglePlayerGame extends JFrame {
+public class SinglePlayerGame extends Window {
 	public GameComponent game;
 
 	public SinglePlayerGame() {
-		this.setTitle("NavalBattle");
-
 		game = new GameComponent(this);
 		game.setLocation(0,40);
 		setContentPane(game);
-
 		this.getContentPane().setLayout(null);
-		
-
-		this.setSize(491, 339);
-		//this.setUndecorated(true);
-		this.setResizable(true);
-		this.setLocation(Toolkit.getDefaultToolkit().getScreenSize().width / 2
-				- this.getWidth() / 2, 800 / 2 - Toolkit.getDefaultToolkit()
-				.getScreenSize().height / 2);
-		
-		this.setIconImage(Helper.GUI_WINDOW_ICON);
-
-		this.addWindowListener(new WindowCloser());
-
-		this.setFocusable(true);
-		//addKeyListener(Constants.keys);
-		//Constants.keys.add(this);
-		
-		setSize(Game.Settings.currentWidth,Game.Settings.currentHeight-80);
-		
-		//setSize((int) Toolkit.getDefaultToolkit().getScreenSize().getWidth(),
-			//	(int) Toolkit.getDefaultToolkit().getScreenSize().getHeight() - 48);
-		//setLocation((int)(Toolkit.getDefaultToolkit().getScreenSize().getWidth()/2) - (getWidth()/2),
-			//	(int)(Toolkit.getDefaultToolkit().getScreenSize().getHeight()/2) - (getHeight()/2));
-		setLocation(0,0);
-		setVisible(true);
+		setsize(Game.Settings.currentWidth,Game.Settings.currentHeight-40);
+		setlocation(0,0);
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
-		KeyListener keyListener = new KeyListener() {
-			public void keyPressed(KeyEvent arg0) {
-				if (arg0.getKeyCode() == KeyEvent.VK_F11) {
-					game.toggleFullscreen();
-				}
-			}
-			public void keyReleased(KeyEvent arg0) {
-			}
-			public void keyTyped(KeyEvent arg0) {
-			}
-		};
-		this.addKeyListener(keyListener);
-	}
-	
-	public void setVisible(boolean visible){
-		super.setVisible(visible);
 	}
 }

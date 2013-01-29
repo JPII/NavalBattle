@@ -22,7 +22,6 @@ import javax.swing.*;
 
 import com.jpii.navalbattle.data.*;
 import com.jpii.navalbattle.debug.*;
-import com.jpii.navalbattle.game.SinglePlayerGame;
 import com.jpii.navalbattle.renderer.*;
 
 import com.roketgamer.RoketGamer;
@@ -50,9 +49,6 @@ public class NavalBattle {
 		roketGamer = new RoketGamer();
 		debugWindow.printInfo("NavalBattle " + Constants.NAVALBATTLE_VERSION + " initialized");
 		windowHandler = new WindowHandler();
-		
-		// Debug purposes
-		// new SinglePlayerGame();
 	}
 	
 	/**

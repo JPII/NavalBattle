@@ -21,6 +21,7 @@ import java.awt.event.*;
 import java.util.ArrayList;
 
 import com.jpii.navalbattle.debug.DebugWindow;
+import com.jpii.navalbattle.game.SinglePlayerGame;
 import com.jpii.navalbattle.gui.*;
 
 public class KeyboardListener implements KeyListener {
@@ -56,6 +57,12 @@ public class KeyboardListener implements KeyListener {
 				DebugWindow d = (DebugWindow) window;
 				if(k.getKeyCode() == KeyEvent.VK_ENTER) {
 					d.submitCommand();
+				}
+			}
+			if(window instanceof SinglePlayerGame){
+				SinglePlayerGame g = (SinglePlayerGame) window;
+				if(k.getKeyCode() == KeyEvent.VK_F11){
+					g.game.toggleFullscreen();
 				}
 			}
 		}

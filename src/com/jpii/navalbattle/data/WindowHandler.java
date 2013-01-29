@@ -20,6 +20,7 @@ package com.jpii.navalbattle.data;
 import java.util.*;
 import javax.swing.*;
 
+import com.jpii.navalbattle.game.SinglePlayerGame;
 import com.jpii.navalbattle.gui.*;
 import com.jpii.navalbattle.util.toaster.ToasterTest;
 
@@ -35,7 +36,7 @@ public class WindowHandler {
 		toasterManager = new ToasterTest();
 		windows = new ArrayList<Window>();
 		initArray();
-		windows.get(0).setVisible(true);
+		windows.get(windows.size()-1).setVisible(true);
 	}
 	
 	/**
@@ -49,6 +50,9 @@ public class WindowHandler {
 		windows.add(new SPOptions());
 		windows.add(new HelpWindow());
 		windows.add(new CreditsWindow());
+		
+		// remove this for debug
+		windows.add(new SinglePlayerGame());
 	}
 	
 	/**
