@@ -7,6 +7,9 @@ true
 
 *~
 *.class
+*jcp
+*jcu
+*jcw
 
 target/*
 bin/*
