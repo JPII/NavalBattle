@@ -3,7 +3,11 @@
  */
 package com.jpii.navalbattle.game;
 
+import java.awt.Color;
+
 import com.jpii.navalbattle.game.entity.BattleShip;
+import com.jpii.navalbattle.pavo.Game;
+import com.jpii.navalbattle.pavo.PavoHelper;
 import com.jpii.navalbattle.pavo.World;
 import com.jpii.navalbattle.pavo.grid.Entity;
 import com.jpii.navalbattle.pavo.grid.EntityManager;
@@ -20,7 +24,7 @@ public class NavalManager extends EntityManager {
 	 */
 	public NavalManager(World w) {
 		super(w);
-		battleShipId = registerEntity(FileUtils.getImage("drawable-game/battleship/battleship.png"));
+		battleShipId = registerEntity(PavoHelper.imgUtilOutline(FileUtils.getImage("drawable-game/battleship/battleship.png"),Game.Settings.GridColor));
 		if (battleShipId != 0) {
 			BattleShip e = new BattleShip(this,new Location(3,3),battleShipId);
 			e.moveTo(new Location(3,3));

@@ -243,6 +243,18 @@ public class PavoHelper {
 		return b;
 	}
 	
+	public static BufferedImage imgUtilOutline(BufferedImage src, Color c) {
+		if (src == null)
+			return null;
+		BufferedImage b = new BufferedImage(src.getWidth(), src.getHeight(), src.getType());
+		Graphics2D g = (Graphics2D)b.getGraphics();
+		g.setColor(c);
+		g.drawRect(1,1,src.getWidth()-1, src.getHeight()-1);
+		g.drawImage(src,0,0,null);
+		g.dispose();
+		return b;
+	}
+	
 	public static BufferedImage imgUtilFastCrop(BufferedImage src, int x, int y, int width, int height) {
 		if (src == null)
 			return null;

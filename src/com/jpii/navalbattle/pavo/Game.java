@@ -215,8 +215,8 @@ public class Game extends Renderable implements Runnable {
 	 */
 	public void render() {
 		long sjan = System.currentTimeMillis();
-		for (int c = 0; c < 5; c++)
-			System.gc();
+		//for (int c = 0; c < 5; c++)
+			//System.gc();
 		buffer = new BufferedImage(Game.Settings.currentWidth,Game.Settings.currentHeight,BufferedImage.TYPE_INT_RGB);
 		Graphics2D g = PavoHelper.createGraphics(buffer);
 		while (getWorld().isLocked()) {
