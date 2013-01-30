@@ -151,6 +151,12 @@ public class PavoHelper {
 	public static Point convertWorldSpaceToScreen(World w, Point wsp) {
 		return new Point(wsp.x - w.getScreenX(), wsp.y - w.getScreenY());
 	}
+	public static Point convertScreenToWorldSpace(World w, Point wsp) {
+		return new Point(wsp.x + w.getScreenX(), wsp.y + w.getScreenY());
+	}
+	public static Location convertWorldSpaceToGridLocation(Point p) {
+		return new Location(p.y/50,p.x/50);
+	}
 	/**
 	 * Linear interpolation.
 	 * @param num0
