@@ -49,6 +49,8 @@ public class NavalBattle {
 		roketGamer = new RoketGamer();
 		debugWindow.printInfo("NavalBattle " + Constants.NAVALBATTLE_VERSION + " initialized");
 		windowHandler = new WindowHandler();
+		
+		windowHandler.windows.get(windowHandler.windows.size()-1).setVisible(true);
 	}
 	
 	/**

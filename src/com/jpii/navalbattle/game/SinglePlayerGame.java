@@ -19,13 +19,8 @@ package com.jpii.navalbattle.game;
 
 import javax.swing.*;
 
-import java.awt.*;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
-
-import com.jpii.navalbattle.gui.listeners.*;
+import com.jpii.navalbattle.NavalBattle;
 import com.jpii.navalbattle.pavo.Game;
-import com.jpii.navalbattle.renderer.Helper;
 import com.jpii.navalbattle.gui.Window;
 
 @SuppressWarnings("serial")
@@ -40,5 +35,12 @@ public class SinglePlayerGame extends Window {
 		setsize(Game.Settings.currentWidth,Game.Settings.currentHeight-40);
 		setlocation(0,0);
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
+	}
+	
+	public void setVisible(boolean visible){
+		super.setVisible(visible);
+		if(isVisible()){
+			NavalBattle.getWindowHandler().killAll();
+		}
 	}
 }

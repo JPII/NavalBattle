@@ -26,7 +26,7 @@ import com.jpii.navalbattle.util.toaster.ToasterTest;
 
 public class WindowHandler {
 	
-	private ArrayList<Window> windows;
+	public ArrayList<Window> windows;
 	private static ToasterTest toasterManager;
 	
 	/**
@@ -36,7 +36,7 @@ public class WindowHandler {
 		toasterManager = new ToasterTest();
 		windows = new ArrayList<Window>();
 		initArray();
-		windows.get(windows.size()-1).setVisible(true);
+		windows.get(0).setVisible(true);
 	}
 	
 	/**
@@ -87,5 +87,19 @@ public class WindowHandler {
 	 */
 	public ToasterTest getToasterManager() {
 		return toasterManager;
+	}
+	
+	public void killAll(){
+		for(int index = 0; index<windows.size(); index+=0){
+			JFrame temp = windows.get(index);
+			if(!(temp instanceof SinglePlayerGame)){
+				((Window)temp).donewithMe();
+				windows.remove(index);
+			}
+			else{
+				index++;
+			}
+		}
+		System.out.println("Done");
 	}
 }

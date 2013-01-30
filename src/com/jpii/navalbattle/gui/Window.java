@@ -154,8 +154,8 @@ public class Window extends JFrame {
 	 * Dispose of <code>Window</code>.
 	 */
 	public void donewithMe(){
-		super.dispose();
 		printDebug("Disposing "+parseString());
+		super.dispose();
 	}
 	
 	/**
