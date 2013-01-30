@@ -193,6 +193,9 @@ public class EntityManager {
 			return IndexableImage.getImage(0);
 		return IndexableImage.getImage(tile.getId().getMutexId());
 	}
+	public void gameDoneGenerating() {
+		
+	}
 
 	/**
 	 * Don't play with this.

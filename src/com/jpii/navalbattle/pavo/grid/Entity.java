@@ -66,7 +66,7 @@ public class Entity {
 				Tile t = new Tile(this,location.getRow()+h, location.getCol()+w);
 				t.setId(new Id(id,w));
 				manager.setTile(location.getRow()+h, location.getCol()+w, t);
-				System.out.println("efretgfd");
+				//System.out.println("efretgfd");
 			}
 		}
 	}

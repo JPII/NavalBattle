@@ -147,7 +147,7 @@ public class Game extends Renderable implements Runnable {
 				if (lastw != Settings.currentWidth || lasth != Settings.currentHeight) {
 					lastw = Settings.currentWidth;
 					lasth = Settings.currentHeight;
-					shadow = PavoHelper.createInnerShadow(Game.Settings.currentWidth,Game.Settings.currentHeight);
+					//shadow = PavoHelper.createInnerShadow(Game.Settings.currentWidth,Game.Settings.currentHeight);
 				}
 				//System.out.println("winupdate");
 				numUpdates += 100;
@@ -177,11 +177,27 @@ public class Game extends Renderable implements Runnable {
 				long updateFinish = System.currentTimeMillis() - updateStart;
 				getStats().SmSK280K99(updateFinish);
 				timeLastUpdate = System.currentTimeMillis();
+				if (!getStats().isGenerating() && !inStatement) {
+					inStatement = true;
+					try {
+						String name = "";
+						if (chunkrender != null)
+							name = chunkrender.getName();
+						chunkrender.stop();
+						chunkrender = null;
+						System.gc();
+						System.out.println("Thread " + name + " is probably dead.");
+					}
+					catch (Throwable t) {
+						
+					}
+					getWorld().getEntityManager().gameDoneGenerating();
+				}
 			}
 		}
 		// Chunk renderer
 		else if (state == 2) {
-			while (gameRunning) {
+			while (gameRunning && getWorld().hasMoreChunks()) {
 				//System. out.println("Chunk gen firing..." + Thread.currentThread().getName());
 				if (getWorld().hasMoreChunks()) {
 					getWorld().genNextChunk();
@@ -196,7 +212,9 @@ public class Game extends Renderable implements Runnable {
 					break;
 				}
 			}
+			Game.getStats().SmKdn02nOaP(1);
 		}
+		System.out.println("Thread " + Thread.currentThread().getName() + " is prepairing to exit context.");
 		// World generator
 		//else if (state == 3) {
 			//System.out.println("World gen firing..." + Thread.currentThread().getName());
@@ -204,6 +222,7 @@ public class Game extends Renderable implements Runnable {
 			//getWorld().setWorldGen(gen);
 		//}
 	}
+	boolean inStatement = false;
 	public String getGenStatus() {
 		return "";
 	}
