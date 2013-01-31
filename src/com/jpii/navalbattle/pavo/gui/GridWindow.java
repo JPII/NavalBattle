@@ -18,6 +18,7 @@ import java.util.jar.JarFile;
 import sun.reflect.Reflection;
 
 import com.jpii.navalbattle.game.Location;
+import com.jpii.navalbattle.game.entity.BattleShip;
 import com.jpii.navalbattle.pavo.Game;
 import com.jpii.navalbattle.pavo.PavoHelper;
 
@@ -74,6 +75,9 @@ public class GridWindow extends GameWindow {
 		}
 		else {
 			g.drawString("Tile doesn't have water.", 10, 60);
+		}
+		if (game.getWorld().getEntityManager().getTile(local) != null && game.getWorld().getEntityManager().getTile(local).getEntity() instanceof BattleShip) {
+			g.drawString("Tile is part of a battleship.", 10, 80);
 		}
 		}
 	}

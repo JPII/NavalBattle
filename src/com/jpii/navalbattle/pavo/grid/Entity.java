@@ -81,7 +81,9 @@ public class Entity {
 			return false;
 		for (int w = 0; w < getWidth(); w++) {
 			Tile t = manager.getTile(getLocation().getRow(),getLocation().getCol() + w);
-			manager.setTile(loc.getRow(), loc.getCol()+w, t);
+			Tile tile = new Tile(this, loc.getRow(), loc.getCol()+w);
+			tile.setId(new Id(id,w));
+			manager.setTile(loc.getRow(), loc.getCol()+w, tile);
 		}
 		/*Tile<Entity> t = manager.getTile(loc);
 		if (t != null && ((t.getSuperId() != 0 || t.getEntity() != null) && override))
@@ -107,6 +109,14 @@ public class Entity {
 		}*/
 		//System.out.println("wincall");
 		setLocation(loc);
+		for (int w = 0; w < getWidth(); w++) {
+			for (int h = 0; h < getHeight(); h++) {
+				Tile t = new Tile(this,location.getRow()+h, location.getCol()+w);
+				t.setId(new Id(id,w));
+				manager.setTile(location.getRow()+h, location.getCol()+w, t);
+				//System.out.println("efretgfd");
+			}
+		}
 		return true;
 	}
 	

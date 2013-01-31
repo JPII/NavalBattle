@@ -29,7 +29,7 @@ import com.jpii.navalbattle.pavo.World;
 
 public class EntityManager {
 	private int[][] tileAccessor;
-	private Tile[][] ent;
+	//private Tile[][] ent;
 	private World w;
 	private ArrayList<Integer> entityRegister;
 	private ArrayList<Entity> entities;
@@ -42,7 +42,7 @@ public class EntityManager {
 	public EntityManager(World w) {
 		this.w = w;
 		entities = new ArrayList<Entity>();
-		ent = new Tile[PavoHelper.getGameWidth(w.getWorldSize())*2][PavoHelper.getGameHeight(w.getWorldSize())*2];
+		//ent = new Tile[PavoHelper.getGameWidth(w.getWorldSize())*2][PavoHelper.getGameHeight(w.getWorldSize())*2];
 		BufferedImage grid = new BufferedImage(50,50,BufferedImage.TYPE_INT_ARGB);
 		Graphics2D g = PavoHelper.createGraphics(grid);
 		g.setColor(Game.Settings.GridColor);
@@ -112,7 +112,7 @@ public class EntityManager {
 		if (c >= PavoHelper.getGameWidth(w.getWorldSize())*2 ||
 				r >= PavoHelper.getGameHeight(w.getWorldSize())*2 || c < 0 || r < 0)
 			return;
-		ent[c][r] = t;
+		//ent[c][r] = t;
 		int x = c/2;
 		int z = r/2;
 		Chunk chunk = w.getChunk(x, z);
@@ -127,6 +127,7 @@ public class EntityManager {
 			chunk.Tile01 = t;
 		else if (rx != 0 && rz != 0)
 			chunk.Tile11 = t;
+		System.out.println("chunk at:" + x + "," + z);
 		chunk.needsBufferWrite();
 	}
 	public <T> void setTile(Location loc, Tile<T> t) {
