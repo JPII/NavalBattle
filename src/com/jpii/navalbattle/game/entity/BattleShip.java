@@ -13,7 +13,7 @@ import com.jpii.navalbattle.pavo.grid.EntityManager;
  *
  */
 public class BattleShip extends Entity {
-
+	public static int BATTLESHIP_ID = 0;
 	/**
 	 * @param em
 	 */

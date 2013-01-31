@@ -162,7 +162,13 @@ public class NavalGame extends Game {
 		super.mouseDown(me);
 		if (getWinMan().mouseDown(me))
 			return;
-		omnimap.mouseDown(me);
+		if (omnimap.mouseDown(me))
+			return;
+		int chx = (-getWorld().getScreenX()) + me.getX();
+		int chy = (-getWorld().getScreenY()) + me.getY(); 
+		chx /= 50;
+		chy /= 50;
+		BattleShip b = new BattleShip(this.getWorld().getEntityManager(),new Location(chy,chx),BattleShip.BATTLESHIP_ID);
 	}
 	public void mouseMove(MouseEvent me) {
 		super.mouseMove(me);

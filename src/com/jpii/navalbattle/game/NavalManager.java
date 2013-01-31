@@ -26,6 +26,7 @@ public class NavalManager extends EntityManager {
 		super(w);
 		battleShipId = registerEntity(PavoHelper.imgUtilOutline(FileUtils.getImage("drawable-game/battleship/battleship.png"),Game.Settings.GridColor));
 		if (battleShipId != 0) {
+			BattleShip.BATTLESHIP_ID = battleShipId;
 			BattleShip e = new BattleShip(this,new Location(3,3),battleShipId);
 			//e.moveTo(new Location(3,3));
 		}
