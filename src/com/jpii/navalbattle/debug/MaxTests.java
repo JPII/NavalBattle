@@ -54,11 +54,9 @@ public class MaxTests {
 		for (int c = 0; c < 3; c++) {
 			System.out.println(GrammarManager.generateFullName(r.nextInt()));
 		}
-		System.out.println("Fast Math calc: " + FastMath.sin(0.14235));
-		System.out.println("Java Math calc: " + Math.sin(0.14235*(Math.PI/2)));
 		System.out.println("Seed:" + Game.Settings.seed);
 		
-		System.out.println("fs"+PavoHelper.getCalculatedSystemSpeed().toString());
+		System.out.println("Measured system speed as: "+PavoHelper.getCalculatedSystemSpeed().toString());
 		int unit = Runtime.getRuntime().availableProcessors();
 		if (unit >= 1 && unit < 3) {
 			JOptionPane.showMessageDialog(null,"Your system does not have a strong enough CPU to run the game.","Fatal error",JOptionPane.OK_OPTION);
@@ -113,11 +111,11 @@ public class MaxTests {
 				SettingsReader reader = new SettingsReader(f.getAbsolutePath(),attrs);
 				reader.read();
 			//}
-			for (SettingsAttribute sa : attrs) {
+			/*for (SettingsAttribute sa : attrs) {
 				if (sa != null) {
 					System.out.println(sa);
 				}
-			}
+			}*/
 		}
 	}
 	

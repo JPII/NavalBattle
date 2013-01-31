@@ -99,6 +99,7 @@ public class PavoHelper {
 		}
 		return calcs;
 	}
+	
 	public static boolean isChunkVisibleOnScreen(World w, Chunk c) {
 		if (w == null || c == null)
 			return false;
