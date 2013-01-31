@@ -59,6 +59,12 @@ public class MaxTests {
 		System.out.println("Seed:" + Game.Settings.seed);
 		
 		System.out.println("fs"+PavoHelper.getCalculatedSystemSpeed().toString());
+		int unit = Runtime.getRuntime().availableProcessors();
+		if (unit >= 1 && unit < 3) {
+			JOptionPane.showMessageDialog(null,"Your system does not have a strong enough CPU to run the game.","Fatal error",JOptionPane.OK_OPTION);
+			System.exit(0x300AB);
+		}
+		System.out.println("Number of cocurrent cores: " + unit);
 		
 		if (isFirstRun()) {
 			String settingsPath = getSettingsPath();

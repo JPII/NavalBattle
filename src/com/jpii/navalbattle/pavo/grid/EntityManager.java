@@ -47,9 +47,8 @@ public class EntityManager {
 		Graphics2D g = PavoHelper.createGraphics(grid);
 		g.setColor(Game.Settings.GridColor);
 		g.drawRect(1,1,49,49);
-		try
-		{
-		IndexableImage.populateStore(0, grid);
+		try {
+			IndexableImage.populateStore(0, grid);
 		}
 		catch (Exception ex) {}
 		entityRegister = new ArrayList<Integer>();
@@ -119,6 +118,7 @@ public class EntityManager {
 		Chunk chunk = w.getChunk(x, z);
 		int rx = c % 2;
 		int rz = r % 2;
+		//System.out.println("cresult="+t.getId().getMutexId());
 		if (rx == 0 && rz == 0)
 			chunk.Tile00 = t;
 		else if (rx != 0 && rz == 0)
@@ -184,6 +184,7 @@ public class EntityManager {
 			BufferedImage ab = PavoHelper.imgUtilFastCrop(horizontalImage, w * 50, 0, 50, 50);
 			IndexableImage.populateStore(new Id(swap,w).getMutexId(), ab);
 		}
+		//System.out.println("registered in system=" + new Id(swap,0).getMutexId());
 		lastid = swap;
 		return lastid;
 	}
