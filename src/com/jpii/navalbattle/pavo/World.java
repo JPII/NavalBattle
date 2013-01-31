@@ -189,7 +189,8 @@ public class World extends Renderable implements Interactable {
 		bufferLock = true;
 		long startDraw = System.currentTimeMillis();
 		if (lww != Game.Settings.currentWidth || lwh != Game.Settings.currentHeight) {
-			buffer = new BufferedImage(Game.Settings.currentWidth,Game.Settings.currentHeight,BufferedImage.TYPE_INT_RGB);
+			buffer = null;
+			buffer = new BufferedImage(Game.Settings.currentWidth,Game.Settings.currentHeight,BufferedImage.TYPE_3BYTE_BGR);
 			lww = Game.Settings.currentWidth;
 			lwh = Game.Settings.currentHeight;
 			makeNoise();

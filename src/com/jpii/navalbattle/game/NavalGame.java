@@ -174,7 +174,9 @@ public class NavalGame extends Game {
 		sb.setMouseTileLocation(chx,chy);
 		test.setGridLocation(chy, chx);
 		test.render();
-		getWorld().getEntityManager().getEntity(0).moveTo(PavoHelper.convertWorldToWorldSpace(getWorld(), me.getPoint()));
+		getWorld().getEntityManager().getEntity(0).moveTo(
+				PavoHelper.convertWorldSpaceToGridLocation(PavoHelper.convertScreenToWorldSpace(getWorld(), me.getPoint())));
+		//System.out.println("f"+getWorld().getEntityManager().getEntity(0).getWidth());
 	}
 	public void render() {
 		super.render();

@@ -92,7 +92,7 @@ public class Chunk extends Renderable {
 		//ready = false;
 		Random rp = new Random(Game.Settings.seed+(x&z)+x-z+(z|x));
 		rand = new Rand(rp.nextLong());
-		terrain = new BufferedImage(34,34,BufferedImage.TYPE_INT_RGB);
+		terrain = new BufferedImage(34,34,BufferedImage.TYPE_USHORT_555_RGB);
 		Graphics g = terrain.getGraphics();
 		int water00 = 0,water01 = 0,water10 = 0,water11 = 0;
 		for (int lsx = 0; lsx < 100/3; lsx++) {
@@ -171,7 +171,7 @@ public class Chunk extends Renderable {
 	 * Writes a value to the actual buffer.
 	 */
 	public void writeBuffer() {
-		buffer = new BufferedImage(100,100,BufferedImage.TYPE_INT_RGB);
+		buffer = new BufferedImage(100,100,BufferedImage.TYPE_3BYTE_BGR);
 		Graphics2D g = PavoHelper.createGraphics(buffer);
 		g.drawImage(terrain, 0, 0,103,103, null);
 		if (Tile00 != null || Tile10 != null || Tile11 != null || Tile01 != null) {

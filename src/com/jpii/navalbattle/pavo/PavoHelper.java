@@ -274,4 +274,13 @@ public class PavoHelper {
 			return b;
 		}
 	}
+	public static BufferedImage imgUtilMinimizeNoAlpha(BufferedImage src) {
+		if (src == null)
+			return null;
+		BufferedImage b = new BufferedImage(src.getWidth(), src.getHeight(), BufferedImage.TYPE_3BYTE_BGR);
+		Graphics2D g = (Graphics2D)b.getGraphics();
+		g.drawImage(src,0,0,null);
+		g.dispose();
+		return b;
+	}
 }

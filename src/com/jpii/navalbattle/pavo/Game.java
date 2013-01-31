@@ -229,6 +229,7 @@ public class Game extends Renderable implements Runnable {
 	public int getGenAmount() {
 		return 1;
 	}
+	int lkw = 0, lkh = 0;
 	/**
 	 * Renders the Game.
 	 */
@@ -236,7 +237,11 @@ public class Game extends Renderable implements Runnable {
 		long sjan = System.currentTimeMillis();
 		//for (int c = 0; c < 5; c++)
 			//System.gc();
-		buffer = new BufferedImage(Game.Settings.currentWidth,Game.Settings.currentHeight,BufferedImage.TYPE_INT_RGB);
+		if (lkw != Game.Settings.currentWidth || lkh != Game.Settings.currentHeight) {
+		buffer = new BufferedImage(Game.Settings.currentWidth,Game.Settings.currentHeight,BufferedImage.TYPE_3BYTE_BGR);
+		lkw = Game.Settings.currentWidth;
+		lkh = Game.Settings.currentHeight;
+		}
 		Graphics2D g = PavoHelper.createGraphics(buffer);
 		while (getWorld().isLocked()) {
 			
