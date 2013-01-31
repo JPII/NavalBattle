@@ -119,6 +119,8 @@ public class Entity {
 			return false;
 		if (loc == Location.Unknown) {
 			hideEntity();
+			
+			
 			return true;
 		}
 		Tile<Entity> t = manager.getTile(loc);
