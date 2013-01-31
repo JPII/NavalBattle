@@ -131,8 +131,10 @@ public class Entity {
 			return false;
 		for (int w = 0; w < getWidth(); w++) {
 			for (int h = 0; h < getHeight(); h++) {
-				Tile<Entity> ttmp = (Tile<Entity>)manager.getTile(h+getLocation().getRow(), w+getLocation().getCol());
-				manager.setTile(loc.getRow()+h, loc.getCol()+w,ttmp);
+				//Tile<Entity> ttmp = (Tile<Entity>)manager.getTile(h+getLocation().getRow(), w+getLocation().getCol());
+				Tile gd = new Tile(this,loc.getRow()+h, loc.getCol()+w);
+				gd.setId(new Id(id,w));
+				manager.setTile(loc.getRow()+h, loc.getCol()+w,gd);
 				//System.out.println("settile for " + w + "," + h);
 			}
 		}
