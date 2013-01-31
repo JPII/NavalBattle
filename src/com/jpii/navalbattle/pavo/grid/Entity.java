@@ -79,16 +79,10 @@ public class Entity {
 	public boolean moveTo(Location loc, boolean override) {
 		if (loc == null || loc == Location.Unknown)
 			return false;
-		for (int w = 0; w < getWidth(); w++) {
-			Tile t = manager.getTile(getLocation().getRow(),getLocation().getCol() + w);
-			Tile tile = new Tile(this, loc.getRow(), loc.getCol()+w);
-			tile.setId(new Id(id,w));
-			manager.setTile(loc.getRow(), loc.getCol()+w, tile);
-		}
-		/*Tile<Entity> t = manager.getTile(loc);
+		Tile<Entity> t = manager.getTile(loc);
 		if (t != null && ((t.getSuperId() != 0 || t.getEntity() != null) && override))
-			return false;*/
-		/*if (getWidth() + loc.getCol() + 1 >= PavoHelper.getGameWidth(manager.getWorld().getWorldSize())*2 ||
+			return false;
+		if (getWidth() + loc.getCol() + 1 >= PavoHelper.getGameWidth(manager.getWorld().getWorldSize())*2 ||
 				getHeight() + loc.getRow() + 1 >= PavoHelper.getGameHeight(manager.getWorld().getWorldSize())*2)
 			return false;
 		if (loc.getRow() < 0 || loc.getCol() < 0)
@@ -99,24 +93,16 @@ public class Entity {
 				manager.setTile(loc.getRow()+h, loc.getCol()+w,ttmp);
 				//System.out.println("settile for " + w + "," + h);
 			}
-		}*/
-		/*for (int w = 0; w < getWidth(); w++) {
-			for (int h = 0; h < getHeight(); h++) {
-				Tile<Entity> ttmp = (Tile<Entity>)manager.getTile(h+getLocation().getRow(), w+getLocation().getCol());
-				//manager.setTile(getLocation().getRow()+h, getLocation().getCol()+w,null);
-				//System.out.println("efretgfd");
-			}
-		}*/
-		//System.out.println("wincall");
-		setLocation(loc);
+		}
 		for (int w = 0; w < getWidth(); w++) {
 			for (int h = 0; h < getHeight(); h++) {
-				Tile t = new Tile(this,location.getRow()+h, location.getCol()+w);
-				t.setId(new Id(id,w));
-				manager.setTile(location.getRow()+h, location.getCol()+w, t);
+				Tile<Entity> ttmp = (Tile<Entity>)manager.getTile(h+getLocation().getRow(), w+getLocation().getCol());
+				manager.setTile(getLocation().getRow()+h, getLocation().getCol()+w,null);
 				//System.out.println("efretgfd");
 			}
 		}
+		//System.out.println("wincall");
+		setLocation(loc);
 		return true;
 	}
 	

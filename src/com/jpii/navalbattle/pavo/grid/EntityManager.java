@@ -116,6 +116,7 @@ public class EntityManager {
 		int x = c/2;
 		int z = r/2;
 		Chunk chunk = w.getChunk(x, z);
+		//chunk.poyching();
 		int rx = c % 2;
 		int rz = r % 2;
 		//System.out.println("cresult="+t.getId().getMutexId());
@@ -127,8 +128,9 @@ public class EntityManager {
 			chunk.Tile01 = t;
 		else if (rx != 0 && rz != 0)
 			chunk.Tile11 = t;
-		System.out.println("chunk at:" + x + "," + z);
-		chunk.needsBufferWrite();
+		//chunk.
+		//System.out.println("chunk at:" + x + "," + z);
+		chunk.writeBuffer();//needsBufferWrite();
 	}
 	public <T> void setTile(Location loc, Tile<T> t) {
 		setTile(loc.getRow(),loc.getCol(),t);
