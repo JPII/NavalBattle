@@ -47,6 +47,9 @@ public class Entity {
 		setId(superId);
 	}
 	
+	/**
+	 * Initialises the entity. This should never be called. If inheriting <code>Entity></code>, this method should probably be overriden.
+	 */
 	public void init() {
 		setWidth(1);
 		setHeight(1);
@@ -56,9 +59,27 @@ public class Entity {
 	 * Actions:
 	 */
 	
+	/**
+	 * Rotates the entity.
+	 * @param akamai The rotation to apply to the entity. (e.g. Location.HALF_CIRCLE).
+	 */
+	public void rotateTo(int akamai) {
+		if (akamai == Location.HALF_CIRCLE) {
+			
+		}
+	}
+	/**
+	 * Moves the entity to the specified location on the grid.
+	 * @param r The row to move the entity to.
+	 * @param c The column to move the entity to.
+	 */
 	public void moveTo(int r, int c) {
 		moveTo(new Location(r,c));
 	}
+	/**
+	 * Sets the genericied id of the entity. This shouldn't have to be called by the client.
+	 * @param id The identifier to set the entity to.
+	 */
 	public void setId(int id) {
 		this.id = id;
 		for (int w = 0; w < getWidth(); w++) {
@@ -70,12 +91,29 @@ public class Entity {
 			}
 		}
 	}
+	/**
+	 * Moves the entity to the specified location on the grid.
+	 * @param loc The location to move the entity to.
+	 */
 	public void moveTo(Location loc) {
 		moveTo(loc,true);
 	}
+	/**
+	 * Moves the entity to the specified location on the grid.
+	 * @param r The row to move the entity to.
+	 * @param c The column to move the entity to.
+	 * @param override Should current entities at that location be overidden?
+	 * @return A value indicating if the operation was sucessfull.
+	 */
 	public boolean moveTo(int r, int c, boolean override) {
 		return moveTo(new Location(r,c),override);
 	}
+	/**
+	 * Moves the entity to the specified location on the grid.
+	 * @param loc The location to move the entity to.
+	 * @param override Should current entities at that location be overriden?
+	 * @return A value indicating if the operation was sucessfull.
+	 */
 	public boolean moveTo(Location loc, boolean override) {
 		if (loc == null || loc == Location.Unknown)
 			return false;
@@ -106,6 +144,9 @@ public class Entity {
 		return true;
 	}
 	
+	/**
+	 * Gets rid of the entity.
+	 */
 	public void truncate() {
 		if (getLocation() == null || getLocation() == Location.Unknown)
 			return;
@@ -114,6 +155,9 @@ public class Entity {
 		manager.setTile(getLocation(), t);
 	}
 	
+	/**
+	 * Same as <code>truncate()</code>.
+	 */
 	public void dispose() {
 		truncate();
 	}
