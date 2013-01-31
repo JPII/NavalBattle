@@ -38,8 +38,8 @@ public class BattleShip extends Entity {
 	public void onUpdate() {
 		int r = 1;
 		int c = 1;
-		//if(Game.Settings.isFinishedGenerating)
-			//moveTo(r+getLocation().getRow(),c+getLocation().getCol());
+		if(Game.Settings.isFinishedGenerating && Game.Settings.rand.nextInt(0,20) == 2)
+			moveTo(r+getLocation().getRow(),c+getLocation().getCol());
 	}
 
 }
