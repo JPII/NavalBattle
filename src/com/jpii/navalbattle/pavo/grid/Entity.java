@@ -115,8 +115,12 @@ public class Entity {
 	 * @return A value indicating if the operation was sucessfull.
 	 */
 	public boolean moveTo(Location loc, boolean override) {
-		if (loc == null || loc == Location.Unknown)
+		if (loc == null)
 			return false;
+		if (loc == Location.Unknown) {
+			hideEntity();
+			return true;
+		}
 		Tile<Entity> t = manager.getTile(loc);
 		if (t != null && ((t.getSuperId() != 0 || t.getEntity() != null) && override))
 			return false;
@@ -143,6 +147,16 @@ public class Entity {
 		setLocation(loc);
 		manager.getWorld().forceRender();
 		return true;
+	}
+	
+	private void hideEntity() {
+		for (int w = 0; w < getWidth(); w++) {
+			for (int h = 0; h < getHeight(); h++) {
+				Tile<Entity> ttmp = (Tile<Entity>)manager.getTile(h+getLocation().getRow(), w+getLocation().getCol());
+				manager.setTile(getLocation().getRow()+h, getLocation().getCol()+w,null);
+				//System.out.println("efretgfd");
+			}
+		}
 	}
 	
 	/**
