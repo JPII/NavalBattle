@@ -141,6 +141,7 @@ public class Entity {
 		}
 		//System.out.println("wincall");
 		setLocation(loc);
+		manager.getWorld().forceRender();
 		return true;
 	}
 	
