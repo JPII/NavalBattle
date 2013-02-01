@@ -70,7 +70,6 @@ public class GridWindow extends GameWindow {
 		if (game.getWorld().getEntityManager() == null)
 			return;
 		if (Location.validate(local)) {
-			try{
 		if (game.getWorld().getEntityManager().isTileFilledWithWater(local.getRow(),local.getCol())) {
 			g.drawString("Tile has water.", 10, 60);
 		}
@@ -82,9 +81,5 @@ public class GridWindow extends GameWindow {
 		}
 		g.drawString("Percent land " + game.getWorld().getEntityManager().getTilePercentLand(local.getRow(),local.getCol()) + "%", 10, 100);
 		}
-			catch (Throwable t) {
-				
-			}
 	}
-}
 }
