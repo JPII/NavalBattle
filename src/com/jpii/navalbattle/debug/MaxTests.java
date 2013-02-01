@@ -23,6 +23,7 @@ import com.jpii.navalbattle.io.SettingsReader;
 import com.jpii.navalbattle.pavo.FastMath;
 import com.jpii.navalbattle.pavo.Game;
 import com.jpii.navalbattle.pavo.PavoHelper;
+import com.jpii.navalbattle.pavo.PavoSettings;
 import com.jpii.navalbattle.util.FileUtils;
 import com.jpii.navalbattle.util.GrammarManager;
 
@@ -54,7 +55,6 @@ public class MaxTests {
 		for (int c = 0; c < 3; c++) {
 			System.out.println(GrammarManager.generateFullName(r.nextInt()));
 		}
-		System.out.println("Seed:" + Game.Settings.seed);
 		
 		System.out.println("Measured system speed as: "+PavoHelper.getCalculatedSystemSpeed().toString());
 		int unit = Runtime.getRuntime().availableProcessors();

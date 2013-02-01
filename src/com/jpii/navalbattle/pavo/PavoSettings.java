@@ -37,7 +37,7 @@ public class PavoSettings {
 	public int initialHeight = Toolkit.getDefaultToolkit().getScreenSize().height;
 	public int currentWidth = initialWidth;
 	public int currentHeight = initialHeight;
-	public long seed = (((long)Math.random()) * (Long.MAX_VALUE - 1));// 234,162,130 are good seeds.
+	public long seed = (((long)Math.random()) * (Integer.MAX_VALUE-5));// 234,162,130 are good seeds.
 	public Rand rand = new Rand(seed);
 	public boolean OverClock = true;
 	public boolean isGameFullscreen = false;

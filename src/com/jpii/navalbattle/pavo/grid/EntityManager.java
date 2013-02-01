@@ -28,7 +28,7 @@ import com.jpii.navalbattle.pavo.PavoHelper;
 import com.jpii.navalbattle.pavo.World;
 
 public class EntityManager {
-	private int[][] tileAccessor;
+	private byte[][] tileAccessor;
 	//private Tile[][] ent;
 	private World w;
 	private ArrayList<Integer> entityRegister;
@@ -54,7 +54,7 @@ public class EntityManager {
 		entityRegister = new ArrayList<Integer>();
 		entityRegister.add(0);
 		//System.out.println(Integer.bitCount(IndexableImage.getStoreSize())+"."+Integer.toHexString(IndexableImage.getStoreSize())+"swapspace");
-		tileAccessor = new int[PavoHelper.getGameWidth(w.getWorldSize())*2][PavoHelper.getGameHeight(w.getWorldSize())*2];
+		tileAccessor = new byte[PavoHelper.getGameWidth(w.getWorldSize())*2][PavoHelper.getGameHeight(w.getWorldSize())*2];
 	}
 	public void update(long ticksPassed) {
 		//System.out.println(Integer.bitCount(IndexableImage.getStoreSize())+"."+Integer.toHexString(IndexableImage.getStoreSize()));
@@ -178,7 +178,7 @@ public class EntityManager {
 	 * @return
 	 */
 	public int getTilePercentLand(int r, int c) {
-		return (int)(tileAccessor[c][r] * 0.4);
+		return tileAccessor[c][r];
 	}
 	public static int lastid = 0;
 	public <T> int registerEntity(BufferedImage horizontalImage) {
@@ -210,7 +210,7 @@ public class EntityManager {
 	 * @param traKQ91 Don't play with this.
 	 */
 	public void AQms03KampOQ9103nmJMs(int snJMkqmd, int cKQK91nm38910JNFEWo, int traKQ91) {
-		tileAccessor[cKQK91nm38910JNFEWo][snJMkqmd] = traKQ91;//mjMo1091(cKQK91nm38910JNFEWo, traKQ91);
+		tileAccessor[cKQK91nm38910JNFEWo][snJMkqmd] = (byte)(((traKQ91 * 0.4)*100)/108);//mjMo1091(cKQK91nm38910JNFEWo, traKQ91);
 	}
 	/**
 	 * Get the world instance for the Entity Manager.
