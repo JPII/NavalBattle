@@ -101,6 +101,16 @@ public class Chunk extends Renderable {
 				byte slip = ProceduralLayeredMapGenerator.getValidHouse((int)(lsx+(100.0f/3.0f*x)), (int)(lsz+(100.0f/3.0f*z)));
 				float lsy = frsh;
 				int nawo = rand.nextInt(-5, 8);
+				if (lsy >= 0.4) {
+					if (lsx < 16.6666666666666666 && lsz < 16.666666666666666)
+						water00 += 1;
+					else if (lsx >= 16.666666666666 && lsz < 16.666666666666666)
+						water10 += 1;
+					else if (lsx < 16.666666666666 && lsz >= 16.666666666666666)
+						water01 += 1;
+					else if (lsx >= 16.666666666666 && lsz >= 16.666666666666666)
+						water11 += 1;
+				}
 				if (lsy < 0.4) {
 					int rgs = Helper.colorSnap((int)(lsy*102));
 					g.setColor(new Color(63+rand.nextInt(-7,7),60+rand.nextInt(-7,7),rand.nextInt(90, 100)+rgs));
@@ -119,14 +129,6 @@ public class Chunk extends Renderable {
 					g.setColor(base1);
 					//Color start = Helper.adjust(Helper.randomise(RenderConstants.GEN_SAND_COLOR,7
 	                        ///*RenderConstants.GEN_COLOR_DIFF*/, rand, false), ((lsy-0.4)/0.1), 50);
-					if (lsx < 16.6666666666666666 && lsz < 16.666666666666666)
-						water00 += 1;
-					else if (lsx >= 16.666666666666 && lsz < 16.666666666666666)
-						water10 += 1;
-					else if (lsx < 16.666666666666 && lsz >= 16.666666666666666)
-						water01 += 1;
-					else if (lsx >= 16.666666666666 && lsz >= 16.666666666666666)
-						water11 += 1;
 				}
 				else{
 					Color base1 = PavoHelper.Lerp(new Color(52,79,13),new Color(100,92,40),((lsy-0.55)/0.45));
@@ -142,14 +144,6 @@ public class Chunk extends Renderable {
 					//System.out.println(frsh);
 					//g.setColor(Helper.adjust(Helper.randomise(new Color(40,61,4),
 	                  //      RenderConstants.GEN_COLOR_DIFF, rand, false), ((lsy-0.6)/0.3), 40));
-					if (lsx < 16.6666666666666666 && lsz < 16.666666666666666)
-						water00 += 1;
-					else if (lsx >= 16.666666666666 && lsz < 16.666666666666666)
-						water10 += 1;
-					else if (lsx < 16.666666666666 && lsz >= 16.666666666666666)
-						water01 += 1;
-					else if (lsx >= 16.666666666666 && lsz >= 16.666666666666666)
-						water11 += 1;
 				}
 				g.drawLine(lsx,lsz,lsx,lsz);
 				if (slip > 0) {
@@ -160,8 +154,8 @@ public class Chunk extends Renderable {
 			}
 		}
 		w.getEntityManager().AQms03KampOQ9103nmJMs((getZ()*2), (getX()*2), water00);
-		w.getEntityManager().AQms03KampOQ9103nmJMs((getZ()*2)+1, (getX()*2), water10);
-		w.getEntityManager().AQms03KampOQ9103nmJMs((getZ()*2), (getX()*2)+1, water01);
+		w.getEntityManager().AQms03KampOQ9103nmJMs((getZ()*2)+1, (getX()*2), water01);
+		w.getEntityManager().AQms03KampOQ9103nmJMs((getZ()*2), (getX()*2)+1, water10);
 		w.getEntityManager().AQms03KampOQ9103nmJMs((getZ()*2)+1, (getX()*2)+1, water11);
 		writeBuffer();
 		//ready = true;

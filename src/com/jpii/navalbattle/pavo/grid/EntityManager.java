@@ -178,7 +178,7 @@ public class EntityManager {
 	 * @return
 	 */
 	public int getTilePercentLand(int r, int c) {
-		return tileAccessor[c][r] * 100 / 2500;
+		return (int)(tileAccessor[c][r] * 0.4);
 	}
 	public static int lastid = 0;
 	public <T> int registerEntity(BufferedImage horizontalImage) {

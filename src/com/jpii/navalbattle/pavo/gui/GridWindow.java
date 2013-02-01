@@ -79,6 +79,7 @@ public class GridWindow extends GameWindow {
 		if (game.getWorld().getEntityManager().getTile(local) != null && game.getWorld().getEntityManager().getTile(local).getEntity() instanceof BattleShip) {
 			g.drawString("Tile is part of a battleship.", 10, 80);
 		}
+		g.drawString("Percent land " + game.getWorld().getEntityManager().getTilePercentLand(local.getRow(),local.getCol()) + "%", 10, 100);
 		}
 	}
 }
