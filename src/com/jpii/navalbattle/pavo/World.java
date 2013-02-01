@@ -225,7 +225,7 @@ public class World extends Renderable implements Interactable {
 						else {
 							if (chunk.needsBufferWrite())
 								chunk.writeBuffer();
-							if (chunk.getBuffer() != null && x >= 0 && z >= 0)
+							if (chunk.getBuffer() != null)
 								g.drawImage(chunk.getBuffer(), sx+(x*100),sy+(z*100),null);
 						}
 						//chunk.unlock();
