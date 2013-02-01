@@ -110,6 +110,8 @@ public class PavoHelper {
 		if (px-sx+100 >= 0 && py-sy+100 >= 0 && px-sx <= Game.Settings.currentWidth && py-sy <= Game.Settings.currentHeight){
 			return true;
 		}
+		else if ((px == 0 && w.getScreenX() <= 200) || (py == 0 && w.getScreenY() <= 200))
+			return true;
 		else
 			return false;
 	}

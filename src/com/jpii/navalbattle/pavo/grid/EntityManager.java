@@ -166,7 +166,7 @@ public class EntityManager {
 	 * @return
 	 */
 	public boolean isTileFilledWithWater(int r, int c) {
-		if (r < 0 || r > PavoHelper.getGameHeight(w.getWorldSize())*2 || c < 0 || c > PavoHelper.getGameWidth(w.getWorldSize())*2)
+		if (r < 0 || r >= PavoHelper.getGameHeight(w.getWorldSize())*2 || c < 0 || c >= PavoHelper.getGameWidth(w.getWorldSize())*2)
 			return false;
 		return tileAccessor[c][r] <= 8;
 	}
