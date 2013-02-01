@@ -17,11 +17,17 @@
 
 package com.jpii.navalbattle;
 
+import java.io.ByteArrayOutputStream;
+
 import javax.swing.UIManager.*;
 import javax.swing.*;
 
 import com.jpii.navalbattle.data.*;
 import com.jpii.navalbattle.debug.*;
+import com.jpii.navalbattle.game.HookStream;
+import com.jpii.navalbattle.game.SinglePlayerGame;
+import com.jpii.navalbattle.gui.Window;
+import com.jpii.navalbattle.pavo.Game;
 import com.jpii.navalbattle.renderer.*;
 
 import com.roketgamer.RoketGamer;
@@ -38,12 +44,21 @@ public class NavalBattle {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		// Debug purposes
-		MaxTests.run();
+		Runtime.getRuntime().addShutdownHook(new Thread(new Runnable() {
+		    public void run() {
+		    	onShutdown();
+		    }
+		}));
+		
 		
 		Helper.LoadStaticResources();
 		setDefaultLookAndFeel();
 		debugWindow = new DebugWindow();
+		System.setOut(new HookStream(new ByteArrayOutputStream()));
+		
+		// Debug purposes
+		MaxTests.run();
+		
 		debugWindow.setVisible(true);
 		gameState = new GameState();
 		roketGamer = new RoketGamer();
@@ -51,6 +66,27 @@ public class NavalBattle {
 		windowHandler = new WindowHandler();
 		
 		windowHandler.windows.get(windowHandler.windows.size()-1).setVisible(true);
+	}
+	
+	public static void onShutdown() {
+		for (int c = 0; c < windowHandler.windows.size(); c++) {
+			Window w = windowHandler.windows.get(c);
+			if (w != null) {
+				if (w instanceof SinglePlayerGame) {
+					SinglePlayerGame spg = (SinglePlayerGame)w;
+					Game g = spg.game.getGame();
+					System.out.println("Calling game shutdown.");
+					g.onShutdown();
+				}
+			}
+		}
+		System.out.println("Game is closing.");
+		try {
+			Thread.currentThread().sleep(250);
+		}
+		catch (Throwable t) {
+			
+		}
 	}
 	
 	/**

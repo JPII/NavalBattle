@@ -19,11 +19,13 @@ package com.jpii.navalbattle.debug;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.io.OutputStream;
 import java.util.ArrayList;
 import javax.swing.*;
 
 import com.jpii.navalbattle.data.Commands;
 import com.jpii.navalbattle.data.Constants;
+import com.jpii.navalbattle.game.HookStream;
 import com.jpii.navalbattle.gui.Window;
 import com.jpii.navalbattle.gui.listeners.Focus;
 
@@ -34,6 +36,8 @@ public class DebugWindow extends Window {
 	private JTextPane debugPrinter;
 	private JTextField commandField;
 	private boolean paused = false;
+	
+	private OutputStream stream;
 	
 	private CommandHandler commandHandler;
 	private ArrayList<String> resume;
@@ -92,6 +96,7 @@ public class DebugWindow extends Window {
 		commandField.addFocusListener(new Focus(this));
 		commandField.grabFocus();
 		resume();
+		
 	}
 	
 	/**

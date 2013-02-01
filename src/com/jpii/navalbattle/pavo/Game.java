@@ -378,4 +378,7 @@ public class Game extends Renderable implements Runnable {
 	public void mouseHeldDown(MouseEvent me) {
 		
 	}
+	public void onShutdown() {
+		
+	}
 }

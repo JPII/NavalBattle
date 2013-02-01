@@ -146,6 +146,9 @@ public class GameComponent extends JComponent {
 		else
 			notifier = null;
 	}
+	public Game getGame() {
+		return game;
+	}
 	public void toggleFullscreen() {
 		if (isFullscreen) {
 			isFullscreen = false;
