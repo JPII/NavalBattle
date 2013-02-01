@@ -251,7 +251,10 @@ public class Location
      * (row, col)
      */
     public String toString() {
-        return "(" + getRow() + ", " + getCol() + ")";
+    	if (isUnknown())
+    		return "Imaginary space @"+super.toString();
+    	else
+    		return "(" + getRow() + ", " + getCol() + ") @"+super.toString();
     }
     
     
