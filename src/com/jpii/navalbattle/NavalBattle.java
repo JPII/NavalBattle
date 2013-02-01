@@ -69,6 +69,7 @@ public class NavalBattle {
 	}
 	
 	public static void onShutdown() {
+		try {
 		for (int c = 0; c < windowHandler.windows.size(); c++) {
 			Window w = windowHandler.windows.get(c);
 			if (w != null) {
@@ -85,6 +86,10 @@ public class NavalBattle {
 			Thread.currentThread().sleep(250);
 		}
 		catch (Throwable t) {
+			
+		}
+		}
+		catch (Throwable whoho) {
 			
 		}
 	}

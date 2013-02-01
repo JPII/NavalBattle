@@ -148,9 +148,11 @@ public class Entity {
 				//System.out.println("efretgfd");
 			}
 		}
+		Location swap2 = getLocation();
 		//System.out.println("wincall");
 		setLocation(loc);
 		manager.getWorld().forceRender();
+		onMove(swap2);
 		return true;
 	}
 	

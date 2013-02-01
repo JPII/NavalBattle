@@ -41,5 +41,7 @@ public class BattleShip extends Entity {
 		if(Game.Settings.isFinishedGenerating && Game.Settings.rand.nextInt(0,20) == 2)
 			moveTo(r+getLocation().getRow(),c+getLocation().getCol());
 	}
-
+	public void onMouseMove(int x, int y) {
+		System.out.println("The battleship was hovered over. (" + x + "," + y + ")");
+	}
 }
