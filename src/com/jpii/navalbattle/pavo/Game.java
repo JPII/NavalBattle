@@ -360,6 +360,8 @@ public class Game extends Renderable implements Runnable {
 				e.getEntity().onMouseMove(acuratex,acuratey);
 			}
 		}
+		lastmx = me.getX();
+		lastmy = me.getY();
 	}
 	Timer mouseLogicTimer = new Timer();
 	TimerTask mouseLogicTask = new $$$MouseLogicTimer();
@@ -369,10 +371,27 @@ public class Game extends Renderable implements Runnable {
 	        mouseHeldDown(mouseEventSchedule);
 	    }
 	}
+	int lastmx = 0,lastmy = 0;
 	public void mouseDown(MouseEvent me) {
 		mouseEventSchedule = me;
 		mouseLogicTask = new $$$MouseLogicTimer();
 		mouseLogicTimer.scheduleAtFixedRate(mouseLogicTask, 0, 10);
+		int chx = (-getWorld().getScreenX()) + lastmx;
+		int chy = (-getWorld().getScreenY()) + lastmy; 
+		chx /= 50;
+		chy /= 50;
+		if (chx < PavoHelper.getGameWidth(getWorld().getWorldSize()) * 2 && chy < PavoHelper.getGameHeight(getWorld().getWorldSize()) * 2 &&
+		chx >= 0 && chy >= 0) {
+			Tile<Entity> e = getWorld().getEntityManager().getTile(chy,chx);
+			if (e != null) {
+				int acuratex = (-getWorld().getScreenX()) + lastmx - (chx*50);
+				int acuratey = (-getWorld().getScreenY()) + lastmy - (chy*50);
+				Location l = e.getEntity().getLocation();
+				acuratex += (chx - l.getCol())*50;
+				acuratey += (chy - l.getRow())*50;
+				e.getEntity().onMouseDown(acuratex,acuratey,me.getButton() == MouseEvent.BUTTON1);
+			}
+		}
 	}
 	public void mouseUp(MouseEvent me) {
 		mouseLogicTask.cancel();
