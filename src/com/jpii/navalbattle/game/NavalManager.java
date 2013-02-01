@@ -11,6 +11,7 @@ import com.jpii.navalbattle.pavo.PavoHelper;
 import com.jpii.navalbattle.pavo.World;
 import com.jpii.navalbattle.pavo.grid.Entity;
 import com.jpii.navalbattle.pavo.grid.EntityManager;
+import com.jpii.navalbattle.pavo.grid.Location;
 import com.jpii.navalbattle.util.FileUtils;
 
 /**

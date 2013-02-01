@@ -3,10 +3,10 @@
  */
 package com.jpii.navalbattle.game.entity;
 
-import com.jpii.navalbattle.game.Location;
 import com.jpii.navalbattle.pavo.Game;
 import com.jpii.navalbattle.pavo.grid.Entity;
 import com.jpii.navalbattle.pavo.grid.EntityManager;
+import com.jpii.navalbattle.pavo.grid.Location;
 
 /**
  * @author maximusvladimir

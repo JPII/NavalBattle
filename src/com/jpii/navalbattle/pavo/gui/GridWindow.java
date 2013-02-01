@@ -17,10 +17,10 @@ import java.util.jar.JarFile;
 
 import sun.reflect.Reflection;
 
-import com.jpii.navalbattle.game.Location;
 import com.jpii.navalbattle.game.entity.BattleShip;
 import com.jpii.navalbattle.pavo.Game;
 import com.jpii.navalbattle.pavo.PavoHelper;
+import com.jpii.navalbattle.pavo.grid.Location;
 
 /**
  * @author maximusvladimir

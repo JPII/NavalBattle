@@ -28,8 +28,8 @@ import java.awt.MultipleGradientPaint.CycleMethod;
 import java.awt.geom.Point2D;
 import java.awt.image.BufferedImage;
 
-import com.jpii.navalbattle.game.Location;
 import com.jpii.navalbattle.pavo.grid.Entity;
+import com.jpii.navalbattle.pavo.grid.Location;
 
 /**
  * 

@@ -21,7 +21,6 @@ import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
-import com.jpii.navalbattle.game.Location;
 import com.jpii.navalbattle.pavo.Chunk;
 import com.jpii.navalbattle.pavo.Game;
 import com.jpii.navalbattle.pavo.PavoHelper;

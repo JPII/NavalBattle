@@ -28,8 +28,8 @@ import java.util.TimerTask;
 
 
 import com.jpii.navalbattle.data.Constants;
-import com.jpii.navalbattle.game.Location;
 import com.jpii.navalbattle.pavo.grid.Entity;
+import com.jpii.navalbattle.pavo.grid.Location;
 import com.jpii.navalbattle.pavo.grid.Tile;
 import com.jpii.navalbattle.pavo.gui.GameWindow;
 import com.jpii.navalbattle.pavo.gui.GridWindow;
