@@ -38,7 +38,7 @@ public class Chunk extends Renderable {
 	boolean generated = false;
 	public Tile Tile00, Tile10, Tile01,Tile11;
 	static Perlin p = new Perlin(Game.Settings.rand.nextLong(),0,0);
-	Rand rand = new Rand();
+	static Rand rand = new Rand();
 	World w;
 	BufferedImage terrain;
 	/**
