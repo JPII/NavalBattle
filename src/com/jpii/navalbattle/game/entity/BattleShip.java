@@ -44,4 +44,7 @@ public class BattleShip extends Entity {
 	public void onMouseMove(int x, int y) {
 		System.out.println("The battleship was hovered over. (" + x + "," + y + ")");
 	}
+	public void onMouseDown(int x, int y, boolean leftbutton) {
+		System.out.println("The battleship was clicked on. Left mouse button? " + leftbutton + " (" + x + "," + y + ")");
+	}
 }
