@@ -22,7 +22,6 @@ import javax.swing.*;
 
 import com.jpii.navalbattle.data.*;
 import com.jpii.navalbattle.debug.*;
-import com.jpii.navalbattle.pavo.Game;
 import com.jpii.navalbattle.renderer.*;
 
 import com.roketgamer.RoketGamer;
@@ -52,8 +51,6 @@ public class NavalBattle {
 		windowHandler = new WindowHandler();
 		
 		windowHandler.windows.get(windowHandler.windows.size()-1).setVisible(true);
-		
-		System.out.println("Seed:" + Game.Settings.seed);
 	}
 	
 	/**

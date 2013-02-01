@@ -55,6 +55,7 @@ public class MaxTests {
 		for (int c = 0; c < 3; c++) {
 			System.out.println(GrammarManager.generateFullName(r.nextInt()));
 		}
+		System.out.println("Seed:" + Game.Settings.seed);
 		
 		System.out.println("Measured system speed as: "+PavoHelper.getCalculatedSystemSpeed().toString());
 		int unit = Runtime.getRuntime().availableProcessors();
