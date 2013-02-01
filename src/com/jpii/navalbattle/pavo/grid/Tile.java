@@ -11,7 +11,6 @@ package com.jpii.navalbattle.pavo.grid;
  */
 public class Tile<T> {
 	T parent;
-	Entity ent;
 	Id id;
 	public Tile(T parent, int r, int c) {
 		this.parent = parent;

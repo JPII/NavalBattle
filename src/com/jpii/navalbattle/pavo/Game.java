@@ -63,7 +63,7 @@ public class Game extends Renderable implements Runnable {
 		world = new World();
 		gen = new WorldGen();
 		threadInit();
-		buffer = new BufferedImage(Game.Settings.currentWidth,Game.Settings.currentHeight,BufferedImage.TYPE_INT_RGB);
+		buffer = new BufferedImage(Game.Settings.currentWidth,Game.Settings.currentHeight,BufferedImage.TYPE_3BYTE_BGR);
 		world.getWeather().setWeather(WeatherMode.Sunny);
 		shadow = PavoHelper.createInnerShadow(Game.Settings.currentWidth,Game.Settings.currentHeight);
 	}
@@ -190,6 +190,9 @@ public class Game extends Renderable implements Runnable {
 					}
 					catch (Throwable t) {
 						
+					}
+					for (int c = 0; c < 5; c++) {
+						System.gc();
 					}
 					getWorld().getEntityManager().gameDoneGenerating();
 				}

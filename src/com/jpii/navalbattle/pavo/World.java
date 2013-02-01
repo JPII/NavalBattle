@@ -62,7 +62,7 @@ public class World extends Renderable implements Interactable {
 			}
 		}
 		generated = new boolean[chunks.length];
-		buffer = new BufferedImage(Game.Settings.currentWidth,Game.Settings.currentHeight,BufferedImage.TYPE_INT_RGB);
+		buffer = new BufferedImage(Game.Settings.currentWidth,Game.Settings.currentHeight,BufferedImage.TYPE_3BYTE_BGR);
 		makeNoise();
 		wm = new WeatherManager();
 	}
@@ -82,7 +82,7 @@ public class World extends Renderable implements Interactable {
 		return zlevel;
 	}
 	public void makeNoise(){
-		noise = new BufferedImage(Game.Settings.currentWidth,Game.Settings.currentHeight,BufferedImage.TYPE_INT_RGB);
+		noise = new BufferedImage(Game.Settings.currentWidth,Game.Settings.currentHeight,BufferedImage.TYPE_3BYTE_BGR);
 		Rand ras = new Rand(Game.Settings.seed+22);
 		Graphics gs2 = noise.getGraphics(); // Q and D
 		for (int x = 0; x < Game.Settings.currentWidth; x+= 2) {
