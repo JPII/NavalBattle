@@ -25,7 +25,7 @@ public class AnimatedEntity extends Entity {
 	}
 	
 	public void setCurrentFrame(int index) {
-		if (index > getTotalFrames())
+		if (index >= getTotalFrames())
 			throw new java.lang.ArrayIndexOutOfBoundsException("The indicated frame is not in the given range of frames.");
 		setId(animationids[index]);
 	}

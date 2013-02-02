@@ -44,7 +44,7 @@ public class NavalManager extends EntityManager {
 	public void gameDoneGenerating() {
 		BattleShip e = new BattleShip(this,new Location(7,3),battleShipId);
 		e.moveTo(7, 3);
-		//System.out.println("let me play you the song of my people.");
+		System.out.println("Let me play you the song of my people.");
 	}
 	
 	public void update(long ticksPassed) {
