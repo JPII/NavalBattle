@@ -8,9 +8,10 @@ true
 
 *~
 *.class
-*jcp
-*jcu
-*jcw
+*.jcp
+*.jcu
+*.jcw
+*.log
 
 target/*
 bin/*
