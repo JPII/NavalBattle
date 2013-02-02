@@ -26,6 +26,7 @@ public class Whale extends AnimatedEntity {
 	long ticks = 0;
 	int nextIndex = 0;
 	public void onUpdate() {
+		super.onUpdate();
 		ticks++;
 		if (ticks % 5 == 0) {
 			setCurrentFrame(nextIndex++);

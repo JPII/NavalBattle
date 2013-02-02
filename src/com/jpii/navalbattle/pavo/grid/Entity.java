@@ -90,6 +90,7 @@ public class Entity {
 				//System.out.println("efretgfd");
 			}
 		}
+		manager.getWorld().forceRender();
 	}
 	/**
 	 * Moves the entity to the specified location on the grid.

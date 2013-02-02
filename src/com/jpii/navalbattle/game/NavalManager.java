@@ -6,6 +6,7 @@ package com.jpii.navalbattle.game;
 import java.awt.Color;
 
 import com.jpii.navalbattle.game.entity.BattleShip;
+import com.jpii.navalbattle.game.entity.Whale;
 import com.jpii.navalbattle.pavo.Game;
 import com.jpii.navalbattle.pavo.PavoHelper;
 import com.jpii.navalbattle.pavo.World;
@@ -37,6 +38,7 @@ public class NavalManager extends EntityManager {
 		else {
 			System.out.println("not a battleship");
 		}
+		Whale whale1 = new Whale(this, new Location(5,5),w1,w2,w3);
 	}
 	
 	public void gameDoneGenerating() {
@@ -48,7 +50,7 @@ public class NavalManager extends EntityManager {
 	public void update(long ticksPassed) {
 		for (int c = 0; c < this.getTotalEntities(); c++) {
 			Entity e = getEntity(c);
-			if (e != null && e instanceof BattleShip) {
+			if (e != null){ //&& e instanceof BattleShip) {
 				e.onUpdate();
 			}
 		}

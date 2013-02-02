@@ -20,7 +20,7 @@ public class AnimatedEntity extends Entity {
 	 * @param animationFrameIds The animation frame sequences.
 	 */
 	public AnimatedEntity(EntityManager em, Location loc, int... animationFrameIds) {
-		super(em, loc, animationFrameIds[0]);
+		super(em, loc, animationFrameIds[1]);
 		animationids = animationFrameIds;
 	}
 	
