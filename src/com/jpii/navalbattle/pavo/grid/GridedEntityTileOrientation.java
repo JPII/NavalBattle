@@ -9,7 +9,6 @@ public class GridedEntityTileOrientation {
 	private short[] INDICES = new short[4];
 	
 	public GridedEntityTileOrientation() {
-		
 	}
 	
 	public void setLeftToRightImage(short storeId) {

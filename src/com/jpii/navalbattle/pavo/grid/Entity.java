@@ -63,8 +63,17 @@ public class Entity {
 	 * Rotates the entity.
 	 * @param akamai The rotation to apply to the entity. (e.g. Location.HALF_CIRCLE).
 	 */
-	public void rotateTo(int akamai) {
-		if (akamai == Location.HALF_CIRCLE) {
+	public void rotateTo(short akamai) {
+		if (akamai == GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT) {
+			
+		}
+		else if (akamai == GridedEntityTileOrientation.ORIENTATION_TOPTOBOTTOM) {
+			
+		}
+		else if (akamai == GridedEntityTileOrientation.ORIENTATION_RIGHTTOLEFT) {
+			
+		}
+		else if (akamai == GridedEntityTileOrientation.ORIENTATION_BOTTOMTOTOP) {
 			
 		}
 	}
