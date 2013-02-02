@@ -246,7 +246,7 @@ public class Entity {
 		
 	}
 	
-	public void onUpdate() {
+	public void onUpdate(long tickTime) {
 		
 	}
 }
