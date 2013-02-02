@@ -1,0 +1,38 @@
+<resources>
+    <!-- Global strings -->
+	<string name="global_game_title">"NavalBattle"</string>
+	<string name="global_yes">"Да "</string>
+	<string name="global_no">"нет"</string>
+	<string name="global_close">"выход"</string>
+	<string name="global_back">"Назад"</string>
+	
+	<!-- Toast strings -->
+	<string name="toast_offline_mode">"Aвтономном режиме активирована"</string>
+	<string name="toast_popup_closed">"Интерфейс закрыто"</string>
+	
+	<!-- LoginWindow strings -->
+	<string name="login_username">"имя ящика"</string>
+	<string name="login_password">"пароль"</string>
+	<string name="login_offline">"автономно"</string>
+	<string name="login_register">"Регистрация"</string>
+	<string name="login_login">"вход"</string>
+	<string name="login_options">"Опции"</string>
+	<string name="login_exit">"конец"</string>
+	
+	<!-- MainMenuWindow strings -->
+	<string name="mainmenu_singleplayer">"Oдного игрока"</string>
+	<string name="mainmenu_multiplayer">"несколько игроков"</string>
+	<string name="mainmenu_help">"Справка"</string>
+	<string name="mainmenu_roketgamer">"RoketGamer"</string>
+	<string name="mainmenu_quit">"выход"</string>
+	<string name="mainmenu_credits">"Титры"</string>
+	
+	<!-- HelpWindow strings -->
+	<string name="help_title">"NavalBattle Справка"</string>
+	<string name="help_subtitle">"YouTube учебник"</string>
+	<string name="help_overview">"конец"</string>
+	<string name="help_combat">"Бой"</string>
+	<string name="help_upgrades">"{0}Обновление.{/0} {1} {/1} "</string>
+	<string name="help_multiplayer">"несколько игроков"</string>
+	<string name="help_roketgamer">"RoketGamer"</string>
+</resources>
