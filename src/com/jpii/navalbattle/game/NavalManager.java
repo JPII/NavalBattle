@@ -12,6 +12,7 @@ import com.jpii.navalbattle.pavo.PavoHelper;
 import com.jpii.navalbattle.pavo.World;
 import com.jpii.navalbattle.pavo.grid.Entity;
 import com.jpii.navalbattle.pavo.grid.EntityManager;
+import com.jpii.navalbattle.pavo.grid.GridHelper;
 import com.jpii.navalbattle.pavo.grid.Location;
 import com.jpii.navalbattle.util.FileUtils;
 
@@ -27,9 +28,6 @@ public class NavalManager extends EntityManager {
 	public NavalManager(World w) {
 		super(w);
 		battleShipId = registerEntity(PavoHelper.imgUtilOutline(FileUtils.getImage("drawable-game/battleship/battleship.png"),Game.Settings.GridColor));
-		int w1 = registerEntity(PavoHelper.imgUtilOutline(FileUtils.getImage("drawable-game/other/whaleleft.png"),Game.Settings.GridColor));
-		int w2 = registerEntity(PavoHelper.imgUtilOutline(FileUtils.getImage("drawable-game/other/whalecenter.png"),Game.Settings.GridColor));
-		int w3 = registerEntity(PavoHelper.imgUtilOutline(FileUtils.getImage("drawable-game/other/whaleright.png"),Game.Settings.GridColor));
 		if (battleShipId != 0) {
 			BattleShip.BATTLESHIP_ID = battleShipId;
 			BattleShip e = new BattleShip(this,new Location(3,3),battleShipId);
@@ -38,12 +36,20 @@ public class NavalManager extends EntityManager {
 		else {
 			System.out.println("not a battleship");
 		}
-		Whale whale1 = new Whale(this, new Location(5,5),w1,w2,w3);
+		gh = new GridHelper(this);
 	}
+	GridHelper gh;
 	
 	public void gameDoneGenerating() {
 		BattleShip e = new BattleShip(this,new Location(7,3),battleShipId);
+		int w1 = registerEntity(PavoHelper.imgUtilOutline(FileUtils.getImage("drawable-game/other/whaleleft.png"),Game.Settings.GridColor));
+		int w2 = registerEntity(PavoHelper.imgUtilOutline(FileUtils.getImage("drawable-game/other/whalecenter.png"),Game.Settings.GridColor));
+		int w3 = registerEntity(PavoHelper.imgUtilOutline(FileUtils.getImage("drawable-game/other/whaleright.png"),Game.Settings.GridColor));
 		e.moveTo(7, 3);
+		for (int c = 0; c < 20; c++) {
+			Location poll = gh.pollNextWaterTile();
+			new Whale(this, poll,w1,w2,w3);
+		}
 		System.out.println("Let me play you the song of my people.");
 	}
 	

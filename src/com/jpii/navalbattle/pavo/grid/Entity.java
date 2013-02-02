@@ -29,6 +29,7 @@ public class Entity {
 	private int width, height;
 	private EntityManager manager;
 	private int id;
+	private short ORIENTATION_BUFFER_POSITION = GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT;
 	
 	public Entity(EntityManager em) {
 		manager = em;

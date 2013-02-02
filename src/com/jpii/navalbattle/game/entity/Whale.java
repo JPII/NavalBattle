@@ -3,6 +3,7 @@
  */
 package com.jpii.navalbattle.game.entity;
 
+import com.jpii.navalbattle.pavo.Game;
 import com.jpii.navalbattle.pavo.grid.EntityManager;
 import com.jpii.navalbattle.pavo.grid.Location;
 
@@ -21,6 +22,7 @@ public class Whale extends AnimatedEntity {
 	 */
 	public Whale(EntityManager em, Location loc, int... animationFrameIds) {
 		super(em, loc, animationFrameIds);
+		nextIndex = Game.Settings.rand.nextInt(0,3);
 	}
 	
 	int nextIndex = 0;
