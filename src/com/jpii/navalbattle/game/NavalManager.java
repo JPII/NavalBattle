@@ -26,6 +26,9 @@ public class NavalManager extends EntityManager {
 	public NavalManager(World w) {
 		super(w);
 		battleShipId = registerEntity(PavoHelper.imgUtilOutline(FileUtils.getImage("drawable-game/battleship/battleship.png"),Game.Settings.GridColor));
+		int w1 = registerEntity(PavoHelper.imgUtilOutline(FileUtils.getImage("drawable-game/other/whaleleft.png"),Game.Settings.GridColor));
+		int w2 = registerEntity(PavoHelper.imgUtilOutline(FileUtils.getImage("drawable-game/other/whalecenter.png"),Game.Settings.GridColor));
+		int w3 = registerEntity(PavoHelper.imgUtilOutline(FileUtils.getImage("drawable-game/other/whaleright.png"),Game.Settings.GridColor));
 		if (battleShipId != 0) {
 			BattleShip.BATTLESHIP_ID = battleShipId;
 			BattleShip e = new BattleShip(this,new Location(3,3),battleShipId);
