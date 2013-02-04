@@ -153,6 +153,22 @@ public class Chunk extends Renderable {
 				//g.fillRect(lsx*3,lsz*3,4,4);
 			}
 		}
+		
+		for (int xc = 100/3; xc > 0; xc--) {
+			for (int zc = 100/3; zc > 0; zc--) {
+				float frsh = ProceduralLayeredMapGenerator.getPoint((xc+(100.0f/3.0f*x))*4.0f, (zc+(100.0f/3.0f*z))*4.0f);
+				float lasy = ProceduralLayeredMapGenerator.getPoint(xc+(100.0f/3.0f*x), zc+(100.0f/3.0f*z));
+				if (lasy > 0.4f && frsh > 0.6f && Game.Settings.rand.nextInt(20) == 2) {
+					g.setColor(new Color(244,214,38));
+					g.drawLine(xc,zc-1,xc,zc+3);
+					g.setColor(new Color(27,105,29));
+					g.drawLine(xc,zc-1,xc,zc-1);
+					g.setColor(new Color(27,105,29,50));
+					g.drawLine(xc-1,zc-1,xc+1,zc-1);
+					g.drawLine(xc,zc-2,xc,zc-2);
+				}
+			}
+		}
 		w.getEntityManager().AQms03KampOQ9103nmJMs((getZ()*2), (getX()*2), water00);
 		w.getEntityManager().AQms03KampOQ9103nmJMs((getZ()*2)+1, (getX()*2), water01);
 		w.getEntityManager().AQms03KampOQ9103nmJMs((getZ()*2), (getX()*2)+1, water10);
