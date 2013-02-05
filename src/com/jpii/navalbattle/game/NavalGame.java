@@ -167,7 +167,7 @@ public class NavalGame extends Game {
 		chy /= 50;
 		if (me.getButton() == MouseEvent.BUTTON1)
 			new BattleShip(this.getWorld().getEntityManager(),new Location(chy,chx),BattleShip.BATTLESHIP_ID);
-		else if (Game.Settings.isFinishedGenerating)
+		else if (Game.Settings.isFinishedGenerating && getWorld().getEntityManager().getTilePercentLand(chy,chx) <= 5)
 			new Whale(this.getWorld().getEntityManager(),new Location(chy,chx),NavalManager.w1,NavalManager.w2,NavalManager.w3);
 		if (getWinMan().mouseDown(me))
 			return;
