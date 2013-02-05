@@ -80,6 +80,7 @@ public class GridWindow extends GameWindow {
 			g.drawString("Tile is part of a battleship.", 10, 80);
 		}
 		g.drawString("Percent land " + game.getWorld().getEntityManager().getTilePercentLand(local.getRow(),local.getCol()) + "%", 10, 100);
+		g.drawString("Precent water " + (100 - game.getWorld().getEntityManager().getTilePercentLand(local.getRow(),local.getCol())) + "%", 10, 120);
 		}
 	}
 }
