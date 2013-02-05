@@ -161,15 +161,18 @@ public class NavalGame extends Game {
 	}
 	public void mouseDown(MouseEvent me) {
 		super.mouseDown(me);
-		if (getWinMan().mouseDown(me))
-			return;
-		if (omnimap.mouseDown(me))
-			return;
 		int chx = (-getWorld().getScreenX()) + me.getX();
 		int chy = (-getWorld().getScreenY()) + me.getY(); 
 		chx /= 50;
 		chy /= 50;
-		BattleShip b = new BattleShip(this.getWorld().getEntityManager(),new Location(chy,chx),BattleShip.BATTLESHIP_ID);
+		if (me.getButton() == MouseEvent.BUTTON1)
+			new BattleShip(this.getWorld().getEntityManager(),new Location(chy,chx),BattleShip.BATTLESHIP_ID);
+		else if (Game.Settings.isFinishedGenerating)
+			new Whale(this.getWorld().getEntityManager(),new Location(chy,chx),NavalManager.w1,NavalManager.w2,NavalManager.w3);
+		if (getWinMan().mouseDown(me))
+			return;
+		if (omnimap.mouseDown(me))
+			return;
 	}
 	public void mouseMove(MouseEvent me) {
 		super.mouseMove(me);

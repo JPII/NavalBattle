@@ -21,6 +21,7 @@ import com.jpii.navalbattle.util.FileUtils;
  * The entity manager specified for NavalThing.
  */
 public class NavalManager extends EntityManager {
+	public static int w1, w2, w3;
 	/**
 	 * Creates a new instance of the NavalManager.
 	 * @param w The world to create it from.
@@ -42,9 +43,9 @@ public class NavalManager extends EntityManager {
 	
 	public void gameDoneGenerating() {
 		BattleShip e = new BattleShip(this,new Location(7,3),battleShipId);
-		int w1 = registerEntity(PavoHelper.imgUtilOutline(FileUtils.getImage("drawable-game/other/whaleleft.png"),Game.Settings.GridColor));
-		int w2 = registerEntity(PavoHelper.imgUtilOutline(FileUtils.getImage("drawable-game/other/whalecenter.png"),Game.Settings.GridColor));
-		int w3 = registerEntity(PavoHelper.imgUtilOutline(FileUtils.getImage("drawable-game/other/whaleright.png"),Game.Settings.GridColor));
+		w1 = registerEntity(PavoHelper.imgUtilOutline(FileUtils.getImage("drawable-game/other/whaleleft.png"),Game.Settings.GridColor));
+		w2 = registerEntity(PavoHelper.imgUtilOutline(FileUtils.getImage("drawable-game/other/whalecenter.png"),Game.Settings.GridColor));
+		w3 = registerEntity(PavoHelper.imgUtilOutline(FileUtils.getImage("drawable-game/other/whaleright.png"),Game.Settings.GridColor));
 		e.moveTo(7, 3);
 		for (int c = 0; c < 20; c++) {
 			Location poll = gh.pollNextWaterTile();
