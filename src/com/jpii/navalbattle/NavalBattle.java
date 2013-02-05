@@ -22,6 +22,7 @@ import java.io.ByteArrayOutputStream;
 import javax.swing.UIManager.*;
 import javax.swing.*;
 
+import com.jpii.gamekit.localization.LocalizationManager;
 import com.jpii.navalbattle.data.*;
 import com.jpii.navalbattle.debug.*;
 import com.jpii.navalbattle.game.HookStream;
@@ -38,6 +39,7 @@ public class NavalBattle {
 	private static DebugWindow debugWindow;
 	private static GameState gameState;
 	private static WindowHandler windowHandler;
+	private static LocalizationManager localizationManager;
 	
 	/**
 	 * <code>NavalBattle</code> main method. Ran on launch.
@@ -64,6 +66,7 @@ public class NavalBattle {
 		roketGamer = new RoketGamer();
 		debugWindow.printInfo("NavalBattle " + Constants.NAVALBATTLE_VERSION + " initialized");
 		windowHandler = new WindowHandler();
+		localizationManager = new LocalizationManager(NavalBattle.class, "/com/jpii/navalbattle/res/strings");
 		
 		windowHandler.windows.get(windowHandler.windows.size()-1).setVisible(true);
 	}
@@ -124,6 +127,14 @@ public class NavalBattle {
 	 */
 	public static WindowHandler getWindowHandler() {
 		return windowHandler;
+	}
+	
+	/**
+	 * Returns current instance of LocalizationManager. Used to handle localization.
+	 * @return windowHandler
+	 */
+	public static LocalizationManager getLocalizationManager() {
+		return localizationManager;
 	}
 	
 	/**
