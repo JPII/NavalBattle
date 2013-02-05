@@ -53,13 +53,13 @@ public class NavalGame extends Game {
 		ppw = new PlayerProfileWindow();
 		sb = new StatusBar();
 		test = new GridWindow();
-		test.setGridLocation(10,25);
+		test.setGridLocation(10,10);
 		ppw.setLoc(200,200);
 		siw = new ShipInfoWindow();
 		siw.setLoc(350,350);
 		getWorld().getWeather().setWeather(WeatherMode.Sunny);
-	//	getWinMan().add(ppw);
-	//	getWinMan().add(siw);
+		getWinMan().add(ppw);
+		getWinMan().add(siw);
 		getWinMan().add(sb);
 		getWinMan().add(test);
 		//MessageBox.show("Warning", "This is a message box!!!");
