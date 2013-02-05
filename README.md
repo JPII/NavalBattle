@@ -7,6 +7,10 @@ A new RoketGamer-powered game. Coming soon.
 
 [For visiual snapshots of the latest commits and information see the snapshots wiki page](https://github.com/JPII/NavalBattle/wiki/Snapshots)
 
+## Dependencies
+We depend on the following projects. We plan on moving to Maven soon to help automatically handle dependencies.
+* GameKit
+
 ## Members
 * **TexasGamer** - SCM manager, RoketGamer lead
 * **abauer** - game design lead
