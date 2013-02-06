@@ -75,6 +75,9 @@ public class EntityManager {
 	public void addEntity(Entity e) {
 		if (e == null)
 			return;
+		if (entities.size() >= 15) {
+			throw new IllegalArgumentException("Too many entities in grid. Remove some and try again l8r.");
+		}
 		entities.add(e);
 	}
 	public int getTotalEntities() {
