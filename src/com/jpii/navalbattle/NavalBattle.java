@@ -53,7 +53,6 @@ public class NavalBattle {
 		    }
 		}));
 		
-		
 		Helper.LoadStaticResources();
 		setDefaultLookAndFeel();
 		debugWindow = new DebugWindow();
