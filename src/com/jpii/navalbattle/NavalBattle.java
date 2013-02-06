@@ -22,6 +22,7 @@ import java.io.ByteArrayOutputStream;
 import javax.swing.UIManager.*;
 import javax.swing.*;
 
+import com.jpii.gamekit.GameKit;
 import com.jpii.gamekit.localization.LocalizationManager;
 import com.jpii.navalbattle.data.*;
 import com.jpii.navalbattle.debug.*;
@@ -65,6 +66,7 @@ public class NavalBattle {
 		gameState = new GameState();
 		roketGamer = new RoketGamer();
 		debugWindow.printInfo("NavalBattle " + Constants.NAVALBATTLE_VERSION + " initialized");
+		debugWindow.printInfo("Successfully loaded GameKit " + GameKit.getVersion());
 		windowHandler = new WindowHandler();
 		localizationManager = new LocalizationManager(NavalBattle.class, "/com/jpii/navalbattle/res/strings");
 		
