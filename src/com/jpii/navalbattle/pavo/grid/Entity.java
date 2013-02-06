@@ -27,7 +27,7 @@ public class Entity {
 	private int width, height;
 	private EntityManager manager;
 	private int id;
-	private int teamId;
+	public int teamId;
 	private short ORIENTATION_BUFFER_POSITION = GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT;
 	
 	public Entity(EntityManager em) {
@@ -201,6 +201,10 @@ public class Entity {
 	
 	private void setLocation(Location loc) {
 		location = loc;
+	}
+	
+	public EntityManager getManager(){
+		return manager;
 	}
 	
 	/**

@@ -24,6 +24,7 @@ import java.util.Random;
 import maximusvladimir.dagen.*;
 
 import com.jpii.navalbattle.data.Constants;
+import com.jpii.navalbattle.pavo.grid.Entity;
 import com.jpii.navalbattle.pavo.grid.Tile;
 import com.jpii.navalbattle.renderer.Helper;
 import com.jpii.navalbattle.renderer.RenderConstants;
@@ -187,6 +188,44 @@ public class Chunk extends Renderable {
 		/*if (Tile00 != null || Tile10 != null || Tile11 != null || Tile01 != null) {
 			//g.drawOval(0,0,33,33);
 		}*/
+		
+		if (Tile00!=null){
+			Object parent = Tile00.getEntity();
+			if(parent instanceof Entity)
+				g.setColor(((Entity) parent).getManager().getTeamColor((((Entity) parent).teamId)));
+			if(Tile00.getId().getMutexId()==65537)
+				g.fillRect(45, 15, 5, 20);
+			if(Tile00.getId().getMutexId()==65538)
+				g.fillRect(0, 15, 35, 20);
+		}
+		if (Tile01!=null){
+			Object parent = Tile01.getEntity();
+			if(parent instanceof Entity)
+				g.setColor(((Entity) parent).getManager().getTeamColor((((Entity) parent).teamId)));
+			if(Tile01.getId().getMutexId()==65537)
+				g.fillRect(45, 65, 5, 20);
+			if(Tile01.getId().getMutexId()==65538)
+				g.fillRect(0, 65, 35, 20);
+		}
+		if (Tile10!=null){
+			Object parent = Tile10.getEntity();
+			if(parent instanceof Entity)
+				g.setColor(((Entity) parent).getManager().getTeamColor((((Entity) parent).teamId)));
+			if(Tile10.getId().getMutexId()==65537)
+				g.fillRect(95, 15, 5, 20);
+			if(Tile10.getId().getMutexId()==65538)
+				g.fillRect(50, 15, 35, 20);
+		}
+		if (Tile11!=null ){
+			Object parent = Tile11.getEntity();
+			if(parent instanceof Entity)
+				g.setColor(((Entity) parent).getManager().getTeamColor((((Entity) parent).teamId)));
+			if(Tile11.getId().getMutexId()==65537)
+				g.fillRect(95, 65, 5, 20);
+			if(Tile11.getId().getMutexId()==65538)
+				g.fillRect(50, 65, 35, 20);
+		}
+		
 		g.drawImage(w.getEntityManager().getImage(Tile00), 0, 0, null);
 		g.drawImage(w.getEntityManager().getImage(Tile10), 50, 0, null);
 		g.drawImage(w.getEntityManager().getImage(Tile01), 0, 50, null);
@@ -198,6 +237,7 @@ public class Chunk extends Renderable {
 		nesa = false;
 		poychingmode = false;
 	}
+	
 	boolean poychingmode = false;
 	public void poyching() {
 		poychingmode = true;

@@ -17,6 +17,7 @@
 
 package com.jpii.navalbattle.pavo.grid;
 
+import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
@@ -223,5 +224,19 @@ public class EntityManager {
 	 */
 	public World getWorld() {
 		return w;
+	}
+	
+	public Color getTeamColor(int teamId){
+		System.out.println("Team id is...."+teamId);
+		Color temp = Color.black;
+		if(teamId == 0)
+			temp = Color.darkGray;
+		if(teamId == 1)
+			temp = Color.green.darker();
+		if(teamId == 2)
+			temp = Color.red.darker();
+		if(teamId == 3)
+			temp = Color.blue.darker();
+		return temp;
 	}
 }
