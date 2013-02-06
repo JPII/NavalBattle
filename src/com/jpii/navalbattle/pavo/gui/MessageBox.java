@@ -144,7 +144,6 @@ public class MessageBox extends com.jpii.navalbattle.pavo.gui.GameWindow {
 		return false;
 	}
 	public void onCloseCalled() {
-		NavalBattle.getWindowHandler().getToasterManager().showToaster(new ImageIcon(getClass().getResource("/com/roketgamer/res/logo_100px.png")), "Pop-up closed");
 		getWinMan().remove(this);
 	}
 }

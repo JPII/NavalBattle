@@ -22,10 +22,13 @@ import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
+import com.jpii.navalbattle.game.NavalGame;
 import com.jpii.navalbattle.pavo.Chunk;
 import com.jpii.navalbattle.pavo.Game;
 import com.jpii.navalbattle.pavo.PavoHelper;
 import com.jpii.navalbattle.pavo.World;
+import com.jpii.navalbattle.pavo.gui.MessageBox;
+import com.jpii.navalbattle.pavo.gui.MessageBoxIcon;
 
 public class EntityManager {
 	private byte[][] tileAccessor;
@@ -76,8 +79,9 @@ public class EntityManager {
 	public void addEntity(Entity e) {
 		if (e == null)
 			return;
-		if (entities.size() >= 15) {
-			throw new IllegalArgumentException("Too many entities in grid. Remove some and try again l8r.");
+		if (entities.size() >= 25) {
+			MessageBox.show("Warning!","Too many entities added.",
+					MessageBoxIcon.Notify, false);
 		}
 		entities.add(e);
 	}
