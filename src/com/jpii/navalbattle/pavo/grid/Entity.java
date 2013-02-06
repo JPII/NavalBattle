@@ -17,8 +17,6 @@
 
 package com.jpii.navalbattle.pavo.grid;
 
-import com.jpii.navalbattle.game.*;
-import com.jpii.navalbattle.game.entity.BattleShip;
 import com.jpii.navalbattle.pavo.*;
 
 public class Entity {
@@ -29,15 +27,17 @@ public class Entity {
 	private int width, height;
 	private EntityManager manager;
 	private int id;
+	private int teamId;
 	private short ORIENTATION_BUFFER_POSITION = GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT;
 	
 	public Entity(EntityManager em) {
 		manager = em;
 		init();
 	}
-	public Entity(EntityManager em,Location loc, int superId) {
+	public Entity(EntityManager em,Location loc, int superId,int team) {
 		manager = em;
 		location = loc;
+		teamId=team;
 		try
 		{
 			moveTo(loc,true);
