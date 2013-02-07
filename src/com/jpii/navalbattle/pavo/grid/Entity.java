@@ -26,7 +26,7 @@ public class Entity {
 	public long lastUpdate = 0;
 	private int width, height;
 	private EntityManager manager;
-	private GridedEntityTileOrientation id;
+	private int id;
 	public int teamId;
 	private short ORIENTATION_BUFFER_POSITION = GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT;
 	
@@ -34,7 +34,7 @@ public class Entity {
 		manager = em;
 		init();
 	}
-	public Entity(EntityManager em,Location loc, GridedEntityTileOrientation superId,int team) {
+	public Entity(EntityManager em,Location loc, int superId,int team) {
 		manager = em;
 		location = loc;
 		teamId=team;
@@ -90,12 +90,12 @@ public class Entity {
 	 * Sets the genericied id of the entity. This shouldn't have to be called by the client.
 	 * @param id The identifier to set the entity to.
 	 */
-	public void setId(GridedEntityTileOrientation id) {
+	public void setId(int id) {
 		this.id = id;
 		for (int w = 0; w < getWidth(); w++) {
 			for (int h = 0; h < getHeight(); h++) {
 				Tile t = new Tile(this,location.getRow()+h, location.getCol()+w);
-				t.setId(new Id(id.,w));
+				t.setId(new Id(id,w));
 				manager.setTile(location.getRow()+h, location.getCol()+w, t);
 				//System.out.println("efretgfd");
 			}
