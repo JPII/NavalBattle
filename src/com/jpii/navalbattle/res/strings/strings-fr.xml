@@ -1,0 +1,38 @@
+<resources>
+    <!-- Global strings -->
+	<string name="global_game_title">NavalBattle</string>
+	<string name="global_yes">Oui</string>
+	<string name="global_no">Aucun</string>
+	<string name="global_close">Fermer</string>
+	<string name="global_back">retour</string>
+	
+	<!-- Toast strings -->
+	<string name="toast_offline_mode">Mode hors connexion activée</string>
+	<string name="toast_popup_closed">Pop-up fermé</string>
+	
+	<!-- LoginWindow strings -->
+	<string name="login_username">Nom d'utilisateur</string>
+	<string name="login_password">Mot de passe</string>
+	<string name="login_offline">Hors ligne</string>
+	<string name="login_register">S'enregistrer</string>
+	<string name="login_login">Login</string>
+	<string name="login_options">les options</string>
+	<string name="login_exit">Sortie</string>
+	
+	<!-- MainMenuWindow strings -->
+	<string name="mainmenu_singleplayer">Jeu solo</string>
+	<string name="mainmenu_multiplayer">Multijoueur</string>
+	<string name="mainmenu_help">Aide</string>
+	<string name="mainmenu_roketgamer">RoketGamer</string>
+	<string name="mainmenu_quit">Quitter</string>
+	<string name="mainmenu_credits">Crédits</string>
+	
+	<!-- HelpWindow strings -->
+	<string name="help_title">NavalBattle Aide</string>
+	<string name="help_subtitle">Tutoriels YouTube</string>
+	<string name="help_overview">Sortie</string>
+	<string name="help_combat">Combat</string>
+	<string name="help_upgrades">Améliorations</string>
+	<string name="help_multiplayer">Multijoueur</string>
+	<string name="help_roketgamer">RoketGamer</string>
+</resources>
