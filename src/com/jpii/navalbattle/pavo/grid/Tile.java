@@ -12,6 +12,7 @@ package com.jpii.navalbattle.pavo.grid;
 public class Tile<T> {
 	T parent;
 	Id id;
+	//Entity pointer;
 	public Tile(T parent, int r, int c) {
 		this.parent = parent;
 		if (!(parent instanceof Entity))

@@ -35,7 +35,7 @@ public class BattleShip extends Entity {
 		setHeight(1);
 	}
 	
-	public void onUpdate() {
+	public void onUpdate(long timePassed) {
 		int r = 1;
 		int c = 1;
 		if(Game.Settings.isFinishedGenerating && Game.Settings.rand.nextInt(0,20) == 2)

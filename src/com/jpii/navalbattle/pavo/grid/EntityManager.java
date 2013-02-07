@@ -115,7 +115,7 @@ public class EntityManager {
 	 * @param c The column the entity should be at.
 	 * @param e The entity to replace it with.
 	 */
-	public <T> void setTile(int r, int c, Tile<T> t) {
+	public void setTile(int r, int c, Tile<Entity> t) {
 		if (c >= PavoHelper.getGameWidth(w.getWorldSize())*2 ||
 				r >= PavoHelper.getGameHeight(w.getWorldSize())*2 || c < 0 || r < 0)
 			return;
@@ -139,7 +139,7 @@ public class EntityManager {
 		//System.out.println("chunk at:" + x + "," + z);
 		chunk.writeBuffer();//needsBufferWrite();
 	}
-	public <T> void setTile(Location loc, Tile<T> t) {
+	public <T> void setTile(Location loc, Tile<Entity> t) {
 		setTile(loc.getRow(),loc.getCol(),t);
 	}
 	public Tile getTile(Location loc) {
@@ -231,16 +231,16 @@ public class EntityManager {
 	}
 	
 	public Color getTeamColor(int teamId){
-		System.out.println("Team id is...."+teamId);
+		//System.out.println("Team id is...."+teamId);
 		Color temp = Color.black;
 		if(teamId == 0)
 			temp = Color.darkGray;
 		if(teamId == 1)
-			temp = Color.green.darker();
+			temp = Color.green;//.darker();
 		if(teamId == 2)
-			temp = Color.red.darker();
+			temp = Color.red;//.darker();
 		if(teamId == 3)
-			temp = Color.blue.darker();
+			temp = Color.blue;//.darker();
 		return temp;
 	}
 }

@@ -37,7 +37,7 @@ import com.jpii.navalbattle.renderer.RenderConstants;
 public class Chunk extends Renderable {
 	int x,z;
 	boolean generated = false;
-	public Tile Tile00, Tile10, Tile01,Tile11;
+	public Tile<Entity> Tile00, Tile10, Tile01,Tile11;
 	static Perlin p = new Perlin(Game.Settings.rand.nextLong(),0,0);
 	static Rand rand = new Rand();
 	World w;
@@ -190,36 +190,32 @@ public class Chunk extends Renderable {
 		}*/
 		
 		if (Tile00!=null){
-			Object parent = Tile00.getEntity();
-			if(parent instanceof Entity)
-				g.setColor(((Entity) parent).getManager().getTeamColor((((Entity) parent).teamId)));
+			Entity parent = Tile00.getEntity();
+			g.setColor(parent.getManager().getTeamColor(parent.teamId));
 			if(Tile00.getId().getMutexId()==65537)
 				g.fillRect(45, 15, 5, 20);
 			if(Tile00.getId().getMutexId()==65538)
 				g.fillRect(0, 15, 35, 20);
 		}
 		if (Tile01!=null){
-			Object parent = Tile01.getEntity();
-			if(parent instanceof Entity)
-				g.setColor(((Entity) parent).getManager().getTeamColor((((Entity) parent).teamId)));
+			Entity parent = Tile01.getEntity();
+			g.setColor(parent.getManager().getTeamColor(parent.teamId));
 			if(Tile01.getId().getMutexId()==65537)
 				g.fillRect(45, 65, 5, 20);
 			if(Tile01.getId().getMutexId()==65538)
 				g.fillRect(0, 65, 35, 20);
 		}
 		if (Tile10!=null){
-			Object parent = Tile10.getEntity();
-			if(parent instanceof Entity)
-				g.setColor(((Entity) parent).getManager().getTeamColor((((Entity) parent).teamId)));
+			Entity parent = Tile10.getEntity();
+			g.setColor(parent.getManager().getTeamColor(parent.teamId));
 			if(Tile10.getId().getMutexId()==65537)
 				g.fillRect(95, 15, 5, 20);
 			if(Tile10.getId().getMutexId()==65538)
 				g.fillRect(50, 15, 35, 20);
 		}
 		if (Tile11!=null ){
-			Object parent = Tile11.getEntity();
-			if(parent instanceof Entity)
-				g.setColor(((Entity) parent).getManager().getTeamColor((((Entity) parent).teamId)));
+			Entity parent = Tile11.getEntity();
+			g.setColor(parent.getManager().getTeamColor(parent.teamId));
 			if(Tile11.getId().getMutexId()==65537)
 				g.fillRect(95, 65, 5, 20);
 			if(Tile11.getId().getMutexId()==65538)
