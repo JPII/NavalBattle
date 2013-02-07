@@ -5,17 +5,6 @@ package com.jpii.navalbattle.pavo.gui;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
-import java.io.File;
-import java.io.IOException;
-import java.lang.annotation.Annotation;
-import java.net.URL;
-import java.net.URLDecoder;
-import java.util.ArrayList;
-import java.util.Enumeration;
-import java.util.jar.JarEntry;
-import java.util.jar.JarFile;
-
-import sun.reflect.Reflection;
 
 import com.jpii.navalbattle.game.entity.BattleShip;
 import com.jpii.navalbattle.pavo.Game;

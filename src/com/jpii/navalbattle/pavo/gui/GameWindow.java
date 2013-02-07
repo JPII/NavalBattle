@@ -137,7 +137,6 @@ public class GameWindow extends Renderable {
 		shutdown = true;
 	}
 	public void mouseDown(MouseEvent me) {
-		boolean flag = false;
 		int mx = me.getX();
 		int my = me.getY();
 		if (isTitleShown() && isVisible()) {
