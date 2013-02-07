@@ -7,7 +7,6 @@ public class GridedEntityTileOrientation {
 	public static final byte ORIENTATION_BOTTOMTOTOP = 0x3A;
 	
 	private short[] INDICES = new short[4];
-	private short[] orientation;
 	
 	public GridedEntityTileOrientation() {
 	}
@@ -32,8 +31,5 @@ public class GridedEntityTileOrientation {
 		if (offset > 3 || offset < 0)
 			return 0;
 		return INDICES[offset];
-	}
-	public short getCurrentOrientationId() {
-		return orientation[]
 	}
 }
