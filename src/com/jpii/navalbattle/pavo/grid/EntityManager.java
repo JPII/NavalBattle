@@ -83,8 +83,7 @@ public class EntityManager {
 			MessageBox.show("Warning!","Too many entities added.",
 					MessageBoxIcon.Notify, false);
 		}
-		else
-			entities.add(e);
+		entities.add(e);
 	}
 	public int getTotalEntities() {
 		return entities.size();
