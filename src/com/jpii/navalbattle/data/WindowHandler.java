@@ -20,20 +20,20 @@ package com.jpii.navalbattle.data;
 import java.util.*;
 import javax.swing.*;
 
+import com.jpii.gamekit.toaster.Toaster;
 import com.jpii.navalbattle.game.SinglePlayerGame;
 import com.jpii.navalbattle.gui.*;
-import com.jpii.navalbattle.util.toaster.ToasterTest;
 
 public class WindowHandler {
 	
 	public ArrayList<Window> windows;
-	private static ToasterTest toasterManager;
+	private static Toaster toasterManager;
 	
 	/**
 	 * Default constructor for <code>WindowConstructor</code>
 	 */
-	public WindowHandler(){
-		toasterManager = new ToasterTest();
+	public WindowHandler() {
+		toasterManager = new Toaster();
 		windows = new ArrayList<Window>();
 		initArray();
 		windows.get(0).setVisible(true);
@@ -42,7 +42,7 @@ public class WindowHandler {
 	/**
 	 * Initialize <code>ArrayList</code> of <code>Windows</code>.
 	 */
-	private void initArray(){
+	private void initArray() {
 		windows.add(new LoginWindow());
 		windows.add(new LoggingInWindow());
 		windows.add(new LoginOptionsWindow());
@@ -59,7 +59,7 @@ public class WindowHandler {
 	 * Open a new window from <code>String</code>.
 	 * @param a
 	 */
-	public void setNewWindow(String a){
+	public void setNewWindow(String a) {
 		for(int index = 0; index<windows.size(); index++){
 			JFrame temp = (Window) windows.get(index);
 			if(a.toLowerCase().equals( temp.getClass().toString().substring((getClass().toString().lastIndexOf("."))).toLowerCase() )){
@@ -76,7 +76,7 @@ public class WindowHandler {
 	 * and make it visible.
 	 * @param w
 	 */
-	public void add(Window w){
+	public void add(Window w) {
 		windows.add(w);
 		w.setVisible(true);
 	}
@@ -85,11 +85,11 @@ public class WindowHandler {
 	 * Returns current instance of <code>Toaster</code>. Used to send desktop notifications.
 	 * @return toasterManager
 	 */
-	public ToasterTest getToasterManager() {
+	public Toaster getToasterManager() {
 		return toasterManager;
 	}
 	
-	public void killAll(){
+	public void killAll() {
 		for(int index = 0; index<windows.size(); index+=0){
 			JFrame temp = windows.get(index);
 			if(!(temp instanceof SinglePlayerGame)){
