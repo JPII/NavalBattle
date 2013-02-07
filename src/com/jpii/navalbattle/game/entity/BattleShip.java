@@ -26,7 +26,7 @@ public class BattleShip extends Entity {
 	 * @param loc
 	 * @param superId
 	 */
-	public BattleShip(EntityManager em, Location loc, GridedEntityTileOrientation superId,int team) {
+	public BattleShip(EntityManager em, Location loc, int superId,int team) {
 		super(em, loc, superId,team);
 	}
 	
