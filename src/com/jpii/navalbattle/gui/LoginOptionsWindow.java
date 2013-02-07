@@ -26,6 +26,8 @@ import javax.swing.JTextField;
 import javax.swing.JCheckBox;
 import javax.swing.JButton;
 
+import com.jpii.navalbattle.data.Constants;
+
 @SuppressWarnings("serial")
 public class LoginOptionsWindow extends Window {
 	
@@ -41,15 +43,18 @@ public class LoginOptionsWindow extends Window {
 		JLabel lblSubtitle = new JLabel("Launch Options");
 		txtHttproketgamercocc = new JTextField();
 		JCheckBox chckbxEnableSplashScreens = new JCheckBox("Enable splash screens");
+		chckbxEnableSplashScreens.setSelected(true);
 		JCheckBox chckbxDebugMode = new JCheckBox("Debug mode");
+		if(Constants.DEBUG_MODE)
+			chckbxDebugMode.setSelected(true);
 		JLabel lblGeneral = new JLabel("General");
 		JLabel lblRoketgamer = new JLabel("RoketGamer");
 		JLabel lblServer = new JLabel("Server Address");
 		JButton btnSave = new JButton("Save");
 		JCheckBox chckbxSaveLastUsername = new JCheckBox("Remember username");
-		JCheckBox chckbxAnalytics = new JCheckBox("Analytics");
+		chckbxSaveLastUsername.setSelected(true);
 		
-		txtHttproketgamercocc.setText("http://roketgamer.co.cc");
+		txtHttproketgamercocc.setText("http://roketgamer.com");
 		txtHttproketgamercocc.setColumns(10);
 		
 		lblTitle.setBounds(10, 11, 79, 17);
@@ -60,8 +65,7 @@ public class LoginOptionsWindow extends Window {
 		lblGeneral.setBounds(20, 39, 46, 14);
 		lblRoketgamer.setBounds(20, 119, 79, 14);
 		lblServer.setBounds(30, 144, 102, 14);
-		chckbxAnalytics.setBounds(30, 165, 102, 23);
-		chckbxSaveLastUsername.setBounds(30, 191, 155, 23);
+		chckbxSaveLastUsername.setBounds(30, 172, 155, 23);
 		btnSave.setBounds(386, 277, 90, 30);
 		
 		lblTitle.setFont(new Font("Tahoma", Font.BOLD, 14));
@@ -76,7 +80,6 @@ public class LoginOptionsWindow extends Window {
 		getContentPane().add(lblGeneral);
 		getContentPane().add(lblRoketgamer);
 		getContentPane().add(lblServer);
-		getContentPane().add(chckbxAnalytics);
 		getContentPane().add(btnSave);
 		getContentPane().add(chckbxSaveLastUsername);
 		
