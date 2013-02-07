@@ -71,4 +71,9 @@ public class Constants {
 	 * RoketGamer
 	 */
 	public static final String API_KEY = "35B4531F87C549F23C5444566C7E5";
+	
+	/*
+	 * GameKit
+	 */
+	public static final int GAMEKIT_API_LEVEL = 1;
 }
