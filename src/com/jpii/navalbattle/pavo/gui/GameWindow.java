@@ -116,7 +116,7 @@ public class GameWindow extends Renderable {
 	public void onCloseCalled() {
 		setVisible(false);
 	}
-	int x,y;
+	protected int x,y;
 	public int getX() {
 		return x;
 	}
@@ -126,6 +126,8 @@ public class GameWindow extends Renderable {
 	public void setLoc(int x, int y) {
 		this.x = x;
 		this.y = y;
+		if(y<25)
+			this.y=25;
 	}
 	boolean shutdown = false;
 	public boolean needsShutdown() {

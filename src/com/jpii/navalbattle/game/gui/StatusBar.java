@@ -54,4 +54,8 @@ public class StatusBar extends GameWindow {
 		if (flag)
 			render(); // Don't reRender if the mouse hasn't changed tile locations.
 	}
+	public void setLoc(int x, int y) {
+		this.x = x;
+		this.y = y;
+	}
 }
