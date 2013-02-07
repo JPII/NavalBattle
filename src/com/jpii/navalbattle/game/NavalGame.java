@@ -165,16 +165,17 @@ public class NavalGame extends Game {
 		int chy = (-getWorld().getScreenY()) + me.getY(); 
 		chx /= 50;
 		chy /= 50;
-		if (me.getButton() == MouseEvent.BUTTON1) {
+		if (getWinMan().mouseDown(me)||(omnimap.mouseDown(me)))
+			return;
+		else if (me.getButton() == MouseEvent.BUTTON1) {
 			if(nm.getTile(chy, chx)==null)
 				new BattleShip(this.getWorld().getEntityManager(),new Location(chy,chx),BattleShip.BATTLESHIP_ID,Game.Settings.rand.nextInt(0,3));
 		}
-		else if (Game.Settings.isFinishedGenerating && getWorld().getEntityManager().getTilePercentLand(chy,chx) <= 5)
-			new Whale(this.getWorld().getEntityManager(),new Location(chy,chx),Game.Settings.rand.nextInt(0,3),NavalManager.w1,NavalManager.w2,NavalManager.w3);
-		if (getWinMan().mouseDown(me))
-			return;
-		if (omnimap.mouseDown(me))
-			return;
+		else if (Game.Settings.isFinishedGenerating && getWorld().getEntityManager().getTilePercentLand(chy,chx) <= 5){
+			if(nm.getTile(chy, chx)==null){
+				new Whale(this.getWorld().getEntityManager(),new Location(chy,chx),Game.Settings.rand.nextInt(0,3),NavalManager.w1,NavalManager.w2,NavalManager.w3);
+			}
+		}
 	}
 	public void mouseMove(MouseEvent me) {
 		super.mouseMove(me);
