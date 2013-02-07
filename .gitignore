@@ -1,7 +1,5 @@
 $ cat .gitignore
 
-.project
-.classpath
 .batchconfig
 .settings/*
 true
