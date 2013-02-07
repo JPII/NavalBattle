@@ -83,7 +83,17 @@ public class MessageBox extends com.jpii.navalbattle.pavo.gui.GameWindow {
 	 * @param iconifier The icon to show on the message box.
 	 */
 	public static void show(String title, String message, MessageBoxIcon iconifier) {
-		show(title,message,iconifier,false);
+		show(title,message,iconifier,false,true);
+	}
+	public static void closeAllMessageBoxes() {
+		if (WindowManager.Inst == null)
+			return;
+		for (int c = 0; c < WindowManager.Inst.size(); c++) {
+			GameWindow gw = WindowManager.Inst.get(c);
+			if (gw != null && gw instanceof MessageBox) {
+				WindowManager.Inst.remove(gw);
+			}
+		}
 	}
 	/**
 	 * Shows a message box on the active Game window, with a title, special icon, gives the option of hiding the backrouns, and message.
@@ -92,14 +102,19 @@ public class MessageBox extends com.jpii.navalbattle.pavo.gui.GameWindow {
 	 * @param iconifier The icon to show on the message box.
 	 * @param blotchBackground If set to true, the background will be blocked from user interaction, and blurred out.
 	 */
-	public static void show(String title, String message, MessageBoxIcon iconifier, boolean blotchBackground) {
+	public static void show(String title, String message, MessageBoxIcon iconifier, boolean blotchBackground, boolean onlyOneAllowed) {
 		//WindowManager.Inst.add(new MessageBox(title,message));
+		if (WindowManager.Inst == null)
+			return;
+		
 		MessageBox handle = new MessageBox(title,message,iconifier);
 		handle.setHandle(395428394);
-		for (int c = 0; c < WindowManager.Inst.size(); c++) {
-			GameWindow gw = WindowManager.Inst.get(c);
-			if (gw != null && gw instanceof MessageBox) {// && gw.getHandle() == -1) {
-				WindowManager.Inst.remove(gw);
+		if (onlyOneAllowed) {
+			for (int c = 0; c < WindowManager.Inst.size(); c++) {
+				GameWindow gw = WindowManager.Inst.get(c);
+				if (gw != null && gw instanceof MessageBox) {
+					WindowManager.Inst.remove(gw);
+				}
 			}
 		}
 		if (blotchBackground) {
