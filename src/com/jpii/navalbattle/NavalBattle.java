@@ -18,6 +18,7 @@
 package com.jpii.navalbattle;
 
 import java.io.ByteArrayOutputStream;
+import java.util.Locale;
 
 import javax.swing.UIManager.*;
 import javax.swing.*;
