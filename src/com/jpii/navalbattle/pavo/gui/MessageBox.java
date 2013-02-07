@@ -85,6 +85,9 @@ public class MessageBox extends com.jpii.navalbattle.pavo.gui.GameWindow {
 	public static void show(String title, String message, MessageBoxIcon iconifier) {
 		show(title,message,iconifier,false,true);
 	}
+	public static void show(String title, String message, MessageBoxIcon iconifier, boolean blotchBackground) {
+		show(title,message,iconifier,blotchBackground,true);
+	}
 	public static void closeAllMessageBoxes() {
 		if (WindowManager.Inst == null)
 			return;
