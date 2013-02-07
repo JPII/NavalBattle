@@ -95,6 +95,13 @@ public class MessageBox extends com.jpii.navalbattle.pavo.gui.GameWindow {
 	public static void show(String title, String message, MessageBoxIcon iconifier, boolean blotchBackground) {
 		//WindowManager.Inst.add(new MessageBox(title,message));
 		MessageBox handle = new MessageBox(title,message,iconifier);
+		handle.setHandle(395428394);
+		for (int c = 0; c < WindowManager.Inst.size(); c++) {
+			GameWindow gw = WindowManager.Inst.get(c);
+			if (gw != null && gw instanceof MessageBox) {// && gw.getHandle() == -1) {
+				WindowManager.Inst.remove(gw);
+			}
+		}
 		if (blotchBackground) {
 			WindowManager.Inst.ianOwjej10nJAnin345soaKOEe9201LIQUICK(handle);
 		}

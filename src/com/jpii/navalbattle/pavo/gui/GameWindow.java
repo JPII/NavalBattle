@@ -36,6 +36,7 @@ public class GameWindow extends Renderable {
 	String title;
 	boolean visible;
 	WindowManager prent;
+	private int handle;
 	public GameWindow() {
 		bck_clr = new Color(193,172,134);
 		showTitle = true;
@@ -48,6 +49,16 @@ public class GameWindow extends Renderable {
 	}
 	public void setWinMan(WindowManager wm) {
 		prent = wm;
+	}
+	public void setHandle(int id) {
+		if (id == -1)
+			id = 0;
+		if (id == 395428394)
+			id = -1;
+		handle = id;
+	}
+	public int getHandle() {
+		return handle;
 	}
 	public void render() {
 		buffer = new BufferedImage(getWidth()+1,getHeight()+1,BufferedImage.TYPE_INT_ARGB);

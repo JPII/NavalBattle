@@ -31,7 +31,7 @@ public class ProceduralLayeredMapGenerator {
 	private static $JSNAO9JW10SKJF194OI[] json;
 	private static $kdOWj20Janro2[] barracades;
 	private static Rand rand = Game.Settings.rand;
-	public static final int RIVERSIZE = 512;
+	public static final int RIVERSIZE = 1024;//512;
 	static {
 		doInit();
 	}
