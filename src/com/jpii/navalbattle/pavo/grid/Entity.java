@@ -34,10 +34,10 @@ public class Entity {
 		manager = em;
 		init();
 	}
-	public Entity(EntityManager em,Location loc, int superId,int team) {
+	public Entity(EntityManager em,Location loc, int superId,int teams) {
 		manager = em;
 		location = loc;
-		teamId=team;
+		teamId=teams;
 		try
 		{
 			moveTo(loc,true);
@@ -47,7 +47,6 @@ public class Entity {
 		init();
 		setId(superId);
 	}
-	
 	/**
 	 * Initialises the entity. This should never be called. If inheriting <code>Entity></code>, this method should probably be overriden.
 	 */
