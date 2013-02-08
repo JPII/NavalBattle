@@ -164,6 +164,7 @@ public class Chunk extends Renderable {
 					g.drawLine(xc,zc-1,xc,zc+3);
 					Color leaf = PavoHelper.generateNewLeafColor();
 					g.setColor(leaf);
+					
 					g.drawLine(xc,zc-1,xc,zc-1);
 					g.setColor(PavoHelper.generateLeafMod(leaf));
 					g.drawLine(xc-1,zc-1,xc+1,zc-1);

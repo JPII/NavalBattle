@@ -37,7 +37,7 @@ public class ProceduralLayeredMapGenerator {
 	}
 	private static void doInit() {
 		berlin = new Perlin(Game.Settings.seed,0,0);
-		json = new $JSNAO9JW10SKJF194OI[2];
+		json = new $JSNAO9JW10SKJF194OI[10];
 		for (int c = 0; c < json.length; c++) {
 			json[c] = new $JSNAO9JW10SKJF194OI(PavoHelper.getGameWidth(WorldSize.WORLD_LARGE)*32,
 					PavoHelper.getGameHeight(WorldSize.WORLD_LARGE)*32);
@@ -96,10 +96,11 @@ public class ProceduralLayeredMapGenerator {
 		//float lvl7 = getLevel7(x,z);
 		float mixer = ((lvl0*25.0f)+(lvl4*5)+(lvl2*2.5f)+(lvl3*2.5f)) / 38.0f;//(lvl1*20.0f)+(lvl2*5.0f)+(lvl3*3.0f)+
 				//(lvl4*5.0f)+(lvl5*5.0f)+(lvl6*1.5f)-(lvl7*12.0f))/98.5f;
+		mixer = ((mixer * 14.0f) + getLevel1(x,z))/15.0f;
 		float mixed = ((mixer+1)/2.0f)-0.1f;
 		
 		if (mixed > 0.57)
-			mixed += 0.28;
+			mixed += 0.26;
 		
 		/*if (blitRiver(x,z)){
 			mixed = getLevel2(mixer,mixed+z)+0.2f;
@@ -109,15 +110,18 @@ public class ProceduralLayeredMapGenerator {
 				//mixed = 0.4f;
 		}*/
 		
-		float res = (float) ((mixed - 0.3)/0.21);
+		float res = (float)((mixed - 0.3)/0.21) - 0.08f;
 		if (res > 1)
 			res = 1;
 		if (res < 0)
 			res = 0;
 		
 		if (blitRiver(x,z) && res > 0.4){
-			//mixed = getLevel2(mixer,mixed+z)+0.2f;
-			res = res - 0.4f;
+			res = res * 0.3f;
+			if (res < 0.15f)
+				res += rand.nextDouble() * 0.15f;
+			//res = (getLevel2(mixer,mixed+z) + (res*9)) / 10.0f;
+			//res = res - 0.4f;
 			if (res > 1)
 				res = 1;
 			if (res < 0)
