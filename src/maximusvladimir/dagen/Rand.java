@@ -113,6 +113,44 @@ public class Rand {
 		calculations--;
 		return sample;
 	}
+	public byte nextByte(byte min, byte max) {
+		return (byte)nextInt(min,max);
+	}
+	public void fillArray(double[] array, double min, double max) {
+		if (array == null) 
+			return;
+		for (int c = 0; c < array.length; c++) {
+			array[c] = nextDouble(min,max);
+		}
+	}
+	public void fillArray(short[] array, int min, int max) {
+		if (array == null) 
+			return;
+		for (int c = 0; c < array.length; c++) {
+			array[c] = nextShort((short)min,(short)max);
+		}
+	}
+	public void fillArray(byte[] array, byte min, byte max) {
+		if (array == null) 
+			return;
+		for (int c = 0; c < array.length; c++) {
+			array[c] = nextByte(min,max);
+		}
+	}
+	public void fillArray(int[] array, int min, int max) {
+		if (array == null) 
+			return;
+		for (int c = 0; c < array.length; c++) {
+			array[c] = nextInt(min,max);
+		}
+	}
+	public void fillArray(float[] array, float min, float max) {
+		if (array == null) 
+			return;
+		for (int c = 0; c < array.length; c++) {
+			array[c] = nextFloat(min,max);
+		}
+	}
 	public float nextFloat(float min, float max) {
 		return (float)nextDouble(min,max);
 	}
