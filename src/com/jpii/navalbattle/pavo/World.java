@@ -129,11 +129,14 @@ public class World extends Renderable implements Interactable {
 		return gen;
 	}
 	long smallTicks = 0;
+	long localTicks = 0;
+	long startFPS = 0;
 	public void update() {
 		smallTicks += 100;
+		localTicks++;
 		time.update();
 		wm.update();
-		em.update(smallTicks);
+		em.update(localTicks);//smallTicks);
 	}
 	public WeatherManager getWeather() {
 		return wm;
