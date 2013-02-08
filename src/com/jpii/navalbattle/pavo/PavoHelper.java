@@ -124,9 +124,9 @@ public class PavoHelper {
 	}
 	public static int getGameWidth(WorldSize ws) {
 		if (ws == WorldSize.WORLD_HUGE)
-			return 86;
+			return 80;
 		else if (ws == WorldSize.WORLD_LARGE)
-			return 64;
+			return 80;
 		else if (ws == WorldSize.WORLD_MEDIUM)
 			return 32;
 		else if (ws == WorldSize.WORLD_SMALL)

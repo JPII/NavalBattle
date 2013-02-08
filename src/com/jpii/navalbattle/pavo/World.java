@@ -48,7 +48,7 @@ public class World extends Renderable implements Interactable {
 	BufferedImage noise;
 	int zlevel;
 	public World() {
-		ws = WorldSize.WORLD_LARGE;
+		ws = WorldSize.WORLD_HUGE;
 		em = new EntityManager(this);
 		width = PavoHelper.getGameWidth(getWorldSize());
 		height = PavoHelper.getGameHeight(getWorldSize());
@@ -65,6 +65,7 @@ public class World extends Renderable implements Interactable {
 		buffer = new BufferedImage(Game.Settings.currentWidth,Game.Settings.currentHeight,BufferedImage.TYPE_3BYTE_BGR);
 		makeNoise();
 		wm = new WeatherManager();
+		cachewidth = PavoHelper.getGameWidth(getWorldSize());
 	}
 	public void setEntityManager(EntityManager em) {
 		this.em = em;
@@ -72,8 +73,9 @@ public class World extends Renderable implements Interactable {
 	public Chunk getChunk(int index) {
 		return chunks[index];
 	}
+	int cachewidth = 0;
 	public Chunk getChunk(int x, int z) {
-		return getChunk(z*PavoHelper.getGameWidth(getWorldSize())+x);
+		return getChunk(z*cachewidth+x);
 	}
 	public void setZoomLevel(int level) {
 		zlevel = level;
