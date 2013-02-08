@@ -158,6 +158,26 @@ public class PavoHelper {
 	public static Location convertWorldSpaceToGridLocation(Point p) {
 		return new Location(p.y/50,p.x/50);
 	}
+	public static Color generateNewLeafColor() {
+		byte pointer = (byte)Game.Settings.rand.nextInt(0, 5);
+		switch (pointer) {
+			case 0:
+				return Game.Settings.rand.nextColor(244,214,38,15);
+			case 1:
+				return Game.Settings.rand.nextColor(236,89,47,15);
+			case 2:
+				return Game.Settings.rand.nextColor(135,185,98,15);
+			case 3:
+				return Game.Settings.rand.nextColor(240,244,89,15);
+			case 4:
+				return Game.Settings.rand.nextColor(135,185,98,15);
+		}
+		return Game.Settings.rand.nextColor(135,185,98,15); 
+	}
+	public static Color generateLeafMod(Color base) {
+		Color c = Game.Settings.rand.nextColor(base.getRed(),base.getGreen(),base.getBlue(),8);
+		return new Color(c.getRed(),c.getGreen(),c.getBlue(),125);
+	}
 	/**
 	 * Linear interpolation.
 	 * @param num0

@@ -162,9 +162,10 @@ public class Chunk extends Renderable {
 				if (lasy > 0.4f && frsh > 0.6f && Game.Settings.rand.nextInt(20) == 2) {
 					g.setColor(new Color(150,100,15));
 					g.drawLine(xc,zc-1,xc,zc+3);
-					g.setColor(new Color(27,105,29));
+					Color leaf = PavoHelper.generateNewLeafColor();
+					g.setColor(leaf);
 					g.drawLine(xc,zc-1,xc,zc-1);
-					g.setColor(new Color(27,105,29,50));
+					g.setColor(PavoHelper.generateLeafMod(leaf));
 					g.drawLine(xc-1,zc-1,xc+1,zc-1);
 					g.drawLine(xc,zc-2,xc,zc-2);
 				}
