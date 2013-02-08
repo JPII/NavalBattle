@@ -44,6 +44,47 @@ public class Rand {
 	public Color nextColor() {
 		return new Color(nextInt(255),nextInt(255),nextInt(255));
 	}
+	public Color nextColor(int targetRed, int targetGreen, int targetBlue, int targetAlpha, int tolerance) {
+		int r = nextInt(-tolerance,tolerance)+targetRed;
+		int g = nextInt(-tolerance,tolerance)+targetGreen;
+		int b = nextInt(-tolerance,tolerance)+targetBlue;
+		int a = nextInt(-tolerance,tolerance)+targetAlpha;
+		if (r > 255)
+			r = 255;
+		if (g > 255)
+			g = 255;
+		if (b > 255)
+			b = 255;
+		if (a > 255)
+			a = 255;
+		if (r < 0)
+			r = 0;
+		if (g > 0)
+			g = 0;
+		if (b < 0)
+			b = 0;
+		if (a > 0)
+			a = 0;
+		return new Color(r,g,b,a);
+	}
+	public Color nextColor(int targetRed, int targetGreen, int targetBlue, int tolerance) {
+		int r = nextInt(-tolerance,tolerance)+targetRed;
+		int g = nextInt(-tolerance,tolerance)+targetGreen;
+		int b = nextInt(-tolerance,tolerance)+targetBlue;
+		if (r > 255)
+			r = 255;
+		if (g > 255)
+			g = 255;
+		if (b > 255)
+			b = 255;
+		if (r < 0)
+			r = 0;
+		if (g > 0)
+			g = 0;
+		if (b < 0)
+			b = 0;
+		return new Color(r,g,b);
+	}
 	public long getSeed() {
 		return original;
 	}
