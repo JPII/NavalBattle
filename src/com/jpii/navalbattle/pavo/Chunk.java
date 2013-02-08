@@ -159,7 +159,7 @@ public class Chunk extends Renderable {
 			for (int zc = 100/3; zc > 0; zc--) {
 				float frsh = ProceduralLayeredMapGenerator.getPoint((xc+(100.0f/3.0f*x))*4.0f, (zc+(100.0f/3.0f*z))*4.0f);
 				float lasy = ProceduralLayeredMapGenerator.getPoint(xc+(100.0f/3.0f*x), zc+(100.0f/3.0f*z));
-				if (lasy > 0.4f && frsh > 0.6f && Game.Settings.rand.nextInt(20) == 2) {
+				if (lasy > 0.4f && frsh > 0.6f && Game.Settings.rand.nextInt(32) == 2) {
 					g.setColor(new Color(150,100,15));
 					g.drawLine(xc,zc-1,xc,zc+3);
 					Color leaf = PavoHelper.generateNewLeafColor();
