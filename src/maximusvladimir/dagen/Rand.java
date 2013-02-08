@@ -51,6 +51,21 @@ public class Rand {
 		localkey = (localkey * 0x5DEECE66DL + 0xBL) & ((1L << 48) - 1);
 		return (int) (localkey >>> (48 - bits));
 	}
+	public short nextShort() {
+		calculations++;
+		return (short)getNextBit(16);
+	}
+	public short nextShort(short min, short max) {
+		return (short)nextInt((short)min,(short)max);
+	}
+	public short nextShort(short max) {
+		return nextShort((short)0,max);
+	}
+	
+	public byte nextByte() {
+		calculations++;
+		return (byte)getNextBit(8);
+	}
 	public int nextInt() {
 		calculations++;
 		return getNextBit(32);
@@ -92,8 +107,10 @@ public class Rand {
 	}
 	public double nextDouble(double min, double max) {
 		double sample = nextDouble();
-		sample *= (max+min);
-		sample -= min;
+		sample += (double)nextInt((int)min,(int)max);
+		//sample *= (max+min);
+		//sample -= min;
+		calculations--;
 		return sample;
 	}
 	public float nextFloat(float min, float max) {
