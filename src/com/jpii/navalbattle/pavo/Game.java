@@ -206,7 +206,7 @@ public class Game extends Renderable implements Runnable {
 					getWorld().genNextChunk();
 					// Make a small break between each generation.
 					long start = System.currentTimeMillis();
-					while (start + 550 > System.currentTimeMillis()) {
+					while (start + 150 > System.currentTimeMillis()) {
 						;;;
 					}
 				}
