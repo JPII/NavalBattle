@@ -81,6 +81,7 @@ public class WindowManager extends Renderable{
 					flag = true;
 			}
 		}
+		System.out.println("Window "+flag);
 		return flag;
 	}
 	public boolean mouseDragged(MouseEvent me) {
