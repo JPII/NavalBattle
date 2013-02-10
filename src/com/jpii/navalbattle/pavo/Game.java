@@ -163,6 +163,7 @@ public class Game extends Renderable implements Runnable {
 				long updateStart = System.currentTimeMillis();
 				while (getWorld().isLocked()) {}
 				getWorld().lock();
+				//getWorld().render();
 				getWorld().update();
 				getWorld().unlock();
 				TimeManager tim = getWorld().getTimeManager();

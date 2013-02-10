@@ -185,6 +185,8 @@ public class EntityManager {
 	 * @return
 	 */
 	public int getTilePercentLand(int r, int c) {
+		if (r < 0 || c < 0 || r >= 128 || c >= 28)
+			return 0;
 		return tileAccessor[c][r];
 	}
 	public static int lastid = 0;
