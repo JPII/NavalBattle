@@ -23,6 +23,8 @@ import java.awt.Polygon;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 import java.text.DecimalFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -66,6 +68,10 @@ public class Game extends Renderable implements Runnable {
 		buffer = new BufferedImage(Game.Settings.currentWidth,Game.Settings.currentHeight,BufferedImage.TYPE_3BYTE_BGR);
 		world.getWeather().setWeather(WeatherMode.Sunny);
 		shadow = PavoHelper.createInnerShadow(Game.Settings.currentWidth,Game.Settings.currentHeight);
+		int yeart = Calendar.getInstance().get(Calendar.YEAR);
+		String years = Integer.toString(yeart);
+		yearf = Integer.parseInt(years.substring(0,2));
+		yearl = Integer.parseInt(years.substring(2));
 	}
 	/**
 	 * Gets the window manager for the Game.
@@ -270,6 +276,10 @@ public class Game extends Renderable implements Runnable {
 			
 		}
 		getWinMan().lock();
+		if (gJsiw)
+			g.setXORMode(Color.yellow);
+		
+		//g.setXORMode(Color.blue);
 		for (int c = 0; c < getWinMan().size(); c++) {
 			GameWindow gw = getWinMan().get(c);
 			if (gw instanceof GridWindow && gw.isVisible()) {
@@ -297,6 +307,7 @@ public class Game extends Renderable implements Runnable {
 				}
 			}
 		}
+		//g.setXORMode(Color.blue);
 		if (PavoHelper.getCalculatedSystemSpeed() != SystemSpeed.CREEPER && 
 				PavoHelper.getCalculatedSystemSpeed() != SystemSpeed.TURTLE) {
 			g.drawImage(shadow,0,0,null);
@@ -375,6 +386,9 @@ public class Game extends Renderable implements Runnable {
 	    }
 	}
 	int lastmx = 0,lastmy = 0;
+	int yearf = 0;
+	int yearl = 0;
+	boolean gJsiw = false;
 	public void mouseDown(MouseEvent me) {
 		mouseEventSchedule = me;
 		mouseLogicTask = new $$$MouseLogicTimer();
@@ -394,6 +408,9 @@ public class Game extends Renderable implements Runnable {
 				acuratey += (chy - l.getRow())*50;
 				e.getEntity().onMouseDown(acuratex,acuratey,me.getButton() == MouseEvent.BUTTON1);
 			}
+		}
+		if (chx == yearf && chy == yearl) {
+			gJsiw = !gJsiw;
 		}
 	}
 	public void mouseUp(MouseEvent me) {
