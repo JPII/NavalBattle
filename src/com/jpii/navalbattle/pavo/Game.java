@@ -41,21 +41,22 @@ import com.jpii.navalbattle.renderer.weather.WeatherMode;
 import com.jpii.navalbattle.util.GameStatistics;
 
 public class Game extends Renderable implements Runnable {
-	Thread updator;
-	Thread chunkrender;
-	Thread generator;
-	boolean gameRunning = true;
-	long timeLastUpdate = System.currentTimeMillis();
-	int state = 0;
-	World world;
-	WorldGen gen;
-	long numUpdates = 0;
-	boolean forceUpdate = false;
-	boolean forceRender = false;
+	private Thread updator;
+	private Thread chunkrender;
+	private Thread generator;
+	private boolean gameRunning = true;
+	private long timeLastUpdate = System.currentTimeMillis();
+	private int state = 0;
+	private World world;
+	private WorldGen gen;
+	private long numUpdates = 0;
+	private boolean forceUpdate = false;
+	private boolean forceRender = false;
 	private int lastTime = -1;
-	int lastw = 0, lasth = 0;
+	private int lastw = 0, lasth = 0;
 	private WindowManager windows;
-	BufferedImage shadow;
+	private BufferedImage shadow;
+	//private BufferedImage chunkBuffer;
 	public static PavoSettings Settings = new PavoSettings();
 	/**
 	 * Creates a new instance of the game.
@@ -66,6 +67,7 @@ public class Game extends Renderable implements Runnable {
 		gen = new WorldGen();
 		threadInit();
 		buffer = new BufferedImage(Game.Settings.currentWidth,Game.Settings.currentHeight,BufferedImage.TYPE_3BYTE_BGR);
+		//chunkBuffer = new BufferedImage(Game.Settings.currentWidth,Game.Settings.currentHeight,BufferedImage.TYPE_3BYTE_BGR);
 		world.getWeather().setWeather(WeatherMode.Sunny);
 		shadow = PavoHelper.createInnerShadow(Game.Settings.currentWidth,Game.Settings.currentHeight);
 		int yeart = Calendar.getInstance().get(Calendar.YEAR);
@@ -246,12 +248,16 @@ public class Game extends Renderable implements Runnable {
 		long sjan = System.currentTimeMillis();
 		//for (int c = 0; c < 5; c++)
 			//System.gc();
+		
 		if (lkw != Game.Settings.currentWidth || lkh != Game.Settings.currentHeight) {
-		buffer = new BufferedImage(Game.Settings.currentWidth,Game.Settings.currentHeight,BufferedImage.TYPE_3BYTE_BGR);
-		lkw = Game.Settings.currentWidth;
-		lkh = Game.Settings.currentHeight;
+			buffer = new BufferedImage(Game.Settings.currentWidth,Game.Settings.currentHeight,BufferedImage.TYPE_3BYTE_BGR);
+			//chunkBuffer = new BufferedImage(Game.Settings.currentWidth,Game.Settings.currentHeight,BufferedImage.TYPE_3BYTE_BGR);
+			lkw = Game.Settings.currentWidth;
+			lkh = Game.Settings.currentHeight;
 		}
+		
 		Graphics2D g = PavoHelper.createGraphics(buffer);
+		
 		while (getWorld().isLocked()) {
 			
 		}
