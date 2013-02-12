@@ -185,8 +185,8 @@ public class EntityManager {
 	 * @return
 	 */
 	public int getTilePercentLand(int r, int c) {
-		if (r < 0 || c < 0 || r >= PavoHelper.getGameHeight(getWorld().getWorldSize()) 
-				|| c >= PavoHelper.getGameWidth(getWorld().getWorldSize()))
+		if (r < 0 || c < 0 || r >= PavoHelper.getGameHeight(getWorld().getWorldSize())*2
+				|| c >= PavoHelper.getGameWidth(getWorld().getWorldSize())*2)
 			return 0;
 		return tileAccessor[c][r];
 	}
