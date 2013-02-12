@@ -28,19 +28,22 @@ import java.util.ArrayList;
 
 public class NavalBattleIO {
 	
+	private static ArrayList<SettingsAttribute> attributes = new ArrayList<SettingsAttribute>();
+	
 	public static void run() {
 		if (isFirstRun()) {
+			NavalBattle.getDebugWindow().printInfo("Writing default config file");
 			String settingsPath = getSettingsPath();
 			File opt = new File(settingsPath);
 			boolean res = false;
 			try {
 				res = opt.createNewFile();
-				try{
-				java.io.FileWriter writer = new FileWriter(opt);
-				String c = System.getProperty("line.separator");
-				writer.write("# Login data:\nlastGoodUserName: ");
-				writer.close();}
-				catch(Throwable throwable) {
+				try {
+					java.io.FileWriter writer = new FileWriter(opt);
+					String c = System.getProperty("line.separator");
+					writer.write("# Login data:\nlastGoodUserName: ");
+					writer.close();
+				} catch(Throwable throwable) {
 					NavalBattle.getDebugWindow().printError("A serious error has occured with NavalBattle, and it must close: " + throwable.getMessage());
 				}
 			}
@@ -49,6 +52,7 @@ public class NavalBattleIO {
 			}
 		}
 		else {
+			NavalBattle.getDebugWindow().printInfo("Loading config file");
 			ArrayList<SettingsAttribute> attrs = new ArrayList<SettingsAttribute>();
 			SettingsAttribute a = new SettingsAttribute("lastGoodUserName");
 			attrs.add(a);
@@ -67,22 +71,15 @@ public class NavalBattleIO {
 		}
 	}
 	
-	/**
-	 * Returns if program is running for the first time.
-	 * @return
-	 */
 	public static boolean isFirstRun() {
-		if (!new File(getSettingsPath()).exists())
-			return true;
-		else
-			return false;
+		return !new File(getSettingsPath()).exists();
 	}
 	
-	/**
-	 * Returns settings file path.
-	 * @return
-	 */
 	public static String getSettingsPath() {
 		return (FileUtils.getSavingDirectory().getAbsolutePath()+"\\settings.ini");
+	}
+	
+	public static ArrayList<SettingsAttribute> getAttributes(){
+		return attributes;
 	}
 }
