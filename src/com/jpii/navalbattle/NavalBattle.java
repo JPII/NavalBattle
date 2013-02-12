@@ -50,7 +50,7 @@ public class NavalBattle {
 	 */
 	public static void main(String[] args) {
 		try {
-			GameKit.checkVersion(Constants.GAMEKIT_API_LEVEL);
+			GameKit.checkVersion(Constants.GAMEKIT_MIN_API_LEVEL, Constants.GAMEKIT_MAX_API_LEVEL);
 		} catch (InvalidApiLevelException e) {
 			e.printStackTrace();
 		}
