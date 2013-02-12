@@ -90,12 +90,13 @@ public class WindowHandler {
 	public void killAll() {
 		for(int index = 0; index<windows.size(); index+=0){
 			JFrame temp = windows.get(index);
-			if(!(temp instanceof SinglePlayerGame)){
+			if(temp instanceof SinglePlayerGame){
+				index++;
+			}
+			else{
 				((Window)temp).donewithMe();
 				windows.remove(index);
-				index--;
 			}
-			index++;
 		}
 		System.out.println("Done");
 	}
