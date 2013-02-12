@@ -81,7 +81,7 @@ public class EntityManager {
 			return;
 		if (entities.size() >= 25) {
 			MessageBox.show("Warning!","Too many entities added.",
-					MessageBoxIcon.Notify, false);
+					MessageBoxIcon.Notify, true);
 		}
 		entities.add(e);
 	}
