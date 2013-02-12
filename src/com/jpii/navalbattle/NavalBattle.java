@@ -31,6 +31,7 @@ import com.jpii.navalbattle.debug.*;
 import com.jpii.navalbattle.game.HookStream;
 import com.jpii.navalbattle.game.SinglePlayerGame;
 import com.jpii.navalbattle.gui.Window;
+import com.jpii.navalbattle.io.NavalBattleIO;
 import com.jpii.navalbattle.pavo.Game;
 import com.jpii.navalbattle.renderer.*;
 
@@ -67,8 +68,9 @@ public class NavalBattle {
 		System.setOut(new HookStream(new ByteArrayOutputStream()));
 		
 		// Debug purposes
-		MaxTests.run();
+		// MaxTests.run();
 		
+		NavalBattleIO.run();
 		debugWindow.setVisible(true);
 		gameState = new GameState();
 		roketGamer = new RoketGamer();
