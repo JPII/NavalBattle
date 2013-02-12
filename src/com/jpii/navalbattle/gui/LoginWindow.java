@@ -23,6 +23,7 @@ import com.jpii.navalbattle.NavalBattle;
 import com.jpii.navalbattle.data.Constants;
 import com.jpii.navalbattle.gui.listeners.Focus;
 import com.jpii.navalbattle.io.NavalBattleIO;
+import com.jpii.navalbattle.io.SettingsAttribute;
 import com.jpii.navalbattle.util.FileUtils;
 import com.jpii.navalbattle.util.URLUtils;
 import com.roketgamer.Player;
@@ -82,7 +83,7 @@ public class LoginWindow extends Window {
 		
 		passwordField.addKeyListener(Constants.keys);
 		usernameField.addKeyListener(Constants.keys);
-		usernameField.setText(NavalBattleIO.getAttributes().get(0).getValue());
+		usernameField.setText(NavalBattleIO.getAttribute("lastGoodUserName"));//NavalBattleIO.getAttributes().get(0).getValue());
 		passwordField.addFocusListener(new Focus(this));
 		usernameField.addFocusListener(new Focus(this));
 		
@@ -133,6 +134,7 @@ public class LoginWindow extends Window {
 			NavalBattle.getWindowHandler().getToasterManager().showToaster(new ImageIcon(FileUtils.getResourcePath("drawable-gui/logo_100px.png")), "Logged in as " + NavalBattle.getRoketGamer().getPlayer().getName());
 			NavalBattle.getDebugWindow().printInfo("User authenticated");
 			NavalBattle.getDebugWindow().printInfo("Logged in as: " + NavalBattle.getRoketGamer().getPlayer().getName());
+			NavalBattleIO.saveAttribute(new SettingsAttribute("lastGoodUserName",NavalBattle.getRoketGamer().getPlayer().getName()));
 			NavalBattle.getGameState().setOffline(false);
 			nextWindow("LoggingInWindow");
 			donewithMe();
