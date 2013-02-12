@@ -98,6 +98,6 @@ public class WindowHandler {
 				windows.remove(index);
 			}
 		}
-		System.out.println("Done");
+		System.out.println("Done!");
 	}
 }
