@@ -93,10 +93,9 @@ public class WindowHandler {
 			if(!(temp instanceof SinglePlayerGame)){
 				((Window)temp).donewithMe();
 				windows.remove(index);
+				index--;
 			}
-			else{
-				index++;
-			}
+			index++;
 		}
 		System.out.println("Done");
 	}

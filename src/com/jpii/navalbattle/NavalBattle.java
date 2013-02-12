@@ -98,7 +98,7 @@ public class NavalBattle {
 				}
 			}
 		}
-		windowHandler.killAll();
+		//windowHandler.killAll();
 		System.out.println("Game is closing.");
 		try {
 			Thread.currentThread().sleep(250);
