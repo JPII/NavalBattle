@@ -53,9 +53,8 @@ public class NavalBattleIO {
 		}
 		else {
 			NavalBattle.getDebugWindow().printInfo("Loading config file");
-			ArrayList<SettingsAttribute> attrs = new ArrayList<SettingsAttribute>();
 			SettingsAttribute a = new SettingsAttribute("lastGoodUserName");
-			attrs.add(a);
+			attributes.add(a);
 			
 			java.net.URL url = null;
 			File f = null;
@@ -66,7 +65,7 @@ public class NavalBattleIO {
 				NavalBattle.getDebugWindow().printError("Error while reading config file");
 			}
 			
-			SettingsReader reader = new SettingsReader(f.getAbsolutePath(),attrs);
+			SettingsReader reader = new SettingsReader(f.getAbsolutePath(), attributes);
 			reader.read();
 		}
 	}

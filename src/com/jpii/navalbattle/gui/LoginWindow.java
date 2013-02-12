@@ -22,6 +22,7 @@ import java.awt.event.*;
 import com.jpii.navalbattle.NavalBattle;
 import com.jpii.navalbattle.data.Constants;
 import com.jpii.navalbattle.gui.listeners.Focus;
+import com.jpii.navalbattle.io.NavalBattleIO;
 import com.jpii.navalbattle.util.FileUtils;
 import com.jpii.navalbattle.util.URLUtils;
 import com.roketgamer.Player;
@@ -81,6 +82,7 @@ public class LoginWindow extends Window {
 		
 		passwordField.addKeyListener(Constants.keys);
 		usernameField.addKeyListener(Constants.keys);
+		usernameField.setText(NavalBattleIO.getAttributes().get(0).getValue());
 		passwordField.addFocusListener(new Focus(this));
 		usernameField.addFocusListener(new Focus(this));
 		
