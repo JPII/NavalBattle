@@ -26,7 +26,7 @@ public class GridWindow extends GameWindow {
 		
 		setSize(200,200);
 		setGridLocation(0,0);
-		setLoc(0,25);
+		setLoc(25,175);
 	}
 	public void setGridLocation(int r, int c) {
 		local = new Location(r,c);
