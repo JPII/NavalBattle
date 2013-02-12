@@ -147,16 +147,23 @@ public class GameWindow extends Renderable {
 	public void forceShutdown() {
 		shutdown = true;
 	}
-	public void mouseDown(MouseEvent me) {
+	public boolean mouseDown(MouseEvent me) {
 		int mx = me.getX();
 		int my = me.getY();
+		boolean flag = false;
 		if (isTitleShown() && isVisible()) {
 			if (mx >= getWidth()-23+getX() && mx <= getWidth()-3+getX() && my >= getY() + 2 && my <= getY() + 20) {
 				onCloseCalled();
 				forceShutdown();
+				flag = true;
 			}
-			checkOtherDown(me);
+			if (mx >= getX()-2 && mx <= getX()+getWidth()+2 && my >= getY()-2 && my <= getY()+getHeight()+2){
+				flag = true;
+			}
+			if(checkOtherDown(me))
+				flag = true;
 		}
+		return flag;
 	}
 	public void mouseMove(MouseEvent me) {
 	}

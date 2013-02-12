@@ -76,9 +76,12 @@ public class WindowManager extends Renderable{
 		for (int c = 0; c < wins.size(); c++) {
 			GameWindow gw = wins.get(c);
 			if (gw!=null) {
-				gw.mouseDown(me);
-				if (gw.needsShutdown())
+				if(gw.mouseDown(me))
 					flag = true;
+				if (gw.needsShutdown()){
+					System.out.println("This occured...2");
+					flag = false;
+				}
 			}
 		}
 		System.out.println("Window "+flag);
