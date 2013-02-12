@@ -28,59 +28,39 @@ import java.util.ArrayList;
 
 public class NavalBattleIO {
 	
-	private static ArrayList<SettingsAttribute> attributes = new ArrayList<SettingsAttribute>();
-	
+	private static SettingsIO settings;
 	public static void run() {
 		if (isFirstRun()) {
 			NavalBattle.getDebugWindow().printInfo("Writing default config file");
 			String settingsPath = getSettingsPath();
-			File opt = new File(settingsPath);
-			boolean res = false;
-			try {
-				res = opt.createNewFile();
-				try {
-					java.io.FileWriter writer = new FileWriter(opt);
-					String c = System.getProperty("line.separator");
-					writer.write("# Login data:\nlastGoodUserName: ");
-					writer.close();
-				} catch(Throwable throwable) {
-					NavalBattle.getDebugWindow().printError("A serious error has occured with NavalBattle, and it must close: " + throwable.getMessage());
-				}
-			}
-			catch (Throwable threw) {
-				NavalBattle.getDebugWindow().printError("A serious error has occured with NavalBattle, and it must close: " + threw.getMessage());
-			}
+			settings = new SettingsIO(settingsPath);
+			boolean res = settings.setAttribute(new SettingsAttribute("lastGoodUserName"));
+			if (!res)
+				System.out.println("failed to write initial attribute");
 		}
 		else {
-			NavalBattle.getDebugWindow().printInfo("Loading config file");
-			SettingsAttribute a = new SettingsAttribute("lastGoodUserName");
-			attributes.add(a);
-			
-			java.net.URL url = null;
-			File f = null;
-			
+			NavalBattle.getDebugWindow().printInfo("Loading config file");	
 			try {
-				f = new File(getSettingsPath());
+				settings = new SettingsIO(getSettingsPath());
 			} catch (Exception e) { 
 				NavalBattle.getDebugWindow().printError("Error while reading config file");
 			}
-			
-			SettingsReader reader = new SettingsReader(f.getAbsolutePath(), attributes);
-			reader.read();
 		}
 	}
 	
+	public static String getAttribute(String name) {
+		SettingsAttribute a = new SettingsAttribute(name.toLowerCase());
+		a = getAttribute(a);
+		return a.value;
+	}
+	
+	public static SettingsAttribute getAttribute(SettingsAttribute a) {
+		a = settings.readAttribute(a);
+		return a;
+	}
+	
 	public static void saveAttribute(SettingsAttribute attribute) {
-		File f = null;
-		
-		try {
-			f = new File(getSettingsPath());
-		} catch (Exception e) { 
-			NavalBattle.getDebugWindow().printError("Error while reading config file");
-		}
-		
-		SettingsWriter writer = new SettingsWriter(f.getAbsolutePath(), attributes);
-		// TODO: Save
+		settings.setAttribute(attribute);
 	}
 	
 	public static boolean isFirstRun() {
@@ -88,10 +68,6 @@ public class NavalBattleIO {
 	}
 	
 	public static String getSettingsPath() {
-		return (FileUtils.getSavingDirectory().getAbsolutePath()+"\\settings.ini");
-	}
-	
-	public static ArrayList<SettingsAttribute> getAttributes(){
-		return attributes;
+		return (FileUtils.getSavingDirectory().getAbsolutePath()+"\\newsettings.ini");
 	}
 }

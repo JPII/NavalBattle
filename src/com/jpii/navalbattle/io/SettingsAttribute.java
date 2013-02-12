@@ -27,6 +27,7 @@ public class SettingsAttribute {
 	 */
 	public SettingsAttribute(String name) {
 		this.name = name;
+		value = "";
 	}
 	
 	/**

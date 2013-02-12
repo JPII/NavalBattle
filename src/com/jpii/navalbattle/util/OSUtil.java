@@ -1,5 +1,6 @@
 package com.jpii.navalbattle.util;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 
 public class OSUtil {
@@ -16,6 +17,15 @@ public class OSUtil {
 				return c;
 		}
 		return -1;
+	}
+	public static <T> ArrayList<T> memcpy(ArrayList<T> src) {
+		if (src == null)
+			return null;
+		ArrayList<T> dst = new ArrayList<T>();
+		for (int c = 0; c < src.size(); c++) {
+			dst.add(src.get(c));
+		}
+		return dst;
 	}
 	public static <T> T[] memset(T[] src, T value) {
 		if (src == null)
