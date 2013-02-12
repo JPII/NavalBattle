@@ -70,6 +70,19 @@ public class NavalBattleIO {
 		}
 	}
 	
+	public static void saveAttribute(SettingsAttribute attribute) {
+		File f = null;
+		
+		try {
+			f = new File(getSettingsPath());
+		} catch (Exception e) { 
+			NavalBattle.getDebugWindow().printError("Error while reading config file");
+		}
+		
+		SettingsWriter writer = new SettingsWriter(f.getAbsolutePath(), attributes);
+		// TODO: Save
+	}
+	
 	public static boolean isFirstRun() {
 		return !new File(getSettingsPath()).exists();
 	}
