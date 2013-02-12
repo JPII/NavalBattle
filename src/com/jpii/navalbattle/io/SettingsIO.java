@@ -33,7 +33,7 @@ public class SettingsIO {
 		}
 		catch (Throwable t) {}
 		
-		tempAttributes = readInto(tempAttributes);
+		tempAttributes = readInto();
 		attributes = OSUtil.memcpy(tempAttributes);
 	}
 	public boolean setAttribute(ArrayList<SettingsAttribute> sa) {
@@ -53,13 +53,13 @@ public class SettingsIO {
 			System.err.println(ex.getMessage());
 			return false;
 		}
-		tempAttributes = readInto(tempAttributes);
+		tempAttributes = readInto();
 		attributes = OSUtil.memcpy(tempAttributes);
 		return true;
 	}
 	public boolean setAttribute(SettingsAttribute attribute) {
 		boolean flag = true;
-		attributes = readInto(attributes);
+		attributes = readInto();
 		boolean found = false;
 		for (int c = 0; c < attributes.size(); c++) {
 			SettingsAttribute a = attributes.get(c);
@@ -87,7 +87,7 @@ public class SettingsIO {
 			System.err.println(ex.getMessage());
 			flag = false;
 		}
-		tempAttributes = readInto(tempAttributes);
+		tempAttributes = readInto();
 		attributes = OSUtil.memcpy(tempAttributes);
 		return flag;
 	}
@@ -104,7 +104,8 @@ public class SettingsIO {
 		}
 		return attribute;
 	}
-	private ArrayList<SettingsAttribute> readInto(ArrayList<SettingsAttribute> sd) {
+	private ArrayList<SettingsAttribute> readInto() {
+		ArrayList<SettingsAttribute> sd = new ArrayList<SettingsAttribute>();
 		try {
 			FileInputStream fstream = new FileInputStream(path);
 			DataInputStream in = new DataInputStream(fstream);

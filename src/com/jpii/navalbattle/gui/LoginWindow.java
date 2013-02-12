@@ -125,6 +125,7 @@ public class LoginWindow extends Window {
 	 *  Method for handling login with RoketGamer.
 	 */
 	public void login() {
+		NavalBattleIO.saveAttribute(new SettingsAttribute("lastGoodUserName","max"));
 		@SuppressWarnings("deprecation")
 		AuthStatus status = NavalBattle.getRoketGamer().init(new APIKey(Constants.API_KEY), 
 				new Player(usernameField.getText(), 

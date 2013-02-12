@@ -29,7 +29,9 @@ import java.util.ArrayList;
 public class NavalBattleIO {
 	
 	private static SettingsIO settings;
+	private static boolean inited = false;
 	public static void run() {
+		inited = true;
 		if (isFirstRun()) {
 			NavalBattle.getDebugWindow().printInfo("Writing default config file");
 			String settingsPath = getSettingsPath();
@@ -49,17 +51,23 @@ public class NavalBattleIO {
 	}
 	
 	public static String getAttribute(String name) {
-		SettingsAttribute a = new SettingsAttribute(name.toLowerCase());
+		if (!inited)
+			run();
+		SettingsAttribute a = new SettingsAttribute(name);
 		a = getAttribute(a);
 		return a.value;
 	}
 	
 	public static SettingsAttribute getAttribute(SettingsAttribute a) {
+		if (!inited)
+			run();
 		a = settings.readAttribute(a);
 		return a;
 	}
 	
 	public static void saveAttribute(SettingsAttribute attribute) {
+		if (!inited)
+			run();
 		settings.setAttribute(attribute);
 	}
 	
