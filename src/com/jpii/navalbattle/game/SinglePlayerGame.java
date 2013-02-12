@@ -40,6 +40,7 @@ public class SinglePlayerGame extends Window {
 	public void setVisible(boolean visible){
 		super.setVisible(visible);
 		if(isVisible()){
+			System.out.println("Opened!");
 			NavalBattle.getWindowHandler().killAll();
 		}
 	}

@@ -257,7 +257,7 @@ public class SPOptions extends Window{
 				
 				dispose();
 				NavalBattle.getDebugWindow().printInfo("Opening SinglePlayerGame");
-				new SinglePlayerGame();
+				nextWindow("SinglePlayerGame");
 			}
 		});
 		

@@ -50,8 +50,6 @@ public class WindowHandler {
 		windows.add(new SPOptions());
 		windows.add(new HelpWindow());
 		windows.add(new CreditsWindow());
-		
-		// remove this for debug
 		windows.add(new SinglePlayerGame());
 	}
 	
@@ -62,7 +60,7 @@ public class WindowHandler {
 	public void setNewWindow(String a) {
 		for(int index = 0; index<windows.size(); index++){
 			JFrame temp = (Window) windows.get(index);
-			if(a.toLowerCase().equals( temp.getClass().toString().substring((getClass().toString().lastIndexOf("."))).toLowerCase() )){
+			if(a.toLowerCase().equals( temp.getClass().toString().substring((temp.getClass().toString().lastIndexOf(".")+1)).toLowerCase() )){
 				temp.setVisible(true);
 			}
 			else{

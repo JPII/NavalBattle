@@ -87,7 +87,7 @@ public class MainMenuWindow extends Window {
 		btnSingleplayer.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				nextWindow("SPOptions");
+				nextWindow("SinglePlayerGame");
 			}
 		});		
 		btnHelp.addMouseListener(new MouseAdapter() {

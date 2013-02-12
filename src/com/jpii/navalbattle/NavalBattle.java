@@ -83,7 +83,6 @@ public class NavalBattle {
 		debugWindow.printInfo("Loaded " + localizationManager.getDefaultStrings().size() + " default strings.");
 		debugWindow.printInfo("Loaded " + localizationManager.getCurrentStrings().size() + " current strings.");
 		
-		windowHandler.windows.get(windowHandler.windows.size()-1).setVisible(true);
 	}
 	
 	public static void onShutdown() {
