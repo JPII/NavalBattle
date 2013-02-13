@@ -69,6 +69,12 @@ public class NavalBattleIO {
 		settings.setAttribute(attribute);
 	}
 	
+	public static void saveAttribute(String name, String value) {
+		if (!inited)
+			run();
+		settings.setAttribute(new SettingsAttribute(name,value));
+	}
+	
 	public static boolean isFirstRun() {
 		return !new File(getSettingsPath()).exists();
 	}
