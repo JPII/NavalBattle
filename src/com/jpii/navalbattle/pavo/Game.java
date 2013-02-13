@@ -56,6 +56,7 @@ public class Game extends Renderable implements Runnable {
 	private int lastw = 0, lasth = 0;
 	private WindowManager windows;
 	private BufferedImage shadow;
+	public static Game Instance;
 	//private BufferedImage chunkBuffer;
 	public static PavoSettings Settings = new PavoSettings();
 	/**
@@ -74,6 +75,7 @@ public class Game extends Renderable implements Runnable {
 		String years = Integer.toString(yeart);
 		yearf = Integer.parseInt(years.substring(0,2));
 		yearl = Integer.parseInt(years.substring(2));
+		Instance = this;
 	}
 	/**
 	 * Gets the window manager for the Game.

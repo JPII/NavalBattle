@@ -20,6 +20,8 @@ package com.jpii.navalbattle.io;
 import com.jpii.navalbattle.NavalBattle;
 import com.jpii.navalbattle.io.SettingsAttribute;
 import com.jpii.navalbattle.io.SettingsReader;
+import com.jpii.navalbattle.pavo.Game;
+import com.jpii.navalbattle.pavo.io.CompoundedGameStateIO;
 import com.jpii.navalbattle.util.FileUtils;
 
 import java.io.File;
@@ -67,6 +69,10 @@ public class NavalBattleIO {
 		if (!inited)
 			run();
 		settings.setAttribute(attribute);
+	}
+	
+	public static void saveCurrentGame(String name) {
+		CompoundedGameStateIO.save(Game.Instance, name, FileUtils.getSavingDirectory().getAbsolutePath()+"\\saves");
 	}
 	
 	public static void saveAttribute(String name, String value) {
