@@ -24,6 +24,7 @@ import com.jpii.navalbattle.debug.*;
 import com.jpii.navalbattle.game.SinglePlayerGame;
 import com.jpii.navalbattle.gui.*;
 import com.jpii.navalbattle.gui.listeners.WindowCloser;
+import com.jpii.navalbattle.io.NavalBattleIO;
 
 public class Commands {
 	
@@ -89,6 +90,16 @@ public class Commands {
 		    		NavalBattle.getDebugWindow().printInfo("Game score set to " + NavalBattle.getGameState().getScore());
 	    		} catch (Exception ex) {
 	    			NavalBattle.getDebugWindow().printError("Missing or invalid arg: score");
+	    		}
+	    	}}
+	    ));
+	    
+	    add(new Command("save", "<game name>", "Saves the current game", new CommandAction() { 
+	    	public void onRun(Command c, String[] args) {
+	    		try {
+	    			NavalBattleIO.saveCurrentGame(args[0]);
+	    		} catch (Exception ex) {
+	    			NavalBattle.getDebugWindow().printError("Missing or invalid arg: gameName");
 	    		}
 	    	}}
 	    ));
