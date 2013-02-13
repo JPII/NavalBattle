@@ -33,8 +33,7 @@ public class SettingsIO {
 		}
 		catch (Throwable t) {}
 		
-		tempAttributes = readInto();
-		attributes = OSUtil.memcpy(tempAttributes);
+		refresh();
 	}
 	public boolean setAttribute(ArrayList<SettingsAttribute> sa) {
 		try {
@@ -53,8 +52,7 @@ public class SettingsIO {
 			System.err.println(ex.getMessage());
 			return false;
 		}
-		tempAttributes = readInto();
-		attributes = OSUtil.memcpy(tempAttributes);
+		refresh();
 		return true;
 	}
 	public boolean setAttribute(SettingsAttribute attribute) {
@@ -87,8 +85,7 @@ public class SettingsIO {
 			System.err.println(ex.getMessage());
 			flag = false;
 		}
-		tempAttributes = readInto();
-		attributes = OSUtil.memcpy(tempAttributes);
+		refresh();
 		return flag;
 	}
 	
@@ -96,28 +93,45 @@ public class SettingsIO {
 		return OSUtil.memcpy(attributes);
 	}
 	
-	public SettingsAttribute readAttribute(SettingsAttribute attribute) {
+	public void refresh() {
+		attributes = readInto();
+		tempAttributes = readInto();
+	}
+	
+	public String readAttribute(SettingsAttribute attribute) {
 		for (int c = 0; c < tempAttributes.size(); c++) {
 			SettingsAttribute a = tempAttributes.get(c);
+			//System.out.println(a.name.toLowerCase()+","+attribute.name.toLowerCase());
 			if (a.name.toLowerCase().equals(attribute.name.toLowerCase()))
-				return a;
+				return a.value;
 		}
-		return attribute;
+		return null;
+	}
+	public String readAttribute(String name) {
+		for (int c = 0; c < attributes.size(); c++) {
+			SettingsAttribute a = attributes.get(c);
+			//System.out.println(a.name.toLowerCase()+","+name.toLowerCase());
+			if (a.name.toLowerCase().equals(name.toLowerCase()))
+				return a.value;
+		}
+		return null;
 	}
 	private ArrayList<SettingsAttribute> readInto() {
 		ArrayList<SettingsAttribute> sd = new ArrayList<SettingsAttribute>();
 		try {
+			//System.out.println("p"+path);
 			FileInputStream fstream = new FileInputStream(path);
 			DataInputStream in = new DataInputStream(fstream);
 			BufferedReader br = new BufferedReader(new InputStreamReader(in));
 			String line = "";
 			while ((line = br.readLine()) != null) {
-				int loc = -1;
-				if (line.indexOf(":") > -1)
-					loc = findLineAttributeLocation(sd,line.substring(0,line.indexOf(":")).replace(" ", ""));
-				
-				if (loc >= 0) {
+				SettingsAttribute sas = new SettingsAttribute("s");
+				//int loc = -1;
+				//if (line.indexOf(":") > -1)
+					//loc = findLineAttributeLocation(sd,line.substring(0,line.indexOf(":")).replace(" ", ""));
+				//if (loc >= 0) {
 					String value = line.substring(line.indexOf(":")+1);
+					String n = line.substring(0,line.indexOf(":"));
 					int c = 0;
 					for (c = 0; c < value.length(); c++) {
 						if (value.charAt(c) != ' ') {
@@ -125,11 +139,16 @@ public class SettingsIO {
 						}
 					}
 					value = value.substring(c);
-					SettingsAttribute attr = sd.get(loc);
-					attr.setValue(value);
-				}
+					sas.name = n;
+					sas.value = value;
+					sd.add(sas);
+					//SettingsAttribute attr = sd.get(loc);
+					//attr.setValue(value);
+				//}
 			}
+			fstream.close();
 			in.close();
+			br.close();
 		}
 		catch (Exception ex) {
 			System.err.println(ex.getMessage());

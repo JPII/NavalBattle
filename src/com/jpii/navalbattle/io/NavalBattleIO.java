@@ -36,7 +36,7 @@ public class NavalBattleIO {
 			NavalBattle.getDebugWindow().printInfo("Writing default config file");
 			String settingsPath = getSettingsPath();
 			settings = new SettingsIO(settingsPath);
-			boolean res = settings.setAttribute(new SettingsAttribute("lastGoodUserName"));
+			boolean res = settings.setAttribute(new SettingsAttribute("lastGoodUserName","max"));
 			if (!res)
 				System.out.println("failed to write initial attribute");
 		}
@@ -48,21 +48,19 @@ public class NavalBattleIO {
 				NavalBattle.getDebugWindow().printError("Error while reading config file");
 			}
 		}
+		settings.refresh();
 	}
 	
 	public static String getAttribute(String name) {
 		if (!inited)
 			run();
-		SettingsAttribute a = new SettingsAttribute(name);
-		a = getAttribute(a);
-		return a.value;
+		return settings.readAttribute(name);
 	}
 	
-	public static SettingsAttribute getAttribute(SettingsAttribute a) {
+	public static String getAttribute(SettingsAttribute a) {
 		if (!inited)
 			run();
-		a = settings.readAttribute(a);
-		return a;
+		return settings.readAttribute(a);
 	}
 	
 	public static void saveAttribute(SettingsAttribute attribute) {
@@ -76,6 +74,6 @@ public class NavalBattleIO {
 	}
 	
 	public static String getSettingsPath() {
-		return (FileUtils.getSavingDirectory().getAbsolutePath()+"\\newsettings.ini");
+		return (FileUtils.getSavingDirectory().getAbsolutePath()+"\\settings2.ini");
 	}
 }

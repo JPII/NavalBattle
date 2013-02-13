@@ -71,6 +71,7 @@ public class NavalBattle {
 		// MaxTests.run();
 		
 		NavalBattleIO.run();
+		//System.out.println(NavalBattleIO.getAttribute("lastGoodUserName")+"srewdwe5432");
 		debugWindow.setVisible(true);
 		gameState = new GameState();
 		roketGamer = new RoketGamer();
