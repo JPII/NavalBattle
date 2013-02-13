@@ -3,6 +3,7 @@
  */
 package com.jpii.navalbattle.pavo.io;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -21,6 +22,19 @@ public class CompoundedGameStateIO {
 	public static boolean save(Game game, String gameName, String folderPath) {
 		if (gameName == null || game == null || folderPath == null || gameName.equals("") || folderPath.equals(""))
 			return false;
+		
+		try {
+			//java.io.
+			File f = new File(folderPath);
+			f.mkdirs();
+			
+			f = new File(folderPath+"\\"+gameName+".psf");
+			if (!f.exists())
+				f.createNewFile();
+		}
+		catch (Throwable t) {
+			
+		}
 		
 		System.out.println("Saving the game...");
 		

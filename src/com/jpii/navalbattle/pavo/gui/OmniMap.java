@@ -29,19 +29,20 @@ import com.jpii.navalbattle.pavo.ProceduralLayeredMapGenerator;
 import com.jpii.navalbattle.pavo.PavoHelper;
 import com.jpii.navalbattle.pavo.Renderable;
 import com.jpii.navalbattle.pavo.World;
+import com.jpii.navalbattle.pavo.io.PavoImage;
 import com.jpii.navalbattle.renderer.Helper;
 import com.jpii.navalbattle.renderer.RenderConstants;
 
 public class OmniMap extends Renderable {
 	int mx,my;
 	World w;
-	BufferedImage terrain;
+	PavoImage terrain;
 	public OmniMap(World w) {
 		super();
 		this.w = w;
 		setSize(100,100);
-		buffer = (new BufferedImage(getWidth(), getHeight(),BufferedImage.TYPE_INT_RGB));
-		terrain = (new BufferedImage(getWidth(), getHeight(),BufferedImage.TYPE_INT_RGB));
+		buffer = (new PavoImage(getWidth(), getHeight(),BufferedImage.TYPE_INT_RGB));
+		terrain = (new PavoImage(getWidth(), getHeight(),BufferedImage.TYPE_INT_RGB));
 		writeBuffer();
 	}
 	public void mouseMoved(MouseEvent me) {

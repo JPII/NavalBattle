@@ -22,6 +22,7 @@ import java.awt.Graphics2D;
 import java.awt.Polygon;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
+import java.io.Serializable;
 import java.text.DecimalFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -36,11 +37,12 @@ import com.jpii.navalbattle.pavo.grid.Tile;
 import com.jpii.navalbattle.pavo.gui.GameWindow;
 import com.jpii.navalbattle.pavo.gui.GridWindow;
 import com.jpii.navalbattle.pavo.gui.WindowManager;
+import com.jpii.navalbattle.pavo.io.PavoImage;
 import com.jpii.navalbattle.renderer.Helper;
 import com.jpii.navalbattle.renderer.weather.WeatherMode;
 import com.jpii.navalbattle.util.GameStatistics;
 
-public class Game extends Renderable implements Runnable {
+public class Game extends Renderable implements Runnable, Serializable {
 	private Thread updator;
 	private Thread chunkrender;
 	private Thread generator;
@@ -48,14 +50,14 @@ public class Game extends Renderable implements Runnable {
 	private long timeLastUpdate = System.currentTimeMillis();
 	private int state = 0;
 	private World world;
-	private WorldGen gen;
+	//private WorldGen gen;
 	private long numUpdates = 0;
 	private boolean forceUpdate = false;
 	private boolean forceRender = false;
 	private int lastTime = -1;
 	private int lastw = 0, lasth = 0;
 	private WindowManager windows;
-	private BufferedImage shadow;
+	private PavoImage shadow;
 	public static Game Instance;
 	//private BufferedImage chunkBuffer;
 	public static PavoSettings Settings = new PavoSettings();
@@ -65,12 +67,12 @@ public class Game extends Renderable implements Runnable {
 	public Game() {
 		windows = new WindowManager(this);
 		world = new World();
-		gen = new WorldGen();
+		//gen = new WorldGen();
 		threadInit();
-		buffer = new BufferedImage(Game.Settings.currentWidth,Game.Settings.currentHeight,BufferedImage.TYPE_3BYTE_BGR);
+		buffer = new PavoImage(Game.Settings.currentWidth,Game.Settings.currentHeight,BufferedImage.TYPE_3BYTE_BGR);
 		//chunkBuffer = new BufferedImage(Game.Settings.currentWidth,Game.Settings.currentHeight,BufferedImage.TYPE_3BYTE_BGR);
 		world.getWeather().setWeather(WeatherMode.Sunny);
-		shadow = PavoHelper.createInnerShadow(Game.Settings.currentWidth,Game.Settings.currentHeight);
+		shadow = (PavoImage)PavoHelper.createInnerShadow(Game.Settings.currentWidth,Game.Settings.currentHeight);
 		int yeart = Calendar.getInstance().get(Calendar.YEAR);
 		String years = Integer.toString(yeart);
 		yearf = Integer.parseInt(years.substring(0,2));
@@ -253,7 +255,7 @@ public class Game extends Renderable implements Runnable {
 			//System.gc();
 		
 		if (lkw != Game.Settings.currentWidth || lkh != Game.Settings.currentHeight) {
-			buffer = new BufferedImage(Game.Settings.currentWidth,Game.Settings.currentHeight,BufferedImage.TYPE_3BYTE_BGR);
+			buffer = new PavoImage(Game.Settings.currentWidth,Game.Settings.currentHeight,BufferedImage.TYPE_3BYTE_BGR);
 			//chunkBuffer = new BufferedImage(Game.Settings.currentWidth,Game.Settings.currentHeight,BufferedImage.TYPE_3BYTE_BGR);
 			lkw = Game.Settings.currentWidth;
 			lkh = Game.Settings.currentHeight;
@@ -386,22 +388,22 @@ public class Game extends Renderable implements Runnable {
 		lastmx = me.getX();
 		lastmy = me.getY();
 	}
-	Timer mouseLogicTimer = new Timer();
-	TimerTask mouseLogicTask = new $$$MouseLogicTimer();
-	MouseEvent mouseEventSchedule;
-	private class $$$MouseLogicTimer extends TimerTask {
+	//Timer mouseLogicTimer = new Timer();
+	//TimerTask mouseLogicTask = new $$$MouseLogicTimer();
+	/*MouseEvent mouseEventSchedule;
+	private class $$$MouseLogicTimer extends TimerTask implements Serializable {
 	    public void run() {
 	        mouseHeldDown(mouseEventSchedule);
 	    }
-	}
+	}*/
 	int lastmx = 0,lastmy = 0;
 	int yearf = 0;
 	int yearl = 0;
 	boolean gJsiw = false;
 	public void mouseDown(MouseEvent me) {
-		mouseEventSchedule = me;
-		mouseLogicTask = new $$$MouseLogicTimer();
-		mouseLogicTimer.scheduleAtFixedRate(mouseLogicTask, 0, 10);
+		//mouseEventSchedule = me;
+		//mouseLogicTask = new $$$MouseLogicTimer();
+		//mouseLogicTimer.scheduleAtFixedRate(mouseLogicTask, 0, 10);
 		int chx = (-getWorld().getScreenX()) + lastmx;
 		int chy = (-getWorld().getScreenY()) + lastmy; 
 		chx /= 50;
@@ -423,7 +425,7 @@ public class Game extends Renderable implements Runnable {
 		}
 	}
 	public void mouseUp(MouseEvent me) {
-		mouseLogicTask.cancel();
+		//mouseLogicTask.cancel();
 	}
 	public void mouseDragged(MouseEvent me) {
 		

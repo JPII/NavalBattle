@@ -20,6 +20,7 @@ package com.jpii.navalbattle.pavo.grid;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import com.jpii.navalbattle.game.NavalGame;
@@ -29,8 +30,9 @@ import com.jpii.navalbattle.pavo.PavoHelper;
 import com.jpii.navalbattle.pavo.World;
 import com.jpii.navalbattle.pavo.gui.MessageBox;
 import com.jpii.navalbattle.pavo.gui.MessageBoxIcon;
+import com.jpii.navalbattle.pavo.io.PavoImage;
 
-public class EntityManager {
+public class EntityManager implements Serializable {
 	private byte[][] tileAccessor;
 	//private Tile[][] ent;
 	private World w;
@@ -46,7 +48,7 @@ public class EntityManager {
 		this.w = w;
 		entities = new ArrayList<Entity>();
 		//ent = new Tile[PavoHelper.getGameWidth(w.getWorldSize())*2][PavoHelper.getGameHeight(w.getWorldSize())*2];
-		BufferedImage grid = new BufferedImage(50,50,BufferedImage.TYPE_INT_ARGB);
+		PavoImage grid = new PavoImage(50,50,BufferedImage.TYPE_INT_ARGB);
 		Graphics2D g = PavoHelper.createGraphics(grid);
 		g.setColor(Game.Settings.GridColor);
 		g.drawRect(1,1,49,49);

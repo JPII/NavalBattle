@@ -30,6 +30,7 @@ import javax.swing.*;
 import com.jpii.navalbattle.data.Constants;
 import com.jpii.navalbattle.pavo.Game;
 import com.jpii.navalbattle.pavo.PavoHelper;
+import com.jpii.navalbattle.pavo.io.PavoImage;
 import com.jpii.navalbattle.renderer.Console;
 import com.jpii.navalbattle.renderer.Helper;
 import com.jpii.navalbattle.renderer.RenderConstants;
@@ -51,7 +52,7 @@ public class GameComponent extends JComponent {
 	boolean isFullscreen = false;
 	Timer alert;
 	boolean startDialog = false;
-	BufferedImage notifier;
+	PavoImage notifier;
 	public GameComponent(JFrame frame) {
 		this.frame = frame;
 		winlib = new WindowLib(frame);
@@ -135,7 +136,7 @@ public class GameComponent extends JComponent {
 			}
 			else
 				transparency -= 5.0f;
-			notifier = new BufferedImage(550,100,BufferedImage.TYPE_INT_ARGB);
+			notifier = new PavoImage(550,100,BufferedImage.TYPE_INT_ARGB);
 			Graphics2D g = PavoHelper.createGraphics(notifier);
 			g.setColor(new Color(0,0,0,(int)transparency));
 			g.fillRoundRect(0,0,550,100,60,60);

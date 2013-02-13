@@ -20,19 +20,21 @@ package com.jpii.navalbattle.pavo;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.Serializable;
 
 import maximusvladimir.dagen.Rand;
 
 import com.jpii.navalbattle.data.Constants;
 import com.jpii.navalbattle.io.Interactable;
 import com.jpii.navalbattle.pavo.grid.EntityManager;
+import com.jpii.navalbattle.pavo.io.PavoImage;
 import com.jpii.navalbattle.renderer.weather.WeatherManager;
 
 
 public class World extends Renderable implements Interactable {
 	WorldGen gen;
 	Chunk[] chunks;
-	BufferedImage buffer;
+	PavoImage buffer;
 	boolean needsNewRender = false;
 	boolean[] generated;
 	boolean bufferLock = false;
@@ -45,7 +47,7 @@ public class World extends Renderable implements Interactable {
 	TimeManager time = new TimeManager();
 	WeatherManager wm;
 	int sx = 0, anisx = 0, anisy = 0,sy = 0;
-	BufferedImage noise;
+	PavoImage noise;
 	int zlevel;
 	public World() {
 		ws = WorldSize.WORLD_LARGE;
@@ -62,7 +64,7 @@ public class World extends Renderable implements Interactable {
 			}
 		}
 		generated = new boolean[chunks.length];
-		buffer = new BufferedImage(Game.Settings.currentWidth,Game.Settings.currentHeight,BufferedImage.TYPE_3BYTE_BGR);
+		buffer = new PavoImage(Game.Settings.currentWidth,Game.Settings.currentHeight,BufferedImage.TYPE_3BYTE_BGR);
 		makeNoise();
 		wm = new WeatherManager();
 	}
@@ -82,7 +84,7 @@ public class World extends Renderable implements Interactable {
 		return zlevel;
 	}
 	public void makeNoise(){
-		noise = new BufferedImage(Game.Settings.currentWidth,Game.Settings.currentHeight,BufferedImage.TYPE_3BYTE_BGR);
+		noise = new PavoImage(Game.Settings.currentWidth,Game.Settings.currentHeight,BufferedImage.TYPE_3BYTE_BGR);
 		Rand ras = new Rand(Game.Settings.seed+22);
 		Graphics gs2 = noise.getGraphics(); // Q and D
 		for (int x = 0; x < Game.Settings.currentWidth; x+= 2) {
@@ -193,7 +195,7 @@ public class World extends Renderable implements Interactable {
 		long startDraw = System.currentTimeMillis();
 		if (lww != Game.Settings.currentWidth || lwh != Game.Settings.currentHeight) {
 			buffer = null;
-			buffer = new BufferedImage(Game.Settings.currentWidth,Game.Settings.currentHeight,BufferedImage.TYPE_3BYTE_BGR);
+			buffer = new PavoImage(Game.Settings.currentWidth,Game.Settings.currentHeight,BufferedImage.TYPE_3BYTE_BGR);
 			lww = Game.Settings.currentWidth;
 			lwh = Game.Settings.currentHeight;
 			makeNoise();
@@ -245,7 +247,7 @@ public class World extends Renderable implements Interactable {
 		Game.getStats().Smw2e33AK(endWait);
 		bufferLock = false;
 	}
-	public BufferedImage getBuffer() {
+	public PavoImage getBuffer() {
 		return buffer;
 	}
 	public int getScreenX() {

@@ -17,9 +17,11 @@
 
 package com.jpii.navalbattle.pavo.grid;
 
+import java.io.Serializable;
+
 import com.jpii.navalbattle.pavo.Game;
 
-public class Location
+public class Location implements Serializable
 {
     private int row; // row location in grid
     private int col; // column location in grid

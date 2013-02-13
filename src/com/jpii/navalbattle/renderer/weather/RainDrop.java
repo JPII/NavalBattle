@@ -1,12 +1,13 @@
 package com.jpii.navalbattle.renderer.weather;
 
 import java.awt.Color;
+import java.io.Serializable;
 
 import maximusvladimir.dagen.Rand;
 
 import com.jpii.navalbattle.pavo.Game;
 
-public class RainDrop {
+public class RainDrop implements Serializable {
 	public RainDrop(int windir, int width,int height) {
 		Rand r = Game.Settings.rand;
 		int red = 139 + r.nextInt(-5,5);

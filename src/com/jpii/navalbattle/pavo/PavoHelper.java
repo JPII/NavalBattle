@@ -30,6 +30,7 @@ import java.awt.image.BufferedImage;
 
 import com.jpii.navalbattle.pavo.grid.Entity;
 import com.jpii.navalbattle.pavo.grid.Location;
+import com.jpii.navalbattle.pavo.io.PavoImage;
 
 /**
  * 
@@ -38,8 +39,8 @@ import com.jpii.navalbattle.pavo.grid.Location;
  */
 public class PavoHelper {
 	private static SystemSpeed calcs;
-	public static BufferedImage createInnerShadow(int width, int height) {
-		BufferedImage b = new BufferedImage(width,height,BufferedImage.TYPE_INT_ARGB);
+	public static PavoImage createInnerShadow(int width, int height) {
+		PavoImage b = new PavoImage(width,height,BufferedImage.TYPE_INT_ARGB);
 		Graphics2D g2 = (Graphics2D)b.getGraphics();
 		Point2D center = new Point2D.Float(width/2, height/2);
         float radius = width;
@@ -233,7 +234,7 @@ public class PavoHelper {
 			return false;
 		
 	}
-	public static Graphics2D createGraphics(BufferedImage b) {
+	public static Graphics2D createGraphics(PavoImage b) {
 		if (b == null)
 			return null;
 		

@@ -26,6 +26,7 @@ import java.util.ArrayList;
 import com.jpii.navalbattle.pavo.Game;
 import com.jpii.navalbattle.pavo.PavoHelper;
 import com.jpii.navalbattle.pavo.Renderable;
+import com.jpii.navalbattle.pavo.io.PavoImage;
 
 public class WindowManager extends Renderable{
 	ArrayList<GameWindow> wins;
@@ -113,13 +114,13 @@ public class WindowManager extends Renderable{
 		}
 		return flag;
 	}
-	BufferedImage grided = null;
+	PavoImage grided = null;
 	int lwsw = 0;
 	int lwsh = 0;
 	public void render() {
-		buffer = new BufferedImage(Game.Settings.currentWidth,Game.Settings.currentHeight,BufferedImage.TYPE_INT_ARGB);
+		buffer = new PavoImage(Game.Settings.currentWidth,Game.Settings.currentHeight,BufferedImage.TYPE_INT_ARGB);
 		if (grided == null || lwsw != Game.Settings.currentWidth || lwsh != Game.Settings.currentHeight) {
-			grided = new BufferedImage(Game.Settings.currentWidth,Game.Settings.currentHeight,BufferedImage.TYPE_INT_ARGB);
+			grided = new PavoImage(Game.Settings.currentWidth,Game.Settings.currentHeight,BufferedImage.TYPE_INT_ARGB);
 			Graphics2D g4 = PavoHelper.createGraphics(grided);
 			g4.setColor(new Color(200,200,180,90));
 			g4.fillRect(0,0,Game.Settings.currentWidth,Game.Settings.currentHeight);
@@ -138,7 +139,7 @@ public class WindowManager extends Renderable{
 				if (gw.isVisible()) {
 					int gwx = gw.getX();
 					int gwy = gw.getY();
-					BufferedImage gwb = gw.getBuffer();
+					PavoImage gwb = gw.getBuffer();
 					g2.drawImage(gwb, gwx,gwy, null);
 				}
 			}
@@ -149,7 +150,7 @@ public class WindowManager extends Renderable{
 			GameWindow gw = context;
 			int gwx = gw.getX();
 			int gwy = gw.getY();
-			BufferedImage gwb = gw.getBuffer();
+			PavoImage gwb = gw.getBuffer();
 			g2.drawImage(gwb, gwx,gwy, null);
 		}
 	}

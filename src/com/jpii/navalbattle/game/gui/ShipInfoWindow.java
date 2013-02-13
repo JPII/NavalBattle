@@ -27,6 +27,7 @@ import java.nio.IntBuffer;
 
 import com.jpii.navalbattle.pavo.PavoHelper;
 import com.jpii.navalbattle.pavo.gui.GameWindow;
+import com.jpii.navalbattle.pavo.io.PavoImage;
 
 public class ShipInfoWindow extends GameWindow {
 	public ShipInfoWindow() {
@@ -70,11 +71,11 @@ public class ShipInfoWindow extends GameWindow {
 		Raster raster = Raster.createBandedRaster(dbi, 70,70, 0,null,null,new Point(0,0));
 		swap.getRaster().setRect(raster);
 		
-		buffer = swap;
+		buffer = (PavoImage)swap;
 	}
-	BufferedImage frame;
+	PavoImage frame;
 	private void winDraw() {
-		frame = new BufferedImage(170,100,1);
+		frame = new PavoImage(170,100,1);
 		Graphics2D g = PavoHelper.createGraphics(frame);
 		g.setColor(new Color(126,105,65));
 		g.fillRect(0,0,170,100);

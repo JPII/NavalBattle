@@ -17,9 +17,11 @@
 
 package com.jpii.navalbattle.pavo.grid;
 
+import java.io.Serializable;
+
 import com.jpii.navalbattle.pavo.*;
 
-public class Entity {
+public class Entity implements Serializable {
 	
 	private Location location = Location.Unknown;
 	private String tag;

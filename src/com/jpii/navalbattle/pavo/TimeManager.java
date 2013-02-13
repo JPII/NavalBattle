@@ -20,6 +20,8 @@ package com.jpii.navalbattle.pavo;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
+import com.jpii.navalbattle.pavo.io.PavoImage;
+
 public class TimeManager extends Renderable {
 	public static int DayNightTotalLengthSeconds = 120;
 	public static int NightDarkness = 80;
@@ -78,7 +80,7 @@ public class TimeManager extends Renderable {
     	}
     	cdr = new Color(27,31,58,alph);
     	if (!lcd.equals(cdr) || lsw != Game.Settings.currentWidth || lsh != Game.Settings.currentHeight) {
-    		buffer = new BufferedImage(Game.Settings.currentWidth,Game.Settings.currentHeight,BufferedImage.TYPE_INT_ARGB);
+    		buffer = new PavoImage(Game.Settings.currentWidth,Game.Settings.currentHeight,BufferedImage.TYPE_INT_ARGB);
     		lsw = Game.Settings.currentWidth;
     		lsh = Game.Settings.currentHeight;
     		Graphics g = buffer.getGraphics();

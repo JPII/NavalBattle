@@ -18,11 +18,14 @@
 package com.jpii.navalbattle.pavo;
 
 import java.awt.image.*;
+import java.io.Serializable;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
-public class Renderable {
-	protected BufferedImage buffer;
+import com.jpii.navalbattle.pavo.io.PavoImage;
+
+public class Renderable implements Serializable {
+	protected PavoImage buffer;
 	protected int width, height;
 	protected boolean ready;
 	protected Lock _lock = new ReentrantLock();
@@ -34,10 +37,10 @@ public class Renderable {
 	public boolean isReady() {
 		return ready;
 	}
-	public BufferedImage getBuffer() {
+	public PavoImage getBuffer() {
 		return buffer;
 	}
-	protected void setBuffer(BufferedImage obtainableBuffer) {
+	protected void setBuffer(PavoImage obtainableBuffer) {
 		buffer = obtainableBuffer;
 	}
 	public void render() {

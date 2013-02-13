@@ -24,6 +24,7 @@ import java.awt.image.BufferedImage;
 
 import com.jpii.navalbattle.pavo.PavoHelper;
 import com.jpii.navalbattle.pavo.Renderable;
+import com.jpii.navalbattle.pavo.io.PavoImage;
 import com.jpii.navalbattle.renderer.Helper;
 
 /**
@@ -61,7 +62,7 @@ public class GameWindow extends Renderable {
 		return handle;
 	}
 	public void render() {
-		buffer = new BufferedImage(getWidth()+1,getHeight()+1,BufferedImage.TYPE_INT_ARGB);
+		buffer = new PavoImage(getWidth()+1,getHeight()+1,BufferedImage.TYPE_INT_ARGB);
 		Graphics2D g = PavoHelper.createGraphics(buffer);
 		g.setColor(Color.black);
 		g.drawRect(0,0,getWidth()-1,getHeight()-1);
@@ -72,7 +73,7 @@ public class GameWindow extends Renderable {
 			g.fillRect(1,1,getWidth()-2,24);
 			g.setColor(Color.black);
 			g.drawRect(0,0,getWidth()-1,24);
-			BufferedImage adapter = new BufferedImage(getWidth()-2,24,BufferedImage.TYPE_INT_ARGB);
+			PavoImage adapter = new PavoImage(getWidth()-2,24,BufferedImage.TYPE_INT_ARGB);
 			Graphics2D g2 = PavoHelper.createGraphics(adapter);
 			g2.setColor(getBackgroundColor());
 			g2.setFont(Helper.GUI_GAME_FONT);

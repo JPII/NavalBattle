@@ -26,6 +26,7 @@ import maximusvladimir.dagen.*;
 import com.jpii.navalbattle.data.Constants;
 import com.jpii.navalbattle.pavo.grid.Entity;
 import com.jpii.navalbattle.pavo.grid.Tile;
+import com.jpii.navalbattle.pavo.io.PavoImage;
 import com.jpii.navalbattle.renderer.Helper;
 import com.jpii.navalbattle.renderer.RenderConstants;
 
@@ -34,7 +35,7 @@ import com.jpii.navalbattle.renderer.RenderConstants;
  * @author MKirkby
  *
  */
-public class Chunk extends Renderable {
+public class Chunk extends Renderable{
 	int x,z;
 	boolean generated = false;
 	public Tile<Entity> Tile00, Tile10, Tile01,Tile11;
@@ -184,7 +185,7 @@ public class Chunk extends Renderable {
 	 * Writes a value to the actual buffer.
 	 */
 	public void writeBuffer() {
-		buffer = new BufferedImage(100,100,BufferedImage.TYPE_3BYTE_BGR);
+		buffer = new PavoImage(100,100,BufferedImage.TYPE_3BYTE_BGR);
 		Graphics2D g = PavoHelper.createGraphics(buffer);
 		g.drawImage(terrain, 0, 0,103,103, null);
 		/*if (Tile00 != null || Tile10 != null || Tile11 != null || Tile01 != null) {

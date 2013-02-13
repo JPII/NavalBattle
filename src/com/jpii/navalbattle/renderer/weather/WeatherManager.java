@@ -4,13 +4,15 @@ import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
+import java.io.Serializable;
 
 import com.jpii.navalbattle.pavo.Game;
 import com.jpii.navalbattle.pavo.PavoHelper;
+import com.jpii.navalbattle.pavo.io.PavoImage;
 
-public class WeatherManager {
+public class WeatherManager implements Serializable {
 	WeatherMode wm;
-	BufferedImage buffer;
+	PavoImage buffer;
 	RainDrop[] rain;
 	public WeatherManager() {
 		wm = WeatherMode.Sunny;
@@ -34,7 +36,7 @@ public class WeatherManager {
 	private boolean lighting = false;
 	public void update() {
 		if (getWeather() == WeatherMode.Raining) {
-			buffer = new BufferedImage(Game.Settings.currentWidth,
+			buffer = new PavoImage(Game.Settings.currentWidth,
 					Game.Settings.currentHeight,BufferedImage.TYPE_INT_ARGB);
 			Graphics2D g = PavoHelper.createGraphics(buffer);
 			g.setStroke(new BasicStroke(2.5f));
