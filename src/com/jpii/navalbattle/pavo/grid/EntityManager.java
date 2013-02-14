@@ -35,7 +35,7 @@ import com.jpii.navalbattle.pavo.io.PavoImage;
 public class EntityManager implements Serializable {
 	private byte[][] tileAccessor;
 	//private Tile[][] ent;
-	private World w;
+	private transient World w;
 	private ArrayList<Integer> entityRegister;
 	private ArrayList<Entity> entities;
 	public int battleShipId;
@@ -46,6 +46,7 @@ public class EntityManager implements Serializable {
 	 */
 	public EntityManager(World w) {
 		this.w = w;
+		
 		entities = new ArrayList<Entity>();
 		//ent = new Tile[PavoHelper.getGameWidth(w.getWorldSize())*2][PavoHelper.getGameHeight(w.getWorldSize())*2];
 		PavoImage grid = new PavoImage(50,50,BufferedImage.TYPE_INT_ARGB);

@@ -1,11 +1,13 @@
 package com.jpii.navalbattle.pavo.grid;
 
+import java.io.Serializable;
+
 import maximusvladimir.dagen.Rand;
 
 import com.jpii.navalbattle.pavo.Game;
 import com.jpii.navalbattle.pavo.PavoHelper;
 
-public class GridHelper {
+public class GridHelper implements Serializable {
 	EntityManager man;
 	Rand random;
 	public GridHelper(EntityManager eman) {
