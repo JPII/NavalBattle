@@ -21,7 +21,7 @@ public class AnimatedEntity extends Entity {
 	 * @param animationFrameIds The animation frame sequences.
 	 */
 	public AnimatedEntity(EntityManager em, Location loc,int team, GridedEntityTileOrientation... animationFrameIds) {
-		super(em, loc, animationFrameIds[1],team);
+		super(em, loc, animationFrameIds[0],team);
 		animationids = animationFrameIds;
 	}
 	

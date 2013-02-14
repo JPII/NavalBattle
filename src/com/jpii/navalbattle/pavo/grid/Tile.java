@@ -19,6 +19,7 @@ public class Tile<T> {
 			throw new RuntimeException("The provided object is not an entity.");
 	}
 	public void setId(Id id) {
+		System.out.println("s:"+id);
 		this.id = id;
 	}
 	public Id getId() {

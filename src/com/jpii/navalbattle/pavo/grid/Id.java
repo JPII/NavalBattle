@@ -15,6 +15,9 @@ public class Id {
 	public Id(int superId, int subId) {
 		this((short)superId,(short)subId);
 	}
+	public String toString() {
+		return "("+superId+","+subId+":"+getMutexId()+")";//+super.toString();
+	}
 	private void updateMutex() {
 		mutexId = ((int)Math.abs(((int)superId) * 65536)) + subId;
 	}

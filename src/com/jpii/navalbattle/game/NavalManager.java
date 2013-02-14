@@ -31,10 +31,10 @@ public class NavalManager extends EntityManager {
 	public NavalManager(World w) {
 		super(w);
 		battleShipId = new GridedEntityTileOrientation();
-		battleShipId.setLeftToRightImage(new Id(registerEntity(PavoHelper.imgUtilOutline(
-				FileUtils.getImage("drawable-game/battleship/battleship.png"),Game.Settings.GridColor)),0));
-		battleShipId.setTopToBottomImage(new Id(registerEntity(PavoHelper.imgUtilOutline(
-				FileUtils.getImage("drawable-game/battleship/battleship_S.png"),Game.Settings.GridColor)),0));
+		battleShipId.setLeftToRightImage(registerEntity(PavoHelper.imgUtilOutline(
+				FileUtils.getImage("drawable-game/battleship/battleship.png"),Game.Settings.GridColor)));
+		battleShipId.setTopToBottomImage(registerEntity(PavoHelper.imgUtilOutline(
+				FileUtils.getImage("drawable-game/battleship/battleship_S.png"),Game.Settings.GridColor)));
 		if (battleShipId != null) {
 			BattleShip.BATTLESHIP_ID = battleShipId;
 			BattleShip e = new BattleShip(this,new Location(3,3),battleShipId,Game.Settings.rand.nextInt(0,3));
@@ -54,14 +54,14 @@ public class NavalManager extends EntityManager {
 		int w2_ = registerEntity(PavoHelper.imgUtilOutline(FileUtils.getImage("drawable-game/other/whalecenter.png"),Game.Settings.GridColor));
 		int w3_ = registerEntity(PavoHelper.imgUtilOutline(FileUtils.getImage("drawable-game/other/whaleright.png"),Game.Settings.GridColor));
 		w1 = new GridedEntityTileOrientation();
-		w1.setLeftToRightImage(new Id(w1_,0));
-		w1.setTopToBottomImage(new Id(w1_,0));
+		w1.setLeftToRightImage(w1_);
+		w1.setTopToBottomImage(w1_);
 		w2 = new GridedEntityTileOrientation();
-		w2.setLeftToRightImage(new Id(w2_,0));
-		w2.setTopToBottomImage(new Id(w2_,0));
+		w1.setLeftToRightImage(w2_);
+		w1.setTopToBottomImage(w2_);
 		w3 = new GridedEntityTileOrientation();
-		w3.setLeftToRightImage(new Id(w3_,0));
-		w3.setTopToBottomImage(new Id(w3_,0));
+		w1.setLeftToRightImage(w3_);
+		w1.setTopToBottomImage(w3_);
 		
 		e.moveTo(7, 3);
 		for (int c = 0; c < 20; c++) {
