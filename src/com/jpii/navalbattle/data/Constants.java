@@ -75,6 +75,6 @@ public class Constants {
 	/*
 	 * GameKit
 	 */
-	public static final int GAMEKIT_MAX_API_LEVEL = 0;
+	public static final int GAMEKIT_MAX_API_LEVEL = 1;
 	public static final int GAMEKIT_MIN_API_LEVEL = 0;
 }
