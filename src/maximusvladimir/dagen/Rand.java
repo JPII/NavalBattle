@@ -1,8 +1,9 @@
 package maximusvladimir.dagen;
 
 import java.awt.Color;
+import java.io.Serializable;
 
-public class Rand {
+public class Rand implements Serializable{
 	long localkey = 0L;
 	long original = 0L;
 	long calculations = 0L;
