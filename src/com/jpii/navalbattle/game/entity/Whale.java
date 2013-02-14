@@ -59,7 +59,7 @@ public class Whale extends AnimatedEntity {
 		speedy = false;
 	}
 	private void updateFrame() {
-		setCurrentFrame(nextIndex);
+		//setCurrentFrame(nextIndex);
 		if (direction)
 			nextIndex++;
 		else

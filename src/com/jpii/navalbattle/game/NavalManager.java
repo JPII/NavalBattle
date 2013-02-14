@@ -32,9 +32,9 @@ public class NavalManager extends EntityManager {
 		super(w);
 		battleShipId = new GridedEntityTileOrientation();
 		battleShipId.setLeftToRightImage(registerEntity(PavoHelper.imgUtilOutline(
-				FileUtils.getImage("drawable-game/battleship/battleship.png"),Game.Settings.GridColor)));
+				FileUtils.getImage("drawable-game/battleship/battleship.png"),Game.Settings.GridColor),GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT));
 		battleShipId.setTopToBottomImage(registerEntity(PavoHelper.imgUtilOutline(
-				FileUtils.getImage("drawable-game/battleship/battleship_S.png"),Game.Settings.GridColor)));
+				FileUtils.getImage("drawable-game/battleship/battleship_S.png"),Game.Settings.GridColor),GridedEntityTileOrientation.ORIENTATION_TOPTOBOTTOM));
 		if (battleShipId != null) {
 			BattleShip.BATTLESHIP_ID = battleShipId;
 			BattleShip e = new BattleShip(this,new Location(3,3),battleShipId,Game.Settings.rand.nextInt(0,3));
@@ -50,9 +50,9 @@ public class NavalManager extends EntityManager {
 	
 	public void gameDoneGenerating() {
 		BattleShip e = new BattleShip(this,new Location(7,3),battleShipId,Game.Settings.rand.nextInt(0,3));
-		int w1_ = registerEntity(PavoHelper.imgUtilOutline(FileUtils.getImage("drawable-game/other/whaleleft.png"),Game.Settings.GridColor));
-		int w2_ = registerEntity(PavoHelper.imgUtilOutline(FileUtils.getImage("drawable-game/other/whalecenter.png"),Game.Settings.GridColor));
-		int w3_ = registerEntity(PavoHelper.imgUtilOutline(FileUtils.getImage("drawable-game/other/whaleright.png"),Game.Settings.GridColor));
+		int w1_ = registerEntity(PavoHelper.imgUtilOutline(FileUtils.getImage("drawable-game/other/whaleleft.png"),Game.Settings.GridColor),GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT);
+		int w2_ = registerEntity(PavoHelper.imgUtilOutline(FileUtils.getImage("drawable-game/other/whalecenter.png"),Game.Settings.GridColor),GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT);
+		int w3_ = registerEntity(PavoHelper.imgUtilOutline(FileUtils.getImage("drawable-game/other/whaleright.png"),Game.Settings.GridColor),GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT);
 		w1 = new GridedEntityTileOrientation();
 		w1.setLeftToRightImage(w1_);
 		w1.setTopToBottomImage(w1_);

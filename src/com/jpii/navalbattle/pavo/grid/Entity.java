@@ -177,20 +177,19 @@ public class Entity implements Serializable {
 			return false;
 		if (ORIENTATION_BUFFER_POSITION == GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT) {
 			for (int w = 0; w < getWidth(); w++) {
-				manager.setTile(location.getCol()+w,location.getRow(), null);
-				Tile t22 = new Tile(this,loc.getCol()+w,loc.getRow());
+				manager.setTile(location.getRow(),location.getCol()+w, null);
+				Tile t22 = new Tile(this,loc.getRow(),loc.getCol()+w);
 				t22.setId(new Id(id.memCall(ORIENTATION_BUFFER_POSITION)[0],w));
-				//System.out.println("df"+id.memCall(ORIENTATION_BUFFER_POSITION).superId);
-				manager.setTile(loc.getCol()+w,loc.getRow(), t22);
+				manager.setTile(loc.getRow(),loc.getCol()+w, t22);
 			}
 			manager.getWorld().forceRender();
 		}
 		else if (ORIENTATION_BUFFER_POSITION == GridedEntityTileOrientation.ORIENTATION_TOPTOBOTTOM) {
 			for (int h = 0; h < getHeight(); h++) {
-				manager.setTile(location.getCol(),location.getRow()+h,null);
-				Tile t22 = new Tile(this,loc.getCol(),loc.getRow()+h);
+				manager.setTile(location.getRow()+h,location.getCol(),null);
+				Tile t22 = new Tile(this,loc.getRow()+h,loc.getCol());
 				t22.setId(new Id(id.memCall(ORIENTATION_BUFFER_POSITION)[0],h));
-				manager.setTile(loc.getCol(),loc.getRow()+h, t22);
+				manager.setTile(loc.getRow()+h,loc.getCol(), t22);
 			}
 			manager.getWorld().forceRender();
 		}

@@ -83,8 +83,8 @@ public class EntityManager implements Serializable {
 		if (e == null)
 			return;
 		if (entities.size() >= 25) {
-			MessageBox.show("Warning!","Too many entities added.",
-					MessageBoxIcon.Notify, true);
+			//MessageBox.show("Warning!","Too many entities added.",
+				//	MessageBoxIcon.Notify, true);
 		}
 		entities.add(e);
 	}
@@ -194,11 +194,19 @@ public class EntityManager implements Serializable {
 		return tileAccessor[c][r];
 	}
 	public static int lastid = 0;
-	public <T> int registerEntity(BufferedImage horizontalImage) {
+	public <T> int registerEntity(BufferedImage horizontalImage,byte orientation) {
 		int swap = lastid + 1;
-		for (int w = 0; w < horizontalImage.getWidth() / 50; w++) {
-			BufferedImage ab = PavoHelper.imgUtilFastCrop(horizontalImage, w * 50, 0, 50, 50);
-			IndexableImage.populateStore(new Id(swap,w).getMutexId(), ab);
+		if (orientation == GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT) {
+			for (int w = 0; w < horizontalImage.getWidth() / 50; w++) {
+				BufferedImage ab = PavoHelper.imgUtilFastCrop(horizontalImage, w * 50, 0, 50, 50);
+				IndexableImage.populateStore(new Id(swap,w).getMutexId(), ab);
+			}
+		}
+		else if (orientation == GridedEntityTileOrientation.ORIENTATION_TOPTOBOTTOM) {
+			for (int h = 0; h < horizontalImage.getHeight() / 50; h++) {
+				BufferedImage ab = PavoHelper.imgUtilFastCrop(horizontalImage,0, h * 50, 50, 50);
+				IndexableImage.populateStore(new Id(swap,h).getMutexId(), ab);
+			}
 		}
 		//System.out.println("registered in system=" + new Id(swap,0).getMutexId());
 		lastid = swap;
