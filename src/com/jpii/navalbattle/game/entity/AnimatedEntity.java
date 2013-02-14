@@ -5,6 +5,7 @@ package com.jpii.navalbattle.game.entity;
 
 import com.jpii.navalbattle.pavo.grid.Entity;
 import com.jpii.navalbattle.pavo.grid.EntityManager;
+import com.jpii.navalbattle.pavo.grid.GridedEntityTileOrientation;
 import com.jpii.navalbattle.pavo.grid.Location;
 
 /**
@@ -12,14 +13,14 @@ import com.jpii.navalbattle.pavo.grid.Location;
  *
  */
 public class AnimatedEntity extends Entity {
-	private int[] animationids;
+	private GridedEntityTileOrientation[] animationids;
 
 	/**
 	 * @param em The EnitityManager.
 	 * @param loc The Location of the Entity.
 	 * @param animationFrameIds The animation frame sequences.
 	 */
-	public AnimatedEntity(EntityManager em, Location loc,int team, int... animationFrameIds) {
+	public AnimatedEntity(EntityManager em, Location loc,int team, GridedEntityTileOrientation... animationFrameIds) {
 		super(em, loc, animationFrameIds[1],team);
 		animationids = animationFrameIds;
 	}

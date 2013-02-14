@@ -38,7 +38,7 @@ public class EntityManager implements Serializable {
 	private transient World w;
 	private ArrayList<Integer> entityRegister;
 	private ArrayList<Entity> entities;
-	public int battleShipId;
+	public GridedEntityTileOrientation battleShipId;
 	int counter = 0;
 	/**
 	 * Creates a new entity manager for the desired world.

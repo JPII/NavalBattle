@@ -173,7 +173,8 @@ public class NavalGame extends Game {
 		}
 		else if (Game.Settings.isFinishedGenerating && getWorld().getEntityManager().getTilePercentLand(chy,chx) <= 5){
 			if(nm.getTile(chy, chx)==null){
-				new Whale(this.getWorld().getEntityManager(),new Location(chy,chx),Game.Settings.rand.nextInt(0,3),NavalManager.w1,NavalManager.w2,NavalManager.w3);
+				new Whale(this.getWorld().getEntityManager(),new Location(chy,chx),
+						Game.Settings.rand.nextInt(0,3),NavalManager.w1,NavalManager.w2,NavalManager.w3);
 			}
 		}
 	}

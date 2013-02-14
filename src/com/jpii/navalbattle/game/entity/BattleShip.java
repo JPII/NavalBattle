@@ -14,7 +14,7 @@ import com.jpii.navalbattle.pavo.grid.Location;
  *
  */
 public class BattleShip extends Entity {
-	public static int BATTLESHIP_ID = 0;
+	public static GridedEntityTileOrientation BATTLESHIP_ID;
 	/**
 	 * @param em
 	 */
