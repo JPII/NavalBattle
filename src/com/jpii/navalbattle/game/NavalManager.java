@@ -13,6 +13,7 @@ import com.jpii.navalbattle.pavo.World;
 import com.jpii.navalbattle.pavo.grid.Entity;
 import com.jpii.navalbattle.pavo.grid.EntityManager;
 import com.jpii.navalbattle.pavo.grid.GridHelper;
+import com.jpii.navalbattle.pavo.grid.GridedEntityTileOrientation;
 import com.jpii.navalbattle.pavo.grid.Location;
 import com.jpii.navalbattle.util.FileUtils;
 
@@ -32,6 +33,7 @@ public class NavalManager extends EntityManager {
 		if (battleShipId != 0) {
 			BattleShip.BATTLESHIP_ID = battleShipId;
 			BattleShip e = new BattleShip(this,new Location(3,3),battleShipId,Game.Settings.rand.nextInt(0,3));
+			e.rotateTo(GridedEntityTileOrientation.ORIENTATION_TOPTOBOTTOM);
 			//e.moveTo(new Location(3,3));
 		}
 		else {

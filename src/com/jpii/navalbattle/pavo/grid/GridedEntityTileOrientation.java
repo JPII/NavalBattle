@@ -3,33 +3,29 @@ package com.jpii.navalbattle.pavo.grid;
 public class GridedEntityTileOrientation {
 	public static final byte ORIENTATION_LEFTTORIGHT = 0x0A;
 	public static final byte ORIENTATION_TOPTOBOTTOM = 0x1A;
-	public static final byte ORIENTATION_RIGHTTOLEFT = 0x2A;
-	public static final byte ORIENTATION_BOTTOMTOTOP = 0x3A;
+	private static Id NULLPOINTER = new Id(0,0);
+	/*public static final byte ORIENTATION_RIGHTTOLEFT = 0x2A;
+	public static final byte ORIENTATION_BOTTOMTOTOP = 0x3A;*/
 	
-	private short[] INDICES = new short[4];
+	private Id[] INDICES = new Id[2];
 	
 	public GridedEntityTileOrientation() {
 	}
 	
-	public void setLeftToRightImage(short storeId) {
+	public void setLeftToRightImage(Id storeId) {
 		INDICES[0] = storeId;
 	}
 	
-	public void setTopToBottomImage(short storeId) {
+	public void setTopToBottomImage(Id storeId) {
 		INDICES[1] = storeId;
 	}
 	
-	public void setRightToLeftImage(short storeId) {
-		INDICES[2] = storeId;
-	}
-	
-	public void setBottomToTopmage(short storeId) {
-		INDICES[3] = storeId;
-	}
-	
-	public short memCall(int offset) {
-		if (offset > 3 || offset < 0)
-			return 0;
-		return INDICES[offset];
+	public Id memCall(byte offset) {
+		if (offset == ORIENTATION_LEFTTORIGHT)
+			return INDICES[0];
+		if (offset == ORIENTATION_TOPTOBOTTOM)
+			return INDICES[1];
+		
+		return NULLPOINTER;
 	}
 }

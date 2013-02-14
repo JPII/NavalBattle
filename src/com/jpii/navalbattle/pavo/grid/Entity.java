@@ -28,15 +28,15 @@ public class Entity implements Serializable {
 	public long lastUpdate = 0;
 	private int width, height;
 	private EntityManager manager;
-	private int id;
+	private GridedEntityTileOrientation id;
 	public int teamId;
-	private short ORIENTATION_BUFFER_POSITION = GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT;
+	private byte ORIENTATION_BUFFER_POSITION = GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT;
 	
 	public Entity(EntityManager em) {
 		manager = em;
 		init();
 	}
-	public Entity(EntityManager em,Location loc, int superId,int teams) {
+	public Entity(EntityManager em,Location loc, GridedEntityTileOrientation id,int teams) {
 		manager = em;
 		location = loc;
 		teamId=teams;
@@ -47,7 +47,7 @@ public class Entity implements Serializable {
 		catch (Throwable throwable) {}
 		manager.addEntity(this);
 		init();
-		setId(superId);
+		setId(id);
 	}
 	/**
 	 * Initialises the entity. This should never be called. If inheriting <code>Entity></code>, this method should probably be overriden.
@@ -65,18 +65,38 @@ public class Entity implements Serializable {
 	 * Rotates the entity.
 	 * @param akamai The rotation to apply to the entity. (e.g. Location.HALF_CIRCLE).
 	 */
-	public void rotateTo(short akamai) {
+	public void rotateTo(byte akamai) {
 		if (akamai == GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT) {
-			
+			if (ORIENTATION_BUFFER_POSITION != akamai) {
+				for (int h = 0; h < getWidth(); h++) {
+					//Tile t = new Tile(this,location.getCol(),location.getRow()+h);
+					//t.setId(new Id(id.memCall(ORIENTATION_BUFFER_POSITION).superId,h));
+					manager.setTile(location.getCol(),location.getRow(), null);
+				}
+				ORIENTATION_BUFFER_POSITION = akamai;
+				for (int w = 0; w < getHeight(); w++) {
+					Tile t = new Tile(this,location.getCol()+w,location.getRow());
+					t.setId(new Id(id.memCall(ORIENTATION_BUFFER_POSITION).superId,w));
+					manager.setTile(location.getCol()+w,location.getRow(), t);
+				}
+				manager.getWorld().forceRender();
+			}
 		}
 		else if (akamai == GridedEntityTileOrientation.ORIENTATION_TOPTOBOTTOM) {
-			
-		}
-		else if (akamai == GridedEntityTileOrientation.ORIENTATION_RIGHTTOLEFT) {
-			
-		}
-		else if (akamai == GridedEntityTileOrientation.ORIENTATION_BOTTOMTOTOP) {
-			
+			if (ORIENTATION_BUFFER_POSITION != akamai) {
+				for (int w = 0; w < getWidth(); w++) {
+					//Tile t = new Tile(this,location.getCol()+w,location.getRow());
+					//t.setId(new Id(id.memCall(akamai).superId,w));
+					manager.setTile(location.getCol()+w,location.getRow(), null);
+				}
+				ORIENTATION_BUFFER_POSITION = akamai;
+				for (int h = 0; h < getHeight(); h++) {
+					Tile t = new Tile(this,location.getCol(),location.getRow()+h);
+					t.setId(new Id(id.memCall(akamai).superId,h));
+					manager.setTile(location.getCol(),location.getRow()+h, t);
+				}
+				manager.getWorld().forceRender();
+			}
 		}
 	}
 	/**
@@ -91,16 +111,16 @@ public class Entity implements Serializable {
 	 * Sets the genericied id of the entity. This shouldn't have to be called by the client.
 	 * @param id The identifier to set the entity to.
 	 */
-	public void setId(int id) {
+	public void setId(GridedEntityTileOrientation id) {
 		this.id = id;
-		for (int w = 0; w < getWidth(); w++) {
+		/*for (int w = 0; w < getWidth(); w++) {
 			for (int h = 0; h < getHeight(); h++) {
 				Tile t = new Tile(this,location.getRow()+h, location.getCol()+w);
 				t.setId(new Id(id,w));
 				manager.setTile(location.getRow()+h, location.getCol()+w, t);
 				//System.out.println("efretgfd");
 			}
-		}
+		}*/
 		manager.getWorld().forceRender();
 	}
 	/**
@@ -143,22 +163,21 @@ public class Entity implements Serializable {
 			return false;
 		if (loc.getRow() < 0 || loc.getCol() < 0)
 			return false;
-		for (int w = 0; w < getWidth(); w++) {
-			for (int h = 0; h < getHeight(); h++) {
-				//Tile<Entity> ttmp = (Tile<Entity>)manager.getTile(h+getLocation().getRow(), w+getLocation().getCol());
-				Tile gd = new Tile(this,loc.getRow()+h, loc.getCol()+w);
-				gd.setId(new Id(id,w));
-				
-				manager.setTile(loc.getRow()+h, loc.getCol()+w,gd);
-				//System.out.println("settile for " + w + "," + h);
+		if (ORIENTATION_BUFFER_POSITION == GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT) {
+			for (int w = 0; w < getHeight(); w++) {
+				Tile t22 = new Tile(this,location.getCol()+w,location.getRow());
+				t22.setId(new Id(id.memCall(ORIENTATION_BUFFER_POSITION).superId,w));
+				manager.setTile(location.getCol()+w,location.getRow(), t22);
 			}
+			manager.getWorld().forceRender();
 		}
-		for (int w = 0; w < getWidth(); w++) {
+		else if (ORIENTATION_BUFFER_POSITION == GridedEntityTileOrientation.ORIENTATION_TOPTOBOTTOM) {
 			for (int h = 0; h < getHeight(); h++) {
-				Tile<Entity> ttmp = (Tile<Entity>)manager.getTile(h+getLocation().getRow(), w+getLocation().getCol());
-				manager.setTile(getLocation().getRow()+h, getLocation().getCol()+w,null);
-				//System.out.println("efretgfd");
+				Tile t22 = new Tile(this,location.getCol(),location.getRow()+h);
+				t22.setId(new Id(id.memCall(ORIENTATION_BUFFER_POSITION).superId,h));
+				manager.setTile(location.getCol(),location.getRow()+h, t22);
 			}
+			manager.getWorld().forceRender();
 		}
 		Location swap2 = getLocation();
 		//System.out.println("wincall");
