@@ -18,7 +18,6 @@
 package com.jpii.navalbattle;
 
 import java.io.ByteArrayOutputStream;
-import java.util.Locale;
 
 import javax.swing.UIManager.*;
 import javax.swing.*;
@@ -67,11 +66,7 @@ public class NavalBattle {
 		debugWindow = new DebugWindow();
 		System.setOut(new HookStream(new ByteArrayOutputStream()));
 		
-		// Debug purposes
-		// MaxTests.run();
-		
 		NavalBattleIO.run();
-		//System.out.println(NavalBattleIO.getAttribute("lastGoodUserName")+"srewdwe5432");
 		debugWindow.setVisible(true);
 		gameState = new GameState();
 		roketGamer = new RoketGamer();
@@ -103,12 +98,8 @@ public class NavalBattle {
 		System.out.println("Game is closing.");
 		try {
 			Thread.currentThread().sleep(250);
-		}
-		catch (Throwable t) {
-			
-		}
-		}
-		catch (Throwable whoho) {
+		} catch (Throwable t) { } 
+		} catch (Throwable t) {
 			
 		}
 	}
