@@ -1,6 +1,3 @@
-/**
- * 
- */
 package com.jpii.navalbattle.io;
 
 import java.io.BufferedReader;
@@ -14,14 +11,11 @@ import java.util.ArrayList;
 
 import com.jpii.navalbattle.util.OSUtil;
 
-/**
- * @author maximusvladimir
- *
- */
 public class SettingsIO {
 	ArrayList<SettingsAttribute> attributes;
 	ArrayList<SettingsAttribute> tempAttributes;
 	String path;
+	
 	public SettingsIO(String file){//, ArrayList<SettingsAttribute> data) {
 		//if (data == null)
 			//data = new ArrayList<SettingsAttribute>();
@@ -35,6 +29,7 @@ public class SettingsIO {
 		
 		refresh();
 	}
+	
 	public boolean setAttribute(ArrayList<SettingsAttribute> sa) {
 		try {
 			PrintWriter pw = new PrintWriter(new FileWriter(path));
@@ -55,6 +50,7 @@ public class SettingsIO {
 		refresh();
 		return true;
 	}
+	
 	public boolean setAttribute(SettingsAttribute attribute) {
 		boolean flag = true;
 		attributes = readInto();
@@ -107,6 +103,7 @@ public class SettingsIO {
 		}
 		return null;
 	}
+	
 	public String readAttribute(String name) {
 		for (int c = 0; c < attributes.size(); c++) {
 			SettingsAttribute a = attributes.get(c);
@@ -116,6 +113,7 @@ public class SettingsIO {
 		}
 		return null;
 	}
+	
 	private ArrayList<SettingsAttribute> readInto() {
 		ArrayList<SettingsAttribute> sd = new ArrayList<SettingsAttribute>();
 		try {
@@ -155,6 +153,7 @@ public class SettingsIO {
 		}
 		return sd;
 	}
+	
 	private int findLineAttributeLocation(ArrayList<SettingsAttribute> sd,String str) {
 		for (int c = 0; c < sd.size(); c++) {
 			SettingsAttribute attr = sd.get(c);
