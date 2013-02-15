@@ -169,15 +169,13 @@ public class NavalGame extends Game {
 		chy /= 50;
 		if (getWinMan().mouseDown(me)||(omnimap.mouseDown(me)))
 			return;
-		else if (me.getButton() == MouseEvent.BUTTON1) {
-			if (nm.getTile(chy, chx)!=null) {
-				Entity ee = (Entity)nm.getTile(chy, chx).getEntity();
-				byte t = ee.getCurrentOrientation();
-				if (t == GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT)
-					ee.rotateTo(GridedEntityTileOrientation.ORIENTATION_TOPTOBOTTOM);
-				else
-					ee.rotateTo(GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT);
-			}
+		else if (me.getButton() == MouseEvent.BUTTON1 && nm.getTile(chy, chx)!=null) {
+			Entity ee = (Entity)nm.getTile(chy, chx).getEntity();
+			byte t = ee.getCurrentOrientation();
+			if (t == GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT)
+				ee.rotateTo(GridedEntityTileOrientation.ORIENTATION_TOPTOBOTTOM);
+			else
+				ee.rotateTo(GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT);
 		}
 		else if (me.getButton() == MouseEvent.BUTTON1) {
 			if(nm.getTile(chy, chx)==null)
