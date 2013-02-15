@@ -67,6 +67,8 @@ public class World extends Renderable implements Interactable {
 		buffer = new PavoImage(Game.Settings.currentWidth,Game.Settings.currentHeight,BufferedImage.TYPE_3BYTE_BGR);
 		makeNoise();
 		wm = new WeatherManager();
+		
+		System.gc();
 	}
 	public void setEntityManager(EntityManager em) {
 		this.em = em;
