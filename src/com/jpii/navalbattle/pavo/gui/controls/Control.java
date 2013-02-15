@@ -23,10 +23,24 @@ public class Control {
 	protected ArrayList<Control> controls;
 	private static long HANDLE_COUNTER = 0;
 	private long HANDLE = 0;
-	private Control(Control parent) {
+	private boolean disposed = false;
+	public Control(Control parent) {
 		this.parent = parent;
 		controls = new ArrayList<Control>();
 		HANDLE = ++HANDLE_COUNTER;
+	}
+	
+	public void dispose() {
+		for (int c = 0; c < getTotalControls(); c++) {
+			Control cn = getControl(c);
+			if (cn != null)
+				cn.dispose();
+		}
+		
+		HANDLE = 0;
+		HANDLE_COUNTER--;
+		buffer = null;
+		disposed = true;
 	}
 	
 	/**
@@ -98,6 +112,10 @@ public class Control {
 			}
 		}
 		return null;
+	}
+	
+	public boolean isDisposed() {
+		return disposed;
 	}
 	
 	/**
@@ -260,6 +278,7 @@ public class Control {
 	 * needed.
 	 */
 	protected void paintUpdate() {
+		throwBadState();
 		if (isPerPieceUpdateSupported) {
 			repaint();
 		}
@@ -340,10 +359,17 @@ public class Control {
 		
 	}
 	
+	private void throwBadState() {
+		if (disposed)
+			throw new IllegalStateException("The specified control is disposed. It can no longer be used, however the majority of its" +
+					" properties can most likely be retrieved. (The majority of its properties can most likely not be set either.)");
+	}
+	
 	/**
 	 * Forces the control to repaint.
 	 */
 	public void repaint() {
+		throwBadState();
 		Graphics2D g = createGraphics();
 		paintWinControls(g);
 		paint(g);
