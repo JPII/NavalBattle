@@ -141,6 +141,15 @@ public class Entity implements Serializable {
 		}
 		manager.getWorld().forceRender();
 	}
+	
+	public boolean canDoRotation(byte desiredRotation) {
+		return true;
+	}
+	
+	public boolean canDoMoveTo(Location desiredLocation) {
+		return true;
+	}
+	
 	/**
 	 * Moves the entity to the specified location on the grid.
 	 * @param loc The location to move the entity to.
