@@ -14,10 +14,10 @@ We depend on the following projects. We plan on moving to Maven soon to help aut
 ## Members
 * **TexasGamer** - SCM manager, RoketGamer lead
 * **abauer** - game design lead
-* **DarkWarHero** - *TBD*
+* **DarkWarHero** - AI lead
 * **maximusvladimir** - rendering lead
-* **smeagle42** - game-play lead
-* **Matthis5point0** - *TBD*
+* **smeagle42** - QA lead, game-play lead
+* **Matthis5point0** - art lead, music lead
 
 ## License
 NavalBattle is licensed under the irrevocable GNU General Public License v3.
