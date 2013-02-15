@@ -188,16 +188,36 @@ public class Control {
 	 * This method applies to the
 	 * <code>isForcingIndividualChanges()</code>
 	 * policy.
-	 * @param width
+	 * 
+	 * @param width The width to set the control to.
 	 */
 	public void setWidth(int width) {
 		setSize(width,height);
 	}
 	
+	/**
+	 * Sets the height of the control.
+	 * 
+	 * This method applies to the
+	 * <code>isForcingIndividualChanges()</code>
+	 * policy.
+	 * 
+	 * @param height The height to set the control to.
+	 */
 	public void setHeight(int height) {
 		setSize(width,height);
 	}
 	
+	/**
+	 * Sets the size of the control.
+	 * 
+	 * This method applies to the
+	 * <code>isForcingIndividualChanges()</code>
+	 * policy.
+	 * 
+	 * @param width The width to set the control to.
+	 * @param height The height to set the control to.
+	 */
 	public void setSize(int width, int height) {
 		this.width = width;
 		this.height = height;
@@ -205,24 +225,51 @@ public class Control {
 		paintUpdate();
 	}
 	
+	/**
+	 * Gets the width of the control.
+	 * @return The width of the control.
+	 */
 	public int getWidth() {
 		return width;
 	}
 	
+	/**
+	 * Gets the height of the control.
+	 * @return The height of the control.
+	 */
 	public int getHeight() {
 		return height;
 	}
 	
+	/**
+	 * Create a temporary Graphics buffer of the
+	 * current image buffer.
+	 * 
+	 * Note: This method should not be called
+	 * consistently. To update a buffer, overload
+	 * the <code>paint(Graphics2D g)</code> method.
+	 * 
+	 * @return A Graphics object.
+	 */
 	public Graphics2D createGraphics() {
 		return PavoHelper.createGraphics((PavoImage) buffer);
 	}
 	
+	/**
+	 * This method will call a repaint if it is
+	 * needed.
+	 */
 	protected void paintUpdate() {
 		if (isPerPieceUpdateSupported) {
 			repaint();
 		}
 	}
 	
+	/**
+	 * The paint method.
+	 * 
+	 * @param g The graphics object of the current buffer.
+	 */
 	protected void paint(Graphics2D g) {
 		
 	}
@@ -264,6 +311,10 @@ public class Control {
 		return buffer;
 	}
 	
+	/**
+	 * Paints sub controls.
+	 * @param g The graphics object of the current buffer.
+	 */
 	protected void paintWinControls(Graphics2D g) {
 		for (int c = 0; c < getTotalControls(); c++) {
 			Control cn = getControl(c);
@@ -289,6 +340,9 @@ public class Control {
 		
 	}
 	
+	/**
+	 * Forces the control to repaint.
+	 */
 	public void repaint() {
 		Graphics2D g = createGraphics();
 		paintWinControls(g);
