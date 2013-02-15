@@ -43,7 +43,9 @@ public class Entity implements Serializable {
 		try {
 			moveTo(loc,true);
 		}
-		catch (Throwable throwable) {}
+		catch (Throwable throwable) {
+			
+		}
 		manager.addEntity(this);
 		init();
 		setId(id);
@@ -161,7 +163,7 @@ public class Entity implements Serializable {
 		if (loc == null)
 			return false;
 		if (loc == Location.Unknown) {
-			hideEntity();
+			hideEntity();		
 			
 			
 			return true;
