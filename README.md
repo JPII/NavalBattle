@@ -15,7 +15,7 @@ We depend on the following projects. We plan on moving to Maven soon to help aut
 * **TexasGamer** - SCM manager, RoketGamer lead
 * **abauer** - game design lead
 * **DarkWarHero** - AI lead
-* **maximusvladimir** - rendering lead
+* **maximusvladimir** - grid and rendering lead
 * **smeagle42** - QA lead, game-play lead
 * **Matthis5point0** - art lead, music lead
 
