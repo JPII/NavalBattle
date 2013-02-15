@@ -56,8 +56,15 @@ public class PavoImage extends BufferedImage implements Serializable {
 	
 	private static void utilise342() {
 		Image_Counter++;
-		if (Image_Counter % 15 == 0)
-			System.out.println("At this point, " + Image_Counter + " or more images have been constructed.");
+	}
+	
+	public void finalize() {
+		Image_Counter--;
+		//System.out.println(Image_Counter + " images are live.");
+		try {
+			super.finalize();
+		} catch (Throwable e) {
+		}
 	}
 
 }
