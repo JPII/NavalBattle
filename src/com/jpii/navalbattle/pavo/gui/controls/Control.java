@@ -1,0 +1,309 @@
+package com.jpii.navalbattle.pavo.gui.controls;
+
+import java.awt.Graphics2D;
+import java.awt.image.BufferedImage;
+import java.util.ArrayList;
+
+import com.jpii.navalbattle.pavo.PavoHelper;
+import com.jpii.navalbattle.pavo.gui.GameWindow;
+import com.jpii.navalbattle.pavo.io.PavoImage;
+
+
+/**
+ * 
+ * @author maximusvladimir
+ *
+ */
+public class Control {
+	private BufferedImage buffer;
+	private int width, height,x,y;
+	private Control parent;
+	private boolean isPerPieceUpdateSupported = true;
+	private boolean lastKnownTransMode = true;
+	protected ArrayList<Control> controls;
+	private static long HANDLE_COUNTER = 0;
+	private long HANDLE = 0;
+	private Control(Control parent) {
+		this.parent = parent;
+		controls = new ArrayList<Control>();
+		HANDLE = ++HANDLE_COUNTER;
+	}
+	
+	/**
+	 * Adds a control to the control.
+	 * 
+	 * Note that adding a control that has already been placed
+	 * above the current control (in other words, it would be a
+	 * parent), will most likely result in a 
+	 * <code>IllegalArgumentException</code>.
+	 * @param c The control to add to the control.
+	 */
+	public void addControl(Control c) {
+		if (c == null)
+			return;
+		
+		if (c.HANDLE == this.HANDLE)
+			throw new IllegalArgumentException("FATAL ERROR: Cannot add a control to itself!!!");
+		
+		try {
+			Control badC = searchForControl(this,c.HANDLE,5);
+			if (badC != null)
+				throw new IllegalArgumentException("FATAL ERROR: Cannot add a control to itself!!!");
+		}
+		catch (Throwable t) {
+			
+		}
+		
+		controls.add(c);
+		repaint();
+	}
+	
+	/**
+	 * Gets the total number of controls that the current
+	 * control controls.
+	 * 
+	 * (That's a mouthful!)
+	 * @return The total number of controls.
+	 */
+	public int getTotalControls() {
+		return controls.size();
+	}
+	
+	/**
+	 * Search all controls, and all controls below it for
+	 * a control with a certain handle.
+	 * 
+	 * This method is recursive and thus may require some
+	 * time to complete.
+	 * 
+	 * May return null.
+	 * 
+	 * @param searchIn The control to search inside of.
+	 * @param handle The handle to look for.
+	 * @param maxlevels The maximum number of levels to iterate.
+	 * @return The control (if it was found.)
+	 */
+	private Control searchForControl(Control searchIn, long handle, int maxlevels) {
+		if (searchIn == null)
+			return null;
+		else {
+			if (maxlevels-- > 0) {
+				for (int c = 0; c < searchIn.getTotalControls(); c++) {
+					Control cn = searchIn.getControl(c);
+					if (cn != null && cn.HANDLE == handle)
+						return cn;
+					else if (cn != null)
+						return searchForControl(cn,handle,maxlevels);
+				}
+			}
+		}
+		return null;
+	}
+	
+	/**
+	 * Finds a control based on its handle.
+	 * @param handle The Handle to search for.
+	 */
+	public Control getControlByHandle(long handle) {
+		for (int c = 0; c < getTotalControls(); c++) {
+			Control cn = getControl(c);
+			if (cn != null && cn.HANDLE == handle)
+				return cn;
+		}
+		return null;
+	}
+	
+	/**
+	 * Gets the control from a given index.
+	 * @param index The index to retrieve the control at.
+	 * @return The control.
+	 */
+	public Control getControl(int index) {
+		return controls.get(index);
+	}
+	
+	/**
+	 * Should a repaint occur if a basic method is
+	 * called?
+	 * 
+	 * (For example:
+	 * 
+	 * Lets persume there was this situation:
+	 * <code>
+	 * public void myAwesomeMethod() {
+	 *     control.setHeight(560);
+	 *     control.setWidth(600);
+	 *     control.setBackgroundColor(Color.red);
+	 *     control.setForegroundColor(Color.black);
+	 *     ...
+	 * }
+	 * </code>
+	 * 
+	 * If <code>isForcingIndividualChanges()</code>
+	 * is set to true, then all those methods above
+	 * will force a re-render everytime one of those
+	 * methods is called.
+	 * 
+	 * If <code>isForcingIndividualChanges()</code>
+	 * is set to false, then you <i>should</i> do the
+	 * following:
+	 * 
+	 * <code>
+	 * public void myAwesomeMethod() {
+	 *     control.setHeight(560);
+	 *     control.setWidth(600);
+	 *     control.setBackgroundColor(Color.red);
+	 *     control.setForegroundColor(Color.black);
+	 *     ...
+	 *     control.repaint();
+	 * }
+	 * </code>
+	 * To force the buffer to update.)
+	 * 
+	 * This method can have its value set using:
+	 * <code>forceIndividualChanges(boolean value)</code>.
+	 * 
+	 * @return A value indicating the stuff above.
+	 */
+	public boolean isForcingIndividualChanges() {
+		return isPerPieceUpdateSupported;
+	}
+	
+	/**
+	 * Sets a value forcing (or not) individual changes.
+	 * 
+	 * See the documentation for 
+	 * <code>isForcingIndividualChanges()</code> for more
+	 * details.
+	 * 
+	 * @param value The value forcing it or not.
+	 */
+	public void forceIndividualChanges(boolean value) {
+		isPerPieceUpdateSupported = value;
+	}
+	
+	/**
+	 * Sets the width of the control.
+	 * 
+	 * This method applies to the
+	 * <code>isForcingIndividualChanges()</code>
+	 * policy.
+	 * @param width
+	 */
+	public void setWidth(int width) {
+		setSize(width,height);
+	}
+	
+	public void setHeight(int height) {
+		setSize(width,height);
+	}
+	
+	public void setSize(int width, int height) {
+		this.width = width;
+		this.height = height;
+		createBuffer(lastKnownTransMode);
+		paintUpdate();
+	}
+	
+	public int getWidth() {
+		return width;
+	}
+	
+	public int getHeight() {
+		return height;
+	}
+	
+	public Graphics2D createGraphics() {
+		return PavoHelper.createGraphics((PavoImage) buffer);
+	}
+	
+	protected void paintUpdate() {
+		if (isPerPieceUpdateSupported) {
+			repaint();
+		}
+	}
+	
+	protected void paint(Graphics2D g) {
+		
+	}
+	
+	public void setLocX(int x) {
+		setLoc(x,y);
+	}
+	
+	public Control getParent() {
+		return parent;
+	}
+	
+	public void setLocY(int y) {
+		setLoc(x,y);
+	}
+	
+	public int getLocX() {
+		return x;
+	}
+	
+	public int getLocY() {
+		return y;
+	}
+	
+	public void setLoc(int x, int y) {
+		boolean flag = false;
+		if (this.x != x || this.y != y)
+			flag = true;
+		this.x = x;
+		this.y = y;
+		
+		if (flag) {
+			if (parent != null)
+				parent.repaint();
+		}
+	}
+	
+	public BufferedImage getBuffer() {
+		return buffer;
+	}
+	
+	protected void paintWinControls(Graphics2D g) {
+		for (int c = 0; c < getTotalControls(); c++) {
+			Control cn = getControl(c);
+			if (cn != null) {
+				g.drawImage(cn.getBuffer(), cn.getLocX(), cn.getLocY(), null);
+			}
+		}
+	}
+	
+	public void onFocus() {
+		
+	}
+	
+	public void onMouseHover(int x, int y) {
+		
+	}
+	
+	public void onMouseDown(int x, int y, int buttonid) {
+		
+	}
+	
+	public void onMouseUp(int x, int y, int buttonid) {
+		
+	}
+	
+	public void repaint() {
+		Graphics2D g = createGraphics();
+		paintWinControls(g);
+		paint(g);
+		g.dispose();
+	}
+	
+	
+	protected void createBuffer(boolean transparencyEnabled) {
+		lastKnownTransMode = transparencyEnabled;
+		if (transparencyEnabled) {
+			buffer = new BufferedImage(getWidth(),getHeight(),BufferedImage.TYPE_4BYTE_ABGR);
+		}
+		else {
+			buffer = new BufferedImage(getWidth(),getHeight(),BufferedImage.TYPE_3BYTE_BGR);
+		}
+	}
+}

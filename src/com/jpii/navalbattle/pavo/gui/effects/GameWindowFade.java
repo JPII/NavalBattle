@@ -15,7 +15,6 @@ public class GameWindowFade extends GameWindowEffect {
 	
 	public GameWindowFade() {
 		super();
-		
 	}
 	
 	public void setTransparency(float amount) {
