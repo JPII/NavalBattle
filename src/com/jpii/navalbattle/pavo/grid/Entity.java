@@ -40,8 +40,7 @@ public class Entity implements Serializable {
 		manager = em;
 		location = loc;
 		teamId=teams;
-		try
-		{
+		try {
 			moveTo(loc,true);
 		}
 		catch (Throwable throwable) {}
