@@ -26,6 +26,8 @@ import com.jpii.navalbattle.game.gui.PlayerProfileWindow;
 import com.jpii.navalbattle.game.gui.ShipInfoWindow;
 import com.jpii.navalbattle.game.gui.StatusBar;
 import com.jpii.navalbattle.pavo.*;
+import com.jpii.navalbattle.pavo.grid.Entity;
+import com.jpii.navalbattle.pavo.grid.GridedEntityTileOrientation;
 import com.jpii.navalbattle.pavo.grid.Location;
 import com.jpii.navalbattle.pavo.gui.GridWindow;
 import com.jpii.navalbattle.pavo.gui.MessageBox;
@@ -168,13 +170,23 @@ public class NavalGame extends Game {
 		if (getWinMan().mouseDown(me)||(omnimap.mouseDown(me)))
 			return;
 		else if (me.getButton() == MouseEvent.BUTTON1) {
+			if (nm.getTile(chy, chx)!=null) {
+				Entity ee = (Entity)nm.getTile(chy, chx).getEntity();
+				byte t = ee.getCurrentOrientation();
+				if (t == GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT)
+					ee.rotateTo(GridedEntityTileOrientation.ORIENTATION_TOPTOBOTTOM);
+				else
+					ee.rotateTo(GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT);
+			}
+		}
+		else if (me.getButton() == MouseEvent.BUTTON1) {
 			if(nm.getTile(chy, chx)==null)
 				new BattleShip(this.getWorld().getEntityManager(),new Location(chy,chx),BattleShip.BATTLESHIP_ID,Game.Settings.rand.nextInt(0,3));
 		}
 		else if (Game.Settings.isFinishedGenerating && getWorld().getEntityManager().getTilePercentLand(chy,chx) <= 5){
 			if(nm.getTile(chy, chx)==null){
-				new Whale(this.getWorld().getEntityManager(),new Location(chy,chx),
-						Game.Settings.rand.nextInt(0,3),NavalManager.w1,NavalManager.w2,NavalManager.w3);
+				//new Whale(this.getWorld().getEntityManager(),new Location(chy,chx),
+					//	Game.Settings.rand.nextInt(0,3),NavalManager.w1,NavalManager.w2,NavalManager.w3);
 			}
 		}
 	}

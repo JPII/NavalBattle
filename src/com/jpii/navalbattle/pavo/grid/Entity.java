@@ -36,6 +36,11 @@ public class Entity implements Serializable {
 		manager = em;
 		init();
 	}
+	
+	public byte getCurrentOrientation() {
+		return ORIENTATION_BUFFER_POSITION;
+	}
+	
 	public Entity(EntityManager em,Location loc, GridedEntityTileOrientation id,int teams) {
 		manager = em;
 		location = loc;
