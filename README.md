@@ -16,8 +16,8 @@ We depend on the following projects. We plan on moving to Maven soon to help aut
 * **abauer** - game design lead
 * **DarkWarHero** - AI lead
 * **maximusvladimir** - grid and rendering lead
-* **smeagle42** - QA lead, game-play lead
-* **Matthis5point0** - art lead, music lead
+* **smeagle42** - art lead, music lead
+* **Matthis5point0** - QA lead, game-play lead
 
 ## License
 NavalBattle is licensed under the irrevocable GNU General Public License v3.
