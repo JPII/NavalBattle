@@ -177,7 +177,7 @@ public class NavalGame extends Game {
 			else
 				ee.rotateTo(GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT);
 		}
-		else if (me.getButton() == MouseEvent.BUTTON1) {
+		else if (me.getButton() == MouseEvent.BUTTON1&& getWorld().getEntityManager().getTilePercentLand(chy,chx) <= 5) {
 			if(nm.getTile(chy, chx)==null)
 				new BattleShip(this.getWorld().getEntityManager(),new Location(chy,chx),BattleShip.BATTLESHIP_ID,Game.Settings.rand.nextInt(0,3));
 		}

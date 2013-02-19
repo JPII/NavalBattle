@@ -48,4 +48,29 @@ public class BattleShip extends Entity {
 	public void onMouseDown(int x, int y, boolean leftbutton) {
 		System.out.println("The battleship was clicked on. Left mouse button? " + leftbutton + " (" + x + "," + y + ")");
 	}
+	
+	public void rotateTo(byte code) {
+		boolean flag = true;
+		if (code == GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT) {
+			for (int c = 0; c < getWidth(); c++) {
+				int p = getManager().getTilePercentLand(getLocation().getRow(),getLocation().getCol()+c);
+				if (p > 5) {
+					flag = false;
+					break;
+				}
+			}
+		}
+		if (code == GridedEntityTileOrientation.ORIENTATION_TOPTOBOTTOM) {
+			for (int c = 0; c < getWidth(); c++) {
+				int p = getManager().getTilePercentLand(getLocation().getRow()+c,getLocation().getCol());
+				if (p > 5) {
+					flag = false;
+					break;
+				}
+			}
+		}
+		
+		if (flag)
+			super.rotateTo(code);
+	}
 }
