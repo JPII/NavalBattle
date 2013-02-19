@@ -22,6 +22,7 @@ import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
 
+import com.roketgamer.log.LoggerHook;
 import com.roketgamer.rauth.*;
 
 public class RoketGamer {
@@ -31,6 +32,7 @@ public class RoketGamer {
 	private Player player;
 	private AuthStatus status;
 	private Session session;
+	private LoggerHook loggerHook;
 	
 	private static RoketGamer instance;
 	
@@ -45,11 +47,12 @@ public class RoketGamer {
 	 * @param forceAuth
 	 * @return
 	 */
-	public AuthStatus init(APIKey key, Player player) {
+	public AuthStatus init(APIKey key, Player player, LoggerHook loggerHook) {
 		instance = this;
 		
 		this.key = key;
 		this.player = player;
+		this.loggerHook = loggerHook;
 		
 		try {
 			URL url = new URL(SERVER_LOCATION + "/api/" + VERSION + "/auth/login.php?key=" + key.getKey() + "&username=" + player.getName()
@@ -116,6 +119,14 @@ public class RoketGamer {
 	 */
 	public AuthStatus getStatus() {
 		return status;
+	}
+	
+	/**
+	 * Return current <code>LoggerHook</code>.
+	 * @return
+	 */
+	public LoggerHook getLoggerHook() {
+		return loggerHook;
 	}
 	
 	/**

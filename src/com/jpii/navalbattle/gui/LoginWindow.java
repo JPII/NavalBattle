@@ -129,7 +129,7 @@ public class LoginWindow extends Window {
 		@SuppressWarnings("deprecation")
 		AuthStatus status = NavalBattle.getRoketGamer().init(new APIKey(Constants.API_KEY), 
 				new Player(usernameField.getText(), 
-				new Password(passwordField.getText())));
+				new Password(passwordField.getText())), Constants.ROKETGAMER_LOG_HOOK);
 		
 		if (status == AuthStatus.GOOD) {
 			NavalBattle.getWindowHandler().getToasterManager().showToaster(new ImageIcon(FileUtils.getResourcePath("drawable-gui/logo_100px.png")), "Logged in as " + NavalBattle.getRoketGamer().getPlayer().getName());
