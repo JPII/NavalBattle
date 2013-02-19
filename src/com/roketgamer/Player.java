@@ -17,12 +17,19 @@
 
 package com.roketgamer;
 
+import java.util.ArrayList;
+
+import com.roketgamer.data.DataLoadThread;
+import com.roketgamer.friend.Friend;
 import com.roketgamer.rauth.Password;
 
 public class Player {
 
 	private String username;
 	private Password password;
+	private ArrayList<Friend> friends;
+	
+	private boolean hasLoadedData;
 
 	/**
 	 * Create a new <code>Player</code>.
@@ -32,6 +39,9 @@ public class Player {
 	public Player(String username, Password password) {
 		this.username = username;
 		this.password = password;
+		friends = new ArrayList<Friend>();
+		
+		hasLoadedData = false;
 	}
 
 	/**
@@ -48,5 +58,30 @@ public class Player {
 	 */
 	public Password getPassword() {
 		return password;
+	}
+	
+	/**
+	 * Get player's friends list. Consists of <code>Friend</code> objects.
+	 * @return
+	 */
+	public ArrayList<Friend> getFriends() {
+		return friends;
+	}
+	
+	/**
+	 * Returns if player's data has been loaded.
+	 * @return
+	 */
+	public boolean hasLoadedData() {
+		return hasLoadedData;
+	}
+	
+	public void setDataLoaded(boolean status) {
+		hasLoadedData = status;
+	}
+	
+	public void loadData() {
+		DataLoadThread dataLoaded = new DataLoadThread(this);
+		dataLoaded.start();
 	}
 }
