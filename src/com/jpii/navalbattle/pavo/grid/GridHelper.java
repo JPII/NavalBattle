@@ -32,4 +32,37 @@ public class GridHelper implements Serializable {
 	public Location pollNextWaterTile() {
 		return pollNextWaterTile(8);
 	}
+	public static boolean canPlaceInGrid(EntityManager em,byte rotate, int row, int col, int width) {
+		
+		boolean flag = true;
+		if (rotate == GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT) {
+			for (int c = 0; c < width; c++) {
+				int p = em.getTilePercentLand(row,col+c);
+				if (p > 5) {
+					flag = false;
+					break;
+				}
+				Tile temp = em.getTile(row,col+c);
+				if(temp!=null){
+					flag=false;
+					break;
+				}
+			}
+		}
+		if (rotate == GridedEntityTileOrientation.ORIENTATION_TOPTOBOTTOM) {
+			for (int c = 0; c < width; c++) {
+				int p = em.getTilePercentLand(row+c,col);
+				if (p > 5) {
+					flag = false;
+					break;
+				}
+				Tile temp = em.getTile(row+c,col);
+				if(temp!=null){
+					flag=false;
+					break;
+				}
+			}
+		}
+		return flag;
+	}
 }

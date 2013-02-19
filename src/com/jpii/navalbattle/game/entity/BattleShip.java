@@ -3,11 +3,15 @@
  */
 package com.jpii.navalbattle.game.entity;
 
+import java.awt.event.MouseEvent;
+
 import com.jpii.navalbattle.pavo.Game;
 import com.jpii.navalbattle.pavo.grid.Entity;
 import com.jpii.navalbattle.pavo.grid.EntityManager;
+import com.jpii.navalbattle.pavo.grid.GridHelper;
 import com.jpii.navalbattle.pavo.grid.GridedEntityTileOrientation;
 import com.jpii.navalbattle.pavo.grid.Location;
+import com.jpii.navalbattle.pavo.grid.Tile;
 
 /**
  * @author maximusvladimir
@@ -35,7 +39,9 @@ public class BattleShip extends Entity {
 		setWidth(4);
 		setHeight(1);
 	}
-	
+	public boolean moveTo(Location loc, boolean override) {
+		return super.moveTo(loc, override);
+	}
 	public void onUpdate(long timePassed) {
 		int r = 1;
 		int c = 1;
@@ -47,29 +53,17 @@ public class BattleShip extends Entity {
 	}
 	public void onMouseDown(int x, int y, boolean leftbutton) {
 		System.out.println("The battleship was clicked on. Left mouse button? " + leftbutton + " (" + x + "," + y + ")");
+		if(!leftbutton){
+			byte t = getCurrentOrientation();
+			if (t == GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT)
+				rotateTo(GridedEntityTileOrientation.ORIENTATION_TOPTOBOTTOM);
+			else
+				rotateTo(GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT);
+		}
 	}
 	
 	public void rotateTo(byte code) {
-		boolean flag = true;
-		if (code == GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT) {
-			for (int c = 0; c < getWidth(); c++) {
-				int p = getManager().getTilePercentLand(getLocation().getRow(),getLocation().getCol()+c);
-				if (p > 5) {
-					flag = false;
-					break;
-				}
-			}
-		}
-		if (code == GridedEntityTileOrientation.ORIENTATION_TOPTOBOTTOM) {
-			for (int c = 0; c < getWidth(); c++) {
-				int p = getManager().getTilePercentLand(getLocation().getRow()+c,getLocation().getCol());
-				if (p > 5) {
-					flag = false;
-					break;
-				}
-			}
-		}
-		
+		boolean flag = GridHelper.canPlaceInGrid(getManager(), code, getLocation().getRow(), getLocation().getCol(), getWidth());
 		if (flag)
 			super.rotateTo(code);
 	}
