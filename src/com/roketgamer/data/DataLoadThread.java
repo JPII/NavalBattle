@@ -18,6 +18,7 @@
 package com.roketgamer.data;
 
 import com.roketgamer.Player;
+import com.roketgamer.RoketGamer;
 
 public class DataLoadThread extends Thread {
 	
@@ -25,10 +26,12 @@ public class DataLoadThread extends Thread {
 	
 	public DataLoadThread(Player player) {
 		this.player = player;
+		RoketGamer.getInstance().getLoggerHook().printInfo("DataLoadThread created");
 	}
 
 	@Override
 	public void run() {
 		player.setDataLoaded(true);
+		RoketGamer.getInstance().getLoggerHook().printInfo("DataLoadThread completed");
 	}
 }
