@@ -71,16 +71,21 @@ public class RoketGamer {
 			if (result.contains("true")) {
 				session = new Session(in.readLine());
 				status = AuthStatus.GOOD;
+				loggerHook.printInfo("Logged in successfully");
 			} else if (result.contains("false")) {
 				if(result.contains("Invalid API key")) {
 					status = AuthStatus.INVALID_API_KEY;
+					loggerHook.printError("Invalid API key");
 				} else if (result.contains("Invalid user")) {
 					status = AuthStatus.BAD;
+					loggerHook.printError("Invalid user");
 				} else if(result.contains("API offline")) {
 					status = AuthStatus.OFFLINE;
+					loggerHook.printError("API offline");
 				}
 			} else {
 				status = AuthStatus.UNKNOWN;
+				loggerHook.printError("Unknown AuthStatus");
 			}
 
 			in.close();
