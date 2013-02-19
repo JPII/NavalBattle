@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2012 RoketGamer <http://roketgamer.com> and contributors.
+ * Copyright (C) 2013 RoketGamer <http://roketgamer.com> and contributors.
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -22,7 +22,6 @@ import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
 
-import com.roketgamer.analytics.Analytics;
 import com.roketgamer.rauth.*;
 
 public class RoketGamer {
@@ -32,7 +31,6 @@ public class RoketGamer {
 	private Player player;
 	private AuthStatus status;
 	private Session session;
-	private Analytics analytics;
 	
 	private static RoketGamer instance;
 	
@@ -85,10 +83,6 @@ public class RoketGamer {
 			in.close();
 		} catch (Exception e) { }
 		
-		if(status == AuthStatus.GOOD) {
-			analytics = new Analytics();
-		}
-		
 		return status;
 	}
 	
@@ -138,14 +132,6 @@ public class RoketGamer {
 	 */
 	public String getServerLocation() {
 		return SERVER_LOCATION;
-	}
-	
-	/**
-	 * Get current <code>Analytics</code> instance.
-	 * @return
-	 */
-	public Analytics getAnalytics() {
-		return analytics;
 	}
 	
 	/**
