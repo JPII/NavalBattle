@@ -6,6 +6,7 @@ package com.jpii.navalbattle.game.gui;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
+import java.text.DecimalFormat;
 
 import com.jpii.navalbattle.NavalBattle;
 import com.jpii.navalbattle.pavo.Game;
@@ -55,6 +56,14 @@ public class StatusBar extends GameWindow {
 		String score = "Score: "+NavalBattle.getGameState().getScore();
 		int sd = 2;
 		g.drawString(score, width-110+sd, 17);
+		
+		g.setColor(Color.black);
+		g.fillRect(width-221, 2, 100, 20);
+		g.setColor(Color.darkGray);
+		g.draw3DRect(width-221,2,100,20,true);
+		g.draw3DRect(width-220,3,98,18,true);
+		g.setColor(Color.white);
+		g.drawString("Time: 0", width-220+sd, 17);
 	}
 	public void setMouseTileLocation(int x, int y) {
 		boolean flag = false;
