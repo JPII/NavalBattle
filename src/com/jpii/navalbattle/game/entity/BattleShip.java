@@ -33,6 +33,10 @@ public class BattleShip extends Entity {
 	 */
 	public BattleShip(EntityManager em, Location loc, GridedEntityTileOrientation superId,int team) {
 		super(em, loc, superId,team);
+		System.out.println("HERE");
+		if(!GridHelper.canPlaceInGrid(getManager(), this,getCurrentOrientation(), getLocation().getRow(), getLocation().getCol(), getWidth())){
+			dispose();
+		}
 	}
 	
 	public void init() {
@@ -45,14 +49,10 @@ public class BattleShip extends Entity {
 	public void onUpdate(long timePassed) {
 		int r = 1;
 		int c = 1;
-		//if(Game.Settings.isFinishedGenerating && Game.Settings.rand.nextInt(0,20) == 2)
-			//moveTo(r+getLocation().getRow(),c+getLocation().getCol());
 	}
 	public void onMouseMove(int x, int y) {
-		System.out.println("The battleship was hovered over. (" + x + "," + y + ")");
 	}
 	public void onMouseDown(int x, int y, boolean leftbutton) {
-		System.out.println("The battleship was clicked on. Left mouse button? " + leftbutton + " (" + x + "," + y + ")");
 		if(!leftbutton){
 			byte t = getCurrentOrientation();
 			if (t == GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT)
@@ -63,7 +63,7 @@ public class BattleShip extends Entity {
 	}
 	
 	public void rotateTo(byte code) {
-		boolean flag = GridHelper.canPlaceInGrid(getManager(), code, getLocation().getRow(), getLocation().getCol(), getWidth());
+		boolean flag = GridHelper.canPlaceInGrid(getManager(), this, code, getLocation().getRow(), getLocation().getCol(), getWidth());
 		if (flag)
 			super.rotateTo(code);
 	}

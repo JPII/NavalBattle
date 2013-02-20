@@ -15,8 +15,10 @@ public class Tile<T> {
 	//Entity pointer;
 	public Tile(T parent, int r, int c) {
 		this.parent = parent;
-		if (!(parent instanceof Entity))
-			throw new RuntimeException("The provided object is not an entity.");
+		if(parent !=null){
+			if (!(parent instanceof Entity))
+				throw new RuntimeException("The provided object is not an entity.");
+		}
 	}
 	public void setId(Id id) {
 		System.out.println("s:"+id);

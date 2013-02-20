@@ -232,9 +232,27 @@ public class Entity implements Serializable {
 	public void truncate() {
 		if (getLocation() == null || getLocation() == Location.Unknown)
 			return;
-		Tile t = (new Tile(null,getLocation().getRow(),getLocation().getCol()));
-		t.setId(new Id(0,0));
-		manager.setTile(getLocation(), t);
+		
+		int row = getLocation().getRow();
+		int col = getLocation().getCol();
+		final Id nonid = new Id(0,0);
+		
+		if (getCurrentOrientation() == GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT) {
+			for (int c = 0; c < width; c++) {
+				Tile t = (new Tile(null,row,col+c));
+				t.setId(nonid);
+				t=null;
+				manager.setTile(new Location(row,col+c), t);
+			}
+		}
+		if (getCurrentOrientation() == GridedEntityTileOrientation.ORIENTATION_TOPTOBOTTOM) {
+			for (int c = 0; c < width; c++) {
+				Tile t = (new Tile(null,row+c,col));
+				t.setId(nonid);
+				t=null;
+				manager.setTile(new Location(row+c,col), t);
+			}
+		}
 	}
 	
 	/**

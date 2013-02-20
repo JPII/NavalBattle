@@ -32,8 +32,17 @@ public class GridHelper implements Serializable {
 	public Location pollNextWaterTile() {
 		return pollNextWaterTile(8);
 	}
-	public static boolean canPlaceInGrid(EntityManager em,byte rotate, int row, int col, int width) {
-		
+	/**
+	 * 
+	 * @param em - needed to get Tile Percent Land to check for if land is in the way
+	 * @param e - needed to check to see if an entity that is not the same entity is in the way
+	 * @param rotate - needed to check which direction your checking for
+	 * @param row - needed to find the starting row
+	 * @param col - needed to find the starting col
+	 * @param width - needed to know how many spaces to check
+	 * @return - returns true if the space(s) allow for this entity
+	 */
+	public static boolean canPlaceInGrid(EntityManager em,Entity e,byte rotate, int row, int col, int width) {
 		boolean flag = true;
 		if (rotate == GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT) {
 			for (int c = 0; c < width; c++) {
@@ -43,10 +52,15 @@ public class GridHelper implements Serializable {
 					break;
 				}
 				Tile temp = em.getTile(row,col+c);
-				if(temp!=null){
+				if(temp!=null && temp.getEntity()!=e){
 					flag=false;
 					break;
 				}
+			}
+			if (!flag){
+				System.out.println("FALSE");
+				System.out.println("FALSE");
+				System.out.println("FALSE");
 			}
 		}
 		if (rotate == GridedEntityTileOrientation.ORIENTATION_TOPTOBOTTOM) {

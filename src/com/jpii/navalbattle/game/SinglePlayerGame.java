@@ -33,7 +33,6 @@ public class SinglePlayerGame extends Window {
 		setContentPane(game);
 		this.getContentPane().setLayout(null);
 		setsize(Game.Settings.currentWidth,Game.Settings.currentHeight-40);
-		setsize(800,600);
 		setlocation(0,0);
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
 	}
