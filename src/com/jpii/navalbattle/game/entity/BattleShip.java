@@ -28,11 +28,8 @@ public class BattleShip extends Entity {
 	 * @param loc
 	 * @param superId
 	 */
-	public BattleShip(EntityManager em, Location loc, GridedEntityTileOrientation superId,int team) {
-		super(em, loc, superId,team);
-		if(!GridHelper.canPlaceInGrid(getManager(), this,getCurrentOrientation(), getLocation().getRow(), getLocation().getCol(), getWidth())){
-			dispose();
-		}
+	public BattleShip(EntityManager em, Location loc, GridedEntityTileOrientation superId,byte orientation,int team) {
+		super(em, loc, superId,orientation,team);
 	}
 	
 	public void init() {
@@ -59,7 +56,7 @@ public class BattleShip extends Entity {
 	}
 	
 	public void rotateTo(byte code) {
-		boolean flag = GridHelper.canPlaceInGrid(getManager(), this, code, getLocation().getRow(), getLocation().getCol(), getWidth());
+		boolean flag = GridHelper.canRotate(getManager(), this, code, getLocation().getRow(), getLocation().getCol(), getWidth());
 		if (flag)
 			super.rotateTo(code);
 	}

@@ -35,14 +35,13 @@ public class GridHelper implements Serializable {
 	/**
 	 * 
 	 * @param em - needed to get Tile Percent Land to check for if land is in the way
-	 * @param e - needed to check to see if an entity that is not the same entity is in the way
 	 * @param rotate - needed to check which direction your checking for
 	 * @param row - needed to find the starting row
 	 * @param col - needed to find the starting col
 	 * @param width - needed to know how many spaces to check
 	 * @return - returns true if the space(s) allow for this entity
 	 */
-	public static boolean canPlaceInGrid(EntityManager em,Entity e,byte rotate, int row, int col, int width) {
+	public static boolean canPlaceInGrid(EntityManager em,byte rotate, int row, int col, int width) {
 		boolean flag = true;
 		if (rotate == GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT) {
 			for (int c = 0; c < width; c++) {
@@ -52,7 +51,7 @@ public class GridHelper implements Serializable {
 					break;
 				}
 				Tile temp = em.getTile(row,col+c);
-				if(temp!=null && !temp.getEntity().equals(e)){
+				if(temp!=null){
 					flag=false;
 					break;
 				}
@@ -66,7 +65,40 @@ public class GridHelper implements Serializable {
 					break;
 				}
 				Tile temp = em.getTile(row+c,col);
-				if(temp!=null && !temp.getEntity().equals(e)){
+				if(temp!=null){
+					flag=false;
+					break;
+				}
+			}
+		}
+		return flag;
+	}
+	
+	public static boolean canRotate(EntityManager em,Entity e,byte rotate, int row, int col, int width) {
+		boolean flag = true;
+		if (rotate == GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT) {
+			for (int c = 0; c < width; c++) {
+				int p = em.getTilePercentLand(row,col+c);
+				if (p > 5) {
+					flag = false;
+					break;
+				}
+				Tile temp = em.getTile(row,col+c);
+				if(temp!=null&&!temp.getEntity().equals(e)){
+					flag=false;
+					break;
+				}
+			}
+		}
+		if (rotate == GridedEntityTileOrientation.ORIENTATION_TOPTOBOTTOM) {
+			for (int c = 0; c < width; c++) {
+				int p = em.getTilePercentLand(row+c,col);
+				if (p > 5) {
+					flag = false;
+					break;
+				}
+				Tile temp = em.getTile(row+c,col);
+				if(temp!=null&&!temp.getEntity().equals(e)){
 					flag=false;
 					break;
 				}

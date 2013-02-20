@@ -41,10 +41,11 @@ public class Entity implements Serializable {
 		return ORIENTATION_BUFFER_POSITION;
 	}
 	
-	public Entity(EntityManager em,Location loc, GridedEntityTileOrientation id,int teams) {
+	public Entity(EntityManager em,Location loc, GridedEntityTileOrientation id,byte orientation,int teams) {
 		manager = em;
 		location = loc;
 		teamId=teams;
+		ORIENTATION_BUFFER_POSITION = orientation;
 		try {
 			moveTo(loc,true);
 		}

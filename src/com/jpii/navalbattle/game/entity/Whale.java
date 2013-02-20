@@ -22,8 +22,8 @@ public class Whale extends AnimatedEntity {
 	 * @param loc
 	 * @param animationFrameIds
 	 */
-	public Whale(EntityManager em, Location loc,int team, GridedEntityTileOrientation... animationFrameIds) {
-		super(em, loc, team, animationFrameIds);
+	public Whale(EntityManager em, Location loc,byte orientation, int team, GridedEntityTileOrientation... animationFrameIds) {
+		super(em, loc, orientation, team, animationFrameIds);
 		nextIndex = Game.Settings.rand.nextInt(0,3);
 	}
 	

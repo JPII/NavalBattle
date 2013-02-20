@@ -61,7 +61,7 @@ public class NavalManager extends EntityManager {
 		
 		for (int c = 0; c < 20; c++) {
 			Location poll = gh.pollNextWaterTile();
-			new Whale(this, poll,Game.Settings.rand.nextInt(0,3),w1,w2,w3);
+			new Whale(this, poll,GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT,Game.Settings.rand.nextInt(0,3),w1,w2,w3);
 		}
 		System.out.println("Let me play you the song of my people.");
 	}
