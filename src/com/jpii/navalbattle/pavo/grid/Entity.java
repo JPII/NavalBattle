@@ -178,8 +178,6 @@ public class Entity implements Serializable {
 			return false;
 		if (loc == Location.Unknown) {
 			hideEntity();		
-			
-			
 			return true;
 		}
 		Tile<Entity> t = manager.getTile(loc);
@@ -232,24 +230,17 @@ public class Entity implements Serializable {
 	public void truncate() {
 		if (getLocation() == null || getLocation() == Location.Unknown)
 			return;
-		
 		int row = getLocation().getRow();
-		int col = getLocation().getCol();
-		final Id nonid = new Id(0,0);
-		
+		int col = getLocation().getCol();		
 		if (getCurrentOrientation() == GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT) {
 			for (int c = 0; c < width; c++) {
-				Tile t = (new Tile(null,row,col+c));
-				t.setId(nonid);
-				t=null;
+				Tile t=null;
 				manager.setTile(new Location(row,col+c), t);
 			}
 		}
 		if (getCurrentOrientation() == GridedEntityTileOrientation.ORIENTATION_TOPTOBOTTOM) {
 			for (int c = 0; c < width; c++) {
-				Tile t = (new Tile(null,row+c,col));
-				t.setId(nonid);
-				t=null;
+				Tile t=null;
 				manager.setTile(new Location(row+c,col), t);
 			}
 		}

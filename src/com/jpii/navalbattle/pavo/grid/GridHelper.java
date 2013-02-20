@@ -57,11 +57,6 @@ public class GridHelper implements Serializable {
 					break;
 				}
 			}
-			if (!flag){
-				System.out.println("FALSE");
-				System.out.println("FALSE");
-				System.out.println("FALSE");
-			}
 		}
 		if (rotate == GridedEntityTileOrientation.ORIENTATION_TOPTOBOTTOM) {
 			for (int c = 0; c < width; c++) {

@@ -33,7 +33,6 @@ public class BattleShip extends Entity {
 	 */
 	public BattleShip(EntityManager em, Location loc, GridedEntityTileOrientation superId,int team) {
 		super(em, loc, superId,team);
-		System.out.println("HERE");
 		if(!GridHelper.canPlaceInGrid(getManager(), this,getCurrentOrientation(), getLocation().getRow(), getLocation().getCol(), getWidth())){
 			dispose();
 		}

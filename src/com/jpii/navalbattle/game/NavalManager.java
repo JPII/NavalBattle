@@ -46,7 +46,6 @@ public class NavalManager extends EntityManager {
 	GridHelper gh;
 	
 	public void gameDoneGenerating() {
-		//BattleShip e = new BattleShip(this,new Location(7,3),battleShipId,Game.Settings.rand.nextInt(0,3));
 		int w1_ = registerEntity(PavoHelper.imgUtilOutline(FileUtils.getImage("drawable-game/other/whaleleft.png"),Game.Settings.GridColor),GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT);
 		int w2_ = registerEntity(PavoHelper.imgUtilOutline(FileUtils.getImage("drawable-game/other/whalecenter.png"),Game.Settings.GridColor),GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT);
 		int w3_ = registerEntity(PavoHelper.imgUtilOutline(FileUtils.getImage("drawable-game/other/whaleright.png"),Game.Settings.GridColor),GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT);
@@ -60,7 +59,6 @@ public class NavalManager extends EntityManager {
 		w1.setLeftToRightImage(w3_);
 		w1.setTopToBottomImage(w3_);
 		
-		//e.moveTo(7, 3);
 		for (int c = 0; c < 20; c++) {
 			Location poll = gh.pollNextWaterTile();
 			new Whale(this, poll,Game.Settings.rand.nextInt(0,3),w1,w2,w3);
