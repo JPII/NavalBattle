@@ -21,9 +21,8 @@ public class GameState {
 	
 	private boolean offline = true;
 	private int score = 0;
-	private int waterLevel = 60;
-	private int numShips = 3;
 	private int difficutly = 1;
+	private int turns = 0;
 	
 	/**
 	 * Get if game is in offline mode.
@@ -80,36 +79,8 @@ public class GameState {
 		this.score = 0;
 	}
 	
-	/**
-	 * Sets waterLevel.
-	 * @param waterLevel
-	 */
-	public void setWaterLevel(int waterLevel) {
-		this.waterLevel = waterLevel;
-	}
-	
-	/**
-	 * Gets waterLevel.
-	 * @return waterLevel
-	 */
-	public int getWaterLevel() {
-		return waterLevel;
-	}
-	
-	/**
-	 * Sets number of starting ships.
-	 * @param numShips
-	 */
-	public void setNumShips(int numShips) {
-		this.numShips = numShips;
-	}
-	
-	/**
-	 * Gets number of starting ships.
-	 * @return numShips
-	 */
-	public int getNumShips() {
-		return numShips;
+	public int getTurnNum(){
+		return turns;
 	}
 	
 	/**

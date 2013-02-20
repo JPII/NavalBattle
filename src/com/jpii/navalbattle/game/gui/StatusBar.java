@@ -63,7 +63,7 @@ public class StatusBar extends GameWindow {
 		g.draw3DRect(width-221,2,100,20,true);
 		g.draw3DRect(width-220,3,98,18,true);
 		g.setColor(Color.white);
-		g.drawString("Time: 0", width-220+sd, 17);
+		g.drawString("Turn #: "+NavalBattle.getGameState().getTurnNum(), width-220+sd, 17);
 	}
 	public void setMouseTileLocation(int x, int y) {
 		boolean flag = false;
