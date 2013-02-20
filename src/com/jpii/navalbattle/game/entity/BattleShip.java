@@ -3,15 +3,12 @@
  */
 package com.jpii.navalbattle.game.entity;
 
-import java.awt.event.MouseEvent;
 
-import com.jpii.navalbattle.pavo.Game;
 import com.jpii.navalbattle.pavo.grid.Entity;
 import com.jpii.navalbattle.pavo.grid.EntityManager;
 import com.jpii.navalbattle.pavo.grid.GridHelper;
 import com.jpii.navalbattle.pavo.grid.GridedEntityTileOrientation;
 import com.jpii.navalbattle.pavo.grid.Location;
-import com.jpii.navalbattle.pavo.grid.Tile;
 
 /**
  * @author maximusvladimir
