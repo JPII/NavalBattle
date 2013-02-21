@@ -113,7 +113,9 @@ public class Game extends Renderable implements Runnable, Serializable {
 		state = 1;
 		updator.setPriority(js);
 		updator.setName("updatorThread");
+		updator.setDaemon(true);
 		updator.start();
+		updator.setPriority(js);
 		long lastStart = System.currentTimeMillis();
 		while (lastStart + 500 > System.currentTimeMillis()) {
 			
@@ -122,7 +124,9 @@ public class Game extends Renderable implements Runnable, Serializable {
 		state = 2;
 		chunkrender.setPriority(js);
 		chunkrender.setName("chunkGenThread");
+		chunkrender.setDaemon(true);
 		chunkrender.start();
+		chunkrender.setPriority(js);
 		lastStart = System.currentTimeMillis();
 		//while (lastStart + 500 > System.currentTimeMillis()) {
 		//	

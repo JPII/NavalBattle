@@ -343,20 +343,56 @@ public class Control {
 		}
 	}
 	
+	/**
+	 * Pretty much has no functionality right now. Basically fires <code>onFocus()</code> event.
+	 */
+	public void focus() {
+		onFocus();
+	}
+	
+	/**
+	 * Called when the control regains focus.
+	 */
 	public void onFocus() {
 		
 	}
 	
 	public void onMouseHover(int x, int y) {
-		
+		for (int c = 0; c < getTotalControls(); c++) {
+			Control cn = getControl(c);
+			if (cn != null) {
+				int lx = x - cn.getLocX();
+				int ly = y - cn.getLocY();
+				if (lx >= 0 && ly >= 0 && lx < cn.getWidth() && ly < cn.getHeight())
+					cn.onMouseHover(lx,ly);
+			}
+		}
 	}
 	
 	public void onMouseDown(int x, int y, int buttonid) {
-		
+		for (int c = 0; c < getTotalControls(); c++) {
+			Control cn = getControl(c);
+			if (cn != null) {
+				int lx = x - cn.getLocX();
+				int ly = y - cn.getLocY();
+				if (lx >= 0 && ly >= 0 && lx < cn.getWidth() && ly < cn.getHeight()) {
+					cn.onMouseDown(lx,ly,buttonid);
+					cn.focus();
+				}
+			}
+		}
 	}
 	
 	public void onMouseUp(int x, int y, int buttonid) {
-		
+		for (int c = 0; c < getTotalControls(); c++) {
+			Control cn = getControl(c);
+			if (cn != null) {
+				int lx = x - cn.getLocX();
+				int ly = y - cn.getLocY();
+				if (lx >= 0 && ly >= 0 && lx < cn.getWidth() && ly < cn.getHeight())
+					cn.onMouseUp(lx,ly,buttonid);
+			}
+		}
 	}
 	
 	private void throwBadState() {
