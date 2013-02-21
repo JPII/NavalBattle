@@ -251,8 +251,8 @@ public class SPOptions extends Window{
 			public void mouseClicked(MouseEvent e) {
 				saveOptions();
 				NavalBattle.getDebugWindow().printInfo("Saving Data...");
-				NavalBattle.getDebugWindow().printInfo("NumShips: " + NavalBattle.getGameState().getNumShips());
-				NavalBattle.getDebugWindow().printInfo("WaterLevel: " + NavalBattle.getGameState().getWaterLevel());
+				//NavalBattle.getDebugWindow().printInfo("NumShips: " + NavalBattle.getGameState().getNumShips());
+				//NavalBattle.getDebugWindow().printInfo("WaterLevel: " + NavalBattle.getGameState().getWaterLevel());
 				NavalBattle.getDebugWindow().printInfo("Difficulty: " + NavalBattle.getGameState().getDifficulty());
 				
 				dispose();
@@ -283,29 +283,29 @@ public class SPOptions extends Window{
 	private void saveOptions() {
 
 		if(rdbtnWater.isSelected()) {
-			NavalBattle.getGameState().setWaterLevel(60);
+			//NavalBattle.getGameState().setWaterLevel(60);
 		}
 		else if(rdbtnWater_1.isSelected()) {
-			NavalBattle.getGameState().setWaterLevel(70);
+			//NavalBattle.getGameState().setWaterLevel(70);
 		}
 		else if(rdbtnWater_2.isSelected()) {
-			NavalBattle.getGameState().setWaterLevel(80);
+			//NavalBattle.getGameState().setWaterLevel(80);
 		}
 		else {
 			NavalBattle.getDebugWindow().printError("No water level selected");
 		}
 		
 		if(radioButton_6.isSelected()) {
-			NavalBattle.getGameState().setNumShips(Integer.parseInt(radioButton_6.getText()));
+			//NavalBattle.getGameState().setNumShips(Integer.parseInt(radioButton_6.getText()));
 		}
 		else if(radioButton_7.isSelected()) {
-			NavalBattle.getGameState().setNumShips(Integer.parseInt(radioButton_7.getText()));
+			//NavalBattle.getGameState().setNumShips(Integer.parseInt(radioButton_7.getText()));
 		}
 		else if(radioButton_8.isSelected()) {
-			NavalBattle.getGameState().setNumShips(Integer.parseInt(radioButton_8.getText()));
+			//NavalBattle.getGameState().setNumShips(Integer.parseInt(radioButton_8.getText()));
 		}
 		else if(radioButton_9.isSelected()) {
-			NavalBattle.getGameState().setNumShips(Integer.parseInt(radioButton_9.getText()));
+			//NavalBattle.getGameState().setNumShips(Integer.parseInt(radioButton_9.getText()));
 		}
 		else {
 			NavalBattle.getDebugWindow().printError("No number of Ships selected");
