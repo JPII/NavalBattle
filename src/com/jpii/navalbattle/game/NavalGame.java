@@ -55,7 +55,7 @@ public class NavalGame extends Game {
 		getWorld().setEntityManager(nm);
 		omnimap = new OmniMap(getWorld());
 		ppw = new PlayerProfileWindow();
-		sb = new StatusBar();
+		sb = new StatusBar(this);
 		test = new GridWindow();
 		test.setGridLocation(10,10);
 		ppw.setLoc(200,200);
