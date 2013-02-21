@@ -56,6 +56,5 @@ public class PProgress extends Control {
 			g.setPaint(gradient);
 			g.fillRect(0,0,(int)(progress*(getWidth()-4)),getHeight());
 		}
-			
 	}
 }

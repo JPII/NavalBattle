@@ -3,6 +3,8 @@
  */
 package com.jpii.navalbattle.pavo.gui.controls;
 
+import java.awt.Graphics2D;
+
 /**
  * @author maximusvladimir
  *
