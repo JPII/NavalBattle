@@ -28,6 +28,7 @@ public class PButton extends Control {
 	public void paint(Graphics2D g) {
 		if (textUpdated) {
 			strWidth = g.getFontMetrics().stringWidth(getText());
+			textUpdated = false;
 		}
 		g.setFont(getFont());
 		//int mid = ((strWidth+8)/2) - (strWidth/2);
