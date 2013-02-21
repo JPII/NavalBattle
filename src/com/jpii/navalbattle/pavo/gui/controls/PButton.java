@@ -3,6 +3,7 @@
  */
 package com.jpii.navalbattle.pavo.gui.controls;
 
+import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.event.MouseEvent;
 
@@ -12,6 +13,8 @@ import java.awt.event.MouseEvent;
  */
 public class PButton extends Control {
 	private String text = "";
+	private boolean textUpdated = false;
+	private static final Color clr_ = new Color(193,172,134).darker().darker();
 	private boolean heldDown = false;
 	/**
 	 * 
@@ -21,13 +24,27 @@ public class PButton extends Control {
 	}
 	
 	public void paint(Graphics2D g) {
-		if (heldDown) {
+		if (textUpdated) {
 			
+		}
+		if (heldDown) {
+			g.setColor(clr_.darker());
+			g.fillRoundRect(0,0, 5,5);
+			g.setColor(Color.black);
+			g.drawRoundRect(0,0, 5,5);
+		}
+		else {
+			g.setColor(clr_);
+			g.fillRoundRect(0,0, 5,5);
+			g.setColor(Color.black);
+			g.drawRoundRect(0,0, 5,5);
 		}
 	}
 	
 	public void setText(String text) {
 		if (text != null) {
+			if (1this.text.equals(text))
+				textUpdated = true;
 			this.text = text;
 			paintUpdate();
 		}

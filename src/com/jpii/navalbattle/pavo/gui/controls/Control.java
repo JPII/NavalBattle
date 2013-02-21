@@ -1,5 +1,6 @@
 package com.jpii.navalbattle.pavo.gui.controls;
 
+import java.awt.Font;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
@@ -24,6 +25,7 @@ public class Control {
 	private static long HANDLE_COUNTER = 0;
 	private long HANDLE = 0;
 	private boolean disposed = false;
+	private Font controlFont = new Font("Arial",0,12);
 	public Control(Control parent) {
 		this.parent = parent;
 		controls = new ArrayList<Control>();
@@ -41,6 +43,18 @@ public class Control {
 		HANDLE_COUNTER--;
 		buffer = null;
 		disposed = true;
+	}
+	
+	public void setFont(Font font) {
+		if (font == null)
+			throw new IllegalArgumentException("Font parameter is null.");
+		controlFont = font;
+		if (isForcingIndividualChanges())
+			paintUpdate();
+	}
+	
+	public Font getFont() {
+		return controlFont;
 	}
 	
 	/**
@@ -237,8 +251,16 @@ public class Control {
 	 * @param height The height to set the control to.
 	 */
 	public void setSize(int width, int height) {
+		boolean flag = false;
+		if (this.width != width || this.height != height)
+			flag = true;
 		this.width = width;
 		this.height = height;
+		
+		if (flag) {
+			if (parent != null)
+				parent.repaint();
+		}
 		createBuffer(lastKnownTransMode);
 		paintUpdate();
 	}
