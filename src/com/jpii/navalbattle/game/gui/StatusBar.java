@@ -21,13 +21,13 @@ import com.jpii.navalbattle.util.FileUtils;
 public class StatusBar extends GameWindow {
 	BufferedImage icn_mouse;
 	int mx, my;
-	Game no;
+	Game gameThing;
 	/**
 	 * Initialises a new instance of <code>StatusBar</code>
 	 */
 	public StatusBar(Game game) {
 		super();
-		no = game;
+		gameThing = game;
 		icn_mouse = FileUtils.getImage("icons/game/mouse.png");
 		setBackgroundColor(Color.gray);
 		setTitleVisiblity(false);
@@ -65,8 +65,8 @@ public class StatusBar extends GameWindow {
 		g.draw3DRect(width-221,2,100,20,true);
 		g.draw3DRect(width-220,3,98,18,true);
 		g.setColor(Color.white);
-		g.drawString("Time: " + no.getWorld().getTimeManager().getCurrentHour() + ":" +
-				no.getWorld().getTimeManager().getCurrentMinutes(), width-220+sd, 17);
+		g.drawString("Time: " + gameThing.getWorld().getTimeManager().getCurrentHour() + ":" +
+				gameThing.getWorld().getTimeManager().getCurrentMinutes(), width-220+sd, 17);
 	}
 	public void setMouseTileLocation(int x, int y) {
 		boolean flag = false;
