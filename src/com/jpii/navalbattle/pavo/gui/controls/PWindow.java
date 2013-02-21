@@ -10,7 +10,8 @@ import java.awt.Graphics2D;
  *
  */
 public class PWindow extends Control {
-
+	boolean showTitle = true;
+	
 	/**
 	 * @param parent
 	 */
@@ -20,5 +21,13 @@ public class PWindow extends Control {
 	
 	public void paint(Graphics2D g) {
 		
+	}
+	
+	public boolean isTitleShown() {
+		return showTitle;
+	}
+	
+	public void setTitleVisiblity(boolean b) {
+		showTitle = b;
 	}
 }

@@ -22,6 +22,7 @@ public class Control {
 	private Control parent;
 	private boolean isPerPieceUpdateSupported = true;
 	private boolean lastKnownTransMode = true;
+	private boolean visible = true;
 	protected ArrayList<Control> controls;
 	private static long HANDLE_COUNTER = 0;
 	private long HANDLE = 0;
@@ -58,6 +59,17 @@ public class Control {
 	
 	public Font getFont() {
 		return controlFont;
+	}
+	
+	public boolean isVisible() {
+		return visible;
+	}
+	
+	public void setVisible(boolean value) {
+		if (visible != value) {
+			visible = value;
+			paintUpdate();
+		}
 	}
 	
 	/**
@@ -373,7 +385,7 @@ public class Control {
 		this.y = y;
 		
 		if (flag) {
-			if (parent != null)
+			if (parent != null && !parent.isDisposed())
 				parent.repaint();
 		}
 	}
@@ -464,6 +476,10 @@ public class Control {
 		paintWinControls(g);
 		paint(g);
 		g.dispose();
+		
+		if (parent != null && !parent.isDisposed()) {
+			parent.repaint();
+		}
 	}
 	
 	
