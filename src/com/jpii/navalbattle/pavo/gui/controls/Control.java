@@ -1,5 +1,6 @@
 package com.jpii.navalbattle.pavo.gui.controls;
 
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
@@ -26,6 +27,8 @@ public class Control {
 	private long HANDLE = 0;
 	private boolean disposed = false;
 	private Font controlFont = new Font("Arial",0,12);
+	private Color foreColor = Color.black;
+	private Color backColor = new Color(193,172,134);
 	public Control(Control parent) {
 		this.parent = parent;
 		controls = new ArrayList<Control>();
@@ -84,6 +87,30 @@ public class Control {
 		
 		controls.add(c);
 		repaint();
+	}
+	
+	public Color getForegroundColor() {
+		return foreColor;
+	}
+	
+	public Color getBackgroundColor() {
+		return backColor;
+	}
+	
+	public void setForegroundColor(Color foreground) {
+		if (!foreground.equals(foreColor)) {
+			foreColor = foreground;
+			if (isForcingIndividualChanges())
+				paintUpdate();
+		}
+	}
+	
+	public void setBackgroundColor(Color background) {
+		if (!background.equals(foreColor)) {
+			foreColor = background;
+			if (isForcingIndividualChanges())
+				paintUpdate();
+		}
 	}
 	
 	/**

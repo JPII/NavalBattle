@@ -51,6 +51,7 @@ public class PText extends Control {
 	}
 	
 	public void paint(Graphics2D g) {
+		g.setFont(getFont());
 		String[] lines = getText().split("\n");
 		if (textUpdated) {
 			for (int v = 0; v < lines.length; v++) {
@@ -63,10 +64,12 @@ public class PText extends Control {
 			
 			textUpdated = false;
 		}
+		g.setColor(getForegroundColor());
 		for (int v = 0; v < lines.length; v++) {
 			g.drawString(lines[v], 2, (v*(getFont().getSize()+2)));
 		}
 	}
+	
 	
 	public String getText() {
 		return text;

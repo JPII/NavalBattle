@@ -14,7 +14,6 @@ import java.awt.event.MouseEvent;
 public class PButton extends Control {
 	private String text = "";
 	private boolean textUpdated = false;
-	private static final Color clr_ = new Color(193,172,134).darker().darker();
 	private int strWidth = 0;
 	private boolean heldDown = false;
 	/**
@@ -23,6 +22,7 @@ public class PButton extends Control {
 	public PButton(Control parent) {
 		super(parent);
 		createBuffer(true);
+		setBackgroundColor(new Color(193,172,134).darker().darker());
 	}
 	
 	public void paint(Graphics2D g) {
@@ -33,16 +33,16 @@ public class PButton extends Control {
 		g.setFont(getFont());
 		//int mid = ((strWidth+8)/2) - (strWidth/2);
 		if (heldDown) {
-			g.setColor(clr_.darker());
+			g.setColor(getBackgroundColor().darker());
 			g.fillRoundRect(0,0,strWidth+8,(int)(getFont().getSize() * 1.5f), 5,5);
-			g.setColor(Color.black);
+			g.setColor(getForegroundColor());
 			g.fillRoundRect(0,0,strWidth+8,(int)(getFont().getSize() * 1.5f), 5,5);
 			g.drawString(getText(), 4,getFont().getSize());
 		}
 		else {
-			g.setColor(clr_);
+			g.setColor(getBackgroundColor());
 			g.fillRoundRect(0,0,strWidth+8,(int)(getFont().getSize() * 1.5f), 5,5);
-			g.setColor(Color.black);
+			g.setColor(getForegroundColor());
 			g.fillRoundRect(0,0,strWidth+8,(int)(getFont().getSize() * 1.5f), 5,5);
 			g.drawString(getText(), 4,getFont().getSize());
 		}
