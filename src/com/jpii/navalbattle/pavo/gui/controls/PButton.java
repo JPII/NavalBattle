@@ -28,6 +28,7 @@ public class PButton extends Control {
 		if (textUpdated) {
 			strWidth = g.getFontMetrics().stringWidth(getText());
 		}
+		g.setFont(getFont());
 		//int mid = ((strWidth+8)/2) - (strWidth/2);
 		if (heldDown) {
 			g.setColor(clr_.darker());
