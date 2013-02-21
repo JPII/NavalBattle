@@ -5,7 +5,7 @@ package com.jpii.navalbattle.pavo.gui.controls;
 
 /**
  * @author maximusvladimir
- *
+ * Progress bar class.
  */
 public class PProgress extends Control {
 

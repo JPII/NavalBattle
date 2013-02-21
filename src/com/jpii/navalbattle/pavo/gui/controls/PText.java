@@ -8,7 +8,7 @@ import java.awt.Graphics2D;
 
 /**
  * @author maximusvladimir
- *
+ * Text display class.
  */
 public class PText extends Control {
 

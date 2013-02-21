@@ -9,7 +9,7 @@ import java.awt.event.MouseEvent;
 
 /**
  * @author maximusvladimir
- *
+ * Button class.
  */
 public class PButton extends Control {
 	private String text = "";

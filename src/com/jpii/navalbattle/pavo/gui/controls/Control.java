@@ -12,7 +12,7 @@ import com.jpii.navalbattle.pavo.io.PavoImage;
 
 
 /**
- * 
+ * Master control class. Essential for all other controls.
  * @author maximusvladimir
  *
  */
