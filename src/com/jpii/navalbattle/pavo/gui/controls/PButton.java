@@ -22,6 +22,7 @@ public class PButton extends Control {
 	 */
 	public PButton(Control parent) {
 		super(parent);
+		createBuffer(true);
 	}
 	
 	public void paint(Graphics2D g) {
