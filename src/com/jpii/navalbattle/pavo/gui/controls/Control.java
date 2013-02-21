@@ -257,6 +257,9 @@ public class Control {
 		this.width = width;
 		this.height = height;
 		
+		if (width == 0 || height == 0)
+			throw new IllegalArgumentException("The width and/or height CANNOT be zero.");
+		
 		if (flag) {
 			if (parent != null)
 				parent.repaint();
@@ -421,6 +424,8 @@ public class Control {
 		if (disposed)
 			throw new IllegalStateException("The specified control is disposed. It can no longer be used, however the majority of its" +
 					" properties can most likely be retrieved. (The majority of its properties can most likely not be set either.)");
+		if (buffer == null)
+			throw new IllegalStateException("Buffer has entered null state.");
 	}
 	
 	/**

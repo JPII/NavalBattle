@@ -15,6 +15,7 @@ public class PButton extends Control {
 	private String text = "";
 	private boolean textUpdated = false;
 	private static final Color clr_ = new Color(193,172,134).darker().darker();
+	private int strWidth = 0;
 	private boolean heldDown = false;
 	/**
 	 * 
@@ -25,25 +26,28 @@ public class PButton extends Control {
 	
 	public void paint(Graphics2D g) {
 		if (textUpdated) {
-			
+			strWidth = g.getFontMetrics().stringWidth(getText());
 		}
+		//int mid = ((strWidth+8)/2) - (strWidth/2);
 		if (heldDown) {
 			g.setColor(clr_.darker());
-			g.fillRoundRect(0,0, 5,5);
+			g.fillRoundRect(0,0,strWidth+8,(int)(getFont().getSize() * 1.5f), 5,5);
 			g.setColor(Color.black);
-			g.drawRoundRect(0,0, 5,5);
+			g.fillRoundRect(0,0,strWidth+8,(int)(getFont().getSize() * 1.5f), 5,5);
+			g.drawString(getText(), 4,getFont().getSize());
 		}
 		else {
 			g.setColor(clr_);
-			g.fillRoundRect(0,0, 5,5);
+			g.fillRoundRect(0,0,strWidth+8,(int)(getFont().getSize() * 1.5f), 5,5);
 			g.setColor(Color.black);
-			g.drawRoundRect(0,0, 5,5);
+			g.fillRoundRect(0,0,strWidth+8,(int)(getFont().getSize() * 1.5f), 5,5);
+			g.drawString(getText(), 4,getFont().getSize());
 		}
 	}
 	
 	public void setText(String text) {
 		if (text != null) {
-			if (1this.text.equals(text))
+			if (!this.text.equals(text))
 				textUpdated = true;
 			this.text = text;
 			paintUpdate();
