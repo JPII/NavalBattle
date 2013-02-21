@@ -390,6 +390,14 @@ public class Control {
 		}
 	}
 	
+	/**
+	 * This method is called after the sub-controls are rendered.
+	 * @param g The graphics object.
+	 */
+	public void paintAfter(Graphics2D g) {
+		
+	}
+	
 	public BufferedImage getBuffer() {
 		return buffer;
 	}
@@ -473,8 +481,9 @@ public class Control {
 	public void repaint() {
 		throwBadState();
 		Graphics2D g = createGraphics();
-		paintWinControls(g);
 		paint(g);
+		paintWinControls(g);
+		paintAfter(g);
 		g.dispose();
 		
 		if (parent != null && !parent.isDisposed()) {

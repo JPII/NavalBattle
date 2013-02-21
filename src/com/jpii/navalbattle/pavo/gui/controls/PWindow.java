@@ -27,8 +27,6 @@ public class PWindow extends Control {
 	}
 	
 	public void paint(Graphics2D g) {
-		g.setColor(getForegroundColor());
-		g.drawRect(0,0,getWidth()-1,getHeight()-1);
 		g.setColor(getBackgroundColor());
 		g.fillRect(1,1,getWidth()-2,getHeight()-2);
 		if (isTitleShown()) {
@@ -50,6 +48,11 @@ public class PWindow extends Control {
 			g.drawLine(getWidth()-20,5,getWidth()-6,19);
 			g.drawLine(getWidth()-6,5,getWidth()-20,19);
 		}
+	}
+	
+	public void paintAfter(Graphics2D g) {
+		g.setColor(getForegroundColor());
+		g.drawRect(0,0,getWidth()-1,getHeight()-1);
 	}
 	
 	public void setText(String text) {
