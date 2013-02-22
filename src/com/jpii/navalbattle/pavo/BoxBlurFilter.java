@@ -164,7 +164,8 @@ abstract class AbstractBufferedImageOp implements BufferedImageOp {
 		int type = image.getType();
 		if ( type == BufferedImage.TYPE_INT_ARGB || type == BufferedImage.TYPE_INT_RGB )
 			return (int [])image.getRaster().getDataElements( x, y, width, height, pixels );
-		return image.getRGB( x, y, width, height, pixels, 0, width );
+		else
+			return image.getRGB( x, y, width, height, pixels, 0, width );
     }
 
 	/**

@@ -143,6 +143,9 @@ public class NavalGame extends Game{
 	}
 	public void mouseDragged(MouseEvent me) {
 		super.mouseDragged(me);
+		if (me.getX() - twwna.getLocX() >= 0 && me.getX() - twwna.getLocX() < twwna.getWidth()
+				&& me.getY() - twwna.getLocY() >= 0 && me.getY() - twwna.getLocY() < twwna.getHeight())
+			twwna.onMouseDrag(me.getX()-twwna.getLocX(), me.getY()-twwna.getLocY());
 		if (getWinMan().mouseDragged(me))
 			return;
 		if (omnimap.mouseDragged(me))
@@ -185,6 +188,10 @@ public class NavalGame extends Game{
 	public void mouseDown(MouseEvent me) {
 		super.mouseDown(me);
 		
+		if (me.getX() - twwna.getLocX() >= 0 && me.getX() - twwna.getLocX() < twwna.getWidth()
+				&& me.getY() - twwna.getLocY() >= 0 && me.getY() - twwna.getLocY() < twwna.getHeight())
+			twwna.onMouseDown(me.getX()-twwna.getLocX(), me.getY()-twwna.getLocY(),me.getButton());
+		
 		int chx = (-getWorld().getScreenX()) + me.getX();
 		int chy = (-getWorld().getScreenY()) + me.getY(); 
 		chx /= 50;
@@ -213,8 +220,17 @@ public class NavalGame extends Game{
 		
 		airStrike = 0;
 	}
+	public void mouseUp(MouseEvent me) {
+		super.mouseUp(me);
+		if (me.getX() - twwna.getLocX() >= 0 && me.getX() - twwna.getLocX() < twwna.getWidth()
+				&& me.getY() - twwna.getLocY() >= 0 && me.getY() - twwna.getLocY() < twwna.getHeight())
+			twwna.onMouseUp(me.getX()-twwna.getLocX(), me.getY()-twwna.getLocY(),me.getButton());
+	}
 	public void mouseMove(MouseEvent me) {
 		super.mouseMove(me);
+		if (me.getX() - twwna.getLocX() >= 0 && me.getX() - twwna.getLocX() < twwna.getWidth()
+				&& me.getY() - twwna.getLocY() >= 0 && me.getY() - twwna.getLocY() < twwna.getHeight())
+			twwna.onMouseHover(me.getX()-twwna.getLocX(), me.getY()-twwna.getLocY());
 		omnimap.mouseMoved(me);
 		int chx = (-getWorld().getScreenX()) + me.getX();
 		int chy = (-getWorld().getScreenY()) + me.getY(); 
