@@ -21,6 +21,22 @@ public class PProgress extends Control {
 	public PProgress(Control parent) {
 		super(parent);
 		createBuffer(false);
+		repaint();
+	}
+	
+	public PProgress(Control parent, int x, int y) {
+		super(parent);
+		createBuffer(false);
+		setLoc(x,y);
+		repaint();
+	}
+	
+	public PProgress(Control parent, int x, int y, int width, int height) {
+		super(parent);
+		createBuffer(false);
+		setLoc(x,y);
+		setSize(width,height);
+		repaint();
 	}
 	
 	public void setProgress(int value) {

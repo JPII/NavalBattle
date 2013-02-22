@@ -35,6 +35,7 @@ import com.jpii.navalbattle.pavo.gui.GridWindow;
 import com.jpii.navalbattle.pavo.gui.MessageBox;
 import com.jpii.navalbattle.pavo.gui.MessageBoxIcon;
 import com.jpii.navalbattle.pavo.gui.OmniMap;
+import com.jpii.navalbattle.pavo.gui.TestWindowWithNewAPI;
 import com.jpii.navalbattle.renderer.weather.WeatherMode;
 
 /**
@@ -47,6 +48,8 @@ public class NavalGame extends Game {
 	OmniMap omnimap;
 	StatusBar sb;
 	NavalManager nm;
+	
+	TestWindowWithNewAPI twwna;
 	
 	GridWindow test;
 	public NavalGame() {
@@ -69,6 +72,9 @@ public class NavalGame extends Game {
 		//MessageBox.show("Warning", "This is a message box!!!");
 		MessageBox.show("Hey there!","Could not connect to RocketGamer servers.\n\nTrying again in 10 seconds.",
 				MessageBoxIcon.Notify, false);
+		
+		twwna = new TestWindowWithNewAPI();
+		twwna.repaint();
 	}
 	/**
 	 * Mulithreaded updator.
@@ -211,9 +217,15 @@ public class NavalGame extends Game {
 			//	PavoHelper.convertWorldSpaceToGridLocation(PavoHelper.convertScreenToWorldSpace(getWorld(), me.getPoint())));
 		//System.out.println("f"+getWorld().getEntityManager().getEntity(0).getWidth());
 	}
+	BoxBlurFilter bbf = new BoxBlurFilter();
 	public void render() {
 		super.render();
 		Graphics2D g = PavoHelper.createGraphics(getBuffer());
 		g.drawImage(omnimap.getBuffer(), Game.Settings.currentWidth-158, 40, null);
+		g.drawImage(twwna.getBuffer(),200,200,null);
+		g.dispose();
+		bbf.setHRadius(10);
+		bbf.setIterations(1);
+		bbf.filter(getBuffer(), getBuffer());
 	}
 }

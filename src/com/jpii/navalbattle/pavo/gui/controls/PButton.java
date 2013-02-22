@@ -25,6 +25,45 @@ public class PButton extends Control {
 		setBackgroundColor(new Color(193,172,134).darker().darker());
 	}
 	
+	public PButton(Control parent, String text) {
+		super(parent);
+		createBuffer(true);
+		setBackgroundColor(new Color(193,172,134).darker().darker());
+		setText(text);
+	}
+	
+	public PButton(Control parent, String text, int x, int y) {
+		super(parent);
+		createBuffer(true);
+		setBackgroundColor(new Color(193,172,134).darker().darker());
+		setText(text);
+		setLoc(x,y);
+	}
+	
+	public PButton(Control parent, int x, int y) {
+		super(parent);
+		createBuffer(true);
+		setBackgroundColor(new Color(193,172,134).darker().darker());
+		setLoc(x,y);
+	}
+	
+	public PButton(Control parent, String text, int x, int y, int width, int height) {
+		super(parent);
+		createBuffer(true);
+		setBackgroundColor(new Color(193,172,134).darker().darker());
+		setText(text);
+		setLoc(x,y);
+		setSize(width,height);
+	}
+	
+	public PButton(Control parent, int x, int y, int width, int height) {
+		super(parent);
+		createBuffer(true);
+		setBackgroundColor(new Color(193,172,134).darker().darker());
+		setLoc(x,y);
+		setSize(width,height);
+	}
+	
 	public void paint(Graphics2D g) {
 		if (textUpdated) {
 			strWidth = g.getFontMetrics().stringWidth(getText());

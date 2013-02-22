@@ -32,8 +32,46 @@ public class Control {
 	private Color backColor = new Color(193,172,134);
 	public Control(Control parent) {
 		this.parent = parent;
+		width = 100;
+		height = 100;
+		createBuffer(false);
 		controls = new ArrayList<Control>();
 		HANDLE = ++HANDLE_COUNTER;
+		//repaint();
+	}
+	
+	/**
+	 * NO TOUCHING!!!
+	 * @return NO TOUCHING!!!
+	 */
+	public long alo_livrezon_pa_pèmèt() {
+		return HANDLE;
+	}
+	
+	public Control(Control parent, int x, int y) {
+		this.parent = parent;
+		width = 100;
+		height = 100;
+		createBuffer(false);
+		controls = new ArrayList<Control>();
+		HANDLE = ++HANDLE_COUNTER;
+		this.x = x;
+		this.y = y;
+		//repaint();
+	}
+	
+	public Control(Control parent, int x, int y, int width, int height) {
+		this.parent = parent;
+		controls = new ArrayList<Control>();
+		HANDLE = ++HANDLE_COUNTER;
+		this.width = width;
+		this.height = height;
+		createBuffer(false);
+		this.x = x;
+		this.y = y;
+		this.width = width;
+		this.height= height;
+		//repaint();
 	}
 	
 	public void dispose() {
@@ -334,7 +372,7 @@ public class Control {
 	 * @return A Graphics object.
 	 */
 	public Graphics2D createGraphics() {
-		return PavoHelper.createGraphics((PavoImage) buffer);
+		return PavoHelper.createGraphics(buffer);
 	}
 	
 	/**
@@ -354,7 +392,8 @@ public class Control {
 	 * @param g The graphics object of the current buffer.
 	 */
 	protected void paint(Graphics2D g) {
-		
+		g.setColor(Color.blue);
+		g.fillRect(0,0,getWidth(),getHeight());
 	}
 	
 	public void setLocX(int x) {

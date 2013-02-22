@@ -27,6 +27,48 @@ public class PText extends Control {
 		createBuffer(true);
 	}
 	
+	public PText(Control parent, String text) {
+		super(parent);
+		createBuffer(true);
+		allowAutoResize(true);
+		setText(text);
+		repaint();
+	}
+	
+	public PText(Control parent, int x, int y) {
+		super(parent);
+		createBuffer(true);
+		allowAutoResize(true);
+		setLoc(x,y);
+		repaint();
+	}
+	
+	public PText(Control parent, String text, int x, int y) {
+		super(parent);
+		createBuffer(true);
+		allowAutoResize(true);
+		setText(text);
+		setLoc(x,y);
+		repaint();
+	}
+	
+	public PText(Control parent, int x, int y, int width, int height) {
+		super(parent);
+		createBuffer(true);
+		setLoc(x,y);
+		setSize(width,height);
+		repaint();
+	}
+	
+	public PText(Control parent, String text, int x, int y, int width, int height) {
+		super(parent);
+		createBuffer(true);
+		setText(text);
+		setLoc(x,y);
+		repaint();
+		setSize(width,height);
+	}
+	
 	public void setText(String text) {
 		if (text != null) {
 			if (!this.text.equals(text))
@@ -52,7 +94,11 @@ public class PText extends Control {
 	
 	public void paint(Graphics2D g) {
 		g.setFont(getFont());
-		String[] lines = getText().split("\n");
+		String[] lines = null;
+		if (getText().indexOf("\n") > -1)
+			lines = getText().split("\n");
+		else
+			lines = new String[] {getText()};
 		if (textUpdated) {
 			for (int v = 0; v < lines.length; v++) {
 				int m = g.getFontMetrics().stringWidth(lines[v]);
