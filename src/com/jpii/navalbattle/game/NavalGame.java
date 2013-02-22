@@ -225,10 +225,6 @@ public class NavalGame extends Game {
 	BoxBlurFilter bbf = new BoxBlurFilter();
 	public void render() {
 		super.render();
-		Graphics2D g = PavoHelper.createGraphics(getBuffer());
-		g.drawImage(omnimap.getBuffer(), Game.Settings.currentWidth-158, 40, null);
-		g.drawImage(twwna.getBuffer(),200,200,null);
-		g.dispose();
 		if (airStrike >= 0 && airStrike < 40) {
 			airStrike += 1.4f;
 			int f = (int)airStrike;
@@ -240,5 +236,9 @@ public class NavalGame extends Game {
 			if (airStrike >= 40)
 				airStrike = -1;
 		}
+		Graphics2D g = PavoHelper.createGraphics(getBuffer());
+		g.drawImage(omnimap.getBuffer(), Game.Settings.currentWidth-158, 40, null);
+		g.drawImage(twwna.getBuffer(),200,200,null);
+		g.dispose();
 	}
 }

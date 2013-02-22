@@ -4,6 +4,7 @@
 package com.jpii.navalbattle.pavo.gui.controls;
 
 import java.awt.Color;
+import java.awt.GradientPaint;
 import java.awt.Graphics2D;
 import java.awt.event.MouseEvent;
 
@@ -68,22 +69,29 @@ public class PButton extends Control {
 		if (textUpdated) {
 			strWidth = g.getFontMetrics().stringWidth(getText());
 			textUpdated = false;
+			this.width = strWidth+9;
+			this.height = (int)(getFont().getSize() * 1.5f)+1;
+			bufferNeedsIntemediatePaint();
 		}
 		g.setFont(getFont());
 		//int mid = ((strWidth+8)/2) - (strWidth/2);
 		if (heldDown) {
-			g.setColor(getBackgroundColor().darker());
+			GradientPaint gp = new GradientPaint(0,0,new Color(134,111,68),0,(getFont().getSize() * 1.5f),new Color(87,72,45));
+			g.setPaint(gp);
 			g.fillRoundRect(0,0,strWidth+8,(int)(getFont().getSize() * 1.5f), 5,5);
-			g.setColor(getForegroundColor());
-			g.fillRoundRect(0,0,strWidth+8,(int)(getFont().getSize() * 1.5f), 5,5);
-			g.drawString(getText(), 4,getFont().getSize());
+			g.setPaint(null);
+			g.setColor(Color.white);
+			g.drawRoundRect(0,0,strWidth+8,(int)(getFont().getSize() * 1.5f), 5,5);
+			g.drawString(getText(), 4,(int)(getFont().getSize() * 1.5f));
 		}
 		else {
-			g.setColor(getBackgroundColor());
+			GradientPaint gp = new GradientPaint(0,0,new Color(169,140,86),0,(getFont().getSize() * 1.5f),new Color(126,105,65));
+			g.setPaint(gp);
 			g.fillRoundRect(0,0,strWidth+8,(int)(getFont().getSize() * 1.5f), 5,5);
-			g.setColor(getForegroundColor());
-			g.fillRoundRect(0,0,strWidth+8,(int)(getFont().getSize() * 1.5f), 5,5);
-			g.drawString(getText(), 4,getFont().getSize());
+			g.setPaint(null);
+			g.setColor(Color.black);
+			g.drawRoundRect(0,0,strWidth+8,(int)(getFont().getSize() * 1.5f), 5,5);
+			g.drawString(getText(), 4,(int)(getFont().getSize() * 1.5f)- (getFont().getSize()/2)+2);
 		}
 	}
 	

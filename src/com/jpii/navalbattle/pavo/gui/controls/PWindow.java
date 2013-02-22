@@ -3,6 +3,7 @@
  */
 package com.jpii.navalbattle.pavo.gui.controls;
 
+import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.GradientPaint;
 import java.awt.Graphics2D;
@@ -28,7 +29,7 @@ public class PWindow extends Control {
 	public PWindow(WindowManager parent) {
 		super(null);
 		pare = parent;
-		createBuffer(false);
+		createBuffer(true);
 		setText("control #" + alo_livrezon_pa_pèmèt());
 		setSize(100,100);
 		repaint();
@@ -37,7 +38,7 @@ public class PWindow extends Control {
 	public PWindow(WindowManager parent,int x, int y) {
 		super(null);
 		pare = parent;
-		createBuffer(false);
+		createBuffer(true);
 		setSize(100,100);
 		setLoc(x,y);
 		repaint();
@@ -46,15 +47,23 @@ public class PWindow extends Control {
 	public PWindow(WindowManager parent,int x, int y, int width, int height) {
 		super(null);
 		pare = parent;
-		createBuffer(false);
+		createBuffer(true);
 		setSize(width,height);
 		setLoc(x,y);
 		repaint();
 	}
 	
-
+	public void repaint() {
+		buffer = new BufferedImage(getWidth()+25,getHeight()+25,BufferedImage.TYPE_INT_ARGB);
+		super.repaint();
+	}
 	
 	public void paint(Graphics2D g) {
+		for (int j = 0; j < 25; j++) {
+			Color focusColor = new Color(0,0,0,15);//((j*120)/25));
+			g.setColor(focusColor);
+			g.fillRoundRect(j,j,getWidth()-(j/2),getHeight()-(j/2),4,4);
+		}
 		g.setColor(getBackgroundColor());
 		g.fillRect(1,1,getWidth()-2,getHeight()-2);
 	}

@@ -17,7 +17,7 @@ import com.jpii.navalbattle.pavo.io.PavoImage;
  *
  */
 public class Control {
-	private BufferedImage buffer;
+	protected BufferedImage buffer;
 	protected int width;
 	protected int height;
 	private int x;
