@@ -46,7 +46,7 @@ public class Game extends Renderable implements Runnable, Serializable {
 	private Thread updator;
 	private Thread chunkrender;
 	private Thread generator;
-	private Thread sync;
+	//private Thread sync;
 	private boolean gameRunning = true;
 	private long timeLastUpdate = System.currentTimeMillis();
 	private int state = 0;
@@ -132,13 +132,13 @@ public class Game extends Renderable implements Runnable, Serializable {
 		while (lastStart + 500 > System.currentTimeMillis()) {
 			
 		}
-		sync = new Thread(this);
+		//sync = new Thread(this);
 		state = 4;
-		sync.setPriority(js);
-		sync.setName("syncThread");
-		sync.setDaemon(true);
-		sync.start();
-		sync.setPriority(js);
+		//sync.setPriority(js);
+		//sync.setName("syncThread");
+		//sync.setDaemon(true);
+		//sync.start();
+		//sync.setPriority(js);
 		//while (lastStart + 500 > System.currentTimeMillis()) {
 		//	
 		//}
@@ -254,6 +254,7 @@ public class Game extends Renderable implements Runnable, Serializable {
 			}
 		}
 		System.out.println("Thread " + Thread.currentThread().getName() + " is prepairing to exit context.");
+		System.gc();
 		// World generator
 		//else if (state == 3) {
 			//System.out.println("World gen firing..." + Thread.currentThread().getName());

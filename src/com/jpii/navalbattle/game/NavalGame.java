@@ -77,6 +77,7 @@ public class NavalGame extends Game{
 				MessageBoxIcon.Notify, false);
 		
 		twwna = new TestWindowWithNewAPI(getWinMan());
+		twwna.setLoc(200,200);
 		twwna.repaint();
 	}
 	/**
@@ -188,8 +189,8 @@ public class NavalGame extends Game{
 	public void mouseDown(MouseEvent me) {
 		super.mouseDown(me);
 		
-		if (me.getX() - twwna.getLocX() >= 0 && me.getX() - twwna.getLocX() < twwna.getWidth()
-				&& me.getY() - twwna.getLocY() >= 0 && me.getY() - twwna.getLocY() < twwna.getHeight())
+		if (me.getX() >= twwna.getLocX() && me.getX() < twwna.getWidth() + twwna.getLocX()
+				&& me.getY() >= twwna.getLocY() && me.getY() < twwna.getHeight() + twwna.getLocY())
 			twwna.onMouseDown(me.getX()-twwna.getLocX(), me.getY()-twwna.getLocY(),me.getButton());
 		
 		int chx = (-getWorld().getScreenX()) + me.getX();
@@ -259,7 +260,7 @@ public class NavalGame extends Game{
 		}
 		Graphics2D g = PavoHelper.createGraphics(getBuffer());
 		g.drawImage(omnimap.getBuffer(), Game.Settings.currentWidth-158, 40, null);
-		g.drawImage(twwna.getBuffer(),200,200,null);
+		g.drawImage(twwna.getBuffer(),twwna.getLocX(),twwna.getLocY(),null);
 		g.dispose();
 	}
 }

@@ -80,12 +80,12 @@ public class WindowManager extends Renderable{
 				if(gw.mouseDown(me))
 					flag = true;
 				if (gw.needsShutdown()){
-					System.out.println("This occured...2");
+					//System.out.println("This occured...2");
 					flag = false;
 				}
 			}
 		}
-		System.out.println("Window "+flag);
+		//System.out.println("Window "+flag);
 		return flag;
 	}
 	public boolean mouseDragged(MouseEvent me) {

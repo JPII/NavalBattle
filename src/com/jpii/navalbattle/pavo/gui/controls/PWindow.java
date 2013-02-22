@@ -116,6 +116,7 @@ public class PWindow extends Control {
 				lastMouseTitleBarY = y;
 			}
 		}
+		System.out.println("click performed! (" + x + "," + y + ")");
 		// Somewhere in the window was pressed.
 	}
 	
@@ -123,8 +124,18 @@ public class PWindow extends Control {
 		super.onMouseDrag(x, y);
 		
 		if (y >= 0 && y <= 22) {
-			setLoc(getLocX() - lastMouseTitleBarX, getLocY() - lastMouseTitleBarY);
+			int deltax = lastMouseTitleBarX - x;
+			int deltay = lastMouseTitleBarY - y;
+			setLoc(getLocX() - deltax, getLocY());//- deltay);
+			lastMouseTitleBarX = x;
+			lastMouseTitleBarY = y;
 		}
+	}
+	
+	public void onMouseHover(int x, int y) {
+		super.onMouseHover(x, y);
+		
+		lastMouseTitleBarX = x;
 	}
 	
 	public void parentRepaint() {
