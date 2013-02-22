@@ -100,19 +100,24 @@ public class PText extends Control {
 		else
 			lines = new String[] {getText()};
 		if (textUpdated) {
+			maxStrWidth = 0;
 			for (int v = 0; v < lines.length; v++) {
 				int m = g.getFontMetrics().stringWidth(lines[v]);
 				if (m > maxStrWidth)
 					maxStrWidth = m;
 			}
-			if (autoResize)
-				setSize(4 + (maxStrWidth), ((getFont().getSize()+2) * lines.length)+2);
+			if (autoResize) {
+				this.width = 4 + (maxStrWidth);
+				this.height = ((getFont().getSize()+2) * lines.length)+2;
+				createBuffer(lastKnownTransMode);
+			}
 			
 			textUpdated = false;
+			bufferNeedsIntemediatePaint();
 		}
 		g.setColor(getForegroundColor());
 		for (int v = 0; v < lines.length; v++) {
-			g.drawString(lines[v], 2, (v*(getFont().getSize()+2)));
+			g.drawString(lines[v], 2, ((v+1)*(getFont().getSize()+2)));
 		}
 	}
 	

@@ -18,10 +18,13 @@ import com.jpii.navalbattle.pavo.io.PavoImage;
  */
 public class Control {
 	private BufferedImage buffer;
-	private int width, height,x,y;
+	protected int width;
+	protected int height;
+	private int x;
+	private int y;
 	private Control parent;
 	private boolean isPerPieceUpdateSupported = true;
-	private boolean lastKnownTransMode = true;
+	protected boolean lastKnownTransMode = true;
 	private boolean visible = true;
 	protected ArrayList<Control> controls;
 	private static long HANDLE_COUNTER = 0;
@@ -30,6 +33,7 @@ public class Control {
 	private Font controlFont = new Font("Arial",0,12);
 	private Color foreColor = Color.black;
 	private Color backColor = new Color(193,172,134);
+	private boolean intermediate = false;
 	public Control(Control parent) {
 		this.parent = parent;
 		width = 100;
@@ -38,6 +42,10 @@ public class Control {
 		controls = new ArrayList<Control>();
 		HANDLE = ++HANDLE_COUNTER;
 		//repaint();
+	}
+	
+	protected void bufferNeedsIntemediatePaint() {
+		intermediate = true;
 	}
 	
 	/**
@@ -528,6 +536,8 @@ public class Control {
 	 * Forces the control to repaint.
 	 */
 	public void repaint() {
+		if (intermediate)
+			intermediate = false;
 		throwBadState();
 		Graphics2D g = createGraphics();
 		paint(g);
@@ -536,6 +546,9 @@ public class Control {
 		g.dispose();
 		
 		parentRepaint();
+		
+		if (intermediate)
+			repaint();
 	}
 	
 	public void parentRepaint() {

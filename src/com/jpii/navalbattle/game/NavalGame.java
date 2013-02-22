@@ -76,7 +76,7 @@ public class NavalGame extends Game {
 		MessageBox.show("Hey there!","Could not connect to RocketGamer servers.\n\nTrying again in 10 seconds.",
 				MessageBoxIcon.Notify, false);
 		
-		twwna = new TestWindowWithNewAPI();
+		twwna = new TestWindowWithNewAPI(getWinMan());
 		twwna.repaint();
 	}
 	/**
