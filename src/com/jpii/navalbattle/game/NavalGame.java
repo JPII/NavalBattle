@@ -218,7 +218,7 @@ public class NavalGame extends Game{
 			}
 		}
 		
-		airStrike = 0;
+		//airStrike = 0;
 	}
 	public void mouseUp(MouseEvent me) {
 		super.mouseUp(me);
