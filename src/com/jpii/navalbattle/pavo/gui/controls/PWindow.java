@@ -83,6 +83,16 @@ public class PWindow extends Control {
 		}
 	}
 	
+	public void onMouseDown(int x, int y, int buttonid) {
+		super.onMouseDown(x, y, buttonid);
+		if (isTitleShown() && isVisible()) {
+			if (x >= getWidth()-23 && x <= getWidth()-3 && y >= 2 && y <= 20) {
+				// The close button was pressed.
+			}
+		}
+			// Somewhere in the window was pressed.
+	}
+	
 	public void setText(String text) {
 		if (!title.equals(text)) {
 			title = text;
