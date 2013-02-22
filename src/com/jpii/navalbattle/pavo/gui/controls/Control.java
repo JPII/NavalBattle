@@ -338,8 +338,7 @@ public class Control {
 			throw new IllegalArgumentException("The width and/or height CANNOT be zero.");
 		
 		if (flag) {
-			if (parent != null)
-				parent.repaint();
+			parentRepaint();
 		}
 		createBuffer(lastKnownTransMode);
 		paintUpdate();
@@ -424,8 +423,7 @@ public class Control {
 		this.y = y;
 		
 		if (flag) {
-			if (parent != null && !parent.isDisposed())
-				parent.repaint();
+			parentRepaint();
 		}
 	}
 	
@@ -494,6 +492,18 @@ public class Control {
 		}
 	}
 	
+	public void onMouseDrag(int x, int y) {
+		for (int c = 0; c < getTotalControls(); c++) {
+			Control cn = getControl(c);
+			if (cn != null) {
+				int lx = x - cn.getLocX();
+				int ly = y - cn.getLocY();
+				if (lx >= 0 && ly >= 0 && lx < cn.getWidth() && ly < cn.getHeight())
+					cn.onMouseDrag(lx,ly);
+			}
+		}
+	}
+	
 	public void onMouseUp(int x, int y, int buttonid) {
 		for (int c = 0; c < getTotalControls(); c++) {
 			Control cn = getControl(c);
@@ -525,11 +535,14 @@ public class Control {
 		paintAfter(g);
 		g.dispose();
 		
+		parentRepaint();
+	}
+	
+	public void parentRepaint() {
 		if (parent != null && !parent.isDisposed()) {
 			parent.repaint();
 		}
 	}
-	
 	
 	protected void createBuffer(boolean transparencyEnabled) {
 		lastKnownTransMode = transparencyEnabled;

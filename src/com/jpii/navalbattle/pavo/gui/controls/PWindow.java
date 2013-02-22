@@ -9,6 +9,7 @@ import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 
 import com.jpii.navalbattle.pavo.PavoHelper;
+import com.jpii.navalbattle.pavo.gui.WindowManager;
 import com.jpii.navalbattle.pavo.io.PavoImage;
 import com.jpii.navalbattle.renderer.Helper;
 
@@ -19,28 +20,32 @@ import com.jpii.navalbattle.renderer.Helper;
 public class PWindow extends Control {
 	private boolean showTitle = true;
 	private String title = "";
+	private WindowManager pare;
 	
 	/**
 	 * @param parent
 	 */
-	public PWindow() {
+	public PWindow(WindowManager parent) {
 		super(null);
+		pare = parent;
 		createBuffer(false);
 		setText("control #" + alo_livrezon_pa_pèmèt());
 		setSize(100,100);
 		repaint();
 	}
 	
-	public PWindow(int x, int y) {
+	public PWindow(WindowManager parent,int x, int y) {
 		super(null);
+		pare = parent;
 		createBuffer(false);
 		setSize(100,100);
 		setLoc(x,y);
 		repaint();
 	}
 	
-	public PWindow(int x, int y, int width, int height) {
+	public PWindow(WindowManager parent,int x, int y, int width, int height) {
 		super(null);
+		pare = parent;
 		createBuffer(false);
 		setSize(width,height);
 		setLoc(x,y);
@@ -83,14 +88,38 @@ public class PWindow extends Control {
 		}
 	}
 	
+	public void onClose() {
+		
+	}
+	
+	private int lastMouseTitleBarX = 0, lastMouseTitleBarY = 0;
+	
 	public void onMouseDown(int x, int y, int buttonid) {
 		super.onMouseDown(x, y, buttonid);
 		if (isTitleShown() && isVisible()) {
 			if (x >= getWidth()-23 && x <= getWidth()-3 && y >= 2 && y <= 20) {
 				// The close button was pressed.
+				onClose();
+				dispose();
+			}
+			if (y >= 0 && y <= 22) {
+				lastMouseTitleBarX = x;
+				lastMouseTitleBarY = y;
 			}
 		}
-			// Somewhere in the window was pressed.
+		// Somewhere in the window was pressed.
+	}
+	
+	public void onMouseDrag(int x, int y) {
+		super.onMouseDrag(x, y);
+		
+		if (y >= 0 && y <= 22) {
+			setLoc(getLocX() - lastMouseTitleBarX, getLocY() - lastMouseTitleBarY);
+		}
+	}
+	
+	public void parentRepaint() {
+		pare.render();
 	}
 	
 	public void setText(String text) {
