@@ -52,6 +52,9 @@ public class NavalGame extends Game {
 	TestWindowWithNewAPI twwna;
 	
 	GridWindow test;
+	
+	float airStrike = -1;
+	
 	public NavalGame() {
 		super();
 		nm = new NavalManager(getWorld());
@@ -202,6 +205,8 @@ public class NavalGame extends Game {
 				}
 			}
 		}
+		
+		airStrike = 0;
 	}
 	public void mouseMove(MouseEvent me) {
 		super.mouseMove(me);
@@ -224,8 +229,16 @@ public class NavalGame extends Game {
 		g.drawImage(omnimap.getBuffer(), Game.Settings.currentWidth-158, 40, null);
 		g.drawImage(twwna.getBuffer(),200,200,null);
 		g.dispose();
-		bbf.setHRadius(10);
-		bbf.setIterations(1);
-		bbf.filter(getBuffer(), getBuffer());
+		if (airStrike >= 0 && airStrike < 40) {
+			airStrike += 1.4f;
+			int f = (int)airStrike;
+			if  (f > 12)
+				f = 12;
+			bbf.setHRadius(f);
+			bbf.setIterations(1);
+			bbf.filter(getBuffer(), getBuffer());
+			if (airStrike >= 40)
+				airStrike = -1;
+		}
 	}
 }
