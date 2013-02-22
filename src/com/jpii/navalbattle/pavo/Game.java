@@ -46,6 +46,7 @@ public class Game extends Renderable implements Runnable, Serializable {
 	private Thread updator;
 	private Thread chunkrender;
 	private Thread generator;
+	private Thread sync;
 	private boolean gameRunning = true;
 	private long timeLastUpdate = System.currentTimeMillis();
 	private int state = 0;

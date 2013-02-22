@@ -42,7 +42,7 @@ import com.jpii.navalbattle.renderer.weather.WeatherMode;
  * @author MKirkby
  * The game file.
  */
-public class NavalGame extends Game {
+public class NavalGame extends Game{
 	PlayerProfileWindow ppw;
 	ShipInfoWindow siw;
 	OmniMap omnimap;
@@ -98,6 +98,11 @@ public class NavalGame extends Game {
 	public void becomingSunset() {
 		
 	}
+	
+	public void doSync() {
+		
+	}
+	
 	/**
 	 * Called right when sunrise starts.
 	 */

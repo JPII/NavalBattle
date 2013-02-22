@@ -68,13 +68,13 @@ public class BoxBlurFilter extends AbstractBufferedImageOp {
 
             for ( int i = -radius; i <= radius; i++ ) {
                 int rgb = in[inIndex + clamp(i, 0, width-1)];
-                ta += (rgb >> 24) & 0xff;
+                //ta += (rgb >> 24) & 0xff;
                 tr += (rgb >> 16) & 0xff;
                 tg += (rgb >> 8) & 0xff;
                 tb += rgb & 0xff;
             }
 
-            for ( int x = 0; x < width; x+=2 ) {
+            for ( int x = 0; x < width; x++ ) {
                 out[ outIndex ] = (divide[ta] << 24) | (divide[tr] << 16) | (divide[tg] << 8) | divide[tb];
 
                 int i1 = x+radius+1;
@@ -86,7 +86,7 @@ public class BoxBlurFilter extends AbstractBufferedImageOp {
                 int rgb1 = in[inIndex+i1];
                 int rgb2 = in[inIndex+i2];
                 
-                ta += ((rgb1 >> 24) & 0xff)-((rgb2 >> 24) & 0xff);
+                //ta += ((rgb1 >> 24) & 0xff)-((rgb2 >> 24) & 0xff);
                 tr += ((rgb1 & 0xff0000)-(rgb2 & 0xff0000)) >> 16;
                 tg += ((rgb1 & 0xff00)-(rgb2 & 0xff00)) >> 8;
                 tb += (rgb1 & 0xff)-(rgb2 & 0xff);
