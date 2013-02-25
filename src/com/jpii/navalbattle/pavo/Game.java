@@ -23,7 +23,6 @@ import java.awt.Polygon;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 import java.io.Serializable;
-import java.text.DecimalFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Timer;
@@ -300,9 +299,7 @@ public class Game extends Renderable implements Runnable, Serializable {
 		GameStatistics gs = getStats();
 		g.setColor(Color.red);
 		//g.setFont(Helper.GUI_GAME_FONT);
-		String frmtn = new DecimalFormat("00").format(getWorld().getTimeManager().getCurrentMinutes());
 		int ma = 38;
-		g.drawString((getWorld().getTimeManager().getTimeDescription() + " " + getWorld().getTimeManager().getCurrentHour() + ":"+frmtn),12,630);
 		g.drawString("Idling (should be low):" + gs.getDrawIdling() + ". Draw time:" + gs.getDrawTime() + " Live chunks:" + gs.getLiveChunks(),12,660);
 		g.drawString("Is generating? " + gs.isGenerating() + ". Total update time:" + gs.getUpdateTime() + ". Last render length:" + gs.getTotalUpdate(), 12,690);
 		getWorld().unlock();

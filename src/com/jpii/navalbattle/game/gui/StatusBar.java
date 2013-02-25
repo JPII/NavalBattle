@@ -9,6 +9,7 @@ import com.jpii.navalbattle.pavo.Game;
 import com.jpii.navalbattle.pavo.PavoHelper;
 import com.jpii.navalbattle.pavo.gui.GameWindow;
 import com.jpii.navalbattle.util.FileUtils;
+import java.text.DecimalFormat;
 
 public class StatusBar extends GameWindow {
 	BufferedImage icn_mouse;
@@ -59,10 +60,12 @@ public class StatusBar extends GameWindow {
 		g.draw3DRect(width-221,2,100,20,true);
 		g.draw3DRect(width-220,3,98,18,true);
 		g.setColor(Color.white);
+		String secondTime = new DecimalFormat("00").format(gameThing.getWorld().getTimeManager().getCurrentMinutes());
 		g.drawString("Time: " + gameThing.getWorld().getTimeManager().getCurrentHour() + ":" +
-				gameThing.getWorld().getTimeManager().getCurrentMinutes(), width-220+sd, 17);
-	}
+				secondTime, width-220+sd, 17);
 	
+	}
+
 	public void setMouseTileLocation(int x, int y) {
 		boolean flag = false;
 		if (mx != x || my != y)
