@@ -1,12 +1,8 @@
-/**
- * 
- */
 package com.jpii.navalbattle.game.gui;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
-import java.text.DecimalFormat;
 
 import com.jpii.navalbattle.NavalBattle;
 import com.jpii.navalbattle.pavo.Game;
@@ -14,14 +10,11 @@ import com.jpii.navalbattle.pavo.PavoHelper;
 import com.jpii.navalbattle.pavo.gui.GameWindow;
 import com.jpii.navalbattle.util.FileUtils;
 
-/**
- * @author maximusvladimir
- *
- */
 public class StatusBar extends GameWindow {
 	BufferedImage icn_mouse;
 	int mx, my;
 	Game gameThing;
+	
 	/**
 	 * Initialises a new instance of <code>StatusBar</code>
 	 */
@@ -35,6 +28,7 @@ public class StatusBar extends GameWindow {
 		setLoc(0,0);
 		render();
 	}
+	
 	public void render() {
 		super.render();
 		Graphics2D g = PavoHelper.createGraphics(getBuffer());
@@ -68,6 +62,7 @@ public class StatusBar extends GameWindow {
 		g.drawString("Time: " + gameThing.getWorld().getTimeManager().getCurrentHour() + ":" +
 				gameThing.getWorld().getTimeManager().getCurrentMinutes(), width-220+sd, 17);
 	}
+	
 	public void setMouseTileLocation(int x, int y) {
 		boolean flag = false;
 		if (mx != x || my != y)
@@ -77,6 +72,7 @@ public class StatusBar extends GameWindow {
 		if (flag)
 			render(); // Don't reRender if the mouse hasn't changed tile locations.
 	}
+	
 	public void setLoc(int x, int y) {
 		this.x = x;
 		this.y = y;
