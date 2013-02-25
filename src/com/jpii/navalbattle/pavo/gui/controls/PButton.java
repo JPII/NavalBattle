@@ -80,9 +80,10 @@ public class PButton extends Control {
 			g.setPaint(gp);
 			g.fillRoundRect(0,0,strWidth+8,(int)(getFont().getSize() * 1.5f), 5,5);
 			g.setPaint(null);
-			g.setColor(Color.white);
+			g.setColor(Color.black);
 			g.drawRoundRect(0,0,strWidth+8,(int)(getFont().getSize() * 1.5f), 5,5);
-			g.drawString(getText(), 4,(int)(getFont().getSize() * 1.5f));
+			g.setColor(Color.lightGray);
+			g.drawString(getText(), 4,(int)(getFont().getSize() * 1.5f)- (getFont().getSize()/2)+2);
 		}
 		else {
 			GradientPaint gp = new GradientPaint(0,0,new Color(169,140,86),0,(getFont().getSize() * 1.5f),new Color(126,105,65));

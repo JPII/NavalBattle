@@ -124,11 +124,7 @@ public class PWindow extends Control {
 		super.onMouseDrag(x, y);
 		
 		if (y >= 0 && y <= 22) {
-			int deltax = lastMouseTitleBarX - x;
-			int deltay = lastMouseTitleBarY - y;
-			setLoc(getLocX() - deltax, getLocY());//- deltay);
-			lastMouseTitleBarX = x;
-			lastMouseTitleBarY = y;
+			setLoc(x-5,y);
 		}
 	}
 	
