@@ -4,6 +4,7 @@
 package com.jpii.navalbattle.game.entity;
 
 
+import com.jpii.navalbattle.game.NavalGame;
 import com.jpii.navalbattle.pavo.grid.Entity;
 import com.jpii.navalbattle.pavo.grid.EntityManager;
 import com.jpii.navalbattle.pavo.grid.GridHelper;
@@ -46,7 +47,11 @@ public class BattleShip extends Entity {
 	public void onMouseMove(int x, int y) {
 	}
 	public void onMouseDown(int x, int y, boolean leftbutton) {
-		if(!leftbutton){
+		if(leftbutton){
+			NavalGame ng = (NavalGame)getManager().getWorld().getGame();
+			ng.getHud().setEntity(this);
+		}
+		else{
 			byte t = getCurrentOrientation();
 			if (t == GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT)
 				rotateTo(GridedEntityTileOrientation.ORIENTATION_TOPTOBOTTOM);

@@ -49,7 +49,9 @@ public class World extends Renderable implements Interactable {
 	int sx = 0, anisx = 0, anisy = 0,sy = 0;
 	PavoImage noise;
 	int zlevel;
-	public World() {
+	Game game;
+	public World(Game gameThing) {
+		game = gameThing;
 		ws = WorldSize.WORLD_LARGE;
 		em = new EntityManager(this);
 		width = PavoHelper.getGameWidth(getWorldSize());
@@ -69,6 +71,9 @@ public class World extends Renderable implements Interactable {
 		wm = new WeatherManager();
 		
 		System.gc();
+	}
+	public Game getGame() {
+		return game;
 	}
 	public void setEntityManager(EntityManager em) {
 		this.em = em;

@@ -67,7 +67,7 @@ public class Game extends Renderable implements Runnable, Serializable {
 	 */
 	public Game() {
 		windows = new WindowManager(this);
-		world = new World();
+		world = new World(this);
 		//gen = new WorldGen();
 		threadInit();
 		buffer = new PavoImage(Game.Settings.currentWidth,Game.Settings.currentHeight,BufferedImage.TYPE_3BYTE_BGR);

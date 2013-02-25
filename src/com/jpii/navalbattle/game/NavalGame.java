@@ -22,6 +22,7 @@ import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 
 import com.jpii.navalbattle.game.entity.*;
+import com.jpii.navalbattle.game.gui.HUD;
 import com.jpii.navalbattle.game.gui.PlayerProfileWindow;
 import com.jpii.navalbattle.game.gui.ShipInfoWindow;
 import com.jpii.navalbattle.game.gui.StatusBar;
@@ -48,6 +49,7 @@ public class NavalGame extends Game{
 	OmniMap omnimap;
 	StatusBar sb;
 	NavalManager nm;
+	HUD hud;
 	
 	TestWindowWithNewAPI twwna;
 	
@@ -57,6 +59,7 @@ public class NavalGame extends Game{
 	
 	public NavalGame() {
 		super();
+		hud = new HUD();
 		nm = new NavalManager(getWorld());
 		getWorld().setEntityManager(nm);
 		omnimap = new OmniMap(getWorld());
@@ -262,5 +265,9 @@ public class NavalGame extends Game{
 		g.drawImage(omnimap.getBuffer(), Game.Settings.currentWidth-158, 40, null);
 		g.drawImage(twwna.getBuffer(),twwna.getLocX(),twwna.getLocY(),null);
 		g.dispose();
+	}
+	
+	public HUD getHud(){
+		return hud;
 	}
 }
