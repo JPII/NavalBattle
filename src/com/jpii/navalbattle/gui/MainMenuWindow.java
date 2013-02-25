@@ -29,9 +29,6 @@ import com.jpii.navalbattle.renderer.Helper;
 
 @SuppressWarnings("serial")
 public class MainMenuWindow extends Window {
-	Timer ticker;
-	MenuBackground backgrnd;
-	int ticks;
 	JButton btnRoketGamer;
 	
 	/**
@@ -42,8 +39,8 @@ public class MainMenuWindow extends Window {
 		
 		getContentPane().setLayout(null);
 		
-		backgrnd = new MenuBackground(491,339,2);
 		JLabel lblVersion = new JLabel(Constants.NAVALBATTLE_VERSION_TITLE);
+		lblVersion.setForeground(Color.WHITE);
 		JLabel lblNavalBattle = new JLabel("NavalBattle");
 		JButton btnSingleplayer = new JButton("Singleplayer");
 		JButton btnHelp = new JButton("Help");
@@ -53,7 +50,7 @@ public class MainMenuWindow extends Window {
 		JButton btnMultiplayer = new JButton("Multiplayer");
 		
 		lblNavalBattle.setBounds(10, 13, 466, 51);
-		lblVersion.setBounds(10, 276, 238, 14);
+		lblVersion.setBounds(10, 287, 238, 14);
 		btnSingleplayer.setBounds(194, 74, 100, 30);
 		btnHelp.setBounds(194, 141, 100, 30);
 		btnRoketGamer.setBounds(194, 175, 100, 30);
@@ -61,13 +58,11 @@ public class MainMenuWindow extends Window {
 		btnCredits.setBounds(375, 267, 100, 30);
 		btnMultiplayer.setBounds(194, 107, 100, 30);
 		
-		backgrnd.setLocation(0, 0);
-		lblNavalBattle.setForeground(Color.blue);
+		lblNavalBattle.setForeground(Color.WHITE);
 		lblNavalBattle.setFont(Helper.GUI_MENU_TITLE_FONT);
 		btnMultiplayer.setEnabled(false);
 		lblNavalBattle.setHorizontalAlignment(SwingConstants.CENTER);
 		
-		setContentPane(backgrnd);
 		getContentPane().add(lblVersion);
 		getContentPane().add(lblNavalBattle);
 		getContentPane().add(btnSingleplayer);
@@ -83,6 +78,11 @@ public class MainMenuWindow extends Window {
 		btnRoketGamer.setFocusable(false);
 		btnQuit.setFocusable(false);
 		btnCredits.setFocusable(false);
+		
+		JLabel label = new JLabel("");
+		label.setIcon(new ImageIcon(MainMenuWindow.class.getResource("/com/jpii/navalbattle/res/drawable-gui/menu_background.png")));
+		label.setBounds(-83, -62, 569, 374);
+		getContentPane().add(label);
 		
 		btnSingleplayer.addMouseListener(new MouseAdapter() {
 			@Override
@@ -122,18 +122,6 @@ public class MainMenuWindow extends Window {
 				NavalBattle.getDebugWindow().printWarning("Multiplayer has not been implemented");
 			}
 		});
-		ActionListener listener = new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				backgrnd.tick();
-				ticks += 100;
-				backgrnd.invalidate();
-				repaint();
-			}
-		};
-		ticker = new Timer(100,listener);
-		if(isVisible()){
-			ticker.start();
-		}
 	}
 	
 	/**
@@ -142,14 +130,9 @@ public class MainMenuWindow extends Window {
 	public void setVisible(boolean visible){
 		super.setVisible(visible);
 		if(isVisible()){
-			ticker.start();
 			if(NavalBattle.getGameState().isOffline()) {
 				btnRoketGamer.setEnabled(false);
 			}
-		}
-		else{
-			if(ticker!=null)
-				ticker.stop();
 		}
 	}
 }
