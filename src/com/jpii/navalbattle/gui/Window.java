@@ -155,7 +155,7 @@ public class Window extends JFrame {
 	 */
 	public void donewithMe(){
 		printDebug("Disposing "+parseString());
-		super.dispose();
+		dispose();
 	}
 	
 	/**

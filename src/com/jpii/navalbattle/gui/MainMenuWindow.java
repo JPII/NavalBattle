@@ -24,6 +24,7 @@ import java.awt.event.*;
 
 import com.jpii.navalbattle.NavalBattle;
 import com.jpii.navalbattle.data.Constants;
+import com.jpii.navalbattle.game.SinglePlayerGame;
 import com.jpii.navalbattle.gui.listeners.*;
 import com.jpii.navalbattle.renderer.Helper;
 
@@ -87,7 +88,8 @@ public class MainMenuWindow extends Window {
 		btnSingleplayer.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				nextWindow("SinglePlayerGame");
+				new SinglePlayerGame().setVisible(true);
+				NavalBattle.getWindowHandler().killAll();
 			}
 		});		
 		btnHelp.addMouseListener(new MouseAdapter() {
