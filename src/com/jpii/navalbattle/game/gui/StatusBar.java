@@ -60,9 +60,9 @@ public class StatusBar extends GameWindow {
 		g.draw3DRect(width-221,2,100,20,true);
 		g.draw3DRect(width-220,3,98,18,true);
 		g.setColor(Color.white);
-		String secondTime = new DecimalFormat("00").format(gameThing.getWorld().getTimeManager().getCurrentMinutes());
-		g.drawString("Time: " + gameThing.getWorld().getTimeManager().getCurrentHour() + ":" +
-				secondTime, width-220+sd, 17);
+		//String secondTime = new DecimalFormat("00").format(gameThing.getWorld().getTimeManager().getCurrentMinutes());
+		g.drawString("Time: " + gameThing.getWorld().getTimeManager().getCurrentHour() + ":00"
+				, width-220+sd, 17);
 		
 		g.setColor(Color.black);
 		g.fillRect(width-321, 2, 100, 20);
