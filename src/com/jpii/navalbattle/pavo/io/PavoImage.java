@@ -58,13 +58,5 @@ public class PavoImage extends BufferedImage implements Serializable {
 		Image_Counter++;
 	}
 	
-	public void finalize() {
-		Image_Counter--;
-		//System.out.println(Image_Counter + " images are live.");
-		try {
-			super.finalize();
-		} catch (Throwable e) {
-		}
-	}
 
 }
