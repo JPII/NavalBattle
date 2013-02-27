@@ -10,6 +10,7 @@ A new RoketGamer-powered game. Coming soon.
 ## Dependencies
 We depend on the following projects. We plan on moving to Maven soon to help automatically handle dependencies.
 * GameKit
+* Apache Commons IO, Lang, Codec
 
 ## Members
 * **TexasGamer** - SCM manager, RoketGamer lead
