@@ -59,7 +59,7 @@ public class NavalGame extends Game{
 	
 	public NavalGame() {
 		super();
-//		hud = new HUD(getWinMan(),0,100,1080,300);
+		hud = new HUD(getWinMan(),0,100,1080,300);
 		nm = new NavalManager(getWorld());
 		getWorld().setEntityManager(nm);
 		omnimap = new OmniMap(getWorld());
