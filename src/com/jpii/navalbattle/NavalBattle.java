@@ -47,7 +47,7 @@ public class NavalBattle {
 	private static WindowHandler windowHandler;
 	private static LocalizationManager localizationManager;
 	
-	public static byte[] GRAVATAR;
+	public static byte[] GRAVATAR, BIG_GRAVATAR;
 	
 	/**
 	 * <code>NavalBattle</code> main method. Ran on launch.
@@ -71,6 +71,11 @@ public class NavalBattle {
 		gravatar.setRating(GravatarRating.GENERAL_AUDIENCES);
 		gravatar.setDefaultImage(GravatarDefaultImage.WAVATAR);
 		GRAVATAR = gravatar.download("someones@email.com");
+		
+		gravatar.setSize(100);
+		gravatar.setRating(GravatarRating.GENERAL_AUDIENCES);
+		gravatar.setDefaultImage(GravatarDefaultImage.WAVATAR);
+		GRAVATAR = gravatar.download("tpgaubert@gmail.com");
 		
 		Helper.LoadStaticResources();
 		setDefaultLookAndFeel();

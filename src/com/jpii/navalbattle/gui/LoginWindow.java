@@ -99,6 +99,7 @@ public class LoginWindow extends Window {
 		offlineButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent ae) {
 				NavalBattle.getWindowHandler().getToasterManager().showToaster(new ImageIcon(getClass().getResource("/com/roketgamer/res/logo_100px.png")), "Offline mode enabled");
+				NavalBattle.getWindowHandler().getToasterManager().showToaster(new ImageIcon(NavalBattle.GRAVATAR), "Logged in as user");
 				NavalBattle.getDebugWindow().printInfo("Opening in offline mode");
 				NavalBattle.getDebugWindow().printWarning("RoketGamer disabled");
 				NavalBattle.getGameState().setOffline(true);
