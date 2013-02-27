@@ -1,24 +1,40 @@
 package com.jpii.navalbattle.game.gui;
 
 import java.awt.Color;
+import java.awt.GradientPaint;
+import java.awt.Graphics2D;
 
 import maximusvladimir.dagen.Rand;
 
 import com.jpii.navalbattle.pavo.Game;
 import com.jpii.navalbattle.pavo.grid.Entity;
+import com.jpii.navalbattle.pavo.gui.WindowManager;
+import com.jpii.navalbattle.pavo.gui.controls.PWindow;
 
-public class HUD{
+public class HUD extends PWindow{
 	
 	Entity display;
 	Rand ran;
+	GradientPaint gp;
 	
-	public HUD(){
+	public HUD(WindowManager parent,int x, int y, int width, int height){
+		super(parent, x, y, width, height);
 		display = null;
 		ran = Game.Settings.rand;
+		gp = new GradientPaint(0.3f, 0.4f,getBlue(), 0.5f,0.6f,getBlue());
+	}
+	
+	public void paint(Graphics2D g) {
+	//	setForegroundColor(getBlue());
+	//	setBackgroundColor(getBlack());
+		g.setPaint(gp);
+		super.paint(g);
+		System.out.println("see anything?");
 	}
 	
 	public void setEntity(Entity e){
 		display = e;
+		System.out.println("Entity was clicked");
 		update();
 	}
 	
@@ -29,7 +45,7 @@ public class HUD{
 	}
 	
 	private void drawMenu(){
-		
+		repaint();
 	}
 	
 	private Color getBlue(){
