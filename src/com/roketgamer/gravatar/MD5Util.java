@@ -1,4 +1,4 @@
-package com.jpii.navalbattle.util;
+package com.roketgamer.gravatar;
 
 import java.io.*;
 import java.security.*;
