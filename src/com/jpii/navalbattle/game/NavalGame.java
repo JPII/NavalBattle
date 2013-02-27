@@ -265,7 +265,8 @@ public class NavalGame extends Game{
 	BoxBlurFilter bbf = new BoxBlurFilter();
 	public void render() {
 		super.render();
-		sb.render();
+		if (getWorld().getTimeManager().getCurrentMinutes() == 0)
+			sb.render();
 		if (airStrike >= 0 && airStrike < 40) {
 			airStrike += 1.4f;
 			int f = (int)airStrike;
