@@ -24,7 +24,7 @@ public class HUD extends PWindow{
 		setLoc(0,Game.Settings.currentHeight-this.height);
 		display = null;
 		ran = Game.Settings.rand;
-		gp = new GradientPaint(/*0,0,getBlue(),0,height,getBlack());*/ 0,0,new Color(96,116,190),0,height,new Color(0,0,54));
+		gp = new GradientPaint(0,0,new Color(96,116,190),0,height,new Color(0,0,54));
 		setTitleVisiblity(false);
 		setVisible(false);
 	}
@@ -34,7 +34,7 @@ public class HUD extends PWindow{
 		if(isVisible())
 			g.setPaint(gp);
 		if(!isVisible())
-			g.setPaint(new GradientPaint(0,0,getBlack(),0,height,getBlack()));
+			g.setPaint(new GradientPaint(0,0,Color.black,0,height,Color.black));
 		g.fillRect(0,0,getWidth(),getHeight());
 	}
 	
@@ -51,13 +51,6 @@ public class HUD extends PWindow{
 			setVisible(false);
 		}
 		repaint();
-	}
-	
-	private Color getBlack(){
-		int r = 0;
-		int b = ran.nextInt(50,(255/3));
-		System.out.println("Black: "+new Color(r,r,b).toString());
-		return new Color(r,r,b);
 	}
 	
 }
