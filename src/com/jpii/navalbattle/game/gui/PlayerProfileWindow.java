@@ -64,5 +64,6 @@ public class PlayerProfileWindow extends GameWindow {
 		g.drawString("Rank: Captain", 135, 44);
 		g.drawString("Money: £1 630 000", 135, 59);
 		g.drawString("RG Id: shis-ka-bob1", 135, 74);
+		g.dispose();
 	}
 }

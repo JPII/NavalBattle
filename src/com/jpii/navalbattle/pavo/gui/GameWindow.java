@@ -78,6 +78,7 @@ public class GameWindow extends Renderable {
 			g2.setColor(getBackgroundColor());
 			g2.setFont(Helper.GUI_GAME_FONT);
 			g2.drawString(title,3,20);
+			g2.dispose();
 			g.drawImage(adapter, 1,1, null);
 			g.setColor(new Color(126,105,65));
 			g.fillRect(getWidth()-23,2,20,20);
@@ -87,6 +88,7 @@ public class GameWindow extends Renderable {
 			g.drawLine(getWidth()-20,5,getWidth()-6,19);
 			g.drawLine(getWidth()-6,5,getWidth()-20,19);
 		}
+		g.dispose();
 	}
 	public String getTitle() {
 		return title;

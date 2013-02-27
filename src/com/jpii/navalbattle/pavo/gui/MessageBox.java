@@ -158,6 +158,7 @@ public class MessageBox extends com.jpii.navalbattle.pavo.gui.GameWindow {
 		g.setColor(Color.black);
 		g.drawRoundRect((getWidth()/2)-30, (getHeight()-36), 60, 24, 5,5);
 		g.drawString("OK",(getWidth()/2)-8, (getHeight()-18));
+		g.dispose();
 	}
 	public boolean checkOtherDown(MouseEvent me) {
 		int mx = me.getX();

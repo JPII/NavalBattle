@@ -143,6 +143,7 @@ public class GameComponent extends JComponent {
 			g.setColor(new Color(255,255,255,(int)transparency));
 			g.setFont(new Font("Arial",Font.BOLD,28));
 			g.drawString("Press F11 to exit fullscreen mode.", 42,60);
+			g.dispose();
 		}
 		else
 			notifier = null;

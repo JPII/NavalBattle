@@ -71,6 +71,7 @@ public class StatusBar extends GameWindow {
 		g.draw3DRect(width-320,3,98,18,true);
 		g.setColor(Color.white);
 		g.drawString("USERNAME", width-320+sd, 17);
+		g.dispose();
 	
 	}
 

@@ -98,6 +98,7 @@ public class OmniMap extends Renderable {
 				//g.drawLine(x,y,x,y);
 			}
 		}
+		g.dispose();
 	}
 	public void render() {
 		Graphics2D g = PavoHelper.createGraphics(getBuffer());
@@ -112,6 +113,7 @@ public class OmniMap extends Renderable {
         g.drawRect(1, 1, width - 3, 100 - 3);
         g.setColor(new Color(74, 30, 3));
         g.drawRect(0, 0, width - 1, 100 - 1);
+        g.dispose();
         //g.fillRect(0, height, width, 25);
 	}
 }

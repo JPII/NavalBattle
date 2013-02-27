@@ -72,5 +72,6 @@ public class GridWindow extends GameWindow {
 		g.drawString("Percent land " + game.getWorld().getEntityManager().getTilePercentLand(local.getRow(),local.getCol()) + "%", 10, 100);
 		g.drawString("Precent water " + (100 - game.getWorld().getEntityManager().getTilePercentLand(local.getRow(),local.getCol())) + "%", 10, 120);
 		}
+		g.dispose();
 	}
 }

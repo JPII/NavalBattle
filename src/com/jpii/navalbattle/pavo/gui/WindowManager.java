@@ -130,6 +130,7 @@ public class WindowManager extends Renderable{
 			}
 			lwsw = Game.Settings.currentWidth;
 			lwsh = Game.Settings.currentHeight;
+			g4.dispose();
 		}
 		Graphics2D g2 = PavoHelper.createGraphics(getBuffer());
 		
@@ -153,5 +154,6 @@ public class WindowManager extends Renderable{
 			PavoImage gwb = gw.getBuffer();
 			g2.drawImage(gwb, gwx,gwy, null);
 		}
+		g2.dispose();
 	}
 }

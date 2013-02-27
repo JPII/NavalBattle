@@ -234,7 +234,7 @@ public class PavoHelper {
 			return false;
 		
 	}
-	public static Graphics2D createGraphics(PavoImage b) {
+	/*public static Graphics2D createGraphics(PavoImage b) {
 		if (b == null)
 			return null;
 		
@@ -252,7 +252,7 @@ public class PavoHelper {
 		g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 		g.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
 		return g;
-	}
+	}*/
 
 	public static final BufferedImage OneByOnePixel = create1x1Pixel();
 	public static BufferedImage create1x1Pixel() {

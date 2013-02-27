@@ -86,6 +86,7 @@ public class PWindow extends Control {
 			g2.setColor(getBackgroundColor());
 			g2.setFont(Helper.GUI_GAME_FONT);
 			g2.drawString(title,3,20);
+			g2.dispose();
 			g.drawImage(adapter, 1,1, null);
 			g.setColor(new Color(126,105,65));
 			g.fillRect(getWidth()-23,2,20,20);

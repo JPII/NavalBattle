@@ -99,10 +99,12 @@ public class ShipInfoWindow extends GameWindow {
 		for (int v = 0; v < 150; v+= 8) {
 			g.drawLine(v+14,1+90,v+10,9+90);
 		}
+		g.dispose();
 	}
 	public void render() {
 		super.render();
 		Graphics2D g = PavoHelper.createGraphics(getBuffer());
 		g.drawImage(frame,15,40,null);
+		g.dispose();
 	}
 }

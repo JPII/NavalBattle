@@ -229,18 +229,19 @@ public class Chunk extends Renderable{
 		g.drawImage(w.getEntityManager().getImage(Tile10), 50, 0, null);
 		g.drawImage(w.getEntityManager().getImage(Tile01), 0, 50, null);
 		g.drawImage(w.getEntityManager().getImage(Tile11), 50, 50, null);
-		if (poychingmode) {
-			g.setColor(new Color(0,0,255,127));
-			g.fillRect(0,0,103,103);
-		}
+		//if (poychingmode) {
+		//	g.setColor(new Color(0,0,255,127));
+		//	g.fillRect(0,0,103,103);
+		//}
 		nesa = false;
-		poychingmode = false;
+		g.dispose();
+		
 	}
 	
-	boolean poychingmode = false;
-	public void poyching() {
-		poychingmode = true;
-	}
+	//boolean poychingmode = false;
+	//public void poyching() {
+	//	poychingmode = true;
+	//}
 	boolean nesa = false;
 	/**
 	 * Does the buffer need to be rewritten?

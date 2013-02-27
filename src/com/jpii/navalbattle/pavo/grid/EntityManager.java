@@ -57,6 +57,7 @@ public class EntityManager implements Serializable {
 			IndexableImage.populateStore(0, grid);
 		}
 		catch (Exception ex) {}
+		g.dispose();
 		entityRegister = new ArrayList<Integer>();
 		entityRegister.add(0);
 		//System.out.println(Integer.bitCount(IndexableImage.getStoreSize())+"."+Integer.toHexString(IndexableImage.getStoreSize())+"swapspace");
