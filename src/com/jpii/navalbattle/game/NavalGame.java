@@ -223,7 +223,8 @@ public class NavalGame extends Game{
 						BattleShip b = new BattleShip(this.getWorld().getEntityManager(),new Location(chy,chx),BattleShip.BATTLESHIP_ID,GridedEntityTileOrientation.ORIENTATION_TOPTOBOTTOM,Game.Settings.rand.nextInt(0,3));
 					}	
 				}
-				if(me.getButton() == MouseEvent.BUTTON2){
+				if(me.getButton() == MouseEvent.BUTTON3){
+					getHud().setEntity(null);
 					//new Whale(this.getWorld().getEntityManager(),new Location(chy,chx),
 						//	Game.Settings.rand.nextInt(0,3),NavalManager.w1,NavalManager.w2,NavalManager.w3);
 				}
