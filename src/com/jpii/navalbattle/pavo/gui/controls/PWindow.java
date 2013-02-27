@@ -124,9 +124,9 @@ public class PWindow extends Control {
 	public void onMouseDrag(int x, int y) {
 		super.onMouseDrag(x, y);
 		if (isTitleShown() && isVisible()) {
-		if (y >= 0 && y <= 22) {
-			setLoc(x-5,y);
-		}
+		//if (y >= 0 && y <= 22) {
+			setLoc(x-lastMouseTitleBarX+this.getLocX(),y-lastMouseTitleBarY+this.getLocY());
+		//}
 		}
 	}
 	
