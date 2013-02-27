@@ -47,11 +47,8 @@ public class BattleShip extends Entity {
 	public void onMouseMove(int x, int y) {
 	}
 	public void onMouseDown(int x, int y, boolean leftbutton) {
-		if(leftbutton){
-			NavalGame ng = (NavalGame)getManager().getWorld().getGame();
-			ng.getHud().setEntity(this);
-		}
-		else{
+		super.onMouseDown(x, y, leftbutton);
+		if(!leftbutton){
 			byte t = getCurrentOrientation();
 			if (t == GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT)
 				rotateTo(GridedEntityTileOrientation.ORIENTATION_TOPTOBOTTOM);

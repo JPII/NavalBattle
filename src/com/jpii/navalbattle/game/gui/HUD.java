@@ -16,7 +16,7 @@ public class HUD extends PWindow{
 	Entity display;
 	Rand ran;
 	GradientPaint gp;
-	GradientPaint gp2;
+	
 	
 	public HUD(WindowManager parent,int x, int y, int width, int height){
 		super(parent, x, y, width, height);
@@ -24,8 +24,7 @@ public class HUD extends PWindow{
 		setLoc(0,Game.Settings.currentHeight-this.height);
 		display = null;
 		ran = Game.Settings.rand;
-		gp = new GradientPaint(0,0,getBlue(),0,height,getBlack()); // 0,0,new Color(96,116,190),0,height,new Color(0,0,54));
-		gp2 = new GradientPaint(0,0,getBlack(),0,height,getBlack());
+		gp = new GradientPaint(/*0,0,getBlue(),0,height,getBlack());*/ 0,0,new Color(96,116,190),0,height,new Color(0,0,54));
 		setTitleVisiblity(false);
 		setVisible(false);
 	}
@@ -35,7 +34,7 @@ public class HUD extends PWindow{
 		if(isVisible())
 			g.setPaint(gp);
 		if(!isVisible())
-			g.setPaint(gp2);
+			g.setPaint(new GradientPaint(0,0,getBlack(),0,height,getBlack()));
 		g.fillRect(0,0,getWidth(),getHeight());
 	}
 	
@@ -46,12 +45,10 @@ public class HUD extends PWindow{
 	
 	public void update(){
 		if(display != null){
-			gp = new GradientPaint(0,0,getBlue(),0,height,getBlack());
 			setVisible(true);
 		}
 		else{
 			setVisible(false);
-			gp2 = new GradientPaint(0,0,getBlack(),0,height,getBlack());
 		}
 		repaint();
 	}

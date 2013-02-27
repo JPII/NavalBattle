@@ -19,6 +19,7 @@ package com.jpii.navalbattle.pavo.grid;
 
 import java.io.Serializable;
 
+import com.jpii.navalbattle.game.NavalGame;
 import com.jpii.navalbattle.pavo.*;
 
 public class Entity implements Serializable {
@@ -307,7 +308,8 @@ public class Entity implements Serializable {
 	}
 	
 	public void onMouseDown(int x, int y, boolean leftClick) {
-		
+		NavalGame ng = (NavalGame)getManager().getWorld().getGame();
+		ng.getHud().setEntity(this);
 	}
 	
 	public void onHit(Entity attackingEntity) {
