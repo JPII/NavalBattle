@@ -35,6 +35,9 @@ import com.jpii.navalbattle.pavo.Game;
 import com.jpii.navalbattle.renderer.*;
 
 import com.roketgamer.RoketGamer;
+import com.roketgamer.gravatar.Gravatar;
+import com.roketgamer.gravatar.GravatarDefaultImage;
+import com.roketgamer.gravatar.GravatarRating;
 
 public class NavalBattle {
 
@@ -43,6 +46,8 @@ public class NavalBattle {
 	private static GameState gameState;
 	private static WindowHandler windowHandler;
 	private static LocalizationManager localizationManager;
+	
+	public static byte[] GRAVATAR;
 	
 	/**
 	 * <code>NavalBattle</code> main method. Ran on launch.
@@ -60,6 +65,12 @@ public class NavalBattle {
 		    	onShutdown();
 		    }
 		}));
+		
+		Gravatar gravatar = new Gravatar();
+		gravatar.setSize(16);
+		gravatar.setRating(GravatarRating.GENERAL_AUDIENCES);
+		gravatar.setDefaultImage(GravatarDefaultImage.WAVATAR);
+		GRAVATAR = gravatar.download("someones@email.com");
 		
 		Helper.LoadStaticResources();
 		setDefaultLookAndFeel();

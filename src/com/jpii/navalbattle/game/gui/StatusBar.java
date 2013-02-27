@@ -5,11 +5,18 @@ import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 
 import com.jpii.navalbattle.NavalBattle;
+import com.jpii.navalbattle.data.Constants;
 import com.jpii.navalbattle.pavo.Game;
 import com.jpii.navalbattle.pavo.PavoHelper;
 import com.jpii.navalbattle.pavo.gui.GameWindow;
 import com.jpii.navalbattle.util.FileUtils;
+import com.roketgamer.gravatar.Gravatar;
+import com.roketgamer.gravatar.GravatarDefaultImage;
+import com.roketgamer.gravatar.GravatarRating;
+
 import java.text.DecimalFormat;
+
+import javax.swing.ImageIcon;
 
 public class StatusBar extends GameWindow {
 	BufferedImage icn_mouse;
@@ -64,15 +71,20 @@ public class StatusBar extends GameWindow {
 		g.drawString("Time: " + gameThing.getWorld().getTimeManager().getCurrentHour() + ":00"
 				, width-220+sd, 17);
 		
+		g.drawImage(new ImageIcon(NavalBattle.GRAVATAR).getImage(),width-348+sd,5,null);
+		
+		
 		g.setColor(Color.black);
-		g.fillRect(width-321, 2, 100, 20);
+		g.fillRect(width-326, 2, 100, 20);
 		g.setColor(Color.darkGray);
-		g.draw3DRect(width-321,2,100,20,true);
-		g.draw3DRect(width-320,3,98,18,true);
+		g.draw3DRect(width-326,2,100,20,true);
+		g.draw3DRect(width-325,3,98,18,true);
 		g.setColor(Color.white);
-		g.drawString("USERNAME", width-320+sd, 17);
+		if(NavalBattle.getGameState().isOffline())
+			g.drawString("Offline Mode", width-325+sd, 17);
+		else
+			g.drawString("GAMESTATE", width-325+sd, 17);
 		g.dispose();
-	
 	}
 
 	public void setMouseTileLocation(int x, int y) {
