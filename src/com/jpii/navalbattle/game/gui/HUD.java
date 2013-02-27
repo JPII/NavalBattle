@@ -21,17 +21,18 @@ public class HUD extends PWindow{
 		super(parent, x, y, width, height);
 		display = null;
 		ran = Game.Settings.rand;
-<<<<<<< HEAD
-		gp = new GradientPaint(0,0,new Color(0,0,255),0,height,new Color(0,0,0));
-=======
+		
 		gp = new GradientPaint(0,0,getBlue(),0,height,getBlack());
+		
+		
 	}
 	public HUD(WindowManager parent){
 		super(parent);
 		display = null;
 		ran = Game.Settings.rand;
+		
 		gp = new GradientPaint(0,0,getBlue(),0,height,getBlack());
->>>>>>> Fixed Anthony.
+		
 	}
 	
 	public void paint(Graphics2D g) {
