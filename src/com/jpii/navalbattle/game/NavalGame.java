@@ -60,6 +60,7 @@ public class NavalGame extends Game{
 	public NavalGame() {
 		super();
 		hud = new HUD(getWinMan(),0,100,1080,300);
+		hud.repaint();
 		nm = new NavalManager(getWorld());
 		getWorld().setEntityManager(nm);
 		omnimap = new OmniMap(getWorld());
@@ -150,6 +151,10 @@ public class NavalGame extends Game{
 		if (me.getX() - twwna.getLocX() >= 0 && me.getX() - twwna.getLocX() < twwna.getWidth()
 				&& me.getY() - twwna.getLocY() >= 0 && me.getY() - twwna.getLocY() < twwna.getHeight())
 			twwna.onMouseDrag(me.getX()-twwna.getLocX(), me.getY()-twwna.getLocY());
+		if (me.getX() - hud.getLocX() >= 0 && me.getX() - hud.getLocX() < hud.getWidth()
+				&& me.getY() - hud.getLocY() >= 0 && me.getY() - hud.getLocY() < hud.getHeight())
+			hud.onMouseDrag(me.getX()-hud.getLocX(), me.getY()-hud.getLocY());
+		
 		if (getWinMan().mouseDragged(me))
 			return;
 		if (omnimap.mouseDragged(me))
@@ -195,6 +200,9 @@ public class NavalGame extends Game{
 		if (me.getX() >= twwna.getLocX() && me.getX() < twwna.getWidth() + twwna.getLocX()
 				&& me.getY() >= twwna.getLocY() && me.getY() < twwna.getHeight() + twwna.getLocY())
 			twwna.onMouseDown(me.getX()-twwna.getLocX(), me.getY()-twwna.getLocY(),me.getButton());
+		if (me.getX() >= hud.getLocX() && me.getX() < hud.getWidth() + hud.getLocX()
+				&& me.getY() >= hud.getLocY() && me.getY() < hud.getHeight() + hud.getLocY())
+			hud.onMouseDown(me.getX()-hud.getLocX(), me.getY()-hud.getLocY(),me.getButton());
 		
 		int chx = (-getWorld().getScreenX()) + me.getX();
 		int chy = (-getWorld().getScreenY()) + me.getY(); 
@@ -229,12 +237,19 @@ public class NavalGame extends Game{
 		if (me.getX() - twwna.getLocX() >= 0 && me.getX() - twwna.getLocX() < twwna.getWidth()
 				&& me.getY() - twwna.getLocY() >= 0 && me.getY() - twwna.getLocY() < twwna.getHeight())
 			twwna.onMouseUp(me.getX()-twwna.getLocX(), me.getY()-twwna.getLocY(),me.getButton());
+		if (me.getX() - hud.getLocX() >= 0 && me.getX() - hud.getLocX() < hud.getWidth()
+				&& me.getY() - hud.getLocY() >= 0 && me.getY() - hud.getLocY() < hud.getHeight())
+			hud.onMouseUp(me.getX()-hud.getLocX(), me.getY()-hud.getLocY(),me.getButton());
+		
 	}
 	public void mouseMove(MouseEvent me) {
 		super.mouseMove(me);
 		if (me.getX() - twwna.getLocX() >= 0 && me.getX() - twwna.getLocX() < twwna.getWidth()
 				&& me.getY() - twwna.getLocY() >= 0 && me.getY() - twwna.getLocY() < twwna.getHeight())
 			twwna.onMouseHover(me.getX()-twwna.getLocX(), me.getY()-twwna.getLocY());
+		if (me.getX() - hud.getLocX() >= 0 && me.getX() - hud.getLocX() < hud.getWidth()
+				&& me.getY() - hud.getLocY() >= 0 && me.getY() - hud.getLocY() < hud.getHeight())
+			hud.onMouseHover(me.getX()-hud.getLocX(), me.getY()-hud.getLocY());
 		omnimap.mouseMoved(me);
 		int chx = (-getWorld().getScreenX()) + me.getX();
 		int chy = (-getWorld().getScreenY()) + me.getY(); 
@@ -265,6 +280,7 @@ public class NavalGame extends Game{
 		Graphics2D g = PavoHelper.createGraphics(getBuffer());
 		g.drawImage(omnimap.getBuffer(), Game.Settings.currentWidth-158, 40, null);
 		g.drawImage(twwna.getBuffer(),twwna.getLocX(),twwna.getLocY(),null);
+		g.drawImage(hud.getBuffer(),hud.getLocX(),hud.getLocY(),null);
 		g.dispose();
 	}
 	

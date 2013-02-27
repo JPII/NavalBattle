@@ -23,12 +23,16 @@ public class HUD extends PWindow{
 		ran = Game.Settings.rand;
 		gp = new GradientPaint(0,0,getBlue(),width,height,getBlack());
 	}
+	public HUD(WindowManager parent){
+		super(parent);
+		display = null;
+		ran = Game.Settings.rand;
+		gp = new GradientPaint(0,0,getBlue(),width,height,getBlack());
+	}
 	
 	public void paint(Graphics2D g) {
-	//	setForegroundColor(getBlue());
-	//	setBackgroundColor(getBlack());
 		g.setPaint(gp);
-		//super.paint(g);
+		super.paint(g);
 		System.out.println("see anything?");
 	}
 	
