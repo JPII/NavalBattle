@@ -192,7 +192,7 @@ public class Chunk extends Renderable{
 			//g.drawOval(0,0,33,33);
 		}*/
 		
-		if (Tile00!=null){
+		/*if (Tile00!=null){
 			Entity parent = Tile00.getEntity();
 			g.setColor(parent.getManager().getTeamColor(parent.teamId));
 			if(Tile00.getId().getMutexId()==65537)
@@ -223,7 +223,7 @@ public class Chunk extends Renderable{
 				g.fillRect(95, 65, 5, 20);
 			if(Tile11.getId().getMutexId()==65538)
 				g.fillRect(50, 65, 35, 20);
-		}
+		}*/
 		
 		g.drawImage(w.getEntityManager().getImage(Tile00), 0, 0, null);
 		g.drawImage(w.getEntityManager().getImage(Tile10), 50, 0, null);

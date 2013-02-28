@@ -244,18 +244,4 @@ public class EntityManager implements Serializable {
 	public World getWorld() {
 		return w;
 	}
-	
-	public Color getTeamColor(int teamId){
-		//System.out.println("Team id is...."+teamId);
-		Color temp = Color.black;
-		if(teamId == 0)
-			temp = Color.darkGray;
-		if(teamId == 1)
-			temp = Color.green;//.darker();
-		if(teamId == 2)
-			temp = Color.red;//.darker();
-		if(teamId == 3)
-			temp = Color.blue;//.darker();
-		return temp;
-	}
 }
