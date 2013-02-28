@@ -22,7 +22,6 @@ public class PImage extends Control {
 	 */
 	public PImage(Control parent) {
 		super(parent);
-		
 	}
 	
 	/**
@@ -49,7 +48,7 @@ public class PImage extends Control {
 		}
 	}
 	
-	private BufferedImage retrieveImage(int index) {
+	protected BufferedImage retrieveImage(int index) {
 		if (index >= imageStore.size() || index < 0)
 			return null;
 		
@@ -58,5 +57,9 @@ public class PImage extends Control {
 	
 	public void paint(Graphics2D g) {
 		g.drawImage(retrieveImage(imageId),0,0,null);
+	}
+	
+	public int getImageID(){
+		return imageId;
 	}
 }

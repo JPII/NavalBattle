@@ -22,7 +22,7 @@ public class HUD extends PWindow{
 	Rand ran;
 	GradientPaint gp;
 	PFrame entityBox;
-	PImage entityImage;
+	EntityImage entityImage;
 	int imageNumber;
 	
 	public HUD(WindowManager parent,int x, int y, int width, int height){
@@ -32,8 +32,12 @@ public class HUD extends PWindow{
 		gp = new GradientPaint(0,0,new Color(96,116,190),0,height,new Color(0,0,54));
 		setTitleVisiblity(false);
 		setVisible(false);
+		
+		// Set size for battleship
 		entityBox = new PFrame(this,width-325,(height-100)/2,300,100);
-		entityImage = new PImage(this);
+		entityImage = new EntityImage(this,gp);
+		entityImage.setLoc(width-275,(height-100));
+		entityImage.setSize(200,50);
 		
 		addControl(entityBox);
 		addControl(entityImage);
@@ -46,13 +50,10 @@ public class HUD extends PWindow{
 		if(!isVisible())
 			g.setPaint(new GradientPaint(0,0,Color.black,0,height,Color.black));
 		g.fillRect(0,0,getWidth(),getHeight());
-		
-		//entityImage.s
 	}
 	
 	public void paintAfter(Graphics2D g){
 		super.paintAfter(g);
-		
 	}
 	
 	public void setEntity(Entity e){
@@ -72,6 +73,7 @@ public class HUD extends PWindow{
 			setVisible(false);
 		}
 		repaint();
+		entityImage.repaint();
 	}
 	
 }
