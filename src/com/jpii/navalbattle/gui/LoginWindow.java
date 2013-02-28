@@ -133,7 +133,7 @@ public class LoginWindow extends Window {
 				new Password(passwordField.getText())), Constants.ROKETGAMER_LOG_HOOK);
 		
 		if (status == AuthStatus.GOOD) {
-			NavalBattle.getWindowHandler().getToasterManager().showToaster(new ImageIcon(FileUtils.getResourcePath("drawable-gui/logo_100px.png")), "Logged in as " + NavalBattle.getRoketGamer().getPlayer().getName());
+			//NavalBattle.getWindowHandler().getToasterManager().showToaster(new ImageIcon(FileUtils.getResourcePath("/com/roketgamer/res/logo_100px.png")), "Logged in as " + NavalBattle.getRoketGamer().getPlayer().getName());
 			NavalBattle.getDebugWindow().printInfo("User authenticated");
 			NavalBattle.getDebugWindow().printInfo("Logged in as: " + NavalBattle.getRoketGamer().getPlayer().getName());
 			NavalBattleIO.saveAttribute(new SettingsAttribute("lastGoodUserName",NavalBattle.getRoketGamer().getPlayer().getName()));
