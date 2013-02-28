@@ -18,14 +18,19 @@ public class HUD extends PWindow{
 	GradientPaint gp;
 	EntityBox entityBox;
 	EntityImage entityImage;
+	int extrawidth;
+	int extraheight;
 	
 	public HUD(WindowManager parent,int x, int y, int width, int height){
 		super(parent, x, y, width, height);
+		extrawidth = width;
+		extraheight = height;
 		ran = Game.Settings.rand;
 		gp = new GradientPaint(0,0,new Color(96,116,190),0,height,new Color(0,0,54));
 		setTitleVisiblity(false);
 		setVisible(false);
-		
+		setWidth(1);
+		setHeight(1);	
 		entityImage = new EntityImage(this,width-325,height/2,gp);
 		entityBox = new EntityBox(this,entityImage,width-325,height/2);
 		//x and y passed here are the center of the Frame/Image!!!
@@ -57,9 +62,13 @@ public class HUD extends PWindow{
 	public void update(){
 		if(entityImage.getEntity() != null){
 			setVisible(true);
+			setWidth(extrawidth);
+			setHeight(extraheight);
 		}
 		else{
 			setVisible(false);
+			setWidth(1);
+			setHeight(1);
 		}
 		repaint();
 		entityBox.repaint();
