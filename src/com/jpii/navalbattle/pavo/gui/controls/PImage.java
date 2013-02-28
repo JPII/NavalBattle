@@ -31,8 +31,11 @@ public class PImage extends Control {
 	 * @return The index that the image is located at.
 	 */
 	public static int registerImage(BufferedImage image) {
+		if(imageStore.contains(image)){
+			return imageStore.indexOf(image);
+		}
 		imageStore.add(image);
-		return imageStore.size() - 1;
+		return imageStore.size()-1;
 	}
 	
 	public static void removeImage(int index) {

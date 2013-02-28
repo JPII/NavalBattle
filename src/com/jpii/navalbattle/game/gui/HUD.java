@@ -14,6 +14,7 @@ import com.jpii.navalbattle.pavo.gui.WindowManager;
 import com.jpii.navalbattle.pavo.gui.controls.PFrame;
 import com.jpii.navalbattle.pavo.gui.controls.PImage;
 import com.jpii.navalbattle.pavo.gui.controls.PWindow;
+import com.jpii.navalbattle.util.FileUtils;
 
 public class HUD extends PWindow{
 	
@@ -22,6 +23,7 @@ public class HUD extends PWindow{
 	GradientPaint gp;
 	PFrame entityBox;
 	PImage entityImage;
+	int imageNumber;
 	
 	public HUD(WindowManager parent,int x, int y, int width, int height){
 		super(parent, x, y, width, height);
@@ -32,8 +34,6 @@ public class HUD extends PWindow{
 		setVisible(false);
 		entityBox = new PFrame(this,width-325,(height-100)/2,300,100);
 		entityImage = new PImage(this);
-		
-		//entityImage.registerImage(image);
 		
 		addControl(entityBox);
 		addControl(entityImage);
@@ -46,6 +46,8 @@ public class HUD extends PWindow{
 		if(!isVisible())
 			g.setPaint(new GradientPaint(0,0,Color.black,0,height,Color.black));
 		g.fillRect(0,0,getWidth(),getHeight());
+		
+		//entityImage.s
 	}
 	
 	public void paintAfter(Graphics2D g){
@@ -55,6 +57,10 @@ public class HUD extends PWindow{
 	
 	public void setEntity(Entity e){
 		display = e;
+		imageNumber = -1;
+		if(display!=null)
+			imageNumber = PImage.registerImage(FileUtils.getImage(display.imgLocation));
+		entityImage.setImage(imageNumber);
 		update();
 	}
 	
