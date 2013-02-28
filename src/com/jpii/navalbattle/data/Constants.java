@@ -20,6 +20,9 @@ package com.jpii.navalbattle.data;
 import maximusvladimir.dagen.Rand;
 
 import com.jpii.navalbattle.gui.listeners.*;
+import com.roketgamer.gravatar.Gravatar;
+import com.roketgamer.gravatar.GravatarDefaultImage;
+import com.roketgamer.gravatar.GravatarRating;
 
 public class Constants {
 	
