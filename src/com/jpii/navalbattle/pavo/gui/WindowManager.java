@@ -58,6 +58,17 @@ public class WindowManager extends Renderable{
 	public void ianOwjej10nJAnin345soaKOEe9201LIQUICK(MessageBox Ijsn9j20OKan01nJFNAnia) {
 		context = Ijsn9j20OKan01nJFNAnia;
 	}
+	/**
+	 * Y'all should translate some of these methods and see what u get ;)
+	 */
+	public void sa_ki_mal_dam_fin_vye_granmoun_kwit_soup_ansanm() {
+		for (int c = 0; c < wins.size(); c++) {
+			GameWindow gw = wins.get(c);
+			if (gw!=null) {
+				//gw.onMasterWindowResize();
+			}
+		}
+	}
 	public static WindowManager Inst;
 	public boolean mouseDown(MouseEvent me) {
 		int mx = me.getX();
