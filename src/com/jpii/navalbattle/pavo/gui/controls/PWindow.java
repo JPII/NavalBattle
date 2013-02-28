@@ -67,7 +67,10 @@ public class PWindow extends Control {
 		g.setColor(getBackgroundColor());
 		g.fillRect(1,1,getWidth()-2,getHeight()-2);
 	}
-
+	
+	public void onMasterWindowResize() {
+		
+	}
 	
 	public void paintAfter(Graphics2D g) {
 		g.setColor(getForegroundColor());
