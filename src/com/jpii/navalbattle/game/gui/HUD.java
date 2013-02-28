@@ -63,7 +63,6 @@ public class HUD extends PWindow{
 		if(entityImage.getEntity() != null){
 			setVisible(true);
 			setWidth(extrawidth);
-			
 			setHeight(extraheight);
 		}
 		else{
