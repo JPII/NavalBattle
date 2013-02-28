@@ -4,41 +4,33 @@ import java.awt.Color;
 import java.awt.GradientPaint;
 import java.awt.Graphics2D;
 
-import javax.imageio.ImageIO;
-
 import maximusvladimir.dagen.Rand;
 
 import com.jpii.navalbattle.pavo.Game;
 import com.jpii.navalbattle.pavo.grid.Entity;
 import com.jpii.navalbattle.pavo.gui.WindowManager;
 import com.jpii.navalbattle.pavo.gui.controls.PFrame;
-import com.jpii.navalbattle.pavo.gui.controls.PImage;
 import com.jpii.navalbattle.pavo.gui.controls.PWindow;
-import com.jpii.navalbattle.util.FileUtils;
 
 public class HUD extends PWindow{
 	
-	Entity display;
 	Rand ran;
 	GradientPaint gp;
-	PFrame entityBox;
+	EntityBox entityBox;
 	EntityImage entityImage;
-	int imageNumber;
 	
 	public HUD(WindowManager parent,int x, int y, int width, int height){
 		super(parent, x, y, width, height);
-		display = null;
 		ran = Game.Settings.rand;
 		gp = new GradientPaint(0,0,new Color(96,116,190),0,height,new Color(0,0,54));
 		setTitleVisiblity(false);
 		setVisible(false);
 		
-		// Set size for battleship
-		entityBox = new PFrame(this,width-325,(height-100)/2,300,100);
-		entityImage = new EntityImage(this,gp);
-		entityImage.setLoc(width-275,(height-100));
-		entityImage.setSize(200,50);
-		
+		entityImage = new EntityImage(this,width-325,height/2,gp);
+		entityBox = new EntityBox(this,entityImage,width-325,height/2);
+		//x and y passed here are the center of the Frame/Image!!!
+		//needs updated x value please!
+
 		addControl(entityBox);
 		addControl(entityImage);
 	}
@@ -56,23 +48,21 @@ public class HUD extends PWindow{
 		super.paintAfter(g);
 	}
 	
-	public void setEntity(Entity e){
-		display = e;
-		imageNumber = -1;
-		if(display!=null)
-			imageNumber = PImage.registerImage(FileUtils.getImage(display.imgLocation));
-		entityImage.setImage(imageNumber);
+	public void setEntity(Entity e){		
+		entityImage.setEntity(e);
+		entityBox.changeSize();
 		update();
 	}
 	
 	public void update(){
-		if(display != null){
+		if(entityImage.getEntity() != null){
 			setVisible(true);
 		}
 		else{
 			setVisible(false);
 		}
 		repaint();
+		entityBox.repaint();
 		entityImage.repaint();
 	}
 	

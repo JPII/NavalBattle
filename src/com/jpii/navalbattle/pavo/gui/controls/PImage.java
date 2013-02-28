@@ -24,6 +24,10 @@ public class PImage extends Control {
 		super(parent);
 	}
 	
+	public PImage(Control parent, int x, int y) {
+		super(parent, x, y);
+	}
+
 	/**
 	 * Registers an image to the store.
 	 * @param image The image to register.
