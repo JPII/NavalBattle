@@ -5,19 +5,14 @@ import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 
 import com.jpii.navalbattle.NavalBattle;
-import com.jpii.navalbattle.data.Constants;
 import com.jpii.navalbattle.pavo.Game;
 import com.jpii.navalbattle.pavo.PavoHelper;
 import com.jpii.navalbattle.pavo.gui.GameWindow;
 import com.jpii.navalbattle.util.FileUtils;
-import com.roketgamer.gravatar.Gravatar;
-import com.roketgamer.gravatar.GravatarDefaultImage;
-import com.roketgamer.gravatar.GravatarRating;
-
-import java.text.DecimalFormat;
 
 import javax.swing.ImageIcon;
 
+@SuppressWarnings("serial")
 public class StatusBar extends GameWindow {
 	BufferedImage icn_mouse;
 	int mx, my;
