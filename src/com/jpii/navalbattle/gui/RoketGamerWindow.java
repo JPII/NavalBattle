@@ -21,6 +21,7 @@ import javax.swing.*;
 
 import com.jpii.navalbattle.NavalBattle;
 import com.jpii.navalbattle.renderer.Helper;
+import com.jpii.navalbattle.util.URLUtils;
 import com.jpii.navalbattle.gui.listeners.*;
 
 import java.awt.*;
@@ -166,7 +167,7 @@ public class RoketGamerWindow extends JFrame{
 		roketgamerTab.add(lblVersion);
 
 		JLabel lblCopyrightTexasgamer = new JLabel(
-				"\u00A9 2012 TexasGamer");
+				"\u00A9 2013 RoketGamer");
 		lblCopyrightTexasgamer.setBounds(291, 11, 105, 14);
 		roketgamerTab.add(lblCopyrightTexasgamer);
 
@@ -175,47 +176,8 @@ public class RoketGamerWindow extends JFrame{
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				NavalBattle.getDebugWindow().printInfo("Opening RoketGamer page...");
-
-				String url = NavalBattle.getRoketGamer().getServerLocation();
-				String os = System.getProperty("os.name").toLowerCase();
-				Runtime rt = Runtime.getRuntime();
-
-				try {
-
-					if (os.indexOf("win") >= 0) {
-
-						// this doesn't support showing urls in the form of
-						// "page.html#nameLink"
-						rt.exec("rundll32 url.dll,FileProtocolHandler " + url);
-
-					} else if (os.indexOf("mac") >= 0) {
-
-						rt.exec("open " + url);
-
-					} else if (os.indexOf("nix") >= 0 || os.indexOf("nux") >= 0) {
-
-						// Do a best guess on unix until we get a platform
-						// independent way
-						// Build a list of browsers to try, in this order.
-						String[] browsers = { "epiphany", "firefox", "mozilla",
-								"konqueror", "netscape", "opera", "links",
-						"lynx" };
-
-						// Build a command string which looks like
-						// "browser1 "url" || browser2 "url" ||..."
-						StringBuffer cmd = new StringBuffer();
-						for (int i = 0; i < browsers.length; i++)
-							cmd.append((i == 0 ? "" : " || ") + browsers[i]
-									+ " \"" + url + "\" ");
-
-						rt.exec(new String[] { "sh", "-c", cmd.toString() });
-
-					} else {
-						return;
-					}
-				} catch (Exception ex) {
-					return;
-				}
+				
+				URLUtils.openURL(NavalBattle.getRoketGamer().getServerLocation());
 			}
 		});
 		btnRoketgamer.setBounds(291, 64, 99, 23);
