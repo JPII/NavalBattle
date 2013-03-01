@@ -80,7 +80,7 @@ public class NavalBattle {
 		Helper.LoadStaticResources();
 		setDefaultLookAndFeel();
 		debugWindow = new DebugWindow();
-		System.setOut(new HookStream(new ByteArrayOutputStream()));
+		//System.setOut(new HookStream(new ByteArrayOutputStream()));
 		
 		NavalBattleIO.run();
 		debugWindow.setVisible(true);

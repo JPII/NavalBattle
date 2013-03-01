@@ -97,12 +97,14 @@ public class Chunk extends Renderable{
 		terrain = new BufferedImage(34,34,BufferedImage.TYPE_USHORT_555_RGB);
 		Graphics g = terrain.getGraphics();
 		int water00 = 0,water01 = 0,water10 = 0,water11 = 0;
+		int hhh = 0;
 		for (int lsx = 0; lsx < 100/3; lsx++) {
 			for (int lsz = 0; lsz < 100/3; lsz++) {
 				float frsh = ProceduralLayeredMapGenerator.getPoint(lsx+(100.0f/3.0f*x), lsz+(100.0f/3.0f*z));
 				byte slip = ProceduralLayeredMapGenerator.getValidHouse((int)(lsx+(100.0f/3.0f*x)), (int)(lsz+(100.0f/3.0f*z)));
 				float lsy = frsh;
 				int nawo = rand.nextInt(-5, 8);
+				hhh++;
 				if (lsy >= 0.4) {
 					if (lsx < 16.6666666666666666 && lsz < 16.666666666666666)
 						water00 += 1;
@@ -155,6 +157,7 @@ public class Chunk extends Renderable{
 				//g.fillRect(lsx*3,lsz*3,4,4);
 			}
 		}
+		//System.out.println("hhh"+hhh/4);
 		
 		for (int xc = 100/3; xc > 0; xc--) {
 			for (int zc = 100/3; zc > 0; zc--) {
