@@ -75,7 +75,7 @@ public class NavalBattle {
 		gravatar.setSize(100);
 		gravatar.setRating(GravatarRating.GENERAL_AUDIENCES);
 		gravatar.setDefaultImage(GravatarDefaultImage.WAVATAR);
-		GRAVATAR = gravatar.download("tpgaubert@gmail.com");
+		BIG_GRAVATAR = gravatar.download("tpgaubert@gmail.com");
 		
 		Helper.LoadStaticResources();
 		setDefaultLookAndFeel();
