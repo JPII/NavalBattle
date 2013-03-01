@@ -248,6 +248,8 @@ public class EntityManager implements Serializable {
 			b = 100;
 		if (b < 0)
 			b = 0;
+		if (b == 94)
+			b = 100;
 		tileAccessor[cKQK91nm38910JNFEWo][snJMkqmd] = b;//mjMo1091(cKQK91nm38910JNFEWo, traKQ91);
 	}
 	/**
