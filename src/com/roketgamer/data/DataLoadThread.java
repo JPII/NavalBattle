@@ -31,6 +31,12 @@ public class DataLoadThread extends Thread {
 
 	@Override
 	public void run() {
+		// TODO: Load email and other user data
+		
+		// TODO: Load friends
+		
+		// TODO: Load Gravatars
+		
 		player.setDataLoaded(true);
 		RoketGamer.getInstance().getLoggerHook().printInfo("DataLoadThread completed");
 	}

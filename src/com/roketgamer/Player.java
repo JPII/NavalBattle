@@ -17,9 +17,13 @@
 
 package com.roketgamer;
 
+import java.awt.Image;
 import java.util.ArrayList;
 
+import javax.swing.ImageIcon;
+
 import com.roketgamer.data.DataLoadThread;
+import com.roketgamer.exception.DataNotLoadedException;
 import com.roketgamer.friend.Friend;
 import com.roketgamer.rauth.Password;
 
@@ -28,6 +32,7 @@ public class Player {
 	private String username;
 	private Password password;
 	private ArrayList<Friend> friends;
+	private byte[] gravatar_16px, gravatar_32px, gravatar_64px, gravatar_128px, gravatar_256px;
 	
 	private boolean hasLoadedData;
 
@@ -63,9 +68,35 @@ public class Player {
 	/**
 	 * Get player's friends list. Consists of <code>Friend</code> objects.
 	 * @return
+	 * @throws Exception 
 	 */
-	public ArrayList<Friend> getFriends() {
-		return friends;
+	public ArrayList<Friend> getFriends() throws DataNotLoadedException {
+		if(hasLoadedData)
+			return friends;
+		else
+			throw new DataNotLoadedException("Data not loaded!");
+	}
+	
+	public byte[] getAvatarAsBytes(int px) {
+		switch(px) {
+			case 16: return gravatar_16px;
+			case 32: return gravatar_32px;
+			case 64: return gravatar_64px;
+			case 128: return gravatar_128px;
+			case 256: return gravatar_256px;
+			default: return gravatar_256px;
+		}
+	}
+	
+	public Image getAvatarAsImage(int px) {
+		switch(px) {
+			case 16: return new ImageIcon(gravatar_16px).getImage();
+			case 32: return new ImageIcon(gravatar_32px).getImage();
+			case 64: return new ImageIcon(gravatar_64px).getImage();
+			case 128: return new ImageIcon(gravatar_128px).getImage();
+			case 256: return new ImageIcon(gravatar_256px).getImage();
+			default: return new ImageIcon(gravatar_256px).getImage();
+		}
 	}
 	
 	/**
@@ -76,6 +107,10 @@ public class Player {
 		return hasLoadedData;
 	}
 	
+	/**
+	 * Set data as loaded. <b>Use with caution!</b>
+	 * @param status
+	 */
 	public void setDataLoaded(boolean status) {
 		hasLoadedData = status;
 	}
