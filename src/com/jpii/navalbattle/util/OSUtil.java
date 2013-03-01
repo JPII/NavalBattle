@@ -1,5 +1,6 @@
 package com.jpii.navalbattle.util;
 
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -26,6 +27,41 @@ public class OSUtil {
 			dst.add(src.get(c));
 		}
 		return dst;
+	}
+	/**
+	 * This is a very special method. It will attempt to perform
+	 * a deep clone of an object.
+	 * 
+	 * This method will only work with classes that have
+	 * nullary constructors.
+	 * 
+	 * It is highly recommmended that this method is used on
+	 * small classes.
+	 * 
+	 * This method will <b>not</b> copy native memory, nor sub
+	 * objects.
+	 * @param src The object to copy.
+	 * @return A copied object.
+	 */
+	public static <T> T deepClone(T src) {
+		Object o;
+		try {
+			o = src.getClass().newInstance();
+		}
+		catch (Throwable t) {
+			return null;
+		}
+		T inst = (T)o;
+		Field[] fs = inst.getClass().getFields();
+		Field[] cn = src.getClass().getFields();
+		for (int f = 0; f < fs.length; f++) {
+			try {
+				fs[f].set(inst, cn[f].get(src));
+			} catch (Throwable tt) {
+				return null;
+			}
+		}
+		return inst;
 	}
 	public static <T> T[] memset(T[] src, T value) {
 		if (src == null)
