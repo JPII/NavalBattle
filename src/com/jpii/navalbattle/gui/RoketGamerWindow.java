@@ -140,13 +140,30 @@ public class RoketGamerWindow extends JFrame{
 				URLUtils.openURL(NavalBattle.getRoketGamer().getServerLocation());
 			}
 		});
-		btnRoketgamer.setBounds(291, 64, 99, 23);
+		btnRoketgamer.setBounds(297, 320, 99, 23);
 		roketgamerTab.add(btnRoketgamer);
 
 		JLabel lblNewLabel = new JLabel("");
 		lblNewLabel.setIcon(new ImageIcon(RoketGamerWindow.class.getResource("/com/roketgamer/res/logo_50px.png")));
 		lblNewLabel.setBounds(10, 11, 54, 50);
 		roketgamerTab.add(lblNewLabel);
+		
+		JTextPane txtpnStuff = new JTextPane();
+		txtpnStuff.setEditable(false);
+		txtpnStuff.setEnabled(false);
+		txtpnStuff.setText("RoketGamer for Java API " + NavalBattle.getRoketGamer().getVersion() +
+				"\n\nThis program is free software: you can redistribute it and/or modify " +
+				"\nit under the terms of the GNU General Public License as published by" +
+				"\nthe Free Software Foundation, either version 3 of the License, or" +
+				"\n(at your option) any later version." +
+				"\n\nThis program is distributed in the hope that it will be useful," +
+				"\nbut WITHOUT ANY WARRANTY; without even the implied warranty of" +
+				"\nMERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. " +
+				"\n\nSee the GNU General Public License for more details." +
+				"\nYou should have received a copy of the GNU General Public License" +
+				"\nalong with this program. If not, see <http://www.gnu.org/licenses/>.");
+		txtpnStuff.setBounds(10, 72, 386, 237);
+		roketgamerTab.add(txtpnStuff);
 
 		addWindowListener(new WindowCloser());
 
