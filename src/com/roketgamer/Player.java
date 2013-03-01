@@ -77,6 +77,11 @@ public class Player {
 			throw new DataNotLoadedException("Data not loaded!");
 	}
 	
+	/**
+	 * Returns player's current avatar (Gravatar) in the form of a <code>byte[]</code>.
+	 * @param px Size of avatar. Available in 16px, 32px, 64px, 128px, and 256px.
+	 * @return
+	 */
 	public byte[] getAvatarAsBytes(int px) {
 		switch(px) {
 			case 16: return gravatar_16px;
@@ -88,6 +93,11 @@ public class Player {
 		}
 	}
 	
+	/**
+	 * Returns player's current avatar (Gravatar) in the form of an <code>Image</code>.
+	 * @param px Size of avatar. Available in 16px, 32px, 64px, 128px, and 256px.
+	 * @return
+	 */
 	public Image getAvatarAsImage(int px) {
 		switch(px) {
 			case 16: return new ImageIcon(gravatar_16px).getImage();
@@ -115,6 +125,9 @@ public class Player {
 		hasLoadedData = status;
 	}
 	
+	/**
+	 * Load data. <b>Use with caution!</b>
+	 */
 	public void loadData() {
 		DataLoadThread dataLoaded = new DataLoadThread(this);
 		dataLoaded.start();
