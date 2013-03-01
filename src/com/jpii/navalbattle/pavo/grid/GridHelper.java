@@ -51,7 +51,7 @@ public class GridHelper implements Serializable {
 					break;
 				}
 				Tile temp = em.getTile(row,col+c);
-				if(temp!=null){
+				if(temp!=null) {
 					flag=false;
 					break;
 				}
@@ -65,7 +65,7 @@ public class GridHelper implements Serializable {
 					break;
 				}
 				Tile temp = em.getTile(row+c,col);
-				if(temp!=null){
+				if(temp!=null) {
 					flag=false;
 					break;
 				}

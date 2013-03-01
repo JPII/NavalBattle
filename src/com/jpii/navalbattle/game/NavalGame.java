@@ -214,6 +214,7 @@ public class NavalGame extends Game{
 			return;
 		
 		else if (Game.Settings.isFinishedGenerating && getWorld().getEntityManager().getTilePercentLand(chy,chx) <= 5){
+			///System.out.println("c"+chx+","+chy);
 			if(current==null){
 				if(me.getButton() == MouseEvent.BUTTON1){
 					if(GridHelper.canPlaceInGrid(nm,GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT, chy, chx, 4)){
