@@ -24,7 +24,6 @@ import com.jpii.navalbattle.data.Constants;
 import com.jpii.navalbattle.gui.listeners.Focus;
 import com.jpii.navalbattle.io.NavalBattleIO;
 import com.jpii.navalbattle.io.SettingsAttribute;
-import com.jpii.navalbattle.util.FileUtils;
 import com.jpii.navalbattle.util.URLUtils;
 import com.roketgamer.Player;
 import com.roketgamer.rauth.*;
@@ -99,7 +98,6 @@ public class LoginWindow extends Window {
 		offlineButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent ae) {
 				NavalBattle.getWindowHandler().getToasterManager().showToaster(new ImageIcon(getClass().getResource("/com/roketgamer/res/logo_100px.png")), "Offline mode enabled");
-				NavalBattle.getWindowHandler().getToasterManager().showToaster(new ImageIcon(NavalBattle.BIG_GRAVATAR), "Logged in as user");
 				NavalBattle.getDebugWindow().printInfo("Opening in offline mode");
 				NavalBattle.getDebugWindow().printWarning("RoketGamer disabled");
 				NavalBattle.getGameState().setOffline(true);
@@ -133,7 +131,7 @@ public class LoginWindow extends Window {
 				new Password(passwordField.getText())), Constants.ROKETGAMER_LOG_HOOK);
 		
 		if (status == AuthStatus.GOOD) {
-			//NavalBattle.getWindowHandler().getToasterManager().showToaster(new ImageIcon(FileUtils.getResourcePath("/com/roketgamer/res/logo_100px.png")), "Logged in as " + NavalBattle.getRoketGamer().getPlayer().getName());
+			NavalBattle.getWindowHandler().getToasterManager().showToaster(new ImageIcon(NavalBattle.BIG_GRAVATAR), "Logged in as " + NavalBattle.getRoketGamer().getPlayer().getName());
 			NavalBattle.getDebugWindow().printInfo("User authenticated");
 			NavalBattle.getDebugWindow().printInfo("Logged in as: " + NavalBattle.getRoketGamer().getPlayer().getName());
 			NavalBattleIO.saveAttribute(new SettingsAttribute("lastGoodUserName",NavalBattle.getRoketGamer().getPlayer().getName()));

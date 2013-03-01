@@ -66,9 +66,6 @@ public class StatusBar extends GameWindow {
 		g.drawString("Time: " + gameThing.getWorld().getTimeManager().getCurrentHour() + ":00"
 				, width-220+sd, 17);
 		
-		g.drawImage(new ImageIcon(NavalBattle.GRAVATAR).getImage(),width-348+sd,5,null);
-		
-		
 		g.setColor(Color.black);
 		g.fillRect(width-326, 2, 100, 20);
 		g.setColor(Color.darkGray);
@@ -77,8 +74,11 @@ public class StatusBar extends GameWindow {
 		g.setColor(Color.white);
 		if(NavalBattle.getGameState().isOffline())
 			g.drawString("Offline Mode", width-325+sd, 17);
-		else
+		else {
+			g.drawImage(new ImageIcon(NavalBattle.GRAVATAR).getImage(),width-348+sd,5,null);
 			g.drawString(NavalBattle.getRoketGamer().getPlayer().getName(), width-325+sd, 17);
+		}
+		
 		g.dispose();
 	}
 
