@@ -19,6 +19,7 @@ package com.jpii.navalbattle.data;
 
 import java.util.ArrayList;
 
+import com.jpii.gamekit.GameKit;
 import com.jpii.navalbattle.NavalBattle;
 import com.jpii.navalbattle.debug.*;
 import com.jpii.navalbattle.game.SinglePlayerGame;
@@ -191,6 +192,21 @@ public class Commands {
 	    		NavalBattle.getDebugWindow().println("OS: " + System.getProperty("os.name") + " (" + System.getProperty("os.version") + ")");
 	    		NavalBattle.getDebugWindow().println("Java Home: " + System.getProperty("java.home"));
 	    		NavalBattle.getDebugWindow().println("Java Version: " + System.getProperty("java.version"));
+	    	}}
+	    ));
+	    
+	    add(new Command("rginfo", "", "Get RoketGamer info", new CommandAction() { 
+	    	public void onRun(Command c, String[] args) {
+	    		NavalBattle.getDebugWindow().println("RoketGamer " + NavalBattle.getRoketGamer().getVersion());
+	    		NavalBattle.getDebugWindow().println("Server: " + NavalBattle.getRoketGamer().getServerLocation());
+	    		NavalBattle.getDebugWindow().println("Auth status: " + NavalBattle.getRoketGamer().getStatus());
+	    	}}
+	    ));
+	    
+	    add(new Command("gamekitinfo", "", "Get GameKit info", new CommandAction() { 
+	    	public void onRun(Command c, String[] args) {
+	    		NavalBattle.getDebugWindow().println("GameKit " + GameKit.getVersion());
+	    		NavalBattle.getDebugWindow().println("API level: " + GameKit.getApiLevel());
 	    	}}
 	    ));
 	}};
