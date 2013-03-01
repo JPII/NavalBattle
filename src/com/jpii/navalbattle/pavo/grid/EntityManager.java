@@ -158,10 +158,18 @@ public class EntityManager implements Serializable {
 		Chunk chunk = w.getChunk(x, z);
 		if (chunk == null)
 			return null;
-		if (c < 2 || r < 2)
-			throw new ArrayStoreException("Windows encountered a fatal error, and cannot continue.");
+		//if (c < 2 || r < 2)
+			//throw new ArrayStoreException("Windows encountered a fatal error, and cannot continue.");
 		int rx = c % 2;
 		int rz = r % 2;
+		if (c == 0)
+			rx = 0;
+		if (c == 1)
+			rx = 1;
+		if (r == 0)
+			rz = 0;
+		if (r == 1)
+			rz = 1;
 		if (rx == 0 && rz == 0)
 			return chunk.Tile00;
 		else if (rx != 0 && rz == 0)
