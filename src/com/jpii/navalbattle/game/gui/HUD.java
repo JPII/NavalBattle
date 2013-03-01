@@ -31,8 +31,8 @@ public class HUD extends PWindow{
 		setVisible(false);
 		setWidth(1);
 		setHeight(1);	
-		entityImage = new EntityImage(this,width-325,height/2,gp);
-		entityBox = new EntityBox(this,entityImage,width-325,height/2);
+		entityImage = new EntityImage(this,width-200,height/2,gp);
+		entityBox = new EntityBox(this,entityImage,width-200,height/2);
 		//x and y passed here are the center of the Frame/Image!!!
 		//needs updated x value please!
 

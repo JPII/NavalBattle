@@ -53,9 +53,7 @@ public class EntityImage extends PImage{
 	
 	public void paint(Graphics2D g){
 			if(getParent().isVisible())
-				g.setPaint(gp);
-			if(!getParent().isVisible())
-				g.setPaint(new GradientPaint(0,0,Color.black,0,height,Color.black));
+				g.setColor(new Color(169,140,86));
 			g.fillRect(0,0,getWidth(),getHeight());
 			g.drawImage(retrieveImage(getImageID()),0,0,null);
 	}
