@@ -72,6 +72,7 @@ public class RoketGamer {
 				session = new Session(in.readLine());
 				status = AuthStatus.GOOD;
 				loggerHook.printInfo("Logged in successfully");
+				player.loadData();
 			} else if (result.contains("false")) {
 				if(result.contains("Invalid API key")) {
 					status = AuthStatus.INVALID_API_KEY;

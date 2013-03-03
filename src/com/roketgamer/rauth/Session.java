@@ -26,22 +26,22 @@ import com.roketgamer.RoketGamer;
 
 public class Session {
 	
-	private String sessionID;
+	private String sessionKey;
 	
 	/**
 	 * Create a new <code>Session</code>.
 	 * @param sessionID
 	 */
-	public Session(String sessionID) {
-		this.sessionID = sessionID;
+	public Session(String sessionKey) {
+		this.sessionKey = sessionKey;
 	}
 	
 	/**
 	 * Get session ID.
 	 * @return
 	 */
-	public String getSessionID() {
-		return sessionID;
+	public String getSessionKey() {
+		return sessionKey;
 	}
 	
 	/**

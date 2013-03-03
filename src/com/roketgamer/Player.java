@@ -29,7 +29,7 @@ import com.roketgamer.rauth.Password;
 
 public class Player {
 
-	private String username;
+	private String username, email;
 	private Password password;
 	private ArrayList<Friend> friends;
 	private byte[] gravatar_16px, gravatar_32px, gravatar_64px, gravatar_128px, gravatar_256px;
@@ -107,6 +107,31 @@ public class Player {
 			case 256: return new ImageIcon(gravatar_256px).getImage();
 			default: return new ImageIcon(gravatar_256px).getImage();
 		}
+	}
+	
+	public void setAvatar(byte[] img, int px) {
+		switch(px) {
+		case 16: gravatar_16px = img; break;
+		case 32: gravatar_32px = img; break;
+		case 64: gravatar_64px = img; break;
+		case 128: gravatar_128px = img; break;
+		case 256: gravatar_256px = img; break;
+		default: gravatar_256px = img; break;
+	}
+	}
+	
+	/**
+	 * Set <code>Player</code> email address.
+	 */
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	
+	/**
+	 * Get <code>Player</code> email address.
+	 */
+	public String getEmail() {
+		return email;
 	}
 	
 	/**

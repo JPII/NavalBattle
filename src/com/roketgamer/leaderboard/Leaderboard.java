@@ -91,7 +91,7 @@ public class Leaderboard {
 	 */
 	public boolean submit(int score) {
 		try {
-			URL url = new URL(RoketGamer.SERVER_LOCATION + "/api/" + RoketGamer.VERSION + "/leaderboard/submit.php?id=" + getID() + "?session=" + RoketGamer.getInstance().getSession().getSessionID().trim()  + "&score=" + score);
+			URL url = new URL(RoketGamer.SERVER_LOCATION + "/api/" + RoketGamer.VERSION + "/leaderboard/submit.php?id=" + getID() + "?session=" + RoketGamer.getInstance().getSession().getSessionKey().trim()  + "&score=" + score);
 			
 			BufferedReader in = new BufferedReader(new InputStreamReader(url.openStream()));
 

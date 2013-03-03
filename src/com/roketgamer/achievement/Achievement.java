@@ -60,7 +60,7 @@ public class Achievement {
 	 */
 	public boolean submit(Achievement achievement, int id) {
 		try {
-			URL url = new URL(RoketGamer.SERVER_LOCATION + "/api/" + RoketGamer.VERSION + "/achievement/submit.php?id=" + achievement.getID() + "?session=" + RoketGamer.getInstance().getSession().getSessionID().trim() + "&id=" + id);
+			URL url = new URL(RoketGamer.SERVER_LOCATION + "/api/" + RoketGamer.VERSION + "/achievement/submit.php?id=" + achievement.getID() + "?session=" + RoketGamer.getInstance().getSession().getSessionKey().trim() + "&id=" + id);
 
 			BufferedReader in = new BufferedReader(new InputStreamReader(url.openStream()));
 
