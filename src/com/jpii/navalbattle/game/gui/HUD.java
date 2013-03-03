@@ -9,7 +9,6 @@ import maximusvladimir.dagen.Rand;
 import com.jpii.navalbattle.pavo.Game;
 import com.jpii.navalbattle.pavo.grid.Entity;
 import com.jpii.navalbattle.pavo.gui.WindowManager;
-import com.jpii.navalbattle.pavo.gui.controls.PFrame;
 import com.jpii.navalbattle.pavo.gui.controls.PWindow;
 
 public class HUD extends PWindow{
@@ -17,7 +16,6 @@ public class HUD extends PWindow{
 	Rand ran;
 	GradientPaint gp;
 	EntityBox entityBox;
-	EntityImage entityImage;
 	int extrawidth;
 	int extraheight;
 	
@@ -30,14 +28,11 @@ public class HUD extends PWindow{
 		setTitleVisiblity(false);
 		setVisible(false);
 		setWidth(1);
-		setHeight(1);	
-		entityImage = new EntityImage(this,width-200,height/2,gp);
-		entityBox = new EntityBox(this,entityImage,width-200,height/2);
+		setHeight(1);
+		entityBox = new EntityBox(this,width-200,height/2);
 		//x and y passed here are the center of the Frame/Image!!!
-		//needs updated x value please!
 
 		addControl(entityBox);
-		addControl(entityImage);
 	}
 	
 	public void paint(Graphics2D g) {
@@ -54,13 +49,12 @@ public class HUD extends PWindow{
 	}
 	
 	public void setEntity(Entity e){		
-		entityImage.setEntity(e);
-		entityBox.changeSize();
-		update();
+		update(e);
+		entityBox.setEntity(e);
 	}
 	
-	public void update(){
-		if(entityImage.getEntity() != null){
+	public void update(Entity e){
+		if(e != null){
 			setVisible(true);
 			setWidth(extrawidth);
 			setHeight(extraheight);
@@ -71,8 +65,6 @@ public class HUD extends PWindow{
 			setHeight(1);
 		}
 		repaint();
-		entityBox.repaint();
-		entityImage.repaint();
 	}
 	
 }

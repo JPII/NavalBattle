@@ -1,7 +1,6 @@
 package com.jpii.navalbattle.game.gui;
 
 import java.awt.Color;
-import java.awt.GradientPaint;
 import java.awt.Graphics2D;
 
 import com.jpii.navalbattle.pavo.grid.Entity;
@@ -12,20 +11,17 @@ import com.jpii.navalbattle.util.FileUtils;
 public class EntityImage extends PImage{
 	
 	Entity display;
-	GradientPaint gp;
 	int imageNumber,centerx,centery;
 	
-	public EntityImage(Control parent,int x, int y,GradientPaint gp) {
+	public EntityImage(Control parent,int x, int y) {
 		super(parent,x,y);
-		setVisible(false);
-		this.gp = gp;
 		display = null;
 		imageNumber = -1;
 		centerx = x;
 		centery = y;
 	}
 	
-	public void setEntity(Entity e){
+	public void setEntity(Entity e){		
 		imageNumber = -1;
 		display = e;
 		if(display!=null){
@@ -36,7 +32,6 @@ public class EntityImage extends PImage{
 	}
 	
 	public void changeSize(){
-		setVisible(true);
 		if(retrieveImage(imageNumber)==null){
 			setWidth(1);
 			setHeight(1);
@@ -47,19 +42,20 @@ public class EntityImage extends PImage{
 		setLocX(centerx - width/2);
 		setLocY(centery - height/2);
 		if(!(getWidth()>10||getHeight()>10)){
-			setVisible(false);
+			setWidth(1);
+			setHeight(1);
 		}
 	}
 	
 	public void paint(Graphics2D g){
-			if(getParent().isVisible())
-				g.setColor(new Color(169,140,86));
-			g.fillRect(0,0,getWidth(),getHeight());
-			g.drawImage(retrieveImage(getImageID()),0,0,null);
+		if(getParent().isVisible()){
+			g.setColor(new Color(169,140,86));
+			g.fillRect(50,50,getWidth(),getHeight());
+			g.drawImage(retrieveImage(getImageID()),50,50,null);
+		}
 	}
 	
 	public Entity getEntity(){
 		return display;
-	}
-
+	}	
 }
