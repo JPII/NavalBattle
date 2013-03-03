@@ -24,6 +24,7 @@ import java.awt.event.MouseEvent;
 
 import javax.swing.*;
 
+import com.jpii.navalbattle.NavalBattle;
 import com.jpii.navalbattle.data.Constants;
 import com.jpii.navalbattle.util.FileUtils;
 
@@ -68,8 +69,10 @@ public class LoggingInWindow extends Window {
 					currentImage = 0;
 				else
 					currentImage++;
-				if (length > Constants.SPLASH_SCREEN_TIMEOUT)
+				if (length > Constants.SPLASH_SCREEN_TIMEOUT && NavalBattle.getRoketGamer().getPlayer().hasLoadedData()) {
 					openMenu();
+					NavalBattle.getWindowHandler().getToasterManager().showToaster(new ImageIcon(NavalBattle.getRoketGamer().getPlayer().getAvatarAsBytes(64)), " Logged in as " + NavalBattle.getRoketGamer().getPlayer().getName());
+				}
 			}
 		};
 		timer = new Timer(Constants.SPLASH_DURATION,al);
