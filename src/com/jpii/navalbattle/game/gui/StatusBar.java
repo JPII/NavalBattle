@@ -78,7 +78,7 @@ public class StatusBar extends GameWindow {
 		if(NavalBattle.getGameState().isOffline())
 			g.drawString("Offline Mode", width-325+sd, 17);
 		else {
-			g.drawImage(new ImageIcon(NavalBattle.GRAVATAR).getImage(),width-348+sd,5,null);
+			g.drawImage(new ImageIcon(NavalBattle.getRoketGamer().getPlayer().getAvatarAsBytes(16)).getImage(),width-348+sd,5,null);
 			g.drawString(NavalBattle.getRoketGamer().getPlayer().getName(), width-325+sd, 17);
 		}
 		
