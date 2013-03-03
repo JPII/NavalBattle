@@ -41,6 +41,8 @@ public class ProceduralLayeredMapGenerator {
 		for (int c = 0; c < json.length; c++) {
 			json[c] = new $JSNAO9JW10SKJF194OI(PavoHelper.getGameWidth(WorldSize.WORLD_LARGE)*32,
 					PavoHelper.getGameHeight(WorldSize.WORLD_LARGE)*32);
+
+
 		}
 		/*barracades = new $kdOWj20Janro2[20];
 		for (int c = 0; c < barracades.length; c++) {
