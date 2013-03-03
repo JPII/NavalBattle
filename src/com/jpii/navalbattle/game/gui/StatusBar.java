@@ -2,12 +2,15 @@ package com.jpii.navalbattle.game.gui;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
+import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 
 import com.jpii.navalbattle.NavalBattle;
 import com.jpii.navalbattle.pavo.Game;
 import com.jpii.navalbattle.pavo.PavoHelper;
 import com.jpii.navalbattle.pavo.gui.GameWindow;
+import com.jpii.navalbattle.pavo.gui.MessageBox;
+import com.jpii.navalbattle.pavo.gui.MessageBoxIcon;
 import com.jpii.navalbattle.util.FileUtils;
 
 import javax.swing.ImageIcon;
@@ -95,5 +98,15 @@ public class StatusBar extends GameWindow {
 	public void setLoc(int x, int y) {
 		this.x = x;
 		this.y = y;
+	}
+	
+	public boolean mouseDown(MouseEvent me) {
+		if(me.getX() >= width-326 && me.getX() <= (width-326) + 100) {
+			if(NavalBattle.getGameState().isOffline())
+				MessageBox.show("Offline Mode","Connect to the internet to enjoy RoketGamer features.",
+					MessageBoxIcon.Notify, false);
+		}
+
+		return true;
 	}
 }

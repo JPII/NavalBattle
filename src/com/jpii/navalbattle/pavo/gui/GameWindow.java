@@ -27,10 +27,6 @@ import com.jpii.navalbattle.pavo.Renderable;
 import com.jpii.navalbattle.pavo.io.PavoImage;
 import com.jpii.navalbattle.renderer.Helper;
 
-/**
- * @author MKirkby
- *
- */
 public class GameWindow extends Renderable {
 	Color bck_clr;
 	boolean showTitle;
