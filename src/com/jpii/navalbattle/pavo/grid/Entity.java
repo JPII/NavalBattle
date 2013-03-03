@@ -25,7 +25,7 @@ import com.jpii.navalbattle.pavo.*;
 public class Entity implements Serializable {
 	
 	private Location location = Location.Unknown;
-	private String tag;
+	private String tag = "";
 	public long lastUpdate = 0;
 	private int width, height;
 	private EntityManager manager;
@@ -33,6 +33,7 @@ public class Entity implements Serializable {
 	public int teamId;
 	private byte ORIENTATION_BUFFER_POSITION = GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT;
 	public String imgLocation;
+	private static int ENTITYMASTERRECORDSYSTEMPLEASEDONOTTOUCHTHIS = 0;
 	
 	public Entity(EntityManager em) {
 		manager = em;
@@ -41,6 +42,18 @@ public class Entity implements Serializable {
 	
 	public byte getCurrentOrientation() {
 		return ORIENTATION_BUFFER_POSITION;
+	}
+	
+	public int getCurrentId() {
+		return id.memCall(ORIENTATION_BUFFER_POSITION)[0];
+	}
+	
+	public String getTag() {
+		return tag;
+	}
+	
+	public void setTag(String tag) {
+		this.tag = tag;
 	}
 	
 	public Entity(EntityManager em,Location loc, GridedEntityTileOrientation id,byte orientation,int teams) {
@@ -63,6 +76,7 @@ public class Entity implements Serializable {
 	 */
 	public void init() {
 		setWidth(1);
+		setTag("entity-"+ENTITYMASTERRECORDSYSTEMPLEASEDONOTTOUCHTHIS++);
 		//setHeight(1);
 	}
 	

@@ -24,6 +24,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 import com.jpii.navalbattle.game.NavalGame;
+import com.jpii.navalbattle.game.entity.BattleShip;
 import com.jpii.navalbattle.pavo.Chunk;
 import com.jpii.navalbattle.pavo.Game;
 import com.jpii.navalbattle.pavo.PavoHelper;
@@ -223,7 +224,51 @@ public class EntityManager implements Serializable {
 		lastid = swap;
 		return lastid;
 	}
-	
+	/**
+	 * Finds all non-null entities of a particular type.
+	 * Use it like:
+	 * <code>
+	 * BattleShip[] bs = getEntityManager().<BattleShip>findEntities();
+	 * </code>
+	 * @return
+	 */
+	public <T> T[] findEntities() {
+		ArrayList<T> ern = new ArrayList<T>();
+		for (int c = 0; c < getTotalEntities(); c++) {
+			Entity ef = getEntity(c);
+			if (ef != null) {
+				T tcast = null;
+				try {
+					tcast = (T)ef;
+				}
+				catch (Throwable t) {
+					
+				}
+				if (tcast != null)
+					ern.add(tcast);
+			}
+		}
+		return (T[])ern.toArray();
+	}
+	public Entity findEntity(String tag) {
+		for (int c = 0; c < getTotalEntities(); c++) {
+			Entity ef = getEntity(c);
+			if (ef != null && ef.getTag().equals(tag)) {
+				return ef;
+			}
+		}
+		return null;
+	}
+	public Entity[] findEntities(int id) {
+		ArrayList<Entity> ferns = new ArrayList<Entity>();
+		for (int c = 0; c < getTotalEntities(); c++) {
+			Entity ef = getEntity(c);
+			if (ef != null && ef.getCurrentId() == id) {
+				ferns.add(ef);
+			}
+		}
+		return (Entity[])ferns.toArray();
+	}
 	public final BufferedImage getImage(Tile tile) {
 		if (tile == null)
 			return IndexableImage.getImage(0);
