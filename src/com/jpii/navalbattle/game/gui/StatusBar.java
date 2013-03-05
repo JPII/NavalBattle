@@ -105,8 +105,9 @@ public class StatusBar extends GameWindow {
 			if(NavalBattle.getGameState().isOffline())
 				MessageBox.show("Offline Mode","Connect to the internet to enjoy RoketGamer features.",
 					MessageBoxIcon.Notify, false);
+			return true;
 		}
 
-		return true;
+		return false;
 	}
 }
