@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<navalbattle>
+	<string name="version_code">5</string>
+	<string name="version_readable">0.5</string>
+	<string name="update_url">http://github.com/JPII/NavalBattle</string>
+	
+	<string name="announcement_code">0</string>
+	<string name="announcement_title">This is an announcement</string>
+	<string name="announcement_text">Announcement text</string>
+	<string name="announcement_url">http://github.com/JPII/NavalBattle</string>
+</navalbattle>
