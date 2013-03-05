@@ -4,9 +4,12 @@
 package com.jpii.navalbattle.pavo.io;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
+import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -54,40 +57,65 @@ public class PavoServer implements Runnable {
 	}
 
 	public void run() {
+		try {
+			socket = new ServerSocket(670);
+		} catch (IOException e2) {
+			e2.printStackTrace();
+		}
 		while (doing) {
-			if (client == null)
+			try {
+				client = socket.accept();
+			} catch (IOException e1) {
+				e1.printStackTrace();
+			}
+			
+			if (sendTmp != null && !sendTmp.equals("")) {
+	            OutputStream os = null;
 				try {
-					try {
-						socket = new ServerSocket(67);
-					} catch (Throwable e) {
-					}
-					client = socket.accept();
-					System.out.println("Connected to: " + client.getLocalAddress().getHostAddress());
-				} catch (Throwable e) {
-					System.out.println("Failed to connect to client." + e.getMessage());
+					os = client.getOutputStream();
+				} catch (IOException e1) {
+					e1.printStackTrace();
 				}
+	            OutputStreamWriter osw = new OutputStreamWriter(os);
+	            BufferedWriter bw = new BufferedWriter(osw);
+	            try {
+					bw.write(sendTmp);
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+	            sendTmp = "";
+	            try {
+					bw.flush();
+				} catch (Throwable t) {
+					
+				}
+			}
+			
+            InputStream is = null;
 			try {
-				if (reader != null)
-					reader.close();
-				if (output != null)
-					output.close();
-				reader = new BufferedReader(new InputStreamReader(client.getInputStream()));
-				output = new PrintWriter(client.getOutputStream(),true);
-				String s = "";
-				String input;
-				while((input = reader.readLine()) != null)
-					s += input + "\n";
-				
-				onMessageRecieved(s);
-			} catch (Throwable t) {
-				System.out.println("Something occured on the server:" +t.getMessage());
+				is = client.getInputStream();
+			} catch (IOException e) {
+				e.printStackTrace();
 			}
-			try {
-				Thread.sleep(300);
+            InputStreamReader isr = new InputStreamReader(is);
+            BufferedReader br = new BufferedReader(isr);
+            String tmp = "";
+            String build = "";
+            try {
+				while ((tmp = br.readLine()) != null) {
+					build += tmp + "\n";
+				}
+			} catch (IOException e) {
+				e.printStackTrace();
 			}
-			catch (Throwable t) {
-				
-			}
+            if (build.length() > 1) {
+            	build = build.substring(0, build.length()-1);
+            }
+            
+            if (!build.equals("\n")) {
+            	onMessageRecieved(build);
+            }
+            
 			loop();
 		}
 	}
@@ -96,13 +124,13 @@ public class PavoServer implements Runnable {
 		
 	}
 	
+	String sendTmp = "";
 	public void send(String msg) {
-		if (output != null)
-			output.println(msg);
+		sendTmp += msg;
 	}
 	
 	public void onMessageRecieved(String msg) {
-		System.out.println("Recieved from client: " + msg);
+		System.out.println("Recieved from client (the requestor): " + msg);
 	}
 	
 	public void halt() {

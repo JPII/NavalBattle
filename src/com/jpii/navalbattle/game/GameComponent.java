@@ -54,10 +54,13 @@ public class GameComponent extends JComponent {
 	Timer alert;
 	boolean startDialog = false;
 	PavoImage notifier;
-	public GameComponent(JFrame frame) {
+	public GameComponent(JFrame frame, PavoOpenState pos, String params) {
 		this.frame = frame;
 		winlib = new WindowLib(frame);
-		game = new NavalGame();
+		if (pos != PavoOpenState.NORMAL)
+			game = new NavalGame(pos,params);
+		else
+			game = new NavalGame();
 		MouseListener ml = new MouseListener() {
 			public void mouseClicked(MouseEvent arg0) {
 			}

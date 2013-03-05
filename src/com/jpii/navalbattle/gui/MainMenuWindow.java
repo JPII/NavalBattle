@@ -21,22 +21,31 @@ import javax.swing.*;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import com.jpii.navalbattle.NavalBattle;
 import com.jpii.navalbattle.data.Constants;
 import com.jpii.navalbattle.game.SinglePlayerGame;
 import com.jpii.navalbattle.gui.listeners.*;
+import com.jpii.navalbattle.io.NavalBattleIO;
+import com.jpii.navalbattle.pavo.PavoOpenState;
 import com.jpii.navalbattle.renderer.Helper;
 
 @SuppressWarnings("serial")
 public class MainMenuWindow extends Window {
 	JButton btnRoketGamer;
+	SinglePlayerGame spg;
+	PavoOpenState pos = PavoOpenState.NORMAL;
+	String args = null;
 	
 	/**
 	 * <code>MainMenuWindow</code> constructor.
 	 */
 	public MainMenuWindow() {
 		super();
+		
+		spg = new SinglePlayerGame();
 		
 		getContentPane().setLayout(null);
 		
@@ -88,7 +97,8 @@ public class MainMenuWindow extends Window {
 		btnSingleplayer.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				new SinglePlayerGame().setVisible(true);
+				spg.setGameVars(pos,args);
+				spg.setVisible(true);
 				NavalBattle.getWindowHandler().killAll();
 			}
 		});		
@@ -121,9 +131,41 @@ public class MainMenuWindow extends Window {
 		btnMultiplayer.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				NavalBattle.getDebugWindow().printWarning("Multiplayer has not been implemented");
+				//NavalBattle.getDebugWindow().printWarning("Multiplayer has not been implemented");
+				boolean valid = false;
+				String ip = NavalBattleIO.getAttribute("lastGoodIP");
+				while (!valid) {
+					ip = JOptionPane.showInputDialog(null,(Object)"Enter IP address to connect to:",(Object)ip);
+					if (ip == null)
+						return;
+					if (ip.equals(""))
+						valid = false;
+					else if (ip.equals("127.0.0.1") || ip.equals("localhost")) {
+						JOptionPane.showMessageDialog(null,"Not permitted to connect to self.","JR says NO!",JOptionPane.WARNING_MESSAGE);
+						valid = false;
+					}
+					else
+						valid = validate(ip);
+				}
+				NavalBattleIO.saveAttribute("lastGoodIP", ip);
+				spg.setGameVars(PavoOpenState.OPEN_SERVER,ip);
+				spg.setVisible(true);
+				NavalBattle.getWindowHandler().killAll();
 			}
 		});
+	}
+	
+	private static final String PATTERN = 
+	        "^([01]?\\d\\d?|2[0-4]\\d|25[0-5])\\." +
+	        "([01]?\\d\\d?|2[0-4]\\d|25[0-5])\\." +
+	        "([01]?\\d\\d?|2[0-4]\\d|25[0-5])\\." +
+	        "([01]?\\d\\d?|2[0-4]\\d|25[0-5])$";
+
+	public static boolean validate(final String ip){          
+
+	      Pattern pattern = Pattern.compile(PATTERN);
+	      Matcher matcher = pattern.matcher(ip);
+	      return matcher.matches();             
 	}
 	
 	/**

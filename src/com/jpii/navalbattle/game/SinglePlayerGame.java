@@ -21,6 +21,7 @@ import javax.swing.*;
 
 import com.jpii.navalbattle.NavalBattle;
 import com.jpii.navalbattle.pavo.Game;
+import com.jpii.navalbattle.pavo.PavoOpenState;
 import com.jpii.navalbattle.gui.Window;
 
 @SuppressWarnings("serial")
@@ -28,7 +29,11 @@ public class SinglePlayerGame extends Window {
 	public GameComponent game;
 
 	public SinglePlayerGame() {
-		game = new GameComponent(this);
+		
+	}
+	
+	public void setGameVars(PavoOpenState pos, String args) {
+		game = new GameComponent(this,pos,args);
 		game.setLocation(0,40);
 		setContentPane(game);
 		this.getContentPane().setLayout(null);

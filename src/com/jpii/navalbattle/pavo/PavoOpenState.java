@@ -10,5 +10,5 @@ package com.jpii.navalbattle.pavo;
 public enum PavoOpenState {
 	OPEN_SERVER,
 	OPEN_FILE_LOAD,
-	OPEN_ROKETGAMER
+	NORMAL
 }
