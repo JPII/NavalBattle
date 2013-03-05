@@ -21,7 +21,7 @@ public class Tile<T> {
 		}
 	}
 	public void setId(Id id) {
-		System.out.println("s:"+id);
+		//System.out.println("s:"+id);
 		this.id = id;
 	}
 	public Id getId() {
