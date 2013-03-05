@@ -61,6 +61,9 @@ public class PavoClient implements Runnable{
 	        String build = "";
 	        try {
 				while ((tmp = br.readLine()) != null) {
+					if (build.equals("Yes sir. I am listening. Are you listening?")) {
+						System.out.println("Congrads! The connection test to the server was sucessful!");
+					}
 					build += tmp + "\n";
 				}
 			} catch (IOException e) {

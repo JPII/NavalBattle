@@ -69,7 +69,7 @@ public class PavoServer implements Runnable {
 				e1.printStackTrace();
 			}
 			
-			if (sendTmp != null && !sendTmp.equals("")) {
+			//if (sendTmp != null && !sendTmp.equals("")) {
 	            OutputStream os = null;
 				try {
 					os = client.getOutputStream();
@@ -89,7 +89,7 @@ public class PavoServer implements Runnable {
 				} catch (Throwable t) {
 					
 				}
-			}
+			//}
 			
             InputStream is = null;
 			try {
@@ -103,6 +103,10 @@ public class PavoServer implements Runnable {
             String build = "";
             try {
 				while ((tmp = br.readLine()) != null) {
+					if (tmp.equals("Is the server listening?")) {
+						send("Yes sir. I am listening. Are you listening?");
+						System.out.println("Congrads! The connection test to the client was sucessful!");
+					}
 					build += tmp + "\n";
 				}
 			} catch (IOException e) {
