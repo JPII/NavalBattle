@@ -84,6 +84,33 @@ public class NavalGame extends Game{
 		twwna.setLoc(200,200);
 		twwna.repaint();
 	}
+	public NavalGame(PavoOpenState pos, String flags) {
+		super(pos,flags);
+		hud = new HUD(getWinMan(),0,Settings.currentHeight-150,Settings.currentWidth, 150);
+		hud.repaint();
+		nm = new NavalManager(getWorld());
+		getWorld().setEntityManager(nm);
+		omnimap = new OmniMap(getWorld());
+		ppw = new PlayerProfileWindow();
+		sb = new StatusBar(this);
+		test = new GridWindow();
+		test.setGridLocation(10,10);
+		ppw.setLoc(200,200);
+		siw = new ShipInfoWindow();
+		siw.setLoc(350,350);
+		getWorld().getWeather().setWeather(WeatherMode.Sunny);
+		getWinMan().add(ppw);
+		getWinMan().add(siw);
+		getWinMan().add(sb);
+		getWinMan().add(test);
+		//MessageBox.show("Warning", "This is a message box!!!");
+		MessageBox.show("Hey there!","Could not connect to RocketGamer servers.\n\nTrying again in 10 seconds.",
+				MessageBoxIcon.Notify, false);
+		
+		twwna = new TestWindowWithNewAPI(getWinMan());
+		twwna.setLoc(200,200);
+		twwna.repaint();
+	}
 	/**
 	 * Mulithreaded updator.
 	 */

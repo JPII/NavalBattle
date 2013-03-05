@@ -30,6 +30,7 @@ import javax.swing.*;
 import com.jpii.navalbattle.data.Constants;
 import com.jpii.navalbattle.pavo.Game;
 import com.jpii.navalbattle.pavo.PavoHelper;
+import com.jpii.navalbattle.pavo.PavoOpenState;
 import com.jpii.navalbattle.pavo.io.PavoImage;
 import com.jpii.navalbattle.renderer.Console;
 import com.jpii.navalbattle.renderer.Helper;
@@ -56,7 +57,7 @@ public class GameComponent extends JComponent {
 	public GameComponent(JFrame frame) {
 		this.frame = frame;
 		winlib = new WindowLib(frame);
-		game = new NavalGame();
+		game = new NavalGame(PavoOpenState.OPEN_SERVER,"10.1.236.12");
 		MouseListener ml = new MouseListener() {
 			public void mouseClicked(MouseEvent arg0) {
 			}
