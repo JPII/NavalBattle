@@ -20,9 +20,6 @@ package com.jpii.navalbattle.data;
 import maximusvladimir.dagen.Rand;
 
 import com.jpii.navalbattle.gui.listeners.*;
-import com.roketgamer.gravatar.Gravatar;
-import com.roketgamer.gravatar.GravatarDefaultImage;
-import com.roketgamer.gravatar.GravatarRating;
 
 public class Constants {
 	
@@ -33,6 +30,8 @@ public class Constants {
 	public static final String VERSION_CODE = "5";
 	public static final String NAVALBATTLE_CODENAME = "Avenger";
 	public static final String NAVALBATTLE_VERSION_TITLE = "NavalBattle " + NAVALBATTLE_VERSION + " (" + NAVALBATTLE_CODENAME + ")";
+	public static final String NAVALBATTLE_UPDATE_URL = "https://raw.github.com/JPII/NavalBattle/master/update.xml";
+	
 	public static final boolean DEBUG_MODE = true;
 	
 	public static final int SPLASH_DURATION = 1000;
