@@ -19,14 +19,11 @@ package com.jpii.navalbattle.io;
 
 import com.jpii.navalbattle.NavalBattle;
 import com.jpii.navalbattle.io.SettingsAttribute;
-import com.jpii.navalbattle.io.SettingsReader;
 import com.jpii.navalbattle.pavo.Game;
 import com.jpii.navalbattle.pavo.io.CompoundedGameStateIO;
 import com.jpii.navalbattle.util.FileUtils;
 
 import java.io.File;
-import java.io.FileWriter;
-import java.util.ArrayList;
 
 public class NavalBattleIO {
 	
@@ -39,8 +36,9 @@ public class NavalBattleIO {
 			String settingsPath = getSettingsPath();
 			settings = new SettingsIO(settingsPath);
 			boolean res = settings.setAttribute(new SettingsAttribute("lastGoodUserName",""));
+			res = settings.setAttribute(new SettingsAttribute("announcementId", ""));
 			if (!res)
-				NavalBattle.getDebugWindow().printError("failed to write initial attribute");
+				NavalBattle.getDebugWindow().printError("failed to write initial attributes");
 		}
 		else {
 			NavalBattle.getDebugWindow().printInfo("Loading config file");	
