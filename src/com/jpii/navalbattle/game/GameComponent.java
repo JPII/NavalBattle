@@ -57,7 +57,7 @@ public class GameComponent extends JComponent {
 	public GameComponent(JFrame frame) {
 		this.frame = frame;
 		winlib = new WindowLib(frame);
-		game = new NavalGame(PavoOpenState.OPEN_SERVER,"10.1.236.12");
+		game = new NavalGame();
 		MouseListener ml = new MouseListener() {
 			public void mouseClicked(MouseEvent arg0) {
 			}

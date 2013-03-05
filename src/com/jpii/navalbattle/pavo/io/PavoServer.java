@@ -47,11 +47,6 @@ public class PavoServer implements Runnable {
 			}
 			System.out.println("Your ip address is: " + ipaddress);
 		}
-		try {
-			socket = new ServerSocket(67);
-		} catch (Throwable e) {
-			return false;
-		}
 		doing = true;
 		self = new Thread(this);
 		self.start();
@@ -62,6 +57,10 @@ public class PavoServer implements Runnable {
 		while (doing) {
 			if (client == null)
 				try {
+					try {
+						socket = new ServerSocket(67);
+					} catch (Throwable e) {
+					}
 					client = socket.accept();
 					System.out.println("Connected to: " + client.getLocalAddress().getHostAddress());
 				} catch (Throwable e) {
