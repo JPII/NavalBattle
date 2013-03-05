@@ -210,6 +210,10 @@ public class NavalGame extends Game{
 		chy /= 50;
 		Tile current = nm.getTile(chy,chx);
 		
+		if (isAClient()) {
+			getSelfClient().send("Mouse was clicked at: (" + chx + ","+ chy+")");
+		}
+		
 		if (getWinMan().mouseDown(me)||(omnimap.mouseDown(me)))
 			return;
 		

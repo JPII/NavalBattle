@@ -34,9 +34,6 @@ public class BattleShip extends Entity {
 	public BattleShip(EntityManager em, Location loc, GridedEntityTileOrientation superId,byte orientation,int team) {
 		super(em, loc, superId,orientation,team);
 		imgLocation="drawable-game/aircraftcarrier/aircraftcarrier.png";
-		if (em.getWorld().getGame().isAClient()) {
-			em.getWorld().getGame().getSelfClient().send("A battleship was placed at: " + loc);
-		}
 	}
 	
 	public void init() {

@@ -45,6 +45,7 @@ public class PavoServer implements Runnable {
 			catch (Throwable t) {
 				
 			}
+			System.out.println("Your ip address is: " + ipaddress);
 		}
 		try {
 			socket = new ServerSocket(67);
