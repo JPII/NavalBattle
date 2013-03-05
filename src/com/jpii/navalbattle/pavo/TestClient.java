@@ -19,8 +19,4 @@ public class TestClient extends PavoClient {
 		super(ip);
 		this.game = game;
 	}
-	
-	public void onRecieve(String message) {
-		System.out.println("Recieved from server (" + getIP() + "): " + message);
-	}
 }

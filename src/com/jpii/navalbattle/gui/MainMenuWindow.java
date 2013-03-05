@@ -36,8 +36,8 @@ import com.jpii.navalbattle.renderer.Helper;
 public class MainMenuWindow extends Window {
 	JButton btnRoketGamer;
 	SinglePlayerGame spg;
-	PavoOpenState pos = PavoOpenState.NORMAL;
-	String args = null;
+	//PavoOpenState pos = PavoOpenState.NORMAL;
+	//String args = null;
 	
 	/**
 	 * <code>MainMenuWindow</code> constructor.
@@ -70,7 +70,7 @@ public class MainMenuWindow extends Window {
 		
 		lblNavalBattle.setForeground(Color.WHITE);
 		lblNavalBattle.setFont(Helper.GUI_MENU_TITLE_FONT);
-		btnMultiplayer.setEnabled(false);
+		//btnMultiplayer.setEnabled(false);
 		lblNavalBattle.setHorizontalAlignment(SwingConstants.CENTER);
 		
 		getContentPane().add(lblVersion);
@@ -97,7 +97,7 @@ public class MainMenuWindow extends Window {
 		btnSingleplayer.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				spg.setGameVars(pos,args);
+				spg.setGameVars(PavoOpenState.NORMAL,null);
 				spg.setVisible(true);
 				NavalBattle.getWindowHandler().killAll();
 			}
@@ -140,10 +140,10 @@ public class MainMenuWindow extends Window {
 						return;
 					if (ip.equals(""))
 						valid = false;
-					else if (ip.equals("127.0.0.1") || ip.equals("localhost")) {
-						JOptionPane.showMessageDialog(null,"Not permitted to connect to self.","JR says NO!",JOptionPane.WARNING_MESSAGE);
-						valid = false;
-					}
+					//else if (ip.equals("127.0.0.1") || ip.equals("localhost")) {
+					//	JOptionPane.showMessageDialog(null,"Not permitted to connect to self.","JR says NO!",JOptionPane.WARNING_MESSAGE);
+					//	valid = false;
+					//
 					else
 						valid = validate(ip);
 				}
