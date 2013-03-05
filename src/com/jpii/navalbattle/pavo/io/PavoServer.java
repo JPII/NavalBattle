@@ -93,7 +93,8 @@ public class PavoServer implements Runnable {
 	}
 	
 	public void send(String msg) {
-		output.println(msg);
+		if (output != null)
+			output.println(msg);
 	}
 	
 	public void onMessageRecieved(String msg) {
