@@ -63,12 +63,15 @@ public class Game extends Renderable implements Runnable, Serializable {
 	public static Game Instance;
 	private PavoClient client;
 	private PavoServer server;
+	private boolean isClient = false;
 	//private BufferedImage chunkBuffer;
 	public static PavoSettings Settings = new PavoSettings();
 	/**
 	 * Creates a new instance of the game.
 	 */
 	public Game() {
+		server = new PavoServer();
+		System.out.println("Server status: " + server.start());
 		windows = new WindowManager(this);
 		world = new World(this);
 		//gen = new WorldGen();
@@ -84,6 +87,11 @@ public class Game extends Renderable implements Runnable, Serializable {
 		Instance = this;
 	}
 	public Game(PavoOpenState pos, String flags) {
+		if (pos == PavoOpenState.OPEN_SERVER) {
+			client = new TestClient(flags,this);
+			System.out.println("Client status: " + client.start());
+			isClient = true;
+		}
 		windows = new WindowManager(this);
 		world = new World(this);
 		//gen = new WorldGen();
@@ -98,6 +106,19 @@ public class Game extends Renderable implements Runnable, Serializable {
 		yearl = Integer.parseInt(years.substring(2));
 		Instance = this;
 	}
+	
+	public PavoClient getSelfClient() {
+		return client;
+	}
+	
+	public PavoServer getSelfServer() {
+		return server;
+	}
+	
+	public boolean isAClient() {
+		return isClient;
+	}
+	
 	/**
 	 * Gets the window manager for the Game.
 	 * @return

@@ -35,6 +35,14 @@ public class PavoClient {
 		return true;
 	}
 	
+	public String getIP() {
+		return ip;
+	}
+	
+	public void onRecieve(String s) {
+		
+	}
+	
 	public void send(String message) {
 		pw.print(message);
 	}

@@ -6,6 +6,8 @@ package com.jpii.navalbattle.pavo.io;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.UnknownHostException;
@@ -22,6 +24,8 @@ public class PavoServer implements Runnable {
 	boolean doing = false;
 	String ipaddress = null;
 	Thread self;
+	BufferedReader reader;
+	PrintWriter output;
 	public PavoServer() {
 		
 	}
@@ -58,14 +62,15 @@ public class PavoServer implements Runnable {
 			if (client == null)
 				try {
 					client = socket.accept();
+					reader = new BufferedReader(new InputStreamReader(client.getInputStream()));
+					output = new PrintWriter(client.getOutputStream(),true);
 				} catch (Throwable e) {
 					
 				}
 			try {
-				BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(client.getInputStream()));
 				String s = "";
 				String input;
-				while((input = bufferedReader.readLine()) != null)
+				while((input = reader.readLine()) != null)
 					s += input + "\n";
 				
 				onMessageRecieved(s);
@@ -78,7 +83,16 @@ public class PavoServer implements Runnable {
 			catch (Throwable t) {
 				
 			}
+			loop();
 		}
+	}
+	
+	public void loop() {
+		
+	}
+	
+	public void send(String msg) {
+		output.println(msg);
 	}
 	
 	public void onMessageRecieved(String msg) {
