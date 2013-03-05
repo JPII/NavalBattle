@@ -63,12 +63,17 @@ public class PavoServer implements Runnable {
 			if (client == null)
 				try {
 					client = socket.accept();
-					reader = new BufferedReader(new InputStreamReader(client.getInputStream()));
-					output = new PrintWriter(client.getOutputStream(),true);
+					System.out.println("Connected to: " + client.getLocalAddress().getHostAddress());
 				} catch (Throwable e) {
-					
+					System.out.println("Failed to connect to client." + e.getMessage());
 				}
 			try {
+				if (reader != null)
+					reader.close();
+				if (output != null)
+					output.close();
+				reader = new BufferedReader(new InputStreamReader(client.getInputStream()));
+				output = new PrintWriter(client.getOutputStream(),true);
 				String s = "";
 				String input;
 				while((input = reader.readLine()) != null)
@@ -76,7 +81,7 @@ public class PavoServer implements Runnable {
 				
 				onMessageRecieved(s);
 			} catch (Throwable t) {
-				
+				System.out.println("Something occured on the server:" +t.getMessage());
 			}
 			try {
 				Thread.sleep(300);
@@ -98,7 +103,7 @@ public class PavoServer implements Runnable {
 	}
 	
 	public void onMessageRecieved(String msg) {
-		
+		System.out.println("Recieved from client: " + msg);
 	}
 	
 	public void halt() {
