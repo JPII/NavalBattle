@@ -69,9 +69,15 @@ public class LoggingInWindow extends Window {
 					currentImage = 0;
 				else
 					currentImage++;
-				if (length > Constants.SPLASH_SCREEN_TIMEOUT && NavalBattle.getRoketGamer().getPlayer().hasLoadedData()) {
-					openMenu();
-					NavalBattle.getWindowHandler().getToasterManager().showToaster(new ImageIcon(NavalBattle.getRoketGamer().getPlayer().getAvatarAsBytes(64)), " Logged in as " + NavalBattle.getRoketGamer().getPlayer().getName());
+				
+				if(NavalBattle.getGameState().isOffline()) {
+					if(length > Constants.SPLASH_SCREEN_TIMEOUT)
+						openMenu();
+				} else {
+					if (length > Constants.SPLASH_SCREEN_TIMEOUT && NavalBattle.getRoketGamer().getPlayer().hasLoadedData()) {
+						openMenu();
+						NavalBattle.getWindowHandler().getToasterManager().showToaster(new ImageIcon(NavalBattle.getRoketGamer().getPlayer().getAvatarAsBytes(64)), " Logged in as " + NavalBattle.getRoketGamer().getPlayer().getName());
+					}
 				}
 			}
 		};
