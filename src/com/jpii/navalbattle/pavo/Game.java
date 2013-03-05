@@ -36,7 +36,9 @@ import com.jpii.navalbattle.pavo.grid.Tile;
 import com.jpii.navalbattle.pavo.gui.GameWindow;
 import com.jpii.navalbattle.pavo.gui.GridWindow;
 import com.jpii.navalbattle.pavo.gui.WindowManager;
+import com.jpii.navalbattle.pavo.io.PavoClient;
 import com.jpii.navalbattle.pavo.io.PavoImage;
+import com.jpii.navalbattle.pavo.io.PavoServer;
 import com.jpii.navalbattle.renderer.Helper;
 import com.jpii.navalbattle.renderer.weather.WeatherMode;
 import com.jpii.navalbattle.util.GameStatistics;
@@ -59,12 +61,29 @@ public class Game extends Renderable implements Runnable, Serializable {
 	private WindowManager windows;
 	private PavoImage shadow;
 	public static Game Instance;
+	private PavoClient client;
+	private PavoServer server;
 	//private BufferedImage chunkBuffer;
 	public static PavoSettings Settings = new PavoSettings();
 	/**
 	 * Creates a new instance of the game.
 	 */
 	public Game() {
+		windows = new WindowManager(this);
+		world = new World(this);
+		//gen = new WorldGen();
+		threadInit();
+		buffer = new PavoImage(Game.Settings.currentWidth,Game.Settings.currentHeight,BufferedImage.TYPE_3BYTE_BGR);
+		//chunkBuffer = new BufferedImage(Game.Settings.currentWidth,Game.Settings.currentHeight,BufferedImage.TYPE_3BYTE_BGR);
+		world.getWeather().setWeather(WeatherMode.Sunny);
+		shadow = (PavoImage)PavoHelper.createInnerShadow(Game.Settings.currentWidth,Game.Settings.currentHeight);
+		int yeart = Calendar.getInstance().get(Calendar.YEAR);
+		String years = Integer.toString(yeart);
+		yearf = Integer.parseInt(years.substring(0,2));
+		yearl = Integer.parseInt(years.substring(2));
+		Instance = this;
+	}
+	public Game(PavoOpenState pos, String flags) {
 		windows = new WindowManager(this);
 		world = new World(this);
 		//gen = new WorldGen();
