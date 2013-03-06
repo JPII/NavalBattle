@@ -6,6 +6,7 @@ package com.jpii.navalbattle.game.entity;
 
 import javax.imageio.ImageIO;
 import com.jpii.navalbattle.game.NavalGame;
+import com.jpii.navalbattle.pavo.Game;
 import com.jpii.navalbattle.pavo.grid.Entity;
 import com.jpii.navalbattle.pavo.grid.EntityManager;
 import com.jpii.navalbattle.pavo.grid.GridHelper;
@@ -34,6 +35,10 @@ public class BattleShip extends Entity {
 	public BattleShip(EntityManager em, Location loc, GridedEntityTileOrientation superId,byte orientation,int team) {
 		super(em, loc, superId,orientation,team);
 		imgLocation="drawable-game/aircraftcarrier/aircraftcarrier.png";
+		Game g = em.getWorld().getGame();
+		if (!g.isAClient()) {
+			g.getSelfServer().send("battleship:"+loc.getCol()+","+loc.getRow());
+		}
 	}
 	
 	public void init() {

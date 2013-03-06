@@ -24,4 +24,5 @@ public class TestServer extends PavoServer {
 	public void onClientConnect() {
 		send("SEED:"+Game.Settings.seed);
 	}
+	
 }

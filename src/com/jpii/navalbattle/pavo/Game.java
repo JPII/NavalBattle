@@ -90,7 +90,7 @@ public class Game extends Renderable implements Runnable, Serializable {
 	}
 	public Game(PavoOpenState pos, String flags) {
 		if (pos == PavoOpenState.OPEN_SERVER) {
-			client = new TestClient(flags);
+			client = new TestClient(this,flags);
 			System.out.println("Client status: " + client.start());
 			isClient = true;
 			client.send("HELLO");
