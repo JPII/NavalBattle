@@ -75,7 +75,7 @@ public class PavoClient implements Runnable{
             try {
             	if (!entry) {
             		entry = true;
-            		tmpMsg = "@SERVER:HELLO";
+            		tmpMsg = "HELLO";
             	}
             	String rl = br.readLine();
             	if (rl != null && !rl.equals(""))

@@ -103,7 +103,7 @@ public class PavoServer implements Runnable {
 			}
             try {
             	String rl = br.readLine();
-            	if (rl.equals("@SERVER:HELLO")) {
+            	if (rl.equals("HELLO")) {
             		onClientConnect();
             	}
             	else if (rl != null && !rl.equals(""))

@@ -16,9 +16,9 @@ public class TestClient extends PavoClient {
 	 */
 	public TestClient(String ipaddress) {
 		super(ipaddress);
-		send("@SERVER:HELLO");
 	}
 	public void onMessageRecieved(String message) {
+		super.onMessageRecieved(message);
 		if (message.startsWith("SEED:")) {
 			String part = message.replace("SEED:","");
 			seed = Long.parseLong(part);
