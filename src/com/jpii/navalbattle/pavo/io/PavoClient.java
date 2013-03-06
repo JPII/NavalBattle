@@ -102,6 +102,22 @@ public class PavoClient implements Runnable{
 				e.printStackTrace();
 			}
 		}
+		pw.close();
+		try {
+			br.close();
+		} catch (Throwable t) {
+			
+		}
+		try {
+			isr.close();
+		} catch (Throwable t) {
+			
+		}
+		try {
+			is.close();
+		} catch (Throwable t) {
+			
+		}
 		halt();
 		System.out.println("Connection lost to the server!");
 		try {
