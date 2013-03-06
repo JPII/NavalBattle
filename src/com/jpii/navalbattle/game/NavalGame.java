@@ -213,6 +213,9 @@ public class NavalGame extends Game{
 			fgax = -((PavoHelper.getGameWidth(getWorld().getWorldSize()) * 100)-100);
 		if (fgaz < -((PavoHelper.getGameHeight(getWorld().getWorldSize()) * 100)-100))
 			fgaz = -((PavoHelper.getGameHeight(getWorld().getWorldSize()) * 100)-100);
+		if (getWorld().getScreenX() != fgax || getWorld().getScreenY() != fgay) {
+			
+		}
 		getWorld().setLoc(fgax, fgaz);
 		//forceUpdate(); // SEE WARNING IN DESCRIPTION!!! THIS METHOD IS NOT ACTUALLY DECREPATED!!!
 	}
