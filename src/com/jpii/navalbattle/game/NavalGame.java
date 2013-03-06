@@ -247,7 +247,7 @@ public class NavalGame extends Game{
 		else if (Game.Settings.isFinishedGenerating && getWorld().getEntityManager().getTilePercentLand(chy,chx) <= 5){
 			///System.out.println("c"+chx+","+chy);
 			if(current==null){
-				if(me.getButton() == MouseEvent.BUTTON1){
+				if(!isAClient() && me.getButton() == MouseEvent.BUTTON1){
 					if(GridHelper.canPlaceInGrid(nm,GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT, chy, chx, 4)){
 						new BattleShip(this.getWorld().getEntityManager(),new Location(chy,chx),BattleShip.BATTLESHIP_ID,GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT,Game.Settings.rand.nextInt(0,3));
 					}
