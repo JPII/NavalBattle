@@ -64,92 +64,73 @@ public class PavoServer implements Runnable {
 		} catch (IOException e2) {
 			e2.printStackTrace();
 		}
+		try {
+			client = socket.accept();
+		} catch (IOException e2) {
+			e2.printStackTrace();
+		}
+		if (clientAddress == null) {
+			clientAddress = client.getInetAddress().toString();
+			if (clientAddress.indexOf("/") > -1) {
+				clientAddress = clientAddress.replace("/", "");
+			}
+			System.out.println("The server connected to: " + clientAddress);
+		}
+		PrintWriter out = null;
+		try {
+			out = new PrintWriter(client.getOutputStream(),true);
+		} catch (IOException e2) {
+			e2.printStackTrace();
+		}
+		InputStream is = null;
+		try {
+			is = client.getInputStream();
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+		InputStreamReader isr = new InputStreamReader(is);
+        BufferedReader br = new BufferedReader(isr);
 		while (doing) {
+			serverIsWriting = true;
+			out.println(sendTmp);
+			sendTmp = "";
+			serverIsWriting = false;
 			try {
-				client = socket.accept();
-				if (clientAddress == null) {
-					clientAddress = client.getInetAddress().toString();
-					System.out.println("The server connected to: " + clientAddress);
-				}
-			} catch (IOException e1) {
-				e1.printStackTrace();
+				Thread.sleep(50);
 			}
-			
-			//if (sendTmp != null && !sendTmp.equals("")) {
-			try {
-				PrintWriter out = new PrintWriter(client.getOutputStream(),true);
-				out.print(sendTmp);
-				out.flush();
-			} catch (IOException e1) {
-				e1.printStackTrace();
-			} 
-	            /*OutputStream os = null;
-				try {
-					os = client.getOutputStream();
-				} catch (IOException e1) {
-					e1.printStackTrace();
-				}
-	            OutputStreamWriter osw = new OutputStreamWriter(os);
-	            BufferedWriter bw = new BufferedWriter(osw);
-	            try {
-					bw.write(sendTmp);
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
-	            sendTmp = "";
-	            try {
-					bw.flush();
-				} catch (Throwable t) {
-					
-				}*/
-			//}
-			
-            InputStream is = null;
-			try {
-				is = client.getInputStream();
-			} catch (IOException e) {
-				e.printStackTrace();
+			catch (Throwable t) {
+				
 			}
-            InputStreamReader isr = new InputStreamReader(is);
-            BufferedReader br = new BufferedReader(isr);
-            /*String tmp = "";
-            String build = "";
             try {
-				while ((tmp = br.readLine()) != null && !tmp.equals("")) {
-					if (tmp.equals("Is the server listening?")) {
-						send("Yes sir. I am listening. Are you listening?");
-						System.out.println("Congrads! The connection test to the client was sucessful!");
-					}
-					build += tmp + "abc\n";
+            	String rl = br.readLine();
+            	if (rl != null && !rl.equals(""))
+            		onMessageRecieved(rl);
+			} catch (IOException e) {
+				if (e.getMessage().equals("Connection reset")) {
+					doing = false;
+					break;
 				}
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-            if (build.length() > 1) {
-            	build = build.substring(0, build.length()-1);
-            }
-            
-            if (!build.equals("\n")) {
-            	onMessageRecieved(build);
-            }*/
-            try {
-				onMessageRecieved(br.readLine());
-			
-			} catch (IOException e) {
 				e.printStackTrace();
 			}
             
 			loop();
 		}
+		System.out.println("Client disconnected.");
+		halt();
 	}
+	boolean sendLock = false;
 	
 	public void loop() {
 		
 	}
 	
 	String sendTmp = "";
+	boolean serverIsWriting = false;
 	public void send(String msg) {
-		sendTmp += msg;
+		while (serverIsWriting) {
+			
+		}
+		sendTmp = msg;
 	}
 	
 	public void onMessageRecieved(String msg) {

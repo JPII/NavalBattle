@@ -10,13 +10,13 @@ import com.jpii.navalbattle.pavo.io.PavoServer;
  * @author MKirkby
  *
  */
-public class TestClient extends PavoClient {
+public class TestServer extends PavoServer {
 	Game game;
 	/**
 	 * @param ipaddress
 	 */
-	public TestClient(String ip,Game game) {
-		super(ip);
+	public TestServer(Game game) {
+		super();
 		this.game = game;
 	}
 }

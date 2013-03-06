@@ -53,39 +53,38 @@ public class PavoClient implements Runnable{
 	}
 	
 	public void run() {
+        InputStream is = null;
+		try {
+			is = socket.getInputStream();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+        InputStreamReader isr = new InputStreamReader(is);
+        BufferedReader br = new BufferedReader(isr);
+        OutputStream os = null;
+        PrintWriter pw = null;
+		try {
+			pw = new PrintWriter(socket.getOutputStream(),true);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+        //OutputStreamWriter osw = new OutputStreamWriter(os);
+        //BufferedWriter bw = new BufferedWriter(osw);
 		while (doing) {
-			/*try {
-				//socket.connect(new InetSocketAddress(address,670));
-			} catch (IOException e1) {
-				e1.printStackTrace();
-			}*/
-	        InputStream is = null;
-			try {
-				is = socket.getInputStream();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-	        InputStreamReader isr = new InputStreamReader(is);
-	        BufferedReader br = new BufferedReader(isr);
-	        /*String tmp = "";
-	        String build = "";
-	        try {
-				while ((tmp = br.readLine()) != null) {
-					if (build.equals("Yes sir. I am listening. Are you listening?")) {
-						System.out.println("Congrads! The connection test to the server was sucessful!");
-					}
-					build += tmp + "\n";
-				}
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-            if (build.length() > 1) {
-            	build = build.substring(0, build.length()-1);
-            }
-            onMessageRecieved(build);
-            */
             try {
-				onMessageRecieved(br.readLine());
+            	String rl = br.readLine();
+            	if (rl != null && !rl.equals(""))
+            		onMessageRecieved(rl);
+				writingToServer = true;
+            	pw.println(tmpMsg);
+            	tmpMsg = "";
+            	writingToServer = false;
+            	try {
+            		Thread.sleep(50); // Let it breathe...
+            	}
+            	catch (Throwable t) {
+            		
+            	}
 			} catch (IOException e) {
 				if (e.getMessage().equals("Connection reset")) {
 					doing = false;
@@ -93,13 +92,6 @@ public class PavoClient implements Runnable{
 				}
 				e.printStackTrace();
 			}
-            /*try {
-            	br.close();
-            	isr.close();
-            	is.close();
-            }catch (Throwable t) {
-            	t.printStackTrace();
-            }*/
 		}
 		halt();
 		System.out.println("Connection lost to the server!");
@@ -118,7 +110,7 @@ public class PavoClient implements Runnable{
 	public void onMessageRecieved(String msg) {
 		System.out.println("Recieved from server (game host): " + msg);
 	}
-	
+	boolean writingToServer = false;
 	public void halt() {
 		doing = false;
 		try {
@@ -142,27 +134,11 @@ public class PavoClient implements Runnable{
 		}
 		thread = null;
 	}
-	
+	String tmpMsg = "";
 	public void send(String message) {
-        OutputStream os = null;
-		try {
-			os = socket.getOutputStream();
-		} catch (IOException e) {
-			e.printStackTrace();
+		while (writingToServer) {
+			
 		}
-        OutputStreamWriter osw = new OutputStreamWriter(os);
-        BufferedWriter bw = new BufferedWriter(osw);
-        try {
-			bw.write(message);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-        try {
-			bw.flush();
-			//osw.close();
-			//os.close();
-		} catch (Throwable e) {
-			e.printStackTrace();
-		}
+		tmpMsg = message;
 	}
 }

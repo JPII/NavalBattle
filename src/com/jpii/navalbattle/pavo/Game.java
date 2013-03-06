@@ -88,9 +88,8 @@ public class Game extends Renderable implements Runnable, Serializable {
 	}
 	public Game(PavoOpenState pos, String flags) {
 		if (pos == PavoOpenState.OPEN_SERVER) {
-			client = new TestClient(flags,this);
+			client = new PavoClient(flags);
 			System.out.println("Client status: " + client.start());
-			client.send("Is the server listening?");
 			isClient = true;
 		}
 		windows = new WindowManager(this);
@@ -263,6 +262,12 @@ public class Game extends Renderable implements Runnable, Serializable {
 						System.gc();
 					}
 					getWorld().getEntityManager().gameDoneGenerating();
+					if (isAClient()) {
+						this.getSelfClient().send("Chunk gen has been complete!");
+					}
+					else {
+						this.getSelfServer().send("Chunk gen has been complete on the server!");
+					}
 				}
 			}
 		}
