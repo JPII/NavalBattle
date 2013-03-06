@@ -12,8 +12,12 @@ import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.net.InetAddress;
+import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.net.UnknownHostException;
+
+import com.jpii.navalbattle.pavo.gui.MessageBox;
+import com.jpii.navalbattle.pavo.gui.MessageBoxIcon;
 
 /**
  * @author MKirkby
@@ -25,12 +29,13 @@ public class PavoClient implements Runnable{
 	String ip;
 	boolean doing = false;
 	Thread thread;
+	InetAddress address;
 	public PavoClient(String ipaddress) {
 		ip = ipaddress;
 	}
 	
 	public boolean start() {
-		InetAddress address = null;
+		address = null;
 		try {
 			address = InetAddress.getByName(ip);
 		} catch (UnknownHostException e) {
@@ -49,6 +54,11 @@ public class PavoClient implements Runnable{
 	
 	public void run() {
 		while (doing) {
+			/*try {
+				//socket.connect(new InetSocketAddress(address,670));
+			} catch (IOException e1) {
+				e1.printStackTrace();
+			}*/
 	        InputStream is = null;
 			try {
 				is = socket.getInputStream();
@@ -57,7 +67,7 @@ public class PavoClient implements Runnable{
 			}
 	        InputStreamReader isr = new InputStreamReader(is);
 	        BufferedReader br = new BufferedReader(isr);
-	        String tmp = "";
+	        /*String tmp = "";
 	        String build = "";
 	        try {
 				while ((tmp = br.readLine()) != null) {
@@ -73,6 +83,31 @@ public class PavoClient implements Runnable{
             	build = build.substring(0, build.length()-1);
             }
             onMessageRecieved(build);
+            */
+            try {
+				onMessageRecieved(br.readLine());
+			} catch (IOException e) {
+				if (e.getMessage().equals("Connection reset")) {
+					doing = false;
+					break;
+				}
+				e.printStackTrace();
+			}
+            /*try {
+            	br.close();
+            	isr.close();
+            	is.close();
+            }catch (Throwable t) {
+            	t.printStackTrace();
+            }*/
+		}
+		halt();
+		System.out.println("Connection lost to the server!");
+		try {
+			MessageBox.show("Error", "Connection lost to the server!", MessageBoxIcon.Error, true);
+		}
+		catch (Throwable t) {
+			
 		}
 	}
 	
@@ -124,7 +159,9 @@ public class PavoClient implements Runnable{
 		}
         try {
 			bw.flush();
-		} catch (IOException e) {
+			//osw.close();
+			//os.close();
+		} catch (Throwable e) {
 			e.printStackTrace();
 		}
 	}

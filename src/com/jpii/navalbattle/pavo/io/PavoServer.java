@@ -29,6 +29,7 @@ public class PavoServer implements Runnable {
 	Thread self;
 	BufferedReader reader;
 	PrintWriter output;
+	String clientAddress = null;
 	public PavoServer() {
 		
 	}
@@ -50,6 +51,7 @@ public class PavoServer implements Runnable {
 			}
 			System.out.println("Your ip address is: " + ipaddress);
 		}
+		clientAddress = null;
 		doing = true;
 		self = new Thread(this);
 		self.start();
@@ -65,12 +67,23 @@ public class PavoServer implements Runnable {
 		while (doing) {
 			try {
 				client = socket.accept();
+				if (clientAddress == null) {
+					clientAddress = client.getInetAddress().toString();
+					System.out.println("The server connected to: " + clientAddress);
+				}
 			} catch (IOException e1) {
 				e1.printStackTrace();
 			}
 			
 			//if (sendTmp != null && !sendTmp.equals("")) {
-	            OutputStream os = null;
+			try {
+				PrintWriter out = new PrintWriter(client.getOutputStream(),true);
+				out.print(sendTmp);
+				out.flush();
+			} catch (IOException e1) {
+				e1.printStackTrace();
+			} 
+	            /*OutputStream os = null;
 				try {
 					os = client.getOutputStream();
 				} catch (IOException e1) {
@@ -88,7 +101,7 @@ public class PavoServer implements Runnable {
 					bw.flush();
 				} catch (Throwable t) {
 					
-				}
+				}*/
 			//}
 			
             InputStream is = null;
@@ -99,15 +112,15 @@ public class PavoServer implements Runnable {
 			}
             InputStreamReader isr = new InputStreamReader(is);
             BufferedReader br = new BufferedReader(isr);
-            String tmp = "";
+            /*String tmp = "";
             String build = "";
             try {
-				while ((tmp = br.readLine()) != null) {
+				while ((tmp = br.readLine()) != null && !tmp.equals("")) {
 					if (tmp.equals("Is the server listening?")) {
 						send("Yes sir. I am listening. Are you listening?");
 						System.out.println("Congrads! The connection test to the client was sucessful!");
 					}
-					build += tmp + "\n";
+					build += tmp + "abc\n";
 				}
 			} catch (IOException e) {
 				e.printStackTrace();
@@ -118,7 +131,13 @@ public class PavoServer implements Runnable {
             
             if (!build.equals("\n")) {
             	onMessageRecieved(build);
-            }
+            }*/
+            try {
+				onMessageRecieved(br.readLine());
+			
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
             
 			loop();
 		}
