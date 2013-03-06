@@ -95,6 +95,10 @@ public class PavoClient implements Runnable{
 					doing = false;
 					break;
 				}
+				if (e.getMessage().equals("Software caused connection abort: recv failed")) {
+					doing = false;
+					break;
+				}
 				e.printStackTrace();
 			}
 		}
