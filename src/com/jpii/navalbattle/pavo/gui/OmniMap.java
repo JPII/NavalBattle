@@ -58,7 +58,10 @@ public class OmniMap extends Renderable {
 			return false;
 		int sw = (int)(((150 * Game.Settings.currentWidth)/(PavoHelper.getGameWidth(w.getWorldSize())*100)))/2;
 		int sh = (int)(((150 * Game.Settings.currentHeight)/(PavoHelper.getGameHeight(w.getWorldSize())*100)))/2;
-		//w.getGame().getSelfServer().send("bounds:"+sw+","+sh);
+		if (!w.getGame().isAClient())
+			w.getGame().getSelfServer().send("bounds:"+sw+","+sh);
+		else
+			w.getGame().getSelfClient().send("bounds:"+sw+","+sh);
 		w.setLoc((-(ax-sw)*PavoHelper.getGameWidth(w.getWorldSize()))+sw,(-(ay-sh)*PavoHelper.getGameHeight(w.getWorldSize())));
 		render();
 		w.forceRender();
