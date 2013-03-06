@@ -213,11 +213,17 @@ public class NavalGame extends Game{
 			fgax = -((PavoHelper.getGameWidth(getWorld().getWorldSize()) * 100)-100);
 		if (fgaz < -((PavoHelper.getGameHeight(getWorld().getWorldSize()) * 100)-100))
 			fgaz = -((PavoHelper.getGameHeight(getWorld().getWorldSize()) * 100)-100);
-		if (getWorld().getScreenX() != fgax || getWorld().getScreenY() != fgay) {
-			
+		if ((getWorld().getScreenX() != fgax || getWorld().getScreenY() != fgaz) && !isAClient()) {
+			getSelfServer().send("bounds:"+fgax+","+fgaz);
+		}
+		if ((getWorld().getScreenX() != fgax || getWorld().getScreenY() != fgaz) && isAClient()) {
+			getSelfClient().send("bounds:"+fgax+","+fgaz);
 		}
 		getWorld().setLoc(fgax, fgaz);
 		//forceUpdate(); // SEE WARNING IN DESCRIPTION!!! THIS METHOD IS NOT ACTUALLY DECREPATED!!!
+	}
+	public OmniMap getMap() {
+		return omnimap;
 	}
 	/**
 	 * Button1 == Left

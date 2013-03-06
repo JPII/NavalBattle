@@ -99,6 +99,7 @@ public class Game extends Renderable implements Runnable, Serializable {
 			while (client.getSeed() == Long.MIN_VALUE) {
 				
 			}
+			this.akamaideli3242very();
 			Game.Settings.seed = client.getSeed();
 		}
 		windows = new WindowManager(this);
@@ -115,7 +116,13 @@ public class Game extends Renderable implements Runnable, Serializable {
 		yearl = Integer.parseInt(years.substring(2));
 		Instance = this;
 	}
-	
+	boolean isConnected = false;
+	public boolean isConnectedToClientOrServer() {
+		return isConnected;
+	}
+	public void akamaideli3242very() {
+		isConnected = true;
+	}
 	public PavoClient getSelfClient() {
 		return client;
 	}

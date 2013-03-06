@@ -58,6 +58,7 @@ public class OmniMap extends Renderable {
 			return false;
 		int sw = (int)(((150 * Game.Settings.currentWidth)/(PavoHelper.getGameWidth(w.getWorldSize())*100)))/2;
 		int sh = (int)(((150 * Game.Settings.currentHeight)/(PavoHelper.getGameHeight(w.getWorldSize())*100)))/2;
+		//w.getGame().getSelfServer().send("bounds:"+sw+","+sh);
 		w.setLoc((-(ax-sw)*PavoHelper.getGameWidth(w.getWorldSize()))+sw,(-(ay-sh)*PavoHelper.getGameHeight(w.getWorldSize())));
 		render();
 		w.forceRender();
@@ -100,6 +101,12 @@ public class OmniMap extends Renderable {
 		}
 		g.dispose();
 	}
+	int mpx = 0,mpy=0;
+	public void setMultiplayer(int xx, int zz) {
+		mpx = xx;
+		mpy = zz;
+		render();
+	}
 	public void render() {
 		Graphics2D g = PavoHelper.createGraphics(getBuffer());
 		g.drawImage(terrain, 0,0,null);
@@ -107,8 +114,15 @@ public class OmniMap extends Renderable {
 		int rwy = (int) (Math.abs(w.getScreenY()-(Game.Settings.currentHeight/2)) * 33.333333 / (PavoHelper.getGameHeight(w.getWorldSize()) * 100))*3;
 		int sw = (int)((150 * Game.Settings.currentWidth)/(PavoHelper.getGameWidth(w.getWorldSize())*100));
 		int sh = (int)((150 * Game.Settings.currentHeight)/(PavoHelper.getGameHeight(w.getWorldSize())*100));
+		int rwmx = (int) (Math.abs(mpx-(Game.Settings.currentWidth/2)) * 33.333333 / (PavoHelper.getGameWidth(w.getWorldSize()) * 100))*3;
+		int rwmy = (int) (Math.abs(mpy-(Game.Settings.currentHeight/2)) * 33.333333 / (PavoHelper.getGameHeight(w.getWorldSize()) * 100))*3;
+
 		g.setColor(Color.red);
 		g.drawRect(rwx-1,rwy-1,sw/2,sh/2);
+		if (w.getGame().isConnectedToClientOrServer()) {
+			g.setColor(Color.yellow);
+			g.drawRect(rwmx-1,rwmy-1,sw/2,sh/2);
+		}
 		g.setColor(new Color(100, 78, 47));
         g.drawRect(1, 1, width - 3, 100 - 3);
         g.setColor(new Color(74, 30, 3));
