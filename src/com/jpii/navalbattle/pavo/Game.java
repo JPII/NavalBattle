@@ -30,6 +30,7 @@ import java.util.TimerTask;
 
 
 import com.jpii.navalbattle.data.Constants;
+import com.jpii.navalbattle.game.TestClient;
 import com.jpii.navalbattle.pavo.grid.Entity;
 import com.jpii.navalbattle.pavo.grid.Location;
 import com.jpii.navalbattle.pavo.grid.Tile;
@@ -61,7 +62,7 @@ public class Game extends Renderable implements Runnable, Serializable {
 	private WindowManager windows;
 	private PavoImage shadow;
 	public static Game Instance;
-	private PavoClient client;
+	private TestClient client;
 	private PavoServer server;
 	private boolean isClient = false;
 	//private BufferedImage chunkBuffer;
@@ -88,10 +89,14 @@ public class Game extends Renderable implements Runnable, Serializable {
 	}
 	public Game(PavoOpenState pos, String flags) {
 		if (pos == PavoOpenState.OPEN_SERVER) {
-			client = new PavoClient(flags);
+			client = new TestClient(flags);
 			System.out.println("Client status: " + client.start());
 			isClient = true;
 		}
+		while (client.getSeed() == Long.MIN_VALUE) {
+			
+		}
+		Game.Settings.seed = client.getSeed();
 		windows = new WindowManager(this);
 		world = new World(this);
 		//gen = new WorldGen();

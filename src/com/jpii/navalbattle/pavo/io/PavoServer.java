@@ -103,7 +103,10 @@ public class PavoServer implements Runnable {
 			}
             try {
             	String rl = br.readLine();
-            	if (rl != null && !rl.equals(""))
+            	if (rl.equals("@SERVER:HELLO")) {
+            		onClientConnect();
+            	}
+            	else if (rl != null && !rl.equals(""))
             		onMessageRecieved(rl);
 			} catch (IOException e) {
 				if (e.getMessage().equals("Connection reset")) {
@@ -112,15 +115,13 @@ public class PavoServer implements Runnable {
 				}
 				e.printStackTrace();
 			}
-            
-			loop();
 		}
 		System.out.println("Client disconnected.");
 		halt();
 	}
 	boolean sendLock = false;
 	
-	public void loop() {
+	public void onClientConnect() {
 		
 	}
 	

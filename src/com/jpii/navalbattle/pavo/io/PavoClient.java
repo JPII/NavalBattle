@@ -68,10 +68,15 @@ public class PavoClient implements Runnable{
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		boolean entry = false;
         //OutputStreamWriter osw = new OutputStreamWriter(os);
         //BufferedWriter bw = new BufferedWriter(osw);
 		while (doing) {
             try {
+            	if (!entry) {
+            		entry = true;
+            		tmpMsg = "@SERVER:HELLO";
+            	}
             	String rl = br.readLine();
             	if (rl != null && !rl.equals(""))
             		onMessageRecieved(rl);
