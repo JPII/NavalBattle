@@ -49,8 +49,20 @@ public class NewWindowManager extends Renderable {
 	public int size() {
 		return wins.size();
 	}
-	public void mouseMove(MouseEvent me) {
-		
+	public boolean mouseMove(MouseEvent me) {
+		int mx = me.getX();
+		int my = me.getY();
+		for (int c = 0; c < wins.size(); c++) {
+			PWindow gw = wins.get(c);
+			if (gw != null && gw.isVisible()) {
+				if (mx >= gw.getLocX() && mx <= gw.getLocX() + gw.getWidth()
+						&& my >= gw.getLocY() && my <= gw.getLocY() + gw.getHeight()) {
+					gw.onMouseHover(mx-gw.getLocX(), my-gw.getLocY());
+					return true;
+				}
+			}
+		}
+		return false;
 	}
 	public void ianOwjej10nJAnin345soaKOEe9201LIQUICK(MessageBox Ijsn9j20OKan01nJFNAnia) {
 		//context = Ijsn9j20OKan01nJFNAnia;
@@ -66,6 +78,8 @@ public class NewWindowManager extends Renderable {
 			}
 		}
 	}
+	int startx = 0,starty =0;
+	PWindow dragWnd;
 	public boolean mouseDown(MouseEvent me) {
 		int mx = me.getX();
 		int my = me.getY();
@@ -81,14 +95,22 @@ public class NewWindowManager extends Renderable {
 //			}
 //			return true;
 //		}
+		startx = mx;
+		starty = my;
 		for (int c = 0; c < wins.size(); c++) {
 			PWindow gw = wins.get(c);
-			if (gw!=null) {
-				//if(gw.onMouseDown(me.getX(),me.getY(),me.getButton()))
-					flag = true;
-				if (gw.isDisposed()){
-					flag = false;
+			if (gw!=null && gw.isVisible()) {
+				if (mx >= gw.getLocX() && mx <= gw.getLocX() + gw.getWidth()
+						&& my >= gw.getLocY() && my <= gw.getLocY() + gw.getHeight()) {
+					gw.onMouseDown(mx-gw.getLocX(), my-gw.getLocY(), me.getButton());
+					dragWnd = gw;
+					return true;
 				}
+				//if(gw.onMouseDown(me.getX(),me.getY(),me.getButton()))
+					//flag = true;
+				//if (gw.isDisposed()){
+					//flag = false;
+				//}
 			}
 		}
 		return flag;
@@ -106,16 +128,29 @@ public class NewWindowManager extends Renderable {
 //			}
 //			return true;
 //		}
-		for (int c = 0; c < wins.size(); c++) {
+//		for (int c = 0; c < wins.size(); c++) {
+//			PWindow gw = wins.get(c);
+//			if (gw!=null) {
+//				if (gw.isTitleShown() && gw.isVisible()) {
+//					if (mx >= gw.getLocX() - 10 && mx <= gw.getLocX()+gw.getWidth()+10 && my >= gw.getLocY()-10 && my <= gw.getLocY()+34) {
+//						gw.setLoc(mx - (gw.getWidth()/2), my - 12);
+//						return true;
+//					}
+//				}
+//			}
+//		}
+		/*for (int c = 0; c < wins.size(); c++) {
 			PWindow gw = wins.get(c);
-			if (gw!=null) {
-				if (gw.isTitleShown() && gw.isVisible()) {
-					if (mx >= gw.getLocX() - 10 && mx <= gw.getLocX()+gw.getWidth()+10 && my >= gw.getLocY()-10 && my <= gw.getLocY()+34) {
-						gw.setLoc(mx - (gw.getWidth()/2), my - 12);
-						return true;
-					}
+			if (gw != null && gw.isVisible()) {
+				if (startx >= gw.getLocX() && startx <= gw.getLocX() + gw.getWidth()
+						&& starty >= gw.getLocY() && starty <= gw.getLocY() + gw.getHeight()) {
+					gw.onMouseDrag(mx-gw.getLocX(), my-gw.getLocY());
+					return true;
 				}
 			}
+		}*/
+		if (dragWnd != null) {
+			dragWnd.onMouseDrag(mx,my);
 		}
 		return flag;
 	}

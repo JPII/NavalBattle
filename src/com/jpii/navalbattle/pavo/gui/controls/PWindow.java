@@ -124,8 +124,12 @@ public class PWindow extends Control {
 		// Somewhere in the window was pressed.
 	}
 	
+	/**
+	 * This method is provided actual screen coordinates, rather than relative Window coordinates.
+	 * @deprecated
+	 */
 	public void onMouseDrag(int x, int y) {
-		super.onMouseDrag(x, y);
+		super.onMouseDrag(x-getLocX(), y-getLocY());
 		if (isTitleShown() && isVisible()) {
 		//if (y >= 0 && y <= 22) {
 			setLoc(x-lastMouseTitleBarX+this.getLocX(),y-lastMouseTitleBarY+this.getLocY());
