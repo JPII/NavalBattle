@@ -17,14 +17,15 @@ public class EntityText extends PText{
 		centerx = x; 
 		centery = y;
 		display = null;
+		setForegroundColor(Color.red);
 	}
 	
 	public void setEntity(Entity e){
-		setForegroundColor(Color.red);
 		display = e;
 		if(display!=null)
 			setText("[X:"+display.getLocation().getCol()+" Y:"+display.getLocation().getRow()+"]");
 		changeSize();
+		repaint();
 	}
 	
 	public void changeSize(){
@@ -33,11 +34,9 @@ public class EntityText extends PText{
 	}
 	
 	public void paint(Graphics2D g){
-		if(getParent().isVisible()){
-			super.paint(g);
-			g.setColor(Color.blue);
-			g.fillRect(centerx-1,centery-1,3,3);
-		}
+		super.paint(g);
+		g.setColor(Color.blue);
+		g.fillRect(centerx-1,centery-1,3,3);
 	}
 
 	public Entity getEntity(){
@@ -47,8 +46,6 @@ public class EntityText extends PText{
 	public void setCenter(int x, int y){
 		centerx = x;
 		centery = y;
-		setLocX(x);
-		setLocY(y);
 	}
 	
 }

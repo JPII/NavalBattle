@@ -29,12 +29,12 @@ public class EntityImage extends PImage{
 		}
 		setImage(imageNumber);
 		changeSize();
+		repaint();
 	}
 	
 	public void changeSize(){
-		if(retrieveImage(imageNumber)==null){
-			setWidth(1);
-			setHeight(1);
+		if(retrieveImage(imageNumber)==null||getParent().isVisible()){
+			setVisible(false);
 			return;
 		}
 		setWidth(retrieveImage(imageNumber).getWidth());
@@ -42,17 +42,14 @@ public class EntityImage extends PImage{
 		setLocX(centerx - width/2);
 		setLocY(centery - height/2);
 		if(!(getWidth()>10||getHeight()>10)){
-			setWidth(1);
-			setHeight(1);
+			setVisible(false);
 		}
 	}
 	
 	public void paint(Graphics2D g){
-		if(getParent().isVisible()){
-			g.setColor(new Color(169,140,86));
-			g.fillRect(50,50,getWidth(),getHeight());
-			g.drawImage(retrieveImage(getImageID()),50,50,null);
-		}
+		g.setColor(new Color(169,140,86));
+		g.fillRect(50,50,getWidth(),getHeight());
+		g.drawImage(retrieveImage(getImageID()),50,50,null);
 	}
 	
 	public Entity getEntity(){
