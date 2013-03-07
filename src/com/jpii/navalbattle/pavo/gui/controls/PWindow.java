@@ -106,6 +106,7 @@ public class PWindow extends Control {
 	}
 	
 	private int lastMouseTitleBarX = 0, lastMouseTitleBarY = 0;
+	private boolean ableToDragTitle = false;
 	
 	public void onMouseDown(int x, int y, int buttonid) {
 		super.onMouseDown(x, y, buttonid);
@@ -118,6 +119,7 @@ public class PWindow extends Control {
 			if (y >= 0 && y <= 22) {
 				lastMouseTitleBarX = x;
 				lastMouseTitleBarY = y;
+				ableToDragTitle = true;
 			}
 		}
 		System.out.println("click performed! (" + x + "," + y + ")");
@@ -132,7 +134,8 @@ public class PWindow extends Control {
 		super.onMouseDrag(x-getLocX(), y-getLocY());
 		if (isTitleShown() && isVisible()) {
 		//if (y >= 0 && y <= 22) {
-			setLoc(x-lastMouseTitleBarX+this.getLocX(),y-lastMouseTitleBarY+this.getLocY());
+			if (ableToDragTitle)
+				setLoc((x-getLocX())-lastMouseTitleBarX+this.getLocX(),(y-getLocY())-lastMouseTitleBarY+this.getLocY());
 		//}
 		}
 	}

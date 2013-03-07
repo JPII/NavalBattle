@@ -98,6 +98,7 @@ public class NewWindowManager extends Renderable {
 //		}
 		startx = mx;
 		starty = my;
+		dragWnd = null;
 		for (int c = 0; c < wins.size(); c++) {
 			PWindow gw = wins.get(c);
 			if (gw!=null && gw.isVisible()) {
@@ -150,6 +151,7 @@ public class NewWindowManager extends Renderable {
 				}
 			}
 		}*/
+		
 		if (dragWnd != null) {
 			dragWnd.onMouseDrag(mx,my);
 		}
