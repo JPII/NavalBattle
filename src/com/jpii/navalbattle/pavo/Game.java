@@ -40,6 +40,7 @@ import com.jpii.navalbattle.pavo.gui.GameWindow;
 import com.jpii.navalbattle.pavo.gui.GridWindow;
 import com.jpii.navalbattle.pavo.gui.MessageBox;
 import com.jpii.navalbattle.pavo.gui.MessageBoxIcon;
+import com.jpii.navalbattle.pavo.gui.NewWindowManager;
 import com.jpii.navalbattle.pavo.gui.WindowManager;
 import com.jpii.navalbattle.pavo.io.PavoClient;
 import com.jpii.navalbattle.pavo.io.PavoImage;
@@ -64,6 +65,7 @@ public class Game extends Renderable implements Runnable, Serializable {
 	private int lastTime = -1;
 	private int lastw = 0, lasth = 0;
 	private WindowManager windows;
+	private NewWindowManager windowsnt;
 	private PavoImage shadow;
 	public static Game Instance;
 	private TestClient client;
@@ -78,6 +80,7 @@ public class Game extends Renderable implements Runnable, Serializable {
 		server = new TestServer(this);
 		System.out.println("Server status: " + server.start());
 		windows = new WindowManager(this);
+		windowsnt = new NewWindowManager(this);
 		world = new World(this);
 		//gen = new WorldGen();
 		threadInit();
@@ -118,6 +121,7 @@ public class Game extends Renderable implements Runnable, Serializable {
 			//NavalBattle.getWindowHandler().getToasterManager().setDisplayTime(prv);
 		}
 		windows = new WindowManager(this);
+		windowsnt = new NewWindowManager(this);
 		world = new World(this);
 		//gen = new WorldGen();
 		threadInit();
@@ -157,6 +161,11 @@ public class Game extends Renderable implements Runnable, Serializable {
 	public WindowManager getWinMan() {
 		return windows;
 	}
+	
+	public NewWindowManager getWindows() {
+		return windowsnt;
+	}
+	
 	/**
 	 * Sets the window manager for the Game.
 	 * @param wm
@@ -381,10 +390,11 @@ public class Game extends Renderable implements Runnable, Serializable {
 		g.drawString("Is generating? " + gs.isGenerating() + ". Total update time:" + gs.getUpdateTime() + ". Last render length:" + gs.getTotalUpdate(), 12,690);
 		getWorld().unlock();
 		
-		while (getWinMan().isLocked()) {
+		while (getWinMan().isLocked() && getWindows().isLocked()) {
 			
 		}
 		getWinMan().lock();
+		getWindows().lock();
 		if (gJsiw)
 			g.setXORMode(Color.yellow);
 		
@@ -422,9 +432,12 @@ public class Game extends Renderable implements Runnable, Serializable {
 			g.drawImage(shadow,0,0,null);
 		}
 		getWinMan().render();
+		getWindows().render();
 		g.drawImage(getWinMan().getBuffer(), 0, 0, null);
+		g.drawImage(getWindows().getBuffer(),0,0,null);
 		g.dispose();
 		getWinMan().unlock();
+		getWindows().unlock();
 		Game.getStats().sBm3ns02AKa99mqp392(System.currentTimeMillis() - sjan);
 	}
 	/**
