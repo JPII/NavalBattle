@@ -154,6 +154,7 @@ public class NewWindowManager extends Renderable {
 		
 		if (dragWnd != null) {
 			dragWnd.onMouseDrag(mx,my);
+			flag = true;
 		}
 		return flag;
 	}
