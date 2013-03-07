@@ -49,16 +49,16 @@ import com.sun.management.OperatingSystemMXBean;
  * The game file.
  */
 public class NavalGame extends Game{
-	PlayerProfileWindow ppw;
+	/*PlayerProfileWindow ppw;
 	ShipInfoWindow siw;
-	OmniMap omnimap;
-	StatusBar sb;
+	StatusBar sb;*/
 	NavalManager nm;
 	HUD hud;
+	OmniMap omnimap;
 	
 	TestWindowWithNewAPI twwna;
 	
-	GridWindow test;
+	//GridWindow test;
 	
 	float airStrike = -1;
 	
@@ -69,18 +69,18 @@ public class NavalGame extends Game{
 		nm = new NavalManager(getWorld());
 		getWorld().setEntityManager(nm);
 		omnimap = new OmniMap(getWorld());
-		ppw = new PlayerProfileWindow();
-		sb = new StatusBar(this);
-		test = new GridWindow();
-		test.setGridLocation(10,10);
-		ppw.setLoc(200,200);
-		siw = new ShipInfoWindow();
-		siw.setLoc(350,350);
+//		ppw = new PlayerProfileWindow();
+//		sb = new StatusBar(this);
+		//test = new GridWindow();
+		//test.setGridLocation(10,10);
+//		ppw.setLoc(200,200);
+//		siw = new ShipInfoWindow();
+//		siw.setLoc(350,350);
 		getWorld().getWeather().setWeather(WeatherMode.Sunny);
-		getWinMan().add(ppw);
-		getWinMan().add(siw);
-		getWinMan().add(sb);
-		getWinMan().add(test);
+//		getWinMan().add(ppw);
+//		getWinMan().add(siw);
+//		getWinMan().add(sb);
+//		getWinMan().add(test);
 		//MessageBox.show("Warning", "This is a message box!!!");
 		MessageBox.show("Hey there!","Could not connect to RocketGamer servers.\n\nTrying again in 10 seconds.",
 				MessageBoxIcon.Notify, false);
@@ -96,18 +96,18 @@ public class NavalGame extends Game{
 		nm = new NavalManager(getWorld());
 		getWorld().setEntityManager(nm);
 		omnimap = new OmniMap(getWorld());
-		ppw = new PlayerProfileWindow();
-		sb = new StatusBar(this);
-		test = new GridWindow();
-		test.setGridLocation(10,10);
-		ppw.setLoc(200,200);
-		siw = new ShipInfoWindow();
-		siw.setLoc(350,350);
+		//ppw = new PlayerProfileWindow();
+		//sb = new StatusBar(this);
+		//test = new GridWindow();
+		//test.setGridLocation(10,10);
+		//ppw.setLoc(200,200);
+		//siw = new ShipInfoWindow();
+		//siw.setLoc(350,350);
 		getWorld().getWeather().setWeather(WeatherMode.Sunny);
-		getWinMan().add(ppw);
-		getWinMan().add(siw);
-		getWinMan().add(sb);
-		getWinMan().add(test);
+//		getWinMan().add(ppw);
+//		getWinMan().add(siw);
+//		getWinMan().add(sb);
+//		getWinMan().add(test);
 		//MessageBox.show("Warning", "This is a message box!!!");
 		MessageBox.show("Hey there!","Could not connect to RocketGamer servers.\n\nTrying again in 10 seconds.",
 				MessageBoxIcon.Notify, false);
@@ -188,14 +188,16 @@ public class NavalGame extends Game{
 	}
 	public void mouseDragged(MouseEvent me) {
 		super.mouseDragged(me);
-		if (me.getX() - twwna.getLocX() >= 0 && me.getX() - twwna.getLocX() < twwna.getWidth()
+		/*if (me.getX() - twwna.getLocX() >= 0 && me.getX() - twwna.getLocX() < twwna.getWidth()
 				&& me.getY() - twwna.getLocY() >= 0 && me.getY() - twwna.getLocY() < twwna.getHeight())
 			twwna.onMouseDrag(me.getX()-twwna.getLocX(), me.getY()-twwna.getLocY());
 		if (me.getX() - hud.getLocX() >= 0 && me.getX() - hud.getLocX() < hud.getWidth()
 				&& me.getY() - hud.getLocY() >= 0 && me.getY() - hud.getLocY() < hud.getHeight())
 			hud.onMouseDrag(me.getX()-hud.getLocX(), me.getY()-hud.getLocY());
-		
-		if (getWinMan().mouseDragged(me))
+		*/
+		//if (getWinMan().mouseDragged(me))
+			//return;
+		if (getWindows().mouseDragged(me))
 			return;
 		if (omnimap.mouseDragged(me))
 			return;
@@ -246,13 +248,13 @@ public class NavalGame extends Game{
 	public void mouseDown(MouseEvent me) {
 		super.mouseDown(me);
 		
-		if (me.getX() >= twwna.getLocX() && me.getX() < twwna.getWidth() + twwna.getLocX()
+		/*if (me.getX() >= twwna.getLocX() && me.getX() < twwna.getWidth() + twwna.getLocX()
 				&& me.getY() >= twwna.getLocY() && me.getY() < twwna.getHeight() + twwna.getLocY())
 			twwna.onMouseDown(me.getX()-twwna.getLocX(), me.getY()-twwna.getLocY(),me.getButton());
 		if (me.getX() >= hud.getLocX() && me.getX() < hud.getWidth() + hud.getLocX()
 				&& me.getY() >= hud.getLocY() && me.getY() < hud.getHeight() + hud.getLocY())
 			hud.onMouseDown(me.getX()-hud.getLocX(), me.getY()-hud.getLocY(),me.getButton());
-		
+		*/
 		int chx = (-getWorld().getScreenX()) + me.getX();
 		int chy = (-getWorld().getScreenY()) + me.getY(); 
 		chx /= 50;
@@ -263,7 +265,8 @@ public class NavalGame extends Game{
 			getSelfServer().send("Mouse was clicked at: (" + chx + ","+ chy+")");
 		}
 		
-		if (getWinMan().mouseDown(me)||(omnimap.mouseDown(me)))
+		if (/*getWinMan().mouseDown(me)*/
+				getWindows().mouseDown(me)||(omnimap.mouseDown(me)))
 			return;
 		
 		else if (Game.Settings.isFinishedGenerating && getWorld().getEntityManager().getTilePercentLand(chy,chx) <= 5){
@@ -291,30 +294,33 @@ public class NavalGame extends Game{
 	}
 	public void mouseUp(MouseEvent me) {
 		super.mouseUp(me);
-		if (me.getX() - twwna.getLocX() >= 0 && me.getX() - twwna.getLocX() < twwna.getWidth()
+		/*if (me.getX() - twwna.getLocX() >= 0 && me.getX() - twwna.getLocX() < twwna.getWidth()
 				&& me.getY() - twwna.getLocY() >= 0 && me.getY() - twwna.getLocY() < twwna.getHeight())
 			twwna.onMouseUp(me.getX()-twwna.getLocX(), me.getY()-twwna.getLocY(),me.getButton());
 		if (me.getX() - hud.getLocX() >= 0 && me.getX() - hud.getLocX() < hud.getWidth()
 				&& me.getY() - hud.getLocY() >= 0 && me.getY() - hud.getLocY() < hud.getHeight())
 			hud.onMouseUp(me.getX()-hud.getLocX(), me.getY()-hud.getLocY(),me.getButton());
-		
+		*/
 	}
 	public void mouseMove(MouseEvent me) {
 		super.mouseMove(me);
-		if (me.getX() - twwna.getLocX() >= 0 && me.getX() - twwna.getLocX() < twwna.getWidth()
+		if (getWindows().mouseMove(me)) {
+			return;
+		}
+		/*if (me.getX() - twwna.getLocX() >= 0 && me.getX() - twwna.getLocX() < twwna.getWidth()
 				&& me.getY() - twwna.getLocY() >= 0 && me.getY() - twwna.getLocY() < twwna.getHeight())
 			twwna.onMouseHover(me.getX()-twwna.getLocX(), me.getY()-twwna.getLocY());
 		if (me.getX() - hud.getLocX() >= 0 && me.getX() - hud.getLocX() < hud.getWidth()
 				&& me.getY() - hud.getLocY() >= 0 && me.getY() - hud.getLocY() < hud.getHeight())
-			hud.onMouseHover(me.getX()-hud.getLocX(), me.getY()-hud.getLocY());
+			hud.onMouseHover(me.getX()-hud.getLocX(), me.getY()-hud.getLocY());*/
 		omnimap.mouseMoved(me);
 		int chx = (-getWorld().getScreenX()) + me.getX();
 		int chy = (-getWorld().getScreenY()) + me.getY(); 
 		chx /= 50;
 		chy /= 50;
-		sb.setMouseTileLocation(chx,chy);
-		test.setGridLocation(chy, chx);
-		test.render();
+		//sb.setMouseTileLocation(chx,chy);
+		//test.setGridLocation(chy, chx);
+		//test.render();
 		//getWorld().getEntityManager().getEntity(0).moveTo(
 			//	PavoHelper.convertWorldSpaceToGridLocation(PavoHelper.convertScreenToWorldSpace(getWorld(), me.getPoint())));
 		//System.out.println("f"+getWorld().getEntityManager().getEntity(0).getWidth());
@@ -322,8 +328,8 @@ public class NavalGame extends Game{
 	BoxBlurFilter bbf = new BoxBlurFilter();
 	public void render() {
 		super.render();
-		if (getWorld().getTimeManager().getCurrentMinutes() == 0)
-			sb.render();
+		//if (getWorld().getTimeManager().getCurrentMinutes() == 0)
+			//sb.render();
 		if (airStrike >= 0 && airStrike < 40) {
 			airStrike += 1.4f;
 			int f = (int)airStrike;
@@ -337,8 +343,8 @@ public class NavalGame extends Game{
 		}
 		Graphics2D g = PavoHelper.createGraphics(getBuffer());
 		g.drawImage(omnimap.getBuffer(), Game.Settings.currentWidth-158, 40, null);
-		g.drawImage(twwna.getBuffer(),twwna.getLocX(),twwna.getLocY(),null);
-		g.drawImage(hud.getBuffer(),hud.getLocX(),hud.getLocY(),null);
+		//g.drawImage(twwna.getBuffer(),twwna.getLocX(),twwna.getLocY(),null);
+		//g.drawImage(hud.getBuffer(),hud.getLocX(),hud.getLocY(),null);
 		g.dispose();
 	}
 	

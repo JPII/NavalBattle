@@ -390,16 +390,17 @@ public class Game extends Renderable implements Runnable, Serializable {
 		g.drawString("Is generating? " + gs.isGenerating() + ". Total update time:" + gs.getUpdateTime() + ". Last render length:" + gs.getTotalUpdate(), 12,690);
 		getWorld().unlock();
 		
-		while (getWinMan().isLocked() && getWindows().isLocked()) {
+		while (/*getWinMan().isLocked() && */
+				getWindows().isLocked()) {
 			
 		}
-		getWinMan().lock();
+		//getWinMan().lock();
 		getWindows().lock();
 		if (gJsiw)
 			g.setXORMode(Color.yellow);
 		
 		//g.setXORMode(Color.blue);
-		for (int c = 0; c < getWinMan().size(); c++) {
+		/*for (int c = 0; c < getWinMan().size(); c++) {
 			GameWindow gw = getWinMan().get(c);
 			if (gw instanceof GridWindow && gw.isVisible()) {
 				GridWindow gr = (GridWindow)gw;
@@ -425,18 +426,18 @@ public class Game extends Renderable implements Runnable, Serializable {
 					}
 				}
 			}
-		}
+		}*/
 		//g.setXORMode(Color.blue);
 		if (PavoHelper.getCalculatedSystemSpeed() != SystemSpeed.CREEPER && 
 				PavoHelper.getCalculatedSystemSpeed() != SystemSpeed.TURTLE) {
 			g.drawImage(shadow,0,0,null);
 		}
-		getWinMan().render();
+		//getWinMan().render();
 		getWindows().render();
 		//g.drawImage(getWinMan().getBuffer(), 0, 0, null);
 		g.drawImage(getWindows().getBuffer(),0,0,null);
 		g.dispose();
-		getWinMan().unlock();
+		//getWinMan().unlock();
 		getWindows().unlock();
 		Game.getStats().sBm3ns02AKa99mqp392(System.currentTimeMillis() - sjan);
 	}
