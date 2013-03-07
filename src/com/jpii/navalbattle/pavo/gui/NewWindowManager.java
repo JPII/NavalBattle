@@ -183,11 +183,8 @@ public class NewWindowManager extends Renderable {
 				if (gw.isVisible() && !gw.isDisposed()) {
 					int gwx = gw.getLocX();
 					int gwy = gw.getLocY();
-					gw.repaint();
 					BufferedImage gwb = gw.getBuffer();
 					g2.drawImage(gwb, gwx,gwy, null);
-					g2.setColor(Color.red);
-					g2.drawRect(gwx,gwy,gw.getWidth(),gw.getHeight());
 				}
 			}
 		}
