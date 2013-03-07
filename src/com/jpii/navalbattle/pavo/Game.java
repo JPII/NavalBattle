@@ -29,6 +29,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 
+import com.jpii.navalbattle.NavalBattle;
 import com.jpii.navalbattle.data.Constants;
 import com.jpii.navalbattle.game.TestClient;
 import com.jpii.navalbattle.game.TestServer;
@@ -89,8 +90,13 @@ public class Game extends Renderable implements Runnable, Serializable {
 		yearf = Integer.parseInt(years.substring(0,2));
 		yearl = Integer.parseInt(years.substring(2));
 		Instance = this;
-		MessageBox.show("Server started", "Sucessfully started a server instance.\n\nYour IP address:" + server.getSelfIP(), 
-				MessageBoxIcon.Information, true, true);
+		//MessageBox.show("Server started", "Sucessfully started a server instance.\n\nYour IP address:" + server.getSelfIP(), 
+			//	MessageBoxIcon.Information, true, true);
+		//int prv = NavalBattle.getWindowHandler().getToasterManager().getDisplayTime();
+		NavalBattle.getWindowHandler().getToasterManager().setDisplayTime(8000);
+		NavalBattle.getWindowHandler().getToasterManager().showToaster(
+				"Sucessfully started a server instance.\n\nYour IP address:" + server.getSelfIP());
+		//NavalBattle.getWindowHandler().getToasterManager().setDisplayTime(prv);
 	}
 	public Game(PavoOpenState pos, String flags) {
 		if (pos == PavoOpenState.OPEN_SERVER) {
@@ -105,7 +111,11 @@ public class Game extends Renderable implements Runnable, Serializable {
 			}
 			akamaideli3242very();
 			Game.Settings.seed = client.getSeed();
-			MessageBox.show("Connection sucessful", "Sucessfully connected to the server.", MessageBoxIcon.Information, true, true);
+			//MessageBox.show("Connection sucessful", "Sucessfully connected to the server.", MessageBoxIcon.Information, true, true);
+			//int prv = NavalBattle.getWindowHandler().getToasterManager().getDisplayTime();
+			NavalBattle.getWindowHandler().getToasterManager().setDisplayTime(8000);
+			NavalBattle.getWindowHandler().getToasterManager().showToaster("Sucessfully connected to the server.");
+			//NavalBattle.getWindowHandler().getToasterManager().setDisplayTime(prv);
 		}
 		windows = new WindowManager(this);
 		world = new World(this);
