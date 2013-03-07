@@ -20,6 +20,10 @@ package com.jpii.navalbattle.game;
 import java.awt.Graphics2D;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
+import java.lang.management.ManagementFactory;
+
+import sun.management.OperatingSystemImpl;
+import sun.org.mozilla.javascript.internal.NativeCall;
 
 import com.jpii.navalbattle.game.entity.*;
 import com.jpii.navalbattle.game.gui.HUD;
@@ -38,6 +42,7 @@ import com.jpii.navalbattle.pavo.gui.MessageBoxIcon;
 import com.jpii.navalbattle.pavo.gui.OmniMap;
 import com.jpii.navalbattle.pavo.gui.TestWindowWithNewAPI;
 import com.jpii.navalbattle.renderer.weather.WeatherMode;
+import com.sun.management.OperatingSystemMXBean;
 
 /**
  * @author MKirkby
@@ -111,6 +116,7 @@ public class NavalGame extends Game{
 		twwna.setLoc(200,200);
 		twwna.repaint();
 	}
+	int hw = 0, hh = 0;
 	/**
 	 * Mulithreaded updator.
 	 */
@@ -123,6 +129,13 @@ public class NavalGame extends Game{
 		if (omnimap == null)
 			omnimap = new OmniMap(getWorld());
 		omnimap.render();
+		
+		if (hw != Game.Settings.currentWidth || hh != Game.Settings.currentHeight) {
+			hw = Game.Settings.currentWidth;
+			hh = Game.Settings.currentHeight;
+			hud.setLocY(hh-150);
+			hud.repaint();
+		}
 	}
 	/**
 	 * Called right when sunset starts.

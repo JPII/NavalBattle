@@ -1,10 +1,16 @@
 package com.jpii.navalbattle.util;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Arrays;
 
 public class OSUtil {
+	private static long totalRam = -2;
+	
 	public static <T> T[] memcpy(T[] src) {
 		if (src == null)
 			return null;
@@ -110,5 +116,35 @@ public class OSUtil {
 			keyPointer %= m_cKey.length;
 		}
 		return new String(m_cData);
+	}
+
+	private static void queryOSRAM() {
+		try {
+			Process p = Runtime.getRuntime().exec("C:\\Windows\\system32\\wbem\\wmic.exe computersystem get TotalPhysicalMemory /format:list");
+			InputStream is = p.getInputStream();
+			InputStreamReader isr = new InputStreamReader(is);
+	        BufferedReader br = new BufferedReader(isr);
+	        String tmp = "";
+	        String res = "";
+	        while ((tmp = br.readLine()) != null) {
+	        	res += tmp;
+	        }
+	        if (res.indexOf("TotalPhysicalMemory=") > -1) {
+	        	res = res.replace("TotalPhysicalMemory=", "");
+	        	totalRam = Long.parseLong(res);
+	        }
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public static long getTotalOSRAM() {
+		if (FileUtils.getPlatform() != OS.windows)
+			return -1;
+		
+		if (totalRam == -2)
+			queryOSRAM();
+		
+		return totalRam;
 	}
 }
