@@ -81,6 +81,8 @@ public class NavalGame extends Game{
 //		getWinMan().add(siw);
 //		getWinMan().add(sb);
 //		getWinMan().add(test);
+		getWindows().add(twwna);
+		getWindows().add(hud);
 		//MessageBox.show("Warning", "This is a message box!!!");
 		MessageBox.show("Hey there!","Could not connect to RocketGamer servers.\n\nTrying again in 10 seconds.",
 				MessageBoxIcon.Notify, false);
