@@ -454,7 +454,7 @@ public class Control {
 	protected void paintWinControls(Graphics2D g) {
 		for (int c = 0; c < getTotalControls(); c++) {
 			Control cn = getControl(c);
-			if (cn != null) {
+			if (cn != null && cn.isVisible()) {
 				g.drawImage(cn.getBuffer(), cn.getLocX(), cn.getLocY(), null);
 			}
 		}

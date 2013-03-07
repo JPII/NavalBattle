@@ -174,15 +174,21 @@ public class NewWindowManager extends Renderable {
 		
 		for (int c = 0; c < wins.size(); c++) {
 			PWindow gw = wins.get(c);
+			//System.out.println("Render Window #" + c);
 			if (gw!=null) {
 				if (gw.isVisible()) {
 					int gwx = gw.getLocX();
 					int gwy = gw.getLocY();
+					gw.repaint();
 					BufferedImage gwb = gw.getBuffer();
 					g2.drawImage(gwb, gwx,gwy, null);
+					g2.setColor(Color.red);
+					g2.drawRect(gwx,gwy,gw.getWidth(),gw.getHeight());
 				}
 			}
 		}
+		//g2.setColor(Color.red);
+		//g2.drawRect(0,0,400,400);
 		
 //		if (context != null) {
 //			g2.drawImage(grided, 0, 0, null);
