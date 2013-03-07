@@ -66,6 +66,9 @@ public class NavalGame extends Game{
 		super();
 		hud = new HUD(getWinMan(),0,Settings.currentHeight-150,Settings.currentWidth, 150);
 		hud.repaint();
+		twwna = new TestWindowWithNewAPI(getWinMan());
+		twwna.setLoc(200,200);
+		twwna.repaint();
 		nm = new NavalManager(getWorld());
 		getWorld().setEntityManager(nm);
 		omnimap = new OmniMap(getWorld());
@@ -86,10 +89,7 @@ public class NavalGame extends Game{
 		//MessageBox.show("Warning", "This is a message box!!!");
 		MessageBox.show("Hey there!","Could not connect to RocketGamer servers.\n\nTrying again in 10 seconds.",
 				MessageBoxIcon.Notify, false);
-		
-		twwna = new TestWindowWithNewAPI(getWinMan());
-		twwna.setLoc(200,200);
-		twwna.repaint();
+
 	}
 	public NavalGame(PavoOpenState pos, String flags) {
 		super(pos,flags);
@@ -98,6 +98,9 @@ public class NavalGame extends Game{
 		nm = new NavalManager(getWorld());
 		getWorld().setEntityManager(nm);
 		omnimap = new OmniMap(getWorld());
+		twwna = new TestWindowWithNewAPI(getWinMan());
+		twwna.setLoc(200,200);
+		twwna.repaint();
 		//ppw = new PlayerProfileWindow();
 		//sb = new StatusBar(this);
 		//test = new GridWindow();
@@ -115,10 +118,6 @@ public class NavalGame extends Game{
 		//MessageBox.show("Warning", "This is a message box!!!");
 		MessageBox.show("Hey there!","Could not connect to RocketGamer servers.\n\nTrying again in 10 seconds.",
 				MessageBoxIcon.Notify, false);
-		
-		twwna = new TestWindowWithNewAPI(getWinMan());
-		twwna.setLoc(200,200);
-		twwna.repaint();
 	}
 	int hw = 0, hh = 0;
 	/**

@@ -30,6 +30,7 @@ public class NewWindowManager extends Renderable {
 	 * 
 	 */
 	public NewWindowManager(Game g) {
+		super();
 		this.g = g;
 		wins = new ArrayList<PWindow>();
 		Inst = this;
@@ -176,7 +177,7 @@ public class NewWindowManager extends Renderable {
 			PWindow gw = wins.get(c);
 			//System.out.println("Render Window #" + c);
 			if (gw!=null) {
-				if (gw.isVisible()) {
+				if (gw.isVisible() && !gw.isDisposed()) {
 					int gwx = gw.getLocX();
 					int gwy = gw.getLocY();
 					gw.repaint();
