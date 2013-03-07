@@ -34,6 +34,10 @@ public class PavoServer implements Runnable {
 		
 	}
 	
+	public String getSelfIP() {
+		return ipaddress;
+	}
+	
 	public boolean start() {
 		if (doing) {
 			System.out.println("Server already runnning!");

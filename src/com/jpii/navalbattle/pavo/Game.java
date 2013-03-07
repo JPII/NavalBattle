@@ -37,6 +37,8 @@ import com.jpii.navalbattle.pavo.grid.Location;
 import com.jpii.navalbattle.pavo.grid.Tile;
 import com.jpii.navalbattle.pavo.gui.GameWindow;
 import com.jpii.navalbattle.pavo.gui.GridWindow;
+import com.jpii.navalbattle.pavo.gui.MessageBox;
+import com.jpii.navalbattle.pavo.gui.MessageBoxIcon;
 import com.jpii.navalbattle.pavo.gui.WindowManager;
 import com.jpii.navalbattle.pavo.io.PavoClient;
 import com.jpii.navalbattle.pavo.io.PavoImage;
@@ -87,6 +89,8 @@ public class Game extends Renderable implements Runnable, Serializable {
 		yearf = Integer.parseInt(years.substring(0,2));
 		yearl = Integer.parseInt(years.substring(2));
 		Instance = this;
+		MessageBox.show("Server started", "Sucessfully started a server instance.\n\nYour IP address:" + server.getSelfIP(), 
+				MessageBoxIcon.Information, true, true);
 	}
 	public Game(PavoOpenState pos, String flags) {
 		if (pos == PavoOpenState.OPEN_SERVER) {
@@ -99,8 +103,9 @@ public class Game extends Renderable implements Runnable, Serializable {
 			while (client.getSeed() == Long.MIN_VALUE) {
 				
 			}
-			this.akamaideli3242very();
+			akamaideli3242very();
 			Game.Settings.seed = client.getSeed();
+			MessageBox.show("Connection sucessful", "Sucessfully connected to the server.", MessageBoxIcon.Information, true, true);
 		}
 		windows = new WindowManager(this);
 		world = new World(this);
