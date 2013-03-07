@@ -100,6 +100,7 @@ public class Entity implements Serializable {
 					t.setId(new Id(id.memCall(ORIENTATION_BUFFER_POSITION)[0],w));
 					manager.setTile(location.getRow(),location.getCol()+w, t);
 				}
+				moveTo(getLocation().getRow()+getWidth()-1,getLocation().getCol());
 				manager.getWorld().forceRender();
 			}
 		}
@@ -114,6 +115,7 @@ public class Entity implements Serializable {
 					t.setId(new Id(id.memCall(akamai)[0],h));
 					manager.setTile(location.getRow()+h,location.getCol(), t);
 				}
+				moveTo(getLocation().getRow()-getWidth()+1,getLocation().getCol());
 				manager.getWorld().forceRender();
 			}
 		}
