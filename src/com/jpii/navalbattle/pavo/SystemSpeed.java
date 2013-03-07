@@ -11,7 +11,7 @@ public enum SystemSpeed {
 	/**
 	 * Very fast
 	 */
-	WHALE,
+	VERYFAST,
 	/**
 	 * Fast
 	 */

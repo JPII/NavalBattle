@@ -66,7 +66,7 @@ public class PavoHelper {
 			a = System.nanoTime() - a;
 			//System.out.println("sb"+sb+"time:"+a);
 			if (a < 2000000)
-				calcs = SystemSpeed.WHALE;
+				calcs = SystemSpeed.VERYFAST;
 			else if (a < 2500000)
 				calcs = SystemSpeed.CHEETAH;
 			else if (a < 3100000)
@@ -87,7 +87,7 @@ public class PavoHelper {
 				a = System.nanoTime() - a;
 				System.out.println("Speed time:"+a);
 				if (a < 2000000)
-					calcs = SystemSpeed.WHALE;
+					calcs = SystemSpeed.VERYFAST;
 				else if (a < 2500000)
 					calcs = SystemSpeed.CHEETAH;
 				else if (a < 3100000)
