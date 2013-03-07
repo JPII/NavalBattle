@@ -27,6 +27,7 @@ import com.jpii.navalbattle.pavo.PavoHelper;
 import com.jpii.navalbattle.pavo.PavoSettings;
 import com.jpii.navalbattle.util.FileUtils;
 import com.jpii.navalbattle.util.GrammarManager;
+import com.jpii.navalbattle.util.OSUtil;
 
 import java.awt.event.*;
 import java.awt.Color;
@@ -52,6 +53,7 @@ public class MaxTests {
 	 * Run <code>MaxTests</code>.
 	 */
 	public static void run() {
+		
 		Rand r = new Rand();
 		for (int c = 0; c < 3; c++) {
 			System.out.println(GrammarManager.generateFullName(r.nextInt()));
@@ -65,6 +67,7 @@ public class MaxTests {
 			System.exit(0x300AB);
 		}
 		System.out.println("Number of cocurrent cores: " + unit);
+		System.out.println("Total memory avaliable to the system: " + (OSUtil.getTotalOSRAM()/1024.0f/1024.0f) + " MB");
 		
 		if (isFirstRun()) {
 			String settingsPath = getSettingsPath();

@@ -76,6 +76,8 @@ public class NavalBattle {
 		debugWindow.printInfo("Loaded " + localizationManager.getDefaultStrings().size() + " default strings.");
 		debugWindow.printInfo("Loaded " + localizationManager.getCurrentStrings().size() + " current strings.");
 		
+		
+		MaxTests.run();
 	}
 	
 	public static void onShutdown() {
