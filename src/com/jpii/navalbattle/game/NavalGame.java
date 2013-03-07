@@ -104,6 +104,8 @@ public class NavalGame extends Game{
 		//siw = new ShipInfoWindow();
 		//siw.setLoc(350,350);
 		getWorld().getWeather().setWeather(WeatherMode.Sunny);
+		getWindows().add(twwna);
+		getWindows().add(hud);
 //		getWinMan().add(ppw);
 //		getWinMan().add(siw);
 //		getWinMan().add(sb);
