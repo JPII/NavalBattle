@@ -71,6 +71,20 @@ public class GridHelper implements Serializable {
 				}
 			}
 		}
+		if (rotate == GridedEntityTileOrientation.ORIENTATION_RIGHTTOLEFT) {
+			for (int c = 0; c < width; c++) {
+				int p = em.getTilePercentLand(row,col-c);
+				if (p > 5) {
+					flag = false;
+					break;
+				}
+				Tile temp = em.getTile(row,col-c);
+				if(temp!=null) {
+					flag=false;
+					break;
+				}
+			}
+		}
 		return flag;
 	}
 	
@@ -98,6 +112,20 @@ public class GridHelper implements Serializable {
 					break;
 				}
 				Tile temp = em.getTile(row-c,col);
+				if(temp!=null&&!temp.getEntity().equals(e)){
+					flag=false;
+					break;
+				}
+			}
+		}
+		if (rotate == GridedEntityTileOrientation.ORIENTATION_RIGHTTOLEFT) {
+			for (int c = 0; c < width; c++) {
+				int p = em.getTilePercentLand(row,col-c);
+				if (p > 5) {
+					flag = false;
+					break;
+				}
+				Tile temp = em.getTile(row,col-c);
 				if(temp!=null&&!temp.getEntity().equals(e)){
 					flag=false;
 					break;
