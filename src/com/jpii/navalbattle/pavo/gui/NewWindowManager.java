@@ -179,7 +179,7 @@ public class NewWindowManager extends Renderable {
 		for (int c = 0; c < wins.size(); c++) {
 			PWindow gw = wins.get(c);
 			//System.out.println("Render Window #" + c);
-			if (gw!=null) {
+			if (gw!=null && gw.isForcingIndividualChanges()) {
 				if (gw.isVisible() && !gw.isDisposed()) {
 					int gwx = gw.getLocX();
 					int gwy = gw.getLocY();
