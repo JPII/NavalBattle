@@ -101,7 +101,7 @@ public class NewWindowManager extends Renderable {
 		dragWnd = null;
 		for (int c = 0; c < wins.size(); c++) {
 			PWindow gw = wins.get(c);
-			if (gw!=null && gw.isVisible()) {
+			if (gw!=null && gw.isVisible() && !gw.isDisposed()) {
 				if (mx >= gw.getLocX() && mx <= gw.getLocX() + gw.getWidth()
 						&& my >= gw.getLocY() && my <= gw.getLocY() + gw.getHeight()) {
 					gw.onMouseDown(mx-gw.getLocX(), my-gw.getLocY(), me.getButton());
