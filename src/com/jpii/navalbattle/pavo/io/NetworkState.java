@@ -1,0 +1,9 @@
+package com.jpii.navalbattle.pavo.io;
+
+public enum NetworkState {
+	CONNECTED_TO_INTERNET,
+	CONNECTED_TO_NETWORK_NO_INTERNET,
+	NO_CONNECTION,
+	UNKNOWN,
+	CONNECTED_TO_INTERNET_NO_NETWORK
+}

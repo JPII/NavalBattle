@@ -387,7 +387,8 @@ public class Game extends Renderable implements Runnable, Serializable {
 		//g.setFont(Helper.GUI_GAME_FONT);
 		int ma = 38;
 		g.drawString("Idling (should be low):" + gs.getDrawIdling() + ". Draw time:" + gs.getDrawTime() + " Live chunks:" + gs.getLiveChunks(),12,660);
-		g.drawString("Is generating? " + gs.isGenerating() + ". Total update time:" + gs.getUpdateTime() + ". Last render length:" + gs.getTotalUpdate(), 12,690);
+		g.drawString("Is generating? " + gs.isGenerating() + ". Total update time:" + gs.getUpdateTime()
+				+ ". Last render length:" + gs.getTotalUpdate() + ". Current network state: " + Game.Settings.currentNetworkState, 12,690);
 		getWorld().unlock();
 		
 		while (/*getWinMan().isLocked() && */

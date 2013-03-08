@@ -15,6 +15,7 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.UnknownHostException;
 
+import com.jpii.navalbattle.pavo.Game;
 import com.sun.corba.se.spi.activation.Server;
 
 /**
@@ -30,6 +31,7 @@ public class PavoServer implements Runnable {
 	BufferedReader reader;
 	PrintWriter output;
 	String clientAddress = null;
+	boolean noInternet = false;
 	public PavoServer() {
 		
 	}
@@ -48,11 +50,17 @@ public class PavoServer implements Runnable {
 			try {
 				s = new Socket("google.com", 80);
 				ipaddress = (s.getLocalAddress().getHostAddress());
+				if (ipaddress == null) {
+					noInternet = true;
+					ipaddress = "None";
+				}
 				s.close();
 			}
 			catch (Throwable t) {
 				
 			}
+			if (!noInternet)
+				Game.Settings.currentNetworkState = NetworkState.CONNECTED_TO_NETWORK_NO_INTERNET;
 			System.out.println("Your ip address is: " + ipaddress);
 		}
 		clientAddress = null;
@@ -66,6 +74,10 @@ public class PavoServer implements Runnable {
 		try {
 			socket = new ServerSocket(670);
 		} catch (IOException e2) {
+			if (!noInternet)
+				Game.Settings.currentNetworkState = NetworkState.CONNECTED_TO_INTERNET_NO_NETWORK;
+			else
+				Game.Settings.currentNetworkState = NetworkState.NO_CONNECTION;
 			e2.printStackTrace();
 		}
 		try {

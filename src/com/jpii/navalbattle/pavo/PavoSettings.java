@@ -23,6 +23,8 @@ package com.jpii.navalbattle.pavo;
 import java.awt.Color;
 import java.awt.Toolkit;
 
+import com.jpii.navalbattle.pavo.io.NetworkState;
+
 import maximusvladimir.dagen.Rand;
 
 /**
@@ -44,4 +46,5 @@ public class PavoSettings {
 	public Color GridColor = new Color(120,120,120,100);
 	public boolean hasGameBeenModded = false;
 	public boolean isFinishedGenerating = false;
+	public NetworkState currentNetworkState = NetworkState.UNKNOWN;
 }
