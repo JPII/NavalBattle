@@ -75,7 +75,7 @@ public class NewWindowManager extends Renderable {
 		for (int c = 0; c < wins.size(); c++) {
 			PWindow gw = wins.get(c);
 			if (gw!=null) {
-				//gw.onMasterWindowResize();
+				gw.onMasterWindowResize();
 			}
 		}
 	}
