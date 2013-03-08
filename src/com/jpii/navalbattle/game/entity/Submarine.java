@@ -26,7 +26,7 @@ public class Submarine extends Entity {
 	}
 	
 	public void init() {
-		setWidth(3);
+		setWidth(2);
 		setHeight(1);
 	}
 	

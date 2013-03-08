@@ -3,9 +3,9 @@
  */
 package com.jpii.navalbattle.game;
 
-import java.awt.Color;
-
+import com.jpii.navalbattle.game.entity.AircraftCarrier;
 import com.jpii.navalbattle.game.entity.BattleShip;
+import com.jpii.navalbattle.game.entity.Submarine;
 import com.jpii.navalbattle.game.entity.Whale;
 import com.jpii.navalbattle.pavo.Game;
 import com.jpii.navalbattle.pavo.PavoHelper;
@@ -14,15 +14,14 @@ import com.jpii.navalbattle.pavo.grid.Entity;
 import com.jpii.navalbattle.pavo.grid.EntityManager;
 import com.jpii.navalbattle.pavo.grid.GridHelper;
 import com.jpii.navalbattle.pavo.grid.GridedEntityTileOrientation;
-import com.jpii.navalbattle.pavo.grid.Id;
 import com.jpii.navalbattle.pavo.grid.Location;
 import com.jpii.navalbattle.util.FileUtils;
 
 /**
- * @author maximusvladimir
  * The entity manager specified for NavalThing.
  */
 public class NavalManager extends EntityManager {
+	private static final long serialVersionUID = 1L;
 	public static GridedEntityTileOrientation w1, w2, w3;
 	/**
 	 * Creates a new instance of the NavalManager.
@@ -35,8 +34,27 @@ public class NavalManager extends EntityManager {
 				FileUtils.getImage("drawable-game/battleship/battleship.png"),Game.Settings.GridColor),GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT));
 		battleShipId.setTopToBottomImage(registerEntity(PavoHelper.imgUtilOutline(
 				FileUtils.getImage("drawable-game/battleship/battleship_S.png"),Game.Settings.GridColor),GridedEntityTileOrientation.ORIENTATION_TOPTOBOTTOM));
+		
+		acarrierId = new GridedEntityTileOrientation();
+		acarrierId.setLeftToRightImage(registerEntity(PavoHelper.imgUtilOutline(
+				FileUtils.getImage("drawable-game/aircraftcarrier/aircraftcarrier.png"),Game.Settings.GridColor),GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT));
+		acarrierId.setTopToBottomImage(registerEntity(PavoHelper.imgUtilOutline(
+				FileUtils.getImage("drawable-game/aircraftcarrier/aircraftcarrier_S.png"),Game.Settings.GridColor),GridedEntityTileOrientation.ORIENTATION_TOPTOBOTTOM));
+		
+		submarineId = new GridedEntityTileOrientation();
+		submarineId.setLeftToRightImage(registerEntity(PavoHelper.imgUtilOutline(
+				FileUtils.getImage("drawable-game/submarine/submarine.png"),Game.Settings.GridColor),GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT));
+		submarineId.setTopToBottomImage(registerEntity(PavoHelper.imgUtilOutline(
+				FileUtils.getImage("drawable-game/submarine/submarine_S.png"),Game.Settings.GridColor),GridedEntityTileOrientation.ORIENTATION_TOPTOBOTTOM));
+		
 		if (battleShipId != null) {
 			BattleShip.BATTLESHIP_ID = battleShipId;
+		}
+		if (acarrierId != null) {
+			AircraftCarrier.AIRCRAFTCARRIER_ID = acarrierId;
+		}
+		if (submarineId != null) {
+			Submarine.SUBMARINE_ID = submarineId;
 		}
 		else {
 			System.out.println("not a battleship");

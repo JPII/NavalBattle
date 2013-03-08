@@ -19,36 +19,26 @@ package com.jpii.navalbattle.game;
 
 import java.awt.Graphics2D;
 import java.awt.event.MouseEvent;
-import java.awt.image.BufferedImage;
-import java.lang.management.ManagementFactory;
-
-import sun.management.OperatingSystemImpl;
-import sun.org.mozilla.javascript.internal.NativeCall;
 
 import com.jpii.navalbattle.game.entity.*;
 import com.jpii.navalbattle.game.gui.HUD;
-import com.jpii.navalbattle.game.gui.PlayerProfileWindow;
-import com.jpii.navalbattle.game.gui.ShipInfoWindow;
-import com.jpii.navalbattle.game.gui.StatusBar;
 import com.jpii.navalbattle.pavo.*;
-import com.jpii.navalbattle.pavo.grid.Entity;
 import com.jpii.navalbattle.pavo.grid.GridHelper;
 import com.jpii.navalbattle.pavo.grid.GridedEntityTileOrientation;
 import com.jpii.navalbattle.pavo.grid.Location;
 import com.jpii.navalbattle.pavo.grid.Tile;
-import com.jpii.navalbattle.pavo.gui.GridWindow;
 import com.jpii.navalbattle.pavo.gui.MessageBox;
 import com.jpii.navalbattle.pavo.gui.MessageBoxIcon;
 import com.jpii.navalbattle.pavo.gui.OmniMap;
 import com.jpii.navalbattle.pavo.gui.TestWindowWithNewAPI;
 import com.jpii.navalbattle.renderer.weather.WeatherMode;
-import com.sun.management.OperatingSystemMXBean;
 
 /**
  * @author MKirkby
  * The game file.
  */
 public class NavalGame extends Game{
+	private static final long serialVersionUID = 1L;
 	/*PlayerProfileWindow ppw;
 	ShipInfoWindow siw;
 	StatusBar sb;*/
@@ -273,23 +263,30 @@ public class NavalGame extends Game{
 			return;
 		
 		else if (Game.Settings.isFinishedGenerating && getWorld().getEntityManager().getTilePercentLand(chy,chx) <= 5){
-			///System.out.println("c"+chx+","+chy);
 			if(current==null){
 				if(!isAClient() && me.getButton() == MouseEvent.BUTTON1){
-					if(GridHelper.canPlaceInGrid(nm,GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT, chy, chx, 4)){
-						new BattleShip(this.getWorld().getEntityManager(),new Location(chy,chx),BattleShip.BATTLESHIP_ID,GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT,Game.Settings.rand.nextInt(0,3));
+					if(GridHelper.canPlaceInGrid(nm,GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT, chy, chx, 5)){
+						new AircraftCarrier(this.getWorld().getEntityManager(),new Location(chy,chx),AircraftCarrier.AIRCRAFTCARRIER_ID,GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT,Game.Settings.rand.nextInt(0,3));
 					}
-					else if(GridHelper.canPlaceInGrid(nm,GridedEntityTileOrientation.ORIENTATION_TOPTOBOTTOM, chy, chx, 4)){
-						new BattleShip(this.getWorld().getEntityManager(),new Location(chy,chx),BattleShip.BATTLESHIP_ID,GridedEntityTileOrientation.ORIENTATION_TOPTOBOTTOM,Game.Settings.rand.nextInt(0,3));
+					else if(GridHelper.canPlaceInGrid(nm,GridedEntityTileOrientation.ORIENTATION_TOPTOBOTTOM, chy, chx, 5)){
+						new AircraftCarrier(this.getWorld().getEntityManager(),new Location(chy-4,chx),AircraftCarrier.AIRCRAFTCARRIER_ID,GridedEntityTileOrientation.ORIENTATION_TOPTOBOTTOM,Game.Settings.rand.nextInt(0,3));
 					}	
 				}
-				if(me.getButton() == MouseEvent.BUTTON3){
-					if(GridHelper.canPlaceInGrid(nm,GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT, chy, chx, 1)){
-						getHud().setEntity(null);
+				else if(!isAClient() && me.getButton() == MouseEvent.BUTTON3){
+					if(GridHelper.canPlaceInGrid(nm,GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT, chy, chx, 2)){
+						new Submarine(this.getWorld().getEntityManager(),new Location(chy,chx),Submarine.SUBMARINE_ID,GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT,Game.Settings.rand.nextInt(0,3));
 					}
-					//new Whale(this.getWorld().getEntityManager(),new Location(chy,chx),
-						//	Game.Settings.rand.nextInt(0,3),NavalManager.w1,NavalManager.w2,NavalManager.w3);
+					else if(GridHelper.canPlaceInGrid(nm,GridedEntityTileOrientation.ORIENTATION_TOPTOBOTTOM, chy, chx, 2)){
+						new Submarine(this.getWorld().getEntityManager(),new Location(chy-1,chx),Submarine.SUBMARINE_ID,GridedEntityTileOrientation.ORIENTATION_TOPTOBOTTOM,Game.Settings.rand.nextInt(0,3));
+					}	
 				}
+//				if(me.getButton() == MouseEvent.BUTTON3){
+//					if(GridHelper.canPlaceInGrid(nm,GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT, chy, chx, 1)){
+//						getHud().setEntity(null);
+//					}
+//					new Whale(this.getWorld().getEntityManager(),new Location(chy,chx),
+//							Game.Settings.rand.nextInt(0,3),NavalManager.w1,NavalManager.w2,NavalManager.w3);
+//				}
 			}
 		}
 		

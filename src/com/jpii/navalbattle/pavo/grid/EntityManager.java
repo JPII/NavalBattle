@@ -17,29 +17,27 @@
 
 package com.jpii.navalbattle.pavo.grid;
 
-import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-import com.jpii.navalbattle.game.NavalGame;
-import com.jpii.navalbattle.game.entity.BattleShip;
 import com.jpii.navalbattle.pavo.Chunk;
 import com.jpii.navalbattle.pavo.Game;
 import com.jpii.navalbattle.pavo.PavoHelper;
 import com.jpii.navalbattle.pavo.World;
-import com.jpii.navalbattle.pavo.gui.MessageBox;
-import com.jpii.navalbattle.pavo.gui.MessageBoxIcon;
 import com.jpii.navalbattle.pavo.io.PavoImage;
 
 public class EntityManager implements Serializable {
+	private static final long serialVersionUID = 1L;
 	private byte[][] tileAccessor;
 	//private Tile[][] ent;
 	private transient World w;
 	private ArrayList<Integer> entityRegister;
 	private ArrayList<Entity> entities;
 	public GridedEntityTileOrientation battleShipId;
+	public GridedEntityTileOrientation acarrierId;
+	public GridedEntityTileOrientation submarineId;
 	int counter = 0;
 	/**
 	 * Creates a new entity manager for the desired world.
