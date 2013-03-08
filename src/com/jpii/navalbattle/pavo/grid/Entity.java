@@ -263,12 +263,6 @@ public class Entity implements Serializable {
 				manager.setTile(new Location(row+c,col), t);
 			}
 		}
-		if (getCurrentOrientation() == GridedEntityTileOrientation.ORIENTATION_RIGHTTOLEFT) {
-			for (int c = 0; c < width; c++) {
-				Tile t=null;
-				manager.setTile(new Location(row+c,col), t);
-			}
-		}
 	}
 	
 	/**
