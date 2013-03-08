@@ -152,7 +152,7 @@ public class NewWindowManager extends Renderable {
 			}
 		}*/
 		
-		if (dragWnd != null) {
+		if (dragWnd != null && dragWnd.isVisible() && !dragWnd.isDisposed()) {
 			dragWnd.onMouseDrag(mx,my);
 			flag = true;
 		}
