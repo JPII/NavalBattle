@@ -1,11 +1,5 @@
-/**
- * 
- */
 package com.jpii.navalbattle.game.entity;
 
-
-import javax.imageio.ImageIO;
-import com.jpii.navalbattle.game.NavalGame;
 import com.jpii.navalbattle.pavo.Game;
 import com.jpii.navalbattle.pavo.grid.Entity;
 import com.jpii.navalbattle.pavo.grid.EntityManager;
@@ -13,31 +7,22 @@ import com.jpii.navalbattle.pavo.grid.GridHelper;
 import com.jpii.navalbattle.pavo.grid.GridedEntityTileOrientation;
 import com.jpii.navalbattle.pavo.grid.Location;
 
-/**
- * @author maximusvladimir
- *
- */
-public class BattleShip extends Entity {
+@SuppressWarnings("serial")
+public class AircraftCarrier extends Entity {
+	
 	public static GridedEntityTileOrientation BATTLESHIP_ID;
-	/**
-	 * @param em
-	 */
-	public BattleShip(EntityManager em) {
+
+	public AircraftCarrier(EntityManager em) {
 		super(em);
-		imgLocation="drawable-game/battleship/battleship.png";
+		imgLocation="drawable-game/aircraftcarrier/aircraftcarrier.png";
 	}
 
-	/**
-	 * @param em
-	 * @param loc
-	 * @param superId
-	 */
-	public BattleShip(EntityManager em, Location loc, GridedEntityTileOrientation superId,byte orientation,int team) {
+	public AircraftCarrier(EntityManager em, Location loc, GridedEntityTileOrientation superId,byte orientation,int team) {
 		super(em, loc, superId,orientation,team);
-		imgLocation="drawable-game/battleship/battleship.png";
+		imgLocation="drawable-game/aircraftcarrier/aircraftcarrier.png";
 		Game g = em.getWorld().getGame();
 		if (!g.isAClient()) {
-			g.getSelfServer().send("battleship:"+loc.getCol()+","+loc.getRow());
+			g.getSelfServer().send("aircraftcarrier:"+loc.getCol()+","+loc.getRow());
 		}
 	}
 	
@@ -45,15 +30,19 @@ public class BattleShip extends Entity {
 		setWidth(4);
 		setHeight(1);
 	}
+	
 	public boolean moveTo(Location loc, boolean override) {
 		return super.moveTo(loc, override);
 	}
+	
 	public void onUpdate(long timePassed) {
 		int r = 1;
 		int c = 1;
 	}
+	
 	public void onMouseMove(int x, int y) {
 	}
+	
 	public void onMouseDown(int x, int y, boolean leftbutton) {
 		super.onMouseDown(x, y, leftbutton);
 		if(!leftbutton){
