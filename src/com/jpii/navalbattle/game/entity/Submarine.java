@@ -7,10 +7,9 @@ import com.jpii.navalbattle.pavo.grid.GridHelper;
 import com.jpii.navalbattle.pavo.grid.GridedEntityTileOrientation;
 import com.jpii.navalbattle.pavo.grid.Location;
 
-@SuppressWarnings("serial")
 public class Submarine extends Entity {
-	
-	public static GridedEntityTileOrientation BATTLESHIP_ID;
+	private static final long serialVersionUID = 1L;
+	public static GridedEntityTileOrientation SUBMARINE_ID;
 
 	public Submarine(EntityManager em) {
 		super(em);
@@ -27,7 +26,7 @@ public class Submarine extends Entity {
 	}
 	
 	public void init() {
-		setWidth(4);
+		setWidth(3);
 		setHeight(1);
 	}
 	
@@ -36,8 +35,6 @@ public class Submarine extends Entity {
 	}
 	
 	public void onUpdate(long timePassed) {
-		int r = 1;
-		int c = 1;
 	}
 	
 	public void onMouseMove(int x, int y) {

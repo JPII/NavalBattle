@@ -1,11 +1,5 @@
-/**
- * 
- */
 package com.jpii.navalbattle.game.entity;
 
-
-import javax.imageio.ImageIO;
-import com.jpii.navalbattle.game.NavalGame;
 import com.jpii.navalbattle.pavo.Game;
 import com.jpii.navalbattle.pavo.grid.Entity;
 import com.jpii.navalbattle.pavo.grid.EntityManager;
@@ -13,11 +7,8 @@ import com.jpii.navalbattle.pavo.grid.GridHelper;
 import com.jpii.navalbattle.pavo.grid.GridedEntityTileOrientation;
 import com.jpii.navalbattle.pavo.grid.Location;
 
-/**
- * @author maximusvladimir
- *
- */
 public class BattleShip extends Entity {
+	private static final long serialVersionUID = 1L;
 	public static GridedEntityTileOrientation BATTLESHIP_ID;
 	/**
 	 * @param em
@@ -49,8 +40,6 @@ public class BattleShip extends Entity {
 		return super.moveTo(loc, override);
 	}
 	public void onUpdate(long timePassed) {
-		int r = 1;
-		int c = 1;
 	}
 	public void onMouseMove(int x, int y) {
 	}
