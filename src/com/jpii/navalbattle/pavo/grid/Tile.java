@@ -12,9 +12,11 @@ package com.jpii.navalbattle.pavo.grid;
 public class Tile<T> {
 	T parent;
 	Id id;
+	//byte color;
 	//Entity pointer;
 	public Tile(T parent, int r, int c) {
 		this.parent = parent;
+		//color = 0;
 		if(parent !=null){
 			if (!(parent instanceof Entity))
 				throw new RuntimeException("The provided object is not an entity.");

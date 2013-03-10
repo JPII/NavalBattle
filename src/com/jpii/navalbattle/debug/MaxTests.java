@@ -48,7 +48,7 @@ import maximusvladimir.dagen.Rand;
  *
  */
 public class MaxTests {
-	
+	//private static Color randomColor
 	/**
 	 * Run <code>MaxTests</code>.
 	 */
@@ -59,6 +59,11 @@ public class MaxTests {
 			System.out.println(GrammarManager.generateFullName(r.nextInt()));
 		}
 		System.out.println("Seed:" + Game.Settings.seed);
+		
+		Color original = r.nextColor();
+		System.out.println("Original color:" + original.toString());
+		System.out.println("Byte rep: " + PavoHelper.getByteFromColor(original));
+		System.out.println("Recasted color:" + PavoHelper.getColorFromByte(PavoHelper.getByteFromColor(original)));
 		
 		System.out.println("Measured system speed as: "+PavoHelper.getCalculatedSystemSpeed().toString());
 		int unit = Runtime.getRuntime().availableProcessors();

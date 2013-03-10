@@ -52,6 +52,54 @@ public class PavoHelper {
         g2.fillRect(0, 0,width, height);
         return b;
 	}
+	public static short getByteFromColor(Color c) {
+		int rgb = c.getRGB();
+		/*c.getRed()/colm;
+		rgb = (rgb << 6) + (c.getGreen()/colm);
+		rgb = (rgb << 6) + (c.getBlue()/colm);
+		if (rgb > 32767)
+			rgb = rgb - (32767*2);
+		return (short)(rgb);*/
+		rgb = rgb / 8;
+		if (rgb > 32767)
+			rgb = rgb - (32767*2);
+		return (short)rgb;
+	}
+	private static int colm = 10;
+	public static Color getColorFromByte(short c) {
+		/*int rgb = (int)c;
+		if (rgb < 0)
+			rgb = rgb + (32767*2);
+		int red = (rgb >> 6) & (0xFF);
+		int green = (rgb >> 3) & (0xFF);
+		int blue = rgb & (0xFF);
+		red = (red * colm)/8;
+		green = (green * colm)/7;
+		blue = (blue * colm)/12;*/
+		int hd = (int)c;
+		if (hd < 0)
+			hd = hd + (32767*2);
+		hd = hd * 8;
+		Color c2 = new Color(hd);
+		return c2;
+		/*
+		int red = 0;
+		int green = 0;
+		int blue = 0;
+		if (red > 255)
+			red = 255;
+		if (green > 255)
+			green = 255;
+		if (blue > 255)
+			blue = 255;
+		if (red < 0)
+			red = 0;
+		if (green < 0)
+			green = 0;
+		if (blue < 0)
+			blue = 0;*
+		return new Color(red,green,blue);*/
+	}
 	public static SystemSpeed getCalculatedSystemSpeed() {
 		if (calcs == null) {
 			long a = System.nanoTime();

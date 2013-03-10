@@ -142,6 +142,9 @@ public class EntityManager implements Serializable {
 		//System.out.println("chunk at:" + x + "," + z);
 		chunk.writeBuffer();//needsBufferWrite();
 	}
+	public void setTileOverlay(int r, int c, byte color) {
+		
+	}
 	public <T> void setTile(Location loc, Tile<Entity> t) {
 		setTile(loc.getRow(),loc.getCol(),t);
 	}
