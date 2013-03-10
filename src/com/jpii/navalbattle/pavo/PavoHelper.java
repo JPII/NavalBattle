@@ -60,7 +60,7 @@ public class PavoHelper {
 		if (rgb > 32767)
 			rgb = rgb - (32767*2);
 		return (short)(rgb);*/
-		rgb = rgb / 16;
+		rgb = rgb / 8;
 		if (rgb > 32767)
 			rgb = rgb - (32767*2);
 		return (short)rgb;
@@ -79,7 +79,7 @@ public class PavoHelper {
 		int hd = (int)c;
 		if (hd < 0)
 			hd = hd + (32767*2);
-		hd = hd * 16;
+		hd = hd * 8;
 		Color c2 = new Color(hd);
 		return c2;
 		/*
