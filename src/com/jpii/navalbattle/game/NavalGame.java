@@ -267,7 +267,7 @@ public class NavalGame extends Game{
 			Entity ent = getWorld().getEntityManager().findEntity(chy,chx);
 			if (ent != null) {
 				MoveableEntity moveEnt = (MoveableEntity)ent;
-				System.out.println("MovedEntity");
+				//System.out.println("MovedEntity");
 				moveEnt.toggleMovable();
 			}
 			if(current==null){
