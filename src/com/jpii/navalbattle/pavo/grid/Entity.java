@@ -233,6 +233,15 @@ public class Entity implements Serializable {
 		return true;
 	}
 	
+	public void rotateNext() {
+		byte gb = getCurrentOrientation();
+		if (gb == GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT)
+			gb = GridedEntityTileOrientation.ORIENTATION_TOPTOBOTTOM;
+		else
+			gb = GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT;
+		rotateTo(gb);
+	}
+
 	private void hideEntity() {
 		for (int w = 0; w < getWidth(); w++) {
 			for (int h = 0; h < getHeight(); h++) {
