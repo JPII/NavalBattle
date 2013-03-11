@@ -28,6 +28,8 @@ import java.awt.MultipleGradientPaint.CycleMethod;
 import java.awt.geom.Point2D;
 import java.awt.image.BufferedImage;
 
+import maximusvladimir.dagen.Rand;
+
 import com.jpii.navalbattle.pavo.grid.Entity;
 import com.jpii.navalbattle.pavo.grid.Location;
 import com.jpii.navalbattle.pavo.io.PavoImage;
@@ -60,12 +62,13 @@ public class PavoHelper {
 		if (rgb > 32767)
 			rgb = rgb - (32767*2);
 		return (short)(rgb);*/
-		rgb = rgb / 8;
+		rgb = (int)(rgb / 4);
 		if (rgb > 32767)
 			rgb = rgb - (32767*2);
 		return (short)rgb;
 	}
 	private static int colm = 10;
+	private static Rand rand3 = new Rand();
 	public static Color getColorFromByte(short c) {
 		/*int rgb = (int)c;
 		if (rgb < 0)
@@ -79,9 +82,18 @@ public class PavoHelper {
 		int hd = (int)c;
 		if (hd < 0)
 			hd = hd + (32767*2);
-		hd = hd * 8;
+		hd = (int)(hd * 4);
 		Color c2 = new Color(hd);
-		return c2;
+		int r  = c2.getRed();
+		if (r >= 4)
+			r = r *(rand3.nextInt(4,18));
+		else
+			r = 255 - (rand3.nextInt(8, 32));
+		if (r > 255)
+			r =255;
+		if (r < 0)
+			r =0;
+		return new Color(r,c2.getGreen(),c2.getBlue());
 		/*
 		int red = 0;
 		int green = 0;
