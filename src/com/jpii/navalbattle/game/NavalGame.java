@@ -264,14 +264,15 @@ public class NavalGame extends Game{
 			return;
 		
 		else if (Game.Settings.isFinishedGenerating && getWorld().getEntityManager().getTilePercentLand(chy,chx) <= 5){
+			Entity ent = getWorld().getEntityManager().findEntity(chy,chx);
+			if (ent != null) {
+				MoveableEntity moveEnt = (MoveableEntity)ent;
+				System.out.println("MovedEntity");
+				moveEnt.toggleMovable();
+			}
 			if(current==null){
 				if(!isAClient() && me.getButton() == MouseEvent.BUTTON1){
-					Entity ent = getWorld().getEntityManager().findEntity(chy,chx);
-					if (ent != null) {
-						MoveableEntity moveEnt = (MoveableEntity)ent;
-						moveEnt.toggleMovable();
-					}
-					else if(GridHelper.canPlaceInGrid(nm,GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT, chy, chx, 5)){
+					if(GridHelper.canPlaceInGrid(nm,GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT, chy, chx, 5)){
 						new AircraftCarrier(this.getWorld().getEntityManager(),new Location(chy,chx),AircraftCarrier.AIRCRAFTCARRIER_ID,GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT,Game.Settings.rand.nextInt(0,3));
 					}
 					else if(GridHelper.canPlaceInGrid(nm,GridedEntityTileOrientation.ORIENTATION_TOPTOBOTTOM, chy, chx, 5)){

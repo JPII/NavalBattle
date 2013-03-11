@@ -166,7 +166,7 @@ public class EntityManager implements Serializable {
 			Chunk chuck = w.getChunk(c/2,r/2);
 			if (chuck == null)
 				return null;
-			int rx = c % 2;
+			/*int rx = c % 2;
 			int rz = r % 2;
 			if (rx == 0 && rz == 0 && chuck.Tile00 != null)
 				return chuck.Tile00.parent;
@@ -177,7 +177,19 @@ public class EntityManager implements Serializable {
 			else if (rx != 0 && rz != 0 && chuck.Tile11 != null)
 				return chuck.Tile11.parent;
 			else
+				return null;*/
+			if (chuck.Tile00 != null && chuck.Tile00.parent != null)
+				return chuck.Tile00.parent;
+			else if (chuck.Tile10 != null && chuck.Tile10.parent != null)
+				return chuck.Tile10.parent;
+			else if (chuck.Tile01 != null && chuck.Tile01.parent != null)
+				return chuck.Tile01.parent;
+			else if (chuck.Tile11 != null && chuck.Tile11.parent != null)
+				return chuck.Tile11.parent;
+			else {
+				//System.out.println("None of e'm had values.");
 				return null;
+			}
 		}
 		return null;
 	}
