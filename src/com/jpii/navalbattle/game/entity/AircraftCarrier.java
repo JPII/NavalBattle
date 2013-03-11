@@ -7,7 +7,7 @@ import com.jpii.navalbattle.pavo.grid.GridHelper;
 import com.jpii.navalbattle.pavo.grid.GridedEntityTileOrientation;
 import com.jpii.navalbattle.pavo.grid.Location;
 
-public class AircraftCarrier extends Entity {
+public class AircraftCarrier extends MoveableEntity {
 	private static final long serialVersionUID = 1L;
 	public static GridedEntityTileOrientation AIRCRAFTCARRIER_ID;
 

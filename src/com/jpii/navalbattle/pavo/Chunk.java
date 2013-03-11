@@ -39,6 +39,7 @@ public class Chunk extends Renderable{
 	int x,z;
 	boolean generated = false;
 	public Tile<Entity> Tile00, Tile10, Tile01,Tile11;
+	public short Overlay00, Overlay10, Overlay01, Overlay11;
 	static Perlin p = new Perlin(Game.Settings.rand.nextLong(),0,0);
 	static Rand rand = new Rand();
 	World w;
@@ -50,6 +51,7 @@ public class Chunk extends Renderable{
 	public Chunk(World w) {
 		this.w = w;
 		Tile00 = Tile10 = Tile01 = Tile11 = null;
+		Overlay00 = Overlay10 = Overlay01 = Overlay11 = 0;
 	}
 	/**
 	 * Sets the x-location for the chunk.
@@ -232,6 +234,22 @@ public class Chunk extends Renderable{
 		g.drawImage(w.getEntityManager().getImage(Tile10), 50, 0, null);
 		g.drawImage(w.getEntityManager().getImage(Tile01), 0, 50, null);
 		g.drawImage(w.getEntityManager().getImage(Tile11), 50, 50, null);
+		if (Overlay00 != 0) {
+			g.setColor(PavoHelper.changeAlpha(PavoHelper.getColorFromByte(Overlay00), 60));
+			g.fillRect(0,0,50,50);
+		}
+		if (Overlay10 != 0) {
+			g.setColor(PavoHelper.changeAlpha(PavoHelper.getColorFromByte(Overlay10), 60));
+			g.fillRect(50,0,50,50);
+		}
+		if (Overlay01 != 0) {
+			g.setColor(PavoHelper.changeAlpha(PavoHelper.getColorFromByte(Overlay01), 60));
+			g.fillRect(0,50,50,50);
+		}
+		if (Overlay11 != 0) {
+			g.setColor(PavoHelper.changeAlpha(PavoHelper.getColorFromByte(Overlay11), 60));
+			g.fillRect(50,50,50,50);
+		}
 		//if (poychingmode) {
 		//	g.setColor(new Color(0,0,255,127));
 		//	g.fillRect(0,0,103,103);

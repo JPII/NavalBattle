@@ -142,8 +142,44 @@ public class EntityManager implements Serializable {
 		//System.out.println("chunk at:" + x + "," + z);
 		chunk.writeBuffer();//needsBufferWrite();
 	}
-	public void setTileOverlay(int r, int c, byte color) {
-		
+	public void setTileOverlay(int r, int c, short color) {
+		if (c >= PavoHelper.getGameWidth(w.getWorldSize())*2 ||
+				r >= PavoHelper.getGameHeight(w.getWorldSize())*2 || c < 0 || r < 0)
+			return;
+		int x = c/2;
+		int z = r/2;
+		Chunk chunk = w.getChunk(x, z);
+		int rx = c % 2;
+		int rz = r % 2;
+		if (rx == 0 && rz == 0)
+			chunk.Overlay00 = color;
+		else if (rx != 0 && rz == 0)
+			chunk.Overlay10 = color;
+		else if (rx == 0 && rz != 0)
+			chunk.Overlay01 = color;
+		else if (rx != 0 && rz != 0)
+			chunk.Overlay11 = color;
+		chunk.writeBuffer();
+	}
+	public Entity findEntity(int r, int c) {
+		if (r >= 0 && c >= 0) {
+			Chunk chuck = w.getChunk(c/2,r/2);
+			if (chuck == null)
+				return null;
+			int rx = c % 2;
+			int rz = r % 2;
+			if (rx == 0 && rz == 0)
+				return chuck.Tile00.parent;
+			else if (rx != 0 && rz == 0)
+				return chuck.Tile10.parent;
+			else if (rx == 0 && rz != 0)
+				return chuck.Tile01.parent;
+			else if (rx != 0 && rz != 0)
+				return chuck.Tile11.parent;
+			else
+				return null;
+		}
+		return null;
 	}
 	public <T> void setTile(Location loc, Tile<Entity> t) {
 		setTile(loc.getRow(),loc.getCol(),t);

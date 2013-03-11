@@ -23,6 +23,7 @@ import java.awt.event.MouseEvent;
 import com.jpii.navalbattle.game.entity.*;
 import com.jpii.navalbattle.game.gui.HUD;
 import com.jpii.navalbattle.pavo.*;
+import com.jpii.navalbattle.pavo.grid.Entity;
 import com.jpii.navalbattle.pavo.grid.GridHelper;
 import com.jpii.navalbattle.pavo.grid.GridedEntityTileOrientation;
 import com.jpii.navalbattle.pavo.grid.Location;
@@ -265,12 +266,17 @@ public class NavalGame extends Game{
 		else if (Game.Settings.isFinishedGenerating && getWorld().getEntityManager().getTilePercentLand(chy,chx) <= 5){
 			if(current==null){
 				if(!isAClient() && me.getButton() == MouseEvent.BUTTON1){
-					if(GridHelper.canPlaceInGrid(nm,GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT, chy, chx, 5)){
+					Entity ent = getWorld().getEntityManager().findEntity(chy,chx);
+					if (ent != null) {
+						MoveableEntity moveEnt = (MoveableEntity)ent;
+						moveEnt.toggleMovable();
+					}
+					else if(GridHelper.canPlaceInGrid(nm,GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT, chy, chx, 5)){
 						new AircraftCarrier(this.getWorld().getEntityManager(),new Location(chy,chx),AircraftCarrier.AIRCRAFTCARRIER_ID,GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT,Game.Settings.rand.nextInt(0,3));
 					}
 					else if(GridHelper.canPlaceInGrid(nm,GridedEntityTileOrientation.ORIENTATION_TOPTOBOTTOM, chy, chx, 5)){
 						new AircraftCarrier(this.getWorld().getEntityManager(),new Location(chy-4,chx),AircraftCarrier.AIRCRAFTCARRIER_ID,GridedEntityTileOrientation.ORIENTATION_TOPTOBOTTOM,Game.Settings.rand.nextInt(0,3));
-					}	
+					}
 				}
 				else if(!isAClient() && me.getButton() == MouseEvent.BUTTON3){
 					if(GridHelper.canPlaceInGrid(nm,GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT, chy, chx, 2)){

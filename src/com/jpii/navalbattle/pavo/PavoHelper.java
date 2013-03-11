@@ -54,6 +54,11 @@ public class PavoHelper {
         g2.fillRect(0, 0,width, height);
         return b;
 	}
+	public static Color changeAlpha(Color c, int alpha) {
+		if (c == null)
+			return null;
+		return new Color(c.getRed(),c.getGreen(),c.getBlue(),alpha);
+	}
 	public static short getByteFromColor(Color c) {
 		int rgb = c.getRGB();
 		/*c.getRed()/colm;
@@ -85,7 +90,7 @@ public class PavoHelper {
 		hd = (int)(hd * 4);
 		Color c2 = new Color(hd);
 		int r  = c2.getRed();
-		if (r >= 4)
+		if (r >= 1)
 			r = r *(rand3.nextInt(4,18));
 		else
 			r = 255 - (rand3.nextInt(8, 32));
