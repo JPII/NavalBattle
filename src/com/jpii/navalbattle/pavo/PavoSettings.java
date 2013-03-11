@@ -47,4 +47,5 @@ public class PavoSettings {
 	public boolean hasGameBeenModded = false;
 	public boolean isFinishedGenerating = false;
 	public NetworkState currentNetworkState = NetworkState.UNKNOWN;
+	public boolean isUsingMultithreadedRenderer = false;
 }

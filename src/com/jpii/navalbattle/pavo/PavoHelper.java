@@ -54,6 +54,14 @@ public class PavoHelper {
         g2.fillRect(0, 0,width, height);
         return b;
 	}
+	public static void threadSleep() {
+		try {
+			Thread.sleep(0);
+		}
+		catch (Throwable t) {
+			
+		}
+	}
 	public static Color changeAlpha(Color c, int alpha) {
 		if (c == null)
 			return null;

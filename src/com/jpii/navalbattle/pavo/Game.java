@@ -53,6 +53,7 @@ public class Game extends Renderable implements Runnable, Serializable {
 	private Thread updator;
 	private Thread chunkrender;
 	private Thread generator;
+	private Thread renderer;
 	//private Thread sync;
 	private boolean gameRunning = true;
 	private long timeLastUpdate = System.currentTimeMillis();
@@ -71,6 +72,7 @@ public class Game extends Renderable implements Runnable, Serializable {
 	private TestClient client;
 	private PavoServer server;
 	private boolean isClient = false;
+	private BufferedImage renderBuffer;
 	//private BufferedImage chunkBuffer;
 	public static PavoSettings Settings = new PavoSettings();
 	/**
@@ -221,12 +223,20 @@ public class Game extends Renderable implements Runnable, Serializable {
 		//while (lastStart + 500 > System.currentTimeMillis()) {
 		//	
 		//}
+		renderer = new Thread(this);
+		state = 5;
+		renderer.setPriority(js);
+		renderer.setName("worldRenderingThread");
+		renderer.setDaemon(true);
+		renderer.start();
+		renderer.setPriority(js);
 		//state = 3;
 		//generator = new Thread(this);
 		//generator.setPriority(Thread.MAX_PRIORITY);
 		//generator.setName("generatorThread");
 		//generator.start();
 	}
+	private boolean worldReRenderNotNeeded = true;
 	private static GameStatistics stats = new GameStatistics();
 	/**
 	 * The graphics statistics for the game.
@@ -334,8 +344,25 @@ public class Game extends Renderable implements Runnable, Serializable {
 			while (gameRunning) {
 				long start = System.currentTimeMillis();
 				while (start + 250 > System.currentTimeMillis()) {
-					;;;//System.gc();
+					//;;;//System.gc();
+					PavoHelper.threadSleep();
 				}
+			}
+		}
+		else if (state == 5) {
+			while (gameRunning && Settings.isUsingMultithreadedRenderer) {
+				worldReRenderNotNeeded = true;
+				while (getWorld().isLocked()) {
+					//PavoHelper.threadSleep();
+				}
+				getWorld().lock();
+				getWorld().render();
+				getWorld().unlock();
+				/*long start = System.currentTimeMillis();
+				while (start + 250 > System.currentTimeMillis() && worldReRenderNotNeeded) {
+					;;;
+				}*/
+				//PavoHelper.threadSleep();
 			}
 		}
 		System.out.println("Thread " + Thread.currentThread().getName() + " is prepairing to exit context.");
@@ -377,7 +404,8 @@ public class Game extends Renderable implements Runnable, Serializable {
 		}
 		
 		getWorld().lock();
-		getWorld().render();
+		if (!Settings.isUsingMultithreadedRenderer)
+			getWorld().render();
 		g.drawImage(getWorld().getBuffer(),0,0,null);
 		g.drawImage(getWorld().getTimeManager().getBuffer(),0,0,null);
 		g.drawImage(getWorld().getWeather().getBuffer(),0,0,null);

@@ -256,7 +256,7 @@ public class Chunk extends Renderable{
 		//}
 		nesa = false;
 		g.dispose();
-		
+		w.chunkrender = true;
 	}
 	
 	//boolean poychingmode = false;
