@@ -42,7 +42,7 @@ public class MoveableEntity extends Entity {
 					int c = (x + getLocation().getCol()) - (maxStep);
 					if (r >= 0 && c >= 0) {
 						if (getManager().getTilePercentLand(r,c) <= 8) {
-							getManager().setTileOverlay(r,c,(short)0x4a1d);
+							getManager().setTileOverlay(r,c,(short)0x2f1d);
 						}
 						else {
 							getManager().setTileOverlay(r,c,(short)0x001);
@@ -58,7 +58,7 @@ public class MoveableEntity extends Entity {
 					int c = (x + getLocation().getCol()) - (((maxStep * 2) + getWidth())/2);
 					if (r >= 0 && c >= 0) {
 						if (getManager().getTilePercentLand(c,r) <= 8) {
-							getManager().setTileOverlay(c,r,(short)0x4a1d);
+							getManager().setTileOverlay(c,r,(short)0x2f1d);
 						}
 						else {
 							getManager().setTileOverlay(c,r,(short)0x0001);

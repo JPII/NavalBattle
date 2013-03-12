@@ -269,6 +269,7 @@ public class NavalGame extends Game{
 				MoveableEntity moveEnt = (MoveableEntity)ent;
 				//System.out.println("MovedEntity");
 				moveEnt.toggleMovable();
+				getWorld().forceRender();
 			}
 			if(current==null){
 				if(!isAClient() && me.getButton() == MouseEvent.BUTTON1){
