@@ -19,6 +19,7 @@ import java.net.UnknownHostException;
 import com.jpii.navalbattle.pavo.Game;
 import com.jpii.navalbattle.pavo.gui.MessageBox;
 import com.jpii.navalbattle.pavo.gui.MessageBoxIcon;
+import com.jpii.navalbattle.util.OSUtil;
 
 /**
  * @author MKirkby
@@ -100,10 +101,12 @@ public class PavoClient implements Runnable{
             		tmpMsg = "HELLO";
             	}
             	String rl = br.readLine();
+            	rl = OSUtil.xorDecode(rl, "Aj390jnRIn9wO2o3409WJofn");
             	if (rl != null && !rl.equals(""))
             		onMessageRecieved(rl);
 				writingToServer = true;
-            	pw.println(tmpMsg);
+            	//pw.println(tmpMsg);
+				pw.println(OSUtil.xorEncode(tmpMsg, "Aj390jnRIn9wO2o3409WJofn"));
             	tmpMsg = "";
             	writingToServer = false;
             	try {

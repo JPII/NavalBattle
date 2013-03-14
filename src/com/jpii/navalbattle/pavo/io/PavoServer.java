@@ -16,6 +16,7 @@ import java.net.Socket;
 import java.net.UnknownHostException;
 
 import com.jpii.navalbattle.pavo.Game;
+import com.jpii.navalbattle.util.OSUtil;
 import com.sun.corba.se.spi.activation.Server;
 
 /**
@@ -108,7 +109,8 @@ public class PavoServer implements Runnable {
         BufferedReader br = new BufferedReader(isr);
 		while (doing) {
 			serverIsWriting = true;
-			out.println(sendTmp);
+			//out.println(sendTmp);
+			out.println(OSUtil.xorEncode(sendTmp, "Aj390jnRIn9wO2o3409WJofn"));
 			sendTmp = "";
 			serverIsWriting = false;
 			try {
@@ -119,6 +121,7 @@ public class PavoServer implements Runnable {
 			}
             try {
             	String rl = br.readLine();
+            	rl = OSUtil.xorDecode(rl, "Aj390jnRIn9wO2o3409WJofn");
             	if (rl.equals("HELLO")) {
             		onClientConnect();
             	}
