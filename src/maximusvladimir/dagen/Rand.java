@@ -108,6 +108,37 @@ public class Rand implements Serializable{
 		calculations++;
 		return (byte)getNextBit(8);
 	}
+	public String nextString() {
+		int length = nextInt(5,25);
+		String s = "";
+		for (int c = 0; c < length; c++) {
+			s += alphabet.charAt(nextInt(alphabet.length()));
+			calculations--;
+		}
+		return s;
+	}
+	public String nextString(int maxlength) {
+		int length = nextInt(5,maxlength);
+		String s = "";
+		for (int c = 0; c < length; c++) {
+			s += alphabet.charAt(nextInt(alphabet.length()));
+			calculations--;
+		}
+		return s;
+	}
+	public String nextString(int minlength, int maxlength) {
+		if (minlength >= maxlength) {
+			throw new IllegalArgumentException("Lengths are not proper. Minlength may be larger than Maxlength.");
+		}
+		int length = nextInt(minlength,maxlength);
+		String s = "";
+		for (int c = 0; c < length; c++) {
+			s += alphabet.charAt(nextInt(alphabet.length()));
+			calculations--;
+		}
+		return s;
+	}
+	private static final String alphabet = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
 	public int nextInt() {
 		calculations++;
 		return getNextBit(32);
