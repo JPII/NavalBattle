@@ -101,12 +101,12 @@ public class PavoClient implements Runnable{
             		tmpMsg = "HELLO";
             	}
             	String rl = br.readLine();
-            	rl = OSUtil.xorDecode(rl, "Aj390jnRIn9wO2o3409WJofn");
+            	//rl = OSUtil.xorDecode(rl, "Aj390jnRIn9wO2o3409WJofn");
             	if (rl != null && !rl.equals(""))
             		onMessageRecieved(rl);
 				writingToServer = true;
-            	//pw.println(tmpMsg);
-				pw.println(OSUtil.xorEncode(tmpMsg, "Aj390jnRIn9wO2o3409WJofn"));
+            	pw.println(tmpMsg);
+				//pw.println(OSUtil.xorEncode(tmpMsg, "Aj390jnRIn9wO2o3409WJofn"));
             	tmpMsg = "";
             	writingToServer = false;
             	try {

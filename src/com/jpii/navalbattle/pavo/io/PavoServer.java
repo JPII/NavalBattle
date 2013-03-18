@@ -109,8 +109,8 @@ public class PavoServer implements Runnable {
         BufferedReader br = new BufferedReader(isr);
 		while (doing) {
 			serverIsWriting = true;
-			//out.println(sendTmp);
-			out.println(OSUtil.xorEncode(sendTmp, "Aj390jnRIn9wO2o3409WJofn"));
+			out.println(sendTmp);
+			//out.println(OSUtil.xorEncode(sendTmp, "Aj390jnRIn9wO2o3409WJofn"));
 			sendTmp = "";
 			serverIsWriting = false;
 			try {
@@ -121,14 +121,14 @@ public class PavoServer implements Runnable {
 			}
             try {
             	String rl = br.readLine();
-            	rl = OSUtil.xorDecode(rl, "Aj390jnRIn9wO2o3409WJofn");
+            	//rl = OSUtil.xorDecode(rl, "Aj390jnRIn9wO2o3409WJofn");
             	if (rl.equals("HELLO")) {
             		onClientConnect();
             	}
             	else if (rl != null && !rl.equals(""))
             		onMessageRecieved(rl);
 			} catch (IOException e) {
-				if (e.getMessage().equals("Connection reset")) {
+				if (e.getMessage().equals("Connection reset") || e.getMessage().equals("Software caused connection abort: recv failed")) {
 					doing = false;
 					break;
 				}
