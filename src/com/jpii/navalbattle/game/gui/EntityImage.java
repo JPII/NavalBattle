@@ -2,6 +2,7 @@ package com.jpii.navalbattle.game.gui;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
+import java.awt.image.BufferedImage;
 
 import com.jpii.navalbattle.pavo.grid.Entity;
 import com.jpii.navalbattle.pavo.gui.controls.Control;
@@ -33,17 +34,15 @@ public class EntityImage extends PImage{
 	}
 	
 	public void changeSize(){
-		if(retrieveImage(imageNumber)==null||getParent().isVisible()){
+		BufferedImage temp = retrieveImage(imageNumber);
+		if(temp==null||!getParent().isVisible()){
 			setVisible(false);
 			return;
 		}
-		setWidth(retrieveImage(imageNumber).getWidth());
-		setHeight(retrieveImage(imageNumber).getHeight());
+		setWidth(temp.getWidth());
+		setHeight(temp.getHeight());
 		setLocX(centerx - width/2);
 		setLocY(centery - height/2);
-		if(!(getWidth()>10||getHeight()>10)){
-			setVisible(false);
-		}
 	}
 	
 	public void paint(Graphics2D g){

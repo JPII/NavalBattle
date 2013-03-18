@@ -265,6 +265,10 @@ public class NavalGame extends Game{
 				getWindows().mouseDown(me)||(omnimap.mouseDown(me)))
 			return;
 		
+		else if(!isAClient() && me.getButton() != MouseEvent.BUTTON1){
+			getHud().setEntity(null);
+		}
+		
 		else if (Game.Settings.isFinishedGenerating && getWorld().getEntityManager().getTilePercentLand(chy,chx) <= 5){
 			Entity ent = getWorld().getEntityManager().findEntity(chy,chx);
 			if (ent != null) {
@@ -273,7 +277,7 @@ public class NavalGame extends Game{
 				moveEnt.toggleMovable();
 				getWorld().forceRender();
 			}
-//			if(current==null){
+			if(current==null){
 //				if(!isAClient() && me.getButton() == MouseEvent.BUTTON1){
 //					if(GridHelper.canPlaceInGrid(nm,GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT, chy, chx, 5)){
 //						new AircraftCarrier(this.getWorld().getEntityManager(),new Location(chy,chx),AircraftCarrier.AIRCRAFTCARRIER_ID,GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT,Game.Settings.rand.nextInt(0,3));
@@ -282,7 +286,7 @@ public class NavalGame extends Game{
 //						new AircraftCarrier(this.getWorld().getEntityManager(),new Location(chy-4,chx),AircraftCarrier.AIRCRAFTCARRIER_ID,GridedEntityTileOrientation.ORIENTATION_TOPTOBOTTOM,Game.Settings.rand.nextInt(0,3));
 //					}
 //				}
-//				else if(!isAClient() && me.getButton() == MouseEvent.BUTTON3){
+//				if(!isAClient() && me.getButton() == MouseEvent.BUTTON3){
 //					if(GridHelper.canPlaceInGrid(nm,GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT, chy, chx, 2)){
 //						new Submarine(this.getWorld().getEntityManager(),new Location(chy,chx),Submarine.SUBMARINE_ID,GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT,Game.Settings.rand.nextInt(0,3));
 //					}
@@ -290,7 +294,7 @@ public class NavalGame extends Game{
 //						new Submarine(this.getWorld().getEntityManager(),new Location(chy-1,chx),Submarine.SUBMARINE_ID,GridedEntityTileOrientation.ORIENTATION_TOPTOBOTTOM,Game.Settings.rand.nextInt(0,3));
 //					}	
 //				}
-//			}
+			}
 		}
 		
 		//airStrike = 0;

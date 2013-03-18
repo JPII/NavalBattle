@@ -32,10 +32,7 @@ public class EntityBox extends PFrame{
 	
 	public void changeSize(){
 		setWidth(entityImage.getWidth()+100);
-		setHeight(entityImage.getHeight()+100);
-		if(!(entityImage.getWidth()>10||entityImage.getHeight()>10)){
-			setVisible(false);
-		}
+		setHeight(entityImage.getHeight()+50);
 		setLocX(centerx - width/2);
 		setLocY(centery - height/2);
 		location.setCenter(width/2,height-25);
@@ -43,10 +40,6 @@ public class EntityBox extends PFrame{
 	
 	public void paint(Graphics2D g){
 		super.paint(g);
-	/*	if(entityImage!=null)
-			entityImage.paint(g);
-		if(location!=null)
-			location.paint(g);*/
 	}
 	
 	public Entity getEntity(){
