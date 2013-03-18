@@ -4,6 +4,7 @@ import java.io.InputStream;
 import java.net.URL;
 
 import javax.xml.stream.XMLInputFactory;
+import javax.xml.stream.XMLStreamConstants;
 import javax.xml.stream.XMLStreamReader;
 
 import com.jpii.navalbattle.NavalBattle;
@@ -53,15 +54,22 @@ public class BroadcastService {
 				InputStream is = new URL(Constants.NAVALBATTLE_UPDATE_URL).openStream();
 				XMLInputFactory factory = XMLInputFactory.newInstance();
 				XMLStreamReader reader = factory.createXMLStreamReader(is);
+				
 				while(reader.hasNext()) {
-				    if(reader.hasText()) {
-				        System.out.println(reader.getText());
-				    }
-				    reader.next();
+					if(reader.getEventType() == XMLStreamConstants.START_ELEMENT) {
+						if(reader.getLocalName().equals("string")) {
+							System.out.println(reader.getElementText());
+						} else {
+							 reader.next();
+						}
+					} else {
+						reader.next();
+					}
 				}
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+			
 			System.out.println("Done downloading");
 		}
 		
