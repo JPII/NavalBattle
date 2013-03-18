@@ -17,7 +17,7 @@ public class PText extends Control {
 	private static final Color clr_ = new Color(193,172,134).darker().darker();
 	private int maxStrWidth = 0;
 	private boolean heldDown = false;
-	private boolean autoResize = false;
+	private boolean autoResize = true;
 	
 	/**
 	 * @param parent
@@ -69,8 +69,18 @@ public class PText extends Control {
 		setSize(width,height);
 	}
 	
+	public void setAutoSize(boolean v) {
+		autoResize = v;
+		repaint();
+	}
+	
+	public boolean getAutoSize() {
+		return autoResize;
+	}
+	
 	public void setText(String text) {
 		if (text != null) {
+			createBuffer(true);
 			if (!this.text.equals(text))
 				textUpdated = true;
 			this.text = text;

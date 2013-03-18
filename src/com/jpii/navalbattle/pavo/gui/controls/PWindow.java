@@ -55,6 +55,7 @@ public class PWindow extends Control {
 	
 	public void repaint() {
 		buffer = new BufferedImage(getWidth()+25,getHeight()+25,BufferedImage.TYPE_INT_ARGB);
+		this.createBuffer(true);
 		super.repaint();
 	}
 	

@@ -559,6 +559,8 @@ public class Control {
 	
 	protected void createBuffer(boolean transparencyEnabled) {
 		lastKnownTransMode = transparencyEnabled;
+		if (buffer != null)
+			buffer.flush();
 		if (transparencyEnabled) {
 			buffer = new BufferedImage(getWidth(),getHeight(),BufferedImage.TYPE_4BYTE_ABGR);
 		}
