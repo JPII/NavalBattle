@@ -117,7 +117,10 @@ public class BroadcastService {
 		
 		private void checkForUpdates() {
 			/*
-			if(Integer.parseInt(Constants.VERSION_CODE) < Integer.parseInt(versionCode)) {
+			int clientVersion = Integer.parseInt(Constants.VERSION_CODE);
+			int latestVersion = Integer.parseInt(versionCode);
+			
+			if(clientVersion < latestVersion) {
 				NavalBattle.getDebugWindow().printWarning("Update found! " + versionReadable + " (" + versionCode + ")");
 				NavalBattle.getDebugWindow().printWarning("Update url: " + updateUrl);
 			} else {
