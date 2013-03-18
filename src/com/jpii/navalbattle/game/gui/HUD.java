@@ -40,7 +40,7 @@ public class HUD extends PWindow{
 	
 	public void update(Entity e){
 		if(e != null){
-			setChildVisible(false);
+			setChildVisible(true);
 		}
 		else{
 			setChildVisible(false);
