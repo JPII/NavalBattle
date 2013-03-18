@@ -81,6 +81,7 @@ public class NavalManager extends EntityManager {
 //			Location poll = gh.pollNextWaterTile();
 //			new Whale(this, poll,GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT,Game.Settings.rand.nextInt(0,3),w1,w2,w3);
 //		}
+		new BattleShip(this, gh.pollNextWaterTile(), BattleShip.BATTLESHIP_ID,GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT,Game.Settings.rand.nextInt(0,3));
 		System.out.println("Let me play you the song of my people.");
 	}
 	
