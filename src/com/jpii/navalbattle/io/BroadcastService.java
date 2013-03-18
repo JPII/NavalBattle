@@ -99,6 +99,8 @@ public class BroadcastService {
 							
 							if(reader.getAttributeValue(0).equals("announcementUrl"))
 								announcementUrl = reader.getElementText();
+							
+							reader.next();
 						} else {
 							 reader.next();
 						}
@@ -114,12 +116,14 @@ public class BroadcastService {
 		}
 		
 		private void checkForUpdates() {
+			/*
 			if(Integer.parseInt(Constants.VERSION_CODE) < Integer.parseInt(versionCode)) {
 				NavalBattle.getDebugWindow().printWarning("Update found! " + versionReadable + " (" + versionCode + ")");
 				NavalBattle.getDebugWindow().printWarning("Update url: " + updateUrl);
 			} else {
 				NavalBattle.getDebugWindow().printInfo("You are running the latest version!");
 			}
+			*/
 		}
 		
 		private void checkForAnnouncement() {
