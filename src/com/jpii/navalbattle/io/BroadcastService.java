@@ -53,10 +53,8 @@ public class BroadcastService {
 				InputStream is = new URL(Constants.NAVALBATTLE_UPDATE_URL).openStream();
 				XMLInputFactory factory = XMLInputFactory.newInstance();
 				XMLStreamReader reader = factory.createXMLStreamReader(is);
-				while(reader.hasNext())
-				{
-				    if(reader.hasText());
-				    {
+				while(reader.hasNext()) {
+				    if(reader.hasText()) {
 				        System.out.println(reader.getText());
 				    }
 				    reader.next();
