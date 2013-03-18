@@ -12,6 +12,7 @@ import com.jpii.navalbattle.data.Constants;
 
 public class BroadcastService {
 	
+	/* Items from client */
 	private String announcementId;
 	private BroadcastThread broadcastThread;
 	
