@@ -138,6 +138,7 @@ public class Game extends Renderable implements Runnable, Serializable {
 		Instance = this;
 	}
 	boolean isConnected = false;
+	boolean ranCheckup = false;
 	public boolean isConnectedToClientOrServer() {
 		return isConnected;
 	}
@@ -324,9 +325,9 @@ public class Game extends Renderable implements Runnable, Serializable {
 		// Chunk renderer
 		else if (state == 2) {
 			while (gameRunning && getWorld().hasMoreChunks()) {
-				while (!getWorld().isReadyForGen()) {
+				//while (!getWorld().isReadyForGen()) {
 					
-				}
+				//}
 				//System. out.println("Chunk gen firing..." + Thread.currentThread().getName());
 				if (getWorld().hasMoreChunks()) {
 					getWorld().genNextChunk();
@@ -337,6 +338,13 @@ public class Game extends Renderable implements Runnable, Serializable {
 					}
 				}
 				else {
+						for (int c = 0; c < getWorld().getTotalChunks(); c++) {
+							Chunk chunk = getWorld().getChunk(c);
+							getWorld().getEntityManager().AQms03KampOQ9103nmJMs((chunk.getZ()*2), (chunk.getX()*2), chunk.water00);
+							getWorld().getEntityManager().AQms03KampOQ9103nmJMs((chunk.getZ()*2)+1, (chunk.getX()*2), chunk.water01);
+							getWorld().getEntityManager().AQms03KampOQ9103nmJMs((chunk.getZ()*2), (chunk.getX()*2)+1, chunk.water10);
+							getWorld().getEntityManager().AQms03KampOQ9103nmJMs((chunk.getZ()*2)+1, (chunk.getX()*2)+1, chunk.water11);
+					}
 					Game.getStats().SmKdn02nOaP(1);
 					break;
 				}

@@ -52,7 +52,6 @@ public class World extends Renderable implements Interactable {
 	Game game;
 	public World(Game gameThing) {
 		game = gameThing;
-		em = new EntityManager(this);
 		ws = WorldSize.WORLD_LARGE;
 		width = PavoHelper.getGameWidth(getWorldSize());
 		height = PavoHelper.getGameHeight(getWorldSize());
@@ -65,6 +64,7 @@ public class World extends Renderable implements Interactable {
 				chunks[i].setZ(z);
 			}
 		}
+		em = new EntityManager(this);
 		generated = new boolean[chunks.length];
 		buffer = new PavoImage(Game.Settings.currentWidth,Game.Settings.currentHeight,BufferedImage.TYPE_3BYTE_BGR);
 		makeNoise();
@@ -79,6 +79,9 @@ public class World extends Renderable implements Interactable {
 			return true;
 		else
 			return false;
+	}
+	public int getTotalChunks() {
+		return chunks.length;
 	}
 	public Game getGame() {
 		return game;

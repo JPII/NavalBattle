@@ -40,6 +40,7 @@ public class Chunk extends Renderable{
 	boolean generated = false;
 	public Tile<Entity> Tile00, Tile10, Tile01,Tile11;
 	public short Overlay00, Overlay10, Overlay01, Overlay11;
+	public short water00 = 0,water01 = 0,water10 = 0,water11 = 0;
 	static Perlin p = new Perlin(Game.Settings.rand.nextLong(),0,0);
 	static Rand rand = new Rand();
 	World w;
@@ -98,7 +99,6 @@ public class Chunk extends Renderable{
 		rand = new Rand(rp.nextLong());
 		terrain = new BufferedImage(34,34,BufferedImage.TYPE_USHORT_555_RGB);
 		Graphics g = terrain.getGraphics();
-		int water00 = 0,water01 = 0,water10 = 0,water11 = 0;
 		int hhh = 0;
 		for (int lsx = 0; lsx < 100/3; lsx++) {
 			for (int lsz = 0; lsz < 100/3; lsz++) {
