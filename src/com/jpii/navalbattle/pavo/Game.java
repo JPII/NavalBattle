@@ -338,17 +338,28 @@ public class Game extends Renderable implements Runnable, Serializable {
 					}
 				}
 				else {
+					//Chunk fcs = getWorld().getChunk(0);
+					//System.out.println(fcs.water00+"wateramount");
 						for (int c = 0; c < getWorld().getTotalChunks(); c++) {
 							Chunk chunk = getWorld().getChunk(c);
-							getWorld().getEntityManager().AQms03KampOQ9103nmJMs((chunk.getZ()*2), (chunk.getX()*2), chunk.water00);
-							getWorld().getEntityManager().AQms03KampOQ9103nmJMs((chunk.getZ()*2)+1, (chunk.getX()*2), chunk.water01);
-							getWorld().getEntityManager().AQms03KampOQ9103nmJMs((chunk.getZ()*2), (chunk.getX()*2)+1, chunk.water10);
-							getWorld().getEntityManager().AQms03KampOQ9103nmJMs((chunk.getZ()*2)+1, (chunk.getX()*2)+1, chunk.water11);
+							//getWorld().getEntityManager().AQms03KampOQ9103nmJMs((chunk.getZ()*2), (chunk.getX()*2), chunk.water00);
+							//getWorld().getEntityManager().AQms03KampOQ9103nmJMs((chunk.getZ()*2)+1, (chunk.getX()*2), chunk.water01);
+							//getWorld().getEntityManager().AQms03KampOQ9103nmJMs((chunk.getZ()*2), (chunk.getX()*2)+1, chunk.water10);
+							//getWorld().getEntityManager().AQms03KampOQ9103nmJMs((chunk.getZ()*2)+1, (chunk.getX()*2)+1, chunk.water11);
 					}
-					Game.getStats().SmKdn02nOaP(1);
+					//Game.getStats().SmKdn02nOaP(1);
 					break;
 				}
 			}
+			//Chunk fcs = getWorld().getChunk(0);
+			//System.out.println(fcs.water00+"wateramount");
+			for (int c = 0; c < getWorld().getTotalChunks(); c++) {
+				Chunk chunk = getWorld().getChunk(c);
+				getWorld().getEntityManager().AQms03KampOQ9103nmJMs((chunk.getZ()*2), (chunk.getX()*2), chunk.water00);
+				getWorld().getEntityManager().AQms03KampOQ9103nmJMs((chunk.getZ()*2)+1, (chunk.getX()*2), chunk.water01);
+			getWorld().getEntityManager().AQms03KampOQ9103nmJMs((chunk.getZ()*2), (chunk.getX()*2)+1, chunk.water10);
+				getWorld().getEntityManager().AQms03KampOQ9103nmJMs((chunk.getZ()*2)+1, (chunk.getX()*2)+1, chunk.water11);
+		}
 			Game.getStats().SmKdn02nOaP(1);
 		}
 		else if (state == 4) {

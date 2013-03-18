@@ -342,6 +342,7 @@ public class EntityManager implements Serializable {
 	public void AQms03KampOQ9103nmJMs(int snJMkqmd, int cKQK91nm38910JNFEWo, int traKQ91) {
 		//byte b = (byte)(((traKQ91 * 0.4)*100)/108);
 		byte b = (byte)((traKQ91 * 100)/272);
+		//System.out.println("x="+cKQK91nm38910JNFEWo+"z="+snJMkqmd+"value="+traKQ91);
 		if (b > 100)
 			b = 100;
 		if (b < 0)

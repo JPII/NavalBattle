@@ -99,14 +99,16 @@ public class Chunk extends Renderable{
 		rand = new Rand(rp.nextLong());
 		terrain = new BufferedImage(34,34,BufferedImage.TYPE_USHORT_555_RGB);
 		Graphics g = terrain.getGraphics();
-		int hhh = 0;
+		//int hhh = 0;
 		for (int lsx = 0; lsx < 100/3; lsx++) {
 			for (int lsz = 0; lsz < 100/3; lsz++) {
 				float frsh = ProceduralLayeredMapGenerator.getPoint(lsx+(100.0f/3.0f*x), lsz+(100.0f/3.0f*z));
-				byte slip = ProceduralLayeredMapGenerator.getValidHouse((int)(lsx+(100.0f/3.0f*x)), (int)(lsz+(100.0f/3.0f*z)));
+				//if (x == 0 && z == 0)
+					//frsh = 1;
+				//byte slip = ProceduralLayeredMapGenerator.getValidHouse((int)(lsx+(100.0f/3.0f*x)), (int)(lsz+(100.0f/3.0f*z)));
 				float lsy = frsh;
 				int nawo = rand.nextInt(-5, 8);
-				hhh++;
+				//hhh++;
 				if (lsy >= 0.4) {
 					if (lsx < 16.6666666666666666 && lsz < 16.666666666666666)
 						water00 += 1;
@@ -152,10 +154,10 @@ public class Chunk extends Renderable{
 	                  //      RenderConstants.GEN_COLOR_DIFF, rand, false), ((lsy-0.6)/0.3), 40));
 				}
 				g.drawLine(lsx,lsz,lsx,lsz);
-				if (slip > 0) {
-					g.setColor(Color.red);
-					g.drawRect(lsx-(slip/2),lsz-(slip/2),slip,slip);
-				}
+				//if (slip > 0) {
+					//g.setColor(Color.red);
+					//g.drawRect(lsx-(slip/2),lsz-(slip/2),slip,slip);
+				//}
 				//g.fillRect(lsx*3,lsz*3,4,4);
 			}
 		}
