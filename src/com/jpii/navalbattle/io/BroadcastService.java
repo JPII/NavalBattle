@@ -86,19 +86,19 @@ public class BroadcastService {
 								versionReadable = reader.getElementText();
 							
 							if(reader.getAttributeValue(0).equals("updateUrl"))
-								versionCode = reader.getElementText();
+								updateUrl = reader.getElementText();
 							
 							if(reader.getAttributeValue(0).equals("announcementCode"))
-								versionReadable = reader.getElementText();
+								announcementCode = reader.getElementText();
 							
 							if(reader.getAttributeValue(0).equals("announcementTitle"))
-								versionCode = reader.getElementText();
+								announcementTitle = reader.getElementText();
 							
 							if(reader.getAttributeValue(0).equals("announcementText"))
-								versionCode = reader.getElementText();
+								announcementText = reader.getElementText();
 							
 							if(reader.getAttributeValue(0).equals("announcementUrl"))
-								versionReadable = reader.getElementText();
+								announcementUrl = reader.getElementText();
 						} else {
 							 reader.next();
 						}
