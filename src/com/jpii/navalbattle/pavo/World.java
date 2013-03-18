@@ -52,8 +52,8 @@ public class World extends Renderable implements Interactable {
 	Game game;
 	public World(Game gameThing) {
 		game = gameThing;
-		ws = WorldSize.WORLD_LARGE;
 		em = new EntityManager(this);
+		ws = WorldSize.WORLD_LARGE;
 		width = PavoHelper.getGameWidth(getWorldSize());
 		height = PavoHelper.getGameHeight(getWorldSize());
 		chunks = new Chunk[(width)*(height)];
@@ -71,6 +71,14 @@ public class World extends Renderable implements Interactable {
 		wm = new WeatherManager();
 		
 		System.gc();
+	}
+	public boolean isReadyForGen() {
+		if (em == null)
+			return false;
+		if (em.isReadyForGen())
+			return true;
+		else
+			return false;
 	}
 	public Game getGame() {
 		return game;

@@ -45,7 +45,7 @@ public class EntityManager implements Serializable {
 	 */
 	public EntityManager(World w) {
 		this.w = w;
-		
+		tileAccessor = new byte[PavoHelper.getGameWidth(w.getWorldSize())*2][PavoHelper.getGameHeight(w.getWorldSize())*2];
 		entities = new ArrayList<Entity>();
 		//ent = new Tile[PavoHelper.getGameWidth(w.getWorldSize())*2][PavoHelper.getGameHeight(w.getWorldSize())*2];
 		PavoImage grid = new PavoImage(50,50,BufferedImage.TYPE_INT_ARGB);
@@ -60,7 +60,11 @@ public class EntityManager implements Serializable {
 		entityRegister = new ArrayList<Integer>();
 		entityRegister.add(0);
 		//System.out.println(Integer.bitCount(IndexableImage.getStoreSize())+"."+Integer.toHexString(IndexableImage.getStoreSize())+"swapspace");
-		tileAccessor = new byte[PavoHelper.getGameWidth(w.getWorldSize())*2][PavoHelper.getGameHeight(w.getWorldSize())*2];
+	}
+	public boolean isReadyForGen() {
+		if (tileAccessor == null)
+			return false;
+		return true;
 	}
 	public void update(long ticksPassed) {
 		//System.out.println(Integer.bitCount(IndexableImage.getStoreSize())+"."+Integer.toHexString(IndexableImage.getStoreSize()));
@@ -344,6 +348,9 @@ public class EntityManager implements Serializable {
 			b = 0;
 		if (b == 94)
 			b = 100;
+		if (tileAccessor == null)
+			tileAccessor = new byte[PavoHelper.getGameWidth(w.getWorldSize())*2][PavoHelper.getGameHeight(w.getWorldSize())*2];
+			
 		tileAccessor[cKQK91nm38910JNFEWo][snJMkqmd] = b;//mjMo1091(cKQK91nm38910JNFEWo, traKQ91);
 	}
 	/**

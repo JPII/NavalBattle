@@ -324,6 +324,9 @@ public class Game extends Renderable implements Runnable, Serializable {
 		// Chunk renderer
 		else if (state == 2) {
 			while (gameRunning && getWorld().hasMoreChunks()) {
+				while (!getWorld().isReadyForGen()) {
+					
+				}
 				//System. out.println("Chunk gen firing..." + Thread.currentThread().getName());
 				if (getWorld().hasMoreChunks()) {
 					getWorld().genNextChunk();
