@@ -48,44 +48,7 @@ public class BroadcastService {
 			checkForAnnouncement();
 		}
 		
-		private void parseXml() {
-			/*
-			DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
-			DocumentBuilder db = null;
-			
-			try {
-				db = dbf.newDocumentBuilder();
-			} catch (ParserConfigurationException e) {
-				e.printStackTrace();
-			}
-			
-			
-			Document doc = null;
-			try {
-				doc = db.parse(new URL(Constants.NAVALBATTLE_UPDATE_URL).openStream());
-			} catch (MalformedURLException e) {
-				e.printStackTrace();
-			} catch (SAXException e) {
-				e.printStackTrace();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-			
-			Element rootElement = doc.getDocumentElement();
-			NodeList stringNodes = rootElement.getChildNodes();
-
-			for(int i = 0; i < stringNodes.getLength(); i++){
-				Node defaultStringNode = stringNodes.item(i);
-
-				if(defaultStringNode instanceof Element) {
-					Element stringChild = (Element) stringNodes;
-					System.out.println(stringChild.getAttribute("version_code"));
-					System.out.println(stringChild.getChildNodes().item(0).getNodeValue());
-					System.out.println("DONE");
-				}
-			}
-			*/
-			
+		private void parseXml() {			
 			try {
 				InputStream is = new URL(Constants.NAVALBATTLE_UPDATE_URL).openStream();
 				XMLInputFactory factory = XMLInputFactory.newInstance();
