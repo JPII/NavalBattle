@@ -1,21 +1,10 @@
 package com.jpii.navalbattle.io;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.MalformedURLException;
+import java.io.InputStream;
 import java.net.URL;
-import java.net.URLConnection;
 
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
-
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
-import org.xml.sax.SAXException;
+import javax.xml.stream.XMLInputFactory;
+import javax.xml.stream.XMLStreamReader;
 
 import com.jpii.navalbattle.NavalBattle;
 import com.jpii.navalbattle.data.Constants;
@@ -60,6 +49,7 @@ public class BroadcastService {
 		}
 		
 		private void parseXml() {
+			/*
 			DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
 			DocumentBuilder db = null;
 			
@@ -91,10 +81,27 @@ public class BroadcastService {
 					Element stringChild = (Element) stringNodes;
 					System.out.println(stringChild.getAttribute("version_code"));
 					System.out.println(stringChild.getChildNodes().item(0).getNodeValue());
-					System.out.println("DOMNE");
-					//stringNodes.put(defaultStringChild.getAttribute("name"), defaultStringChild.getChildNodes().item(0).getNodeValue());
+					System.out.println("DONE");
 				}
 			}
+			*/
+			
+			try {
+				InputStream is = new URL(Constants.NAVALBATTLE_UPDATE_URL).openStream();
+				XMLInputFactory factory = XMLInputFactory.newInstance();
+				XMLStreamReader reader = factory.createXMLStreamReader(is);
+				while(reader.hasNext())
+				{
+				    if(reader.hasText());
+				    {
+				        System.out.println(reader.getText());
+				    }
+				    reader.next();
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			System.out.println("Done downloading");
 		}
 		
 		private void checkForUpdates() {
