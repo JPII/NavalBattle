@@ -58,7 +58,26 @@ public class BroadcastService {
 				while(reader.hasNext()) {
 					if(reader.getEventType() == XMLStreamConstants.START_ELEMENT) {
 						if(reader.getLocalName().equals("string")) {
-							System.out.println(reader.getElementText());
+							if(reader.getAttributeValue(0).equals("versionCode"))
+								versionCode = reader.getElementText();
+							
+							if(reader.getAttributeValue(0).equals("versionReadable"))
+								versionReadable = reader.getElementText();
+							
+							if(reader.getAttributeValue(0).equals("updateUrl"))
+								versionCode = reader.getElementText();
+							
+							if(reader.getAttributeValue(0).equals("announcementCode"))
+								versionReadable = reader.getElementText();
+							
+							if(reader.getAttributeValue(0).equals("announcementTitle"))
+								versionCode = reader.getElementText();
+							
+							if(reader.getAttributeValue(0).equals("announcementText"))
+								versionCode = reader.getElementText();
+							
+							if(reader.getAttributeValue(0).equals("announcementUrl"))
+								versionReadable = reader.getElementText();
 						} else {
 							 reader.next();
 						}
@@ -70,7 +89,7 @@ public class BroadcastService {
 				e.printStackTrace();
 			}
 			
-			System.out.println("Done downloading");
+			NavalBattle.getDebugWindow().printInfo("Successfully loaded BroadcastService data");
 		}
 		
 		private void checkForUpdates() {
