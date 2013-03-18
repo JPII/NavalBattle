@@ -256,8 +256,10 @@ public class NavalGame extends Game{
 		Tile current = nm.getTile(chy,chx);
 		
 		if (!isAClient()) {
-			getSelfServer().send("Mouse was clicked at: (" + chx + ","+ chy+")");
+			//getSelfServer().send("Mouse was clicked at: (" + chx + ","+ chy+")");
 		}
+		
+		twwna.updateLocation(getWorld().getEntityManager(), chx, chy);
 		
 		if (/*getWinMan().mouseDown(me)*/
 				getWindows().mouseDown(me)||(omnimap.mouseDown(me)))
