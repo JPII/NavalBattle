@@ -1,7 +1,6 @@
 package com.jpii.navalbattle.game.entity;
 
 import com.jpii.navalbattle.pavo.Game;
-import com.jpii.navalbattle.pavo.grid.Entity;
 import com.jpii.navalbattle.pavo.grid.EntityManager;
 import com.jpii.navalbattle.pavo.grid.GridHelper;
 import com.jpii.navalbattle.pavo.grid.GridedEntityTileOrientation;
