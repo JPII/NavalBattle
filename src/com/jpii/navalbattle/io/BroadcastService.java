@@ -27,12 +27,32 @@ public class BroadcastService {
 		broadcastThread.run();
 	}
 	
-	public String getAnnouncementId() {
-		return announcementId;
+	public String getVersionCode() {
+		return versionCode;
 	}
 	
-	public String getVersionCode() {
-		return Constants.VERSION_CODE;
+	public String getVersionReadable() {
+		return versionReadable;
+	}
+	
+	public String getUpdateUrl() {
+		return updateUrl;
+	}
+	
+	public String getAnnouncementCode() {
+		return announcementCode;
+	}
+	
+	public String getAnnouncementTitle() {
+		return announcementTitle;
+	}
+	
+	public String getAnnouncementText() {
+		return announcementText;
+	}
+	
+	public String getAnnouncementUrl() {
+		return announcementUrl;
 	}
 	
 	class BroadcastThread extends Thread {
@@ -93,7 +113,12 @@ public class BroadcastService {
 		}
 		
 		private void checkForUpdates() {
-			
+			if(Integer.parseInt(Constants.VERSION_CODE) < Integer.parseInt(versionCode)) {
+				NavalBattle.getDebugWindow().printWarning("Update found! " + versionReadable + " (" + versionCode + ")");
+				NavalBattle.getDebugWindow().printWarning("Update url: " + updateUrl);
+			} else {
+				NavalBattle.getDebugWindow().printInfo("You are running the latest version!");
+			}
 		}
 		
 		private void checkForAnnouncement() {
