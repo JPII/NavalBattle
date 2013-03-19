@@ -40,22 +40,22 @@ public class HUD extends PWindow{
 	
 	public void update(Entity e){
 		if(e != null){
-			setChildVisible(true);
+			setVisible(true);
 		}
 		else{
-			setChildVisible(false);
+			setVisible(false);
 		}
 		repaint();
 	}
 	
 	public void setVisible(boolean value){
-		super.setVisible(value);
-	}
-	
-	private void setChildVisible(boolean value){
-		super.setVisible(value);
-		for(int k = 0;k<getTotalControls();k++){
-			getControl(k).setVisible(value);
+		if(value != isVisible()){
+			super.setVisible(value);
+			if(getParent() != null)
+				getParent().setVisible(value);
+			for(int k = 0;k<getTotalControls();k++){
+				getControl(k).setVisible(value);
+			}
 		}
 	}
 	

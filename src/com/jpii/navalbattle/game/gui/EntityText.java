@@ -36,7 +36,8 @@ public class EntityText extends PText{
 	public void paint(Graphics2D g){
 		super.paint(g);
 		g.setColor(Color.blue);
-		g.fillRect(centerx-1,centery-1,3,3);
+		//g.fillRect(centerx-1,centery-1,3,3);
+		g.fillRect(0, 0, 3, 3);
 	}
 
 	public Entity getEntity(){
@@ -46,6 +47,16 @@ public class EntityText extends PText{
 	public void setCenter(int x, int y){
 		centerx = x;
 		centery = y;
+	}
+	
+	public void setVisible(boolean value){
+		if(value != isVisible()){
+			super.setVisible(value);
+			getParent().setVisible(value);
+			for(int k = 0;k<getTotalControls();k++){
+				getControl(k).setVisible(value);
+			}
+		}
 	}
 	
 }

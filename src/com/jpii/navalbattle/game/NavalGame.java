@@ -60,6 +60,7 @@ public class NavalGame extends Game{
 		twwna = new TestWindowWithNewAPI(getWinMan());
 		twwna.setLoc(200,200);
 		twwna.repaint();
+		twwna.setVisible(false);
 		nm = new NavalManager(getWorld());
 		getWorld().setEntityManager(nm);
 		omnimap = new OmniMap(getWorld());

@@ -39,19 +39,32 @@ public class EntityImage extends PImage{
 			setVisible(false);
 			return;
 		}
-		setWidth(temp.getWidth());
-		setHeight(temp.getHeight());
+		setWidth(temp.getWidth()*2);
+		setHeight(temp.getHeight()*2);
 		setLocX(centerx - width/2);
 		setLocY(centery - height/2);
+		repaint();
 	}
 	
 	public void paint(Graphics2D g){
-		g.setColor(new Color(169,140,86));
-		g.fillRect(50,50,getWidth(),getHeight());
-		g.drawImage(retrieveImage(getImageID()),50,50,null);
+//		g.setColor(new Color(169,140,86));
+		g.setColor(Color.green);
+		g.fillRect(50,50,1000,100);
+//		System.out.println("x: "+getLocX()+" y: "+getLocY()+" w: "+getWidth()+" y: "+getHeight());
+//		g.drawImage(retrieveImage(getImageID()),50,50,null);
 	}
 	
 	public Entity getEntity(){
 		return display;
-	}	
+	}
+	
+	public void setVisible(boolean value){
+		if(value != isVisible()){
+			super.setVisible(value);
+			getParent().setVisible(value);
+			for(int k = 0;k<getTotalControls();k++){
+				getControl(k).setVisible(value);
+			}
+		}
+	}
 }

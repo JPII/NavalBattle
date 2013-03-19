@@ -17,7 +17,7 @@ public class EntityBox extends PFrame{
 		super(parent, x, y,1,1);
 		centerx = x;
 		centery = y;
-		entityImage = new EntityImage(this,x,y);
+		entityImage = new EntityImage(this,width/2,height/2);
 		location = new EntityText(this,"",width/2,height-50);
 		addControl(entityImage);
 		addControl(location);
@@ -46,23 +46,13 @@ public class EntityBox extends PFrame{
 		return display;
 	}
 	
-	public boolean isVisible(){
-		return getParent().isVisible();
-	}
-	
 	public void setVisible(boolean value){
-		setChildVisible(value);
-		setParentVisible(value);
-	}
-	
-	public void setParentVisible(boolean value){
-		getParent().setVisible(value);
-	}
-	
-	private void setChildVisible(boolean value){
-		super.setVisible(value);
-		for(int k = 0;k<getTotalControls();k++){
-			getControl(k).setVisible(value);
+		if(value != isVisible()){
+			super.setVisible(value);
+			getParent().setVisible(value);
+			for(int k = 0;k<getTotalControls();k++){
+				getControl(k).setVisible(value);
+			}
 		}
 	}
 }
