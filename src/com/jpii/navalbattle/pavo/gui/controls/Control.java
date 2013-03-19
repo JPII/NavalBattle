@@ -8,6 +8,7 @@ import java.util.ArrayList;
 
 import com.jpii.navalbattle.pavo.PavoHelper;
 import com.jpii.navalbattle.pavo.gui.GameWindow;
+import com.jpii.navalbattle.pavo.gui.events.PMouseListener;
 import com.jpii.navalbattle.pavo.io.PavoImage;
 
 
@@ -34,7 +35,9 @@ public class Control {
 	private Color foreColor = Color.black;
 	private Color backColor = new Color(193,172,134);
 	private boolean intermediate = false;
+	private ArrayList<PMouseListener> pml;
 	public Control(Control parent) {
+		pml = new ArrayList<PMouseListener>();
 		this.parent = parent;
 		width = 100;
 		height = 100;
@@ -42,6 +45,18 @@ public class Control {
 		controls = new ArrayList<Control>();
 		HANDLE = ++HANDLE_COUNTER;
 		//repaint();
+	}
+	
+	public void addMouseListener(PMouseListener pmls) {
+		pml.add(pmls);
+	}
+	
+	public PMouseListener getMouseListener(int index) {
+		return pml.get(index);
+	}
+	
+	public int getTotalMouseListeners() {
+		return pml.size();
 	}
 	
 	protected void bufferNeedsIntemediatePaint() {
@@ -57,6 +72,7 @@ public class Control {
 	}
 	
 	public Control(Control parent, int x, int y) {
+		pml = new ArrayList<PMouseListener>();
 		this.parent = parent;
 		width = 100;
 		height = 100;
@@ -69,6 +85,7 @@ public class Control {
 	}
 	
 	public Control(Control parent, int x, int y, int width, int height) {
+		pml = new ArrayList<PMouseListener>();
 		this.parent = parent;
 		controls = new ArrayList<Control>();
 		HANDLE = ++HANDLE_COUNTER;
@@ -88,6 +105,8 @@ public class Control {
 			if (cn != null)
 				cn.dispose();
 		}
+		pml.clear();
+		pml = null;
 		
 		HANDLE = 0;
 		HANDLE_COUNTER--;
@@ -475,6 +494,11 @@ public class Control {
 	}
 	
 	public void onMouseHover(int x, int y) {
+		for (int c = 0; c < getTotalMouseListeners(); c++) {
+			PMouseListener p = pml.get(c);
+			if (p != null)
+				p.mouseHover(x, y);
+		}
 		for (int c = 0; c < getTotalControls(); c++) {
 			Control cn = getControl(c);
 			if (cn != null) {
@@ -487,6 +511,11 @@ public class Control {
 	}
 	
 	public void onMouseDown(int x, int y, int buttonid) {
+		for (int c = 0; c < getTotalMouseListeners(); c++) {
+			PMouseListener p = pml.get(c);
+			if (p != null)
+				p.mouseDown(x, y, buttonid);
+		}
 		for (int c = 0; c < getTotalControls(); c++) {
 			Control cn = getControl(c);
 			if (cn != null) {
@@ -501,6 +530,11 @@ public class Control {
 	}
 	
 	public void onMouseDrag(int x, int y) {
+		for (int c = 0; c < getTotalMouseListeners(); c++) {
+			PMouseListener p = pml.get(c);
+			if (p != null)
+				p.mouseDrag(x, y);
+		}
 		for (int c = 0; c < getTotalControls(); c++) {
 			Control cn = getControl(c);
 			if (cn != null) {
@@ -513,6 +547,11 @@ public class Control {
 	}
 	
 	public void onMouseUp(int x, int y, int buttonid) {
+		for (int c = 0; c < getTotalMouseListeners(); c++) {
+			PMouseListener p = pml.get(c);
+			if (p != null)
+				p.mouseUp(x, y, buttonid);
+		}
 		for (int c = 0; c < getTotalControls(); c++) {
 			Control cn = getControl(c);
 			if (cn != null) {
