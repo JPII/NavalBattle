@@ -11,6 +11,7 @@ import java.awt.image.BufferedImage;
 
 import com.jpii.navalbattle.pavo.PavoHelper;
 import com.jpii.navalbattle.pavo.gui.WindowManager;
+import com.jpii.navalbattle.pavo.gui.effects.PWindowEffect;
 import com.jpii.navalbattle.pavo.io.PavoImage;
 import com.jpii.navalbattle.renderer.Helper;
 
@@ -21,7 +22,9 @@ import com.jpii.navalbattle.renderer.Helper;
 public class PWindow extends Control {
 	private boolean showTitle = true;
 	private String title = "";
+	private boolean blotchBackground = false;
 	private WindowManager pare;
+	private PWindowEffect pwething = PWindowEffect.NONE;
 	
 	/**
 	 * @param parent
@@ -51,6 +54,22 @@ public class PWindow extends Control {
 		setSize(width,height);
 		setLoc(x,y);
 		repaint();
+	}
+	
+	public void setBlotchBackground(boolean value) {
+		blotchBackground = value;
+	}
+	
+	public boolean isBlotchBackground() {
+		return blotchBackground;
+	}
+	
+	public void setWindowCloseEffect(PWindowEffect pwe) {
+		pwething = pwe;
+	}
+	
+	public PWindowEffect getWindowCloseEffect() {
+		return pwething;
 	}
 	
 	public void repaint() {
