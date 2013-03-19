@@ -25,6 +25,7 @@ public class PWindow extends Control {
 	private boolean blotchBackground = false;
 	private WindowManager pare;
 	private PWindowEffect pwething = PWindowEffect.NONE;
+	private boolean centerTitle = false;
 	
 	/**
 	 * @param parent
@@ -54,6 +55,17 @@ public class PWindow extends Control {
 		setSize(width,height);
 		setLoc(x,y);
 		repaint();
+	}
+	
+	public void setTitleAsCentered(boolean value) {
+		if (centerTitle != value) {
+			centerTitle = value;
+			repaint();
+		}
+	}
+	
+	public boolean isTitleCentered() {
+		return centerTitle;
 	}
 	
 	public void setBlotchBackground(boolean value) {
@@ -91,7 +103,7 @@ public class PWindow extends Control {
 	public void onMasterWindowResize() {
 		
 	}
-	
+	int lastWinTextLength = 0;
 	public void paintAfter(Graphics2D g) {
 		g.setColor(getForegroundColor());
 		g.drawRect(0,0,getWidth()-1,getHeight()-1);
@@ -108,7 +120,14 @@ public class PWindow extends Control {
 			Graphics2D g2 = PavoHelper.createGraphics(adapter);
 			g2.setColor(getBackgroundColor());
 			g2.setFont(Helper.GUI_GAME_FONT);
-			g2.drawString(title,3,20);
+			if (textChanged) {
+				textChanged = true;
+				lastWinTextLength = g.getFontMetrics().stringWidth(title)/2;
+			}
+			if (centerTitle)
+				g2.drawString(title, (getWidth()/2)-lastWinTextLength, 20);
+			else
+				g2.drawString(title,3,20);
 			g2.dispose();
 			g.drawImage(adapter, 1,1, null);
 			g.setColor(new Color(126,105,65));
@@ -170,9 +189,12 @@ public class PWindow extends Control {
 		pare.render();
 	}
 	
+	boolean textChanged = false;
+	
 	public void setText(String text) {
 		if (!title.equals(text)) {
 			title = text;
+			textChanged = true;
 			paintUpdate();
 		}
 	}
