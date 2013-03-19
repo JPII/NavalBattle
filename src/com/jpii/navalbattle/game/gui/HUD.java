@@ -24,7 +24,7 @@ public class HUD extends PWindow{
 		gp = new GradientPaint(0,0,new Color(96,116,190),0,height,new Color(0,0,54));
 		setTitleVisiblity(false);
 		setVisible(false);
-		centerx = getWidth()-200;
+		centerx = getWidth()-202;
 		centery = getHeight()/2;
 	}
 	
@@ -33,7 +33,7 @@ public class HUD extends PWindow{
 		g.setPaint(gp);
 		g.fillRect(0,0,getWidth(),getHeight());
 		drawFrame(g, boxx, boxy, boxwidth, boxheight);
-		g.drawImage(entityImg,boxx+25,boxy+25,null);
+		g.drawImage(entityImg,boxx+50,boxy+50,null);
 	}
 	
 	public void paintAfter(Graphics2D g){
@@ -51,10 +51,10 @@ public class HUD extends PWindow{
 			entityImg = FileUtils.getImage(display.imgLocation);
 			int tempwidth = entityImg.getWidth();
 			int tempheight = entityImg.getHeight();
-			boxx = centerx - (tempwidth/2) - 25;
-			boxy = centery - (tempheight/2) - 25;
-			boxwidth = tempwidth+50;
-			boxheight = tempheight+50;
+			boxx = centerx - (tempwidth/2) - 50;
+			boxy = centery - (tempheight/2) - 50;
+			boxwidth = tempwidth+100;
+			boxheight = tempheight+100;
 		}
 		else{
 			setVisible(false);
