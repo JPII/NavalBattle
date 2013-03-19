@@ -79,7 +79,7 @@ public class BroadcastService {
 				while(reader.hasNext()) {
 					if(reader.getEventType() == XMLStreamConstants.START_ELEMENT) {
 						if(reader.getLocalName().equals("string")) {
-							System.out.println(reader.getAttributeValue(0));
+							System.out.print(reader.getAttributeValue(0) + " : ");
 							
 							if(reader.getAttributeValue(0).equals("version_code"))  {
 								versionCode = reader.getElementText();
