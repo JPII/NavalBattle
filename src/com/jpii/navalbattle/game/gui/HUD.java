@@ -17,6 +17,7 @@ public class HUD extends PWindow{
 	int imgx,imgy;
 	BufferedImage entityImg;
 	int boxwidth,boxheight,boxx,boxy;
+	String location = "";
 	Entity display;
 	
 	public HUD(WindowManager parent,int x, int y, int width, int height){
@@ -34,6 +35,10 @@ public class HUD extends PWindow{
 		g.fillRect(0,0,getWidth(),getHeight());
 		drawFrame(g, boxx, boxy, boxwidth, boxheight);
 		g.drawImage(entityImg,boxx+50,boxy+50,null);
+		g.setColor(Color.red);
+		if(location==null)
+			System.out.println("this is the problem");
+		g.drawString(location, centerx-(getWidth(g,location))/2, centery+100);
 	}
 	
 	public void paintAfter(Graphics2D g){
@@ -55,6 +60,7 @@ public class HUD extends PWindow{
 			boxy = centery - (tempheight/2) - 50;
 			boxwidth = tempwidth+100;
 			boxheight = tempheight+100;
+			location = ("[X:"+display.getLocation().getCol()+" Y:"+display.getLocation().getRow()+"]");
 		}
 		else{
 			setVisible(false);
@@ -62,7 +68,7 @@ public class HUD extends PWindow{
 		repaint();
 	}
 	
-	public void drawFrame(Graphics2D g,int x, int y, int width, int height) { // needs work!
+	private void drawFrame(Graphics2D g,int x, int y, int width, int height) { // needs work!
 		g.setColor(new Color(126,105,65));
 		g.fillRect(x,y,width,height);
 		g.setColor(new Color(65,54,33));
@@ -83,6 +89,10 @@ public class HUD extends PWindow{
 		g.setColor(Color.black);
 		g.drawRect(x,y,width-1,height-1);
 		g.drawRect(8+x,8+y,width-16,height-16);
+	}
+	
+	private int getWidth(Graphics2D g,String s){
+		return 4+g.getFontMetrics().stringWidth(s);
 	}
 	
 }
