@@ -36,9 +36,12 @@ public class HUD extends PWindow{
 		drawFrame(g, boxx, boxy, boxwidth, boxheight);
 		g.drawImage(entityImg,boxx+50,boxy+50,null);
 		g.setColor(Color.red);
-		if(location==null)
+		if(location==null){
 			System.out.println("this is the problem");
-		g.drawString(location, centerx-(getWidth(g,location))/2, centery+100);
+		}
+		else{
+			g.drawString(location, centerx-(getWidth(g,location))/2, centery+100);
+		}
 	}
 	
 	public void paintAfter(Graphics2D g){
