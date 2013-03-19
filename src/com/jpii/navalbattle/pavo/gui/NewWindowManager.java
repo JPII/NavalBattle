@@ -195,6 +195,15 @@ public class NewWindowManager extends Renderable {
 		}
 		return flag;
 	}
+	
+	public void $akafre() {
+		for (int c = 0; c < wins.size(); c++) {
+			PWindow gw = wins.get(c);
+			if (gw!=null && !gw.isDisposed()) {
+				gw.onMasterWindowResize();
+			}
+		}
+	}
 
 	public void render() {
 		buffer = new PavoImage(Game.Settings.currentWidth,Game.Settings.currentHeight,BufferedImage.TYPE_INT_ARGB);

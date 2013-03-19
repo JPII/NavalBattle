@@ -264,6 +264,7 @@ public class Game extends Renderable implements Runnable, Serializable {
 				if (lastw != Settings.currentWidth || lasth != Settings.currentHeight) {
 					lastw = Settings.currentWidth;
 					lasth = Settings.currentHeight;
+					getWindows().$akafre();
 					//shadow = PavoHelper.createInnerShadow(Game.Settings.currentWidth,Game.Settings.currentHeight);
 				}
 				//System.out.println("winupdate");
