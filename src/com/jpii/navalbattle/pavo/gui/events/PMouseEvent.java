@@ -7,7 +7,7 @@ package com.jpii.navalbattle.pavo.gui.events;
  * @author MKirkby
  *
  */
-public class PMouseEvent implements PMouseListener {
+public abstract class PMouseEvent implements PMouseListener {
 	public void mouseDown(int x, int y, int buttonid) {
 	}
 	public void mouseUp(int x, int y, int buttonid) {

@@ -15,6 +15,7 @@ import com.jpii.navalbattle.pavo.gui.controls.PImage;
 import com.jpii.navalbattle.pavo.gui.controls.PProgress;
 import com.jpii.navalbattle.pavo.gui.controls.PText;
 import com.jpii.navalbattle.pavo.gui.controls.PWindow;
+import com.jpii.navalbattle.pavo.gui.events.PMouseEvent;
 
 /**
  * @author maximusvladimir
@@ -22,6 +23,7 @@ import com.jpii.navalbattle.pavo.gui.controls.PWindow;
  */
 public class TestWindowWithNewAPI extends PWindow {
 	PText indicator;
+	int clicks = 0;
 	/**
 	 * @param parent
 	 */
@@ -33,7 +35,12 @@ public class TestWindowWithNewAPI extends PWindow {
 		addControl(new PText(this, "Hello World!",100, 100));
 		addControl(new PProgress(this, 10, 125, 75, 20));
 		addControl(new PButton(this, "Click me!", 30,30, 70, 30));
-		indicator = new PText(this, "No tile hovered over.", 120, 50);
+		indicator = new PText(this, "No tile hovered over.", 40, 50);
+		indicator.addMouseListener(new PMouseEvent(){
+			public void mouseDown(int x, int y, int buttonid) {
+				indicator.setText("Stop clicking on me!!! Click #" + ++clicks);
+			}
+		});
 		addControl(indicator);
 		/*BufferedImage imgPtr = new BufferedImage(500,500,BufferedImage.TYPE_INT_RGB);
 		Graphics g = imgPtr.getGraphics();
