@@ -79,26 +79,40 @@ public class BroadcastService {
 				while(reader.hasNext()) {
 					if(reader.getEventType() == XMLStreamConstants.START_ELEMENT) {
 						if(reader.getLocalName().equals("string")) {
-							if(reader.getAttributeValue(0).equals("versionCode"))
+							if(reader.getAttributeValue(0).equals("version_code"))  {
 								versionCode = reader.getElementText();
+								break;
+							}
 							
-							if(reader.getAttributeValue(0).equals("versionReadable"))
+							if(reader.getAttributeValue(0).equals("version_readable")) {
 								versionReadable = reader.getElementText();
+								break;
+							}
 							
-							if(reader.getAttributeValue(0).equals("updateUrl"))
+							if(reader.getAttributeValue(0).equals("update_url")) {
 								updateUrl = reader.getElementText();
+								break;
+							}
 							
-							if(reader.getAttributeValue(0).equals("announcementCode"))
+							if(reader.getAttributeValue(0).equals("announcement_code")) {
 								announcementCode = reader.getElementText();
+								break;
+							}
 							
-							if(reader.getAttributeValue(0).equals("announcementTitle"))
+							if(reader.getAttributeValue(0).equals("announcement_title")) {
 								announcementTitle = reader.getElementText();
+								break;
+							}
 							
-							if(reader.getAttributeValue(0).equals("announcementText"))
+							if(reader.getAttributeValue(0).equals("announcement_text")) {
 								announcementText = reader.getElementText();
+								break;
+							}
 							
-							if(reader.getAttributeValue(0).equals("announcementUrl"))
+							if(reader.getAttributeValue(0).equals("announcement_url")) {
 								announcementUrl = reader.getElementText();
+								break;
+							}
 							
 							reader.next();
 						} else {
@@ -116,7 +130,6 @@ public class BroadcastService {
 		}
 		
 		private void checkForUpdates() {
-			/*
 			int clientVersion = Integer.parseInt(Constants.VERSION_CODE);
 			int latestVersion = Integer.parseInt(versionCode);
 			
@@ -126,7 +139,6 @@ public class BroadcastService {
 			} else {
 				NavalBattle.getDebugWindow().printInfo("You are running the latest version!");
 			}
-			*/
 		}
 		
 		private void checkForAnnouncement() {
