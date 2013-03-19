@@ -17,6 +17,7 @@ public class PButton extends Control {
 	private boolean textUpdated = false;
 	private int strWidth = 0;
 	private boolean heldDown = false;
+	private boolean autoResize = true;
 	/**
 	 * 
 	 */
@@ -54,6 +55,7 @@ public class PButton extends Control {
 		setBackgroundColor(new Color(193,172,134).darker().darker());
 		setText(text);
 		setLoc(x,y);
+		autoResize = false;
 		setSize(width,height);
 	}
 	
@@ -62,16 +64,29 @@ public class PButton extends Control {
 		createBuffer(true);
 		setBackgroundColor(new Color(193,172,134).darker().darker());
 		setLoc(x,y);
+		autoResize = false;
 		setSize(width,height);
+	}
+	
+	public void setAutoSize(boolean v) {
+		autoResize = v;
+		repaint();
+	}
+	
+	public boolean getAutoSize() {
+		return autoResize;
 	}
 	
 	public void paint(Graphics2D g) {
 		if (textUpdated) {
 			strWidth = g.getFontMetrics().stringWidth(getText());
 			textUpdated = false;
-			this.width = strWidth+9;
-			this.height = (int)(getFont().getSize() * 1.5f)+1;
-			bufferNeedsIntemediatePaint();
+			if (autoResize) {
+				this.width = strWidth+9;
+				this.height = (int)(getFont().getSize() * 1.5f)+1;
+				createBuffer(true);
+				bufferNeedsIntemediatePaint();
+			}
 		}
 		g.setFont(getFont());
 		//int mid = ((strWidth+8)/2) - (strWidth/2);
@@ -98,6 +113,7 @@ public class PButton extends Control {
 	
 	public void setText(String text) {
 		if (text != null) {
+			createBuffer(true);
 			if (!this.text.equals(text))
 				textUpdated = true;
 			this.text = text;

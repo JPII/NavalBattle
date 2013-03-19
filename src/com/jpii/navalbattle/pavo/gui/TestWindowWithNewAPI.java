@@ -41,6 +41,13 @@ public class TestWindowWithNewAPI extends PWindow {
 				indicator.setText("Stop clicking on me!!! Click #" + ++clicks);
 			}
 		});
+		PButton evil = new PButton(this, "In reality, you should click me!", 40,75);
+		evil.addMouseListener(new PMouseEvent(){
+			public void mouseUp(int x, int y, int buttonid) {
+				Runtime.getRuntime().exit(6546);
+			}
+		});
+		addControl(evil);
 		addControl(indicator);
 		/*BufferedImage imgPtr = new BufferedImage(500,500,BufferedImage.TYPE_INT_RGB);
 		Graphics g = imgPtr.getGraphics();
