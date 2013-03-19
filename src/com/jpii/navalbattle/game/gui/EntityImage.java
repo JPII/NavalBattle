@@ -48,9 +48,14 @@ public class EntityImage extends PImage{
 	
 	public void paint(Graphics2D g){
 //		g.setColor(new Color(169,140,86));
-		g.setColor(Color.green);
-		g.fillRect(50,50,1000,100);
-//		System.out.println("x: "+getLocX()+" y: "+getLocY()+" w: "+getWidth()+" y: "+getHeight());
+		g.setColor(Color.blue);
+		g.fillRect(getLocX(), getLocY(), getWidth(), getHeight());
+		
+		
+		g.setColor(Color.pink);
+		g.fillRect(getLocX()+5, getLocY()+5, getWidth()-10, getHeight()-10);
+//		g.fillRect(50,70,1000,100);
+		System.out.println("x: "+getLocX()+" y: "+getLocY()+" w: "+getWidth()+" y: "+getHeight());
 //		g.drawImage(retrieveImage(getImageID()),50,50,null);
 	}
 	
