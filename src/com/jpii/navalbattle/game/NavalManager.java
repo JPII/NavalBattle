@@ -78,7 +78,10 @@ public class NavalManager extends EntityManager {
 		w1.setTopToBottomImage(w3_);
 		
 		for (int c = 0; c < 20; c++) {
-		Location poll = gh.pollNextWaterTile();
+			Location poll = gh.pollNextWaterTile();
+			while(!((GridHelper.canPlaceInGrid(this,GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT, poll.getRow(), poll.getCol(), 4))&&(GridHelper.canPlaceInGrid(this,GridedEntityTileOrientation.ORIENTATION_TOPTOBOTTOM, poll.getRow(), poll.getCol(), 4)))){
+				poll = gh.pollNextWaterTile(25);
+			}
 			new BattleShip(this, poll, BattleShip.BATTLESHIP_ID,GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT,Game.Settings.rand.nextInt(0,3));
 	}
 		System.out.println("Let me play you the song of my people.");
