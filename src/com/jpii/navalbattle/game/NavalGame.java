@@ -191,8 +191,8 @@ public class NavalGame extends Game{
 		*/
 		//if (getWinMan().mouseDragged(me))
 			//return;
-		if (getWindows().mouseDragged(me))
-			return;
+		//if (getWindows().mouseDragged(me))
+			//return;
 		if (omnimap.mouseDragged(me))
 			return;
 		int mx = me.getX();
@@ -262,7 +262,7 @@ public class NavalGame extends Game{
 		twwna.updateLocation(getWorld().getEntityManager(), chx, chy);
 		
 		if (/*getWinMan().mouseDown(me)*/
-				getWindows().mouseDown(me)||(omnimap.mouseDown(me)))
+				/*getWindows().mouseDown(me)||*/(omnimap.mouseDown(me)))
 			return;
 		
 		else if(!isAClient() && me.getButton() != MouseEvent.BUTTON1){
@@ -311,9 +311,9 @@ public class NavalGame extends Game{
 	}
 	public void mouseMove(MouseEvent me) {
 		super.mouseMove(me);
-		if (getWindows().mouseMove(me)) {
-			return;
-		}
+		//if (getWindows().mouseMove(me)) {
+		//	return;
+		//}
 		/*if (me.getX() - twwna.getLocX() >= 0 && me.getX() - twwna.getLocX() < twwna.getWidth()
 				&& me.getY() - twwna.getLocY() >= 0 && me.getY() - twwna.getLocY() < twwna.getHeight())
 			twwna.onMouseHover(me.getX()-twwna.getLocX(), me.getY()-twwna.getLocY());

@@ -158,6 +158,43 @@ public class NewWindowManager extends Renderable {
 		}
 		return flag;
 	}
+	
+	public boolean mouseUp(MouseEvent me) {
+		int mx = me.getX();
+		int my = me.getY();
+		boolean flag = false;
+//		if (context != null) {
+//			GameWindow gw = context;
+//			if (mx >= gw.getWidth()-23+gw.getX() && mx <= gw.getWidth()-3+gw.getX() && my >= gw.getY() + 2 && my <= gw.getY() + 20) {
+//				gw.onCloseCalled();
+//				context = null;
+//			}
+//			if (gw.checkOtherDown(me)) {
+//				context = null;
+//			}
+//			return true;
+//		}
+		startx = mx;
+		starty = my;
+		dragWnd = null;
+		for (int c = 0; c < wins.size(); c++) {
+			PWindow gw = wins.get(c);
+			if (gw!=null && gw.isVisible() && !gw.isDisposed()) {
+				if (mx >= gw.getLocX() && mx <= gw.getLocX() + gw.getWidth()
+						&& my >= gw.getLocY() && my <= gw.getLocY() + gw.getHeight()) {
+					gw.onMouseUp(mx-gw.getLocX(), my-gw.getLocY(), me.getButton());
+					dragWnd = gw;
+					return true;
+				}
+				//if(gw.onMouseDown(me.getX(),me.getY(),me.getButton()))
+					//flag = true;
+				//if (gw.isDisposed()){
+					//flag = false;
+				//}
+			}
+		}
+		return flag;
+	}
 
 	public void render() {
 		buffer = new PavoImage(Game.Settings.currentWidth,Game.Settings.currentHeight,BufferedImage.TYPE_INT_ARGB);

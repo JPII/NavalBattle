@@ -532,6 +532,8 @@ public class Game extends Renderable implements Runnable, Serializable {
 		forceUpdate = true;
 	}
 	public void mouseMove(MouseEvent me) {
+		if (getWindows().mouseMove(me))
+			return;
 		int chx = (-getWorld().getScreenX()) + me.getX();
 		int chy = (-getWorld().getScreenY()) + me.getY(); 
 		chx /= 50;
@@ -564,6 +566,8 @@ public class Game extends Renderable implements Runnable, Serializable {
 	int yearl = 0;
 	boolean gJsiw = false;
 	public void mouseDown(MouseEvent me) {
+		if (getWindows().mouseDown(me))
+			return;
 		//mouseEventSchedule = me;
 		//mouseLogicTask = new $$$MouseLogicTimer();
 		//mouseLogicTimer.scheduleAtFixedRate(mouseLogicTask, 0, 10);
@@ -588,10 +592,13 @@ public class Game extends Renderable implements Runnable, Serializable {
 		}
 	}
 	public void mouseUp(MouseEvent me) {
+		if (getWindows().mouseUp(me))
+			return;
 		//mouseLogicTask.cancel();
 	}
 	public void mouseDragged(MouseEvent me) {
-		
+		if (getWindows().mouseDragged(me))
+			return;
 	}
 	public void mouseHeldDown(MouseEvent me) {
 		
