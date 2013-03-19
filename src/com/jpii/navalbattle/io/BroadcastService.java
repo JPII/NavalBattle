@@ -79,44 +79,53 @@ public class BroadcastService {
 				while(reader.hasNext()) {
 					if(reader.getEventType() == XMLStreamConstants.START_ELEMENT) {
 						if(reader.getLocalName().equals("string")) {
+							System.out.println(reader.getAttributeValue(0));
+							
 							if(reader.getAttributeValue(0).equals("version_code"))  {
 								versionCode = reader.getElementText();
+								System.out.println(versionCode);
 								break;
 							}
 							
 							if(reader.getAttributeValue(0).equals("version_readable")) {
 								versionReadable = reader.getElementText();
+								System.out.println(versionReadable);
 								break;
 							}
 							
 							if(reader.getAttributeValue(0).equals("update_url")) {
 								updateUrl = reader.getElementText();
+								System.out.println(updateUrl);
 								break;
 							}
 							
 							if(reader.getAttributeValue(0).equals("announcement_code")) {
 								announcementCode = reader.getElementText();
+								System.out.println(announcementCode);
 								break;
 							}
 							
 							if(reader.getAttributeValue(0).equals("announcement_title")) {
 								announcementTitle = reader.getElementText();
+								System.out.println(announcementTitle);
 								break;
 							}
 							
 							if(reader.getAttributeValue(0).equals("announcement_text")) {
 								announcementText = reader.getElementText();
+								System.out.println(announcementText);
 								break;
 							}
 							
 							if(reader.getAttributeValue(0).equals("announcement_url")) {
 								announcementUrl = reader.getElementText();
+								System.out.println(announcementUrl);
 								break;
 							}
 							
 							reader.next();
 						} else {
-							 reader.next();
+							reader.next();
 						}
 					} else {
 						reader.next();
