@@ -41,6 +41,7 @@ public class NavalBattle {
 	private static GameState gameState;
 	private static WindowHandler windowHandler;
 	private static LocalizationManager localizationManager;
+	private static BroadcastService broadcastService;
 	
 	/**
 	 * <code>NavalBattle</code> main method. Ran on launch.
@@ -77,7 +78,7 @@ public class NavalBattle {
 		debugWindow.printInfo("Loaded " + localizationManager.getDefaultStrings().size() + " default strings.");
 		debugWindow.printInfo("Loaded " + localizationManager.getCurrentStrings().size() + " current strings.");
 		
-		new BroadcastService();
+		broadcastService = new BroadcastService();
 		
 		MaxTests.run();
 	}
@@ -143,6 +144,14 @@ public class NavalBattle {
 	 */
 	public static LocalizationManager getLocalizationManager() {
 		return localizationManager;
+	}
+	
+	/**
+	 * Returns current instance of BroadcastService. Used to handle updates and announcements.
+	 * @return
+	 */
+	public static BroadcastService getBroadcastService() {
+		return broadcastService;
 	}
 	
 	/**

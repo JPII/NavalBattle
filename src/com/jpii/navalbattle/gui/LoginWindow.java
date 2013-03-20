@@ -136,6 +136,18 @@ public class LoginWindow extends Window {
 				nextWindow("LoginOptionsWindow");
 			}
 		});
+		
+		updateButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent ae) {
+				nextWindow("LoginOptionsWindow");
+			}
+		});
+		
+		announcementButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent ae) {
+				nextWindow("LoginOptionsWindow");
+			}
+		});
 	}
 	
 	/**

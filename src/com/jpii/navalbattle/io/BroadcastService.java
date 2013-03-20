@@ -122,31 +122,35 @@ public class BroadcastService {
 		}
 		
 		private void checkForUpdates() {
-			int clientVersion = Integer.parseInt(Constants.VERSION_CODE);
-			int latestVersion = Integer.parseInt(versionCode);
-			
-			if(clientVersion < latestVersion) {
-				NavalBattle.getDebugWindow().printWarning("Update found! " + versionReadable + " (" + versionCode + ")");
-				NavalBattle.getDebugWindow().printWarning("Update url: " + updateUrl);
-			} else {
-				NavalBattle.getDebugWindow().printInfo("You are running the latest version!");
-			}
+			try {
+				int clientVersion = Integer.parseInt(Constants.VERSION_CODE);
+				int latestVersion = Integer.parseInt(versionCode);
+				
+				if(clientVersion < latestVersion) {
+					NavalBattle.getDebugWindow().printWarning("Update found! " + versionReadable + " (" + versionCode + ")");
+					NavalBattle.getDebugWindow().printWarning("Update url: " + updateUrl);
+				} else {
+					NavalBattle.getDebugWindow().printInfo("You are running the latest version!");
+				}
+			} catch (Exception e) { }
 		}
 		
 		private void checkForAnnouncement() {
-			int clientAnnouncement = Integer.parseInt(announcementId);
-			int latestAnnouncement = Integer.parseInt(announcementCode);
-			
-			if(clientAnnouncement < latestAnnouncement) {
-				NavalBattle.getDebugWindow().printWarning("Announcement found! " + announcementTitle + " (" + announcementText + ")");
-				NavalBattle.getDebugWindow().printWarning("Announcement url: " + announcementUrl);
+			try {
+				int clientAnnouncement = Integer.parseInt(announcementId);
+				int latestAnnouncement = Integer.parseInt(announcementCode);
 				
-				if(latestAnnouncement != -1) {
-					NavalBattleIO.saveAttribute("announcementId", announcementCode);
+				if(clientAnnouncement < latestAnnouncement) {
+					NavalBattle.getDebugWindow().printWarning("Announcement found! " + announcementTitle + " (" + announcementText + ")");
+					NavalBattle.getDebugWindow().printWarning("Announcement url: " + announcementUrl);
+					
+					if(latestAnnouncement != -1) {
+						NavalBattleIO.saveAttribute("announcementId", announcementCode);
+					}
+				} else {
+					NavalBattle.getDebugWindow().printInfo("No new announcements!");
 				}
-			} else {
-				NavalBattle.getDebugWindow().printInfo("No new announcements!");
-			}
+			} catch (Exception e) { }
 		}
 	}
 }
