@@ -35,9 +35,8 @@ public class Control {
 	private Color foreColor = Color.black;
 	private Color backColor = new Color(193,172,134);
 	private boolean intermediate = false;
-	private ArrayList<PMouseListener> pml;
+	private ArrayList<PMouseListener> pml = new ArrayList<PMouseListener>();
 	public Control(Control parent) {
-		pml = new ArrayList<PMouseListener>();
 		this.parent = parent;
 		width = 100;
 		height = 100;
