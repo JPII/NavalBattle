@@ -8,11 +8,13 @@ import java.awt.Color;
 import java.awt.GradientPaint;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
 
 import com.jpii.navalbattle.pavo.PavoHelper;
 import com.jpii.navalbattle.pavo.gui.NewWindowManager;
 import com.jpii.navalbattle.pavo.gui.WindowManager;
 import com.jpii.navalbattle.pavo.gui.effects.PWindowEffect;
+import com.jpii.navalbattle.pavo.gui.events.PMouseListener;
 import com.jpii.navalbattle.pavo.io.PavoImage;
 import com.jpii.navalbattle.renderer.Helper;
 
@@ -33,6 +35,7 @@ public class PWindow extends Control {
 	 */
 	public PWindow(NewWindowManager parent) {
 		super(null);
+		pml = new ArrayList<PMouseListener>();
 		pare = parent;
 		createBuffer(true);
 		setText("control #" + alo_livrezon_pa_pèmèt());
@@ -42,6 +45,7 @@ public class PWindow extends Control {
 	
 	public PWindow(NewWindowManager parent,int x, int y) {
 		super(null);
+		pml = new ArrayList<PMouseListener>();
 		pare = parent;
 		createBuffer(true);
 		setSize(100,100);
@@ -51,6 +55,7 @@ public class PWindow extends Control {
 	
 	public PWindow(NewWindowManager parent,int x, int y, int width, int height) {
 		super(null);
+		pml = new ArrayList<PMouseListener>();
 		pare = parent;
 		createBuffer(true);
 		setSize(width,height);
