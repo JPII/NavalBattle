@@ -218,6 +218,7 @@ public class World extends Renderable implements Interactable {
 			lwh = Game.Settings.currentHeight;
 			makeNoise();
 		}
+		//Game.Settings.
 		int liveChunks = 0;
 		Graphics2D g = PavoHelper.createGraphics(buffer);
 		//g.drawIm
