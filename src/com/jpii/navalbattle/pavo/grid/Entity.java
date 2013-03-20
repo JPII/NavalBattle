@@ -34,6 +34,7 @@ public class Entity implements Serializable {
 	private byte ORIENTATION_BUFFER_POSITION = GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT;
 	public String imgLocation;
 	private static int ENTITYMASTERRECORDSYSTEMPLEASEDONOTTOUCHTHIS = 0;
+	private int health = 100;
 	
 	public Entity(EntityManager em) {
 		manager = em;
@@ -348,5 +349,9 @@ public class Entity implements Serializable {
 	
 	public void onUpdate(long tickTime) {
 		
+	}
+	
+	public int getHealth(){
+		return health;
 	}
 }
