@@ -50,6 +50,8 @@ public class WindowHandler {
 		windows.add(new SPOptions());
 		windows.add(new HelpWindow());
 		windows.add(new CreditsWindow());
+		windows.add(new BroadcastWindow());
+		windows.add(new UpdateWindow());
 	}
 	
 	/**
@@ -61,8 +63,7 @@ public class WindowHandler {
 			JFrame temp = (Window) windows.get(index);
 			if(a.toLowerCase().equals( temp.getClass().toString().substring((temp.getClass().toString().lastIndexOf(".")+1)).toLowerCase() )){
 				temp.setVisible(true);
-			}
-			else{
+			} else {
 				temp.setVisible(false);
 			}
 		}
