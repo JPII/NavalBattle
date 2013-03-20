@@ -7,8 +7,15 @@ import javax.xml.stream.XMLInputFactory;
 import javax.xml.stream.XMLStreamConstants;
 import javax.xml.stream.XMLStreamReader;
 
+import org.w3c.dom.Document;
+import org.w3c.dom.NamedNodeMap;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
+import org.xml.sax.InputSource;
+
 import com.jpii.navalbattle.NavalBattle;
 import com.jpii.navalbattle.data.Constants;
+import com.sun.org.apache.xerces.internal.parsers.DOMParser;
 
 public class BroadcastService {
 	
@@ -71,69 +78,54 @@ public class BroadcastService {
 		}
 		
 		private void parseXml() {			
-			try {
-				InputStream is = new URL(Constants.NAVALBATTLE_UPDATE_URL).openStream();
-				XMLInputFactory factory = XMLInputFactory.newInstance();
-				XMLStreamReader reader = factory.createXMLStreamReader(is);
-				
-				while(reader.hasNext()) {
-					if(reader.getEventType() == XMLStreamConstants.START_ELEMENT) {
-						if(reader.getLocalName().equals("string")) {
-							System.out.print(reader.getAttributeValue(0) + " : ");
-							
-							if(reader.getAttributeValue(0).equals("version_code"))  {
-								versionCode = reader.getElementText();
-								System.out.println(versionCode);
-								break;
-							}
-							
-							if(reader.getAttributeValue(0).equals("version_readable")) {
-								versionReadable = reader.getElementText();
-								System.out.println(versionReadable);
-								break;
-							}
-							
-							if(reader.getAttributeValue(0).equals("update_url")) {
-								updateUrl = reader.getElementText();
-								System.out.println(updateUrl);
-								break;
-							}
-							
-							if(reader.getAttributeValue(0).equals("announcement_code")) {
-								announcementCode = reader.getElementText();
-								System.out.println(announcementCode);
-								break;
-							}
-							
-							if(reader.getAttributeValue(0).equals("announcement_title")) {
-								announcementTitle = reader.getElementText();
-								System.out.println(announcementTitle);
-								break;
-							}
-							
-							if(reader.getAttributeValue(0).equals("announcement_text")) {
-								announcementText = reader.getElementText();
-								System.out.println(announcementText);
-								break;
-							}
-							
-							if(reader.getAttributeValue(0).equals("announcement_url")) {
-								announcementUrl = reader.getElementText();
-								System.out.println(announcementUrl);
-								break;
-							}
-							
-							reader.next();
-						} else {
-							reader.next();
-						}
-					} else {
-						reader.next();
-					}
-				}
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
+			DOMParser parser = new DOMParser();
+
+	        try {
+	            parser.parse(new InputSource(new URL(Constants.NAVALBATTLE_UPDATE_URL).openStream()));
+	            Document doc = parser.getDocument();
+
+	            NodeList nodeList = doc.getElementsByTagName("string");
+	            for (int i = 0; i < nodeList.getLength(); i++) {
+	                System.out.print("Item "+(i+1));
+	                
+	                Node n = nodeList.item(i);
+	                NamedNodeMap m = n.getAttributes();
+	                Node actualNode = n.getFirstChild();
+	               
+	                if (actualNode != null) {
+	                	if(m.getNamedItem("name").getTextContent().equals("version_code")) {
+	                		versionCode = actualNode.getNodeValue();
+	                	}
+	                	
+	                	if(m.getNamedItem("name").getTextContent().equals("version_readable")) {
+	                		versionReadable = actualNode.getNodeValue();
+	                	}
+	                	
+	                	if(m.getNamedItem("name").getTextContent().equals("update_url")) {
+	                		updateUrl = actualNode.getNodeValue();
+	                	}
+	                	
+	                	if(m.getNamedItem("name").getTextContent().equals("announcement_code")) {
+	                		announcementCode = actualNode.getNodeValue();
+	                	}
+	                	
+	                	if(m.getNamedItem("name").getTextContent().equals("announcement_title")) {
+	                		announcementTitle = actualNode.getNodeValue();
+	                	}
+	                	
+	                	if(m.getNamedItem("name").getTextContent().equals("announcement_text")) {
+	                		announcementText = actualNode.getNodeValue();
+	                	}
+	                	
+	                	if(m.getNamedItem("name").getTextContent().equals("announcement_url")) {
+	                		announcementUrl = actualNode.getNodeValue();
+	                	}
+	                }
+	            }
+
+	        } catch (Exception ex) {
+	            ex.printStackTrace();
+	        }
 			
 			NavalBattle.getDebugWindow().printInfo("Successfully loaded BroadcastService data");
 		}
