@@ -26,7 +26,6 @@ public class BroadcastService {
 		announcementId = NavalBattleIO.getAttribute("announcementId");
 		broadcastThread = new BroadcastThread();
 		
-		NavalBattle.getDebugWindow().printInfo("Checking for announcements...");
 		broadcastThread.run();
 	}
 	
@@ -118,9 +117,8 @@ public class BroadcastService {
 
 	        } catch (Exception ex) {
 	            ex.printStackTrace();
+	            NavalBattle.getDebugWindow().printError("BroadcastService encountered an error while downloading data");
 	        }
-			
-			NavalBattle.getDebugWindow().printInfo("Successfully loaded BroadcastService data");
 		}
 		
 		private void checkForUpdates() {

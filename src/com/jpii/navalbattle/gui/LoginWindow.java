@@ -83,6 +83,24 @@ public class LoginWindow extends Window {
 		passwordField.addKeyListener(Constants.keys);
 		usernameField.addKeyListener(Constants.keys);
 		usernameField.setText(NavalBattleIO.getAttribute("lastGoodUserName"));
+		
+		JButton announcementButton = new JButton("Announcement!");
+		announcementButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		announcementButton.setFocusable(false);
+		announcementButton.setBounds(34, 68, 117, 30);
+		getContentPane().add(announcementButton);
+		
+		JButton updateButton = new JButton("Update Available!");
+		updateButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		updateButton.setFocusable(false);
+		updateButton.setBounds(34, 27, 117, 30);
+		getContentPane().add(updateButton);
 		passwordField.addFocusListener(new Focus(this));
 		usernameField.addFocusListener(new Focus(this));
 		
