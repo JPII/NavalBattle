@@ -25,9 +25,6 @@ import com.jpii.navalbattle.game.gui.HUD;
 import com.jpii.navalbattle.game.gui.PauseWindow;
 import com.jpii.navalbattle.pavo.*;
 import com.jpii.navalbattle.pavo.grid.Entity;
-import com.jpii.navalbattle.pavo.grid.GridHelper;
-import com.jpii.navalbattle.pavo.grid.GridedEntityTileOrientation;
-import com.jpii.navalbattle.pavo.grid.Location;
 import com.jpii.navalbattle.pavo.grid.Tile;
 import com.jpii.navalbattle.pavo.gui.MessageBox;
 import com.jpii.navalbattle.pavo.gui.MessageBoxIcon;
@@ -36,7 +33,6 @@ import com.jpii.navalbattle.pavo.gui.TestWindowWithNewAPI;
 import com.jpii.navalbattle.renderer.weather.WeatherMode;
 
 /**
- * @author MKirkby
  * The game file.
  */
 public class NavalGame extends Game{

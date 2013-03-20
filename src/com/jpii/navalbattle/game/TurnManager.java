@@ -1,5 +1,7 @@
 package com.jpii.navalbattle.game;
 
+import com.jpii.navalbattle.pavo.grid.Entity;
+
 public class TurnManager {
 	
 	Turn currentTurn;
@@ -23,6 +25,10 @@ public class TurnManager {
 
 	public int getTurnNumber(){
 		return turnnumber;
+	}
+	
+	public void addEntity(Entity e){
+		currentTurn.getPlayer().addEntity(e);
 	}
 	
 }

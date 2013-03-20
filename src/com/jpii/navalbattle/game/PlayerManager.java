@@ -14,6 +14,13 @@ public class PlayerManager {
 		this.players = players;
 	}
 	
+	public PlayerManager(Player... players){
+		this.players = new ArrayList<Player>();
+		for(int index = 0; index<players.length; index++){
+			this.players.add(players[index]);
+		}
+	}
+	
 	public void addPlayer(Player p){
 		players.add(p);
 	}

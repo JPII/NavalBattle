@@ -1,6 +1,3 @@
-/**
- * 
- */
 package com.jpii.navalbattle.game.entity;
 
 import com.jpii.navalbattle.pavo.Game;
@@ -9,12 +6,9 @@ import com.jpii.navalbattle.pavo.grid.EntityManager;
 import com.jpii.navalbattle.pavo.grid.GridedEntityTileOrientation;
 import com.jpii.navalbattle.pavo.grid.Location;
 
-/**
- * @author maximusvladimir
- *
- */
 public class Whale extends AnimatedEntity {
 
+	private static final long serialVersionUID = 1L;
 	public static int[] animationFramesForDaWhale;
 	
 	/**

@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 import com.jpii.navalbattle.pavo.grid.Entity;
 
-// base class for HumanPlayers and AIPlayers
 public class Player {
 	
 	ArrayList<Entity> entities;
@@ -17,4 +16,7 @@ public class Player {
 		return entities.contains(e);
 	}
 	
+	public void addEntity(Entity e){
+		entities.add(e);
+	}
 }

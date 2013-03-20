@@ -3,24 +3,14 @@
  */
 package com.jpii.navalbattle.pavo.gui;
 
-import java.awt.Graphics;
-import java.awt.image.BufferedImage;
-
-import com.jpii.navalbattle.pavo.PavoHelper;
 import com.jpii.navalbattle.pavo.grid.EntityManager;
-import com.jpii.navalbattle.pavo.gui.controls.Control;
 import com.jpii.navalbattle.pavo.gui.controls.PButton;
 import com.jpii.navalbattle.pavo.gui.controls.PFrame;
-import com.jpii.navalbattle.pavo.gui.controls.PImage;
 import com.jpii.navalbattle.pavo.gui.controls.PProgress;
 import com.jpii.navalbattle.pavo.gui.controls.PText;
 import com.jpii.navalbattle.pavo.gui.controls.PWindow;
 import com.jpii.navalbattle.pavo.gui.events.PMouseEvent;
 
-/**
- * @author maximusvladimir
- *
- */
 public class TestWindowWithNewAPI extends PWindow {
 	PText indicator;
 	int clicks = 0;

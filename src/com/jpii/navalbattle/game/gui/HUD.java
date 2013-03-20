@@ -53,6 +53,14 @@ public class HUD extends PWindow{
 		g.setColor(Color.blue);
 		g.fillRect(centerx-1,centery-1,3,3);
 		
+		// Buttons
+		
+		
+		// Msg System
+		
+		
+		
+		
 	}
 	
 	public void paintAfter(Graphics2D g){

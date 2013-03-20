@@ -17,4 +17,8 @@ public class Turn {
 			flag = (entity.getMoved()>entity.getMaxMovement());
 		return flag;
 	}
+	
+	public Player getPlayer(){
+		return player;
+	}
 }
