@@ -64,12 +64,17 @@ public class BattleShip extends MoveableEntity {
 			super.rotateTo(rotateto);
 	}
 	
+	/**
+	 * Gets the bow of the ship.
+	 * @return The location. Could be "Unknown", if the Entity is not in the Grid.
+	 */
 	public Location getLocation(){
 		Location temp = super.getLocation();
 		if(getCurrentOrientation() == GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT)
 			return temp;
 		else if(getCurrentOrientation() == GridedEntityTileOrientation.ORIENTATION_TOPTOBOTTOM)
-			temp = new Location(temp.getRow(),temp.getCol()-getWidth());
+			temp = new Location(temp.getRow()+getWidth(),temp.getCol());
+		System.out.println(temp);
 		return temp;
 	}
 }
