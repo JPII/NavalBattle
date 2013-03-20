@@ -8,6 +8,7 @@ import java.awt.image.BufferedImage;
 import com.jpii.navalbattle.pavo.grid.Entity;
 import com.jpii.navalbattle.pavo.gui.NewWindowManager;
 import com.jpii.navalbattle.pavo.gui.controls.PWindow;
+import com.jpii.navalbattle.pavo.gui.controls.PButton;
 import com.jpii.navalbattle.util.FileUtils;
 
 public class HUD extends PWindow{
@@ -29,6 +30,8 @@ public class HUD extends PWindow{
 		setVisible(false);
 		centerx = getWidth()-210;
 		centery = getHeight()/2;
+		// Buttons
+		addControl(new PButton(this,"A",(getWidth()/2)-40,getHeight()-45,30,30));
 	}
 	
 	public void paint(Graphics2D g) {
@@ -52,8 +55,6 @@ public class HUD extends PWindow{
 		drawString(g,movement, centerx, centery+40);
 		g.setColor(Color.blue);
 		g.fillRect(centerx-1,centery-1,3,3);
-		
-		// Buttons
 		
 		
 		// Msg System
