@@ -89,7 +89,7 @@ public class NavalGame extends Game{
 	}
 	public NavalGame(PavoOpenState pos, String flags) {
 		super(pos,flags);
-		hud = new HUD(getWinMan(),0,Settings.currentHeight-150,Settings.currentWidth, 150);
+		hud = new HUD(getWindows(),0,Settings.currentHeight-150,Settings.currentWidth, 150);
 		hud.repaint();
 		nm = new NavalManager(getWorld());
 		getWorld().setEntityManager(nm);
