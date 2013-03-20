@@ -79,7 +79,7 @@ public class NavalManager extends EntityManager {
 		w1.setLeftToRightImage(w3_);
 		w1.setTopToBottomImage(w3_);
 		
-		for (int c = 0; c < 10; c++) {
+		for (int c = 0; c < 25; c++) {
 			Location poll = gh.pollNextWaterTile();
 			while((!(GridHelper.canPlaceInGrid(this,GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT, poll.getRow(), poll.getCol(), 4)) && !(GridHelper.canPlaceInGrid(this,GridedEntityTileOrientation.ORIENTATION_TOPTOBOTTOM, poll.getRow(), poll.getCol(), 4)))){
 				poll = gh.pollNextWaterTile(25);

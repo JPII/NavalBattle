@@ -251,27 +251,15 @@ public class NavalGame extends Game{
 		if (guiUsedMouseDown)
 			return;
 		
-		/*if (me.getX() >= twwna.getLocX() && me.getX() < twwna.getWidth() + twwna.getLocX()
-				&& me.getY() >= twwna.getLocY() && me.getY() < twwna.getHeight() + twwna.getLocY())
-			twwna.onMouseDown(me.getX()-twwna.getLocX(), me.getY()-twwna.getLocY(),me.getButton());
-		if (me.getX() >= hud.getLocX() && me.getX() < hud.getWidth() + hud.getLocX()
-				&& me.getY() >= hud.getLocY() && me.getY() < hud.getHeight() + hud.getLocY())
-			hud.onMouseDown(me.getX()-hud.getLocX(), me.getY()-hud.getLocY(),me.getButton());
-		*/
 		int chx = (-getWorld().getScreenX()) + me.getX();
 		int chy = (-getWorld().getScreenY()) + me.getY(); 
 		chx /= 50;
 		chy /= 50;
 		Tile current = nm.getTile(chy,chx);
 		
-		if (!isAClient()) {
-			//getSelfServer().send("Mouse was clicked at: (" + chx + ","+ chy+")");
-		}
-		
 		twwna.updateLocation(getWorld().getEntityManager(), chx, chy);
 		
-		if (/*getWinMan().mouseDown(me)*/
-				/*getWindows().mouseDown(me)||*/(omnimap.mouseDown(me)))
+		if ((omnimap.mouseDown(me)))
 			return;
 		
 		else if(!isAClient() && me.getButton() != MouseEvent.BUTTON1){
@@ -280,12 +268,12 @@ public class NavalGame extends Game{
 		
 		else if (Game.Settings.isFinishedGenerating && getWorld().getEntityManager().getTilePercentLand(chy,chx) <= 5){
 			Entity ent = getWorld().getEntityManager().findEntity(chy,chx);
-			if (ent != null) {
+		/*	if (ent != null) {
 				MoveableEntity moveEnt = (MoveableEntity)ent;
 				//System.out.println("MovedEntity");
 				moveEnt.toggleMovable();
 				getWorld().forceRender();
-			}
+			}*/
 			if(current==null){
 //				if(!isAClient() && me.getButton() == MouseEvent.BUTTON1){
 //					if(GridHelper.canPlaceInGrid(nm,GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT, chy, chx, 5)){
