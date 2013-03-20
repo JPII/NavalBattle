@@ -1,6 +1,3 @@
-/**
- * 
- */
 package com.jpii.navalbattle.game.entity;
 
 import com.jpii.navalbattle.pavo.grid.Entity;
@@ -8,11 +5,8 @@ import com.jpii.navalbattle.pavo.grid.EntityManager;
 import com.jpii.navalbattle.pavo.grid.GridedEntityTileOrientation;
 import com.jpii.navalbattle.pavo.grid.Location;
 
-/**
- * @author MKirkby
- *
- */
 public class MoveableEntity extends Entity {
+	private static final long serialVersionUID = 1L;
 	private int maxStep = 2;
 	
 	/**
@@ -76,4 +70,5 @@ public class MoveableEntity extends Entity {
 	public void setMaxStep(int v) {
 		maxStep = v;
 	}
+
 }

@@ -23,7 +23,8 @@ import com.jpii.navalbattle.game.NavalGame;
 import com.jpii.navalbattle.pavo.*;
 
 public class Entity implements Serializable {
-	
+
+	private static final long serialVersionUID = 1L;
 	private Location location = Location.Unknown;
 	private String tag = "";
 	public long lastUpdate = 0;
@@ -35,6 +36,8 @@ public class Entity implements Serializable {
 	public String imgLocation;
 	private static int ENTITYMASTERRECORDSYSTEMPLEASEDONOTTOUCHTHIS = 0;
 	private int health = 100;
+	protected static int maxMovement;
+	protected static int moved;
 	
 	public Entity(EntityManager em) {
 		manager = em;
@@ -353,5 +356,13 @@ public class Entity implements Serializable {
 	
 	public int getHealth(){
 		return health;
+	}
+	
+	public int getMaxMovement(){
+		return maxMovement;
+	}
+	
+	public int getMoved(){
+		return moved;
 	}
 }

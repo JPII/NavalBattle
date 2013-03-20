@@ -8,6 +8,10 @@ import com.jpii.navalbattle.pavo.grid.Location;
 
 public class BattleShip extends MoveableEntity {
 	private static final long serialVersionUID = 1L;
+	static{
+		maxMovement=4;
+		moved=0;
+	}
 	public static GridedEntityTileOrientation BATTLESHIP_ID;
 	/**
 	 * @param em

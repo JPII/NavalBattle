@@ -7,7 +7,6 @@ import java.awt.image.BufferedImage;
 
 import com.jpii.navalbattle.pavo.grid.Entity;
 import com.jpii.navalbattle.pavo.gui.NewWindowManager;
-import com.jpii.navalbattle.pavo.gui.WindowManager;
 import com.jpii.navalbattle.pavo.gui.controls.PWindow;
 import com.jpii.navalbattle.util.FileUtils;
 
@@ -20,6 +19,7 @@ public class HUD extends PWindow{
 	int boxwidth,boxheight,boxx,boxy;
 	String location = new String("");
 	String health = new String("");
+	String movement = new String("");
 	Entity display;
 	
 	 public HUD(NewWindowManager parent,int x, int y, int width, int height){
@@ -38,8 +38,9 @@ public class HUD extends PWindow{
 		drawFrame(g, boxx, boxy, boxwidth, boxheight);
 		g.drawImage(entityImg,boxx+50,boxy+50,null);
 		g.setColor(Color.red);
-		drawString(g,location, centerx, centery+50);
+		drawString(g,location, centerx, centery+60);
 		drawString(g,health, centerx, centery-35);
+		drawString(g,movement, centerx, centery+35);
 		g.setColor(Color.blue);
 		g.fillRect(centerx-1,centery-1,3,3);
 	}
@@ -65,6 +66,7 @@ public class HUD extends PWindow{
 			boxheight = tempheight+100;
 			location = ("[X:"+display.getLocation().getCol()+" Y:"+display.getLocation().getRow()+"]");
 			health = ("Health: "+display.getHealth()+"%");
+			movement = ("Movement Left: "+(display.getMaxMovement()-display.getMoved())+" out of "+display.getMaxMovement());
 		}
 		else{
 			setVisible(false);
