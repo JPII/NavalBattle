@@ -32,13 +32,30 @@ public class HUD extends PWindow{
 		centerx = getWidth()-210;
 		centery = getHeight()/2;
 		// Buttons
-		addControl(new PButton(this,(getWidth()/2)-40,getHeight()-45,70,70));
+		addControl(new PButton(this,(getWidth()/2)-40,getHeight()-45,30,30));
+		addControl(new PButton(this,(getWidth()/2),getHeight()-45,30,30));
+		addControl(new PButton(this,(getWidth()/2)+40,getHeight()-45,30,30));
+		
 		PImage attack = new PImage(this);
 		attack.setLoc((getWidth()/2)-40,getHeight()-45);
 		attack.setSize(30,30);
 		attack.setImage(PImage.registerImage(FileUtils.getImage("drawable-game/Buttons/Attack.png")));
 		attack.repaint();
 		addControl(attack);
+
+		PImage diplomacy = new PImage(this);
+		diplomacy.setLoc((getWidth()/2),getHeight()-45);
+		diplomacy.setSize(30,30);
+		diplomacy.setImage(PImage.registerImage(FileUtils.getImage("drawable-game/Buttons/Diplomacy.png")));
+		diplomacy.repaint();
+		addControl(diplomacy);
+		
+		PImage move = new PImage(this);
+		move.setLoc((getWidth()/2)+40,getHeight()-45);
+		move.setSize(30,30);
+		move.setImage(PImage.registerImage(FileUtils.getImage("drawable-game/Buttons/Move.png")));
+		move.repaint();
+		addControl(move);
 	}
 	
 	public void paint(Graphics2D g) {
