@@ -165,4 +165,20 @@ public class Window extends JFrame {
 	public JFrame getFrame() {
 		return this;
 	}
+
+	/**
+	 * Set update available. Used in LoginWindow only.
+	 * @param b
+	 */
+	public void setUpdateAvailable(boolean b) {
+		
+	}
+
+	/**
+	 * Set announcement available. Used in LoginWindow only.
+	 * @param b
+	 */
+	public void setAnnouncementAvailable(boolean b) {
+		
+	}
 }

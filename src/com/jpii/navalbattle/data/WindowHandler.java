@@ -21,7 +21,6 @@ import java.util.*;
 import javax.swing.*;
 
 import com.jpii.gamekit.toaster.Toaster;
-import com.jpii.navalbattle.game.SinglePlayerGame;
 import com.jpii.navalbattle.gui.*;
 
 public class WindowHandler {
@@ -59,14 +58,26 @@ public class WindowHandler {
 	 * @param a
 	 */
 	public void setNewWindow(String a) {
-		for(int index = 0; index<windows.size(); index++){
+		for(int index = 0; index < windows.size(); index++) {
 			JFrame temp = (Window) windows.get(index);
-			if(a.toLowerCase().equals( temp.getClass().toString().substring((temp.getClass().toString().lastIndexOf(".")+1)).toLowerCase() )){
+			if(a.toLowerCase().equals(temp.getClass().toString().substring((temp.getClass().toString().lastIndexOf(".")+1)).toLowerCase() )){
 				temp.setVisible(true);
 			} else {
 				temp.setVisible(false);
 			}
 		}
+	}
+	
+	/**
+	 * Get instance of a <code>Window</code>. Must have been registered first!
+	 */
+	public Window getWindow(String a) {
+		Window temp = null;
+		for(int index = 0; index < windows.size(); index++) {
+			temp = (Window) windows.get(index);
+		}
+		
+		return temp;
 	}
 	
 	/**

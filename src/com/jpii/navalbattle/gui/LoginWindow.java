@@ -30,7 +30,7 @@ import com.roketgamer.rauth.*;
 
 @SuppressWarnings("serial")
 public class LoginWindow extends Window {
-	JButton loginButton;
+	JButton loginButton, updateButton, announcementButton;
 	JLabel usernameLabel, passwordLabel;
 	JTextField usernameField;
 	JPasswordField passwordField;
@@ -84,7 +84,7 @@ public class LoginWindow extends Window {
 		usernameField.addKeyListener(Constants.keys);
 		usernameField.setText(NavalBattleIO.getAttribute("lastGoodUserName"));
 		
-		JButton announcementButton = new JButton("Announcement!");
+		announcementButton = new JButton("Announcement!");
 		announcementButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
@@ -93,7 +93,7 @@ public class LoginWindow extends Window {
 		announcementButton.setBounds(34, 68, 117, 30);
 		getContentPane().add(announcementButton);
 		
-		JButton updateButton = new JButton("Update Available!");
+		updateButton = new JButton("Update");
 		updateButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
@@ -103,6 +103,9 @@ public class LoginWindow extends Window {
 		getContentPane().add(updateButton);
 		passwordField.addFocusListener(new Focus(this));
 		usernameField.addFocusListener(new Focus(this));
+		
+		updateButton.setVisible(false);
+		announcementButton.setVisible(false);
 		
 		setDefaults();	
 		setSize(500,190);
@@ -186,5 +189,19 @@ public class LoginWindow extends Window {
 				JOptionPane.showMessageDialog(this, "Unable to login. Check your internet connection.");
 			}
 		}
+	}
+	
+	public void setUpdateAvailable(boolean status) {
+		updateButton.setVisible(status);
+		validate();
+		repaint();
+		updateButton.repaint();
+	}
+	
+	public void setAnnouncementAvailable(boolean status) {
+		announcementButton.setVisible(status);
+		validate();
+		repaint();
+		announcementButton.repaint();
 	}
 }

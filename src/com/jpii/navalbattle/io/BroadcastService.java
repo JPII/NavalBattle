@@ -129,6 +129,9 @@ public class BroadcastService {
 				if(clientVersion < latestVersion) {
 					NavalBattle.getDebugWindow().printWarning("Update found! " + versionReadable + " (" + versionCode + ")");
 					NavalBattle.getDebugWindow().printWarning("Update url: " + updateUrl);
+					
+					NavalBattle.getWindowHandler().getWindow("LoginWindow").setUpdateAvailable(true);
+					//NavalBattle.getWindowHandler().getWindow("LoginWindow").repaint();
 				} else {
 					NavalBattle.getDebugWindow().printInfo("You are running the latest version!");
 				}
@@ -143,6 +146,9 @@ public class BroadcastService {
 				if(clientAnnouncement < latestAnnouncement) {
 					NavalBattle.getDebugWindow().printWarning("Announcement found! " + announcementTitle + " (" + announcementText + ")");
 					NavalBattle.getDebugWindow().printWarning("Announcement url: " + announcementUrl);
+					
+					NavalBattle.getWindowHandler().getWindow("LoginWindow").setAnnouncementAvailable(true);
+					//NavalBattle.getWindowHandler().getWindow("LoginWindow").repaint();
 					
 					if(latestAnnouncement != -1) {
 						NavalBattleIO.saveAttribute("announcementId", announcementCode);
