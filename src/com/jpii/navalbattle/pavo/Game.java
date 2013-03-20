@@ -485,7 +485,7 @@ public class Game extends Renderable implements Runnable, Serializable {
 			g.drawImage(shadow,0,0,null);
 		}
 		//getWinMan().render();
-		getWindows().render();
+		//getWindows().render();
 		//g.drawImage(getWinMan().getBuffer(), 0, 0, null);
 		g.drawImage(getWindows().getBuffer(),0,0,null);
 		g.dispose();
