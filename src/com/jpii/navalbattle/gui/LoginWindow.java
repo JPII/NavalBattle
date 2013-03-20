@@ -139,13 +139,13 @@ public class LoginWindow extends Window {
 		
 		updateButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent ae) {
-				nextWindow("LoginOptionsWindow");
+				nextWindow("UpdateWindow");
 			}
 		});
 		
 		announcementButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent ae) {
-				nextWindow("LoginOptionsWindow");
+				nextWindow("BroadcastWindow");
 			}
 		});
 	}

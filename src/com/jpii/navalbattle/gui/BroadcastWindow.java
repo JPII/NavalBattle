@@ -11,6 +11,10 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 public class BroadcastWindow extends Window {
+	
+	JLabel announcementTitle;
+	JTextPane announcementText;
+	
 	public BroadcastWindow() {
 		getContentPane().setLayout(null);
 		
@@ -19,13 +23,13 @@ public class BroadcastWindow extends Window {
 		lblAnnouncement.setBounds(10, 11, 128, 30);
 		getContentPane().add(lblAnnouncement);
 		
-		JLabel announcementTitle = new JLabel(NavalBattle.getBroadcastService().getAnnouncementTitle());
+		announcementTitle = new JLabel("Announcement title");
 		announcementTitle.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		announcementTitle.setBounds(143, 19, 333, 14);
 		getContentPane().add(announcementTitle);
 		
-		JTextPane announcementText = new JTextPane();
-		announcementText.setText(NavalBattle.getBroadcastService().getAnnouncementText());
+		announcementText = new JTextPane();
+		announcementText.setText("Announcement text");
 		announcementText.setEditable(false);
 		announcementText.setBounds(10, 44, 466, 221);
 		getContentPane().add(announcementText);
@@ -33,7 +37,7 @@ public class BroadcastWindow extends Window {
 		JButton btnClose = new JButton("Close");
 		btnClose.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				nextWindow("MainMenuWindow");
+				nextWindow("LoginWindow");
 			}
 		});
 		btnClose.setBounds(387, 278, 89, 23);
@@ -48,5 +52,14 @@ public class BroadcastWindow extends Window {
 		});
 		moreInfoButton.setBounds(10, 278, 89, 23);
 		getContentPane().add(moreInfoButton);
+	}
+	
+	public void setVisible(boolean status) {
+		super.setVisible(status);
+		
+		if(status) {
+			announcementTitle.setText(NavalBattle.getBroadcastService().getAnnouncementTitle());
+			announcementText.setText(NavalBattle.getBroadcastService().getAnnouncementText());
+		}
 	}
 }
