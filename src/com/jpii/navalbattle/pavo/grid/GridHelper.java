@@ -18,8 +18,8 @@ public class GridHelper implements Serializable {
 		boolean found = false;
 		int r = 0, c = 0;
 		while (!found) {
-			r = random.nextInt(PavoHelper.getGameHeight(man.getWorld().getWorldSize()));
-			c = random.nextInt(PavoHelper.getGameHeight(man.getWorld().getWorldSize()));
+			r = random.nextInt(PavoHelper.getGameHeight(man.getWorld().getWorldSize())*2);
+			c = random.nextInt(PavoHelper.getGameWidth(man.getWorld().getWorldSize())*2);
 			int b = man.getTilePercentLand(r, c);
 			if (b > amountOfWater - tolerance && b < amountOfWater + tolerance)
 				found = true;
