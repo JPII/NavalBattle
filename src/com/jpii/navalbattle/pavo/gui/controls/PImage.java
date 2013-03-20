@@ -22,10 +22,12 @@ public class PImage extends Control {
 	 */
 	public PImage(Control parent) {
 		super(parent);
+		createBuffer(true);
 	}
 	
 	public PImage(Control parent, int x, int y) {
 		super(parent, x, y);
+		createBuffer(true);
 	}
 
 	/**

@@ -101,23 +101,26 @@ public class PButton extends Control {
 		int vwidth = strWidth+8;
 		if (vwidth < width)
 			vwidth = width-1;
+		int vheight = (int)(getFont().getSize() * 1.5f);
+		if (vheight < height)
+			vheight = height-1;
 		if (heldDown) {
 			GradientPaint gp = new GradientPaint(0,0,new Color(134,111,68),0,(getFont().getSize() * 1.5f),new Color(87,72,45));
 			g.setPaint(gp);
-			g.fillRoundRect(0,0,vwidth,(int)(getFont().getSize() * 1.5f), 5,5);
+			g.fillRoundRect(0,0,vwidth,vheight, 5,5);
 			g.setPaint(null);
 			g.setColor(Color.black);
-			g.drawRoundRect(0,0,vwidth,(int)(getFont().getSize() * 1.5f), 5,5);
+			g.drawRoundRect(0,0,vwidth,vheight, 5,5);
 			g.setColor(Color.lightGray);
 			g.drawString(getText(), ((getWidth()/2) - (strWidth/2)),(int)(getFont().getSize() * 1.5f)- (getFont().getSize()/2)+2);
 		}
 		else {
 			GradientPaint gp = new GradientPaint(0,0,new Color(169,140,86),0,(getFont().getSize() * 1.5f),new Color(126,105,65));
 			g.setPaint(gp);
-			g.fillRoundRect(0,0,vwidth,(int)(getFont().getSize() * 1.5f), 5,5);
+			g.fillRoundRect(0,0,vwidth,vheight, 5,5);
 			g.setPaint(null);
 			g.setColor(Color.black);
-			g.drawRoundRect(0,0,vwidth,(int)(getFont().getSize() * 1.5f), 5,5);
+			g.drawRoundRect(0,0,vwidth,vheight, 5,5);
 			g.drawString(getText(), ((getWidth()/2) - (strWidth/2)),(int)(getFont().getSize() * 1.5f)- (getFont().getSize()/2)+2);
 		}
 	}

@@ -32,11 +32,12 @@ public class HUD extends PWindow{
 		centerx = getWidth()-210;
 		centery = getHeight()/2;
 		// Buttons
-		addControl(new PButton(this,"",(getWidth()/2)-40,getHeight()-45,30,30));
+		addControl(new PButton(this,(getWidth()/2)-40,getHeight()-45,70,70));
 		PImage attack = new PImage(this);
 		attack.setLoc((getWidth()/2)-40,getHeight()-45);
 		attack.setSize(30,30);
 		attack.setImage(PImage.registerImage(FileUtils.getImage("drawable-game/Buttons/Attack.png")));
+		attack.repaint();
 		addControl(attack);
 	}
 	
