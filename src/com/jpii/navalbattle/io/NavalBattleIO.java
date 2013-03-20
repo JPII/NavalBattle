@@ -36,7 +36,7 @@ public class NavalBattleIO {
 			String settingsPath = getSettingsPath();
 			settings = new SettingsIO(settingsPath);
 			boolean res = settings.setAttribute(new SettingsAttribute("lastGoodUserName",""));
-			res = settings.setAttribute(new SettingsAttribute("announcementId", ""));
+			res = settings.setAttribute(new SettingsAttribute("announcementId", "-2"));
 			if (!res)
 				NavalBattle.getDebugWindow().printError("failed to write initial attributes");
 		}

@@ -73,60 +73,6 @@ public class MaxTests {
 		}
 		System.out.println("Number of cocurrent cores: " + unit);
 		System.out.println("Total memory avaliable to the system: " + (OSUtil.getTotalOSRAM()/1024.0f/1024.0f) + " MB");
-		
-		if (isFirstRun()) {
-			String settingsPath = getSettingsPath();
-			File opt = new File(settingsPath);
-			boolean res = false;
-			try {
-				res = opt.createNewFile();
-				try{
-				java.io.FileWriter writor = new FileWriter(opt);
-				String c = System.getProperty("line.separator");
-				writor.write("# Settings File for NavalBattle# NavalBattle is released under GNU.\n#\n# " +
-						"Be sure to make a backup, "
-						+"bring a cup of English Afternoon Tea, and\n# turn up the music, if you chose to " +
-						"modify this file, understanding"
-						+"\n# that modifying is at your own risk.\n# Login data:\nlastGoodUserName: notch" +
-						"\nlastGoodPassword:" +
-						"<just kidding>\n# Game window size:\ngameWindowWidth: 800\ngameWindowHeight: 600");
-				writor.close();}
-				catch(Throwable throwable) {
-					System.out.println("A serious error has occured with NavalBattle, and it must close: " + throwable.getMessage());
-				}
-			}
-			catch (Throwable threw) {
-				System.out.println("A serious error has occured with NavalBattle, and it must close: " + threw.getMessage());
-			}
-		}
-		else {
-			ArrayList<SettingsAttribute> attrs = new ArrayList<SettingsAttribute>();
-			SettingsAttribute a = new SettingsAttribute("lastGoodUserName");
-			attrs.add(a);
-			a = new SettingsAttribute("lastGoodPassword");
-			attrs.add(a);
-			a = new SettingsAttribute("gameWindowWidth");
-			attrs.add(a);
-			a = new SettingsAttribute("gameWindowHeight");
-			attrs.add(a);
-			java.net.URL url = null;
-			File f = null;
-			try {
-				//url = new java.net.URL(getSettingsPath());
-				f = new File(getSettingsPath());
-			} catch (Exception e) { 
-				//e.printStackTrace();
-			}
-			//if (url != null && f.exists()) {
-				SettingsReader reader = new SettingsReader(f.getAbsolutePath(),attrs);
-				reader.read();
-			//}
-			/*for (SettingsAttribute sa : attrs) {
-				if (sa != null) {
-					System.out.println(sa);
-				}
-			}*/
-		}
 	}
 	
 	/**

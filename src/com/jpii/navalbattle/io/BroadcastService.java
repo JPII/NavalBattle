@@ -1,11 +1,6 @@
 package com.jpii.navalbattle.io;
 
-import java.io.InputStream;
 import java.net.URL;
-
-import javax.xml.stream.XMLInputFactory;
-import javax.xml.stream.XMLStreamConstants;
-import javax.xml.stream.XMLStreamReader;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.NamedNodeMap;
@@ -85,9 +80,7 @@ public class BroadcastService {
 	            Document doc = parser.getDocument();
 
 	            NodeList nodeList = doc.getElementsByTagName("string");
-	            for (int i = 0; i < nodeList.getLength(); i++) {
-	                System.out.print("Item "+(i+1));
-	                
+	            for (int i = 0; i < nodeList.getLength(); i++) {	                
 	                Node n = nodeList.item(i);
 	                NamedNodeMap m = n.getAttributes();
 	                Node actualNode = n.getFirstChild();
@@ -143,7 +136,19 @@ public class BroadcastService {
 		}
 		
 		private void checkForAnnouncement() {
+			int clientAnnouncement = Integer.parseInt(announcementId);
+			int latestAnnouncement = Integer.parseInt(announcementCode);
 			
+			if(clientAnnouncement < latestAnnouncement) {
+				NavalBattle.getDebugWindow().printWarning("Announcement found! " + announcementTitle + " (" + announcementText + ")");
+				NavalBattle.getDebugWindow().printWarning("Announcement url: " + announcementUrl);
+				
+				if(latestAnnouncement != -1) {
+					NavalBattleIO.saveAttribute("announcementId", announcementCode);
+				}
+			} else {
+				NavalBattle.getDebugWindow().printInfo("No new announcements!");
+			}
 		}
 	}
 }
