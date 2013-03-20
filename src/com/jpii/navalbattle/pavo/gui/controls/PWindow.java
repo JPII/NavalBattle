@@ -10,6 +10,7 @@ import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 
 import com.jpii.navalbattle.pavo.PavoHelper;
+import com.jpii.navalbattle.pavo.gui.NewWindowManager;
 import com.jpii.navalbattle.pavo.gui.WindowManager;
 import com.jpii.navalbattle.pavo.gui.effects.PWindowEffect;
 import com.jpii.navalbattle.pavo.io.PavoImage;
@@ -23,14 +24,14 @@ public class PWindow extends Control {
 	private boolean showTitle = true;
 	private String title = "";
 	private boolean blotchBackground = false;
-	private WindowManager pare;
+	private NewWindowManager pare;
 	private PWindowEffect pwething = PWindowEffect.NONE;
 	private boolean centerTitle = false;
 	
 	/**
 	 * @param parent
 	 */
-	public PWindow(WindowManager parent) {
+	public PWindow(NewWindowManager parent) {
 		super(null);
 		pare = parent;
 		createBuffer(true);
@@ -39,7 +40,7 @@ public class PWindow extends Control {
 		repaint();
 	}
 	
-	public PWindow(WindowManager parent,int x, int y) {
+	public PWindow(NewWindowManager parent,int x, int y) {
 		super(null);
 		pare = parent;
 		createBuffer(true);
@@ -48,7 +49,7 @@ public class PWindow extends Control {
 		repaint();
 	}
 	
-	public PWindow(WindowManager parent,int x, int y, int width, int height) {
+	public PWindow(NewWindowManager parent,int x, int y, int width, int height) {
 		super(null);
 		pare = parent;
 		createBuffer(true);

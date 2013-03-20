@@ -22,6 +22,7 @@ import java.awt.event.MouseEvent;
 
 import com.jpii.navalbattle.game.entity.*;
 import com.jpii.navalbattle.game.gui.HUD;
+import com.jpii.navalbattle.game.gui.PauseWindow;
 import com.jpii.navalbattle.pavo.*;
 import com.jpii.navalbattle.pavo.grid.Entity;
 import com.jpii.navalbattle.pavo.grid.GridHelper;
@@ -48,6 +49,7 @@ public class NavalGame extends Game{
 	OmniMap omnimap;
 	
 	TestWindowWithNewAPI twwna;
+	PauseWindow pw;
 	
 	//GridWindow test;
 	
@@ -55,12 +57,13 @@ public class NavalGame extends Game{
 	
 	public NavalGame() {
 		super();
-		hud = new HUD(getWinMan(),0,Settings.currentHeight-150,Settings.currentWidth, 150);
+		hud = new HUD(getWindows(),0,Settings.currentHeight-150,Settings.currentWidth, 150);
 		hud.repaint();
-		twwna = new TestWindowWithNewAPI(getWinMan());
+		twwna = new TestWindowWithNewAPI(getWindows());
 		twwna.setLoc(200,200);
 		twwna.repaint();
 		twwna.setVisible(false);
+		pw = new PauseWindow(getWindows());
 		nm = new NavalManager(getWorld());
 		getWorld().setEntityManager(nm);
 		omnimap = new OmniMap(getWorld());
@@ -78,6 +81,7 @@ public class NavalGame extends Game{
 //		getWinMan().add(test);
 		getWindows().add(twwna);
 		getWindows().add(hud);
+		getWindows().add(pw);
 		//MessageBox.show("Warning", "This is a message box!!!");
 		MessageBox.show("Hey there!","Could not connect to RocketGamer servers.\n\nTrying again in 10 seconds.",
 				MessageBoxIcon.Notify, false);
@@ -89,8 +93,9 @@ public class NavalGame extends Game{
 		hud.repaint();
 		nm = new NavalManager(getWorld());
 		getWorld().setEntityManager(nm);
+		pw = new PauseWindow(getWindows());
 		omnimap = new OmniMap(getWorld());
-		twwna = new TestWindowWithNewAPI(getWinMan());
+		twwna = new TestWindowWithNewAPI(getWindows());
 		twwna.setLoc(200,200);
 		twwna.repaint();
 		//ppw = new PlayerProfileWindow();
@@ -103,6 +108,7 @@ public class NavalGame extends Game{
 		getWorld().getWeather().setWeather(WeatherMode.Sunny);
 		getWindows().add(twwna);
 		getWindows().add(hud);
+		getWindows().add(pw);
 //		getWinMan().add(ppw);
 //		getWinMan().add(siw);
 //		getWinMan().add(sb);

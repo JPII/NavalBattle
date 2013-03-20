@@ -4,6 +4,7 @@
 package com.jpii.navalbattle.game.gui;
 
 import com.jpii.navalbattle.pavo.Game;
+import com.jpii.navalbattle.pavo.gui.NewWindowManager;
 import com.jpii.navalbattle.pavo.gui.WindowManager;
 import com.jpii.navalbattle.pavo.gui.controls.PButton;
 import com.jpii.navalbattle.pavo.gui.controls.PWindow;
@@ -14,7 +15,7 @@ import com.jpii.navalbattle.pavo.gui.controls.PWindow;
  */
 public class PauseWindow extends PWindow {
 	PButton buttonSave, buttonReturnToGame, buttonQuitGame, buttonServer;
-	public PauseWindow(WindowManager parent) {
+	public PauseWindow(NewWindowManager parent) {
 		super(parent);
 		//setSize(Game.Settings);
 		setTitleAsCentered(true);

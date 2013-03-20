@@ -27,7 +27,7 @@ public class TestWindowWithNewAPI extends PWindow {
 	/**
 	 * @param parent
 	 */
-	public TestWindowWithNewAPI(WindowManager manager) {
+	public TestWindowWithNewAPI(NewWindowManager manager) {
 		super(manager);
 		//setSize(512,512);
 		setSize(256,256);
