@@ -33,16 +33,26 @@ public class HUD extends PWindow{
 	
 	public void paint(Graphics2D g) {
 		super.paint(g);
+		
+		//Background
 		g.setPaint(gp);
 		g.fillRect(0,0,getWidth(),getHeight());
+		
+		//Dividers
+		g.setColor(Color.green);
+		g.drawLine(getWidth()/3, 0, getWidth()/3, getHeight()); // 860
+		g.drawLine(2*getWidth()/3, 0, 2*getWidth()/3, getHeight());
+		
+		// Entity Box
 		drawFrame(g, boxx, boxy, boxwidth, boxheight);
 		g.drawImage(entityImg,boxx+50,boxy+50,null);
 		g.setColor(Color.red);
 		drawString(g,location, centerx, centery+60);
 		drawString(g,health, centerx, centery-35);
-		drawString(g,movement, centerx, centery+35);
+		drawString(g,movement, centerx, centery+40);
 		g.setColor(Color.blue);
 		g.fillRect(centerx-1,centery-1,3,3);
+		
 	}
 	
 	public void paintAfter(Graphics2D g){
