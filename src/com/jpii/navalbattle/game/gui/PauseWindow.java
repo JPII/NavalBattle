@@ -3,6 +3,8 @@
  */
 package com.jpii.navalbattle.game.gui;
 
+import java.awt.Font;
+
 import com.jpii.navalbattle.pavo.Game;
 import com.jpii.navalbattle.pavo.gui.NewWindowManager;
 import com.jpii.navalbattle.pavo.gui.WindowManager;
@@ -21,14 +23,16 @@ public class PauseWindow extends PWindow {
 		setTitleAsCentered(true);
 		setText("Game Paused");
 		
+		Font windowsFont = new Font("Arial",0,24);
+		
 		buttonSave = new PButton(this, "Save");
-		buttonSave.setFont(buttonSave.getFont().deriveFont(24));
+		buttonSave.setFont(windowsFont);
 		buttonReturnToGame = new PButton(this, "Return to Game");
-		buttonReturnToGame.setFont(buttonReturnToGame.getFont().deriveFont(24));
+		buttonReturnToGame.setFont(windowsFont);
 		buttonQuitGame = new PButton(this, "Quit");
-		buttonQuitGame.setFont(buttonQuitGame.getFont().deriveFont(24));
+		buttonQuitGame.setFont(windowsFont);
 		buttonServer = new PButton(this, "Server is running");
-		buttonServer.setFont(buttonServer.getFont().deriveFont(24));
+		buttonServer.setFont(windowsFont);
 		addControl(buttonSave);
 		addControl(buttonReturnToGame);
 		addControl(buttonQuitGame);

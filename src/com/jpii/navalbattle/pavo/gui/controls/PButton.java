@@ -4,6 +4,7 @@
 package com.jpii.navalbattle.pavo.gui.controls;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.GradientPaint;
 import java.awt.Graphics2D;
 import java.awt.event.MouseEvent;
@@ -77,7 +78,15 @@ public class PButton extends Control {
 		return autoResize;
 	}
 	
+	public void setFont(Font f) {
+		if (!f.equals(getFont())) {
+			textUpdated = true;
+			super.setFont(f);
+		}
+	}
+	
 	public void paint(Graphics2D g) {
+		g.setFont(getFont());
 		if (textUpdated) {
 			strWidth = g.getFontMetrics().stringWidth(getText());
 			textUpdated = false;
@@ -88,7 +97,6 @@ public class PButton extends Control {
 				bufferNeedsIntemediatePaint();
 			}
 		}
-		g.setFont(getFont());
 		//int mid = ((strWidth+8)/2) - (strWidth/2);
 		if (heldDown) {
 			GradientPaint gp = new GradientPaint(0,0,new Color(134,111,68),0,(getFont().getSize() * 1.5f),new Color(87,72,45));

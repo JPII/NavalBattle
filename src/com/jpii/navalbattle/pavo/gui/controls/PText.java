@@ -4,6 +4,7 @@
 package com.jpii.navalbattle.pavo.gui.controls;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics2D;
 
 /**
@@ -76,6 +77,13 @@ public class PText extends Control {
 	
 	public boolean getAutoSize() {
 		return autoResize;
+	}
+	
+	public void setFont(Font f) {
+		if (!f.equals(getFont())) {
+			textUpdated = true;
+			super.setFont(f);
+		}
 	}
 	
 	public void setText(String text) {
