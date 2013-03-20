@@ -533,8 +533,10 @@ public class Game extends Renderable implements Runnable, Serializable {
 		forceUpdate = true;
 	}
 	public void mouseMove(MouseEvent me) {
-		if (getWindows().mouseMove(me))
+		if (getWindows().mouseMove(me)) {
+			
 			return;
+		}
 		int chx = (-getWorld().getScreenX()) + me.getX();
 		int chy = (-getWorld().getScreenY()) + me.getY(); 
 		chx /= 50;
@@ -566,9 +568,13 @@ public class Game extends Renderable implements Runnable, Serializable {
 	int yearf = 0;
 	int yearl = 0;
 	boolean gJsiw = false;
+	public boolean guiUsedMouseDown = false, guiUsedMouseUp = false, guiUsedMouseDrag = false;
 	public void mouseDown(MouseEvent me) {
-		if (getWindows().mouseDown(me))
+		guiUsedMouseDown = false;
+		if (getWindows().mouseDown(me)) {
+			guiUsedMouseDown = true;
 			return;
+		}
 		//mouseEventSchedule = me;
 		//mouseLogicTask = new $$$MouseLogicTimer();
 		//mouseLogicTimer.scheduleAtFixedRate(mouseLogicTask, 0, 10);
@@ -593,13 +599,19 @@ public class Game extends Renderable implements Runnable, Serializable {
 		}
 	}
 	public void mouseUp(MouseEvent me) {
-		if (getWindows().mouseUp(me))
+		guiUsedMouseUp = false;
+		if (getWindows().mouseUp(me)) {
+			guiUsedMouseUp = true;
 			return;
+		}
 		//mouseLogicTask.cancel();
 	}
 	public void mouseDragged(MouseEvent me) {
-		if (getWindows().mouseDragged(me))
+		guiUsedMouseDrag = false;
+		if (getWindows().mouseDragged(me)) {
+			guiUsedMouseDrag = true;
 			return;
+		}
 	}
 	public void mouseHeldDown(MouseEvent me) {
 		

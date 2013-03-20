@@ -189,6 +189,9 @@ public class NavalGame extends Game{
 	}
 	public void mouseDragged(MouseEvent me) {
 		super.mouseDragged(me);
+		
+		if (guiUsedMouseDrag)
+			return;
 		/*if (me.getX() - twwna.getLocX() >= 0 && me.getX() - twwna.getLocX() < twwna.getWidth()
 				&& me.getY() - twwna.getLocY() >= 0 && me.getY() - twwna.getLocY() < twwna.getHeight())
 			twwna.onMouseDrag(me.getX()-twwna.getLocX(), me.getY()-twwna.getLocY());
@@ -249,6 +252,9 @@ public class NavalGame extends Game{
 	public void mouseDown(MouseEvent me) {
 		super.mouseDown(me);
 		
+		if (guiUsedMouseDown)
+			return;
+		
 		/*if (me.getX() >= twwna.getLocX() && me.getX() < twwna.getWidth() + twwna.getLocX()
 				&& me.getY() >= twwna.getLocY() && me.getY() < twwna.getHeight() + twwna.getLocY())
 			twwna.onMouseDown(me.getX()-twwna.getLocX(), me.getY()-twwna.getLocY(),me.getButton());
@@ -308,6 +314,9 @@ public class NavalGame extends Game{
 	}
 	public void mouseUp(MouseEvent me) {
 		super.mouseUp(me);
+		
+		if (guiUsedMouseUp)
+			return;
 		/*if (me.getX() - twwna.getLocX() >= 0 && me.getX() - twwna.getLocX() < twwna.getWidth()
 				&& me.getY() - twwna.getLocY() >= 0 && me.getY() - twwna.getLocY() < twwna.getHeight())
 			twwna.onMouseUp(me.getX()-twwna.getLocX(), me.getY()-twwna.getLocY(),me.getButton());
@@ -318,6 +327,8 @@ public class NavalGame extends Game{
 	}
 	public void mouseMove(MouseEvent me) {
 		super.mouseMove(me);
+		
+		//if (guiUsedMouse)
 		//if (getWindows().mouseMove(me)) {
 		//	return;
 		//}

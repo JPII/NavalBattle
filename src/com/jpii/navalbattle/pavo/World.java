@@ -226,6 +226,7 @@ public class World extends Renderable implements Interactable {
 		int startsyncz = (-sy) / 100;
 		int syncwidth = (Game.Settings.currentWidth/100)+2;
 		int syncheight = (Game.Settings.currentHeight/100)+2;
+		System.out.println("("+startsyncx+","+startsyncz+")");
 		for (int x = startsyncx; x < syncwidth+startsyncx; x++) {
 			for (int z = startsyncz; z < syncheight+startsyncz; z++) {
 				int index = z*width+x;
