@@ -224,9 +224,13 @@ public class World extends Renderable implements Interactable {
 		g.drawImage(noise, 0, 0, null);
 		int startsyncx = (-sx) / 100;
 		int startsyncz = (-sy) / 100;
+		if (startsyncx < 0)
+			startsyncx = 0;
+		if (startsyncz < 0)
+			startsyncz = 0;
 		int syncwidth = (Game.Settings.currentWidth/100)+2;
 		int syncheight = (Game.Settings.currentHeight/100)+2;
-		System.out.println("("+startsyncx+","+startsyncz+")");
+		//System.out.println("("+startsyncx+","+startsyncz+")");
 		for (int x = startsyncx; x < syncwidth+startsyncx; x++) {
 			for (int z = startsyncz; z < syncheight+startsyncz; z++) {
 				int index = z*width+x;
