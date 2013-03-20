@@ -27,7 +27,7 @@ public class HUD extends PWindow{
 		gp = new GradientPaint(0,0,new Color(96,116,190),0,height,new Color(0,0,54));
 		setTitleVisiblity(false);
 		setVisible(false);
-		centerx = getWidth()-202;
+		centerx = getWidth()-210;
 		centery = getHeight()/2;
 	}
 	
