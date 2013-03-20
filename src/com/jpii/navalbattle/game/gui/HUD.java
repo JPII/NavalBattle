@@ -7,6 +7,7 @@ import java.awt.image.BufferedImage;
 
 import com.jpii.navalbattle.pavo.grid.Entity;
 import com.jpii.navalbattle.pavo.gui.NewWindowManager;
+import com.jpii.navalbattle.pavo.gui.controls.PImage;
 import com.jpii.navalbattle.pavo.gui.controls.PWindow;
 import com.jpii.navalbattle.pavo.gui.controls.PButton;
 import com.jpii.navalbattle.util.FileUtils;
@@ -31,7 +32,12 @@ public class HUD extends PWindow{
 		centerx = getWidth()-210;
 		centery = getHeight()/2;
 		// Buttons
-		addControl(new PButton(this,"A",(getWidth()/2)-40,getHeight()-45,30,30));
+		addControl(new PButton(this,"",(getWidth()/2)-40,getHeight()-45,30,30));
+		PImage attack = new PImage(this);
+		attack.setLoc((getWidth()/2)-40,getHeight()-45);
+		attack.setSize(30,30);
+		attack.setImage(PImage.registerImage(FileUtils.getImage("drawable-game/Buttons/Attack.png")));
+		addControl(attack);
 	}
 	
 	public void paint(Graphics2D g) {
