@@ -19,6 +19,7 @@ public class HUD extends PWindow{
 	BufferedImage entityImg;
 	int boxwidth,boxheight,boxx,boxy;
 	String location = new String("");
+	String health = new String("");
 	Entity display;
 	
 	 public HUD(NewWindowManager parent,int x, int y, int width, int height){
@@ -37,9 +38,8 @@ public class HUD extends PWindow{
 		drawFrame(g, boxx, boxy, boxwidth, boxheight);
 		g.drawImage(entityImg,boxx+50,boxy+50,null);
 		g.setColor(Color.red);
-		if(location!=null){
-			g.drawString(location, centerx-(getWidth(g,location))/2, centery+50);
-		}
+		drawString(g,location, centerx, centery+50);
+		drawString(g,health, centerx, centery-35);
 		g.setColor(Color.blue);
 		g.fillRect(centerx-1,centery-1,3,3);
 	}
@@ -64,6 +64,7 @@ public class HUD extends PWindow{
 			boxwidth = tempwidth+100;
 			boxheight = tempheight+100;
 			location = ("[X:"+display.getLocation().getCol()+" Y:"+display.getLocation().getRow()+"]");
+			health = ("Health: "+display.getHealth()+"%");
 		}
 		else{
 			setVisible(false);
@@ -96,6 +97,12 @@ public class HUD extends PWindow{
 	
 	private int getWidth(Graphics2D g,String s){
 		return 4+g.getFontMetrics().stringWidth(s);
+	}
+	
+	private void drawString(Graphics2D g,String s,int x, int y){
+		if(s!=null){
+			g.drawString(s, x-(getWidth(g,s))/2, y);
+		}
 	}
 	
 }
