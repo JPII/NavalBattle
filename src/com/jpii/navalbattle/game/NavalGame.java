@@ -25,6 +25,9 @@ import com.jpii.navalbattle.game.gui.HUD;
 import com.jpii.navalbattle.game.gui.PauseWindow;
 import com.jpii.navalbattle.pavo.*;
 import com.jpii.navalbattle.pavo.grid.Entity;
+import com.jpii.navalbattle.pavo.grid.GridHelper;
+import com.jpii.navalbattle.pavo.grid.GridedEntityTileOrientation;
+import com.jpii.navalbattle.pavo.grid.Location;
 import com.jpii.navalbattle.pavo.grid.Tile;
 import com.jpii.navalbattle.pavo.gui.MessageBox;
 import com.jpii.navalbattle.pavo.gui.MessageBoxIcon;
@@ -275,14 +278,14 @@ public class NavalGame extends Game{
 				getWorld().forceRender();
 			}*/
 			if(current==null){
-//				if(!isAClient() && me.getButton() == MouseEvent.BUTTON1){
-//					if(GridHelper.canPlaceInGrid(nm,GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT, chy, chx, 5)){
-//						new AircraftCarrier(this.getWorld().getEntityManager(),new Location(chy,chx),AircraftCarrier.AIRCRAFTCARRIER_ID,GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT,Game.Settings.rand.nextInt(0,3));
-//					}
-//					else if(GridHelper.canPlaceInGrid(nm,GridedEntityTileOrientation.ORIENTATION_TOPTOBOTTOM, chy, chx, 5)){
-//						new AircraftCarrier(this.getWorld().getEntityManager(),new Location(chy-4,chx),AircraftCarrier.AIRCRAFTCARRIER_ID,GridedEntityTileOrientation.ORIENTATION_TOPTOBOTTOM,Game.Settings.rand.nextInt(0,3));
-//					}
-//				}
+				if(!isAClient() && me.getButton() == MouseEvent.BUTTON1){
+					if(GridHelper.canPlaceInGrid(nm,GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT, chy, chx, 5)){
+						nm.getTurnManager().addEntity(new BattleShip(this.getWorld().getEntityManager(),new Location(chy,chx),BattleShip.BATTLESHIP_ID,GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT,Game.Settings.rand.nextInt(0,3)));
+					}
+					else if(GridHelper.canPlaceInGrid(nm,GridedEntityTileOrientation.ORIENTATION_TOPTOBOTTOM, chy, chx, 5)){
+						nm.getTurnManager().addEntity(new BattleShip(this.getWorld().getEntityManager(),new Location(chy-4,chx),BattleShip.BATTLESHIP_ID,GridedEntityTileOrientation.ORIENTATION_TOPTOBOTTOM,Game.Settings.rand.nextInt(0,3)));
+					}
+				}
 //				if(!isAClient() && me.getButton() == MouseEvent.BUTTON3){
 //					if(GridHelper.canPlaceInGrid(nm,GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT, chy, chx, 2)){
 //						new Submarine(this.getWorld().getEntityManager(),new Location(chy,chx),Submarine.SUBMARINE_ID,GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT,Game.Settings.rand.nextInt(0,3));
