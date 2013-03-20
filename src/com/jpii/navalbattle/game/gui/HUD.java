@@ -6,6 +6,7 @@ import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 
 import com.jpii.navalbattle.pavo.grid.Entity;
+import com.jpii.navalbattle.pavo.gui.NewWindowManager;
 import com.jpii.navalbattle.pavo.gui.WindowManager;
 import com.jpii.navalbattle.pavo.gui.controls.PWindow;
 import com.jpii.navalbattle.util.FileUtils;
@@ -17,10 +18,10 @@ public class HUD extends PWindow{
 	int imgx,imgy;
 	BufferedImage entityImg;
 	int boxwidth,boxheight,boxx,boxy;
-	String location = "";
+	String location = new String("");
 	Entity display;
 	
-	public HUD(WindowManager parent,int x, int y, int width, int height){
+	 public HUD(NewWindowManager parent,int x, int y, int width, int height){
 		super(parent, x, y, width, height);
 		gp = new GradientPaint(0,0,new Color(96,116,190),0,height,new Color(0,0,54));
 		setTitleVisiblity(false);
@@ -41,6 +42,7 @@ public class HUD extends PWindow{
 		}
 		else{
 			g.drawString(location, centerx-(getWidth(g,location))/2, centery+100);
+			System.out.println("x: "+(centerx-(getWidth(g,location))/2)+" y: "+(centery+100)+" w: "+(getWidth(g,location))+" y: ");
 		}
 	}
 	
