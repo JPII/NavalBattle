@@ -8,6 +8,7 @@ import com.jpii.navalbattle.pavo.Game;
 import com.jpii.navalbattle.pavo.PavoHelper;
 
 public class GridHelper implements Serializable {
+	private static final long serialVersionUID = 1L;
 	EntityManager man;
 	Rand random;
 	public GridHelper(EntityManager eman) {
@@ -74,9 +75,9 @@ public class GridHelper implements Serializable {
 		return flag;
 	}
 	
-	public static boolean canRotate(EntityManager em,Entity e,byte rotate, int row, int col, int width) {
+	public static boolean canRotate(EntityManager em,Entity e,byte rotateto, int row, int col, int width) {
 		boolean flag = true;
-		if (rotate == GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT) {
+		if (rotateto == GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT) {
 			for (int c = 0; c < width; c++) {
 				int p = em.getTilePercentLand(row,col+c);
 				if (p > 5) {
@@ -90,7 +91,7 @@ public class GridHelper implements Serializable {
 				}
 			}
 		}
-		if (rotate == GridedEntityTileOrientation.ORIENTATION_TOPTOBOTTOM) {
+		if (rotateto == GridedEntityTileOrientation.ORIENTATION_TOPTOBOTTOM) {
 			for (int c = 0; c < width; c++) {
 				int p = em.getTilePercentLand(row-c,col);
 				if (p > 5) {

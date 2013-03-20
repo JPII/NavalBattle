@@ -58,9 +58,18 @@ public class BattleShip extends MoveableEntity {
 		}
 	}
 	
-	public void rotateTo(byte code) {
-		boolean flag = GridHelper.canRotate(getManager(), this, code, getLocation().getRow(), getLocation().getCol(), getWidth());
+	public void rotateTo(byte rotateto) {		
+		boolean flag = GridHelper.canRotate(getManager(), this, rotateto, getLocation().getRow(), getLocation().getCol(), getWidth());
 		if (flag)
-			super.rotateTo(code);
+			super.rotateTo(rotateto);
+	}
+	
+	public Location getLocation(){
+		Location temp = super.getLocation();
+		if(getCurrentOrientation() == GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT)
+			return temp;
+		else if(getCurrentOrientation() == GridedEntityTileOrientation.ORIENTATION_TOPTOBOTTOM)
+			temp = new Location(temp.getRow(),temp.getCol()-getWidth());
+		return temp;
 	}
 }
