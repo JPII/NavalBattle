@@ -31,6 +31,9 @@ public class PauseWindow extends PWindow {
 		buttonReturnToGame.setFont(windowsFont);
 		buttonQuitGame = new PButton(this, "Quit");
 		buttonQuitGame.setFont(windowsFont);
+		buttonQuitGame.setAutoSize(false);
+		buttonQuitGame.setSize(buttonSave.getWidth(),buttonSave.getHeight());
+		buttonQuitGame.repaint();
 		buttonServer = new PButton(this, "Server is running");
 		buttonServer.setFont(windowsFont);
 		addControl(buttonSave);
@@ -53,9 +56,10 @@ public class PauseWindow extends PWindow {
 		setLoc((Game.Settings.currentWidth/2)-(getWidth()/2)-7,(Game.Settings.currentHeight/2)-(getHeight()/2)-7);
 		
 		buttonSave.setLoc(10,33);
-		buttonReturnToGame.setLoc((getWidth()/2) - (buttonReturnToGame.getWidth()/2), getHeight() - 33);
-		buttonQuitGame.setLoc(10,60);
+		buttonReturnToGame.setLoc((getWidth()/2) - (buttonReturnToGame.getWidth()/2), getHeight() - 43);
+		buttonQuitGame.setLoc(10,buttonSave.getLocY()+buttonSave.getHeight()+10);
 		buttonServer.setLoc(getWidth() - (10 + buttonServer.getWidth()), 33);
+		repaint();
 	}
 
 }

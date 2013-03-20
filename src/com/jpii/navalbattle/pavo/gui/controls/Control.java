@@ -365,10 +365,10 @@ public class Control {
 			throw new IllegalArgumentException("The width and/or height CANNOT be zero.");
 		
 		if (flag) {
-			parentRepaint();
+			createBuffer(lastKnownTransMode);
+			paintUpdate();
+			//parentRepaint();
 		}
-		createBuffer(lastKnownTransMode);
-		paintUpdate();
 	}
 	
 	/**
