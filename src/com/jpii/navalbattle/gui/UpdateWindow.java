@@ -60,6 +60,7 @@ public class UpdateWindow extends Window {
 		
 		if(status) {
 			updateTitle.setText("NavalBattle " + NavalBattle.getBroadcastService().getVersionReadable());
+			updateText.setText(NavalBattle.getBroadcastService().getUpdateText());
 		}
 	}
 }

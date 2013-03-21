@@ -19,7 +19,7 @@ public class BroadcastService {
 	private BroadcastThread broadcastThread;
 	
 	/* Items from update.xml */
-	private String versionCode, versionReadable, updateUrl;
+	private String versionCode, versionReadable, updateText, updateUrl;
 	private String announcementCode, announcementTitle, announcementText, announcementUrl;
 	
 	/* Items for client */
@@ -38,6 +38,10 @@ public class BroadcastService {
 	
 	public String getVersionReadable() {
 		return versionReadable;
+	}
+	
+	public String getUpdateText() {
+		return updateText;
 	}
 	
 	public String getUpdateUrl() {
@@ -104,6 +108,10 @@ public class BroadcastService {
 	                		versionReadable = actualNode.getNodeValue();
 	                	}
 	                	
+	                	if(m.getNamedItem("name").getTextContent().equals("update_text")) {
+	                		updateText = actualNode.getNodeValue();
+	                	}
+	                	
 	                	if(m.getNamedItem("name").getTextContent().equals("update_url")) {
 	                		updateUrl = actualNode.getNodeValue();
 	                	}
@@ -138,7 +146,6 @@ public class BroadcastService {
 				int latestVersion = Integer.parseInt(versionCode);
 				
 				if(clientVersion < latestVersion) {
-					
 					needsUpdate = true;
 				} else {
 					NavalBattle.getDebugWindow().printInfo("You are running the latest version!");
