@@ -40,7 +40,7 @@ public class BroadcastWindow extends Window {
 				nextWindow("LoginWindow");
 			}
 		});
-		btnClose.setBounds(387, 278, 89, 23);
+		btnClose.setBounds(382, 270, 94, 30);
 		getContentPane().add(btnClose);
 		
 		JButton moreInfoButton = new JButton("More Info");
@@ -50,7 +50,7 @@ public class BroadcastWindow extends Window {
 				URLUtils.openURL(NavalBattle.getBroadcastService().getAnnouncementUrl());
 			}
 		});
-		moreInfoButton.setBounds(10, 278, 89, 23);
+		moreInfoButton.setBounds(10, 270, 94, 30);
 		getContentPane().add(moreInfoButton);
 	}
 	
