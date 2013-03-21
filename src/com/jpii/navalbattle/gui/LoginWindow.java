@@ -31,7 +31,7 @@ import com.roketgamer.rauth.*;
 @SuppressWarnings("serial")
 public class LoginWindow extends Window {
 	JButton loginButton, updateButton, announcementButton;
-	JLabel usernameLabel, passwordLabel;
+	JLabel usernameLabel, passwordLabel, lblCheckingForUpdate;
 	JTextField usernameField;
 	JPasswordField passwordField;
 
@@ -101,6 +101,10 @@ public class LoginWindow extends Window {
 		updateButton.setFocusable(false);
 		updateButton.setBounds(34, 27, 117, 30);
 		getContentPane().add(updateButton);
+		
+		lblCheckingForUpdate = new JLabel("Checking for updates...");
+		lblCheckingForUpdate.setBounds(34, 55, 153, 14);
+		getContentPane().add(lblCheckingForUpdate);
 		passwordField.addFocusListener(new Focus(this));
 		usernameField.addFocusListener(new Focus(this));
 		
@@ -109,9 +113,21 @@ public class LoginWindow extends Window {
 		
 		Thread t = new Thread(new Runnable() {
 			public void run() {
+				SwingUtilities.invokeLater(new Runnable() {
+					public void run() {
+						lblCheckingForUpdate.setVisible(true);
+					}
+				});
+				
 				try {
-					Thread.sleep(2000);
+					Thread.sleep(3000);
 				} catch (InterruptedException ie) { }
+				
+				SwingUtilities.invokeLater(new Runnable() {
+					public void run() {
+						lblCheckingForUpdate.setVisible(false);
+					}
+				});
 				
 				SwingUtilities.invokeLater(new Runnable() {
 					public void run() {
