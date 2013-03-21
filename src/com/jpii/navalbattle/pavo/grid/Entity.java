@@ -92,34 +92,32 @@ public class Entity implements Serializable {
 	 * Rotates the entity.
 	 * @param akamai The rotation to apply to the entity. (e.g. Location.HALF_CIRCLE).
 	 */
-	public void rotateTo(byte akamai) {
+	public void rotateTo(byte akamai) { //akamai equals rotate to
 		if (akamai == GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT) {
-			if (ORIENTATION_BUFFER_POSITION == GridedEntityTileOrientation.ORIENTATION_TOPTOBOTTOM){//akamai) {
-				for (int h = 0; h < getHeight(); h++) {
-					manager.setTile(location.getRow()+h,location.getCol(), null);
+			if (ORIENTATION_BUFFER_POSITION == GridedEntityTileOrientation.ORIENTATION_TOPTOBOTTOM){//ORIENTATION_BUFFER_POSITION equals getCurrentOrientation()
+				for (int h = 0; h < getHeight(); h++) { //sets the entity to null
+					manager.setTile(location.getRow()+h-3,location.getCol(), null);
 				}
-				ORIENTATION_BUFFER_POSITION = akamai;
-				for (int w = 0; w < getWidth(); w++) {
-					Tile t = new Tile(this,location.getRow(),location.getCol()+w);
+				ORIENTATION_BUFFER_POSITION = akamai; //makes the current position the position rotating to
+				for (int w = 0; w < getWidth(); w++) { //places the entity in the correct position
+					Tile t = new Tile(this,location.getRow(),location.getCol());
 					t.setId(new Id(id.memCall(ORIENTATION_BUFFER_POSITION)[0],w));
 					manager.setTile(location.getRow(),location.getCol()+w, t);
 				}
-				moveTo(getLocation().getRow()+getWidth()-1,getLocation().getCol());
 				manager.getWorld().forceRender();
 			}
 		}
-		else if (akamai == GridedEntityTileOrientation.ORIENTATION_TOPTOBOTTOM) {
-			if (ORIENTATION_BUFFER_POSITION == GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT) {
-				for (int w = 0; w < getWidth(); w++) {
+		else if (akamai == GridedEntityTileOrientation.ORIENTATION_TOPTOBOTTOM) { //akamai equals rotate to
+			if (ORIENTATION_BUFFER_POSITION == GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT) {//ORIENTATION_BUFFER_POSITION equals getCurrentOrientation()
+				for (int w = 0; w < getWidth(); w++) {  //sets the entity to null
 					manager.setTile(location.getRow(),location.getCol()+w, null);
 				}
-				ORIENTATION_BUFFER_POSITION = akamai;
-				for (int h = 0; h < getHeight(); h++) {
+				ORIENTATION_BUFFER_POSITION = akamai;//makes the current position the position rotating to
+				for (int h = 0; h < getHeight(); h++) {//places the entity in the correct position
 					Tile t = new Tile(this,location.getRow(),location.getCol());
-					t.setId(new Id(id.memCall(akamai)[0],h));
-					manager.setTile(location.getRow()+h,location.getCol(), t);
+					t.setId(new Id(id.memCall(ORIENTATION_BUFFER_POSITION)[0],h));
+					manager.setTile(location.getRow()+h-3,location.getCol(), t);
 				}
-				moveTo(getLocation().getRow()-getWidth()+1,getLocation().getCol());
 				manager.getWorld().forceRender();
 			}
 		}

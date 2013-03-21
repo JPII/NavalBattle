@@ -59,7 +59,7 @@ public class BattleShip extends MoveableEntity {
 	}
 	
 	public void rotateTo(byte rotateto) {		
-		boolean flag = GridHelper.canRotate(getManager(), this, rotateto, getLocation().getRow(), getLocation().getCol(), getWidth());
+		boolean flag = GridHelper.canRotate(getManager(), this, rotateto, getELocation().getRow(), getELocation().getCol(), getWidth());
 		if (flag)
 			super.rotateTo(rotateto);
 	}
@@ -68,13 +68,17 @@ public class BattleShip extends MoveableEntity {
 	 * Gets the bow of the ship.
 	 * @return The location. Could be "Unknown", if the Entity is not in the Grid.
 	 */
-	public Location getLocation(){
+	public Location getELocation(){
 		Location temp = super.getLocation();
-		if(getCurrentOrientation() == GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT)
+		if(getCurrentOrientation() == GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT){
 			return temp;
-		else if(getCurrentOrientation() == GridedEntityTileOrientation.ORIENTATION_TOPTOBOTTOM)
-			temp = new Location(temp.getRow()+getWidth(),temp.getCol());
-		System.out.println(temp);
+		}
+		else if(getCurrentOrientation() == GridedEntityTileOrientation.ORIENTATION_TOPTOBOTTOM){
+			temp = new Location(temp.getRow()+(getWidth()-1),temp.getCol());
+//			getManager().setTileOverlay(temp.getRow(),temp.getCol(),(short)0x2f1d);
+//			getManager().setTileOverlay(temp.getRow(),temp.getCol(),(short)0x001);
+		}
+	
 		return temp;
 	}
 }
