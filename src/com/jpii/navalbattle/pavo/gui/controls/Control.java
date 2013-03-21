@@ -104,8 +104,8 @@ public class Control {
 			if (cn != null)
 				cn.dispose();
 		}
-		pml.clear();
-		pml = null;
+		//pml.clear();
+		//pml = null;
 		
 		HANDLE = 0;
 		HANDLE_COUNTER--;
