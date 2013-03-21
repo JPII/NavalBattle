@@ -42,9 +42,9 @@ public class GridHelper implements Serializable {
 	 * @param width - needed to know how many spaces to check
 	 * @return - returns true if the space(s) allow for this entity
 	 */
-	public static boolean canPlaceInGrid(EntityManager em,byte rotate, int row, int col, int width) {
+	public static boolean canPlaceInGrid(EntityManager em,byte rotateto, int row, int col, int width) {
 		boolean flag = true;
-		if (rotate == GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT) {
+		if (rotateto == GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT) {
 			for (int c = 0; c < width; c++) {
 				int p = em.getTilePercentLand(row,col+c);
 				if (p > 5) {
@@ -58,7 +58,7 @@ public class GridHelper implements Serializable {
 				}
 			}
 		}
-		if (rotate == GridedEntityTileOrientation.ORIENTATION_TOPTOBOTTOM) {
+		if (rotateto == GridedEntityTileOrientation.ORIENTATION_TOPTOBOTTOM) {
 			for (int c = 0; c < width; c++) {
 				int p = em.getTilePercentLand(row-c,col);
 				if (p > 5) {
@@ -79,12 +79,12 @@ public class GridHelper implements Serializable {
 		boolean flag = true;
 		if (rotateto == GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT) {
 			for (int c = 0; c < width; c++) {
-				int p = em.getTilePercentLand(row,col+c);
+				int p = em.getTilePercentLand(row-(width-1),col+c);
 				if (p > 5) {
 					flag = false;
 					break;
 				}
-				Tile temp = em.getTile(row,col+c);
+				Tile temp = em.getTile(row-(width-1),col+c);
 				if(temp!=null&&!temp.getEntity().equals(e)){
 					flag=false;
 					break;

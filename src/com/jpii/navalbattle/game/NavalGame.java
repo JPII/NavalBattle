@@ -280,11 +280,11 @@ public class NavalGame extends Game{
 			if(current==null){
 				if(!isAClient() && me.getButton() == MouseEvent.BUTTON1){
 					if(Game.Settings.isFinishedGenerating){
-						if(GridHelper.canPlaceInGrid(nm,GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT, chy, chx, 5)){
+						if(GridHelper.canPlaceInGrid(nm,GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT, chy, chx, 4)){
 							nm.getTurnManager().addEntity(new BattleShip(this.getWorld().getEntityManager(),new Location(chy,chx),BattleShip.BATTLESHIP_ID,GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT,Game.Settings.rand.nextInt(0,3)));
 						}
-						else if(GridHelper.canPlaceInGrid(nm,GridedEntityTileOrientation.ORIENTATION_TOPTOBOTTOM, chy, chx, 5)){
-							nm.getTurnManager().addEntity(new BattleShip(this.getWorld().getEntityManager(),new Location(chy-4,chx),BattleShip.BATTLESHIP_ID,GridedEntityTileOrientation.ORIENTATION_TOPTOBOTTOM,Game.Settings.rand.nextInt(0,3)));
+						else if(GridHelper.canPlaceInGrid(nm,GridedEntityTileOrientation.ORIENTATION_TOPTOBOTTOM, chy, chx, 4)){
+							nm.getTurnManager().addEntity(new BattleShip(this.getWorld().getEntityManager(),new Location(chy,chx),BattleShip.BATTLESHIP_ID,GridedEntityTileOrientation.ORIENTATION_TOPTOBOTTOM,Game.Settings.rand.nextInt(0,3)));
 						}
 					}
 				}

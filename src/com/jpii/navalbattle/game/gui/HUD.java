@@ -31,6 +31,7 @@ public class HUD extends PWindow{
 		setVisible(false);
 		centerx = getWidth()-210;
 		centery = getHeight()/2;
+		
 		// Buttons
 		addControl(new PButton(this,(getWidth()/2)-60,getHeight()-45,30,30));
 		addControl(new PButton(this,(getWidth()/2)-20,getHeight()-45,30,30));
@@ -78,7 +79,7 @@ public class HUD extends PWindow{
 		
 		//Dividers
 		g.setColor(Color.green);
-		g.drawLine(getWidth()/3, 0, getWidth()/3, getHeight()); // 860
+		g.drawLine(getWidth()/3, 0, getWidth()/3, getHeight());
 		g.drawLine(2*getWidth()/3, 0, 2*getWidth()/3, getHeight());
 		
 		// Entity Box

@@ -73,6 +73,8 @@ public class Entity implements Serializable {
 		}
 		manager.addEntity(this);
 		init();
+		if(getCurrentOrientation()==GridedEntityTileOrientation.ORIENTATION_TOPTOBOTTOM)
+			location = new Location(loc.getRow()-(getWidth()-1),loc.getCol());
 		setId(id);
 	}
 	/**
