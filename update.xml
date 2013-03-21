@@ -7,6 +7,6 @@
 	
 	<string name="announcement_code">-1</string>
 	<string name="announcement_title">Hello, world!</string>
-	<string name="announcement_text">If you can read this, the BroadcastService is working. This is a global announcement.</string>
+	<string name="announcement_text">If you can read this, the BroadcastService is working. This is a sticky announcement.</string>
 	<string name="announcement_url">http://github.com/JPII/NavalBattle</string>
 </navalbattle>
