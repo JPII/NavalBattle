@@ -26,8 +26,9 @@ public class PlayerManager {
 	}
 	
 	public Player getPlayer(int current){
-		while(current>=players.size())
+		while(!(current<players.size()))
 			current-=players.size();
+		System.out.println("Entites: "+players.get(current).entities);
 		return players.get(current);
 	}
 	

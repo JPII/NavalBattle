@@ -6,6 +6,7 @@ public class TurnManager {
 	
 	Turn currentTurn;
 	public int turnnumber;
+	public byte playernumber;
 	PlayerManager players;
 	
 	public TurnManager(PlayerManager pm){
@@ -16,6 +17,7 @@ public class TurnManager {
 	
 	public void nextTurn(){
 		turnnumber++;
+		System.out.println("new Turn: "+turnnumber);
 		currentTurn = new Turn(players.getPlayer(turnnumber));
 	}
 	

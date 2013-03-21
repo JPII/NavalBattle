@@ -35,9 +35,7 @@ public class Entity implements Serializable {
 	private byte ORIENTATION_BUFFER_POSITION = GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT;
 	public String imgLocation;
 	private static int ENTITYMASTERRECORDSYSTEMPLEASEDONOTTOUCHTHIS = 0;
-	private int health = 100;
-	protected static int maxMovement;
-	protected static int moved;
+	public byte handle = -1;
 	
 	public Entity(EntityManager em) {
 		manager = em;
@@ -354,15 +352,7 @@ public class Entity implements Serializable {
 		
 	}
 	
-	public int getHealth(){
-		return health;
-	}
-	
-	public int getMaxMovement(){
-		return maxMovement;
-	}
-	
-	public int getMoved(){
-		return moved;
+	public byte getHandle(){
+		return handle;
 	}
 }

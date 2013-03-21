@@ -7,8 +7,10 @@ import com.jpii.navalbattle.pavo.grid.Location;
 
 public class MoveableEntity extends Entity {
 	private static final long serialVersionUID = 1L;
-	private int maxStep = 2;
-	
+	private int maxStep = 4;
+	protected static int maxMovement;
+	protected static int moved;
+	private int health = 100;
 	/**
 	 * @param em
 	 */
@@ -26,6 +28,7 @@ public class MoveableEntity extends Entity {
 	public MoveableEntity(EntityManager em, Location loc,
 			GridedEntityTileOrientation id, byte orientation, int teams) {
 		super(em, loc, id, orientation, teams);
+		handle = 1;
 	}
 	
 	public void toggleMovable() {
@@ -70,5 +73,16 @@ public class MoveableEntity extends Entity {
 	public void setMaxStep(int v) {
 		maxStep = v;
 	}
-
+	
+	public int getHealth(){
+		return health;
+	}
+	
+	public int getMaxMovement(){
+		return maxMovement;
+	}
+	
+	public int getMoved(){
+		return moved;
+	}
 }

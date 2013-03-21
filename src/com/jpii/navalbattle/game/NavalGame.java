@@ -56,14 +56,13 @@ public class NavalGame extends Game{
 	
 	public NavalGame() {
 		super();
-		hud = new HUD(getWindows(),0,Settings.currentHeight-150,Settings.currentWidth, 150);
-		hud.repaint();
 		twwna = new TestWindowWithNewAPI(getWindows());
 		twwna.setLoc(200,200);
 		twwna.repaint();
 		twwna.setVisible(false);
 		pw = new PauseWindow(getWindows());
 		nm = new NavalManager(getWorld());
+		hud = new HUD(getWindows(),nm.getTurnManager(),0,Settings.currentHeight-150,Settings.currentWidth, 150);
 		getWorld().setEntityManager(nm);
 		omnimap = new OmniMap(getWorld());
 //		ppw = new PlayerProfileWindow();
@@ -88,9 +87,8 @@ public class NavalGame extends Game{
 	}
 	public NavalGame(PavoOpenState pos, String flags) {
 		super(pos,flags);
-		hud = new HUD(getWindows(),0,Settings.currentHeight-150,Settings.currentWidth, 150);
-		hud.repaint();
 		nm = new NavalManager(getWorld());
+		hud = new HUD(getWindows(),nm.getTurnManager(),0,Settings.currentHeight-150,Settings.currentWidth, 150);
 		getWorld().setEntityManager(nm);
 		pw = new PauseWindow(getWindows());
 		omnimap = new OmniMap(getWorld());

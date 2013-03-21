@@ -1,6 +1,6 @@
 package com.jpii.navalbattle.game;
 
-import com.jpii.navalbattle.pavo.grid.Entity;
+import com.jpii.navalbattle.game.entity.MoveableEntity;
 
 public class Turn {
 	private Player player;
@@ -9,8 +9,9 @@ public class Turn {
 		this.player = player;
 	}
 	
-	public boolean canmoveEntity(Entity entity) {
+	public boolean canmoveEntity(MoveableEntity entity) {
 		boolean flag=false;
+		System.out.println("Player: "+player.entities);
 		if(!flag)
 			flag = player.myEntity(entity);
 		if(!flag)

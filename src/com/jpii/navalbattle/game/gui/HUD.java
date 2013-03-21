@@ -5,6 +5,8 @@ import java.awt.GradientPaint;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 
+import com.jpii.navalbattle.game.TurnManager;
+import com.jpii.navalbattle.game.entity.MoveableEntity;
 import com.jpii.navalbattle.pavo.grid.Entity;
 import com.jpii.navalbattle.pavo.gui.NewWindowManager;
 import com.jpii.navalbattle.pavo.gui.controls.PImage;
@@ -14,6 +16,7 @@ import com.jpii.navalbattle.util.FileUtils;
 
 public class HUD extends PWindow{
 	
+	TurnManager tm;
 	GradientPaint gp;
 	int centerx,centery;
 	int imgx,imgy;
@@ -24,8 +27,19 @@ public class HUD extends PWindow{
 	String movement = new String("");
 	Entity display;
 	
-	 public HUD(NewWindowManager parent,int x, int y, int width, int height){
+	PImage missile;
+	PImage bullet;
+	PImage move;
+	PImage diplomacy;
+	
+	PButton missileB;
+	PButton bulletB;
+	PButton moveB;
+	PButton diplomacyB;
+	
+	 public HUD(NewWindowManager parent,TurnManager tm,int x, int y, int width, int height){
 		super(parent, x, y, width, height);
+		this.tm = tm;
 		gp = new GradientPaint(0,0,new Color(96,116,190),0,height,new Color(0,0,54));
 		setTitleVisiblity(false);
 		setVisible(false);
@@ -33,41 +47,42 @@ public class HUD extends PWindow{
 		centery = getHeight()/2;
 		
 		// Buttons
-		addControl(new PButton(this,(getWidth()/2)-60,getHeight()-45,30,30));
-		addControl(new PButton(this,(getWidth()/2)-20,getHeight()-45,30,30));
-		addControl(new PButton(this,(getWidth()/2)+20,getHeight()-45,30,30));
-		addControl(new PButton(this,(getWidth()/2)+60,getHeight()-45,30,30));
+		addControl(missileB = new PButton(this,(getWidth()/2)-60,getHeight()-45,30,30));
+		addControl(bulletB = new PButton(this,(getWidth()/2)-20,getHeight()-45,30,30));
+		addControl(diplomacyB = new PButton(this,(getWidth()/2)+20,getHeight()-45,30,30));
+		addControl(moveB = new PButton(this,(getWidth()/2)+60,getHeight()-45,30,30));
 		
-		PImage missile = new PImage(this);
+		missile = new PImage(this);
+		bullet = new PImage(this);
+		move = new PImage(this);
+		diplomacy = new PImage(this);
+		
 		missile.setLoc((getWidth()/2)-60,getHeight()-45);
-		missile.setSize(30,30);
-		missile.setImage(PImage.registerImage(FileUtils.getImage("drawable-game/Buttons/Missile.png")));
-		missile.repaint();
-		addControl(missile);
-		PImage.removeImage(0);
-		
-		PImage bullet = new PImage(this);
 		bullet.setLoc((getWidth()/2)-20,getHeight()-45);
-		bullet.setSize(30,30);
-		bullet.setImage(PImage.registerImage(FileUtils.getImage("drawable-game/Buttons/Bullet.png")));
-		bullet.repaint();
-		addControl(bullet);
-		PImage.removeImage(0);
-		
-		PImage diplomacy = new PImage(this);
 		diplomacy.setLoc((getWidth()/2)+20,getHeight()-45);
-		diplomacy.setSize(30,30);
-		diplomacy.setImage(PImage.registerImage(FileUtils.getImage("drawable-game/Buttons/Diplomacy.png")));
-		diplomacy.repaint();
-		addControl(diplomacy);
-		PImage.removeImage(0);
-		
-		PImage move = new PImage(this);
 		move.setLoc((getWidth()/2)+60,getHeight()-45);
+		
+		missile.setSize(30,30);
+		bullet.setSize(30,30);
+		diplomacy.setSize(30,30);
 		move.setSize(30,30);
+		
+		missile.setImage(PImage.registerImage(FileUtils.getImage("drawable-game/Buttons/Missile.png")));
+		bullet.setImage(PImage.registerImage(FileUtils.getImage("drawable-game/Buttons/Bullet.png")));
+		diplomacy.setImage(PImage.registerImage(FileUtils.getImage("drawable-game/Buttons/Diplomacy.png")));
 		move.setImage(PImage.registerImage(FileUtils.getImage("drawable-game/Buttons/Move.png")));
+		
+		missile.repaint();
+		bullet.repaint();
+		diplomacy.repaint();
 		move.repaint();
+		
+		addControl(missile);
+		addControl(bullet);
+		addControl(diplomacy);
 		addControl(move);
+		
+		this.repaint();
 	}
 	
 	public void paint(Graphics2D g) {
@@ -120,8 +135,23 @@ public class HUD extends PWindow{
 			boxwidth = tempwidth+100;
 			boxheight = tempheight+100;
 			location = ("[X:"+display.getLocation().getCol()+" Y:"+display.getLocation().getRow()+"]");
-			health = ("Health: "+display.getHealth()+"%");
-			movement = ("Movement Left: "+(display.getMaxMovement()-display.getMoved())+" out of "+display.getMaxMovement());
+			if(display.getHandle()==1){
+				MoveableEntity display = (MoveableEntity)this.display;
+				if(tm.getTurn().canmoveEntity(display)){
+					move.setVisible(true);
+					moveB.setVisible(true);
+				}
+				else{
+					move.setVisible(false);
+					moveB.setVisible(false);
+				}
+				health = ("Health: "+display.getHealth()+"%");
+				movement = ("Movement Left: "+(display.getMaxMovement()-display.getMoved())+" out of "+display.getMaxMovement());
+			}
+			else{
+				move.setVisible(false);
+				moveB.setVisible(false);
+			}
 		}
 		else{
 			setVisible(false);

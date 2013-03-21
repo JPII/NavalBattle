@@ -13,6 +13,7 @@ public class Player {
 	}
 	
 	public boolean myEntity(Entity e){
+		System.out.println(entities.contains(e));
 		return entities.contains(e);
 	}
 	
