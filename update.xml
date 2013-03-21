@@ -2,6 +2,7 @@
 <navalbattle>
 	<string name="version_code">5</string>
 	<string name="version_readable">0.5</string>
+	<string name="update_text">NavalBattle 0.5 is the next milestone! Pull the latest code from GitHub.</string>
 	<string name="update_url">http://github.com/JPII/NavalBattle</string>
 	
 	<string name="announcement_code">-1</string>
