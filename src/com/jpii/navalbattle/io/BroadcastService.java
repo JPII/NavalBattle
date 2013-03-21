@@ -22,6 +22,9 @@ public class BroadcastService {
 	private String versionCode, versionReadable, updateUrl;
 	private String announcementCode, announcementTitle, announcementText, announcementUrl;
 	
+	/* Items for client */
+	private boolean needsUpdate, hasAnnouncement = false;
+	
 	public BroadcastService() {
 		announcementId = NavalBattleIO.getAttribute("announcementId");
 		broadcastThread = new BroadcastThread();
@@ -55,6 +58,14 @@ public class BroadcastService {
 	
 	public String getAnnouncementUrl() {
 		return announcementUrl;
+	}
+	
+	public boolean needsUpdate() {
+		return needsUpdate;
+	}
+	
+	public boolean hasAnnouncement() {
+		return hasAnnouncement;
 	}
 	
 	class BroadcastThread extends Thread {
@@ -130,8 +141,7 @@ public class BroadcastService {
 					NavalBattle.getDebugWindow().printWarning("Update found! " + versionReadable + " (" + versionCode + ")");
 					NavalBattle.getDebugWindow().printWarning("Update url: " + updateUrl);
 					
-					NavalBattle.getWindowHandler().getWindow("LoginWindow").setUpdateAvailable(true);
-					//NavalBattle.getWindowHandler().getWindow("LoginWindow").repaint();
+					needsUpdate = true;
 				} else {
 					NavalBattle.getDebugWindow().printInfo("You are running the latest version!");
 				}
@@ -143,12 +153,11 @@ public class BroadcastService {
 				int clientAnnouncement = Integer.parseInt(announcementId);
 				int latestAnnouncement = Integer.parseInt(announcementCode);
 				
-				if(clientAnnouncement < latestAnnouncement) {
+				if(clientAnnouncement < latestAnnouncement || latestAnnouncement == -1) {
 					NavalBattle.getDebugWindow().printWarning("Announcement found! " + announcementTitle + " (" + announcementText + ")");
 					NavalBattle.getDebugWindow().printWarning("Announcement url: " + announcementUrl);
 					
-					NavalBattle.getWindowHandler().getWindow("LoginWindow").setAnnouncementAvailable(true);
-					//NavalBattle.getWindowHandler().getWindow("LoginWindow").repaint();
+					hasAnnouncement = true;
 					
 					if(latestAnnouncement != -1) {
 						NavalBattleIO.saveAttribute("announcementId", announcementCode);

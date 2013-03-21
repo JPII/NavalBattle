@@ -107,6 +107,24 @@ public class LoginWindow extends Window {
 		updateButton.setVisible(false);
 		announcementButton.setVisible(false);
 		
+		Thread t = new Thread(new Runnable() {
+			public void run() {
+				try {
+					Thread.sleep(2000);
+				} catch (InterruptedException ie) { }
+				
+				SwingUtilities.invokeLater(new Runnable() {
+					public void run() {
+						if(NavalBattle.getBroadcastService().needsUpdate())
+							updateButton.setVisible(true);
+						if(NavalBattle.getBroadcastService().hasAnnouncement())
+							announcementButton.setVisible(true);
+					}
+				});
+			}
+		});
+		t.start();
+
 		setDefaults();	
 		setSize(500,190);
 		
@@ -189,19 +207,5 @@ public class LoginWindow extends Window {
 				JOptionPane.showMessageDialog(this, "Unable to login. Check your internet connection.");
 			}
 		}
-	}
-	
-	public void setUpdateAvailable(boolean status) {
-		updateButton.setVisible(status);
-		validate();
-		repaint();
-		updateButton.repaint();
-	}
-	
-	public void setAnnouncementAvailable(boolean status) {
-		announcementButton.setVisible(status);
-		validate();
-		repaint();
-		announcementButton.repaint();
 	}
 }
