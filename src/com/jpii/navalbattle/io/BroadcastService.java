@@ -138,8 +138,6 @@ public class BroadcastService {
 				int latestVersion = Integer.parseInt(versionCode);
 				
 				if(clientVersion < latestVersion) {
-					NavalBattle.getDebugWindow().printWarning("Update found! " + versionReadable + " (" + versionCode + ")");
-					NavalBattle.getDebugWindow().printWarning("Update url: " + updateUrl);
 					
 					needsUpdate = true;
 				} else {
@@ -154,9 +152,6 @@ public class BroadcastService {
 				int latestAnnouncement = Integer.parseInt(announcementCode);
 				
 				if(clientAnnouncement < latestAnnouncement || latestAnnouncement == -1) {
-					NavalBattle.getDebugWindow().printWarning("Announcement found! " + announcementTitle + " (" + announcementText + ")");
-					NavalBattle.getDebugWindow().printWarning("Announcement url: " + announcementUrl);
-					
 					hasAnnouncement = true;
 					
 					if(latestAnnouncement != -1) {
