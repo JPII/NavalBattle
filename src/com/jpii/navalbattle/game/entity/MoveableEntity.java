@@ -4,6 +4,7 @@ import com.jpii.navalbattle.pavo.grid.Entity;
 import com.jpii.navalbattle.pavo.grid.EntityManager;
 import com.jpii.navalbattle.pavo.grid.GridedEntityTileOrientation;
 import com.jpii.navalbattle.pavo.grid.Location;
+import com.jpii.navalbattle.pavo.grid.Tile;
 
 public class MoveableEntity extends Entity {
 	private static final long serialVersionUID = 1L;
@@ -31,14 +32,15 @@ public class MoveableEntity extends Entity {
 		handle = 1;
 	}
 	
-	public void toggleMovable() {
+	public void toggleMovable(EntityManager em) {
 		if (getCurrentOrientation() == GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT) {
 			for (int x = 0; x < (maxStep * 2) + getWidth(); x++) {
 				for (int y = 0; y < (maxStep * 2) + 1; y++) {
 					int r = (y + getLocation().getRow()) - (((maxStep * 2) + 1)/2);
 					int c = (x + getLocation().getCol()) - (maxStep);
 					if (r >= 0 && c >= 0) {
-						if (getManager().getTilePercentLand(r,c) <= 8) {
+						Tile temp = em.getTile(r,c);
+						if (getManager().getTilePercentLand(r,c) <= 8 && temp==null) {
 							getManager().setTileOverlay(r,c,(short)0x2f1d);
 						}
 						else {
@@ -54,7 +56,8 @@ public class MoveableEntity extends Entity {
 					int r = (y + getLocation().getRow()) - (((maxStep * 2) + 1)/2);
 					int c = (x + getLocation().getCol()) - (((maxStep * 2) + getWidth())/2);
 					if (r >= 0 && c >= 0) {
-						if (getManager().getTilePercentLand(c,r) <= 8) {
+						Tile temp = em.getTile(r,c);
+						if (getManager().getTilePercentLand(c,r) <= 8 &&temp==null) {
 							getManager().setTileOverlay(c,r,(short)0x2f1d);
 						}
 						else {
