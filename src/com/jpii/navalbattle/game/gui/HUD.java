@@ -29,13 +29,13 @@ public class HUD extends PWindow{
 	
 	PImage missile;
 	PImage bullet;
-	PImage diplomacy;
 	PImage move;
+	PImage diplomacy;
 	
 	PButton missileB;
 	PButton bulletB;
-	PButton diplomacyB;
 	PButton moveB;
+	PButton diplomacyB;
 	
 	 public HUD(NewWindowManager parent,TurnManager tm,int x, int y, int width, int height){
 		super(parent, x, y, width, height);
@@ -54,8 +54,8 @@ public class HUD extends PWindow{
 		
 		missile = new PImage(this);
 		bullet = new PImage(this);
-		diplomacy = new PImage(this);
 		move = new PImage(this);
+		diplomacy = new PImage(this);
 		
 		missile.setLoc((getWidth()/2)-60,getHeight()-45);
 		bullet.setLoc((getWidth()/2)-20,getHeight()-45);
