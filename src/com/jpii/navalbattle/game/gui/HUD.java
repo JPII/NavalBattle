@@ -104,13 +104,10 @@ public class HUD extends PWindow{
 		drawString(g,location, centerx, centery+60);
 		drawString(g,health, centerx, centery-35);
 		drawString(g,movement, centerx, centery+40);
-		g.setColor(Color.blue);
-		g.fillRect(centerx-1,centery-1,3,3);
-		
 		
 		// Msg System
 		
-		
+		// Basically gonna be a Queue via regular array of String[]
 		
 		
 	}
