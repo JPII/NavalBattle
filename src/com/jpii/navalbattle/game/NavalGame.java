@@ -269,12 +269,6 @@ public class NavalGame extends Game{
 		
 		else if (Game.Settings.isFinishedGenerating && getWorld().getEntityManager().getTilePercentLand(chy,chx) <= 5){
 			Entity ent = getWorld().getEntityManager().findEntity(chy,chx);
-			if (ent != null) {
-				MoveableEntity moveEnt = (MoveableEntity)ent;
-				//System.out.println("MovedEntity");
-				moveEnt.toggleMovable(nm);
-				getWorld().forceRender();
-			}
 			if(current==null){
 				if(!isAClient() && me.getButton() == MouseEvent.BUTTON1){
 					if(Game.Settings.isFinishedGenerating){

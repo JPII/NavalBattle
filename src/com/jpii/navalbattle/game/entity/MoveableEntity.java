@@ -12,6 +12,7 @@ public class MoveableEntity extends Entity {
 	protected static int maxMovement;
 	protected static int moved;
 	private int health = 100;
+	private boolean showMove = false;
 	/**
 	 * @param em
 	 */
@@ -32,19 +33,30 @@ public class MoveableEntity extends Entity {
 		handle = 1;
 	}
 	
-	public void toggleMovable(EntityManager em) {
+	public void toggleMovable() {
+		short good = (short)0x2f1d;
+		short bad = (short)0x001;
+		if(showMove){
+			showMove = false;
+			good = bad = 0;
+		}
+		else{
+			showMove = true;
+		}
+			
+			
 		if (getCurrentOrientation() == GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT) {
 			for (int x = 0; x < (maxStep * 2) + getWidth(); x++) {
 				for (int y = 0; y < (maxStep * 2) + 1; y++) {
 					int r = (y + getLocation().getRow()) - (((maxStep * 2) + 1)/2);
 					int c = (x + getLocation().getCol()) - (maxStep);
 					if (r >= 0 && c >= 0) {
-						Tile temp = em.getTile(r,c);
+						Tile temp = getManager().getTile(r,c);
 						if (getManager().getTilePercentLand(r,c) <= 8 && temp==null) {
-							getManager().setTileOverlay(r,c,(short)0x2f1d);
+							getManager().setTileOverlay(r,c,good);
 						}
 						else {
-							getManager().setTileOverlay(r,c,(short)0x001);
+							getManager().setTileOverlay(r,c,bad);
 						}
 					}
 				}
@@ -56,17 +68,18 @@ public class MoveableEntity extends Entity {
 					int r = (y + getLocation().getRow()) - (((maxStep * 2) + 1)/2);
 					int c = (x + getLocation().getCol()) - (((maxStep * 2) + getWidth())/2);
 					if (r >= 0 && c >= 0) {
-						Tile temp = em.getTile(r,c);
+						Tile temp = getManager().getTile(r,c);
 						if (getManager().getTilePercentLand(c,r) <= 8 &&temp==null) {
-							getManager().setTileOverlay(c,r,(short)0x2f1d);
+							getManager().setTileOverlay(c,r,good);
 						}
 						else {
-							getManager().setTileOverlay(c,r,(short)0x0001);
+							getManager().setTileOverlay(c,r,bad);
 						}
 					}
 				}
 			}
 		}
+		getManager().getWorld().forceRender();
 	}
 	
 	public int getMaxStep() {

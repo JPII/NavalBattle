@@ -12,6 +12,7 @@ import com.jpii.navalbattle.pavo.gui.NewWindowManager;
 import com.jpii.navalbattle.pavo.gui.controls.PImage;
 import com.jpii.navalbattle.pavo.gui.controls.PWindow;
 import com.jpii.navalbattle.pavo.gui.controls.PButton;
+import com.jpii.navalbattle.pavo.gui.events.PMouseEvent;
 import com.jpii.navalbattle.util.FileUtils;
 
 public class HUD extends PWindow{
@@ -82,6 +83,16 @@ public class HUD extends PWindow{
 		addControl(diplomacy);
 		addControl(move);
 		
+		moveB.addMouseListener(new PMouseEvent(){
+			public void mouseDown(int x, int y, int buttonid) {
+				if(display!=null && display.getHandle()==1){
+					MoveableEntity display2 = (MoveableEntity)display;
+					display2.toggleMovable();
+				}
+			}
+		});
+		
+		
 		this.repaint();
 	}
 	
@@ -108,7 +119,6 @@ public class HUD extends PWindow{
 		// Msg System
 		
 		// Basically gonna be a Queue via regular array of String[]
-		
 		
 	}
 	

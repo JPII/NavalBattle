@@ -11,7 +11,6 @@ public class Turn {
 	
 	public boolean canmoveEntity(MoveableEntity entity) {
 		boolean flag=false;
-		System.out.println("Player: "+player.entities);
 		if(!flag)
 			flag = player.myEntity(entity);
 		if(!flag)

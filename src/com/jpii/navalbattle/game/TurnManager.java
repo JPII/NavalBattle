@@ -11,13 +11,12 @@ public class TurnManager {
 	
 	public TurnManager(PlayerManager pm){
 		players = pm;
-		turnnumber=0;
+		turnnumber=1;
 		currentTurn = new Turn(players.getPlayer(turnnumber));
 	}
 	
 	public void nextTurn(){
 		turnnumber++;
-		System.out.println("new Turn: "+turnnumber);
 		currentTurn = new Turn(players.getPlayer(turnnumber));
 	}
 	
