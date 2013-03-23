@@ -49,6 +49,9 @@ public class BattleShip extends MoveableEntity {
 	public void onMouseDown(int x, int y, boolean leftbutton) {
 		super.onMouseDown(x, y, leftbutton);
 		if(!leftbutton){
+			if(isMovableTileBeingShown()){
+				toggleMovable();
+			}
 			byte t = getCurrentOrientation();
 			if (t == GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT)
 				rotateTo(GridedEntityTileOrientation.ORIENTATION_TOPTOBOTTOM);

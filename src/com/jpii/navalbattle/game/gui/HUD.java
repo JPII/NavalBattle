@@ -127,6 +127,16 @@ public class HUD extends PWindow{
 	}
 	
 	public void setEntity(Entity e){		
+		if(display!=null){
+			if(e==null || !display.equals(e)){
+				if(display.getHandle()==1){
+					MoveableEntity display = (MoveableEntity)this.display;
+					if(display.isMovableTileBeingShown()){
+						display.toggleMovable();
+					}
+				}
+			}
+		}
 		display = e;
 		update();
 	}
