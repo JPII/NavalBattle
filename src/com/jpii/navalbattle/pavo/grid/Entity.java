@@ -36,6 +36,7 @@ public class Entity implements Serializable {
 	public String imgLocation;
 	private static int ENTITYMASTERRECORDSYSTEMPLEASEDONOTTOUCHTHIS = 0;
 	public byte handle = -1;
+	protected boolean startpos = false;
 	
 	public Entity(EntityManager em) {
 		manager = em;
@@ -71,8 +72,10 @@ public class Entity implements Serializable {
 		}
 		manager.addEntity(this);
 		init();
-		if(getCurrentOrientation()==GridedEntityTileOrientation.ORIENTATION_TOPTOBOTTOM)
+		if(getCurrentOrientation()==GridedEntityTileOrientation.ORIENTATION_TOPTOBOTTOM){
 			location = new Location(loc.getRow()-(getWidth()-1),loc.getCol());
+			startpos = true;
+		}
 		setId(id);
 	}
 	/**

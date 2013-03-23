@@ -74,6 +74,8 @@ public class BattleShip extends MoveableEntity {
 		}
 		else if(getCurrentOrientation() == GridedEntityTileOrientation.ORIENTATION_TOPTOBOTTOM){
 			temp = new Location(temp.getRow()+(getWidth()-1),temp.getCol());
+			if(startpos)
+				temp = new Location(temp.getRow()+(getWidth()-1),temp.getCol());
 //			getManager().setTileOverlay(temp.getRow(),temp.getCol(),(short)0x2f1d);
 //			getManager().setTileOverlay(temp.getRow(),temp.getCol(),(short)0x001);
 		}
