@@ -13,7 +13,6 @@ public class MoveableEntity extends Entity {
 	protected static int moved;
 	private int health = 100;
 	private boolean showMove = false;
-	private boolean movableshown = false; 
 	/**
 	 * @param em
 	 */
@@ -35,11 +34,10 @@ public class MoveableEntity extends Entity {
 	}
 	
 	public boolean isMovableTileBeingShown() {
-		return movableshown;
+		return showMove;
 	}
 	
 	public void toggleMovable() {
-		movableshown = !movableshown;
 		short good = (short)0x2f1d;
 		short bad = (short)0x001;
 		if(showMove){
