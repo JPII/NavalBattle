@@ -32,7 +32,7 @@ public class GridHelper implements Serializable {
 		return pollNextLiquidSpace(0, tolerance);
 	}
 	public Location pollNextWaterTile() {
-		return pollNextWaterTile(8);
+		return pollNextWaterTile(Game.Settings.waterThresholdBarrier);
 	}
 	/**
 	 * 
@@ -48,7 +48,7 @@ public class GridHelper implements Serializable {
 		if (rotateto == GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT) {
 			for (int c = 0; c < width; c++) {
 				int p = em.getTilePercentLand(row,col+c);
-				if (p > 5) {
+				if (p > Game.Settings.waterThresholdBarrier) {
 					flag = false;
 					break;
 				}
@@ -62,7 +62,7 @@ public class GridHelper implements Serializable {
 		if (rotateto == GridedEntityTileOrientation.ORIENTATION_TOPTOBOTTOM) {
 			for (int c = 0; c < width; c++) {
 				int p = em.getTilePercentLand(row-c,col);
-				if (p > 5) {
+				if (p > Game.Settings.waterThresholdBarrier) {
 					flag = false;
 					break;
 				}
@@ -81,7 +81,7 @@ public class GridHelper implements Serializable {
 		if (rotateto == GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT) {
 			for (int c = 0; c < width; c++) {
 				int p = em.getTilePercentLand(row-(width-1),col+c);
-				if (p > 5) {
+				if (p > Game.Settings.waterThresholdBarrier) {
 					flag = false;
 					break;
 				}
@@ -95,7 +95,7 @@ public class GridHelper implements Serializable {
 		if (rotateto == GridedEntityTileOrientation.ORIENTATION_TOPTOBOTTOM) {
 			for (int c = 0; c < width; c++) {
 				int p = em.getTilePercentLand(row-c,col);
-				if (p > 5) {
+				if (p > Game.Settings.waterThresholdBarrier) {
 					flag = false;
 					break;
 				}
@@ -115,7 +115,7 @@ public class GridHelper implements Serializable {
 				int p = em.getTilePercentLand(row,col+c);
 				if(!e.isInMoveRange(col+c,row))
 					return false;
-				if (p > 5)
+				if (p > Game.Settings.waterThresholdBarrier)
 					return false;
 				Tile temp = em.getTile(row,col+c);
 				if(temp!=null&&!temp.getEntity().equals(e))
@@ -127,7 +127,7 @@ public class GridHelper implements Serializable {
 				int p = em.getTilePercentLand(row-c,col);
 				if(!e.isInMoveRange(col,row-c))
 					return false;
-				if (p > 5)
+				if (p > Game.Settings.waterThresholdBarrier)
 					return false;
 				Tile temp = em.getTile(row-c,col);
 				if(temp!=null&&!temp.getEntity().equals(e))

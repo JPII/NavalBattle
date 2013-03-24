@@ -48,4 +48,5 @@ public class PavoSettings {
 	public boolean isFinishedGenerating = false;
 	public NetworkState currentNetworkState = NetworkState.UNKNOWN;
 	public boolean isUsingMultithreadedRenderer = false;
+	public int waterThresholdBarrier = 8;
 }

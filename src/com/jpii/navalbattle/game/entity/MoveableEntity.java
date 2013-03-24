@@ -1,5 +1,6 @@
 package com.jpii.navalbattle.game.entity;
 
+import com.jpii.navalbattle.pavo.Game;
 import com.jpii.navalbattle.pavo.grid.Entity;
 import com.jpii.navalbattle.pavo.grid.EntityManager;
 import com.jpii.navalbattle.pavo.grid.GridedEntityTileOrientation;
@@ -56,7 +57,7 @@ public class MoveableEntity extends Entity {
 					int c = (x + getLocation().getCol()) - (maxStep);
 					if (r >= 0 && c >= 0) {
 						Tile temp = getManager().getTile(r,c);
-						if (getManager().getTilePercentLand(r,c) <= 8 && temp==null) {
+						if (getManager().getTilePercentLand(r,c) <= Game.Settings.waterThresholdBarrier && temp==null) {
 							getManager().setTileOverlay(r,c,good);
 						}
 						else {
@@ -73,7 +74,7 @@ public class MoveableEntity extends Entity {
 					int r = (y + getLocation().getRow()) - (((maxStep*2)-1));
 					if (r >= 0 && c >= 0) {
 						Tile temp = getManager().getTile(r,c);
-						if (getManager().getTilePercentLand(r,c) <= 8 && temp==null) {
+						if (getManager().getTilePercentLand(r,c) <= Game.Settings.waterThresholdBarrier && temp==null) {
 							getManager().setTileOverlay(r,c,good);
 						}
 						else {
