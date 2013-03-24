@@ -223,10 +223,12 @@ public class Entity implements Serializable {
 		}
 		else if (ORIENTATION_BUFFER_POSITION == GridedEntityTileOrientation.ORIENTATION_TOPTOBOTTOM) {
 			for (int h = 0; h < getHeight(); h++) {
-				manager.setTile(location.getRow()+h,location.getCol(),null);
-				Tile t22 = new Tile(this,loc.getRow()+h,loc.getCol());
+				manager.setTile(location.getRow()+h-getHeight()+1,location.getCol(),null);
+			}
+			for (int h = 0; h < getHeight(); h++) {
+				Tile t22 = new Tile(this,loc.getRow()+h-getHeight()+1,loc.getCol());
 				t22.setId(new Id(id.memCall(ORIENTATION_BUFFER_POSITION)[0],h));
-				manager.setTile(loc.getRow()+h,loc.getCol(), t22);
+				manager.setTile(loc.getRow()+h-getHeight()+1,loc.getCol(), t22);
 			}
 			manager.getWorld().forceRender();
 		}

@@ -263,9 +263,9 @@ public class NavalGame extends Game{
 		if ((omnimap.mouseDown(me)))
 			return;
 		
-//		else if(hud.moveShip(chx,chy)){
-//			
-//		}
+		else if(hud.moveShip(chx,chy)){
+			
+		}
 		
 		else if(!isAClient() && me.getButton() != MouseEvent.BUTTON1){
 			getHud().setEntity(null);

@@ -8,6 +8,8 @@ import java.awt.image.BufferedImage;
 import com.jpii.navalbattle.game.TurnManager;
 import com.jpii.navalbattle.game.entity.MoveableEntity;
 import com.jpii.navalbattle.pavo.grid.Entity;
+import com.jpii.navalbattle.pavo.grid.GridHelper;
+import com.jpii.navalbattle.pavo.grid.Location;
 import com.jpii.navalbattle.pavo.gui.NewWindowManager;
 import com.jpii.navalbattle.pavo.gui.controls.PImage;
 import com.jpii.navalbattle.pavo.gui.controls.PWindow;
@@ -220,15 +222,22 @@ public class HUD extends PWindow{
 	public void showMoveShip(int x, int y){
 		if(!isShowingMove())
 			return;
-		if(display!=null)
-			if(display.getHandle() == 1)
-				if( ((MoveableEntity)display).isInMoveRange(x,y) )
-					display.getManager().setTileOverlay(y,x,(short)6030);
 	}
 	
 	public boolean moveShip(int x, int y){
 		if(!isShowingMove())
 			return false;
+		if(display!=null)
+			if(display.getHandle() == 1){
+				MoveableEntity display = (MoveableEntity)this.display;
+				if(GridHelper.canMoveTo(display.getManager(), display, display.getCurrentOrientation(), y, x,display.getWidth())){
+					if(display.isMovableTileBeingShown()){
+						display.toggleMovable();
+					}
+					display.moveTo(new Location(y,x));
+					display.toggleMovable();
+				}
+			}
 		return true;
 	}
 	
