@@ -11,12 +11,12 @@ import com.jpii.navalbattle.pavo.io.PavoServer;
  * @author MKirkby
  *
  */
-public class TestServer extends PavoServer {
+public class NavalServer extends PavoServer {
 	Game game;
 	/**
 	 * @param ipaddress
 	 */
-	public TestServer(Game game) {
+	public NavalServer(Game game) {
 		super();
 		this.game = game;
 	}

@@ -14,13 +14,13 @@ import com.jpii.navalbattle.pavo.io.PavoClient;
  * @author MKirkby
  *
  */
-public class TestClient extends PavoClient {
+public class NavalClient extends PavoClient {
 	long seed = Long.MIN_VALUE;
 	Game game;
 	/**
 	 * @param ipaddress
 	 */
-	public TestClient(Game game,String ipaddress) {
+	public NavalClient(Game game,String ipaddress) {
 		super(ipaddress);
 		this.game = game;
 	}

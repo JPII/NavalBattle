@@ -31,8 +31,10 @@ import java.util.TimerTask;
 
 import com.jpii.navalbattle.NavalBattle;
 import com.jpii.navalbattle.data.Constants;
-import com.jpii.navalbattle.game.TestClient;
-import com.jpii.navalbattle.game.TestServer;
+import com.jpii.navalbattle.game.NavalClient;
+import com.jpii.navalbattle.game.NavalServer;
+//import com.jpii.navalbattle.game.TestClient;
+//import com.jpii.navalbattle.game.TestServer;
 import com.jpii.navalbattle.pavo.grid.Entity;
 import com.jpii.navalbattle.pavo.grid.Location;
 import com.jpii.navalbattle.pavo.grid.Tile;
@@ -69,7 +71,7 @@ public class Game extends Renderable implements Runnable, Serializable {
 	private NewWindowManager windowsnt;
 	private PavoImage shadow;
 	public static Game Instance;
-	private TestClient client;
+	private NavalClient client;
 	private PavoServer server;
 	private boolean isClient = false;
 	private BufferedImage renderBuffer;
@@ -79,7 +81,7 @@ public class Game extends Renderable implements Runnable, Serializable {
 	 * Creates a new instance of the game.
 	 */
 	public Game() {
-		server = new TestServer(this);
+		server = new NavalServer(this);
 		System.out.println("Server status: " + server.start());
 		windows = new WindowManager(this);
 		windowsnt = new NewWindowManager(this);
@@ -105,7 +107,7 @@ public class Game extends Renderable implements Runnable, Serializable {
 	}
 	public Game(PavoOpenState pos, String flags) {
 		if (pos == PavoOpenState.OPEN_SERVER) {
-			client = new TestClient(this,flags);
+			client = new NavalClient(this,flags);
 			System.out.println("Client status: " + client.start());
 			isClient = true;
 			client.send("HELLO");
