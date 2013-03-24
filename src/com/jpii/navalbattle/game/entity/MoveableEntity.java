@@ -86,6 +86,29 @@ public class MoveableEntity extends Entity {
 		getManager().getWorld().forceRender();
 	}
 	
+	public boolean isInMoveRange(int chx, int chy){
+		if(!showMove)
+			return false;
+		boolean flag = false;
+		if (getCurrentOrientation() == GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT) {
+			int minr = getLocation().getRow() - maxStep;
+			int maxr = getLocation().getRow() + maxStep;
+			int minc = getLocation().getCol() - maxStep;
+			int maxc = getLocation().getCol() + maxStep+getWidth()-1;
+			if(chx<=maxc && chx>=minc && chy<=maxr && chy>=minr)
+				flag = true;
+		}
+		else {
+			int minr = getLocation().getRow() - maxStep-getWidth()+1;
+			int maxr = getLocation().getRow() + maxStep;
+			int minc = getLocation().getCol() - maxStep;
+			int maxc = getLocation().getCol() + maxStep;
+			if(chx<=maxc && chx>=minc && chy<=maxr && chy>=minr)
+				flag = true;
+		}
+		return flag;
+	}
+	
 	public int getMaxStep() {
 		return maxStep;
 	}

@@ -209,4 +209,27 @@ public class HUD extends PWindow{
 		}
 	}
 	
+	public boolean isShowingMove(){
+		boolean flag = false;
+		if(display!=null)
+			if(display.getHandle() == 1)
+				flag = ((MoveableEntity) display).isMovableTileBeingShown();
+		return flag;
+	}
+	
+	public void showMoveShip(int x, int y){
+		if(!isShowingMove())
+			return;
+		if(display!=null)
+			if(display.getHandle() == 1)
+				if( ((MoveableEntity)display).isInMoveRange(x,y) )
+					display.getManager().setTileOverlay(y,x,(short)6030);
+	}
+	
+	public boolean moveShip(int x, int y){
+		if(!isShowingMove())
+			return false;
+		return true;
+	}
+	
 }

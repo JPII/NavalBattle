@@ -35,7 +35,7 @@ public class Entity implements Serializable {
 	private byte ORIENTATION_BUFFER_POSITION = GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT;
 	public String imgLocation;
 	private static int ENTITYMASTERRECORDSYSTEMPLEASEDONOTTOUCHTHIS = 0;
-	public byte handle = -1;
+	protected byte handle = -1;
 	protected boolean startpos = false;
 	
 	public Entity(EntityManager em) {

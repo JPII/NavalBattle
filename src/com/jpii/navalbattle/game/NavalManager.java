@@ -30,7 +30,7 @@ public class NavalManager extends EntityManager {
 	 */
 	public NavalManager(World w) {
 		super(w);
-		tm = new TurnManager(new PlayerManager(new Player(),new Player()));
+		tm = new TurnManager(new PlayerManager(new Player()));
 		battleShipId = new GridedEntityTileOrientation();
 		battleShipId.setLeftToRightImage(registerEntity(PavoHelper.imgUtilOutline(
 				FileUtils.getImage("drawable-game/battleship/battleship.png"),Game.Settings.GridColor),GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT));
@@ -91,7 +91,6 @@ public class NavalManager extends EntityManager {
 			else
 				c--;
 		}
-		tm.nextTurn();
 		System.out.println("Let me play you the song of my people.");
 	}
 	
