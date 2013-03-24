@@ -14,6 +14,7 @@ import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.UnknownHostException;
+import java.util.ArrayList;
 
 import com.jpii.navalbattle.pavo.Game;
 import com.jpii.navalbattle.util.OSUtil;
@@ -33,8 +34,9 @@ public class PavoServer implements Runnable {
 	PrintWriter output;
 	String clientAddress = null;
 	boolean noInternet = false;
+	ArrayList<NetAttribute> nas;
 	public PavoServer() {
-		
+		nas = new ArrayList<NetAttribute>();
 	}
 	
 	public String getSelfIP() {
@@ -125,8 +127,18 @@ public class PavoServer implements Runnable {
             	if (rl.equals("HELLO")) {
             		onClientConnect();
             	}
-            	else if (rl != null && !rl.equals(""))
-            		onMessageRecieved(rl);
+            	else if (rl != null && !rl.equals("")) {
+            		if (rl.startsWith("NA")) {
+            			rl = rl.replace("NA", "");
+            			String name = rl.substring(0,rl.indexOf(":")+1);
+            			String val = rl.replace(name, "");
+            			name = name.replace(":", "");
+            			nas.add(new NetAttribute(name,val));
+            		}
+            		else {
+            			onMessageRecieved(rl);
+            		}
+            	}
 			} catch (IOException e) {
 				if (e.getMessage().equals("Connection reset") || e.getMessage().equals("Software caused connection abort: recv failed")) {
 					doing = false;
@@ -151,6 +163,26 @@ public class PavoServer implements Runnable {
 			
 		}
 		sendTmp = msg;
+	}
+	
+	public void sendAttribute(NetAttribute attr) {
+		while (serverIsWriting) {
+			
+		}
+		sendTmp = attr.getComposite();
+	}
+	
+	public NetAttribute getNetAttribute(String name) {
+		NetAttribute attr = null;
+		for (int c = 0; c < nas.size(); c++) {
+			NetAttribute b = nas.get(c);
+			if (b.getName().toLowerCase().equals(name.toLowerCase())) {
+				attr = b;
+				c = nas.size() + 10;
+				break;
+			}
+		}
+		return attr;
 	}
 	
 	public void onMessageRecieved(String msg) {
