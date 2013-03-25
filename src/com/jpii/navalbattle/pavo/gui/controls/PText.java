@@ -126,7 +126,7 @@ public class PText extends Control {
 			}
 			if (autoResize) {
 				this.width = 4 + (maxStrWidth);
-				this.height = ((getFont().getSize()+2) * lines.length)+2;
+				this.height = ((getFont().getSize()+6) * lines.length)+2;
 				createBuffer(lastKnownTransMode);
 			}
 			
