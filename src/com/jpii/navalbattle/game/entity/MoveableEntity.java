@@ -57,7 +57,7 @@ public class MoveableEntity extends Entity {
 					int c = (x + getLocation().getCol()) - (maxStep);
 					if (r >= 0 && c >= 0) {
 						Tile temp = getManager().getTile(r,c);
-						if (getManager().getTilePercentLand(r,c) <= Game.Settings.waterThresholdBarrier && temp==null) {
+						if (getManager().getTilePercentLand(r,c) <= Game.Settings.waterThresholdBarrier && (temp==null||temp.getEntity().equals(this))) {
 							getManager().setTileOverlay(r,c,good);
 						}
 						else {

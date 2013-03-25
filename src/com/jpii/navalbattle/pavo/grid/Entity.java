@@ -205,16 +205,21 @@ public class Entity implements Serializable {
 			return true;
 		}
 		Tile<Entity> t = manager.getTile(loc);
-		if (t != null && ((t.getSuperId() != 0 || t.getEntity() != null) && override))
+		if (t != null && ((t.getSuperId() != 0 || t.getEntity() != null) && !override)){
 			return false;
+		}
 		if (getWidth() + loc.getCol() + 1 >= PavoHelper.getGameWidth(manager.getWorld().getWorldSize())*2 ||
-				getHeight() + loc.getRow() + 1 >= PavoHelper.getGameHeight(manager.getWorld().getWorldSize())*2)
+				getHeight() + loc.getRow() + 1 >= PavoHelper.getGameHeight(manager.getWorld().getWorldSize())*2){
 			return false;
-		if (loc.getRow() < 0 || loc.getCol() < 0)
+		}
+		if (loc.getRow() < 0 || loc.getCol() < 0){
 			return false;
+		}
 		if (ORIENTATION_BUFFER_POSITION == GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT) {
 			for (int w = 0; w < getWidth(); w++) {
 				manager.setTile(location.getRow(),location.getCol()+w, null);
+			}
+			for (int w = 0; w < getWidth(); w++) {
 				Tile t22 = new Tile(this,loc.getRow(),loc.getCol()+w);
 				t22.setId(new Id(id.memCall(ORIENTATION_BUFFER_POSITION)[0],w));
 				manager.setTile(loc.getRow(),loc.getCol()+w, t22);
@@ -233,7 +238,6 @@ public class Entity implements Serializable {
 			manager.getWorld().forceRender();
 		}
 		Location swap2 = getLocation();
-		//System.out.println("wincall");
 		setLocation(loc);
 		manager.getWorld().forceRender();
 		onMove(swap2);

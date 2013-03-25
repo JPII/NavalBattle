@@ -114,7 +114,7 @@ public class HUD extends PWindow{
 		// Entity Box
 		drawFrame(g, boxx, boxy, boxwidth, boxheight);
 		g.drawImage(entityImg,boxx+50,boxy+50,null);
-		if (portflag) {
+		if (display!=null && display.getHandle() == 2) {
 			g.setColor(new Color(169,140,86));
 			g.drawRect(boxx+49,boxy+49,51,51);
 		}
@@ -129,14 +129,9 @@ public class HUD extends PWindow{
 		
 	}
 	
-	public void paintAfter(Graphics2D g){
-		super.paintAfter(g);
-	}
-	
 	public void setEntity(Entity e){		
 		if(display!=null){
 			if(e==null || !display.equals(e)){
-				portflag = false;
 				if(display.getHandle()==1){
 					MoveableEntity display = (MoveableEntity)this.display;
 					if(display.isMovableTileBeingShown()){
@@ -149,16 +144,12 @@ public class HUD extends PWindow{
 		update();
 	}
 	
-	boolean portflag = false;
 	public void update(){
 		if(display != null){
 			setVisible(true);
-			if (display.imgLocation == null) {
-				if (display instanceof PortEntity) {
-					PortEntity pe = (PortEntity)display;
-					entityImg = pe.getIcon();
-					portflag = true;
-				}
+			if (display.getHandle()==2) {
+				PortEntity display = (PortEntity)this.display;
+				entityImg = display.getIcon();
 			}
 			else
 				entityImg = FileUtils.getImage(display.imgLocation);

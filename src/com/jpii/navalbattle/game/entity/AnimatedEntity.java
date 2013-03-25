@@ -23,6 +23,7 @@ public class AnimatedEntity extends MoveableEntity {
 	public AnimatedEntity(EntityManager em, Location loc,byte orientation,int team, GridedEntityTileOrientation... animationFrameIds) {
 		super(em, loc, animationFrameIds[0],orientation,team);
 		animationids = animationFrameIds;
+		handle = 3;
 	}
 	
 	public void setCurrentFrame(int index) {

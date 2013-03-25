@@ -33,7 +33,7 @@ public class PortEntity extends AnimatedEntity {
 	public PortEntity(EntityManager em, Location loc, byte orientation,
 			int team) {
 		super(em, loc, orientation, team, generatePort(em,loc));
-		
+		handle = 2;
 		icon = em.getImage(em.getTile(loc));
 	}
 	
