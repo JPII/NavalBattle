@@ -6,6 +6,7 @@ package com.jpii.navalbattle.game;
 import com.jpii.navalbattle.game.entity.AircraftCarrier;
 import com.jpii.navalbattle.game.entity.BattleShip;
 import com.jpii.navalbattle.game.entity.Submarine;
+import com.jpii.navalbattle.game.entity.Whale;
 import com.jpii.navalbattle.pavo.Game;
 import com.jpii.navalbattle.pavo.PavoHelper;
 import com.jpii.navalbattle.pavo.World;
@@ -73,11 +74,11 @@ public class NavalManager extends EntityManager {
 		w1.setLeftToRightImage(w1_);
 		w1.setTopToBottomImage(w1_);
 		w2 = new GridedEntityTileOrientation();
-		w1.setLeftToRightImage(w2_);
-		w1.setTopToBottomImage(w2_);
+		w2.setLeftToRightImage(w2_);
+		w2.setTopToBottomImage(w2_);
 		w3 = new GridedEntityTileOrientation();
-		w1.setLeftToRightImage(w3_);
-		w1.setTopToBottomImage(w3_);
+		w3.setLeftToRightImage(w3_);
+		w3.setTopToBottomImage(w3_);
 		
 		for (int c = 0; c < 25; c++) {
 			Location poll = gh.pollNextWaterTile();
@@ -90,6 +91,10 @@ public class NavalManager extends EntityManager {
 				tm.addEntity(new BattleShip(this, poll, BattleShip.BATTLESHIP_ID,GridedEntityTileOrientation.ORIENTATION_TOPTOBOTTOM,Game.Settings.rand.nextInt(0,3)));
 			else
 				c--;
+		}
+		for (int c = 0; c < 50; c++) {
+			Location poll = gh.pollNextWaterTile();
+			new Whale(this,poll,GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT,-1,w1,w2,w3);
 		}
 		System.out.println("Let me play you the song of my people.");
 	}

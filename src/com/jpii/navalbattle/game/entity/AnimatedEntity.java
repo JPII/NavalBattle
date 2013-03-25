@@ -12,7 +12,7 @@ import com.jpii.navalbattle.pavo.grid.Location;
  * @author maximusvladimir
  *
  */
-public class AnimatedEntity extends Entity {
+public class AnimatedEntity extends MoveableEntity {
 	private GridedEntityTileOrientation[] animationids;
 
 	/**

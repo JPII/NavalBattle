@@ -26,6 +26,7 @@ public class Whale extends AnimatedEntity {
 	boolean direction = true;
 	boolean speedy = false;
 	public void onUpdate(long tickTime) {
+		System.out.println("tick tock");
 		super.onUpdate(tickTime);
 		if (speedy && tickTime % 2 == 0) {
 			updateFrame();
@@ -54,7 +55,7 @@ public class Whale extends AnimatedEntity {
 		speedy = false;
 	}
 	private void updateFrame() {
-		//setCurrentFrame(nextIndex);
+		setCurrentFrame(nextIndex);
 		if (direction)
 			nextIndex++;
 		else
