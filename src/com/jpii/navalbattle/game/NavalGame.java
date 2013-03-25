@@ -242,7 +242,7 @@ public class NavalGame extends Game{
 	public void mouseWheelChange(MouseWheelEvent mwe) {
 		super.mouseWheelChange(mwe);
 		
-		getWorld().setLoc(getWorld().getScreenX(),getWorld().getScreenY()+(mwe.getWheelRotation() * 30));
+		getWorld().setLoc(getWorld().getScreenX(),getWorld().getScreenY()+(-mwe.getWheelRotation() * 50));
 	}
 	public OmniMap getMap() {
 		return omnimap;
