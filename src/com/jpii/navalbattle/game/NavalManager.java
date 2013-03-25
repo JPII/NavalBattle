@@ -97,8 +97,11 @@ public class NavalManager extends EntityManager {
 			Location poll = gh.pollNextWaterTile();
 			new Whale(this,poll,GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT,-1,w1,w2,w3);
 		}
-		Location p3 = gh.pollNextWaterTile();
-		new PortEntity(this,p3,GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT,-1);
+		for (int c = 0; c < 10; c++) {
+			Location p3 = gh.pollNextWaterTile();
+			new PortEntity(this,p3,GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT,-1);
+			System.out.println("Port generated at " + p3);
+		}
 		System.out.println("Let me play you the song of my people.");
 	}
 	
