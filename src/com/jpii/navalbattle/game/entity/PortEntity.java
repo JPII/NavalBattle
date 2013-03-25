@@ -38,10 +38,10 @@ public class PortEntity extends AnimatedEntity {
 	private static GridedEntityTileOrientation[] generatePort(EntityManager man, Location loc) {
 		BufferedImage flash1 = null, flash2 = null, flash3 = null, flash4 = null;
 		
-		flash1 = new BufferedImage(50,50,BufferedImage.TYPE_3BYTE_BGR);
-		flash2 = new BufferedImage(50,50,BufferedImage.TYPE_3BYTE_BGR);
-		flash3 = new BufferedImage(50,50,BufferedImage.TYPE_3BYTE_BGR);
-		flash4 = new BufferedImage(50,50,BufferedImage.TYPE_3BYTE_BGR);
+		flash1 = new BufferedImage(50,50,BufferedImage.TYPE_4BYTE_ABGR);
+		flash2 = new BufferedImage(50,50,BufferedImage.TYPE_4BYTE_ABGR);
+		flash3 = new BufferedImage(50,50,BufferedImage.TYPE_4BYTE_ABGR);
+		flash4 = new BufferedImage(50,50,BufferedImage.TYPE_4BYTE_ABGR);
 		
 		Graphics2D g1 = PavoHelper.createGraphics(flash1);
 		Graphics2D g2 = PavoHelper.createGraphics(flash2);
@@ -49,7 +49,7 @@ public class PortEntity extends AnimatedEntity {
 		Graphics2D g4 = PavoHelper.createGraphics(flash4);
 		
 		Rand randy = new Rand(Game.Settings.seed + 50);
-		int numStructures = randy.nextInt(3,5);
+		int numStructures = randy.nextInt(6,10);
 		int counter = 0;
 		while (counter < numStructures) {
 			counter++;
