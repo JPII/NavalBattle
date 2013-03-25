@@ -34,6 +34,13 @@ public class PortEntity extends AnimatedEntity {
 		super(em, loc, orientation, team, generatePort(em,loc));
 	}
 	
+	public void onUpdate(long tickTime) {
+		//System.out.println("tick tock");
+		super.onUpdate(tickTime);
+		if (tickTime % 8 == 0) {
+			updateFrame();
+		}
+	}
 	
 	private static GridedEntityTileOrientation[] generatePort(EntityManager man, Location loc) {
 		BufferedImage flash1 = null, flash2 = null, flash3 = null, flash4 = null;
