@@ -2,7 +2,15 @@
 <navalbattle>
 	<string name="version_code">6</string>
 	<string name="version_readable">0.6</string>
-	<string name="update_text">NavalBattle 0.6 is the next milestone and first beta! Please pull the latest code from GitHub.</string>
+	<string name="update_text">
+		NavalBattle 0.6 is the next milestone and first beta! Please pull the latest code from GitHub.
+		\n\nChangelog:
+		\n * Turn system
+		\n * Movement of ships
+		\n * HUD
+		\n * Game saves
+		\n * Bug and stability fixes
+	</string>
 	<string name="update_url">http://github.com/JPII/NavalBattle</string>
 	
 	<string name="announcement_code">-1</string>
