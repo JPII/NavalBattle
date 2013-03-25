@@ -70,48 +70,48 @@ public class WindowManager extends Renderable{
 		}
 	}
 	public static WindowManager Inst;
-	public boolean mouseDown(MouseEvent me) {
-		int mx = me.getX();
-		int my = me.getY();
-		boolean flag = false;
-		if (context != null) {
-			GameWindow gw = context;
-			if (mx >= gw.getWidth()-23+gw.getX() && mx <= gw.getWidth()-3+gw.getX() && my >= gw.getY() + 2 && my <= gw.getY() + 20) {
-				gw.onCloseCalled();
-				context = null;
-			}
-			if (gw.checkOtherDown(me)) {
-				context = null;
-			}
-			return true;
-		}
-		for (int c = 0; c < wins.size(); c++) {
-			GameWindow gw = wins.get(c);
-			if (gw!=null) {
-				if(gw.mouseDown(me))
-					flag = true;
-				if (gw.needsShutdown()){
-					//System.out.println("This occured...2");
-					flag = false;
-				}
-			}
-		}
-		//System.out.println("Window "+flag);
-		return flag;
-	}
+//	public boolean mouseDown(MouseEvent me) {
+//		int mx = me.getX();
+//		int my = me.getY();
+//		boolean flag = false;
+//		if (context != null) {
+//			GameWindow gw = context;
+//			if (mx >= gw.getWidth()-23+gw.getX() && mx <= gw.getWidth()-3+gw.getX() && my >= gw.getY() + 2 && my <= gw.getY() + 20) {
+//				gw.onCloseCalled();
+//				context = null;
+//			}
+//			if (gw.checkOtherDown(me)) {
+//				context = null;
+//			}
+//			return true;
+//		}
+//		for (int c = 0; c < wins.size(); c++) {
+//			GameWindow gw = wins.get(c);
+//			if (gw!=null) {
+//				if(gw.mouseDown(me))
+//					flag = true;
+//				if (gw.needsShutdown()){
+//					//System.out.println("This occured...2");
+//					flag = false;
+//				}
+//			}
+//		}
+//		//System.out.println("Window "+flag);
+//		return flag;
+//	}
 	public boolean mouseDragged(MouseEvent me) {
 		int mx = me.getX();
 		int my = me.getY();
 		boolean flag = false;
-		if (context != null) {
-			GameWindow gw = context;
-			if (gw.isTitleShown() && gw.isVisible()) {
-				if (mx >= gw.getX() - 10 && mx <= gw.getX()+gw.getWidth()+10 && my >= gw.getY()-10 && my <= gw.getY()+34) {
-					gw.setLoc(mx - (gw.getWidth()/2), my - 12);
-				}
-			}
-			return true;
-		}
+//		if (context != null) {
+//			GameWindow gw = context;
+//			if (gw.isTitleShown() && gw.isVisible()) {
+//				if (mx >= gw.getX() - 10 && mx <= gw.getX()+gw.getWidth()+10 && my >= gw.getY()-10 && my <= gw.getY()+34) {
+//					gw.setLoc(mx - (gw.getWidth()/2), my - 12);
+//				}
+//			}
+//			return true;
+//		}
 		for (int c = 0; c < wins.size(); c++) {
 			GameWindow gw = wins.get(c);
 			if (gw!=null) {
@@ -157,14 +157,14 @@ public class WindowManager extends Renderable{
 			}
 		}
 		
-		if (context != null) {
-			g2.drawImage(grided, 0, 0, null);
-			GameWindow gw = context;
-			int gwx = gw.getX();
-			int gwy = gw.getY();
-			PavoImage gwb = gw.getBuffer();
-			g2.drawImage(gwb, gwx,gwy, null);
-		}
+//		if (context != null) {
+//			g2.drawImage(grided, 0, 0, null);
+//			GameWindow gw = context;
+//			int gwx = gw.getX();
+//			int gwy = gw.getY();
+//			PavoImage gwb = gw.getBuffer();
+//			g2.drawImage(gwb, gwx,gwy, null);
+//		}
 		g2.dispose();
 	}
 }

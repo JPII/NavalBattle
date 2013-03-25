@@ -19,6 +19,7 @@ package com.jpii.navalbattle.pavo.gui;
 
 import java.awt.BasicStroke;
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics2D;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
@@ -28,33 +29,42 @@ import javax.swing.ImageIcon;
 import com.jpii.navalbattle.NavalBattle;
 import com.jpii.navalbattle.pavo.Game;
 import com.jpii.navalbattle.pavo.PavoHelper;
+import com.jpii.navalbattle.pavo.gui.controls.PButton;
+import com.jpii.navalbattle.pavo.gui.controls.PText;
+import com.jpii.navalbattle.pavo.gui.controls.PWindow;
+import com.jpii.navalbattle.pavo.gui.events.PMouseEvent;
 import com.jpii.navalbattle.renderer.Helper;
 
 /**
  * @author MKirkby
  *
  */
-public class MessageBox extends com.jpii.navalbattle.pavo.gui.GameWindow {
+public class MessageBox extends com.jpii.navalbattle.pavo.gui.controls.PWindow {
 	String message = "no msg";
 	MessageBoxIcon icon;
+	PText guiMessage;
+	PButton button;
 	private static BufferedImage msg_error = null,msg_warn = null,msg_notify = null,msg_info = null;
-	private MessageBox(String title, String message,MessageBoxIcon icon) {
-		super();
-		this.icon = icon;
-		setTitle(title);
+	private MessageBox(NewWindowManager wm,String title, String message,MessageBoxIcon icon) {
+		super(wm);
+		guiMessage = new PText(this,message,10,25);
+		guiMessage.setFont(new Font("Arial",0,18));
 		this.message = message;
-		String[] lines = message.split("\n");
-		int lg = 0;
-		for (int v = 0; v < lines.length; v++) {
-			if (lines[v].length() > lg) {
-				lg = lines[v].length();
+		this.icon = icon;
+		setText(title);
+		addControl(guiMessage);
+		setSize(guiMessage.getWidth()+160,guiMessage.getHeight()+140);
+		button = new PButton(this,"Ok");
+		button.setLoc((getWidth()/2)-(button.getWidth()/2),getHeight()-(button.getHeight()+5));
+		addControl(button);
+		button.addMouseListener(new PMouseEvent()
+		{
+			public void mouseDown(int x, int y, int buttonid) {
+				close();
 			}
-		}
-		int w = lg * 10;
-		int h = 125 + (16 * lines.length);
-		setSize(w,h);
-		setLoc((Game.Settings.currentWidth/2)-(w/2),(Game.Settings.currentHeight/2)-(h/2));
-		render();
+		});
+		setLoc((Game.Settings.currentWidth/2)-(getWidth()/2),(Game.Settings.currentHeight/2)-(getHeight()/2));
+		repaint();
 	}
 	public static void setMessageBoxErrorIcon(BufferedImage icon) {
 		msg_error = icon;
@@ -89,12 +99,12 @@ public class MessageBox extends com.jpii.navalbattle.pavo.gui.GameWindow {
 		show(title,message,iconifier,blotchBackground,true);
 	}
 	public static void closeAllMessageBoxes() {
-		if (WindowManager.Inst == null)
+		if (NewWindowManager.Inst == null)
 			return;
-		for (int c = 0; c < WindowManager.Inst.size(); c++) {
-			GameWindow gw = WindowManager.Inst.get(c);
+		for (int c = 0; c < NewWindowManager.Inst.size(); c++) {
+			PWindow gw = NewWindowManager.Inst.get(c);
 			if (gw != null && gw instanceof MessageBox) {
-				WindowManager.Inst.remove(gw);
+				NewWindowManager.Inst.remove(gw);
 			}
 		}
 	}
@@ -110,25 +120,44 @@ public class MessageBox extends com.jpii.navalbattle.pavo.gui.GameWindow {
 		if (WindowManager.Inst == null)
 			return;
 		
-		MessageBox handle = new MessageBox(title,message,iconifier);
-		handle.setHandle(395428394);
+		MessageBox handle = new MessageBox(NewWindowManager.Inst,title,message,iconifier);
+		//handle.setHandle(395428394);
 		if (onlyOneAllowed) {
 			for (int c = 0; c < WindowManager.Inst.size(); c++) {
-				GameWindow gw = WindowManager.Inst.get(c);
+				PWindow gw = NewWindowManager.Inst.get(c);
 				if (gw != null && gw instanceof MessageBox) {
-					WindowManager.Inst.remove(gw);
+					NewWindowManager.Inst.remove(gw);
 				}
 			}
 		}
 		if (blotchBackground) {
-			WindowManager.Inst.ianOwjej10nJAnin345soaKOEe9201LIQUICK(handle);
+			//NewWindowManager.Inst.add(handle);
+			NewWindowManager.Inst.ianOwjej10nJAnin345soaKOEe9201LIQUICK(handle);
 		}
 		else
-			WindowManager.Inst.add(handle);
+			NewWindowManager.Inst.add(handle);
 	}
-	public void render() {
-		super.render();
-		Graphics2D g = PavoHelper.createGraphics(getBuffer());
+	public void close() {
+		super.close();
+		if (blotchBackground) {
+			NewWindowManager.Inst.ianOwjej10nJAnin345soaKOEe9201LIQUICK(null);
+		}
+		else {
+			for (int c = 0; c < WindowManager.Inst.size(); c++) {
+				PWindow gw = NewWindowManager.Inst.get(c);
+				if (gw == this) {
+					NewWindowManager.Inst.remove(gw);
+				}
+			}
+		}
+	}
+	public void onClose() {
+		if (blotchBackground) {
+			NewWindowManager.Inst.context = null;
+		}
+	}
+	public void paint(Graphics2D g) {
+		super.paint(g);
 		BufferedImage hs = null;
 		g.setColor(Color.red);
 		if (icon == MessageBoxIcon.Error) {
@@ -147,29 +176,5 @@ public class MessageBox extends com.jpii.navalbattle.pavo.gui.GameWindow {
 			int size = (getHeight()/2);
 			g.drawImage(hs,getWidth()-(size+8), ((size+13)/2), size,size,null);
 		}
-		g.setColor(Color.black);
-		g.setFont(Helper.GUI_GAME_FONT);
-		String[] lines = message.split("\n");
-		for (int v = 0; v < lines.length; v++) {
-			g.drawString(lines[v], 5, 40 + (v*14));
-		}
-		g.setColor(getBackgroundColor().darker().darker());
-		g.fillRoundRect((getWidth()/2)-30, (getHeight()-36), 60, 24, 5,5);
-		g.setColor(Color.black);
-		g.drawRoundRect((getWidth()/2)-30, (getHeight()-36), 60, 24, 5,5);
-		g.drawString("OK",(getWidth()/2)-8, (getHeight()-18));
-		g.dispose();
-	}
-	public boolean checkOtherDown(MouseEvent me) {
-		int mx = me.getX();
-		int my = me.getY();
-		if (mx >= (getWidth()/2)-30+getX() && mx <= (getWidth()/2)+30+getX() && my >= (getHeight()-36)+getY() && my <= (getHeight()-18)+getY()) {
-			onCloseCalled();
-			return true;
-		}
-		return false;
-	}
-	public void onCloseCalled() {
-		getWinMan().remove(this);
 	}
 }

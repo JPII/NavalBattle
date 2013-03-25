@@ -25,7 +25,7 @@ import com.jpii.navalbattle.renderer.Helper;
 public class PWindow extends Control {
 	private boolean showTitle = true;
 	private String title = "";
-	private boolean blotchBackground = false;
+	protected boolean blotchBackground = false;
 	private NewWindowManager pare;
 	private PWindowEffect pwething = PWindowEffect.NONE;
 	private boolean centerTitle = false;
@@ -167,7 +167,7 @@ public class PWindow extends Control {
 				ableToDragTitle = true;
 			}
 		}
-		System.out.println("click performed! (" + x + "," + y + ")");
+		//System.out.println("click performed! (" + x + "," + y + ")");
 		// Somewhere in the window was pressed.
 	}
 	
@@ -193,6 +193,15 @@ public class PWindow extends Control {
 	
 	public void parentRepaint() {
 		pare.render();
+	}
+	
+	public void close() {
+		onClose();
+		dispose();
+	}
+	
+	public NewWindowManager getWindowManager() {
+		return pare;
 	}
 	
 	boolean textChanged = false;
