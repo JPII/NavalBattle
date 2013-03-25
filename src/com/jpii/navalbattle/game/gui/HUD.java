@@ -7,6 +7,7 @@ import java.awt.image.BufferedImage;
 
 import com.jpii.navalbattle.game.TurnManager;
 import com.jpii.navalbattle.game.entity.MoveableEntity;
+import com.jpii.navalbattle.game.entity.PortEntity;
 import com.jpii.navalbattle.pavo.grid.Entity;
 import com.jpii.navalbattle.pavo.grid.GridHelper;
 import com.jpii.navalbattle.pavo.grid.Location;
@@ -113,6 +114,10 @@ public class HUD extends PWindow{
 		// Entity Box
 		drawFrame(g, boxx, boxy, boxwidth, boxheight);
 		g.drawImage(entityImg,boxx+50,boxy+50,null);
+		if (portflag) {
+			g.setColor(new Color(169,140,86));
+			g.drawRect(boxx+49,boxy+49,51,51);
+		}
 		g.setColor(Color.red);
 		drawString(g,location, centerx, centery+60);
 		drawString(g,health, centerx, centery-35);
@@ -131,6 +136,7 @@ public class HUD extends PWindow{
 	public void setEntity(Entity e){		
 		if(display!=null){
 			if(e==null || !display.equals(e)){
+				portflag = false;
 				if(display.getHandle()==1){
 					MoveableEntity display = (MoveableEntity)this.display;
 					if(display.isMovableTileBeingShown()){
@@ -143,10 +149,19 @@ public class HUD extends PWindow{
 		update();
 	}
 	
+	boolean portflag = false;
 	public void update(){
 		if(display != null){
 			setVisible(true);
-			entityImg = FileUtils.getImage(display.imgLocation);
+			if (display.imgLocation == null) {
+				if (display instanceof PortEntity) {
+					PortEntity pe = (PortEntity)display;
+					entityImg = pe.getIcon();
+					portflag = true;
+				}
+			}
+			else
+				entityImg = FileUtils.getImage(display.imgLocation);
 			int tempwidth = entityImg.getWidth();
 			int tempheight = entityImg.getHeight();
 			boxx = centerx - (tempwidth/2) - 50;

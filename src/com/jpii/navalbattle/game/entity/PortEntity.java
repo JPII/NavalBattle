@@ -14,6 +14,7 @@ import com.jpii.navalbattle.pavo.PavoHelper;
 import com.jpii.navalbattle.pavo.grid.EntityManager;
 import com.jpii.navalbattle.pavo.grid.GridedEntityTileOrientation;
 import com.jpii.navalbattle.pavo.grid.Location;
+import com.jpii.navalbattle.pavo.grid.Tile;
 import com.jpii.navalbattle.util.FileUtils;
 
 /**
@@ -21,7 +22,7 @@ import com.jpii.navalbattle.util.FileUtils;
  *
  */
 public class PortEntity extends AnimatedEntity {
-
+	BufferedImage icon;
 	/**
 	 * @param em
 	 * @param loc
@@ -32,6 +33,12 @@ public class PortEntity extends AnimatedEntity {
 	public PortEntity(EntityManager em, Location loc, byte orientation,
 			int team) {
 		super(em, loc, orientation, team, generatePort(em,loc));
+		
+		icon = em.getImage(em.getTile(loc));
+	}
+	
+	public BufferedImage getIcon() {
+		return icon;
 	}
 	
 	public void onUpdate(long tickTime) {
