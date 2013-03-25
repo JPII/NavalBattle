@@ -47,10 +47,10 @@ public class Helper {
 		GUI_GAME_FONT = new Font("Arial",0,16);
 		GUI_MENU_TITLE_FONT = new Font("Arial",0,56);
 		try {
-			GUI_OMNIMAP_BACKGROUND1 = 
-					FileUtils.getImage(("drawable-gui/gui_omnimap_background1.png"));
-			GUI_OMNIMAP_BACKGROUND2 = 
-					FileUtils.getImage(("drawable-gui/gui_omnimap_background2.png"));
+			//GUI_OMNIMAP_BACKGROUND1 = 
+				//	FileUtils.getImage(("drawable-gui/gui_omnimap_background1.png"));
+			//GUI_OMNIMAP_BACKGROUND2 = 
+				//	FileUtils.getImage(("drawable-gui/gui_omnimap_background2.png"));
 			GUI_WINDOW_ICON = FileUtils.getImage(("drawable-gui/gui_window_icon.png"));
 			GUI_GLYPHS= FileUtils.getImage(("font/glyphs.bmp"));
 			MessageBox.setMessageBoxErrorIcon(
@@ -93,7 +93,7 @@ public class Helper {
         g.drawLine(1+xt, 16, 10+xt, 16);
         g.drawLine(2+xt, 17, 9+xt, 17);
         g.drawLine(4+xt, 18, 7+xt, 18);
-        glyphParser();
+        //glyphParser();
 	}
 	private static void glyphParser() {
 		BufferedImage glyphs = GUI_GLYPHS;
