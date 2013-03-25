@@ -28,6 +28,7 @@ public class PavoServer implements Runnable {
 	ServerSocket socket;
 	Socket client;
 	boolean doing = false;
+	boolean autoReboot = true;
 	String ipaddress = null;
 	Thread self;
 	BufferedReader reader;
@@ -41,6 +42,14 @@ public class PavoServer implements Runnable {
 	
 	public String getSelfIP() {
 		return ipaddress;
+	}
+	
+	public boolean isAutoRestarting() {
+		return autoReboot;
+	}
+	
+	public void setRebootOnDisconnect(boolean s) {
+		autoReboot = s;
 	}
 	
 	public boolean start() {
@@ -147,8 +156,41 @@ public class PavoServer implements Runnable {
 				e.printStackTrace();
 			}
 		}
+		try {
+			br.close();
+		}
+		catch (Throwable te) {
+			
+		}
+		try {
+			isr.close();
+		}
+		catch (Throwable te) {
+			
+		}
+		try {
+			is.close();
+		}
+		catch (Throwable te) {
+			
+		}
+		try {
+			socket.close();
+		}
+		catch (Throwable te) {
+			
+		}
+		try {
+			client.close();
+		}
+		catch (Throwable te) {
+			
+		}
 		System.out.println("Client disconnected.");
-		halt();
+		if (autoReboot)
+			start();
+		else
+			halt();
 	}
 	boolean sendLock = false;
 	
