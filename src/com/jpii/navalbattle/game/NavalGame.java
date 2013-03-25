@@ -83,7 +83,7 @@ public class NavalGame extends Game{
 		getWindows().add(pw);
 		//MessageBox.show("Warning", "This is a message box!!!");
 		MessageBox.show("Hey there!","Could not connect to RocketGamer servers.\n\nTrying again in 10 seconds.",
-				MessageBoxIcon.Notify, true);
+				MessageBoxIcon.Notify, false);
 
 	}
 	public NavalGame(PavoOpenState pos, String flags) {
