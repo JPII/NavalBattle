@@ -20,10 +20,10 @@ public class Whale extends AnimatedEntity {
 		super(em, loc, orientation, team, animationFrameIds);
 		nextIndex = Game.Settings.rand.nextInt(0,3);
 		imgLocation="drawable-game/other/whaleright.png";
+		maxStep = 8;
 	}
 	
-	int nextIndex = 0;
-	boolean direction = true;
+	
 	boolean speedy = false;
 	public void onUpdate(long tickTime) {
 		//System.out.println("tick tock");
@@ -37,6 +37,8 @@ public class Whale extends AnimatedEntity {
 		if (tickTime % 5 == 0)
 			updateSurroundings();
 	}
+	
+	
 	private void updateSurroundings() {
 		for (int r = -3; r < 3; r++) {
 			for (int c = -3; c < c; c++) {
@@ -53,21 +55,6 @@ public class Whale extends AnimatedEntity {
 			}
 		}
 		speedy = false;
-	}
-	private void updateFrame() {
-		setCurrentFrame(nextIndex);
-		if (direction)
-			nextIndex++;
-		else
-			nextIndex--;
-		if (nextIndex >= getTotalFrames()) {
-			direction = false;
-			nextIndex--;
-		}
-		if (nextIndex == -1) {
-			direction = true;
-			nextIndex = 0;
-		}
 	}
 
 }

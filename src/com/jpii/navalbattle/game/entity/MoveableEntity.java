@@ -9,7 +9,7 @@ import com.jpii.navalbattle.pavo.grid.Tile;
 
 public class MoveableEntity extends Entity {
 	private static final long serialVersionUID = 1L;
-	private int maxStep = 4;
+	protected int maxStep = 4;
 	protected static int maxMovement;
 	protected static int moved;
 	private int health = 100;

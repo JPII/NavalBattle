@@ -35,5 +35,22 @@ public class AnimatedEntity extends MoveableEntity {
 		return animationids.length;
 	}
 	
+	int nextIndex = 0;
+	boolean direction = true;
 	
+	public void updateFrame() {
+		setCurrentFrame(nextIndex);
+		if (direction)
+			nextIndex++;
+		else
+			nextIndex--;
+		if (nextIndex >= getTotalFrames()) {
+			direction = false;
+			nextIndex--;
+		}
+		if (nextIndex == -1) {
+			direction = true;
+			nextIndex = 0;
+		}
+	}
 }
