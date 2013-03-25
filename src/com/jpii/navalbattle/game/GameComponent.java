@@ -79,6 +79,13 @@ public class GameComponent extends JComponent {
 				game.mouseUp(arg0);
 			}		
 		};
+		MouseWheelListener mwl = new MouseWheelListener() {
+			public void mouseWheelMoved(MouseWheelEvent arg0) {
+				if (game == null)
+					return;
+				game.mouseWheelChange(arg0);
+			}
+		};
 		MouseMotionListener mml = new MouseMotionListener() {
 			public void mouseDragged(MouseEvent arg0) {
 				if (game == null)
@@ -91,6 +98,7 @@ public class GameComponent extends JComponent {
 				game.mouseMove(arg0);
 			}	
 		};
+		addMouseWheelListener(mwl);
 		addMouseMotionListener(mml);
 		addMouseListener(ml);
 		ActionListener al = new ActionListener() {

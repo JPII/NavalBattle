@@ -19,6 +19,7 @@ package com.jpii.navalbattle.game;
 
 import java.awt.Graphics2D;
 import java.awt.event.MouseEvent;
+import java.awt.event.MouseWheelEvent;
 
 import com.jpii.navalbattle.game.entity.*;
 import com.jpii.navalbattle.game.gui.HUD;
@@ -237,6 +238,11 @@ public class NavalGame extends Game{
 		}
 		getWorld().setLoc(fgax, fgaz);
 		//forceUpdate(); // SEE WARNING IN DESCRIPTION!!! THIS METHOD IS NOT ACTUALLY DECREPATED!!!
+	}
+	public void mouseWheelChange(MouseWheelEvent mwe) {
+		super.mouseWheelChange(mwe);
+		
+		getWorld().setLoc(getWorld().getScreenX(),getWorld().getScreenY()+(mwe.getWheelRotation() * 30));
 	}
 	public OmniMap getMap() {
 		return omnimap;
