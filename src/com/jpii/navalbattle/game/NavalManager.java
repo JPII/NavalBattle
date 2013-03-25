@@ -5,6 +5,7 @@ package com.jpii.navalbattle.game;
 
 import com.jpii.navalbattle.game.entity.AircraftCarrier;
 import com.jpii.navalbattle.game.entity.BattleShip;
+import com.jpii.navalbattle.game.entity.PortEntity;
 import com.jpii.navalbattle.game.entity.Submarine;
 import com.jpii.navalbattle.game.entity.Whale;
 import com.jpii.navalbattle.pavo.Game;
@@ -96,6 +97,8 @@ public class NavalManager extends EntityManager {
 			Location poll = gh.pollNextWaterTile();
 			new Whale(this,poll,GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT,-1,w1,w2,w3);
 		}
+		Location p3 = gh.pollNextWaterTile();
+		new PortEntity(this,p3,GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT,-1);
 		System.out.println("Let me play you the song of my people.");
 	}
 	
