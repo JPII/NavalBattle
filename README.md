@@ -1,7 +1,7 @@
 NavalBattle
 ==========
 
-A new RoketGamer-powered game. Coming soon.
+Strategic turn-based naval game. Coming soon.
 
 [For visual snapshots of the latest commits and information see the snapshots wiki page](http://bit.ly/nbsnapshots)
 [For documentation and reference](http://bit.ly/navalbattledoc)
@@ -9,7 +9,7 @@ A new RoketGamer-powered game. Coming soon.
 ![Your internet is slow](http://bit.ly/navalthing0701)
 
 ## Dependencies
-We depend on the following projects. We plan on moving to Maven soon to help automatically handle dependencies.
+We depend on the following projects. They can be found in the libs folder. If you use Eclipse, everything already is taken care of!
 * GameKit
 * Apache Commons IO, Lang, Codec
 
