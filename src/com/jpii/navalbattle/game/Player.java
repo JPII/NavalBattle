@@ -21,8 +21,6 @@ public class Player {
 		for (int index =0; index<entities.size(); index++){
 			Entity e = entities.get(0);
 			if(e.getHandle()==1){
-				((MoveableEntity)e).resetMovement();
-				System.out.println("reset: "+((MoveableEntity)e).getMoved());
 			}
 		}
 	}

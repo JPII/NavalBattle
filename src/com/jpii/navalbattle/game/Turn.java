@@ -14,7 +14,7 @@ public class Turn {
 		if(!flag)
 			flag = player.myEntity(entity);
 		if(!flag)
-			flag = (entity.getMoved()>entity.getMaxMovement());
+			flag = (entity.getMoved()>=entity.getMaxMovement());
 		return flag;
 	}
 	

@@ -126,7 +126,7 @@ public class GridHelper implements Serializable {
 		if (position == GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT) {
 			for (int c = 0; c < width; c++) {
 				int p = em.getTilePercentLand(row,col+c);
-				if(!e.isInMoveRange(col+c,row)){
+				if(!e.isInMoveRange(col,row)){
 					return false;
 				}
 				if (p > Game.Settings.waterThresholdBarrier){
@@ -141,7 +141,7 @@ public class GridHelper implements Serializable {
 		if (position == GridedEntityTileOrientation.ORIENTATION_TOPTOBOTTOM) {
 			for (int c = 0; c < width; c++) {
 				int p = em.getTilePercentLand(row-c,col);
-				if(!e.isInMoveRange(col,row-c))
+				if(!e.isInMoveRange(col,row))
 					return false;
 				if (p > Game.Settings.waterThresholdBarrier)
 					return false;

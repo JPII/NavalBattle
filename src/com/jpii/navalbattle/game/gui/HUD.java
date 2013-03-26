@@ -105,6 +105,7 @@ public class HUD extends PWindow{
 		nextMove.addMouseListener(new PMouseEvent(){
 			public void mouseDown(int x, int y, int buttonid) {
 				tm2.nextTurn();
+				update();
 			}
 		});
 		
@@ -174,6 +175,10 @@ public class HUD extends PWindow{
 			location = ("[X:"+display.getLocation().getCol()+" Y:"+display.getLocation().getRow()+"]");
 			if(display.getHandle()==1){
 				MoveableEntity display = (MoveableEntity)this.display;
+				if(display.isMovableTileBeingShown()){
+					display.toggleMovable();
+					display.toggleMovable();
+				}
 				if(tm.getTurn().canmoveEntity(display)){
 					move.setVisible(true);
 					moveB.setVisible(true);
@@ -266,7 +271,6 @@ public class HUD extends PWindow{
 						display.addMovement(rowchange);
 					else
 						display.addMovement(colchange);
-					display.toggleMovable();
 					update();
 					return true;
 				}
@@ -281,7 +285,6 @@ public class HUD extends PWindow{
 						display.addMovement(rowchange);
 					else
 						display.addMovement(colchange);
-					display.toggleMovable();
 					update();
 					return true;
 				}
