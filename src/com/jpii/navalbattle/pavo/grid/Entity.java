@@ -367,8 +367,7 @@ public class Entity implements Serializable {
 	}
 	
 	public void onMouseDown(int x, int y, boolean leftClick) {
-		NavalGame ng = (NavalGame)getManager().getWorld().getGame();
-		ng.getHud().setEntity(this);
+		
 	}
 	
 	public void onHit(Entity attackingEntity) {

@@ -131,8 +131,7 @@ public class HUD extends PWindow{
 		
 	}
 	
-	public void setEntity(Entity e){	
-		System.out.println(e);
+	public void setEntity(Entity e){
 		if(display!=null){
 			if(e==null || !display.equals(e)){
 				if(display.getHandle()==1){
@@ -231,6 +230,11 @@ public class HUD extends PWindow{
 	public void showMoveShip(int x, int y){
 		if(!isShowingMove())
 			return;
+		if(display!=null)
+			if(display.getHandle() == 1){
+				MoveableEntity display = (MoveableEntity)this.display;
+				
+			}
 	}
 	
 	public boolean moveShip(int x, int y, boolean leftclick){
@@ -239,12 +243,21 @@ public class HUD extends PWindow{
 		if(display!=null)
 			if(display.getHandle() == 1){
 				MoveableEntity display = (MoveableEntity)this.display;
+				int startr = display.getLocation().getRow();
+				int startc = display.getLocation().getCol();
 				if(leftclick && GridHelper.canMoveTo(display.getManager(), display, display.getCurrentOrientation(), y, x,display.getWidth())){
 					if(display.isMovableTileBeingShown()){
 						display.toggleMovable();
 					}
 					display.moveTo(new Location(y,x));
+					int rowchange = Math.abs(startr - (display.getLocation().getRow())); 
+					int colchange = Math.abs(startc - (display.getLocation().getCol()));
+					if(rowchange>=colchange)
+						display.addMovement(rowchange);
+					else
+						display.addMovement(colchange);
 					display.toggleMovable();
+					update();
 					return true;
 				}
 				else if(GridHelper.canMoveTo(display.getManager(), display, display.getOppositeOrientation(), y, x,display.getWidth())){
@@ -252,7 +265,14 @@ public class HUD extends PWindow{
 						display.toggleMovable();
 					}
 					display.moveTo(new Location(y,x),display.getOppositeOrientation());
+					int rowchange = Math.abs(startr - (display.getLocation().getRow())); 
+					int colchange = Math.abs(startc - (display.getLocation().getCol()));
+					if(rowchange>=colchange)
+						display.addMovement(rowchange);
+					else
+						display.addMovement(colchange);
 					display.toggleMovable();
+					update();
 					return true;
 				}
 			}

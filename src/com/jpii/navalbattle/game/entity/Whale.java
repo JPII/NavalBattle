@@ -20,7 +20,7 @@ public class Whale extends AnimatedEntity {
 		super(em, loc, orientation, team, animationFrameIds);
 		nextIndex = Game.Settings.rand.nextInt(0,3);
 		imgLocation="drawable-game/other/whaleright.png";
-		maxStep = 8;
+		maxMovement = 8;
 	}
 	
 	

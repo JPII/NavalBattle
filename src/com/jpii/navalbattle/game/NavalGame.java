@@ -273,8 +273,8 @@ public class NavalGame extends Game{
 			
 		}
 		
-		else if(!isAClient() && me.getButton() != MouseEvent.BUTTON1){
-			getHud().setEntity(null);
+		else if(!isAClient()){
+			getHud().setEntity(nm.findEntity(chy, chx));
 		}
 		
 //		else if (Game.Settings.isFinishedGenerating && getWorld().getEntityManager().getTilePercentLand(chy,chx) <= 5){

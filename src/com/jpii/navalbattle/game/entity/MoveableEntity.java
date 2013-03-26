@@ -9,9 +9,8 @@ import com.jpii.navalbattle.pavo.grid.Tile;
 
 public class MoveableEntity extends Entity {
 	private static final long serialVersionUID = 1L;
-	protected int maxStep = 4;
-	protected static int maxMovement;
-	protected static int moved;
+	protected int maxMovement;
+	protected int moved;
 	private int health = 100;
 	private boolean showMove = false;
 	/**
@@ -51,10 +50,10 @@ public class MoveableEntity extends Entity {
 			
 			
 		if (getCurrentOrientation() == GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT) {
-			for (int x = 0; x < (maxStep * 2) + getWidth(); x++) {
-				for (int y = 0; y < (maxStep * 2) + 1; y++) {
-					int r = (y + getLocation().getRow()) - (((maxStep * 2) + 1)/2);
-					int c = (x + getLocation().getCol()) - (maxStep);
+			for (int x = 0; x < (getMovementLeft() * 2) + getWidth(); x++) {
+				for (int y = 0; y < (getMovementLeft() * 2) + 1; y++) {
+					int r = (y + getLocation().getRow()) - (((getMovementLeft() * 2) + 1)/2);
+					int c = (x + getLocation().getCol()) - (getMovementLeft());
 					if (r >= 0 && c >= 0) {
 						Tile temp = getManager().getTile(r,c);
 						if (getManager().getTilePercentLand(r,c) <= Game.Settings.waterThresholdBarrier && (temp==null||temp.getEntity().equals(this))) {
@@ -68,10 +67,10 @@ public class MoveableEntity extends Entity {
 			}
 		}
 		else {
-			for (int x = 0; x < (maxStep * 2) + 1; x++) {
-				for (int y = 0; y < (maxStep * 2) + getWidth(); y++) {
-					int c = (x + getLocation().getCol()) - (((maxStep * 2) + 1)/2);
-					int r = (y + getLocation().getRow()) - (((maxStep*2)-1));
+			for (int x = 0; x < (getMovementLeft() * 2) + 1; x++) {
+				for (int y = 0; y < (getMovementLeft() * 2) + getWidth(); y++) {
+					int c = (x + getLocation().getCol()) - (((getMovementLeft() * 2) + 1)/2);
+					int r = (y + getLocation().getRow()) - (((getMovementLeft()*2)-1));
 					if (r >= 0 && c >= 0) {
 						Tile temp = getManager().getTile(r,c);
 						if (getManager().getTilePercentLand(r,c) <= Game.Settings.waterThresholdBarrier && temp==null) {
@@ -92,30 +91,26 @@ public class MoveableEntity extends Entity {
 			return false;
 		boolean flag = false;
 		if (getCurrentOrientation() == GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT) {
-			int minr = getLocation().getRow() - maxStep;
-			int maxr = getLocation().getRow() + maxStep;
-			int minc = getLocation().getCol() - maxStep;
-			int maxc = getLocation().getCol() + maxStep+getWidth()-1;
+			int minr = getLocation().getRow() - getMovementLeft();
+			int maxr = getLocation().getRow() + getMovementLeft();
+			int minc = getLocation().getCol() - getMovementLeft();
+			int maxc = getLocation().getCol() + getMovementLeft()+getWidth()-1;
 			if(chx<=maxc && chx>=minc && chy<=maxr && chy>=minr)
 				flag = true;
 		}
 		else {
-			int minr = getLocation().getRow() - maxStep-getWidth()+1;
-			int maxr = getLocation().getRow() + maxStep;
-			int minc = getLocation().getCol() - maxStep;
-			int maxc = getLocation().getCol() + maxStep;
+			int minr = getLocation().getRow() - getMovementLeft()-getWidth()+1;
+			int maxr = getLocation().getRow() + getMovementLeft();
+			int minc = getLocation().getCol() - getMovementLeft();
+			int maxc = getLocation().getCol() + getMovementLeft();
 			if(chx<=maxc && chx>=minc && chy<=maxr && chy>=minr)
 				flag = true;
 		}
 		return flag;
 	}
 	
-	public int getMaxStep() {
-		return maxStep;
-	}
-	
-	public void setMaxStep(int v) {
-		maxStep = v;
+	public int getMovementLeft() {
+		return maxMovement-moved;
 	}
 	
 	public int getHealth(){
@@ -128,5 +123,9 @@ public class MoveableEntity extends Entity {
 	
 	public int getMoved(){
 		return moved;
+	}
+	
+	public void addMovement(int num){
+		moved += num;
 	}
 }
