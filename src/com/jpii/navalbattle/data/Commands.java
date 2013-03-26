@@ -20,8 +20,8 @@ package com.jpii.navalbattle.data;
 import java.util.ArrayList;
 
 import com.jpii.gamekit.GameKit;
+import com.jpii.gamekit.debug.*;
 import com.jpii.navalbattle.NavalBattle;
-import com.jpii.navalbattle.debug.*;
 import com.jpii.navalbattle.game.SinglePlayerGame;
 import com.jpii.navalbattle.gui.*;
 import com.jpii.navalbattle.gui.listeners.WindowCloser;

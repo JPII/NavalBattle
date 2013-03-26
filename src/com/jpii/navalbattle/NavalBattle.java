@@ -21,6 +21,7 @@ import javax.swing.UIManager.*;
 import javax.swing.*;
 
 import com.jpii.gamekit.GameKit;
+import com.jpii.gamekit.debug.Debugger;
 import com.jpii.gamekit.exception.InvalidApiLevelException;
 import com.jpii.gamekit.localization.LocalizationManager;
 import com.jpii.navalbattle.data.*;
@@ -28,7 +29,6 @@ import com.jpii.navalbattle.debug.*;
 import com.jpii.navalbattle.game.SinglePlayerGame;
 import com.jpii.navalbattle.gui.Window;
 import com.jpii.navalbattle.io.*;
-import com.jpii.navalbattle.io.NavalBattleIO;
 import com.jpii.navalbattle.pavo.Game;
 import com.jpii.navalbattle.renderer.*;
 
@@ -37,7 +37,7 @@ import com.roketgamer.RoketGamer;
 public class NavalBattle {
 
 	private static RoketGamer roketGamer;
-	private static DebugWindow debugWindow;
+	private static Debugger debugInstance;
 	private static GameState gameState;
 	private static WindowHandler windowHandler;
 	private static LocalizationManager localizationManager;
@@ -61,25 +61,27 @@ public class NavalBattle {
 		}));
 		
 		Helper.LoadStaticResources();
-		//System.out.println("ALLGOOD!");
 		setDefaultLookAndFeel();
-		debugWindow = new DebugWindow();
-		//System.setOut(new HookStream(new ByteArrayOutputStream()));\
-
+		debugInstance = new Debugger("NavalBattle");
+		debugInstance.registerCommands(Commands.COMMANDS);
 		
 		NavalBattleIO.run();
 		
-		debugWindow.setVisible(true);
+		if(Constants.DEBUG_MODE)
+			debugInstance.showDebugWindow();
+		
 		gameState = new GameState();
 		roketGamer = new RoketGamer();
-		debugWindow.printInfo("NavalBattle " + Constants.NAVALBATTLE_VERSION + " initialized");
-		debugWindow.printInfo("Successfully loaded GameKit " + GameKit.getVersion() + " (API " + GameKit.getApiLevel() + ")");
+		
+		getDebugWindow().printInfo("NavalBattle " + Constants.NAVALBATTLE_VERSION + " initialized");
+		getDebugWindow().printInfo("Successfully loaded GameKit " + GameKit.getVersion() + " (API " + GameKit.getApiLevel() + ")");
+		
 		windowHandler = new WindowHandler();
 		localizationManager = new LocalizationManager(NavalBattle.class, "/com/jpii/navalbattle/res/strings");
 		
-		debugWindow.printInfo("Locale set to " + localizationManager.getLocale());
-		debugWindow.printInfo("Loaded " + localizationManager.getDefaultStrings().size() + " default strings.");
-		debugWindow.printInfo("Loaded " + localizationManager.getCurrentStrings().size() + " current strings.");
+		getDebugWindow().printInfo("Locale set to " + localizationManager.getLocale());
+		getDebugWindow().printInfo("Loaded " + localizationManager.getDefaultStrings().size() + " default strings.");
+		getDebugWindow().printInfo("Loaded " + localizationManager.getCurrentStrings().size() + " current strings.");
 		
 		broadcastService = new BroadcastService();
 		
@@ -121,8 +123,8 @@ public class NavalBattle {
 	 * Returns current instance of DebugWindow.
 	 * @return debugWindow
 	 */
-	public static DebugWindow getDebugWindow() {
-		return debugWindow;
+	public static Debugger getDebugWindow() {
+		return debugInstance;
 	}
 	
 	/**
