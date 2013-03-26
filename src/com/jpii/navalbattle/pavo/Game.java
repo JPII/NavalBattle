@@ -45,6 +45,7 @@ import com.jpii.navalbattle.pavo.gui.MessageBox;
 import com.jpii.navalbattle.pavo.gui.MessageBoxIcon;
 import com.jpii.navalbattle.pavo.gui.NewWindowManager;
 import com.jpii.navalbattle.pavo.gui.WindowManager;
+import com.jpii.navalbattle.pavo.gui.controls.PWindow;
 import com.jpii.navalbattle.pavo.io.PavoClient;
 import com.jpii.navalbattle.pavo.io.PavoImage;
 import com.jpii.navalbattle.pavo.io.PavoServer;
@@ -456,8 +457,8 @@ public class Game extends Renderable implements Runnable, Serializable {
 			g.setXORMode(Color.yellow);
 		
 		//g.setXORMode(Color.blue);
-		/*for (int c = 0; c < getWinMan().size(); c++) {
-			GameWindow gw = getWinMan().get(c);
+		for (int c = 0; c < getWindows().size(); c++) {
+			PWindow gw = getWindows().get(c);
 			if (gw instanceof GridWindow && gw.isVisible()) {
 				GridWindow gr = (GridWindow)gw;
 				Location l = gr.getGridLocation();
@@ -467,8 +468,8 @@ public class Game extends Renderable implements Runnable, Serializable {
 						g.setColor(Color.red);
 						int ssx = (getWorld().getScreenX())+(l.getCol()*50)+25;
 						int ssy = (getWorld().getScreenY())+(l.getRow()*50)+25;
-						int midx = gr.getX()+(gr.getWidth()/2);
-						int midy = gr.getY()+(gr.getHeight()/2);
+						int midx = gr.getLocX()+(gr.getWidth()/2);
+						int midy = gr.getLocY()+(gr.getHeight()/2);
 						if (Math.sqrt(Math.pow(ssx-midx,2)+Math.pow(ssy-midy,2)) <= gr.getDistanceConstraint()) {
 							Polygon p = new Polygon();
 							p.addPoint(ssx,ssy);
@@ -482,7 +483,7 @@ public class Game extends Renderable implements Runnable, Serializable {
 					}
 				}
 			}
-		}*/
+		}
 		//g.setXORMode(Color.blue);
 		if (PavoHelper.getCalculatedSystemSpeed() != SystemSpeed.CREEPER && 
 				PavoHelper.getCalculatedSystemSpeed() != SystemSpeed.TURTLE) {
