@@ -148,8 +148,8 @@ public class Chunk extends Renderable{
 				}
 				else{
 					Color pick = new Color(100,92,40);
-					if (rp.nextBoolean())
-						pick = new Color(79,57,19);
+					//if (rp.nextBoolean())
+						//pick = new Color(79,57,19);
 					Color base1 = PavoHelper.Lerp(new Color(52,79,13),pick,((lsy-0.55)/0.45));
 					base1 = Helper.randomise(base1, 8, rand, false);
 					g.setColor(base1);
