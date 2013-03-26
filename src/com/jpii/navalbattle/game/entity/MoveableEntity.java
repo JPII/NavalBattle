@@ -50,7 +50,7 @@ public class MoveableEntity extends Entity {
 			
 			
 		if (getCurrentOrientation() == GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT) {
-			for (int x = 0; x < (getMovementLeft() * 2) + getWidth(); x++) {
+			for (int x = 0; x < (getMovementLeft() * 2) + 1; x++) {
 				for (int y = 0; y < (getMovementLeft() * 2) + 1; y++) {
 					int r = (y + getLocation().getRow()) - (((getMovementLeft() * 2) + 1)/2);
 					int c = (x + getLocation().getCol()) - (getMovementLeft());
@@ -94,7 +94,7 @@ public class MoveableEntity extends Entity {
 			int minr = getLocation().getRow() - getMovementLeft();
 			int maxr = getLocation().getRow() + getMovementLeft();
 			int minc = getLocation().getCol() - getMovementLeft();
-			int maxc = getLocation().getCol() + getMovementLeft()+getWidth()-1;
+			int maxc = getLocation().getCol() + getMovementLeft();
 			if(chx<=maxc && chx>=minc && chy<=maxr && chy>=minr)
 				flag = true;
 		}
