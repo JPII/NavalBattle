@@ -1,18 +1,11 @@
-/**
- * 
- */
 package com.jpii.navalbattle.game.entity;
 
-import com.jpii.navalbattle.pavo.grid.Entity;
 import com.jpii.navalbattle.pavo.grid.EntityManager;
 import com.jpii.navalbattle.pavo.grid.GridedEntityTileOrientation;
 import com.jpii.navalbattle.pavo.grid.Location;
 
-/**
- * @author maximusvladimir
- *
- */
 public class AnimatedEntity extends MoveableEntity {
+	private static final long serialVersionUID = 1L;
 	private GridedEntityTileOrientation[] animationids;
 
 	/**

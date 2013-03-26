@@ -1,25 +1,16 @@
-/**
- * 
- */
 package com.jpii.navalbattle.game.gui;
 
 import java.awt.Font;
 
 import com.jpii.navalbattle.pavo.Game;
 import com.jpii.navalbattle.pavo.gui.NewWindowManager;
-import com.jpii.navalbattle.pavo.gui.WindowManager;
 import com.jpii.navalbattle.pavo.gui.controls.PButton;
 import com.jpii.navalbattle.pavo.gui.controls.PWindow;
 
-/**
- * @author maximusvladimir
- *
- */
 public class PauseWindow extends PWindow {
 	PButton buttonSave, buttonReturnToGame, buttonQuitGame, buttonServer;
 	public PauseWindow(NewWindowManager parent) {
 		super(parent);
-		//setSize(Game.Settings);
 		setTitleAsCentered(true);
 		setText("Game Paused");
 		

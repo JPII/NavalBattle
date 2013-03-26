@@ -22,11 +22,8 @@ import java.awt.*;
 import com.jpii.navalbattle.pavo.*;
 import com.jpii.navalbattle.pavo.gui.GameWindow;
 
-/**
- * @author MKirkby
- *
- */
 public class PlayerProfileWindow extends GameWindow {
+	private static final long serialVersionUID = 1L;
 	public PlayerProfileWindow() {
 		super();
 		setSize(300,200);
@@ -44,7 +41,6 @@ public class PlayerProfileWindow extends GameWindow {
 		g.fillRect(20,44,80,80);
 		g.setColor(new Color(104,77,60));
 		g.drawRect(20,44,80,80);
-		// Frame stuff
 		g.setColor(new Color(65,54,33));
 		for (int v = 0; v < 80; v+= 8) {
 			g.drawLine(11,v+48,19,v+44);

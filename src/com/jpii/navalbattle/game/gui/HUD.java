@@ -51,8 +51,10 @@ public class HUD extends PWindow{
 		setVisible(false);
 		centerx = getWidth()-210;
 		centery = getHeight()/2;
-		
-		// Buttons
+		initButtons();
+	 }
+	 
+	 private void initButtons(){
 		addControl(missileB = new PButton(this,(getWidth()/2)-60,getHeight()-45,30,30));
 		addControl(bulletB = new PButton(this,(getWidth()/2)-20,getHeight()-45,30,30));
 		addControl(diplomacyB = new PButton(this,(getWidth()/2)+20,getHeight()-45,30,30));
@@ -116,19 +118,20 @@ public class HUD extends PWindow{
 		this.repaint();
 	}
 	
-	public void paint(Graphics2D g) {
+	 public void paint(Graphics2D g) {
 		super.paint(g);
 		
-		//Background
 		g.setPaint(gp);
 		g.fillRect(0,0,getWidth(),getHeight());
 		
-		//Dividers
 		g.setColor(Color.green);
 		g.drawLine(getWidth()/3, 0, getWidth()/3, getHeight());
 		g.drawLine(2*getWidth()/3, 0, 2*getWidth()/3, getHeight());
 		
-		// Entity Box
+		drawEntityBox(g);		
+	}
+	 
+	private void drawEntityBox(Graphics2D g){
 		drawFrame(g, boxx, boxy, boxwidth, boxheight);
 		g.drawImage(entityImg,boxx+50,boxy+50,null);
 		if (display!=null && display.getHandle() == 2) {
@@ -139,11 +142,6 @@ public class HUD extends PWindow{
 		drawString(g,location, centerx, centery+60);
 		drawString(g,health, centerx, centery-35);
 		drawString(g,movement, centerx, centery+40);
-		
-		// Msg System
-		
-		// Basically gonna be a Queue via regular array of String[]
-		
 	}
 	
 	public void setEntity(Entity e){
@@ -205,7 +203,7 @@ public class HUD extends PWindow{
 		repaint();
 	}
 	
-	private void drawFrame(Graphics2D g,int x, int y, int width, int height) { // needs work!
+	private void drawFrame(Graphics2D g,int x, int y, int width, int height) {
 		g.setColor(new Color(126,105,65));
 		g.fillRect(x,y,width,height);
 		g.setColor(new Color(65,54,33));
@@ -249,11 +247,6 @@ public class HUD extends PWindow{
 	public void showMoveShip(int x, int y){
 		if(!isShowingMove())
 			return;
-		if(display!=null)
-			if(display.getHandle() == 1){
-		//		MoveableEntity display = (MoveableEntity)this.display;
-			
-			}
 	}
 	
 	public boolean moveShip(int x, int y, boolean leftclick){

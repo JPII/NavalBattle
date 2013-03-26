@@ -1,6 +1,3 @@
-/**
- * 
- */
 package com.jpii.navalbattle.game.entity;
 
 import java.awt.Color;
@@ -15,14 +12,9 @@ import com.jpii.navalbattle.pavo.ProceduralLayeredMapGenerator;
 import com.jpii.navalbattle.pavo.grid.EntityManager;
 import com.jpii.navalbattle.pavo.grid.GridedEntityTileOrientation;
 import com.jpii.navalbattle.pavo.grid.Location;
-import com.jpii.navalbattle.pavo.grid.Tile;
-import com.jpii.navalbattle.util.FileUtils;
 
-/**
- * @author maximusvladimir
- *
- */
 public class PortEntity extends AnimatedEntity {
+	private static final long serialVersionUID = 1L;
 	BufferedImage icon;
 	/**
 	 * @param em
@@ -44,7 +36,6 @@ public class PortEntity extends AnimatedEntity {
 	}
 	
 	public void onUpdate(long tickTime) {
-		//System.out.println("tick tock");
 		super.onUpdate(tickTime);
 		if (tickTime % 6 == 0) {
 			updateFrame();

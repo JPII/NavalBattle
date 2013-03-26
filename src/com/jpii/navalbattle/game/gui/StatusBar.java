@@ -15,14 +15,14 @@ import com.jpii.navalbattle.util.FileUtils;
 
 import javax.swing.ImageIcon;
 
-@SuppressWarnings("serial")
 public class StatusBar extends GameWindow {
+	private static final long serialVersionUID = 1L;
 	BufferedImage icn_mouse;
 	int mx, my;
 	Game gameThing;
 	
 	/**
-	 * Initialises a new instance of <code>StatusBar</code>
+	 * Initializes a new instance of <code>StatusBar</code>
 	 */
 	public StatusBar(Game game) {
 		super();
@@ -65,7 +65,6 @@ public class StatusBar extends GameWindow {
 		g.draw3DRect(width-221,2,100,20,true);
 		g.draw3DRect(width-220,3,98,18,true);
 		g.setColor(Color.white);
-		//String secondTime = new DecimalFormat("00").format(gameThing.getWorld().getTimeManager().getCurrentMinutes());
 		g.drawString("Time: " + gameThing.getWorld().getTimeManager().getCurrentHour() + ":00"
 				, width-220+sd, 17);
 		
@@ -92,7 +91,7 @@ public class StatusBar extends GameWindow {
 		mx = x;
 		my = y;
 		if (flag)
-			render(); // Don't reRender if the mouse hasn't changed tile locations.
+			render();
 	}
 	
 	public void setLoc(int x, int y) {

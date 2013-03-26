@@ -67,8 +67,6 @@ public class BattleShip extends MoveableEntity {
 			temp = new Location(temp.getRow()+(getWidth()-1),temp.getCol());
 			if(startpos)
 				temp = new Location(temp.getRow()+(getWidth()-1),temp.getCol());
-//			getManager().setTileOverlay(temp.getRow(),temp.getCol(),(short)0x2f1d);
-//			getManager().setTileOverlay(temp.getRow(),temp.getCol(),(short)0x001);
 		}
 	
 		return temp;
