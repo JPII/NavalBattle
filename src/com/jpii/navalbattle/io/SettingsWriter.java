@@ -3,6 +3,11 @@ package com.jpii.navalbattle.io;
 import java.io.*;
 import java.util.*;
 
+/**
+ * The old settings writer for the old subsystem.
+ * @author maximusvladimir
+ * @deprecated
+ */
 public class SettingsWriter {
 	
 	ArrayList<SettingsAttribute> attributes;

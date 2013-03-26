@@ -20,6 +20,11 @@ package com.jpii.navalbattle.io;
 import java.io.*;
 import java.util.*;
 
+/**
+ * The Old Settings Reader.
+ * @author maximusvladimir
+ * @deprecated
+ */
 public class SettingsReader {
 	
 	ArrayList<SettingsAttribute> attributes;

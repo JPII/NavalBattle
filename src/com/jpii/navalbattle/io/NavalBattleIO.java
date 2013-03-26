@@ -25,10 +25,18 @@ import com.jpii.navalbattle.util.FileUtils;
 
 import java.io.File;
 
+/**
+ * NavalBattle IO manager.
+ * @author maximusvladimir
+ *
+ */
 public class NavalBattleIO {
 	
 	private static SettingsIO settings;
 	private static boolean inited = false;
+	/**
+	 * Starts the NavalBattleIO service.
+	 */
 	public static void run() {
 		inited = true;
 		if (isFirstRun()) {
@@ -51,38 +59,69 @@ public class NavalBattleIO {
 		settings.refresh();
 	}
 	
+	/**
+	 * Gets a specific attribute from the NavalBattle settings file.
+	 * @param name The name of the attribute to get. Should only contain alpha-numeric characters.
+	 * @return The value of the attribute (if any).
+	 */
 	public static String getAttribute(String name) {
 		if (!inited)
 			run();
 		return settings.readAttribute(name);
 	}
 	
+	/**
+	 * Gets a specific attribute from the NavalBattle settings file.
+	 * @param a The name and value store of the attribute to get. Should only contain alpha-numeric characters.
+	 * @return The value of the attribute (if any).
+	 */
 	public static String getAttribute(SettingsAttribute a) {
 		if (!inited)
 			run();
 		return settings.readAttribute(a);
 	}
 	
+	/**
+	 * Saves an attribute to the NavalBattle settings file.
+	 * @param attribute The attribute to save to the file.
+	 */
 	public static void saveAttribute(SettingsAttribute attribute) {
 		if (!inited)
 			run();
 		settings.setAttribute(attribute);
 	}
 	
+	/**
+	 * Saves the current game to the saves folder (%APPDATA%\Roaming\.navalbattle\saves).
+	 * @param name The name of the world to save the game as.
+	 */
 	public static void saveCurrentGame(String name) {
 		CompoundedGameStateIO.save(Game.Instance, name, FileUtils.getSavingDirectory().getAbsolutePath()+"\\saves");
 	}
 	
+	/**
+	 * Saves an attribute to the NavalBattle settings file.
+	 * @param name The name to save to the file.
+	 * @param value The value of the attribute.
+	 */
 	public static void saveAttribute(String name, String value) {
 		if (!inited)
 			run();
 		settings.setAttribute(new SettingsAttribute(name,value));
 	}
 	
+	/**
+	 * Determines if this is the first time the game has ran.
+	 * @return
+	 */
 	public static boolean isFirstRun() {
 		return !new File(getSettingsPath()).exists();
 	}
 	
+	/**
+	 * Gets the path of the settings file.
+	 * @return
+	 */
 	public static String getSettingsPath() {
 		return (FileUtils.getSavingDirectory().getAbsolutePath()+"\\settings.ini");
 	}
