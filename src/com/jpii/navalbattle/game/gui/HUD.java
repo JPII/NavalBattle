@@ -9,9 +9,7 @@ import com.jpii.navalbattle.game.TurnManager;
 import com.jpii.navalbattle.game.entity.MoveableEntity;
 import com.jpii.navalbattle.game.entity.PortEntity;
 import com.jpii.navalbattle.pavo.grid.Entity;
-import com.jpii.navalbattle.pavo.grid.EntityManager;
 import com.jpii.navalbattle.pavo.grid.GridHelper;
-import com.jpii.navalbattle.pavo.grid.GridedEntityTileOrientation;
 import com.jpii.navalbattle.pavo.grid.Location;
 import com.jpii.navalbattle.pavo.gui.NewWindowManager;
 import com.jpii.navalbattle.pavo.gui.controls.PImage;
@@ -42,6 +40,7 @@ public class HUD extends PWindow{
 	PButton bulletB;
 	PButton moveB;
 	PButton diplomacyB;
+	PButton nextMove;
 	
 	 public HUD(NewWindowManager parent,TurnManager tm,int x, int y, int width, int height){
 		super(parent, x, y, width, height);
@@ -57,6 +56,7 @@ public class HUD extends PWindow{
 		addControl(bulletB = new PButton(this,(getWidth()/2)-20,getHeight()-45,30,30));
 		addControl(diplomacyB = new PButton(this,(getWidth()/2)+20,getHeight()-45,30,30));
 		addControl(moveB = new PButton(this,(getWidth()/2)+60,getHeight()-45,30,30));
+		addControl(nextMove = new PButton(this,"Next Move!",(getWidth()/3)+10,getHeight()-140,(getWidth()/3)-18,80));
 		
 		missile = new PImage(this);
 		bullet = new PImage(this);
@@ -97,6 +97,13 @@ public class HUD extends PWindow{
 			}
 		});
 		
+		final TurnManager tm2 = tm;
+		
+		nextMove.addMouseListener(new PMouseEvent(){
+			public void mouseDown(int x, int y, int buttonid) {
+				tm2.nextTurn();
+			}
+		});
 		
 		this.repaint();
 	}
@@ -232,8 +239,8 @@ public class HUD extends PWindow{
 			return;
 		if(display!=null)
 			if(display.getHandle() == 1){
-				MoveableEntity display = (MoveableEntity)this.display;
-				
+		//		MoveableEntity display = (MoveableEntity)this.display;
+			
 			}
 	}
 	
