@@ -25,8 +25,8 @@ public class GameState {
 	private int turns = 0;
 	
 	/**
-	 * Get if game is in offline mode.
-	 * @return offline
+	 * Get if game is in off-line mode.
+	 * @return off-line
 	 */
 	public boolean isOffline() {
 		return offline;

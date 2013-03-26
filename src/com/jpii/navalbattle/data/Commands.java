@@ -25,7 +25,6 @@ import com.jpii.navalbattle.NavalBattle;
 import com.jpii.navalbattle.game.SinglePlayerGame;
 import com.jpii.navalbattle.gui.*;
 import com.jpii.navalbattle.gui.listeners.WindowCloser;
-import com.jpii.navalbattle.io.NavalBattleIO;
 
 public class Commands {
 	

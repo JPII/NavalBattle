@@ -96,12 +96,10 @@ public class NavalBattle {
 				if (w instanceof SinglePlayerGame) {
 					SinglePlayerGame spg = (SinglePlayerGame)w;
 					Game g = spg.game.getGame();
-					System.out.println("Calling game shutdown.");
 					g.onShutdown();
 				}
 			}
 		}
-		//windowHandler.killAll();
 		System.out.println("Game is closing.");
 		try {
 			Thread.sleep(250);
