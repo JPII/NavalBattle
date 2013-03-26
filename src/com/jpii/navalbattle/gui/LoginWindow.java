@@ -131,10 +131,8 @@ public class LoginWindow extends Window {
 				
 				SwingUtilities.invokeLater(new Runnable() {
 					public void run() {
-						if(NavalBattle.getBroadcastService().needsUpdate())
-							updateButton.setVisible(true);
-						if(NavalBattle.getBroadcastService().hasAnnouncement())
-							announcementButton.setVisible(true);
+						updateButton.setVisible(NavalBattle.getBroadcastService().needsUpdate());
+						announcementButton.setVisible(NavalBattle.getBroadcastService().hasAnnouncement());
 					}
 				});
 			}
