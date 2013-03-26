@@ -41,6 +41,13 @@ import com.jpii.navalbattle.pavo.io.PavoImage;
  */
 public class PavoHelper {
 	private static SystemSpeed calcs;
+	/**
+	 * Creates a shadow for a buffer,
+	 * to give a nice 3D effect.
+	 * @param width The width to make it.
+	 * @param height The height to make it.
+	 * @return A image with the shadow.
+	 */
 	public static PavoImage createInnerShadow(int width, int height) {
 		PavoImage b = new PavoImage(width,height,BufferedImage.TYPE_INT_ARGB);
 		Graphics2D g2 = (Graphics2D)b.getGraphics();
@@ -54,6 +61,10 @@ public class PavoHelper {
         g2.fillRect(0, 0,width, height);
         return b;
 	}
+	/**
+	 * Sleeps the current thread to give the
+	 * CPU time to work on other threads.
+	 */
 	public static void threadSleep() {
 		try {
 			Thread.sleep(0);
@@ -62,11 +73,25 @@ public class PavoHelper {
 			
 		}
 	}
+	
+	/**
+	 * Changes the alpha of a given color.
+	 * @param c The color to modify.
+	 * @param alpha The alpha to set it as.
+	 * @return The changed color. Could be null.
+	 */
 	public static Color changeAlpha(Color c, int alpha) {
 		if (c == null)
 			return null;
 		return new Color(c.getRed(),c.getGreen(),c.getBlue(),alpha);
 	}
+	
+	/**
+	 * Gets a short representation of a particular
+	 * color.
+	 * @param c The color to make it from.
+	 * @return
+	 */
 	public static short getByteFromColor(Color c) {
 		int rgb = c.getRGB();
 		/*c.getRed()/colm;
@@ -80,8 +105,16 @@ public class PavoHelper {
 			rgb = rgb - (32767*2);
 		return (short)rgb;
 	}
+	
 	private static int colm = 10;
 	private static Rand rand3 = new Rand();
+	
+	/**
+	 * Gets a color representation of a particular
+	 * short.
+	 * @param c The short to make it from.
+	 * @return
+	 */
 	public static Color getColorFromByte(short c) {
 		/*int rgb = (int)c;
 		if (rgb < 0)
@@ -125,6 +158,14 @@ public class PavoHelper {
 			blue = 0;*
 		return new Color(red,green,blue);*/
 	}
+	
+	/**
+	 * Attempts to calculate a speed for the current
+	 * operating system for statistical and performance
+	 * reasons.
+	 * @return The SystemSpeed that is most closely matched
+	 * to the current operating system.
+	 */
 	public static SystemSpeed getCalculatedSystemSpeed() {
 		if (calcs == null) {
 			long a = System.nanoTime();
@@ -174,6 +215,13 @@ public class PavoHelper {
 		return calcs;
 	}
 	
+	/**
+	 * Determines if a chunk is visible in a world,
+	 * based on the viewing conditions.
+	 * @param w The world to use.
+	 * @param c The chunk to detect.
+	 * @return
+	 */
 	public static boolean isChunkVisibleOnScreen(World w, Chunk c) {
 		if (w == null || c == null)
 			return false;
@@ -187,6 +235,15 @@ public class PavoHelper {
 		else
 			return false;
 	}
+	
+	/**
+	 * Converts a location in the grid to a
+	 * chunk location.
+	 * @param w The world to use.
+	 * @param l The location to convert.
+	 * @return The converted location to a chunk
+	 * could be null.
+	 */
 	public static Chunk convertGridLocationToChunk(World w, Location l) {
 		if (l == null || w == null)
 			return null;
@@ -196,6 +253,12 @@ public class PavoHelper {
 			return null;
 		return w.getChunk(x, y);
 	}
+	
+	/**
+	 * Gets the width of the world.
+	 * @param ws The world size to use.
+	 * @return
+	 */
 	public static int getGameWidth(WorldSize ws) {
 		if (ws == WorldSize.WORLD_HUGE)
 			return 86;
@@ -208,6 +271,11 @@ public class PavoHelper {
 		else 
 			return 4;
 	}
+	
+	/** Gets the height of the world.
+	 * @param ws The world size to use.
+	 * @return
+	 */
 	public static int getGameHeight(WorldSize ws) {
 		if (ws == WorldSize.WORLD_HUGE)
 			return 86;
@@ -220,18 +288,56 @@ public class PavoHelper {
 		else 
 			return 4;
 	}
+	
+	/**
+	 * Converts a world space coordinate to
+	 * world coordinate.
+	 * @param w The world to use.
+	 * @param wp The world space to convert.
+	 * @deprecated
+	 * @return
+	 */
 	public static Point convertWorldToWorldSpace(World w, Point wp) {
 		return wp;
 	}
+	
+	/**
+	 * Converts a location in the world into a 
+	 * coordinate on the screen.
+	 * @param w The world to use.
+	 * @param wsp The point to convert.
+	 * @return
+	 */
 	public static Point convertWorldSpaceToScreen(World w, Point wsp) {
 		return new Point(wsp.x - w.getScreenX(), wsp.y - w.getScreenY());
 	}
+	
+	/**
+	 * Converts a location on the screen into a
+	 * coordinate in the world.
+	 * @param w The world to use.
+	 * @param wsp The screen coordinate to convert.
+	 * @return
+	 */
 	public static Point convertScreenToWorldSpace(World w, Point wsp) {
 		return new Point(wsp.x + w.getScreenX(), wsp.y + w.getScreenY());
 	}
+	
+	/**
+	 * Converts a world space coordinate into a
+	 * grid location.
+	 * @param p The point to convert.
+	 * @return
+	 */
 	public static Location convertWorldSpaceToGridLocation(Point p) {
 		return new Location(p.y/50,p.x/50);
 	}
+	
+	/**
+	 * Generates a leaf color.
+	 * @return
+	 * @deprecated ?????
+	 */
 	public static Color generateNewLeafColor() {
 		byte pointer = (byte)Game.Settings.rand.nextInt(0, 5);
 		switch (pointer) {
@@ -248,10 +354,18 @@ public class PavoHelper {
 		}
 		return Game.Settings.rand.nextColor(135,185,98,15); 
 	}
+	
+	/**
+	 * Modulates a leaf color to match
+	 * random values.
+	 * @param base The base leaf color.
+	 * @return
+	 */
 	public static Color generateLeafMod(Color base) {
 		Color c = Game.Settings.rand.nextColor(base.getRed(),base.getGreen(),base.getBlue(),8);
 		return new Color(c.getRed(),c.getGreen(),c.getBlue(),125);
 	}
+	
 	/**
 	 * Linear interpolation.
 	 * @param num0
@@ -263,6 +377,7 @@ public class PavoHelper {
     {
     	return num0 + (amount*(num1-num0));
     }
+	
 	/**
 	 * Linear interpolation.
 	 * @param color0
@@ -294,6 +409,15 @@ public class PavoHelper {
 	    	a = 0;
 	    return new Color(r,g,b,a);
     }
+    
+    /**
+     * Determines if an entity is visible in the
+     * given world.
+     * @param w The world to use.
+     * @param ent The entity to find.
+     * @return
+     * @deprecated Not used anymore.
+     */
 	public static boolean isEntityVisibleOnScreen(World w, Entity ent) {
 		if (w == null || ent == null || ent.getLocation() == null)
 			return false;
@@ -307,6 +431,15 @@ public class PavoHelper {
 			return false;
 		
 	}
+	
+	/**
+	 * Creates a graphics object for the given
+	 * image.
+	 * 
+	 * Note: Perhaps the most used method in Pavo.
+	 * @param b The image to get the object for.
+	 * @return
+	 */
 	public static Graphics2D createGraphics(PavoImage b) {
 		if (b == null)
 			return null;
@@ -317,6 +450,14 @@ public class PavoHelper {
 		return g;
 	}
 	
+	/**
+	 * Creates a graphics object for the given
+	 * image.
+	 * 
+	 * Note: Perhaps the most used method in Pavo.
+	 * @param b The image to get the object for.
+	 * @return
+	 */
 	public static Graphics2D createGraphics(BufferedImage b) {
 		if (b == null)
 			return null;
@@ -326,8 +467,16 @@ public class PavoHelper {
 		g.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
 		return g;
 	}
-
+	
+	/**
+	 * Gets the default "spacer" pixel.
+	 */
 	public static final BufferedImage OneByOnePixel = create1x1Pixel();
+	
+	/**
+	 * Gets a "spacer" pixel for use.
+	 * @return
+	 */
 	public static BufferedImage create1x1Pixel() {
 		BufferedImage b = new BufferedImage(1,1,BufferedImage.TYPE_INT_RGB);
 		Graphics g = b.getGraphics();
@@ -336,7 +485,16 @@ public class PavoHelper {
 		g.dispose();
 		return b;
 	}
+	
+	/**
+	 * Changes the opacity of a given image.
+	 * @param src The source image.
+	 * @param opacity The opacity to change to.
+	 * @return
+	 */
 	public static BufferedImage imgUtilAdjustImageTransparency(BufferedImage src, float opacity) {
+		if (src == null)
+			return null;
 		AlphaComposite ac = AlphaComposite.getInstance(AlphaComposite.SRC_OVER, opacity);
 		BufferedImage cpy = new BufferedImage(src.getWidth(), src.getHeight(), BufferedImage.TYPE_INT_ARGB);
 		Graphics2D g = (Graphics2D)cpy.getGraphics();
@@ -346,6 +504,11 @@ public class PavoHelper {
 	    return cpy;
 	}
 	
+	/**
+	 * Quickly copies an image.
+	 * @param src The source image.
+	 * @return The replicated image.
+	 */
 	public static BufferedImage imgUtilFastCopy(BufferedImage src) {
 		if (src == null)
 			return null;
@@ -354,6 +517,14 @@ public class PavoHelper {
 		return b;
 	}
 	
+	/**
+	 * Creates an outline of an image,
+	 * with the default clipping rectangle.
+	 * @param src The source image.
+	 * @param c The color to outline the image
+	 * in.
+	 * @return
+	 */
 	public static BufferedImage imgUtilOutline(BufferedImage src, Color c) {
 		if (src == null)
 			return null;
@@ -366,6 +537,15 @@ public class PavoHelper {
 		return b;
 	}
 	
+	/**
+	 * Quickly crops an image from its source.
+	 * @param src The source image.
+	 * @param x The x coordinate to start at.
+	 * @param y The y coordinate to start at.
+	 * @param width The width to clip.
+	 * @param height The height to clip.
+	 * @return
+	 */
 	public static BufferedImage imgUtilFastCrop(BufferedImage src, int x, int y, int width, int height) {
 		if (src == null)
 			return null;
@@ -379,6 +559,13 @@ public class PavoHelper {
 			return b;
 		}
 	}
+	
+	/**
+	 * Shrinks an image to fit into memory more
+	 * effectivly.
+	 * @param src The source image.
+	 * @return
+	 */
 	public static BufferedImage imgUtilMinimizeNoAlpha(BufferedImage src) {
 		if (src == null)
 			return null;

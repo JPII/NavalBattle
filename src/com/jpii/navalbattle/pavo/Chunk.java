@@ -91,6 +91,9 @@ public class Chunk extends Renderable{
 		this.x = x;
 		this.z = z;
 	}
+	/**
+	 * Renders the terrain for the chunk.
+	 */
 	public void render() {
 		//if (!ready)
 			//return;

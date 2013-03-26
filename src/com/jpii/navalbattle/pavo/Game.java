@@ -79,6 +79,7 @@ public class Game extends Renderable implements Runnable, Serializable {
 	private BufferedImage renderBuffer;
 	//private BufferedImage chunkBuffer;
 	public static PavoSettings Settings = new PavoSettings();
+	
 	/**
 	 * Creates a new instance of the game.
 	 */
@@ -107,6 +108,15 @@ public class Game extends Renderable implements Runnable, Serializable {
 				"Sucessfully started a server instance.\n\nYour IP address:" + server.getSelfIP());
 		//NavalBattle.getWindowHandler().getToasterManager().setDisplayTime(prv);
 	}
+	
+	/**
+	 * Creates a new instance of the game with given
+	 * startup parameters.
+	 * @param pos The type of state to open the game
+	 * in.
+	 * @param flags The flags/parameters for the
+	 * <code>PavoOpenState</code>.
+	 */
 	public Game(PavoOpenState pos, String flags) {
 		if (pos == PavoOpenState.OPEN_SERVER) {
 			client = new NavalClient(this,flags);
@@ -143,32 +153,67 @@ public class Game extends Renderable implements Runnable, Serializable {
 	}
 	boolean isConnected = false;
 	boolean ranCheckup = false;
+	/**
+	 * Determines if currently connected to a client, or
+	 * to server.
+	 * @return
+	 */
 	public boolean isConnectedToClientOrServer() {
 		return isConnected;
 	}
+	
+	/**
+	 * No touching.
+	 */
 	public void akamaideli3242very() {
 		isConnected = true;
 	}
+	
+	/**
+	 * Gets the client (if the current workstation
+	 * is acting as a client).
+	 * 
+	 * Use <code></code>
+	 * @return
+	 */
 	public PavoClient getSelfClient() {
 		return client;
 	}
 	
+	/**
+	 * Gets the server (if the current workstation us
+	 * acting as a server).
+	 * 
+	 * Use <code></code>
+	 * @return
+	 */
 	public PavoServer getSelfServer() {
 		return server;
 	}
 	
+	/**
+	 * Determines whether the current workstation is
+	 * acting as a client or as a server.
+	 * 
+	 * @return true if the workstation is a client,
+	 * false if the workstation is a server.
+	 */
 	public boolean isAClient() {
 		return isClient;
 	}
+	
+	/*
+	 * Gets the window manager for the Game.
+	 * @return
+	 */
+//	public WindowManager getWinMan() {
+//		return windows;
+//	}
 	
 	/**
 	 * Gets the window manager for the Game.
 	 * @return
 	 */
-	public WindowManager getWinMan() {
-		return windows;
-	}
-	
 	public NewWindowManager getWindows() {
 		return windowsnt;
 	}
@@ -406,6 +451,11 @@ public class Game extends Renderable implements Runnable, Serializable {
 	public String getGenStatus() {
 		return "";
 	}
+	/**
+	 * Unknown
+	 * @return
+	 * @deprecated
+	 */
 	public int getGenAmount() {
 		return 1;
 	}
@@ -537,6 +587,11 @@ public class Game extends Renderable implements Runnable, Serializable {
 	public void forceUpdate() {
 		forceUpdate = true;
 	}
+	
+	/**
+	 * Occurs when the mouse is moved.
+	 * @param me The mouse event for the motion.
+	 */
 	public void mouseMove(MouseEvent me) {
 		if (getWindows().mouseMove(me)) {
 			
@@ -561,9 +616,16 @@ public class Game extends Renderable implements Runnable, Serializable {
 		lastmx = me.getX();
 		lastmy = me.getY();
 	}
+	
+	/**
+	 * Occurs when the mouse wheel is changed.
+	 * @param mwe The mouse event for the
+	 * method.
+	 */
 	public void mouseWheelChange(MouseWheelEvent mwe) {
 		
 	}
+	
 	//Timer mouseLogicTimer = new Timer();
 	//TimerTask mouseLogicTask = new $$$MouseLogicTimer();
 	/*MouseEvent mouseEventSchedule;
@@ -577,6 +639,12 @@ public class Game extends Renderable implements Runnable, Serializable {
 	int yearl = 0;
 	boolean gJsiw = false;
 	public boolean guiUsedMouseDown = false, guiUsedMouseUp = false, guiUsedMouseDrag = false;
+	
+	/**
+	 * Occurs when a mouse button is pushed.
+	 * @param me The mouse event for the
+	 * indicator.
+	 */
 	public void mouseDown(MouseEvent me) {
 		guiUsedMouseDown = false;
 		if (getWindows().mouseDown(me)) {
@@ -606,6 +674,12 @@ public class Game extends Renderable implements Runnable, Serializable {
 			gJsiw = !gJsiw;
 		}
 	}
+	
+	/**
+	 * Occurs when a mouse button is released.
+	 * @param me The mouse event for the
+	 * indicator.
+	 */
 	public void mouseUp(MouseEvent me) {
 		guiUsedMouseUp = false;
 		if (getWindows().mouseUp(me)) {
@@ -614,6 +688,11 @@ public class Game extends Renderable implements Runnable, Serializable {
 		}
 		//mouseLogicTask.cancel();
 	}
+	
+	/**
+	 * Occurs when the mouse is dragged.
+	 * @param me The mouse event for the motion.
+	 */
 	public void mouseDragged(MouseEvent me) {
 		guiUsedMouseDrag = false;
 		if (getWindows().mouseDragged(me)) {
@@ -621,9 +700,21 @@ public class Game extends Renderable implements Runnable, Serializable {
 			return;
 		}
 	}
+	
+	/**
+	 * Occurs when the mouse is held down.
+	 * @param me The mouse event for the
+	 * indicator.
+	 * 
+	 * @deprecated No longer in use.
+	 */
 	public void mouseHeldDown(MouseEvent me) {
 		
 	}
+	
+	/**
+	 * Occurs when the Game is shuting down.
+	 */
 	public void onShutdown() {
 		
 	}
