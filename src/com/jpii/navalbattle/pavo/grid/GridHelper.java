@@ -42,7 +42,7 @@ public class GridHelper implements Serializable {
 			r = random.nextInt(PavoHelper.getGameHeight(man.getWorld().getWorldSize())*2);
 			c = random.nextInt(PavoHelper.getGameWidth(man.getWorld().getWorldSize())*2);
 			int b = man.getTilePercentLand(r, c);
-			if (b > 10)
+			if (b > 10 && b < 70)
 				found = true;
 		}
 		return new Location(r,c);

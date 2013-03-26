@@ -50,6 +50,7 @@ public class MaxTests {
 	/**
 	 * Run <code>MaxTests</code>.
 	 */
+	
 	public static void run() {
 		
 		Rand r = new Rand();
@@ -58,10 +59,10 @@ public class MaxTests {
 		}
 		System.out.println("Seed:" + Game.Settings.seed);
 		
-		Color original = r.nextColor();
-		System.out.println("Original color:" + original.toString());
-		System.out.println("Byte rep: " + PavoHelper.getByteFromColor(original));
-		System.out.println("Recasted color:" + PavoHelper.getColorFromByte(PavoHelper.getByteFromColor(original)));
+//		Color original = r.nextColor();
+//		System.out.println("Original color:" + original.toString());
+//		System.out.println("Byte rep: " + PavoHelper.getByteFromColor(original));
+//		System.out.println("Recasted color:" + PavoHelper.getColorFromByte(PavoHelper.getByteFromColor(original)));
 		
 		System.out.println("Measured system speed as: "+PavoHelper.getCalculatedSystemSpeed().toString());
 		int unit = Runtime.getRuntime().availableProcessors();

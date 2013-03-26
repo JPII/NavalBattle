@@ -11,6 +11,7 @@ import maximusvladimir.dagen.Rand;
 
 import com.jpii.navalbattle.pavo.Game;
 import com.jpii.navalbattle.pavo.PavoHelper;
+import com.jpii.navalbattle.pavo.ProceduralLayeredMapGenerator;
 import com.jpii.navalbattle.pavo.grid.EntityManager;
 import com.jpii.navalbattle.pavo.grid.GridedEntityTileOrientation;
 import com.jpii.navalbattle.pavo.grid.Location;
@@ -65,20 +66,44 @@ public class PortEntity extends AnimatedEntity {
 		Rand randy = new Rand(Game.Settings.seed + 50);
 		int numStructures = randy.nextInt(6,10);
 		int counter = 0;
+		float wlx = ((loc.getCol() / 2)/16.666666666666666666f);
+		float wlz = ((loc.getRow() / 2)/16.666666666666666666f);
 		while (counter < numStructures) {
 			counter++;
 			int type = randy.nextInt(0,3);
 			int lx = randy.nextInt(4,40);
 			int ly = randy.nextInt(4,35);
 			if (type == 2) {
-				g1.setColor(Color.red);
-				g1.drawRect(lx,ly,4,6);
-				g2.setColor(Color.orange);
-				g2.drawRect(lx,ly,4,6);
-				g3.setColor(Color.yellow);
-				g3.drawRect(lx,ly,4,6);
-				g4.setColor(Color.pink);
-				g4.drawRect(lx,ly,4,6);
+				float h = ProceduralLayeredMapGenerator.getPoint(wlx+(lx/16.66666666666666666f),wlz+(ly/16.66666666666666666f));
+				int tries = 0;
+				while (h > 0.56 && tries < 20) {
+					lx = randy.nextInt(10,39);
+					ly = randy.nextInt(12,40);
+					tries++;
+					h = ProceduralLayeredMapGenerator.getPoint(wlx+(lx/16.66666666666666666f),wlz+(ly/16.66666666666666666f));
+				}
+				g1.setColor(new Color(126,105,65));
+				g2.setColor(new Color(126,105,65));
+				g3.setColor(new Color(126,105,65));
+				g4.setColor(new Color(126,105,65));
+				g1.fillRect(lx - 10, ly - 4, 20, 8);
+				g2.fillRect(lx - 10, ly - 4, 20, 8);
+				g3.fillRect(lx - 10, ly - 4, 20, 8);
+				g4.fillRect(lx - 10, ly - 4, 20, 8);
+				g1.setColor(new Color(53,45,28));
+				g2.setColor(new Color(53,45,28));
+				g3.setColor(new Color(53,45,28));
+				g4.setColor(new Color(53,45,28));
+				g1.drawRect(lx - 10, ly - 4, 20, 8);
+				g2.drawRect(lx - 10, ly - 4, 20, 8);
+				g3.drawRect(lx - 10, ly - 4, 20, 8);
+				g4.drawRect(lx - 10, ly - 4, 20, 8);
+				g2.setColor(new Color(120,120,120,175));
+				g3.setColor(new Color(60,60,60,100));
+				g4.setColor(new Color(30,30,30,50));
+				g2.fillOval(lx, ly - 7, 3,3);
+				g3.fillOval(lx-1, ly - 8, 3,3);
+				g4.fillOval(lx-2, ly - 9, 4,4);
 			}
 			else {
 				g1.setColor(Color.orange);
