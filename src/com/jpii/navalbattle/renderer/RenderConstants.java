@@ -45,5 +45,4 @@ public class RenderConstants {
     public static int OPT_NUM_UPDATES = 10;
     public static boolean OPT_DAYNIGHT_CYCLES_ON = true;
     public static boolean OPT_WHALES = true;
-    public static RenderingQuality OPT_RENDERING_QUALITY = RenderingQuality.FullSpeedAhead;
 }

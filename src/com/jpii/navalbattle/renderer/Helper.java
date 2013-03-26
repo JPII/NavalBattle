@@ -358,8 +358,6 @@ public class Helper {
     			changed = true;
     		}
     	}
-    	if (changed)
-    		Console.getInstance().printInfo("Time of Day-" + last);
     	return alph;
     }
     private static String last = "s";

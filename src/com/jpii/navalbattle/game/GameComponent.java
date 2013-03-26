@@ -32,10 +32,7 @@ import com.jpii.navalbattle.pavo.Game;
 import com.jpii.navalbattle.pavo.PavoHelper;
 import com.jpii.navalbattle.pavo.PavoOpenState;
 import com.jpii.navalbattle.pavo.io.PavoImage;
-import com.jpii.navalbattle.renderer.Console;
 import com.jpii.navalbattle.renderer.Helper;
-import com.jpii.navalbattle.renderer.RenderConstants;
-import com.jpii.navalbattle.renderer.RepaintType;
 import com.jpii.navalbattle.util.WindowLib;
 
 
