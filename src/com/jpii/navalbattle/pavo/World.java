@@ -50,6 +50,7 @@ public class World extends Renderable implements Interactable {
 	PavoImage noise;
 	int zlevel;
 	Game game;
+	WorldStatus worldStatus;
 	public World(Game gameThing) {
 		game = gameThing;
 		ws = WorldSize.WORLD_LARGE;
@@ -69,7 +70,7 @@ public class World extends Renderable implements Interactable {
 		buffer = new PavoImage(Game.Settings.currentWidth,Game.Settings.currentHeight,BufferedImage.TYPE_3BYTE_BGR);
 		makeNoise();
 		wm = new WeatherManager();
-		
+		worldStatus = new WorldStatus(ws,wm,time);
 		System.gc();
 	}
 	public boolean isReadyForGen() {
@@ -80,6 +81,11 @@ public class World extends Renderable implements Interactable {
 		else
 			return false;
 	}
+	
+	public WorldStatus getWorldStatus() {
+		return worldStatus;
+	}
+	
 	public int getTotalChunks() {
 		return chunks.length;
 	}
