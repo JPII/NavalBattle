@@ -1,6 +1,7 @@
 package com.jpii.navalbattle.game.gui;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.GradientPaint;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
@@ -57,6 +58,8 @@ public class HUD extends PWindow{
 		addControl(diplomacyB = new PButton(this,(getWidth()/2)+20,getHeight()-45,30,30));
 		addControl(moveB = new PButton(this,(getWidth()/2)+60,getHeight()-45,30,30));
 		addControl(nextMove = new PButton(this,"Next Move!",(getWidth()/3)+10,getHeight()-140,(getWidth()/3)-18,80));
+		
+		nextMove.setFont(new Font("Arial",0,70));
 		
 		missile = new PImage(this);
 		bullet = new PImage(this);
