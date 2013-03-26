@@ -1,6 +1,3 @@
-/**
- * 
- */
 package com.jpii.navalbattle.game;
 
 import com.jpii.navalbattle.game.entity.AircraftCarrier;
@@ -19,7 +16,7 @@ import com.jpii.navalbattle.pavo.grid.Location;
 import com.jpii.navalbattle.util.FileUtils;
 
 /**
- * The entity manager specified for NavalThing.
+ * The entity manager specified for NavalBattle.
  */
 public class NavalManager extends EntityManager {
 	private static final long serialVersionUID = 1L;
@@ -61,7 +58,6 @@ public class NavalManager extends EntityManager {
 			Submarine.SUBMARINE_ID = submarineId;
 		}
 		else {
-			System.out.println("not a battleship");
 		}
 		gh = new GridHelper(this);
 	}
@@ -108,7 +104,7 @@ public class NavalManager extends EntityManager {
 	public void update(long ticksPassed) {
 		for (int c = 0; c < this.getTotalEntities(); c++) {
 			Entity e = getEntity(c);
-			if (e != null){ //&& e instanceof BattleShip) {
+			if (e != null){
 				e.onUpdate(ticksPassed);
 			}
 		}

@@ -24,8 +24,8 @@ import com.jpii.navalbattle.pavo.Game;
 import com.jpii.navalbattle.pavo.PavoOpenState;
 import com.jpii.navalbattle.gui.Window;
 
-@SuppressWarnings("serial")
 public class SinglePlayerGame extends Window {
+	private static final long serialVersionUID = 1L;
 	public GameComponent game;
 
 	public SinglePlayerGame() {
@@ -45,7 +45,6 @@ public class SinglePlayerGame extends Window {
 	public void setVisible(boolean visible){
 		super.setVisible(visible);
 		if(isVisible()){
-			System.out.println("Opened!");
 			NavalBattle.getWindowHandler().killAll();
 		}
 	}

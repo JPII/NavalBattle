@@ -11,10 +11,8 @@ public class Turn {
 	
 	public boolean canmoveEntity(MoveableEntity entity) {
 		boolean flag=true;
-		if(flag){
+		if(flag)
 			flag = (player.myEntity(entity)>-1);
-			System.out.println("contained: "+player.myEntity(entity));
-		}
 		if(flag)
 			flag = !(entity.getMoved()>=entity.getMaxMovement());
 		return flag;

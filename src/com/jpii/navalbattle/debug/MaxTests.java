@@ -17,40 +17,21 @@
 
 package com.jpii.navalbattle.debug;
 
-import com.jpii.navalbattle.NavalBattle;
-import com.jpii.navalbattle.data.Constants;
-import com.jpii.navalbattle.io.SettingsAttribute;
 import com.jpii.navalbattle.pavo.Game;
 import com.jpii.navalbattle.pavo.PavoHelper;
-import com.jpii.navalbattle.pavo.PavoSettings;
 import com.jpii.navalbattle.util.FileUtils;
 import com.jpii.navalbattle.util.GrammarManager;
 import com.jpii.navalbattle.util.OSUtil;
 
-import java.awt.event.*;
-import java.awt.Color;
-import java.awt.AlphaComposite;
 import java.io.File;
-import java.io.FileWriter;
-import java.math.BigInteger;
-import java.util.ArrayList;
-
 import javax.swing.*;
-import javax.swing.UIManager.LookAndFeelInfo;
 
 import maximusvladimir.dagen.Rand;
 
-/**
- * Added to prevent conflicting diffs in NavalBattle.java. This is Max's file to play with.
- * @author MKirkby
- *
- */
 public class MaxTests {
-	//private static Color randomColor
 	/**
 	 * Run <code>MaxTests</code>.
 	 */
-	
 	public static void run() {
 		
 		Rand r = new Rand();
@@ -59,14 +40,9 @@ public class MaxTests {
 		}
 		System.out.println("Seed:" + Game.Settings.seed);
 		
-//		Color original = r.nextColor();
-//		System.out.println("Original color:" + original.toString());
-//		System.out.println("Byte rep: " + PavoHelper.getByteFromColor(original));
-//		System.out.println("Recasted color:" + PavoHelper.getColorFromByte(PavoHelper.getByteFromColor(original)));
-		
 		System.out.println("Measured system speed as: "+PavoHelper.getCalculatedSystemSpeed().toString());
 		int unit = Runtime.getRuntime().availableProcessors();
-		if (unit >= 1 && unit < 3 && !Constants.DEBUG_MODE) {
+		if (unit >= 1 && unit < 3) {
 			JOptionPane.showMessageDialog(null,"Your system does not have a strong enough CPU to run the game.","Fatal error",JOptionPane.OK_OPTION);
 			System.exit(0x300AB);
 		}

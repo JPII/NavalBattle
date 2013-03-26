@@ -1,19 +1,11 @@
-/**
- * 
- */
 package com.jpii.navalbattle.game;
 
 import com.jpii.navalbattle.game.entity.BattleShip;
 import com.jpii.navalbattle.pavo.Game;
-import com.jpii.navalbattle.pavo.grid.EntityManager;
 import com.jpii.navalbattle.pavo.grid.GridedEntityTileOrientation;
 import com.jpii.navalbattle.pavo.grid.Location;
 import com.jpii.navalbattle.pavo.io.PavoClient;
 
-/**
- * @author MKirkby
- *
- */
 public class NavalClient extends PavoClient {
 	long seed = Long.MIN_VALUE;
 	Game game;
@@ -38,7 +30,6 @@ public class NavalClient extends PavoClient {
 			int r = Integer.parseInt(row);
 			new BattleShip(game.getWorld().getEntityManager(),
 					new Location(r,c), BattleShip.BATTLESHIP_ID,GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT,0);
-			//System.out.println("battleship was placed at: "+ col + ", "+row);
 		}
 		else if (message.startsWith("bounds:")) {
 			String part = message.replace("bounds:","");
@@ -49,7 +40,6 @@ public class NavalClient extends PavoClient {
 			int y = Integer.parseInt(row);
 			NavalGame gn = (NavalGame)game;
 			gn.getMap().setMultiplayer(x, y);
-			//System.out.println("battleship was placed at: "+ col + ", "+row);
 		}
 		else
 			super.onMessageRecieved(message);

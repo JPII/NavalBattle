@@ -1,16 +1,8 @@
-/**
- * 
- */
 package com.jpii.navalbattle.game;
 
 import com.jpii.navalbattle.pavo.Game;
-import com.jpii.navalbattle.pavo.io.PavoClient;
 import com.jpii.navalbattle.pavo.io.PavoServer;
 
-/**
- * @author MKirkby
- *
- */
 public class NavalServer extends PavoServer {
 	Game game;
 	/**
@@ -36,7 +28,6 @@ public class NavalServer extends PavoServer {
 			int y = Integer.parseInt(row);
 			NavalGame gn = (NavalGame)game;
 			gn.getMap().setMultiplayer(x, y);
-			//System.out.println("battleship was placed at: "+ col + ", "+row);
 		}
 		else
 			super.onMessageRecieved(message);

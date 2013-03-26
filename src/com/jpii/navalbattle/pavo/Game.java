@@ -576,9 +576,8 @@ public class Game extends Renderable implements Runnable, Serializable {
 		
 	}
 	/**
-	 * This method should be called sparsingly (which means DO NOT OVER USE). This method is multithreaded, so it puts no stress on the calling thread.
+	 * This method should be called sparingly (which means DO NOT OVER USE). This method is multithreaded, so it puts no stress on the calling thread.
 	 * This method is not actually deprecated, but it is called so to ensure that the above message is read.
-	 * @deprecated
 	 */
 	public void forceUpdate() {
 		forceUpdate = true;
@@ -695,17 +694,6 @@ public class Game extends Renderable implements Runnable, Serializable {
 			guiUsedMouseDrag = true;
 			return;
 		}
-	}
-	
-	/**
-	 * Occurs when the mouse is held down.
-	 * @param me The mouse event for the
-	 * indicator.
-	 * 
-	 * @deprecated No longer in use.
-	 */
-	public void mouseHeldDown(MouseEvent me) {
-		
 	}
 	
 	/**

@@ -23,25 +23,16 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.event.*;
 import java.awt.image.BufferedImage;
-import java.lang.Thread.State;
-
 import javax.swing.*;
 
-import com.jpii.navalbattle.data.Constants;
 import com.jpii.navalbattle.pavo.Game;
 import com.jpii.navalbattle.pavo.PavoHelper;
 import com.jpii.navalbattle.pavo.PavoOpenState;
 import com.jpii.navalbattle.pavo.io.PavoImage;
-import com.jpii.navalbattle.renderer.Helper;
 import com.jpii.navalbattle.util.WindowLib;
 
-
-/**
- * @author MKirkby
- * 
- */
-@SuppressWarnings({ "serial", "unused" })
 public class GameComponent extends JComponent {
+	private static final long serialVersionUID = 1L;
 	JFrame frame;
 	Timer ticker;
 	Timer logicUpdator;
