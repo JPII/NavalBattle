@@ -341,18 +341,23 @@ public class PavoHelper {
 	public static Color generateNewLeafColor() {
 		byte pointer = (byte)Game.Settings.rand.nextInt(0, 5);
 		switch (pointer) {
-			case 0:
+			/*case 0:
 				return Game.Settings.rand.nextColor(244,214,38,15);
 			case 1:
-				return Game.Settings.rand.nextColor(236,89,47,15);
+				return Game.Settings.rand.nextColor(236,89,47,15);*/
+			case 0:
+				return Game.Settings.rand.nextColor(100,120,29,15);
+			case 1:
+				return Game.Settings.rand.nextColor(50,60,15,15);
 			case 2:
 				return Game.Settings.rand.nextColor(135,185,98,15);
-			case 3:
+			/*case 3:
 				return Game.Settings.rand.nextColor(240,244,89,15);
 			case 4:
-				return Game.Settings.rand.nextColor(135,185,98,15);
+				return Game.Settings.rand.nextColor(135,185,98,15);*/
 		}
-		return Game.Settings.rand.nextColor(135,185,98,15); 
+		//return Game.Settings.rand.nextColor(135,185,98,15);
+		return Game.Settings.rand.nextColor(60,75,70,15);
 	}
 	
 	/**
