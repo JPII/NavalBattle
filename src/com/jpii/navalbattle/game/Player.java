@@ -19,8 +19,13 @@ public class Player {
 	
 	public void resetMovement(){
 		for (int index =0; index<entities.size(); index++){
-			Entity e = entities.get(0);
+			MoveableEntity e = (MoveableEntity) entities.get(0);
 			if(e.getHandle()==1){
+				if(e.getMoved()>0){
+					System.out.println("resetfrom: "+e.getMoved());
+					e.resetMovement();
+					System.out.println("reset: "+e.getMoved());
+				}
 			}
 		}
 	}

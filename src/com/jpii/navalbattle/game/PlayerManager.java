@@ -32,6 +32,7 @@ public class PlayerManager {
 	}
 	
 	public Player getPlayer(int current){
+		System.out.println("size: "+players.size());
 		while(!(current<players.size()))
 			current-=players.size();
 		return players.get(current);

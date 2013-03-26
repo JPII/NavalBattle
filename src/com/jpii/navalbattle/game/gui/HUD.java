@@ -106,6 +106,8 @@ public class HUD extends PWindow{
 			public void mouseDown(int x, int y, int buttonid) {
 				tm2.nextTurn();
 				update();
+				System.out.println("canMove"+tm2.getTurn().canmoveEntity((MoveableEntity)display));
+				System.out.println("new turn");
 			}
 		});
 		
