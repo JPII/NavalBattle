@@ -269,7 +269,7 @@ public class NavalGame extends Game{
 		if ((omnimap.mouseDown(me)))
 			return;
 		
-		else if(hud.moveShip(chx,chy)){
+		else if(hud.moveShip(chx,chy,me.getButton()==MouseEvent.BUTTON1)){
 			
 		}
 		

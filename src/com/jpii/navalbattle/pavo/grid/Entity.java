@@ -47,6 +47,13 @@ public class Entity implements Serializable {
 		return ORIENTATION_BUFFER_POSITION;
 	}
 	
+	public byte getOppositeOrientation(){
+		if(getCurrentOrientation() == GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT)
+			return GridedEntityTileOrientation.ORIENTATION_TOPTOBOTTOM;
+		else
+			return GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT;
+	}
+	
 	public int getCurrentId() {
 		return id.memCall(ORIENTATION_BUFFER_POSITION)[0];
 	}
@@ -242,6 +249,21 @@ public class Entity implements Serializable {
 		manager.getWorld().forceRender();
 		onMove(swap2);
 		return true;
+	}
+	
+	public boolean moveTo(Location loc, byte position){
+		if (ORIENTATION_BUFFER_POSITION == GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT) {
+			for (int w = 0; w < getWidth(); w++) {
+				manager.setTile(location.getRow(),location.getCol()+w, null);
+			}
+		}
+		else if (ORIENTATION_BUFFER_POSITION == GridedEntityTileOrientation.ORIENTATION_TOPTOBOTTOM) {
+			for (int h = 0; h < getHeight(); h++) {
+				manager.setTile(location.getRow()+h-getHeight()+1,location.getCol(),null);
+			}
+		}
+		ORIENTATION_BUFFER_POSITION = getOppositeOrientation();
+		return moveTo(loc,true);
 	}
 	
 	public void rotateNext() {

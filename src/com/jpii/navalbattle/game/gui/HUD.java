@@ -9,7 +9,9 @@ import com.jpii.navalbattle.game.TurnManager;
 import com.jpii.navalbattle.game.entity.MoveableEntity;
 import com.jpii.navalbattle.game.entity.PortEntity;
 import com.jpii.navalbattle.pavo.grid.Entity;
+import com.jpii.navalbattle.pavo.grid.EntityManager;
 import com.jpii.navalbattle.pavo.grid.GridHelper;
+import com.jpii.navalbattle.pavo.grid.GridedEntityTileOrientation;
 import com.jpii.navalbattle.pavo.grid.Location;
 import com.jpii.navalbattle.pavo.gui.NewWindowManager;
 import com.jpii.navalbattle.pavo.gui.controls.PImage;
@@ -129,7 +131,8 @@ public class HUD extends PWindow{
 		
 	}
 	
-	public void setEntity(Entity e){		
+	public void setEntity(Entity e){	
+		System.out.println(e);
 		if(display!=null){
 			if(e==null || !display.equals(e)){
 				if(display.getHandle()==1){
@@ -230,21 +233,30 @@ public class HUD extends PWindow{
 			return;
 	}
 	
-	public boolean moveShip(int x, int y){
+	public boolean moveShip(int x, int y, boolean leftclick){
 		if(!isShowingMove())
 			return false;
 		if(display!=null)
 			if(display.getHandle() == 1){
 				MoveableEntity display = (MoveableEntity)this.display;
-				if(GridHelper.canMoveTo(display.getManager(), display, display.getCurrentOrientation(), y, x,display.getWidth())){
+				if(leftclick && GridHelper.canMoveTo(display.getManager(), display, display.getCurrentOrientation(), y, x,display.getWidth())){
 					if(display.isMovableTileBeingShown()){
 						display.toggleMovable();
 					}
 					display.moveTo(new Location(y,x));
 					display.toggleMovable();
+					return true;
+				}
+				else if(GridHelper.canMoveTo(display.getManager(), display, display.getOppositeOrientation(), y, x,display.getWidth())){
+					if(display.isMovableTileBeingShown()){
+						display.toggleMovable();
+					}
+					display.moveTo(new Location(y,x),display.getOppositeOrientation());
+					display.toggleMovable();
+					return true;
 				}
 			}
-		return true;
+		return false;
 	}
 	
 }
