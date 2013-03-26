@@ -33,7 +33,6 @@ import com.jpii.navalbattle.pavo.grid.Tile;
 import com.jpii.navalbattle.pavo.gui.MessageBox;
 import com.jpii.navalbattle.pavo.gui.MessageBoxIcon;
 import com.jpii.navalbattle.pavo.gui.OmniMap;
-import com.jpii.navalbattle.pavo.gui.TestWindowWithNewAPI;
 
 /**
  * The game file.
@@ -47,7 +46,6 @@ public class NavalGame extends Game{
 	HUD hud;
 	OmniMap omnimap;
 	
-	TestWindowWithNewAPI twwna;
 	PauseWindow pw;
 	
 	//GridWindow test;
@@ -56,10 +54,6 @@ public class NavalGame extends Game{
 	
 	public NavalGame() {
 		super();
-		twwna = new TestWindowWithNewAPI(getWindows());
-		twwna.setLoc(200,200);
-		twwna.repaint();
-		twwna.setVisible(false);
 		pw = new PauseWindow(getWindows());
 		nm = new NavalManager(getWorld());
 		hud = new HUD(getWindows(),nm.getTurnManager(),0,Settings.currentHeight-150,Settings.currentWidth, 150);
@@ -76,7 +70,6 @@ public class NavalGame extends Game{
 //		getWinMan().add(siw);
 //		getWinMan().add(sb);
 //		getWinMan().add(test);
-		getWindows().add(twwna);
 		getWindows().add(hud);
 		getWindows().add(pw);
 		//MessageBox.show("Warning", "This is a message box!!!");
@@ -91,9 +84,6 @@ public class NavalGame extends Game{
 		getWorld().setEntityManager(nm);
 		pw = new PauseWindow(getWindows());
 		omnimap = new OmniMap(getWorld());
-		twwna = new TestWindowWithNewAPI(getWindows());
-		twwna.setLoc(200,200);
-		twwna.repaint();
 		//ppw = new PlayerProfileWindow();
 		//sb = new StatusBar(this);
 		//test = new GridWindow();
@@ -101,7 +91,6 @@ public class NavalGame extends Game{
 		//ppw.setLoc(200,200);
 		//siw = new ShipInfoWindow();
 		//siw.setLoc(350,350)
-		getWindows().add(twwna);
 		getWindows().add(hud);
 		getWindows().add(pw);
 //		getWinMan().add(ppw);
@@ -260,8 +249,6 @@ public class NavalGame extends Game{
 		chx /= 50;
 		chy /= 50;
 		Tile current = nm.getTile(chy,chx);
-		
-		twwna.updateLocation(getWorld().getEntityManager(), chx, chy);
 		
 		if ((omnimap.mouseDown(me)))
 			return;

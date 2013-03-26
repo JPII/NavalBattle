@@ -20,8 +20,6 @@ package com.jpii.navalbattle.debug;
 import com.jpii.navalbattle.NavalBattle;
 import com.jpii.navalbattle.data.Constants;
 import com.jpii.navalbattle.io.SettingsAttribute;
-import com.jpii.navalbattle.io.SettingsReader;
-import com.jpii.navalbattle.pavo.FastMath;
 import com.jpii.navalbattle.pavo.Game;
 import com.jpii.navalbattle.pavo.PavoHelper;
 import com.jpii.navalbattle.pavo.PavoSettings;

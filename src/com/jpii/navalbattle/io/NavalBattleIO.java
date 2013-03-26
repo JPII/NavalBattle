@@ -20,7 +20,6 @@ package com.jpii.navalbattle.io;
 import com.jpii.navalbattle.NavalBattle;
 import com.jpii.navalbattle.io.SettingsAttribute;
 import com.jpii.navalbattle.pavo.Game;
-import com.jpii.navalbattle.pavo.io.CompoundedGameStateIO;
 import com.jpii.navalbattle.util.FileUtils;
 
 import java.io.File;
@@ -89,14 +88,6 @@ public class NavalBattleIO {
 		if (!inited)
 			run();
 		settings.setAttribute(attribute);
-	}
-	
-	/**
-	 * Saves the current game to the saves folder (%APPDATA%\Roaming\.navalbattle\saves).
-	 * @param name The name of the world to save the game as.
-	 */
-	public static void saveCurrentGame(String name) {
-		CompoundedGameStateIO.save(Game.Instance, name, FileUtils.getSavingDirectory().getAbsolutePath()+"\\saves");
 	}
 	
 	/**

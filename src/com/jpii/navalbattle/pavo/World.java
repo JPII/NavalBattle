@@ -31,7 +31,6 @@ import com.jpii.navalbattle.pavo.io.PavoImage;
 
 
 public class World extends Renderable implements Interactable {
-	WorldGen gen;
 	Chunk[] chunks;
 	PavoImage buffer;
 	boolean needsNewRender = false;
@@ -143,12 +142,6 @@ public class World extends Renderable implements Interactable {
 			chunkrender = true;
 		runLocLock(0,y);
 		sy = y;
-	}
-	public void setWorldGen(WorldGen wg) {
-		gen = wg;
-	}
-	public WorldGen getWorldGen() {
-		return gen;
 	}
 	long smallTicks = 0;
 	long localTicks = 0;

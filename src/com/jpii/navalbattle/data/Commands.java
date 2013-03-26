@@ -95,16 +95,6 @@ public class Commands {
 	    	}}
 	    ));
 	    
-	    add(new Command("save", "<game name>", "Saves the current game", new CommandAction() { 
-	    	public void onRun(Command c, String[] args) {
-	    		try {
-	    			NavalBattleIO.saveCurrentGame(args[0]);
-	    		} catch (Exception ex) {
-	    			NavalBattle.getDebugWindow().printError("Missing or invalid arg: gameName");
-	    		}
-	    	}}
-	    ));
-	    
 	    add(new Command("addscore", "<score>", "Add to game score", new CommandAction() { 
 	    	public void onRun(Command c, String[] args) {
 	    		try {
