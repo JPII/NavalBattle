@@ -9,7 +9,7 @@ Strategic turn-based naval game. Coming soon.
 ![Your internet is slow](http://bit.ly/navalthing0701)
 
 ## Dependencies
-We depend on the following projects. They can be found in the libs folder. If you use Eclipse, everything already is taken care of!
+We depend on the following projects. They can be found in the libs folder. If you use Eclipse, everything is already taken care of!
 * GameKit
 * Apache Commons IO, Lang, Codec
 
