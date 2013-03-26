@@ -68,12 +68,12 @@ public class MoveableEntity extends Entity {
 		}
 		else {
 			for (int x = 0; x < (getMovementLeft() * 2) + 1; x++) {
-				for (int y = 0; y < (getMovementLeft() * 2) + getWidth(); y++) {
+				for (int y = 0; y < (getMovementLeft() * 2) + 1; y++) {
 					int c = (x + getLocation().getCol()) - (((getMovementLeft() * 2) + 1)/2);
-					int r = (y + getLocation().getRow()) - (((getMovementLeft()*2)-1));
+					int r = (y + getLocation().getRow()) - (getMovementLeft());
 					if (r >= 0 && c >= 0) {
 						Tile temp = getManager().getTile(r,c);
-						if (getManager().getTilePercentLand(r,c) <= Game.Settings.waterThresholdBarrier && temp==null) {
+						if (getManager().getTilePercentLand(r,c) <= Game.Settings.waterThresholdBarrier && (temp==null||temp.getEntity().equals(this))) {
 							getManager().setTileOverlay(r,c,good);
 						}
 						else {
@@ -99,7 +99,7 @@ public class MoveableEntity extends Entity {
 				flag = true;
 		}
 		else {
-			int minr = getLocation().getRow() - getMovementLeft()-getWidth()+1;
+			int minr = getLocation().getRow() - getMovementLeft();
 			int maxr = getLocation().getRow() + getMovementLeft();
 			int minc = getLocation().getCol() - getMovementLeft();
 			int maxc = getLocation().getCol() + getMovementLeft();
