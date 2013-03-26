@@ -3,7 +3,10 @@ NavalBattle
 
 A new RoketGamer-powered game. Coming soon.
 
-[For visual snapshots of the latest commits and information see the snapshots wiki page](https://github.com/JPII/NavalBattle/wiki/Snapshots)
+[For visual snapshots of the latest commits and information see the snapshots wiki page](http://bit.ly/nbsnapshots)
+[For documentation and reference](http://bit.ly/navalbattledoc)
+
+![Your internet is slow](http://bit.ly/navalthing0701)
 
 ## Dependencies
 We depend on the following projects. We plan on moving to Maven soon to help automatically handle dependencies.
