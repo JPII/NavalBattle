@@ -256,7 +256,7 @@ public class Location implements Serializable
     	if (isUnknown())
     		return "Imaginary space @"+super.toString();
     	else
-    		return "(" + getRow() + ", " + getCol() + ") @"+super.toString();
+    		return "(" + getRow() + ", " + getCol() + ") @"+super.hashCode();
     }
     
     
