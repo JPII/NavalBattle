@@ -21,6 +21,11 @@ public class PlayerManager {
 		}
 	}
 	
+	public void reset(int turnnumber){
+		Player temp = getPlayer(turnnumber);
+		temp.reset();
+	}
+	
 	public Player nextTurn(int turnnumber){
 		Player temp = getPlayer(turnnumber);
 		temp.nextTurn();
@@ -32,7 +37,6 @@ public class PlayerManager {
 	}
 	
 	public Player getPlayer(int current){
-		System.out.println("size: "+players.size());
 		while(!(current<players.size()))
 			current-=players.size();
 		return players.get(current);

@@ -14,25 +14,25 @@ public class Player {
 	}
 	
 	public void nextTurn(){
+		
+	}
+	
+	public void reset(){
 		resetMovement();
 	}
 	
 	public void resetMovement(){
 		for (int index =0; index<entities.size(); index++){
-			MoveableEntity e = (MoveableEntity) entities.get(0);
-			if(e.getHandle()==1){
-				if(e.getMoved()>0){
-					System.out.println("resetfrom: "+e.getMoved());
-					e.resetMovement();
-					System.out.println("reset: "+e.getMoved());
-				}
+			Entity e1 = entities.get(index);
+			if(e1.getHandle()==1){
+				MoveableEntity e = (MoveableEntity) e1;
+				e.resetMovement();
 			}
 		}
 	}
 	
-	public boolean myEntity(Entity e){
-		System.out.println(entities.contains(e));
-		return entities.contains(e);
+	public int myEntity(Entity e){
+		return entities.indexOf(e);
 	}
 	
 	public void addEntity(Entity e){

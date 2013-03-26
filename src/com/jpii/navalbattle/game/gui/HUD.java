@@ -93,9 +93,11 @@ public class HUD extends PWindow{
 		
 		moveB.addMouseListener(new PMouseEvent(){
 			public void mouseDown(int x, int y, int buttonid) {
-				if(display!=null && display.getHandle()==1){
-					MoveableEntity display2 = (MoveableEntity)display;
-					display2.toggleMovable();
+				if(moveB.isVisible()){
+					if(display!=null && display.getHandle()==1){
+						MoveableEntity display2 = (MoveableEntity)display;
+						display2.toggleMovable();
+					}
 				}
 			}
 		});
@@ -104,10 +106,10 @@ public class HUD extends PWindow{
 		
 		nextMove.addMouseListener(new PMouseEvent(){
 			public void mouseDown(int x, int y, int buttonid) {
-				tm2.nextTurn();
-				update();
-				System.out.println("canMove"+tm2.getTurn().canmoveEntity((MoveableEntity)display));
-				System.out.println("new turn");
+				if(nextMove.isVisible()){
+					tm2.nextTurn();
+					update();
+				}
 			}
 		});
 		
