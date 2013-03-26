@@ -36,6 +36,7 @@ public class PortEntity extends AnimatedEntity {
 		super(em, loc, orientation, team, generatePort(em,loc));
 		handle = 2;
 		icon = em.getImage(em.getTile(loc));
+		this.setAlternatingDirection(false);
 	}
 	
 	public BufferedImage getIcon() {
@@ -45,7 +46,7 @@ public class PortEntity extends AnimatedEntity {
 	public void onUpdate(long tickTime) {
 		//System.out.println("tick tock");
 		super.onUpdate(tickTime);
-		if (tickTime % 8 == 0) {
+		if (tickTime % 6 == 0) {
 			updateFrame();
 		}
 	}
@@ -66,8 +67,8 @@ public class PortEntity extends AnimatedEntity {
 		Rand randy = new Rand(Game.Settings.seed + 50);
 		int numStructures = randy.nextInt(6,10);
 		int counter = 0;
-		float wlx = ((loc.getCol() / 2)/16.666666666666666666f);
-		float wlz = ((loc.getRow() / 2)/16.666666666666666666f);
+		float wlx = ((loc.getCol() / 2)/32.666666666666666666f);
+		float wlz = ((loc.getRow() / 2)/32.666666666666666666f);
 		while (counter < numStructures) {
 			counter++;
 			int type = randy.nextInt(0,3);
@@ -75,12 +76,16 @@ public class PortEntity extends AnimatedEntity {
 			int ly = randy.nextInt(4,35);
 			if (type == 2) {
 				float h = ProceduralLayeredMapGenerator.getPoint(wlx+(lx/16.66666666666666666f),wlz+(ly/16.66666666666666666f));
+				float h1 = 0;
+				float h2 = 0;
 				int tries = 0;
-				while (h > 0.56 && tries < 20) {
+				while (h > 0.56 && h2 > 0.56 && h1 > 0.56 && tries < 20) {
 					lx = randy.nextInt(10,39);
-					ly = randy.nextInt(12,40);
+					ly = randy.nextInt(19,40);
 					tries++;
-					h = ProceduralLayeredMapGenerator.getPoint(wlx+(lx/16.66666666666666666f),wlz+(ly/16.66666666666666666f));
+					h = ProceduralLayeredMapGenerator.getPoint(wlx+(lx/32.66666666666666666f),wlz+(ly/32.66666666666666666f));
+					h1 = ProceduralLayeredMapGenerator.getPoint(wlx+((lx-8)/32.66666666666666666f),wlz+(ly/32.66666666666666666f));
+					h2 = ProceduralLayeredMapGenerator.getPoint(wlx+((lx+8)/32.66666666666666666f),wlz+(ly/32.66666666666666666f));
 				}
 				g1.setColor(new Color(126,105,65));
 				g2.setColor(new Color(126,105,65));
@@ -98,12 +103,12 @@ public class PortEntity extends AnimatedEntity {
 				g2.drawRect(lx - 10, ly - 4, 20, 8);
 				g3.drawRect(lx - 10, ly - 4, 20, 8);
 				g4.drawRect(lx - 10, ly - 4, 20, 8);
-				g2.setColor(new Color(120,120,120,175));
-				g3.setColor(new Color(60,60,60,100));
-				g4.setColor(new Color(30,30,30,50));
+				g2.setColor(new Color(140,140,140,175));
+				g3.setColor(new Color(200,200,200,100));
+				g4.setColor(new Color(255,255,255,75));
 				g2.fillOval(lx, ly - 7, 3,3);
-				g3.fillOval(lx-1, ly - 8, 3,3);
-				g4.fillOval(lx-2, ly - 9, 4,4);
+				g3.fillOval(lx-1, ly - 9, 4,4);
+				g4.fillOval(lx-2, ly - 13, 5,5);
 			}
 			else {
 				g1.setColor(Color.orange);

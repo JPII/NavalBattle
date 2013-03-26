@@ -38,9 +38,19 @@ public class AnimatedEntity extends MoveableEntity {
 	
 	int nextIndex = 0;
 	boolean direction = true;
+	boolean alternate = true;
+	
+	public void setAlternatingDirection(boolean t) {
+		alternate = t;
+	}
+	
+	public boolean isAlternatingDirections() {
+		return alternate;
+	}
 	
 	public void updateFrame() {
 		setCurrentFrame(nextIndex);
+		if (alternate) {
 		if (direction)
 			nextIndex++;
 		else
@@ -52,6 +62,14 @@ public class AnimatedEntity extends MoveableEntity {
 		if (nextIndex == -1) {
 			direction = true;
 			nextIndex = 0;
+		}
+		}
+		else {
+			if (nextIndex >= getTotalFrames() - 1) {
+				nextIndex = 0;
+			}
+			else
+				nextIndex++;
 		}
 	}
 }
