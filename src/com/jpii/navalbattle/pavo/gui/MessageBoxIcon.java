@@ -18,9 +18,24 @@
 package com.jpii.navalbattle.pavo.gui;
 
 public enum MessageBoxIcon {
+	/**
+	 * Warning message icon.
+	 */
 	Warning,
+	/**
+	 * Information alert message icon.
+	 */
 	Information,
+	/**
+	 * Error message icon.
+	 */
 	Error,
+	/**
+	 * No icon will be shown.
+	 */
 	None,
+	/**
+	 * Notification message icon.
+	 */
 	Notify
 }
