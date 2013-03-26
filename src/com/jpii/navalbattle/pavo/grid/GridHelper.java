@@ -34,6 +34,19 @@ public class GridHelper implements Serializable {
 	public Location pollNextWaterTile() {
 		return pollNextWaterTile(Game.Settings.waterThresholdBarrier);
 	}
+	
+	public Location pollNextShoreTile() {
+		boolean found = false;
+		int r = 0, c = 0;
+		while (!found) {
+			r = random.nextInt(PavoHelper.getGameHeight(man.getWorld().getWorldSize())*2);
+			c = random.nextInt(PavoHelper.getGameWidth(man.getWorld().getWorldSize())*2);
+			int b = man.getTilePercentLand(r, c);
+			if (b > 10)
+				found = true;
+		}
+		return new Location(r,c);
+	}
 	/**
 	 * 
 	 * @param em - needed to get Tile Percent Land to check for if land is in the way
