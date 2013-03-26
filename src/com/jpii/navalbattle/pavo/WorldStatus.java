@@ -3,21 +3,16 @@
  */
 package com.jpii.navalbattle.pavo;
 
-import com.jpii.navalbattle.renderer.weather.WeatherManager;
-import com.jpii.navalbattle.renderer.weather.WeatherMode;
-
 /**
  * @author maximusvladimir
  *
  */
 public class WorldStatus {
 	private WorldSize ws;
-	private WeatherManager wm;
 	private TimeManager tm;
 	private boolean _generationFlag = false;
-	public WorldStatus(WorldSize ws, WeatherManager wm, TimeManager tm) {
+	public WorldStatus(WorldSize ws, TimeManager tm) {
 		this.ws = ws;
-		this.wm = wm;
 		this.tm = tm;
 	}
 	
@@ -34,14 +29,6 @@ public class WorldStatus {
 	
 	public int getCurrentHour() {
 		return tm.getCurrentHour();
-	}
-	
-	public WeatherMode getCurrentWeather() {
-		return wm.getWeather();
-	}
-	
-	public void setCurrentWeather(WeatherMode mode) {
-		wm.setWeather(mode);
 	}
 	
 	public int getWorldWidth() {

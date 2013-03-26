@@ -28,7 +28,6 @@ import com.jpii.navalbattle.data.Constants;
 import com.jpii.navalbattle.io.Interactable;
 import com.jpii.navalbattle.pavo.grid.EntityManager;
 import com.jpii.navalbattle.pavo.io.PavoImage;
-import com.jpii.navalbattle.renderer.weather.WeatherManager;
 
 
 public class World extends Renderable implements Interactable {
@@ -45,7 +44,6 @@ public class World extends Renderable implements Interactable {
 	int lwh = 600;
 	EntityManager em;
 	TimeManager time = new TimeManager();
-	WeatherManager wm;
 	int sx = 0, anisx = 0, anisy = 0,sy = 0;
 	PavoImage noise;
 	int zlevel;
@@ -69,8 +67,7 @@ public class World extends Renderable implements Interactable {
 		generated = new boolean[chunks.length];
 		buffer = new PavoImage(Game.Settings.currentWidth,Game.Settings.currentHeight,BufferedImage.TYPE_3BYTE_BGR);
 		makeNoise();
-		wm = new WeatherManager();
-		worldStatus = new WorldStatus(ws,wm,time);
+		worldStatus = new WorldStatus(ws,time);
 		System.gc();
 	}
 	public boolean isReadyForGen() {
@@ -127,7 +124,6 @@ public class World extends Renderable implements Interactable {
 			cx = x - sx;
 		if (y != 0)
 			cy = y - sy;
-		getWeather().applyFix(cx,cy);
 	}
 	public void setLoc(int x, int y) {
 		if (sx != x || sy != y)
@@ -161,11 +157,7 @@ public class World extends Renderable implements Interactable {
 		smallTicks += 100;
 		localTicks++;
 		time.update();
-		wm.update();
 		em.update(localTicks);//smallTicks);
-	}
-	public WeatherManager getWeather() {
-		return wm;
 	}
 	public boolean hasMoreChunks() {
 		for (int c = 0; c < chunks.length; c++) {
