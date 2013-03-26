@@ -113,6 +113,10 @@ public class MoveableEntity extends Entity {
 		return maxMovement-moved;
 	}
 	
+	public void resetMovement(){
+		moved = 0;
+	}
+	
 	public int getHealth(){
 		return health;
 	}
