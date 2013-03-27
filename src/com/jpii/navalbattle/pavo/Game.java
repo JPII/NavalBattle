@@ -19,6 +19,7 @@ package com.jpii.navalbattle.pavo;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
+import java.awt.Point;
 import java.awt.Polygon;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseWheelEvent;
@@ -39,6 +40,7 @@ import com.jpii.navalbattle.pavo.gui.controls.PWindow;
 import com.jpii.navalbattle.pavo.io.PavoClient;
 import com.jpii.navalbattle.pavo.io.PavoImage;
 import com.jpii.navalbattle.pavo.io.PavoServer;
+import com.jpii.navalbattle.util.FileUtils;
 import com.jpii.navalbattle.util.GameStatistics;
 
 public class Game extends Renderable implements Runnable, Serializable {
@@ -232,6 +234,8 @@ public class Game extends Renderable implements Runnable, Serializable {
 	public static GameStatistics getStats() {
 		return stats;
 	}
+	BufferedImage loadMotionImage = null;
+	Point motionDest = null;
 	/**
 	 * Immortal caller.
 	 */
@@ -251,7 +255,21 @@ public class Game extends Renderable implements Runnable, Serializable {
 				long updateStart = System.currentTimeMillis();
 				
 				if (getWorld().getMotionEntity() != null) {
-					
+					Entity e = getWorld().getMotionEntity();
+					if (e.currentLocation == null) {
+						loadMotionImage = FileUtils.getImage(e.imgLocation);
+						e.currentLocation = PavoHelper.convertLocationToScreen(getWorld(), e.getOriginalLocation());
+						motionDest = PavoHelper.convertLocationToScreen(getWorld(), e.getLocation());
+						e.setLocation(e.getOriginalLocation());
+					}
+					else {
+						if (e.currentLocation.x > motionDest.x - 5 && e.currentLocation.x < motionDest.y + 5
+								&& e.currentLocation.y > motionDest.y - 5 && e.currentLocation.y < motionDest.y + 5) {
+							getWorld().setMotionEntity(null);
+							getWorld().getMotionEntity().currentLocation = null;
+							getWorld().getMotionEntity().moveTo(e.destiny);
+						}
+					}
 				}
 				
 				while (getWorld().isLocked()) {}
@@ -422,6 +440,14 @@ public class Game extends Renderable implements Runnable, Serializable {
 				}
 			}
 		}
+		
+		if (getWorld().getMotionEntity() != null) {
+			Entity e = getWorld().getMotionEntity();
+			Point cl = e.currentLocation;
+			e.currentLocation = movePointTowards(cl,motionDest,2);
+			g.drawImage(this.loadMotionImage, e.currentLocation.x,e.currentLocation.y,null);
+		}
+		
 		if (PavoHelper.getCalculatedSystemSpeed() != SystemSpeed.CREEPER && 
 				PavoHelper.getCalculatedSystemSpeed() != SystemSpeed.TURTLE) {
 			g.drawImage(shadow,0,0,null);
@@ -430,6 +456,14 @@ public class Game extends Renderable implements Runnable, Serializable {
 		g.dispose();
 		getWindows().unlock();
 		Game.getStats().sBm3ns02AKa99mqp392(System.currentTimeMillis() - sjan);
+	}
+	
+	public Point movePointTowards(Point a, Point b, int distance)
+	{
+	    Point vector = new Point(b.x - a.x, b.y - a.y);
+	    int length = (int)Math.sqrt(vector.x * vector.x + vector.y * vector.y);
+	    Point unitVector = new Point(vector.x / length, vector.y / length);
+	    return new Point(a.x + unitVector.x * distance, a.y + unitVector.y * distance);
 	}
 	/**
 	 * Gets the active world for the Game.

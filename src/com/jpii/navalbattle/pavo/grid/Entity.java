@@ -17,6 +17,7 @@
 
 package com.jpii.navalbattle.pavo.grid;
 
+import java.awt.Point;
 import java.io.Serializable;
 
 
@@ -243,6 +244,9 @@ public class Entity implements Serializable {
 	}
 	
 	Location originality = Location.Unknown;
+	public Location destiny = null;
+	
+	public Point currentLocation = null;
 	
 	public Location getOriginalLocation() {
 		return originality;
@@ -253,8 +257,12 @@ public class Entity implements Serializable {
 			return;
 		
 		originality = getLocation();
+		setLocation(loc);
+		destiny = loc;
 		
 		getManager().getWorld().setMotionEntity(this);
+		
+		
 		
 		moveTo(Location.Unknown,true);
 	}
@@ -324,7 +332,7 @@ public class Entity implements Serializable {
 	 * Attributes:
 	 */
 	
-	private void setLocation(Location loc) {
+	public void setLocation(Location loc) {
 		location = loc;
 	}
 	
