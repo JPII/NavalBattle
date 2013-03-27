@@ -52,16 +52,22 @@ public class MoveableEntity extends Entity {
 		if (getCurrentOrientation() == GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT) {
 			for (int x = 0; x < (getMovementLeft() * 2) + 1; x++) {
 				for (int y = 0; y < (getMovementLeft() * 2) + 1; y++) {
-					int r = (y + getLocation().getRow()) - (((getMovementLeft() * 2) + 1)/2);
-					int c = (x + getLocation().getCol()) - (getMovementLeft());
+					int r = getRLR(y);
+					int c = getCLR(x);
 					if (r >= 0 && c >= 0) {
 						Tile<?> temp = getManager().getTile(r,c);
-						if (getManager().getTilePercentLand(r,c) <= Game.Settings.waterThresholdBarrier && (temp==null||temp.getEntity().equals(this))) {
+						if(isPossibleMoveChoiceLR(x,y)){
 							getManager().setTileOverlay(r,c,good);
 						}
 						else {
 							getManager().setTileOverlay(r,c,bad);
 						}
+						/*if (getManager().getTilePercentLand(r,c) <= Game.Settings.waterThresholdBarrier && (temp==null||temp.getEntity().equals(this))) {
+							getManager().setTileOverlay(r,c,good);
+						}
+						else {
+							getManager().setTileOverlay(r,c,bad);
+						}*/
 					}
 				}
 			}
@@ -73,7 +79,7 @@ public class MoveableEntity extends Entity {
 					int r = (y + getLocation().getRow()) - (getMovementLeft());
 					if (r >= 0 && c >= 0) {
 						Tile<?> temp = getManager().getTile(r,c);
-						if (getManager().getTilePercentLand(r,c) <= Game.Settings.waterThresholdBarrier && (temp==null||temp.getEntity().equals(this))) {
+						if (isPossibleMoveChoiceTB(x,y)) {
 							getManager().setTileOverlay(r,c,good);
 						}
 						else {
@@ -85,6 +91,82 @@ public class MoveableEntity extends Entity {
 		}
 		getManager().getWorld().forceRender();
 	}
+	
+	public int getRLR(int y)
+	{
+		return (y + getLocation().getRow()) - (((getMovementLeft() * 2) + 1)/2);
+	}
+	
+	public int getCLR(int x)
+	{
+		return (x + getLocation().getCol()) - (getMovementLeft());
+	}
+	public Tile getTileLR(int x, int y)
+	{
+		Tile<?> temps = getManager().getTile(getRLR(y),getCLR(x));
+		return temps;
+	}
+	
+	public boolean isPossibleMoveChoiceLR(int x, int y)
+	{
+		//(!getTile(x,y).getEntity().equals(this))
+		//
+		
+		boolean horizontal = true;
+		boolean vertical = true;
+		for(int p = 0 ; p < 4; p++){
+			if( (getTileLR(x+p,y)!=null) || (getManager().getTilePercentLand(getRLR(y),getCLR(x+p)) > Game.Settings.waterThresholdBarrier)){
+			horizontal = false;
+			}
+		}
+		
+			for(int q = 0 ; q < 4; q++){
+				if((getTileLR(x,y-q)!=null) ||(getManager().getTilePercentLand(getRLR(y-q),getCLR(x)) > Game.Settings.waterThresholdBarrier)){
+				vertical = false;
+				}
+				}
+			
+		return (horizontal == true || vertical == true);
+	}
+	
+	public int getRTB(int y)
+	{
+		return (y + getLocation().getRow()) - (getMovementLeft());
+	}
+	
+	public int getCTB(int x)
+	{
+		return (x + getLocation().getCol()) - (((getMovementLeft() * 2) + 1)/2);
+	}
+	public Tile getTileTB(int x, int y)
+	{
+		Tile<?> temps = getManager().getTile(getRTB(y),getCTB(x));
+		return temps;
+	}
+	
+	public boolean isPossibleMoveChoiceTB(int x, int y)
+	{		
+		boolean horizontal = true;
+		boolean vertical = true;
+		for(int p = 0 ; p < 4; p++){
+			if( (getTileTB(x+p,y)!=null) || (getManager().getTilePercentLand(getRTB(y),getCTB(x+p)) > Game.Settings.waterThresholdBarrier)){
+			horizontal = false;
+			}
+		}
+		
+			for(int q = 0 ; q < 4; q++){
+				if((getTileTB(x,y-q)!=null) ||(getManager().getTilePercentLand(getRTB(y-q),getCLR(x)) > Game.Settings.waterThresholdBarrier)){
+				vertical = false;
+				}
+				}
+			
+		return (horizontal == true || vertical == true);
+	}
+		
+	
+	
+	
+		
 	
 	public boolean isInMoveRange(int chx, int chy){
 		if(!showMove)
