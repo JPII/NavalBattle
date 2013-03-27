@@ -1,12 +1,5 @@
-/**
- * 
- */
 package com.jpii.navalbattle.pavo;
 
-/**
- * @author maximusvladimir
- *
- */
 public class WorldStatus {
 	private WorldSize ws;
 	private TimeManager tm;

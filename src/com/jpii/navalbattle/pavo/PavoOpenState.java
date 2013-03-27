@@ -1,12 +1,5 @@
-/**
- * 
- */
 package com.jpii.navalbattle.pavo;
 
-/**
- * @author MKirkby
- *
- */
 public enum PavoOpenState {
 	/**
 	 * Tells the game to become a client

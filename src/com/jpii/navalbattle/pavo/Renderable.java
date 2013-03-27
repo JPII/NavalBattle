@@ -17,7 +17,6 @@
 
 package com.jpii.navalbattle.pavo;
 
-import java.awt.image.*;
 import java.io.Serializable;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
@@ -25,27 +24,25 @@ import java.util.concurrent.locks.ReentrantLock;
 import com.jpii.navalbattle.pavo.io.PavoImage;
 
 /**
- * The base class for all renderable elements.
- * @author maximusvladimir
- *
+ * The base class for all render-able elements.
  */
 public class Renderable implements Serializable {
+	private static final long serialVersionUID = 1L;
 	protected PavoImage buffer;
 	protected int width, height;
 	protected boolean ready;
 	protected Lock _lock = new ReentrantLock();
 	private boolean locked = false;
-	//private long lockerTime = 0L;
 	
 	/**
-	 * Creates a new instance of a renderable.
+	 * Creates a new instance of a render-sable.
 	 */
 	public Renderable() {
 		
 	}
 	
 	/**
-	 * Determines if a renderable is ready
+	 * Determines if a render-able is ready
 	 * for rendering, networking, saving,
 	 * etc.
 	 * @return
@@ -63,7 +60,7 @@ public class Renderable implements Serializable {
 	}
 	
 	/**
-	 * Sets the obtainablity buffer.
+	 * Sets the obtainable buffer.
 	 * @param obtainableBuffer
 	 */
 	protected void setBuffer(PavoImage obtainableBuffer) {
@@ -71,14 +68,14 @@ public class Renderable implements Serializable {
 	}
 	
 	/**
-	 * The renderer for the renderable.
+	 * The renderer for the render-able.
 	 */
 	public void render() {
 		
 	}
 	
 	/**
-	 * Updates the renderable.
+	 * Updates the render-able.
 	 */
 	public void update() {
 		
@@ -86,7 +83,7 @@ public class Renderable implements Serializable {
 	
 	/**
 	 * Checks to see if there is a
-	 * memory lock on this renderable.
+	 * memory lock on this render-able.
 	 * @return
 	 */
 	public boolean isLocked() {
@@ -95,26 +92,24 @@ public class Renderable implements Serializable {
 	
 	/**
 	 * Locks the memory contained in this
-	 * renderable.
+	 * render-able.
 	 */
 	public void lock() {
 		_lock.lock();
-		//lockerTime = System.currentTimeMillis();
 		locked = true;
 	}
 	
 	/**
 	 * Unlocks the memory contained in this
-	 * renderable.
+	 * render-able.
 	 */
 	public void unlock() {
 		locked = false;
-		//System.out.println("Locked for:" + (System.currentTimeMillis() - lockerTime));
 		_lock.unlock();
 	}
 	
 	/**
-	 * Sets the width of the renderable.
+	 * Sets the width of the render-able.
 	 * @param w
 	 */
 	public void setWidth(int w) {
@@ -122,7 +117,7 @@ public class Renderable implements Serializable {
 	}
 	
 	/**
-	 * Sets the height of the renderable.
+	 * Sets the height of the render-able.
 	 * @param h
 	 */
 	public void setHeight(int h) {
@@ -130,7 +125,7 @@ public class Renderable implements Serializable {
 	}
 	
 	/**
-	 * This method is called when data needs to be sent to the server. It is added to the stack, to be prepaired to be sent to the server.
+	 * This method is called when data needs to be sent to the server. It is added to the stack, to be prepared to be sent to the server.
 	 * @param packetId The identifier to send to the server.
 	 * @param data The data to be sent to the server.
 	 * @deprecated
@@ -150,7 +145,7 @@ public class Renderable implements Serializable {
 	}
 	
 	/**
-	 * Sets the size of the renderable.
+	 * Sets the size of the render-able.
 	 * @param w The width to set it as.
 	 * @param h The height to set it as.
 	 */
@@ -160,7 +155,7 @@ public class Renderable implements Serializable {
 	}
 	
 	/**
-	 * Gets the width of the renderable.
+	 * Gets the width of the render-able.
 	 * @return
 	 */
 	public int getWidth() {
@@ -168,7 +163,7 @@ public class Renderable implements Serializable {
 	}
 	
 	/**
-	 * Gets the height of the renderable.
+	 * Gets the height of the render-able.
 	 * @return
 	 */
 	public int getHeight() {

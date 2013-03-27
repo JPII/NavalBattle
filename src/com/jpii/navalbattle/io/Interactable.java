@@ -18,7 +18,7 @@
 package com.jpii.navalbattle.io;
 
 /**
- * A abstract class containing IO methods to help make interaction between the filesystem, user mode, and server more efficient and easier.
+ * A abstract class containing IO methods to help make interaction between the file-system, user mode, and server more efficient and easier.
  */
 public abstract interface Interactable {
 	
@@ -35,7 +35,7 @@ public abstract interface Interactable {
 	public abstract void load(String path);
 	
 	/**
-	 * Validates elements after a load, or before a save, to make sure proper locks have been aquired, and that all the sub data of the class is valid.
+	 * Validates elements after a load, or before a save, to make sure proper locks have been acquired, and that all the sub data of the class is valid.
 	 */
 	public abstract void peekElements();
 }

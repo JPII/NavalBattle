@@ -200,10 +200,10 @@ public class EntityManager implements Serializable {
 	public <T> void setTile(Location loc, Tile<Entity> t) {
 		setTile(loc.getRow(),loc.getCol(),t);
 	}
-	public Tile getTile(Location loc) {
+	public Tile<Entity> getTile(Location loc) {
 		return getTile(loc.getRow(),loc.getCol());
 	}
-	public Tile getTile(int r, int c) {
+	public Tile<Entity> getTile(int r, int c) {
 		if (c >= PavoHelper.getGameWidth(w.getWorldSize())*2 ||
 				r >= PavoHelper.getGameHeight(w.getWorldSize())*2 || c < 0 || r < 0)
 			return null;

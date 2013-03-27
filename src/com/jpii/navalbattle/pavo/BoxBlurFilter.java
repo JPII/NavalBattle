@@ -68,7 +68,6 @@ public class BoxBlurFilter extends AbstractBufferedImageOp {
 
             for ( int i = -radius; i <= radius; i++ ) {
                 int rgb = in[inIndex + clamp(i, 0, width-1)];
-                //ta += (rgb >> 24) & 0xff;
                 tr += (rgb >> 16) & 0xff;
                 tg += (rgb >> 8) & 0xff;
                 tb += rgb & 0xff;
@@ -86,7 +85,6 @@ public class BoxBlurFilter extends AbstractBufferedImageOp {
                 int rgb1 = in[inIndex+i1];
                 int rgb2 = in[inIndex+i2];
                 
-                //ta += ((rgb1 >> 24) & 0xff)-((rgb2 >> 24) & 0xff);
                 tr += ((rgb1 & 0xff0000)-(rgb2 & 0xff0000)) >> 16;
                 tg += ((rgb1 & 0xff00)-(rgb2 & 0xff00)) >> 8;
                 tb += (rgb1 & 0xff)-(rgb2 & 0xff);
@@ -158,7 +156,7 @@ abstract class AbstractBufferedImageOp implements BufferedImageOp {
 
 	/**
 	 * A convenience method for getting ARGB pixels from an image. This tries to avoid the performance
-	 * penalty of BufferedImage.getRGB unmanaging the image.
+	 * penalty of BufferedImage.getRGB not managing the image.
 	 */
 	public int[] getRGB( BufferedImage image, int x, int y, int width, int height, int[] pixels ) {
 		int type = image.getType();
@@ -170,7 +168,7 @@ abstract class AbstractBufferedImageOp implements BufferedImageOp {
 
 	/**
 	 * A convenience method for setting ARGB pixels in an image. This tries to avoid the performance
-	 * penalty of BufferedImage.setRGB unmanaging the image.
+	 * penalty of BufferedImage.setRGB not managing the image.
 	 */
 	public void setRGB( BufferedImage image, int x, int y, int width, int height, int[] pixels ) {
 		int type = image.getType();

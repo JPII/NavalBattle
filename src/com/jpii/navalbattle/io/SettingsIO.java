@@ -24,9 +24,7 @@ public class SettingsIO {
 	 * automatically create the file.
 	 * @param file The path of the file to use for the SettingsIO.
 	 */
-	public SettingsIO(String file){//, ArrayList<SettingsAttribute> data) {
-		//if (data == null)
-			//data = new ArrayList<SettingsAttribute>();
+	public SettingsIO(String file){
 		path = file;
 		try {
 			File f = new File(path);
@@ -41,7 +39,7 @@ public class SettingsIO {
 	/**
 	 * Forces the given SettingsAttributes to be written to the file.
 	 * @param sa The ArrayList containing the SettingsAttributes.
-	 * @return A value indicating whether the operation was sucessful.
+	 * @return A value indicating whether the operation was successful.
 	 */
 	public boolean setAttribute(ArrayList<SettingsAttribute> sa) {
 		try {
@@ -67,11 +65,11 @@ public class SettingsIO {
 	/**
 	 * Forces the given SettingsAttribute to be written to the file.
 	 * 
-	 * Note: Any previously existing attributes will be overriden
+	 * Note: Any previously existing attributes will be overridden
 	 * without notice.
 	 * 
 	 * @param attribute The attribute to write to the file.
-	 * @return A value indicating whether the operation was sucessful
+	 * @return A value indicating whether the operation was successful
 	 * or not.
 	 */
 	public boolean setAttribute(SettingsAttribute attribute) {
@@ -135,7 +133,6 @@ public class SettingsIO {
 	public String readAttribute(SettingsAttribute attribute) {
 		for (int c = 0; c < tempAttributes.size(); c++) {
 			SettingsAttribute a = tempAttributes.get(c);
-			//System.out.println(a.name.toLowerCase()+","+attribute.name.toLowerCase());
 			if (a.name.toLowerCase().equals(attribute.name.toLowerCase()))
 				return a.value;
 		}
@@ -150,7 +147,6 @@ public class SettingsIO {
 	public String readAttribute(String name) {
 		for (int c = 0; c < attributes.size(); c++) {
 			SettingsAttribute a = attributes.get(c);
-			//System.out.println(a.name.toLowerCase()+","+name.toLowerCase());
 			if (a.name.toLowerCase().equals(name.toLowerCase()))
 				return a.value;
 		}
@@ -166,17 +162,12 @@ public class SettingsIO {
 	private ArrayList<SettingsAttribute> readInto() {
 		ArrayList<SettingsAttribute> sd = new ArrayList<SettingsAttribute>();
 		try {
-			//System.out.println("p"+path);
 			FileInputStream fstream = new FileInputStream(path);
 			DataInputStream in = new DataInputStream(fstream);
 			BufferedReader br = new BufferedReader(new InputStreamReader(in));
 			String line = "";
 			while ((line = br.readLine()) != null) {
 				SettingsAttribute sas = new SettingsAttribute("s");
-				//int loc = -1;
-				//if (line.indexOf(":") > -1)
-					//loc = findLineAttributeLocation(sd,line.substring(0,line.indexOf(":")).replace(" ", ""));
-				//if (loc >= 0) {
 					String value = line.substring(line.indexOf(":")+1);
 					String n = line.substring(0,line.indexOf(":"));
 					int c = 0;
@@ -189,9 +180,6 @@ public class SettingsIO {
 					sas.name = n;
 					sas.value = value;
 					sd.add(sas);
-					//SettingsAttribute attr = sd.get(loc);
-					//attr.setValue(value);
-				//}
 			}
 			fstream.close();
 			in.close();
@@ -201,22 +189,5 @@ public class SettingsIO {
 			System.err.println(ex.getMessage());
 		}
 		return sd;
-	}
-	
-	/**
-	 * Finds the line in the file with the particular Settings
-	 * attribute.
-	 * @param sd The array to scan through.
-	 * @param str The attribute to match.
-	 * @return The index location (if any).
-	 * @deprecated
-	 */
-	private int findLineAttributeLocation(ArrayList<SettingsAttribute> sd,String str) {
-		for (int c = 0; c < sd.size(); c++) {
-			SettingsAttribute attr = sd.get(c);
-			if (str.toLowerCase().equals(attr.getName().toLowerCase()))
-				return c;
-		}
-		return -1;
 	}
 }

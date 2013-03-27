@@ -34,11 +34,6 @@ import com.jpii.navalbattle.pavo.grid.Entity;
 import com.jpii.navalbattle.pavo.grid.Location;
 import com.jpii.navalbattle.pavo.io.PavoImage;
 
-/**
- * 
- * @author maximusvladimir
- *
- */
 public class PavoHelper {
 	private static SystemSpeed calcs;
 	/**
@@ -94,19 +89,12 @@ public class PavoHelper {
 	 */
 	public static short getByteFromColor(Color c) {
 		int rgb = c.getRGB();
-		/*c.getRed()/colm;
-		rgb = (rgb << 6) + (c.getGreen()/colm);
-		rgb = (rgb << 6) + (c.getBlue()/colm);
-		if (rgb > 32767)
-			rgb = rgb - (32767*2);
-		return (short)(rgb);*/
 		rgb = (int)(rgb / 4);
 		if (rgb > 32767)
 			rgb = rgb - (32767*2);
 		return (short)rgb;
 	}
 	
-	private static int colm = 10;
 	private static Rand rand3 = new Rand();
 	
 	/**
@@ -116,15 +104,6 @@ public class PavoHelper {
 	 * @return
 	 */
 	public static Color getColorFromByte(short c) {
-		/*int rgb = (int)c;
-		if (rgb < 0)
-			rgb = rgb + (32767*2);
-		int red = (rgb >> 6) & (0xFF);
-		int green = (rgb >> 3) & (0xFF);
-		int blue = rgb & (0xFF);
-		red = (red * colm)/8;
-		green = (green * colm)/7;
-		blue = (blue * colm)/12;*/
 		int hd = (int)c;
 		if (hd < 0)
 			hd = hd + (32767*2);
@@ -140,23 +119,6 @@ public class PavoHelper {
 		if (r < 0)
 			r =0;
 		return new Color(r,c2.getGreen(),c2.getBlue());
-		/*
-		int red = 0;
-		int green = 0;
-		int blue = 0;
-		if (red > 255)
-			red = 255;
-		if (green > 255)
-			green = 255;
-		if (blue > 255)
-			blue = 255;
-		if (red < 0)
-			red = 0;
-		if (green < 0)
-			green = 0;
-		if (blue < 0)
-			blue = 0;*
-		return new Color(red,green,blue);*/
 	}
 	
 	/**
@@ -173,12 +135,7 @@ public class PavoHelper {
 			a = System.nanoTime();
 			a = System.nanoTime();
 			a = System.nanoTime();
-			long sb = 0;
-			for (int b = 0; b < 10000; b++) {
-				sb = Double.doubleToLongBits(Math.sqrt(b >> 2) * Math.log(b));
-			}
 			a = System.nanoTime() - a;
-			//System.out.println("sb"+sb+"time:"+a);
 			if (a < 2000000)
 				calcs = SystemSpeed.VERYFAST;
 			else if (a < 2500000)
@@ -194,10 +151,6 @@ public class PavoHelper {
 				a = System.nanoTime();
 				a = System.nanoTime();
 				a = System.nanoTime();
-				sb = 0;
-				for (int b = 0; b < 10000; b++) {
-					sb = Double.doubleToLongBits(Math.sqrt(b >> 2) * Math.log(b));
-				}
 				a = System.nanoTime() - a;
 				System.out.println("Speed time:"+a);
 				if (a < 2000000)
@@ -336,27 +289,17 @@ public class PavoHelper {
 	/**
 	 * Generates a leaf color.
 	 * @return
-	 * @deprecated ?????
 	 */
 	public static Color generateNewLeafColor() {
 		byte pointer = (byte)Game.Settings.rand.nextInt(0, 5);
 		switch (pointer) {
-			/*case 0:
-				return Game.Settings.rand.nextColor(244,214,38,15);
-			case 1:
-				return Game.Settings.rand.nextColor(236,89,47,15);*/
 			case 0:
 				return Game.Settings.rand.nextColor(100,120,29,15);
 			case 1:
 				return Game.Settings.rand.nextColor(50,60,15,15);
 			case 2:
 				return Game.Settings.rand.nextColor(135,185,98,15);
-			/*case 3:
-				return Game.Settings.rand.nextColor(240,244,89,15);
-			case 4:
-				return Game.Settings.rand.nextColor(135,185,98,15);*/
 		}
-		//return Game.Settings.rand.nextColor(135,185,98,15);
 		return Game.Settings.rand.nextColor(60,75,70,15);
 	}
 	
@@ -567,7 +510,7 @@ public class PavoHelper {
 	
 	/**
 	 * Shrinks an image to fit into memory more
-	 * effectivly.
+	 * Effectively.
 	 * @param src The source image.
 	 * @return
 	 */

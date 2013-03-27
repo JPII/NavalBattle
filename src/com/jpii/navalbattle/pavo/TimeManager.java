@@ -23,6 +23,7 @@ import java.awt.image.BufferedImage;
 import com.jpii.navalbattle.pavo.io.PavoImage;
 
 public class TimeManager extends Renderable {
+	private static final long serialVersionUID = 1L;
 	public static int DayNightTotalLengthSeconds = 120;
 	public static int NightDarkness = 80;
 	private int hour = 0;
@@ -94,7 +95,6 @@ public class TimeManager extends Renderable {
     	}
     	if (thour < 0)
     		thour = thour * -1;
-    	//minute = ((int)((tofd * 1440) / DayNightTotalLengthSeconds));// - (hour * 60);
     	int d = (int)(thour);
     	minute = (int)((thour - d) * 60);
     	hour = d;

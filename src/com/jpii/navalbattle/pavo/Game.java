@@ -25,58 +25,40 @@ import java.awt.event.MouseWheelEvent;
 import java.awt.image.BufferedImage;
 import java.io.Serializable;
 import java.util.Calendar;
-import java.util.Date;
-import java.util.Timer;
-import java.util.TimerTask;
 
 
 import com.jpii.navalbattle.NavalBattle;
-import com.jpii.navalbattle.data.Constants;
 import com.jpii.navalbattle.game.NavalClient;
 import com.jpii.navalbattle.game.NavalServer;
-//import com.jpii.navalbattle.game.TestClient;
-//import com.jpii.navalbattle.game.TestServer;
 import com.jpii.navalbattle.pavo.grid.Entity;
 import com.jpii.navalbattle.pavo.grid.Location;
 import com.jpii.navalbattle.pavo.grid.Tile;
-import com.jpii.navalbattle.pavo.gui.GameWindow;
 import com.jpii.navalbattle.pavo.gui.GridWindow;
-import com.jpii.navalbattle.pavo.gui.MessageBox;
-import com.jpii.navalbattle.pavo.gui.MessageBoxIcon;
 import com.jpii.navalbattle.pavo.gui.NewWindowManager;
-import com.jpii.navalbattle.pavo.gui.WindowManager;
 import com.jpii.navalbattle.pavo.gui.controls.PWindow;
 import com.jpii.navalbattle.pavo.io.PavoClient;
 import com.jpii.navalbattle.pavo.io.PavoImage;
 import com.jpii.navalbattle.pavo.io.PavoServer;
-import com.jpii.navalbattle.renderer.Helper;
 import com.jpii.navalbattle.util.GameStatistics;
 
 public class Game extends Renderable implements Runnable, Serializable {
+	private static final long serialVersionUID = 1L;
 	private Thread updator;
 	private Thread chunkrender;
-	private Thread generator;
 	private Thread renderer;
-	//private Thread sync;
 	private boolean gameRunning = true;
-	private long timeLastUpdate = System.currentTimeMillis();
 	private int state = 0;
 	private World world;
-	//private WorldGen gen;
 	private long numUpdates = 0;
 	private boolean forceUpdate = false;
-	private boolean forceRender = false;
 	private int lastTime = -1;
 	private int lastw = 0, lasth = 0;
-	private WindowManager windows;
 	private NewWindowManager windowsnt;
 	private PavoImage shadow;
 	public static Game Instance;
 	private NavalClient client;
 	private PavoServer server;
 	private boolean isClient = false;
-	private BufferedImage renderBuffer;
-	//private BufferedImage chunkBuffer;
 	public static PavoSettings Settings = new PavoSettings();
 	
 	/**
@@ -85,26 +67,19 @@ public class Game extends Renderable implements Runnable, Serializable {
 	public Game() {
 		server = new NavalServer(this);
 		System.out.println("Server status: " + server.start());
-		windows = new WindowManager(this);
 		windowsnt = new NewWindowManager(this);
 		world = new World(this);
-		//gen = new WorldGen();
 		threadInit();
 		buffer = new PavoImage(Game.Settings.currentWidth,Game.Settings.currentHeight,BufferedImage.TYPE_3BYTE_BGR);
-		//chunkBuffer = new BufferedImage(Game.Settings.currentWidth,Game.Settings.currentHeight,BufferedImage.TYPE_3BYTE_BGR);
 		shadow = (PavoImage)PavoHelper.createInnerShadow(Game.Settings.currentWidth,Game.Settings.currentHeight);
 		int yeart = Calendar.getInstance().get(Calendar.YEAR);
 		String years = Integer.toString(yeart);
 		yearf = Integer.parseInt(years.substring(0,2));
 		yearl = Integer.parseInt(years.substring(2));
 		Instance = this;
-		//MessageBox.show("Server started", "Sucessfully started a server instance.\n\nYour IP address:" + server.getSelfIP(), 
-			//	MessageBoxIcon.Information, true, true);
-		//int prv = NavalBattle.getWindowHandler().getToasterManager().getDisplayTime();
 		NavalBattle.getWindowHandler().getToasterManager().setDisplayTime(8000);
 		NavalBattle.getWindowHandler().getToasterManager().showToaster(
 				"Sucessfully started a server instance.\n\nYour IP address:" + server.getSelfIP());
-		//NavalBattle.getWindowHandler().getToasterManager().setDisplayTime(prv);
 	}
 	
 	/**
@@ -128,19 +103,13 @@ public class Game extends Renderable implements Runnable, Serializable {
 			}
 			akamaideli3242very();
 			Game.Settings.seed = client.getSeed();
-			//MessageBox.show("Connection sucessful", "Sucessfully connected to the server.", MessageBoxIcon.Information, true, true);
-			//int prv = NavalBattle.getWindowHandler().getToasterManager().getDisplayTime();
 			NavalBattle.getWindowHandler().getToasterManager().setDisplayTime(8000);
 			NavalBattle.getWindowHandler().getToasterManager().showToaster("Sucessfully connected to the server.");
-			//NavalBattle.getWindowHandler().getToasterManager().setDisplayTime(prv);
 		}
-		windows = new WindowManager(this);
 		windowsnt = new NewWindowManager(this);
 		world = new World(this);
-		//gen = new WorldGen();
 		threadInit();
 		buffer = new PavoImage(Game.Settings.currentWidth,Game.Settings.currentHeight,BufferedImage.TYPE_3BYTE_BGR);
-		//chunkBuffer = new BufferedImage(Game.Settings.currentWidth,Game.Settings.currentHeight,BufferedImage.TYPE_3BYTE_BGR);
 		shadow = (PavoImage)PavoHelper.createInnerShadow(Game.Settings.currentWidth,Game.Settings.currentHeight);
 		int yeart = Calendar.getInstance().get(Calendar.YEAR);
 		String years = Integer.toString(yeart);
@@ -199,14 +168,6 @@ public class Game extends Renderable implements Runnable, Serializable {
 		return isClient;
 	}
 	
-	/*
-	 * Gets the window manager for the Game.
-	 * @return
-	 */
-//	public WindowManager getWinMan() {
-//		return windows;
-//	}
-	
 	/**
 	 * Gets the window manager for the Game.
 	 * @return
@@ -216,14 +177,7 @@ public class Game extends Renderable implements Runnable, Serializable {
 	}
 	
 	/**
-	 * Sets the window manager for the Game.
-	 * @param wm
-	 */
-	public void setWinMan(WindowManager wm) {
-		windows = wm;
-	}
-	/**
-	 * Gets the total number of updates that the updator has performed.
+	 * Gets the total number of updates that the updater has performed.
 	 * @return
 	 */
 	public long getNumUpdates() {
@@ -260,16 +214,7 @@ public class Game extends Renderable implements Runnable, Serializable {
 		while (lastStart + 500 > System.currentTimeMillis()) {
 			
 		}
-		//sync = new Thread(this);
 		state = 4;
-		//sync.setPriority(js);
-		//sync.setName("syncThread");
-		//sync.setDaemon(true);
-		//sync.start();
-		//sync.setPriority(js);
-		//while (lastStart + 500 > System.currentTimeMillis()) {
-		//	
-		//}
 		renderer = new Thread(this);
 		state = 5;
 		renderer.setPriority(js);
@@ -277,13 +222,8 @@ public class Game extends Renderable implements Runnable, Serializable {
 		renderer.setDaemon(true);
 		renderer.start();
 		renderer.setPriority(js);
-		//state = 3;
-		//generator = new Thread(this);
-		//generator.setPriority(Thread.MAX_PRIORITY);
-		//generator.setName("generatorThread");
-		//generator.start();
 	}
-	private boolean worldReRenderNotNeeded = true;
+	
 	private static GameStatistics stats = new GameStatistics();
 	/**
 	 * The graphics statistics for the game.
@@ -296,14 +236,8 @@ public class Game extends Renderable implements Runnable, Serializable {
 	 * Immortal caller.
 	 */
 	public void run() {
-		// Game updator
 		if (state == 1) {
 			while (gameRunning) {
-				//System.out.println("Game updator firing..." + Thread.currentThread().getName());
-				///while (timeLastUpdate + 100 > System.currentTimeMillis()) {
-					//if (forceUpdate)
-					//	break;
-				//}
 				while (!forceUpdate) {
 					;;;
 				}
@@ -311,15 +245,12 @@ public class Game extends Renderable implements Runnable, Serializable {
 					lastw = Settings.currentWidth;
 					lasth = Settings.currentHeight;
 					getWindows().$akafre();
-					//shadow = PavoHelper.createInnerShadow(Game.Settings.currentWidth,Game.Settings.currentHeight);
 				}
-				//System.out.println("winupdate");
 				numUpdates += 100;
 				forceUpdate = false;
 				long updateStart = System.currentTimeMillis();
 				while (getWorld().isLocked()) {}
 				getWorld().lock();
-				//getWorld().render();
 				getWorld().update();
 				getWorld().unlock();
 				TimeManager tim = getWorld().getTimeManager();
@@ -341,14 +272,13 @@ public class Game extends Renderable implements Runnable, Serializable {
 				update();
 				long updateFinish = System.currentTimeMillis() - updateStart;
 				getStats().SmSK280K99(updateFinish);
-				timeLastUpdate = System.currentTimeMillis();
 				if (!getStats().isGenerating() && !inStatement) {
 					inStatement = true;
 					try {
 						String name = "";
 						if (chunkrender != null)
 							name = chunkrender.getName();
-						chunkrender.stop();
+						chunkrender.interrupt();	
 						chunkrender = null;
 						System.gc();
 						System.out.println("Thread " + name + " is probably dead.");
@@ -369,37 +299,19 @@ public class Game extends Renderable implements Runnable, Serializable {
 				}
 			}
 		}
-		// Chunk renderer
 		else if (state == 2) {
 			while (gameRunning && getWorld().hasMoreChunks()) {
-				//while (!getWorld().isReadyForGen()) {
-					
-				//}
-				//System. out.println("Chunk gen firing..." + Thread.currentThread().getName());
 				if (getWorld().hasMoreChunks()) {
 					getWorld().genNextChunk();
-					// Make a small break between each generation.
 					long start = System.currentTimeMillis();
 					while (start + 150 > System.currentTimeMillis()) {
 						;;;
 					}
 				}
 				else {
-					//Chunk fcs = getWorld().getChunk(0);
-					//System.out.println(fcs.water00+"wateramount");
-						for (int c = 0; c < getWorld().getTotalChunks(); c++) {
-							Chunk chunk = getWorld().getChunk(c);
-							//getWorld().getEntityManager().AQms03KampOQ9103nmJMs((chunk.getZ()*2), (chunk.getX()*2), chunk.water00);
-							//getWorld().getEntityManager().AQms03KampOQ9103nmJMs((chunk.getZ()*2)+1, (chunk.getX()*2), chunk.water01);
-							//getWorld().getEntityManager().AQms03KampOQ9103nmJMs((chunk.getZ()*2), (chunk.getX()*2)+1, chunk.water10);
-							//getWorld().getEntityManager().AQms03KampOQ9103nmJMs((chunk.getZ()*2)+1, (chunk.getX()*2)+1, chunk.water11);
-					}
-					//Game.getStats().SmKdn02nOaP(1);
 					break;
 				}
 			}
-			//Chunk fcs = getWorld().getChunk(0);
-			//System.out.println(fcs.water00+"wateramount");
 			for (int c = 0; c < getWorld().getTotalChunks(); c++) {
 				Chunk chunk = getWorld().getChunk(c);
 				getWorld().getEntityManager().AQms03KampOQ9103nmJMs((chunk.getZ()*2), (chunk.getX()*2), chunk.water00);
@@ -414,35 +326,21 @@ public class Game extends Renderable implements Runnable, Serializable {
 			while (gameRunning) {
 				long start = System.currentTimeMillis();
 				while (start + 250 > System.currentTimeMillis()) {
-					//;;;//System.gc();
 					PavoHelper.threadSleep();
 				}
 			}
 		}
 		else if (state == 5) {
 			while (gameRunning && Settings.isUsingMultithreadedRenderer) {
-				worldReRenderNotNeeded = true;
 				while (getWorld().isLocked()) {
-					//PavoHelper.threadSleep();
 				}
 				getWorld().lock();
 				getWorld().render();
 				getWorld().unlock();
-				/*long start = System.currentTimeMillis();
-				while (start + 250 > System.currentTimeMillis() && worldReRenderNotNeeded) {
-					;;;
-				}*/
-				//PavoHelper.threadSleep();
 			}
 		}
 		System.out.println("Thread " + Thread.currentThread().getName() + " is prepairing to exit context.");
 		System.gc();
-		// World generator
-		//else if (state == 3) {
-			//System.out.println("World gen firing..." + Thread.currentThread().getName());
-			//gen.generateChunk();
-			//getWorld().setWorldGen(gen);
-		//}
 	}
 	boolean inStatement = false;
 	public String getGenStatus() {
@@ -462,12 +360,8 @@ public class Game extends Renderable implements Runnable, Serializable {
 	 */
 	public void render() {
 		long sjan = System.currentTimeMillis();
-		//for (int c = 0; c < 5; c++)
-			//System.gc();
-		
 		if (lkw != Game.Settings.currentWidth || lkh != Game.Settings.currentHeight) {
 			buffer = new PavoImage(Game.Settings.currentWidth,Game.Settings.currentHeight,BufferedImage.TYPE_3BYTE_BGR);
-			//chunkBuffer = new BufferedImage(Game.Settings.currentWidth,Game.Settings.currentHeight,BufferedImage.TYPE_3BYTE_BGR);
 			lkw = Game.Settings.currentWidth;
 			lkh = Game.Settings.currentHeight;
 		}
@@ -486,23 +380,16 @@ public class Game extends Renderable implements Runnable, Serializable {
 		
 		GameStatistics gs = getStats();
 		g.setColor(Color.red);
-		//g.setFont(Helper.GUI_GAME_FONT);
-		int ma = 38;
 		g.drawString("Idling (should be low):" + gs.getDrawIdling() + ". Draw time:" + gs.getDrawTime() + " Live chunks:" + gs.getLiveChunks(),12,660);
 		g.drawString("Is generating? " + gs.isGenerating() + ". Total update time:" + gs.getUpdateTime()
 				+ ". Last render length:" + gs.getTotalUpdate() + ". Current network state: " + Game.Settings.currentNetworkState, 12,690);
 		getWorld().unlock();
 		
-		while (/*getWinMan().isLocked() && */
-				getWindows().isLocked()) {
-			
+		while (getWindows().isLocked()) {			
 		}
-		//getWinMan().lock();
 		getWindows().lock();
 		if (gJsiw)
 			g.setXORMode(Color.yellow);
-		
-		//g.setXORMode(Color.blue);
 		for (int c = 0; c < getWindows().size(); c++) {
 			PWindow gw = getWindows().get(c);
 			if (gw instanceof GridWindow && gw.isVisible()) {
@@ -530,17 +417,12 @@ public class Game extends Renderable implements Runnable, Serializable {
 				}
 			}
 		}
-		//g.setXORMode(Color.blue);
 		if (PavoHelper.getCalculatedSystemSpeed() != SystemSpeed.CREEPER && 
 				PavoHelper.getCalculatedSystemSpeed() != SystemSpeed.TURTLE) {
 			g.drawImage(shadow,0,0,null);
 		}
-		//getWinMan().render();
-		//getWindows().render();
-		//g.drawImage(getWinMan().getBuffer(), 0, 0, null);
 		g.drawImage(getWindows().getBuffer(),0,0,null);
 		g.dispose();
-		//getWinMan().unlock();
 		getWindows().unlock();
 		Game.getStats().sBm3ns02AKa99mqp392(System.currentTimeMillis() - sjan);
 	}
@@ -598,7 +480,7 @@ public class Game extends Renderable implements Runnable, Serializable {
 		chy /= 50;
 		if (chx < PavoHelper.getGameWidth(getWorld().getWorldSize()) * 2 && chy < PavoHelper.getGameHeight(getWorld().getWorldSize()) * 2 &&
 		chx >= 0 && chy >= 0) {
-			Tile<Entity> e = getWorld().getEntityManager().getTile(chy,chx);
+			Tile<Entity> e = (getWorld().getEntityManager().getTile(chy,chx));
 			if (e != null) {
 				int acuratex = (-getWorld().getScreenX()) + me.getX() - (chx*50);
 				int acuratey = (-getWorld().getScreenY()) + me.getY() - (chy*50);
@@ -620,15 +502,6 @@ public class Game extends Renderable implements Runnable, Serializable {
 	public void mouseWheelChange(MouseWheelEvent mwe) {
 		
 	}
-	
-	//Timer mouseLogicTimer = new Timer();
-	//TimerTask mouseLogicTask = new $$$MouseLogicTimer();
-	/*MouseEvent mouseEventSchedule;
-	private class $$$MouseLogicTimer extends TimerTask implements Serializable {
-	    public void run() {
-	        mouseHeldDown(mouseEventSchedule);
-	    }
-	}*/
 	int lastmx = 0,lastmy = 0;
 	int yearf = 0;
 	int yearl = 0;
@@ -646,9 +519,6 @@ public class Game extends Renderable implements Runnable, Serializable {
 			guiUsedMouseDown = true;
 			return;
 		}
-		//mouseEventSchedule = me;
-		//mouseLogicTask = new $$$MouseLogicTimer();
-		//mouseLogicTimer.scheduleAtFixedRate(mouseLogicTask, 0, 10);
 		int chx = (-getWorld().getScreenX()) + lastmx;
 		int chy = (-getWorld().getScreenY()) + lastmy; 
 		chx /= 50;
@@ -681,7 +551,6 @@ public class Game extends Renderable implements Runnable, Serializable {
 			guiUsedMouseUp = true;
 			return;
 		}
-		//mouseLogicTask.cancel();
 	}
 	
 	/**
@@ -697,7 +566,7 @@ public class Game extends Renderable implements Runnable, Serializable {
 	}
 	
 	/**
-	 * Occurs when the Game is shuting down.
+	 * Occurs when the Game is shutting down.
 	 */
 	public void onShutdown() {
 		

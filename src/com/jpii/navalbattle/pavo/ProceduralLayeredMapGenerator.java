@@ -20,18 +20,13 @@ package com.jpii.navalbattle.pavo;
 import maximusvladimir.dagen.Perlin;
 import maximusvladimir.dagen.Rand;
 
-//import com.jpii.navalbattle.data.Constants;
-
 /**
  * Procedural-layer map generator for Pavo
- * @author maximusvladimir
- *
  */
 public class ProceduralLayeredMapGenerator {
 	private static $JSNAO9JW10SKJF194OI[] json;
-	private static $kdOWj20Janro2[] barracades;
 	private static Rand rand = Game.Settings.rand;
-	public static final int RIVERSIZE = 1024;//512;
+	public static final int RIVERSIZE = 1024;
 	static {
 		doInit();
 	}
@@ -44,73 +39,21 @@ public class ProceduralLayeredMapGenerator {
 
 
 		}
-		/*barracades = new $kdOWj20Janro2[20];
-		for (int c = 0; c < barracades.length; c++) {
-			$kdOWj20Janro2 h = new $kdOWj20Janro2();
-			int x2 = 0;
-			int z2 = 0;
-			int s = rand.nextInt(5,10);
-			boolean flag = false;
-			while (!flag) {
-				int[] mem = pSnwonUJa();
-				x2 = mem[0];
-				z2 = mem[1];
-				//System.out.println("x2="+x2+"z2="+z2);
-				//if (getPoint(x2-s,z2-s) > 0.2 && getPoint(x2+s,z2-s) > 0.2
-					//	&& getPoint(x2+s,z2+s) > 0.2 && getPoint(x2-s,z2+s) > 0.2) {
-					flag = true;
-				//}
-			}
-			h.x = x2;
-			h.z = z2;
-			h.size = (byte)s;
-			barracades[c] = h;
-		}*/
-	}
-	private static int[] pSnwonUJa() {
-		int x2 = 0, z2 = 0;
-		while (x2 <= 12 || z2 <= 12 || getPoint(x2,z2) < 0.5) {
-			x2 = rand.nextInt(0, (PavoHelper.getGameWidth(WorldSize.WORLD_LARGE)*32)-12);
-			z2 = rand.nextInt(0, (PavoHelper.getGameHeight(WorldSize.WORLD_LARGE)*32)-12);
-		}
-		int[] c = new int[2];
-		c[0] = x2;
-		c[1] = z2;
-		return c;
 	}
 	private static Perlin berlin;
 	public static byte getValidHouse(int x, int z) {
-		/*for (int bjwI = 0; bjwI < barracades.length; bjwI++) {
-			$kdOWj20Janro2 p = barracades[bjwI];
-			if (x == p.x && z == p.z)
-				return p.size;
-		}*/
 		return 0;
 	}
 	public static float getPoint(float x, float z) {
 		float lvl0 = getLevel0(x,z);
-		//float lvl1 = getLevel1(x,z);
 		float lvl2 = getLevel2(x,z);
 		float lvl3 = getLevel3(x,z);
 		float lvl4 = getLevel4(x,z);
-		//float lvl5 = getLevel5(x,z);
-		//float lvl6 = getLevel6(x,z);
-		//float lvl7 = getLevel7(x,z);
-		double mixer = ((lvl0*25.0f)+(lvl4*5)+(lvl2*2.5f)+(lvl3*2.5f)) * 0.02631578947368421052631578947368;// 38.0f;//(lvl1*20.0f)+(lvl2*5.0f)+(lvl3*3.0f)+
-				//(lvl4*5.0f)+(lvl5*5.0f)+(lvl6*1.5f)-(lvl7*12.0f))/98.5f;
-		//mixer = ((mixer * 14.0f) + getLevel1(x,z))/15.0f;
+		double mixer = ((lvl0*25.0f)+(lvl4*5)+(lvl2*2.5f)+(lvl3*2.5f)) * 0.02631578947368421052631578947368;
 		double mixed = (((mixer+1)*0.5)-0.1);
 		
 		if (mixed > 0.57)
 			mixed += 0.26;
-		
-		/*if (blitRiver(x,z)){
-			mixed = getLevel2(mixer,mixed+z)+0.2f;
-			//if (mixed < 0.0f)
-				mixed = 0;
-			//if (mixed > 0.4f)
-				//mixed = 0.4f;
-		}*/
 		
 		float res = (float)((mixed - 0.3)*4.7619047619047619047619047619048) - 0.08f;
 		if (res > 1)
@@ -122,8 +65,6 @@ public class ProceduralLayeredMapGenerator {
 			res = res * 0.3f;
 			if (res < 0.15f)
 				res += rand.nextDouble() * 0.15f;
-			//res = (getLevel2(mixer,mixed+z) + (res*9)) / 10.0f;
-			//res = res - 0.4f;
 			if (res > 1)
 				res = 1;
 			if (res < 0)
@@ -133,12 +74,9 @@ public class ProceduralLayeredMapGenerator {
 		return res;
 	}
 	private static float ld0 = 1024;
-	private static float ld1 = 128;
 	private static float ld2 = 32;
 	private static float ld3 = 64;
 	private static float ld4 = 512;
-	private static float ld5 = 1024;
-	private static float ld7 = 8196;
 	private static boolean blitRiver(float x, float z) {
 		for (int v = 0; v < json.length; v++) {
 			int cx = (int) (x - json[v].TInaOAJNqi0930142);
@@ -149,17 +87,8 @@ public class ProceduralLayeredMapGenerator {
 		}
 		return false;
 	}
-	private static float getLevel7(float x, float z) {
-		return berlin.noise(x/ld7,z/ld7);
-	}
 	private static float getLevel0(float x, float z) {
 		return berlin.noise(x/ld0, z/ld0);
-	}
-	private static float getLevel6(float x, float z) {
-		return berlin.noise(x,z);
-	}
-	private static float getLevel1(float x, float z) {
-		return berlin.noise(x/ld1,z/ld1);
 	}
 	private static float getLevel2(float x, float z) {
 		return berlin.noise(x/ld2,z/ld2);
@@ -169,9 +98,6 @@ public class ProceduralLayeredMapGenerator {
 	}
 	private static float getLevel4(float x, float z) {
 		return berlin.noise(x/ld4,z/ld4);
-	}
-	private static float getLevel5(float x, float z) {
-		return berlin.noise(x/ld5,z/ld5);
 	}
 }
 class $kdOWj20Janro2 {

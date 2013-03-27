@@ -19,15 +19,12 @@ package com.jpii.navalbattle.io;
 
 import com.jpii.navalbattle.NavalBattle;
 import com.jpii.navalbattle.io.SettingsAttribute;
-import com.jpii.navalbattle.pavo.Game;
 import com.jpii.navalbattle.util.FileUtils;
 
 import java.io.File;
 
 /**
  * NavalBattle IO manager.
- * @author maximusvladimir
- *
  */
 public class NavalBattleIO {
 	

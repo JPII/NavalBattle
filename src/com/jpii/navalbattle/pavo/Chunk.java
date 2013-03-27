@@ -23,7 +23,6 @@ import java.util.Random;
 
 import maximusvladimir.dagen.*;
 
-import com.jpii.navalbattle.data.Constants;
 import com.jpii.navalbattle.pavo.grid.Entity;
 import com.jpii.navalbattle.pavo.grid.Tile;
 import com.jpii.navalbattle.pavo.io.PavoImage;
@@ -32,10 +31,9 @@ import com.jpii.navalbattle.renderer.RenderConstants;
 
 /**
  * The main file dealing with Chunks, which the world depends on for visuals.
- * @author MKirkby
- *
  */
 public class Chunk extends Renderable{
+	private static final long serialVersionUID = 1L;
 	int x,z;
 	boolean generated = false;
 	public Tile<Entity> Tile00, Tile10, Tile01,Tile11;
@@ -95,23 +93,14 @@ public class Chunk extends Renderable{
 	 * Renders the terrain for the chunk.
 	 */
 	public void render() {
-		//if (!ready)
-			//return;
-		//ready = false;
 		Random rp = new Random(Game.Settings.seed+(x&z)+x-z+(z|x));
 		rand = new Rand(rp.nextLong());
 		terrain = new BufferedImage(34,34,BufferedImage.TYPE_USHORT_555_RGB);
 		Graphics g = terrain.getGraphics();
-		//int hhh = 0;
 		for (int lsx = 0; lsx < 100/3; lsx++) {
 			for (int lsz = 0; lsz < 100/3; lsz++) {
 				float frsh = ProceduralLayeredMapGenerator.getPoint(lsx+(100.0f/3.0f*x), lsz+(100.0f/3.0f*z));
-				//if (x == 0 && z == 0)
-					//frsh = 1;
-				//byte slip = ProceduralLayeredMapGenerator.getValidHouse((int)(lsx+(100.0f/3.0f*x)), (int)(lsz+(100.0f/3.0f*z)));
 				float lsy = frsh;
-				int nawo = rand.nextInt(-5, 8);
-				//hhh++;
 				if (lsy >= 0.4) {
 					if (lsx < 16.6666666666666666 && lsz < 16.666666666666666)
 						water00 += 1;
@@ -127,52 +116,26 @@ public class Chunk extends Renderable{
 					g.setColor(new Color(63+rand.nextInt(-7,7),60+rand.nextInt(-7,7),rand.nextInt(90, 100)+rgs));
 					if (lsy > 0.38 && rand.nextInt(1,15) == 2) {
 						int h = rand.nextInt(200,210);
-						int rg2s = Helper.colorSnap((int)(lsy*102));
 						g.setColor(new Color(143,141,h));
 					}
 				}
 				else if (lsy < 0.55) {
 					Color base1 = PavoHelper.Lerp(RenderConstants.GEN_SAND_COLOR,new Color(52,79,13),((lsy-0.42)/0.15));
 					if (lsy < 0.42) {
-						//if (rp.nextBoolean()) {
 							base1 = PavoHelper.Lerp(new Color(199,189,122),RenderConstants.GEN_SAND_COLOR,((lsy-0.40)/0.02));
-						//}
-						//else {
-							//base1 = PavoHelper.Lerp(new Color(199,189,122),new Color(79,57,19),((lsy-0.40)/0.02));
-						//}
 					}
 					base1 = Helper.randomise(base1, 8, rand, false);
 					g.setColor(base1);
-					//Color start = Helper.adjust(Helper.randomise(RenderConstants.GEN_SAND_COLOR,7
-	                        ///*RenderConstants.GEN_COLOR_DIFF*/, rand, false), ((lsy-0.4)/0.1), 50);
 				}
 				else{
 					Color pick = new Color(100,92,40);
-					//if (rp.nextBoolean())
-						//pick = new Color(79,57,19);
 					Color base1 = PavoHelper.Lerp(new Color(52,79,13),pick,((lsy-0.55)/0.45));
 					base1 = Helper.randomise(base1, 8, rand, false);
 					g.setColor(base1);
-					/*if (lsy == 1) {
-						Color base = new Color(52,79,13);
-						double actmountain = (lsy - 0.95)/0.05;
-						base = PavoHelper.Lerp(base, new Color(164,133,70), actmountain);
-						base = Helper.randomise(base, 8, rand, false);
-						g.setColor(base);
-					}*/
-					//System.out.println(frsh);
-					//g.setColor(Helper.adjust(Helper.randomise(new Color(40,61,4),
-	                  //      RenderConstants.GEN_COLOR_DIFF, rand, false), ((lsy-0.6)/0.3), 40));
 				}
 				g.drawLine(lsx,lsz,lsx,lsz);
-				//if (slip > 0) {
-					//g.setColor(Color.red);
-					//g.drawRect(lsx-(slip/2),lsz-(slip/2),slip,slip);
-				//}
-				//g.fillRect(lsx*3,lsz*3,4,4);
 			}
 		}
-		//System.out.println("hhh"+hhh/4);
 		
 		for (int xc = 100/3; xc > 0; xc--) {
 			for (int zc = 100/3; zc > 0; zc--) {
@@ -197,7 +160,6 @@ public class Chunk extends Renderable{
 		w.getEntityManager().AQms03KampOQ9103nmJMs((getZ()*2), (getX()*2)+1, water10);
 		w.getEntityManager().AQms03KampOQ9103nmJMs((getZ()*2)+1, (getX()*2)+1, water11);
 		writeBuffer();
-		//ready = true;
 		generated = true;
 	}
 	/**
@@ -207,42 +169,6 @@ public class Chunk extends Renderable{
 		buffer = new PavoImage(100,100,BufferedImage.TYPE_3BYTE_BGR);
 		Graphics2D g = PavoHelper.createGraphics(buffer);
 		g.drawImage(terrain, 0, 0,103,103, null);
-		/*if (Tile00 != null || Tile10 != null || Tile11 != null || Tile01 != null) {
-			//g.drawOval(0,0,33,33);
-		}*/
-		
-		/*if (Tile00!=null){
-			Entity parent = Tile00.getEntity();
-			g.setColor(parent.getManager().getTeamColor(parent.teamId));
-			if(Tile00.getId().getMutexId()==65537)
-				g.fillRect(45, 15, 5, 20);
-			if(Tile00.getId().getMutexId()==65538)
-				g.fillRect(0, 15, 35, 20);
-		}
-		if (Tile01!=null){
-			Entity parent = Tile01.getEntity();
-			g.setColor(parent.getManager().getTeamColor(parent.teamId));
-			if(Tile01.getId().getMutexId()==65537)
-				g.fillRect(45, 65, 5, 20);
-			if(Tile01.getId().getMutexId()==65538)
-				g.fillRect(0, 65, 35, 20);
-		}
-		if (Tile10!=null){
-			Entity parent = Tile10.getEntity();
-			g.setColor(parent.getManager().getTeamColor(parent.teamId));
-			if(Tile10.getId().getMutexId()==65537)
-				g.fillRect(95, 15, 5, 20);
-			if(Tile10.getId().getMutexId()==65538)
-				g.fillRect(50, 15, 35, 20);
-		}
-		if (Tile11!=null ){
-			Entity parent = Tile11.getEntity();
-			g.setColor(parent.getManager().getTeamColor(parent.teamId));
-			if(Tile11.getId().getMutexId()==65537)
-				g.fillRect(95, 65, 5, 20);
-			if(Tile11.getId().getMutexId()==65538)
-				g.fillRect(50, 65, 35, 20);
-		}*/
 		
 		g.drawImage(w.getEntityManager().getImage(Tile00), 0, 0, null);
 		g.drawImage(w.getEntityManager().getImage(Tile10), 50, 0, null);
@@ -264,19 +190,11 @@ public class Chunk extends Renderable{
 			g.setColor(PavoHelper.changeAlpha(PavoHelper.getColorFromByte(Overlay11), 60));
 			g.fillRect(50,50,50,50);
 		}
-		//if (poychingmode) {
-		//	g.setColor(new Color(0,0,255,127));
-		//	g.fillRect(0,0,103,103);
-		//}
 		nesa = false;
 		g.dispose();
 		w.chunkrender = true;
 	}
-	
-	//boolean poychingmode = false;
-	//public void poyching() {
-	//	poychingmode = true;
-	//}
+
 	boolean nesa = false;
 	/**
 	 * Does the buffer need to be rewritten?
