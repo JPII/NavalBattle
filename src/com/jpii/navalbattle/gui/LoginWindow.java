@@ -28,8 +28,8 @@ import com.jpii.navalbattle.util.URLUtils;
 import com.roketgamer.Player;
 import com.roketgamer.rauth.*;
 
-@SuppressWarnings("serial")
 public class LoginWindow extends Window {
+	private static final long serialVersionUID = 1L;
 	JButton loginButton, updateButton, announcementButton;
 	JLabel usernameLabel, passwordLabel, lblCheckingForUpdate;
 	JTextField usernameField;
@@ -185,15 +185,21 @@ public class LoginWindow extends Window {
 		});
 	}
 	
+	private String createString(char[] c){
+		String temp = "";
+		for(int index=0; index<c.length; index++)
+			temp+=c[index];
+		return temp;
+	}
+	
 	/**
 	 *  Method for handling login with RoketGamer.
 	 */
 	public void login() {
 		NavalBattleIO.saveAttribute(new SettingsAttribute("lastGoodUserName",usernameField.getText()));
-		@SuppressWarnings("deprecation")
 		AuthStatus status = NavalBattle.getRoketGamer().init(new APIKey(Constants.API_KEY), 
 				new Player(usernameField.getText(), 
-				new Password(passwordField.getText())), Constants.ROKETGAMER_LOG_HOOK);
+				new Password(createString(passwordField.getPassword()))), Constants.ROKETGAMER_LOG_HOOK);
 		
 		if (status == AuthStatus.GOOD) {
 			NavalBattle.getDebugWindow().printInfo("User authenticated");

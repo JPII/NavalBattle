@@ -12,6 +12,7 @@ import java.awt.event.ActionEvent;
 
 public class UpdateWindow extends Window {
 	
+	private static final long serialVersionUID = 1L;
 	JLabel updateTitle;
 	JTextPane updateText;
 	

@@ -32,12 +32,10 @@ import com.jpii.navalbattle.io.NavalBattleIO;
 import com.jpii.navalbattle.pavo.PavoOpenState;
 import com.jpii.navalbattle.renderer.Helper;
 
-@SuppressWarnings("serial")
 public class MainMenuWindow extends Window {
+	private static final long serialVersionUID = 1L;
 	JButton btnRoketGamer;
 	SinglePlayerGame spg;
-	//PavoOpenState pos = PavoOpenState.NORMAL;
-	//String args = null;
 	
 	/**
 	 * <code>MainMenuWindow</code> constructor.
@@ -70,7 +68,6 @@ public class MainMenuWindow extends Window {
 		
 		lblNavalBattle.setForeground(Color.WHITE);
 		lblNavalBattle.setFont(Helper.GUI_MENU_TITLE_FONT);
-		//btnMultiplayer.setEnabled(false);
 		lblNavalBattle.setHorizontalAlignment(SwingConstants.CENTER);
 		
 		getContentPane().add(lblVersion);
@@ -131,7 +128,6 @@ public class MainMenuWindow extends Window {
 		btnMultiplayer.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				//NavalBattle.getDebugWindow().printWarning("Multiplayer has not been implemented");
 				boolean valid = false;
 				String ip = NavalBattleIO.getAttribute("lastGoodIP");
 				while (!valid) {
@@ -140,10 +136,6 @@ public class MainMenuWindow extends Window {
 						return;
 					if (ip.equals(""))
 						valid = false;
-					//else if (ip.equals("127.0.0.1") || ip.equals("localhost")) {
-					//	JOptionPane.showMessageDialog(null,"Not permitted to connect to self.","JR says NO!",JOptionPane.WARNING_MESSAGE);
-					//	valid = false;
-					//
 					else
 						valid = validate(ip);
 				}

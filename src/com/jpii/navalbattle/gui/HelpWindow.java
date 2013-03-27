@@ -25,8 +25,8 @@ import com.jpii.navalbattle.util.URLUtils;
 import java.awt.*;
 import java.awt.event.*;
 
-@SuppressWarnings("serial")
 public class HelpWindow extends Window {
+	private static final long serialVersionUID = 1L;
 	private JLabel lblTitle;
 
 	/**

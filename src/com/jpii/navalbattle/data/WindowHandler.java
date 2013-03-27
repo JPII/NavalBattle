@@ -46,7 +46,6 @@ public class WindowHandler {
 		windows.add(new LoggingInWindow());
 		windows.add(new LoginOptionsWindow());
 		windows.add(new MainMenuWindow());
-		windows.add(new SPOptions());
 		windows.add(new HelpWindow());
 		windows.add(new CreditsWindow());
 		windows.add(new BroadcastWindow());

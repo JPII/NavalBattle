@@ -28,8 +28,8 @@ import java.awt.*;
 import java.awt.event.*;
 import java.io.IOException;
 
-@SuppressWarnings("serial")
 public class RoketGamerWindow extends JFrame{
+	private static final long serialVersionUID = 1L;
 	private JTable overallLeaderboard;
 
 	/**

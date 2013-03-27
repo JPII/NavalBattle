@@ -24,9 +24,8 @@ import com.jpii.navalbattle.renderer.Helper;
 import com.jpii.navalbattle.data.Constants;
 import com.jpii.navalbattle.gui.listeners.*;
 
-@SuppressWarnings("serial")
 public class Window extends JFrame {
-	
+	private static final long serialVersionUID = 1L;
 	/**
 	 * Constructor for Window. Superclass for all GUI windows that
 	 * handles size, icon, etc. To redefine elements, use custom constructor.

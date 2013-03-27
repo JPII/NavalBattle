@@ -21,16 +21,14 @@ import javax.swing.JLabel;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import javax.swing.JTextField;
 import javax.swing.JCheckBox;
 import javax.swing.JButton;
 
 import com.jpii.navalbattle.data.Constants;
 
-@SuppressWarnings("serial")
 public class LoginOptionsWindow extends Window {
-	
+	private static final long serialVersionUID = 1L;
 	private JTextField txtHttproketgamercocc;
 	
 	/**

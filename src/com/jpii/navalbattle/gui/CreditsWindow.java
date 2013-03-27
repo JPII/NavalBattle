@@ -21,8 +21,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
-@SuppressWarnings("serial")
 public class CreditsWindow extends Window {
+	private static final long serialVersionUID = 1L;
 	private JLabel gameTitle;
 	private JLabel licenseNotice;
 	private JButton btnClose;

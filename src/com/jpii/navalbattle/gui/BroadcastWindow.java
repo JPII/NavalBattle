@@ -11,7 +11,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 public class BroadcastWindow extends Window {
-	
+	private static final long serialVersionUID = 1L;
 	JLabel announcementTitle;
 	JTextPane announcementText;
 	

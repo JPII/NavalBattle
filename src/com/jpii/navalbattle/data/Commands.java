@@ -166,10 +166,6 @@ public class Commands {
 	    			new RoketGamerWindow();
 	    		}
 	    		
-	    		if(args[0].equals("spoptions") || args[0].equals("5") || args[0].equals("spoptionswindow")) {
-	    			NavalBattle.getWindowHandler().add(new SPOptions());
-	    		}
-	    		
 	    		if(args[0].equals("game") || args[0].equals("6") || args[0].equals("gamewindow") || args[0].equals("newgame")) {
 	    			new SinglePlayerGame();
 	    		}

@@ -1,26 +1,14 @@
-/**
- * 
- */
 package com.jpii.navalbattle.gui;
-import javax.swing.JPanel;
-import java.awt.BorderLayout;
+
 import javax.swing.JLabel;
 import javax.swing.JRadioButton;
 import javax.swing.JCheckBox;
 import javax.swing.JTextField;
-import javax.swing.JPopupMenu;
-import java.awt.Component;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import javax.swing.JCheckBoxMenuItem;
 import java.awt.Choice;
 import javax.swing.JButton;
 
-/**
- * @author MKirkby
- *
- */
 public class MultiPlayerWindow extends Window {
+	private static final long serialVersionUID = 1L;
 	private JTextField textField;
 	
 	
@@ -74,21 +62,5 @@ public class MultiPlayerWindow extends Window {
 		btnCancel.setBounds(189, 193, 89, 23);
 		getContentPane().add(btnCancel);
 	}
-	private static void addPopup(Component component, final JPopupMenu popup) {
-		component.addMouseListener(new MouseAdapter() {
-			public void mousePressed(MouseEvent e) {
-				if (e.isPopupTrigger()) {
-					showMenu(e);
-				}
-			}
-			public void mouseReleased(MouseEvent e) {
-				if (e.isPopupTrigger()) {
-					showMenu(e);
-				}
-			}
-			private void showMenu(MouseEvent e) {
-				popup.show(e.getComponent(), e.getX(), e.getY());
-			}
-		});
-	}
+	
 }
