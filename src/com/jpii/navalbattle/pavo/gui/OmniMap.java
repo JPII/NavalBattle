@@ -23,7 +23,6 @@ import java.awt.*;
 
 import maximusvladimir.dagen.Rand;
 
-import com.jpii.navalbattle.data.Constants;
 import com.jpii.navalbattle.pavo.Game;
 import com.jpii.navalbattle.pavo.ProceduralLayeredMapGenerator;
 import com.jpii.navalbattle.pavo.PavoHelper;
@@ -34,6 +33,7 @@ import com.jpii.navalbattle.renderer.Helper;
 import com.jpii.navalbattle.renderer.RenderConstants;
 
 public class OmniMap extends Renderable {
+	private static final long serialVersionUID = 1L;
 	int mx,my;
 	World w;
 	PavoImage terrain;
@@ -78,12 +78,7 @@ public class OmniMap extends Renderable {
 				int strx = x * PavoHelper.getGameWidth(w.getWorldSize());
 				int stry = y * PavoHelper.getGameHeight(w.getWorldSize());
 				float frsh = ProceduralLayeredMapGenerator.getPoint(strx,stry);
-				float lsy = frsh;/*(float) ((frsh - 0.3)/0.21);
-				if (lsy > 1)
-					lsy = 1;
-				if (lsy < 0)
-					lsy = 0;*/
-				int nawo = rand.nextInt(-5, 8);
+				float lsy = frsh;
 				if (lsy < 0.4) {
 					int rgs = Helper.colorSnap((int)(lsy*102));
 					g.setColor(new Color(63+rand.nextInt(-7,7),60+rand.nextInt(-7,7),rand.nextInt(90, 100)+rgs));
@@ -99,7 +94,6 @@ public class OmniMap extends Renderable {
 					g.setColor(base1);
 				}
 				g.fillRect(x*3,y*3,4,4);
-				//g.drawLine(x,y,x,y);
 			}
 		}
 		g.dispose();
@@ -131,6 +125,5 @@ public class OmniMap extends Renderable {
         g.setColor(new Color(74, 30, 3));
         g.drawRect(0, 0, width - 1, 100 - 1);
         g.dispose();
-        //g.fillRect(0, height, width, 25);
 	}
 }

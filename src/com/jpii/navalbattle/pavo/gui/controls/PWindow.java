@@ -173,7 +173,6 @@ public class PWindow extends Control {
 	
 	/**
 	 * This method is provided actual screen coordinates, rather than relative Window coordinates.
-	 * @deprecated
 	 */
 	public void onMouseDrag(int x, int y) {
 		super.onMouseDrag(x-getLocX(), y-getLocY());

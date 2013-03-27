@@ -65,7 +65,7 @@ public class GridHelper implements Serializable {
 					flag = false;
 					break;
 				}
-				Tile temp = em.getTile(row,col+c);
+				Tile<Entity> temp = em.getTile(row,col+c);
 				if(temp!=null) {
 					flag=false;
 					break;
@@ -79,7 +79,7 @@ public class GridHelper implements Serializable {
 					flag = false;
 					break;
 				}
-				Tile temp = em.getTile(row-c,col);
+				Tile<Entity> temp = em.getTile(row-c,col);
 				if(temp!=null) {
 					flag=false;
 					break;
@@ -98,7 +98,7 @@ public class GridHelper implements Serializable {
 					flag = false;
 					break;
 				}
-				Tile temp = em.getTile(row-(width-1),col+c);
+				Tile<Entity> temp = em.getTile(row-(width-1),col+c);
 				if(temp!=null&&!temp.getEntity().equals(e)){
 					flag=false;
 					break;
@@ -112,7 +112,7 @@ public class GridHelper implements Serializable {
 					flag = false;
 					break;
 				}
-				Tile temp = em.getTile(row-c,col);
+				Tile<Entity> temp = em.getTile(row-c,col);
 				if(temp!=null&&!temp.getEntity().equals(e)){
 					flag=false;
 					break;
@@ -132,7 +132,7 @@ public class GridHelper implements Serializable {
 				if (p > Game.Settings.waterThresholdBarrier){
 					return false;
 				}
-				Tile temp = em.getTile(row,col+c);
+				Tile<Entity> temp = em.getTile(row,col+c);
 				if(!(temp==null||temp.getEntity().equals(e))){
 					return false;
 				}
@@ -145,7 +145,7 @@ public class GridHelper implements Serializable {
 					return false;
 				if (p > Game.Settings.waterThresholdBarrier)
 					return false;
-				Tile temp = em.getTile(row-c,col);
+				Tile<Entity> temp = em.getTile(row-c,col);
 				if(temp!=null&&!temp.getEntity().equals(e))
 					return false;
 			}

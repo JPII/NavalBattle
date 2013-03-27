@@ -19,7 +19,7 @@ package com.jpii.navalbattle.pavo.grid;
 
 import java.io.Serializable;
 
-import com.jpii.navalbattle.game.NavalGame;
+
 import com.jpii.navalbattle.pavo.*;
 
 public class Entity implements Serializable {
@@ -28,7 +28,7 @@ public class Entity implements Serializable {
 	private Location location = Location.Unknown;
 	private String tag = "";
 	public long lastUpdate = 0;
-	private int width, height;
+	private int width;
 	private EntityManager manager;
 	private GridedEntityTileOrientation id;
 	public int teamId;
@@ -86,12 +86,11 @@ public class Entity implements Serializable {
 		setId(id);
 	}
 	/**
-	 * Initialises the entity. This should never be called. If inheriting <code>Entity></code>, this method should probably be overriden.
+	 * Initializes the entity. This should never be called. If inheriting <code>Entity></code>, this method should probably be overriden.
 	 */
 	public void init() {
 		setWidth(1);
 		setTag("entity-"+ENTITYMASTERRECORDSYSTEMPLEASEDONOTTOUCHTHIS++);
-		//setHeight(1);
 	}
 	
 	/*
@@ -110,7 +109,7 @@ public class Entity implements Serializable {
 				}
 				ORIENTATION_BUFFER_POSITION = akamai; //makes the current position the position rotating to
 				for (int w = 0; w < getWidth(); w++) { //places the entity in the correct position
-					Tile t = new Tile(this,location.getRow(),location.getCol());
+					Tile<Entity> t = new Tile<Entity>(this,location.getRow(),location.getCol());
 					t.setId(new Id(id.memCall(ORIENTATION_BUFFER_POSITION)[0],w));
 					manager.setTile(location.getRow(),location.getCol()+w, t);
 				}
@@ -124,7 +123,7 @@ public class Entity implements Serializable {
 				}
 				ORIENTATION_BUFFER_POSITION = akamai;//makes the current position the position rotating to
 				for (int h = 0; h < getHeight(); h++) {//places the entity in the correct position
-					Tile t = new Tile(this,location.getRow(),location.getCol());
+					Tile<Entity> t = new Tile<Entity>(this,location.getRow(),location.getCol());
 					t.setId(new Id(id.memCall(ORIENTATION_BUFFER_POSITION)[0],h));
 					manager.setTile(location.getRow()+h-3,location.getCol(), t);
 				}
@@ -141,22 +140,14 @@ public class Entity implements Serializable {
 		moveTo(new Location(r,c));
 	}
 	/**
-	 * Sets the genericied id of the entity. This shouldn't have to be called by the client.
+	 * Sets the generic id of the entity. This shouldn't have to be called by the client.
 	 * @param id The identifier to set the entity to.
 	 */
 	public void setId(GridedEntityTileOrientation id) {
 		this.id = id;
-		/*for (int w = 0; w < getWidth(); w++) {
-			for (int h = 0; h < getHeight(); h++) {
-				Tile t = new Tile(this,location.getRow()+h, location.getCol()+w);
-				t.setId(new Id(id,w));
-				manager.setTile(location.getRow()+h, location.getCol()+w, t);
-				//System.out.println("efretgfd");
-			}
-		}*/
 		if (ORIENTATION_BUFFER_POSITION == GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT) {
 			for (int w = 0; w < getWidth(); w++) {
-				Tile t22 = new Tile(this,location.getRow(),location.getCol()+w);
+				Tile<Entity> t22 = new Tile<Entity>(this,location.getRow(),location.getCol()+w);
 				int[] vbws = id.memCall(ORIENTATION_BUFFER_POSITION);
 				int vbw = vbws[0];
 				t22.setId(new Id(vbw,w));
@@ -165,7 +156,7 @@ public class Entity implements Serializable {
 		}
 		else if (ORIENTATION_BUFFER_POSITION == GridedEntityTileOrientation.ORIENTATION_TOPTOBOTTOM) {
 			for (int h = 0; h < getHeight(); h++) {
-				Tile t22 = new Tile(this,location.getRow()+h,location.getCol());
+				Tile<Entity> t22 = new Tile<Entity>(this,location.getRow()+h,location.getCol());
 				t22.setId(new Id(id.memCall(ORIENTATION_BUFFER_POSITION)[0],h));
 				manager.setTile(location.getRow()+h,location.getCol(), t22);
 			}
@@ -192,8 +183,8 @@ public class Entity implements Serializable {
 	 * Moves the entity to the specified location on the grid.
 	 * @param r The row to move the entity to.
 	 * @param c The column to move the entity to.
-	 * @param override Should current entities at that location be overidden?
-	 * @return A value indicating if the operation was sucessfull.
+	 * @param override Should current entities at that location be overridden?
+	 * @return A value indicating if the operation was successful.
 	 */
 	public boolean moveTo(int r, int c, boolean override) {
 		return moveTo(new Location(r,c),override);
@@ -201,8 +192,8 @@ public class Entity implements Serializable {
 	/**
 	 * Moves the entity to the specified location on the grid.
 	 * @param loc The location to move the entity to.
-	 * @param override Should current entities at that location be overriden?
-	 * @return A value indicating if the operation was sucessfull.
+	 * @param override Should current entities at that location be overridden?
+	 * @return A value indicating if the operation was successful.
 	 */
 	public boolean moveTo(Location loc, boolean override) {
 		if (loc == null)
@@ -227,7 +218,7 @@ public class Entity implements Serializable {
 				manager.setTile(location.getRow(),location.getCol()+w, null);
 			}
 			for (int w = 0; w < getWidth(); w++) {
-				Tile t22 = new Tile(this,loc.getRow(),loc.getCol()+w);
+				Tile<Entity> t22 = new Tile<Entity>(this,loc.getRow(),loc.getCol()+w);
 				t22.setId(new Id(id.memCall(ORIENTATION_BUFFER_POSITION)[0],w));
 				manager.setTile(loc.getRow(),loc.getCol()+w, t22);
 			}
@@ -238,7 +229,7 @@ public class Entity implements Serializable {
 				manager.setTile(location.getRow()+h-getHeight()+1,location.getCol(),null);
 			}
 			for (int h = 0; h < getHeight(); h++) {
-				Tile t22 = new Tile(this,loc.getRow()+h-getHeight()+1,loc.getCol());
+				Tile<Entity> t22 = new Tile<Entity>(this,loc.getRow()+h-getHeight()+1,loc.getCol());
 				t22.setId(new Id(id.memCall(ORIENTATION_BUFFER_POSITION)[0],h));
 				manager.setTile(loc.getRow()+h-getHeight()+1,loc.getCol(), t22);
 			}
@@ -278,9 +269,7 @@ public class Entity implements Serializable {
 	private void hideEntity() {
 		for (int w = 0; w < getWidth(); w++) {
 			for (int h = 0; h < getHeight(); h++) {
-				Tile<Entity> ttmp = (Tile<Entity>)manager.getTile(h+getLocation().getRow(), w+getLocation().getCol());
 				manager.setTile(getLocation().getRow()+h, getLocation().getCol()+w,null);
-				//System.out.println("efretgfd");
 			}
 		}
 	}
@@ -295,13 +284,13 @@ public class Entity implements Serializable {
 		int col = getLocation().getCol();		
 		if (getCurrentOrientation() == GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT) {
 			for (int c = 0; c < width; c++) {
-				Tile t=null;
+				Tile<Entity> t=null;
 				manager.setTile(new Location(row,col+c), t);
 			}
 		}
 		if (getCurrentOrientation() == GridedEntityTileOrientation.ORIENTATION_TOPTOBOTTOM) {
 			for (int c = 0; c < width; c++) {
-				Tile t=null;
+				Tile<Entity> t=null;
 				manager.setTile(new Location(row+c,col), t);
 			}
 		}
@@ -336,10 +325,6 @@ public class Entity implements Serializable {
 	
 	public final void setWidth(int width) {
 		this.width = width;
-	}
-	
-	public final void setHeight(int height) {
-		this.height = height;
 	}
 	
 	public int getWidth() {

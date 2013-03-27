@@ -28,6 +28,7 @@ import com.jpii.navalbattle.pavo.io.PavoImage;
 import com.jpii.navalbattle.renderer.Helper;
 
 public class GameWindow extends Renderable {
+	private static final long serialVersionUID = 1L;
 	Color bck_clr;
 	boolean showTitle;
 	String title;

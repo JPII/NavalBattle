@@ -19,12 +19,12 @@ package com.jpii.navalbattle.pavo.grid;
 
 import java.io.Serializable;
 
-import com.jpii.navalbattle.pavo.Game;
-
 public class Location implements Serializable
 {
-    private int row; // row location in grid
-    private int col; // column location in grid
+
+	private static final long serialVersionUID = 1L;
+	private int row;
+    private int col;
     private boolean isunknown = false;
     
     public static Location Unknown = new Location(5,5,5,5);
@@ -82,7 +82,7 @@ public class Location implements Serializable
      */
     public static final int EAST = 90;
     /**
-     * The compass direction for southeast.
+     * The compass direction for south-east.
      */
     public static final int SOUTHEAST = 135;
     /**
@@ -90,7 +90,7 @@ public class Location implements Serializable
      */
     public static final int SOUTH = 180;
     /**
-     * The compass direction for southwest.
+     * The compass direction for south-west.
      */
     public static final int SOUTHWEST = 225;
     /**
@@ -135,7 +135,6 @@ public class Location implements Serializable
      * <tt>direction</tt>
      */
     public Location getAdjacentLocation(int direction) {
-        // reduce mod 360 and round to closest multiple of 45
         int adjustedDirection = (direction + HALF_RIGHT / 2) % FULL_CIRCLE;
         if (adjustedDirection < 0)
             adjustedDirection += FULL_CIRCLE;
@@ -184,18 +183,12 @@ public class Location implements Serializable
     public int getDirectionToward(Location target) {
         int dx = target.getCol() - getCol();
         int dy = target.getRow() - getRow();
-        // y axis points opposite to mathematical orientation
         int angle = (int) Math.toDegrees(Math.atan2(-dy, dx));
 
-        // mathematical angle is counterclockwise from x-axis,
-        // compass angle is clockwise from y-axis
         int compassAngle = RIGHT - angle;
-        // prepare for truncating division by 45 degrees
         compassAngle += HALF_RIGHT / 2;
-        // wrap negative angles
         if (compassAngle < 0)
             compassAngle += FULL_CIRCLE;
-        // round to nearest multiple of 45
         return (compassAngle / HALF_RIGHT) * HALF_RIGHT;
     }
 
@@ -266,9 +259,6 @@ public class Location implements Serializable
     	
     	if (l.getCol() > 128 || l.getRow() > 128)
     		return false;
-    	
-    	//if (l.getCol() > GameComponent.game.getGrid().getWidth() || l.getRow() > GameComponent.game.getGrid().getHeight())
-    		//return false;
     	
     	return true;
     }

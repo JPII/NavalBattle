@@ -4,8 +4,6 @@ public class GridedEntityTileOrientation {
 	public static final byte ORIENTATION_LEFTTORIGHT = 0x0A;
 	public static final byte ORIENTATION_TOPTOBOTTOM = 0x1A;
 	private static int[] NULLPOINTER = new int[]{0};
-	/*public static final byte ORIENTATION_RIGHTTOLEFT = 0x2A;
-	public static final byte ORIENTATION_BOTTOMTOTOP = 0x3A;*/
 	
 	private int[][] INDICES = new int[2][];
 	

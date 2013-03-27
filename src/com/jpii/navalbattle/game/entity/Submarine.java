@@ -26,7 +26,6 @@ public class Submarine extends MoveableEntity {
 	
 	public void init() {
 		setWidth(2);
-		setHeight(1);
 	}
 	
 	public boolean moveTo(Location loc, boolean override) {

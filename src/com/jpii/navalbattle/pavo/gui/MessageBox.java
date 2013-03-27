@@ -17,28 +17,17 @@
 
 package com.jpii.navalbattle.pavo.gui;
 
-import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics2D;
-import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 
-import javax.swing.ImageIcon;
-
-import com.jpii.navalbattle.NavalBattle;
 import com.jpii.navalbattle.pavo.Game;
-import com.jpii.navalbattle.pavo.PavoHelper;
 import com.jpii.navalbattle.pavo.gui.controls.PButton;
 import com.jpii.navalbattle.pavo.gui.controls.PText;
 import com.jpii.navalbattle.pavo.gui.controls.PWindow;
 import com.jpii.navalbattle.pavo.gui.events.PMouseEvent;
-import com.jpii.navalbattle.renderer.Helper;
 
-/**
- * @author MKirkby
- *
- */
 public class MessageBox extends com.jpii.navalbattle.pavo.gui.controls.PWindow {
 	String message = "no msg";
 	MessageBoxIcon icon;
@@ -116,12 +105,10 @@ public class MessageBox extends com.jpii.navalbattle.pavo.gui.controls.PWindow {
 	 * @param blotchBackground If set to true, the background will be blocked from user interaction, and blurred out.
 	 */
 	public static void show(String title, String message, MessageBoxIcon iconifier, boolean blotchBackground, boolean onlyOneAllowed) {
-		//WindowManager.Inst.add(new MessageBox(title,message));
 		if (WindowManager.Inst == null)
 			return;
 		
 		MessageBox handle = new MessageBox(NewWindowManager.Inst,title,message,iconifier);
-		//handle.setHandle(395428394);
 		if (onlyOneAllowed) {
 			for (int c = 0; c < WindowManager.Inst.size(); c++) {
 				PWindow gw = NewWindowManager.Inst.get(c);
@@ -131,7 +118,6 @@ public class MessageBox extends com.jpii.navalbattle.pavo.gui.controls.PWindow {
 			}
 		}
 		if (blotchBackground) {
-			//NewWindowManager.Inst.add(handle);
 			NewWindowManager.Inst.ianOwjej10nJAnin345soaKOEe9201LIQUICK(handle);
 		}
 		else

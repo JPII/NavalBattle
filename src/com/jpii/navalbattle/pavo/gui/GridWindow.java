@@ -3,25 +3,12 @@
  */
 package com.jpii.navalbattle.pavo.gui;
 
-import java.awt.Color;
-import java.awt.Graphics2D;
-
-import com.jpii.navalbattle.game.entity.BattleShip;
-import com.jpii.navalbattle.pavo.Game;
-import com.jpii.navalbattle.pavo.PavoHelper;
 import com.jpii.navalbattle.pavo.grid.Location;
 import com.jpii.navalbattle.pavo.gui.controls.PWindow;
 
-/**
- * @author maximusvladimir
- *
- */
 public class GridWindow extends PWindow {
 	Location local;
 	double dconstraint = 900;
-	/**
-	 * 
-	 */
 	public GridWindow(NewWindowManager nwm) {
 		super(nwm);
 		
@@ -44,35 +31,4 @@ public class GridWindow extends PWindow {
 	public double getDistanceConstraint() {
 		return dconstraint;
 	}
-//	public void render() {
-//		super.render();
-//		Game game = getWinMan().getGame();
-//		if (game == null)
-//			return;
-//		Graphics2D g = PavoHelper.createGraphics(getBuffer());
-//		g.setColor(Color.black);
-//		g.drawString("Info:", 10, 40);
-//		if (local == null)
-//			return;
-//		//System.out.println("local not null");
-//		if (game.getWorld() == null)
-//			return;
-//		//System.out.println("world not null");
-//		if (game.getWorld().getEntityManager() == null)
-//			return;
-//		if (Location.validate(local)) {
-//		if (game.getWorld().getEntityManager().isTileFilledWithWater(local.getRow(),local.getCol())) {
-//			g.drawString("Tile has water.", 10, 60);
-//		}
-//		else {
-//			g.drawString("Tile doesn't have water.", 10, 60);
-//		}
-//		if (game.getWorld().getEntityManager().getTile(local) != null && game.getWorld().getEntityManager().getTile(local).getEntity() instanceof BattleShip) {
-//			g.drawString("Tile is part of a battleship.", 10, 80);
-//		}
-//		g.drawString("Percent land " + game.getWorld().getEntityManager().getTilePercentLand(local.getRow(),local.getCol()) + "%", 10, 100);
-//		g.drawString("Precent water " + (100 - game.getWorld().getEntityManager().getTilePercentLand(local.getRow(),local.getCol())) + "%", 10, 120);
-//		}
-//		g.dispose();
-//	}
 }

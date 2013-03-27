@@ -1,6 +1,3 @@
-/**
- * 
- */
 package com.jpii.navalbattle.pavo.gui;
 
 import java.awt.Color;
@@ -15,14 +12,10 @@ import com.jpii.navalbattle.pavo.Renderable;
 import com.jpii.navalbattle.pavo.gui.controls.PWindow;
 import com.jpii.navalbattle.pavo.io.PavoImage;
 
-/**
- * @author MKirkby
- *
- */
 public class NewWindowManager extends Renderable {
+	private static final long serialVersionUID = 1L;
 	ArrayList<PWindow> wins;
 	MessageBox context = null;
-	//MessageBox context = null;
 	Game g;
 	PavoImage grided = null;
 	int lwsw = 0,lwsh = 0;
@@ -86,17 +79,6 @@ public class NewWindowManager extends Renderable {
 		int mx = me.getX();
 		int my = me.getY();
 		boolean flag = false;
-//		if (context != null) {
-//			GameWindow gw = context;
-//			if (mx >= gw.getWidth()-23+gw.getX() && mx <= gw.getWidth()-3+gw.getX() && my >= gw.getY() + 2 && my <= gw.getY() + 20) {
-//				gw.onCloseCalled();
-//				context = null;
-//			}
-//			if (gw.checkOtherDown(me)) {
-//				context = null;
-//			}
-//			return true;
-//		}
 		startx = mx;
 		starty = my;
 		dragWnd = null;
@@ -118,11 +100,6 @@ public class NewWindowManager extends Renderable {
 				dragWnd = gw;
 				return true;
 			}
-			//if(gw.onMouseDown(me.getX(),me.getY(),me.getButton()))
-				//flag = true;
-			//if (gw.isDisposed()){
-				//flag = false;
-			//}
 		}
 		for (int c = 0; c < wins.size(); c++) {
 			gw = wins.get(c);
@@ -136,11 +113,6 @@ public class NewWindowManager extends Renderable {
 					dragWnd = gw;
 					return true;
 				}
-				//if(gw.onMouseDown(me.getX(),me.getY(),me.getButton()))
-					//flag = true;
-				//if (gw.isDisposed()){
-					//flag = false;
-				//}
 			}
 		}
 		return flag;
@@ -149,36 +121,6 @@ public class NewWindowManager extends Renderable {
 		int mx = me.getX();
 		int my = me.getY();
 		boolean flag = false;
-//		if (context != null) {
-//			PWindow gw = context;
-//			if (gw.isTitleShown() && gw.isVisible()) {
-//				if (mx >= gw.getX() - 10 && mx <= gw.getX()+gw.getWidth()+10 && my >= gw.getY()-10 && my <= gw.getY()+34) {
-//					gw.setLoc(mx - (gw.getWidth()/2), my - 12);
-//				}
-//			}
-//			return true;
-//		}
-//		for (int c = 0; c < wins.size(); c++) {
-//			PWindow gw = wins.get(c);
-//			if (gw!=null) {
-//				if (gw.isTitleShown() && gw.isVisible()) {
-//					if (mx >= gw.getLocX() - 10 && mx <= gw.getLocX()+gw.getWidth()+10 && my >= gw.getLocY()-10 && my <= gw.getLocY()+34) {
-//						gw.setLoc(mx - (gw.getWidth()/2), my - 12);
-//						return true;
-//					}
-//				}
-//			}
-//		}
-		/*for (int c = 0; c < wins.size(); c++) {
-			PWindow gw = wins.get(c);
-			if (gw != null && gw.isVisible()) {
-				if (startx >= gw.getLocX() && startx <= gw.getLocX() + gw.getWidth()
-						&& starty >= gw.getLocY() && starty <= gw.getLocY() + gw.getHeight()) {
-					gw.onMouseDrag(mx-gw.getLocX(), my-gw.getLocY());
-					return true;
-				}
-			}
-		}*/
 		
 		if (dragWnd != null && dragWnd.isVisible() && !dragWnd.isDisposed()) {
 			dragWnd.onMouseDrag(mx,my);
@@ -191,17 +133,6 @@ public class NewWindowManager extends Renderable {
 		int mx = me.getX();
 		int my = me.getY();
 		boolean flag = false;
-//		if (context != null) {
-//			GameWindow gw = context;
-//			if (mx >= gw.getWidth()-23+gw.getX() && mx <= gw.getWidth()-3+gw.getX() && my >= gw.getY() + 2 && my <= gw.getY() + 20) {
-//				gw.onCloseCalled();
-//				context = null;
-//			}
-//			if (gw.checkOtherDown(me)) {
-//				context = null;
-//			}
-//			return true;
-//		}
 		startx = mx;
 		starty = my;
 		dragWnd = null;
@@ -212,11 +143,6 @@ public class NewWindowManager extends Renderable {
 				gw.onMouseUp(mx-gw.getLocX(), my-gw.getLocY(), me.getButton());
 				return true;
 			}
-			//if(gw.onMouseDown(me.getX(),me.getY(),me.getButton()))
-				//flag = true;
-			//if (gw.isDisposed()){
-				//flag = false;
-			//}
 		}
 		boolean rerenderflag = false;
 		for (int c = 0; c < wins.size(); c++) {
@@ -232,11 +158,6 @@ public class NewWindowManager extends Renderable {
 					dragWnd = gw;
 					return true;
 				}
-				//if(gw.onMouseDown(me.getX(),me.getY(),me.getButton()))
-					//flag = true;
-				//if (gw.isDisposed()){
-					//flag = false;
-				//}
 			}
 		}
 		if (rerenderflag) {
@@ -273,7 +194,6 @@ public class NewWindowManager extends Renderable {
 		
 		for (int c = 0; c < wins.size(); c++) {
 			PWindow gw = wins.get(c);
-			//System.out.println("Render Window #" + c);
 			if (gw!=null && gw.isForcingIndividualChanges()) {
 				if (gw.isVisible() && !gw.isDisposed()) {
 					int gwx = gw.getLocX();
@@ -292,17 +212,6 @@ public class NewWindowManager extends Renderable {
 			BufferedImage gwb = gw.getBuffer();
 			g2.drawImage(gwb, gwx,gwy, null);
 		}
-		//g2.setColor(Color.red);
-		//g2.drawRect(0,0,400,400);
-		
-//		if (context != null) {
-//			g2.drawImage(grided, 0, 0, null);
-//			GameWindow gw = context;
-//			int gwx = gw.getX();
-//			int gwy = gw.getY();
-//			PavoImage gwb = gw.getBuffer();
-//			g2.drawImage(gwb, gwx,gwy, null);
-//		}
 		g2.dispose();
 	}
 }

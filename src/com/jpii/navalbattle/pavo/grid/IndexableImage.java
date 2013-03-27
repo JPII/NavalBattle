@@ -1,15 +1,8 @@
-/**
- * 
- */
 package com.jpii.navalbattle.pavo.grid;
 
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
-/**
- * @author maximusvladimir
- *
- */
 public class IndexableImage {
 	public static ImageStore Store = new ImageStore();
 	int id;

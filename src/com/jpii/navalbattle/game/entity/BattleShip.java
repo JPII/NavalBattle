@@ -35,7 +35,6 @@ public class BattleShip extends MoveableEntity {
 	
 	public void init() {
 		setWidth(4);
-		setHeight(1);
 	}
 	public boolean moveTo(Location loc, boolean override) {
 		return super.moveTo(loc, override);

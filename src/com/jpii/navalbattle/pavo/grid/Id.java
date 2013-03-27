@@ -4,10 +4,6 @@ public class Id {
 	short superId, subId;
 	int mutexId;
 	public Id(short superId, short subId) {
-		/*if ((Integer.MAX_VALUE-1) / superId >= 65536) {
-			System.out.println((Integer.MAX_VALUE-1) / superId+"er");
-			throw new java.lang.IllegalArgumentException("Identificator is too high. Please discard excess identifications.");
-		}*/
 		this.superId = superId;
 		this.subId = subId;
 		updateMutex();
@@ -16,7 +12,7 @@ public class Id {
 		this((short)superId,(short)subId);
 	}
 	public String toString() {
-		return "("+superId+","+subId+":"+getMutexId()+")";//+super.toString();
+		return "("+superId+","+subId+":"+getMutexId()+")";
 	}
 	private void updateMutex() {
 		mutexId = ((int)Math.abs(((int)superId) * 65536)) + subId;

@@ -31,7 +31,6 @@ import com.jpii.navalbattle.pavo.io.PavoImage;
 public class EntityManager implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private byte[][] tileAccessor;
-	//private Tile[][] ent;
 	private transient World w;
 	private ArrayList<Integer> entityRegister;
 	private ArrayList<Entity> entities;
@@ -47,7 +46,6 @@ public class EntityManager implements Serializable {
 		this.w = w;
 		tileAccessor = new byte[PavoHelper.getGameWidth(w.getWorldSize())*2][PavoHelper.getGameHeight(w.getWorldSize())*2];
 		entities = new ArrayList<Entity>();
-		//ent = new Tile[PavoHelper.getGameWidth(w.getWorldSize())*2][PavoHelper.getGameHeight(w.getWorldSize())*2];
 		PavoImage grid = new PavoImage(50,50,BufferedImage.TYPE_INT_ARGB);
 		Graphics2D g = PavoHelper.createGraphics(grid);
 		g.setColor(Game.Settings.GridColor);
@@ -59,7 +57,6 @@ public class EntityManager implements Serializable {
 		g.dispose();
 		entityRegister = new ArrayList<Integer>();
 		entityRegister.add(0);
-		//System.out.println(Integer.bitCount(IndexableImage.getStoreSize())+"."+Integer.toHexString(IndexableImage.getStoreSize())+"swapspace");
 	}
 	public boolean isReadyForGen() {
 		if (tileAccessor == null)
@@ -67,7 +64,7 @@ public class EntityManager implements Serializable {
 		return true;
 	}
 	public void update(long ticksPassed) {
-		//System.out.println(Integer.bitCount(IndexableImage.getStoreSize())+"."+Integer.toHexString(IndexableImage.getStoreSize()));
+
 	}
 	public Entity getEntity(int index) {
 		return entities.get(index);
@@ -81,15 +78,10 @@ public class EntityManager implements Serializable {
 	/**
 	 * DO NOT CALL INDIVIDUALLY
 	 * @param e The entity.
-	 * @deprecated
 	 */
 	public void addEntity(Entity e) {
 		if (e == null)
 			return;
-		if (entities.size() >= 25) {
-			//MessageBox.show("Warning!","Too many entities added.",
-				//	MessageBoxIcon.Notify, true);
-		}
 		entities.add(e);
 	}
 	public int getTotalEntities() {
@@ -126,14 +118,11 @@ public class EntityManager implements Serializable {
 		if (c >= PavoHelper.getGameWidth(w.getWorldSize())*2 ||
 				r >= PavoHelper.getGameHeight(w.getWorldSize())*2 || c < 0 || r < 0)
 			return;
-		//ent[c][r] = t;
 		int x = c/2;
 		int z = r/2;
 		Chunk chunk = w.getChunk(x, z);
-		//chunk.poyching();
 		int rx = c % 2;
 		int rz = r % 2;
-		//System.out.println("cresult="+t.getId().getMutexId());
 		if (rx == 0 && rz == 0)
 			chunk.Tile00 = t;
 		else if (rx != 0 && rz == 0)
@@ -142,9 +131,7 @@ public class EntityManager implements Serializable {
 			chunk.Tile01 = t;
 		else if (rx != 0 && rz != 0)
 			chunk.Tile11 = t;
-		//chunk.
-		//System.out.println("chunk at:" + x + "," + z);
-		chunk.writeBuffer();//needsBufferWrite();
+		chunk.writeBuffer();
 	}
 	public void setTileOverlay(int r, int c, short color) {
 		if (c >= PavoHelper.getGameWidth(w.getWorldSize())*2 ||
@@ -170,18 +157,6 @@ public class EntityManager implements Serializable {
 			Chunk chuck = w.getChunk(c/2,r/2);
 			if (chuck == null)
 				return null;
-			/*int rx = c % 2;
-			int rz = r % 2;
-			if (rx == 0 && rz == 0 && chuck.Tile00 != null)
-				return chuck.Tile00.parent;
-			else if (rx != 0 && rz == 0 && chuck.Tile10 != null)
-				return chuck.Tile10.parent;
-			else if (rx == 0 && rz != 0 && chuck.Tile01 != null)
-				return chuck.Tile01.parent;
-			else if (rx != 0 && rz != 0 && chuck.Tile11 != null)
-				return chuck.Tile11.parent;
-			else
-				return null;*/
 			if (chuck.Tile00 != null && chuck.Tile00.parent != null)
 				return chuck.Tile00.parent;
 			else if (chuck.Tile10 != null && chuck.Tile10.parent != null)
@@ -191,7 +166,6 @@ public class EntityManager implements Serializable {
 			else if (chuck.Tile11 != null && chuck.Tile11.parent != null)
 				return chuck.Tile11.parent;
 			else {
-				//System.out.println("None of e'm had values.");
 				return null;
 			}
 		}
@@ -212,8 +186,6 @@ public class EntityManager implements Serializable {
 		Chunk chunk = w.getChunk(x, z);
 		if (chunk == null)
 			return null;
-		//if (c < 2 || r < 2)
-			//throw new ArrayStoreException("Windows encountered a fatal error, and cannot continue.");
 		int rx = c % 2;
 		int rz = r % 2;
 		if (c == 0)
@@ -273,7 +245,6 @@ public class EntityManager implements Serializable {
 				IndexableImage.populateStore(new Id(swap,h).getMutexId(), ab);
 			}
 		}
-		//System.out.println("registered in system=" + new Id(swap,0).getMutexId());
 		lastid = swap;
 		return lastid;
 	}
@@ -322,7 +293,7 @@ public class EntityManager implements Serializable {
 		}
 		return (Entity[])ferns.toArray();
 	}
-	public final BufferedImage getImage(Tile tile) {
+	public final BufferedImage getImage(Tile<Entity> tile) {
 		if (tile == null)
 			return IndexableImage.getImage(0);
 		return IndexableImage.getImage(tile.getId().getMutexId());
@@ -330,9 +301,7 @@ public class EntityManager implements Serializable {
 	public void gameDoneGenerating() {
 		
 	}
-	/*public void Wj3aI54Fh92Ka3668nf2Oq90oi441nf0JWnf() {
-		
-	}*/
+	
 	/**
 	 * Don't play with this.
 	 * @param snJMkqmd Don't play with this.
@@ -340,9 +309,7 @@ public class EntityManager implements Serializable {
 	 * @param traKQ91 Don't play with this.
 	 */
 	public void AQms03KampOQ9103nmJMs(int snJMkqmd, int cKQK91nm38910JNFEWo, int traKQ91) {
-		//byte b = (byte)(((traKQ91 * 0.4)*100)/108);
 		byte b = (byte)((traKQ91 * 100)/272);
-		//System.out.println("x="+cKQK91nm38910JNFEWo+"z="+snJMkqmd+"value="+traKQ91);
 		if (b > 100)
 			b = 100;
 		if (b < 0)
@@ -352,7 +319,7 @@ public class EntityManager implements Serializable {
 		if (tileAccessor == null)
 			tileAccessor = new byte[PavoHelper.getGameWidth(w.getWorldSize())*2][PavoHelper.getGameHeight(w.getWorldSize())*2];
 			
-		tileAccessor[cKQK91nm38910JNFEWo][snJMkqmd] = b;//mjMo1091(cKQK91nm38910JNFEWo, traKQ91);
+		tileAccessor[cKQK91nm38910JNFEWo][snJMkqmd] = b;
 	}
 	/**
 	 * Get the world instance for the Entity Manager.

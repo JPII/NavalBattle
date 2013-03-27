@@ -26,7 +26,6 @@ public class AircraftCarrier extends MoveableEntity {
 	
 	public void init() {
 		setWidth(5);
-		setHeight(1);
 	}
 	
 	public boolean moveTo(Location loc, boolean override) {
