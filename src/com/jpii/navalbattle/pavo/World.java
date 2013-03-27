@@ -24,6 +24,7 @@ import java.io.File;
 import maximusvladimir.dagen.Rand;
 
 import com.jpii.navalbattle.io.Interactable;
+import com.jpii.navalbattle.pavo.grid.Entity;
 import com.jpii.navalbattle.pavo.grid.EntityManager;
 import com.jpii.navalbattle.pavo.io.PavoImage;
 
@@ -170,6 +171,13 @@ public class World extends Renderable implements Interactable {
 			chunk.unlock();
 			chunks[c] = chunk;
 		}
+	}
+	public Entity getMotionEntity() {
+		return motionEntity;
+	}
+	Entity motionEntity;
+	public void setMotionEntity(Entity e) {
+		motionEntity = e;
 	}
 	boolean chunkrender = false;
 	public boolean needsReChunkRender() {

@@ -249,6 +249,11 @@ public class Game extends Renderable implements Runnable, Serializable {
 				numUpdates += 100;
 				forceUpdate = false;
 				long updateStart = System.currentTimeMillis();
+				
+				if (getWorld().getMotionEntity() != null) {
+					
+				}
+				
 				while (getWorld().isLocked()) {}
 				getWorld().lock();
 				getWorld().update();

@@ -242,6 +242,23 @@ public class Entity implements Serializable {
 		return true;
 	}
 	
+	Location originality = Location.Unknown;
+	
+	public Location getOriginalLocation() {
+		return originality;
+	}
+	
+	public void animatedMoveTo(Location loc, float speed) {
+		if (ORIENTATION_BUFFER_POSITION != GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT)
+			return;
+		
+		originality = getLocation();
+		
+		getManager().getWorld().setMotionEntity(this);
+		
+		moveTo(Location.Unknown,true);
+	}
+	
 	public boolean moveTo(Location loc, byte position){
 		if (ORIENTATION_BUFFER_POSITION == GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT) {
 			for (int w = 0; w < getWidth(); w++) {
