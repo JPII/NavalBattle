@@ -236,6 +236,7 @@ public class Game extends Renderable implements Runnable, Serializable {
 	}
 	BufferedImage loadMotionImage = null;
 	Point motionDest = null;
+	boolean moveStandard = false;
 	/**
 	 * Immortal caller.
 	 */
@@ -254,15 +255,20 @@ public class Game extends Renderable implements Runnable, Serializable {
 				forceUpdate = false;
 				long updateStart = System.currentTimeMillis();
 				
-				if (getWorld().getMotionEntity() != null) {
+				if (getWorld().getMotionEntity() != null && getWorld().getMotionEntity().readyForMove) {
 					Entity e = getWorld().getMotionEntity();
 					if (e.currentLocation == null) {
+						moveStandard = false;
 						loadMotionImage = FileUtils.getImage(e.imgLocation);
 						e.currentLocation = PavoHelper.convertLocationToScreen(getWorld(), e.getOriginalLocation());
 						motionDest = PavoHelper.convertLocationToScreen(getWorld(), e.getLocation());
 						e.setLocation(e.getOriginalLocation());
+						e.moveTo(Location.Unknown);
+						moveStandard = true;
 					}
 					else {
+						Point cl = e.currentLocation;
+						e.currentLocation = new Point(cl.x-3,cl.y-3);//movePointTowards(cl.x-1,cl.y-1);//,motionDest,10);
 						if (e.currentLocation.x > motionDest.x - 5 && e.currentLocation.x < motionDest.y + 5
 								&& e.currentLocation.y > motionDest.y - 5 && e.currentLocation.y < motionDest.y + 5) {
 							getWorld().setMotionEntity(null);
@@ -441,11 +447,10 @@ public class Game extends Renderable implements Runnable, Serializable {
 			}
 		}
 		
-		if (getWorld().getMotionEntity() != null) {
+		if (getWorld().getMotionEntity() != null && getWorld().getMotionEntity().readyForMove && moveStandard) {
 			Entity e = getWorld().getMotionEntity();
-			Point cl = e.currentLocation;
-			e.currentLocation = movePointTowards(cl,motionDest,2);
-			g.drawImage(this.loadMotionImage, e.currentLocation.x,e.currentLocation.y,null);
+			if (e != null && e.currentLocation != null)
+				g.drawImage(this.loadMotionImage, e.currentLocation.x,e.currentLocation.y,null);
 		}
 		
 		if (PavoHelper.getCalculatedSystemSpeed() != SystemSpeed.CREEPER && 

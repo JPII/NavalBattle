@@ -247,12 +247,14 @@ public class Entity implements Serializable {
 	public Location destiny = null;
 	
 	public Point currentLocation = null;
+	public boolean readyForMove = false;
 	
 	public Location getOriginalLocation() {
 		return originality;
 	}
 	
 	public void animatedMoveTo(Location loc, float speed) {
+		readyForMove = false;
 		if (ORIENTATION_BUFFER_POSITION != GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT)
 			return;
 		
@@ -265,6 +267,7 @@ public class Entity implements Serializable {
 		
 		
 		moveTo(Location.Unknown,true);
+		readyForMove = true;
 	}
 	
 	public boolean moveTo(Location loc, byte position){

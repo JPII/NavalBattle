@@ -37,6 +37,10 @@ public class Whale extends AnimatedEntity {
 			updateSurroundings();
 	}
 	
+	public void onMouseDown(int x, int y, boolean leftClick) {
+		this.animatedMoveTo(new Location(3,3), 0.5f);
+	}
+	
 	
 	private void updateSurroundings() {
 		for (int r = -3; r < 3; r++) {
