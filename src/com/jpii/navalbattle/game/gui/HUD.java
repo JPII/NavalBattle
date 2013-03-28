@@ -23,6 +23,7 @@ public class HUD extends PWindow{
 	
 	TurnManager tm;
 	GradientPaint gp;
+	GradientPaint ht;
 	int centerx,centery;
 	int imgx,imgy;
 	BufferedImage entityImg;
@@ -47,6 +48,7 @@ public class HUD extends PWindow{
 		super(parent, x, y, width, height);
 		this.tm = tm;
 		gp = new GradientPaint(0,0,new Color(96,116,190),0,height,new Color(0,0,54));
+		ht = new GradientPaint(0,0,new Color(169,140,86),0,height,new Color(69,40,6));
 		setTitleVisiblity(false);
 		setVisible(false);
 		centerx = getWidth()-210;
@@ -128,7 +130,8 @@ public class HUD extends PWindow{
 		g.drawLine(getWidth()/3, 0, getWidth()/3, getHeight());
 		g.drawLine(2*getWidth()/3, 0, 2*getWidth()/3, getHeight());
 		
-		drawEntityBox(g);		
+		drawEntityBox(g);	
+		drawHistoryBox(g);
 	}
 	 
 	private void drawEntityBox(Graphics2D g){
@@ -142,6 +145,13 @@ public class HUD extends PWindow{
 		drawString(g,location, centerx, centery+60);
 		drawString(g,health, centerx, centery-35);
 		drawString(g,movement, centerx, centery+40);
+	}
+	
+	private void drawHistoryBox(Graphics2D g){
+		g.setPaint(ht);
+		g.fillRoundRect(25,boxy,375,boxheight,25,25);
+		g.setPaint(Color.black);
+		g.drawRoundRect(25,boxy,375,boxheight,25,25);
 	}
 	
 	public void setEntity(Entity e){
@@ -207,11 +217,11 @@ public class HUD extends PWindow{
 		g.setColor(new Color(126,105,65));
 		g.fillRect(x,y,width,height);
 		g.setColor(new Color(65,54,33));
-		for (int x22 = 8+x; x22 < (x+width)-8; x22 += 8) {
-			g.drawLine(x22+x,0+y,x+x22+4,y+8);
+		for (int x22 = x+8; x22 < (x+width)-8; x22 += 8) {
+			g.drawLine(x22+x-50,y,x+x22+4-50,y+8);
 		}
-		for (int x22 = 8+x; x22 < (x+width)-8; x22 += 8) {
-			g.drawLine(x22+4+x,y+height-9,x22+x,y+height);
+		for (int x22 = x+8; x22 < (x+width)-8; x22 += 8) {
+			g.drawLine(x22+4+x-50,y+height-9,x22+x-50,y+height);
 		}
 		for (int y22 = 8+y; y22 < (y+height)-8; y22 += 8) {
 			g.drawLine(x,y22+y,8+x,y+y22+4);
