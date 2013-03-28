@@ -17,6 +17,7 @@
 
 package com.jpii.navalbattle.debug;
 
+import com.jpii.navalbattle.data.Constants;
 import com.jpii.navalbattle.pavo.Game;
 import com.jpii.navalbattle.pavo.PavoHelper;
 import com.jpii.navalbattle.util.FileUtils;
@@ -42,7 +43,7 @@ public class MaxTests {
 		
 		System.out.println("Measured system speed as: "+PavoHelper.getCalculatedSystemSpeed().toString());
 		int unit = Runtime.getRuntime().availableProcessors();
-		if (unit >= 1 && unit < 3) {
+		if (unit >= 1 && unit < 3 && !Constants.DEBUG_MODE) {
 			JOptionPane.showMessageDialog(null,"Your system does not have a strong enough CPU to run the game.","Fatal error",JOptionPane.OK_OPTION);
 			System.exit(0x300AB);
 		}
