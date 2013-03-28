@@ -115,13 +115,13 @@ public class MoveableEntity extends Entity {
 		boolean horizontal = true;
 		boolean vertical = true;
 		for(int p = 0 ; p < 4; p++){
-			if( (getTileLR(x+p,y)!=null) || (getManager().getTilePercentLand(getRLR(y),getCLR(x+p)) > Game.Settings.waterThresholdBarrier)){
-			horizontal = false;
+			if( ((getTileLR(x+p,y)!=null) && !getTileLR(x+p,y).getEntity().equals(this)) || (getManager().getTilePercentLand(getRLR(y),getCLR(x+p)) > Game.Settings.waterThresholdBarrier)){
+				horizontal = false;
 			}
 		}
 		
 			for(int q = 0 ; q < 4; q++){
-				if((getTileLR(x,y-q)!=null) ||(getManager().getTilePercentLand(getRLR(y-q),getCLR(x)) > Game.Settings.waterThresholdBarrier)){
+				if( ((getTileLR(x,y-q)!=null) && !getTileLR(x,y-q).getEntity().equals(this)) || (getManager().getTilePercentLand(getRLR(y-q),getCLR(x)) > Game.Settings.waterThresholdBarrier)){
 				vertical = false;
 				}
 				}
