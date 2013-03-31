@@ -22,6 +22,8 @@ public class Submarine extends MoveableEntity {
 		if (!g.isAClient()) {
 			g.getSelfServer().send("submarine:"+loc.getCol()+","+loc.getRow());
 		}
+		moved = 0;
+		maxMovement=4;
 	}
 	
 	public void init() {
@@ -40,18 +42,29 @@ public class Submarine extends MoveableEntity {
 	
 	public void onMouseDown(int x, int y, boolean leftbutton) {
 		super.onMouseDown(x, y, leftbutton);
-		if(!leftbutton){
-			byte t = getCurrentOrientation();
-			if (t == GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT)
-				rotateTo(GridedEntityTileOrientation.ORIENTATION_TOPTOBOTTOM);
-			else
-				rotateTo(GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT);
-		}
 	}
 	
-	public void rotateTo(byte code) {
-		boolean flag = GridHelper.canRotate(getManager(), this, code, getLocation().getRow(), getLocation().getCol(), getWidth());
+	public void rotateTo(byte rotateto) {
+		boolean flag = GridHelper.canRotate(getManager(), this, rotateto, getELocation().getRow(), getELocation().getCol(), getWidth());
 		if (flag)
-			super.rotateTo(code);
+			super.rotateTo(rotateto);
+	}
+	
+	/**
+	 * Gets the bow of the ship.
+	 * @return The location. Could be "Unknown", if the Entity is not in the Grid.
+	 */
+	public Location getELocation(){
+		Location temp = super.getLocation();
+		if(getCurrentOrientation() == GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT){
+			return temp;
+		}
+		else if(getCurrentOrientation() == GridedEntityTileOrientation.ORIENTATION_TOPTOBOTTOM){
+			temp = new Location(temp.getRow()+(getWidth()-1),temp.getCol());
+			if(startpos)
+				temp = new Location(temp.getRow()+(getWidth()-1),temp.getCol());
+		}
+	
+		return temp;
 	}
 }

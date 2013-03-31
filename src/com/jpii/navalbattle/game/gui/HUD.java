@@ -63,7 +63,7 @@ public class HUD extends PWindow{
 		addControl(bulletB = new PButton(this,(getWidth()/2)-20,getHeight()-45,30,30));
 		addControl(diplomacyB = new PButton(this,(getWidth()/2)+20,getHeight()-45,30,30));
 		addControl(moveB = new PButton(this,(getWidth()/2)+60,getHeight()-45,30,30));
-		addControl(nextMove = new PButton(this,"Next Move!",(getWidth()/3)+10,getHeight()-140,(getWidth()/3)-18,80));
+		addControl(nextMove = new PButton(this,"Next Player!",(getWidth()/3)+10,getHeight()-140,(getWidth()/3)-18,80));
 		
 		nextMove.setFont(new Font("Arial",0,70));
 		
