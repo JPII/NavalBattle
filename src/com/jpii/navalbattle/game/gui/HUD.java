@@ -32,6 +32,7 @@ public class HUD extends PWindow{
 	String health = new String("");
 	String movement = new String("");
 	Entity display;
+	String[] events;
 	
 	PImage missile;
 	PImage bullet;
@@ -53,6 +54,7 @@ public class HUD extends PWindow{
 		setVisible(false);
 		centerx = getWidth()-210;
 		centery = getHeight()/2;
+		events = new String[25];
 		initButtons();
 	 }
 	 
@@ -297,6 +299,23 @@ public class HUD extends PWindow{
 				}
 			}
 		return false;
+	}
+	
+	public void addEvent(String s){
+		if(events[events.length-1]==null){
+			for(int index=0;index<events.length-1;index++){
+				if(events[index]!=null){
+					events[index]=s;
+					return;
+				}
+			}
+		}
+		else{
+			for(int index=0;index<events.length-2;index++){
+				events[index]=events[index+1];
+			}
+			events[events.length-1]=s;
+		}	
 	}
 	
 }
