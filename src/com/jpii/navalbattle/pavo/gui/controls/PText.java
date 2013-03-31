@@ -1,23 +1,16 @@
-/**
- * 
- */
 package com.jpii.navalbattle.pavo.gui.controls;
 
-import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics2D;
 
 /**
- * @author maximusvladimir
  * Text display class.
  */
 public class PText extends Control {
 
 	private String text = "";
 	private boolean textUpdated = false;
-	private static final Color clr_ = new Color(193,172,134).darker().darker();
 	private int maxStrWidth = 0;
-	private boolean heldDown = false;
 	private boolean autoResize = true;
 	
 	/**

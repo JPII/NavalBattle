@@ -7,15 +7,11 @@ import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
 import com.jpii.navalbattle.pavo.PavoHelper;
-import com.jpii.navalbattle.pavo.gui.GameWindow;
 import com.jpii.navalbattle.pavo.gui.events.PMouseListener;
-import com.jpii.navalbattle.pavo.io.PavoImage;
 
 
 /**
  * Master control class. Essential for all other controls.
- * @author maximusvladimir
- *
  */
 public class Control {
 	protected BufferedImage buffer;
@@ -43,7 +39,6 @@ public class Control {
 		createBuffer(false);
 		controls = new ArrayList<Control>();
 		HANDLE = ++HANDLE_COUNTER;
-		//repaint();
 	}
 	
 	public void addMouseListener(PMouseListener pmls) {
@@ -80,7 +75,6 @@ public class Control {
 		HANDLE = ++HANDLE_COUNTER;
 		this.x = x;
 		this.y = y;
-		//repaint();
 	}
 	
 	public Control(Control parent, int x, int y, int width, int height) {
@@ -95,7 +89,6 @@ public class Control {
 		this.y = y;
 		this.width = width;
 		this.height= height;
-		//repaint();
 	}
 	
 	public void dispose() {
@@ -104,8 +97,6 @@ public class Control {
 			if (cn != null)
 				cn.dispose();
 		}
-		//pml.clear();
-		//pml = null;
 		
 		HANDLE = 0;
 		HANDLE_COUNTER--;
@@ -276,7 +267,7 @@ public class Control {
 	 * 
 	 * If <code>isForcingIndividualChanges()</code>
 	 * is set to true, then all those methods above
-	 * will force a re-render everytime one of those
+	 * will force a re-render every-time one of those
 	 * methods is called.
 	 * 
 	 * If <code>isForcingIndividualChanges()</code>
@@ -366,7 +357,6 @@ public class Control {
 		if (flag) {
 			createBuffer(lastKnownTransMode);
 			paintUpdate();
-			//parentRepaint();
 		}
 	}
 	

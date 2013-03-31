@@ -1,6 +1,3 @@
-/**
- * 
- */
 package com.jpii.navalbattle.pavo.gui.controls;
 
 import java.awt.Color;
@@ -8,7 +5,6 @@ import java.awt.GradientPaint;
 import java.awt.Graphics2D;
 
 /**
- * @author maximusvladimir
  * Progress bar class.
  */
 public class PProgress extends Control {

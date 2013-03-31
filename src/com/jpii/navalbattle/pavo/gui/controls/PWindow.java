@@ -1,9 +1,5 @@
-/**
- * 
- */
 package com.jpii.navalbattle.pavo.gui.controls;
 
-import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.GradientPaint;
 import java.awt.Graphics2D;
@@ -12,16 +8,11 @@ import java.util.ArrayList;
 
 import com.jpii.navalbattle.pavo.PavoHelper;
 import com.jpii.navalbattle.pavo.gui.NewWindowManager;
-import com.jpii.navalbattle.pavo.gui.WindowManager;
 import com.jpii.navalbattle.pavo.gui.effects.PWindowEffect;
 import com.jpii.navalbattle.pavo.gui.events.PMouseListener;
 import com.jpii.navalbattle.pavo.io.PavoImage;
 import com.jpii.navalbattle.renderer.Helper;
 
-/**
- * @author maximusvladimir
- *
- */
 public class PWindow extends Control {
 	private boolean showTitle = true;
 	private String title = "";
@@ -117,7 +108,6 @@ public class PWindow extends Control {
 			GradientPaint gradient = new GradientPaint(0,0,getBackgroundColor().darker().darker(),0,24
 					,getBackgroundColor().darker().darker().darker());
 			g.setPaint(gradient);
-			//g.setColor(getBackgroundColor().darker().darker());
 			g.fillRect(1,1,getWidth()-2,24);
 			g.setPaint(null);
 			g.setColor(getForegroundColor());
@@ -157,7 +147,6 @@ public class PWindow extends Control {
 		super.onMouseDown(x, y, buttonid);
 		if (isTitleShown() && isVisible()) {
 			if (x >= getWidth()-23 && x <= getWidth()-3 && y >= 2 && y <= 20) {
-				// The close button was pressed.
 				onClose();
 				dispose();
 			}
@@ -167,8 +156,6 @@ public class PWindow extends Control {
 				ableToDragTitle = true;
 			}
 		}
-		//System.out.println("click performed! (" + x + "," + y + ")");
-		// Somewhere in the window was pressed.
 	}
 	
 	/**
@@ -177,10 +164,8 @@ public class PWindow extends Control {
 	public void onMouseDrag(int x, int y) {
 		super.onMouseDrag(x-getLocX(), y-getLocY());
 		if (isTitleShown() && isVisible()) {
-		//if (y >= 0 && y <= 22) {
 			if (ableToDragTitle)
 				setLoc((x-getLocX())-lastMouseTitleBarX+this.getLocX(),(y-getLocY())-lastMouseTitleBarY+this.getLocY());
-		//}
 		}
 	}
 	

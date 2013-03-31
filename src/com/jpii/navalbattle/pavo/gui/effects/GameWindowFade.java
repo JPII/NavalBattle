@@ -1,16 +1,9 @@
-/**
- * 
- */
 package com.jpii.navalbattle.pavo.gui.effects;
 
 import java.awt.image.BufferedImage;
 
 import com.jpii.navalbattle.pavo.PavoHelper;
 
-/**
- * @author maximusvladimir
- *
- */
 public class GameWindowFade extends GameWindowEffect {
 	
 	public GameWindowFade() {

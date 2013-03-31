@@ -1,21 +1,13 @@
-/**
- * 
- */
 package com.jpii.navalbattle.pavo.gui.effects;
 
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
-import java.util.TreeSet;
 
-/**
- * @author maximusvladimir
- *
- */
 public abstract class GameWindowEffect {
-	ArrayList<$wsnOAnw> p;
+	ArrayList<$wsnOAnw<?>> p;
 	
 	public GameWindowEffect() {
-		p = new ArrayList<$wsnOAnw>();
+		p = new ArrayList<$wsnOAnw<?>>();
 	}
 	
 	/**
@@ -44,7 +36,7 @@ public abstract class GameWindowEffect {
 		w.$294039 = value;
 		w.$324923 = parameter.toLowerCase();
 		for (int c = 0; c < p.size(); c++) {
-			$wsnOAnw w2 = p.get(c);
+			$wsnOAnw<?> w2 = p.get(c);
 			if (w2.$324923.equals(w.$324923)) {
 				return;
 			}
@@ -56,7 +48,7 @@ public abstract class GameWindowEffect {
 		T element = null;
 		parameter = parameter.toLowerCase();
 		for (int c = 0; c < p.size(); c++) {
-			$wsnOAnw w = p.get(c);
+			$wsnOAnw<?> w = p.get(c);
 			if (w.$324923.equals(parameter)) {
 				element = (T)w.$294039;
 				c = p.size() * 2;

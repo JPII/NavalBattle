@@ -1,16 +1,9 @@
-/**
- * 
- */
 package com.jpii.navalbattle.pavo.gui.controls;
 
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
-/**
- * @author maximusvladimir
- *
- */
 public class PImage extends Control {
 	
 	private static ArrayList<BufferedImage> imageStore = new ArrayList<BufferedImage>();

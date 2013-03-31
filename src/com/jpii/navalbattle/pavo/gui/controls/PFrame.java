@@ -1,15 +1,8 @@
-/**
- * 
- */
 package com.jpii.navalbattle.pavo.gui.controls;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
 
-/**
- * @author MKirkby
- *
- */
 public class PFrame extends Control {
 
 	/**
@@ -57,9 +50,9 @@ public class PFrame extends Control {
 	}
 	
 	public void drawFrame(Graphics2D g) {
-		g.setColor(new Color(126,105,65));//g.setColor(getBackgroundColor().brighter());
+		g.setColor(new Color(126,105,65));
 		g.fillRect(0,0,getWidth(),getHeight());
-		g.setColor(new Color(65,54,33));//g.setColor(getForegroundColor());
+		g.setColor(new Color(65,54,33));
 		for (int x22 = 8; x22 < getWidth()-8; x22 += 8) {
 			g.drawLine(x22,0,x22+4,8);
 		}
@@ -72,7 +65,7 @@ public class PFrame extends Control {
 		for (int y22 = 8; y22 < getHeight()-8; y22 += 8) {
 			g.drawLine(getWidth()-9,y22+4,getWidth(),y22);
 		}
-		g.setColor(new Color(169,140,86));//g.setColor(getBackgroundColor());
+		g.setColor(new Color(169,140,86));
 		g.fillRect(8,8,getWidth()-16,getHeight()-16);
 		g.setColor(Color.black);
 		g.drawRect(0,0,getWidth()-1,getHeight()-1);

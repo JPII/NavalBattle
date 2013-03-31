@@ -1,6 +1,3 @@
-/**
- * 
- */
 package com.jpii.navalbattle.pavo.gui.controls;
 
 import java.awt.Color;
@@ -10,7 +7,6 @@ import java.awt.Graphics2D;
 import java.awt.event.MouseEvent;
 
 /**
- * @author maximusvladimir
  * Button class.
  */
 public class PButton extends Control {
@@ -19,9 +15,6 @@ public class PButton extends Control {
 	private int strWidth = 0;
 	private boolean heldDown = false;
 	private boolean autoResize = true;
-	/**
-	 * 
-	 */
 	public PButton(Control parent) {
 		super(parent);
 		createBuffer(true);
@@ -97,7 +90,6 @@ public class PButton extends Control {
 				bufferNeedsIntemediatePaint();
 			}
 		}
-		//int mid = ((strWidth+8)/2) - (strWidth/2);
 		int vwidth = strWidth+8;
 		if (vwidth < width)
 			vwidth = width-1;
