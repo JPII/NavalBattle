@@ -25,18 +25,18 @@ import com.jpii.navalbattle.gui.*;
 
 public class KeyboardListener implements KeyListener {
 	
-	ArrayList<Object> windows;
+	ArrayList<BaseWindow> windows;
 	
 	public KeyboardListener() {
 		super();
-		windows = new ArrayList<Object>();
+		windows = new ArrayList<BaseWindow>();
 	}
 	
-	public void add(Object classname){
+	public void add(BaseWindow classname){
 		windows.add(classname);
 	}
 	
-	public void remove(Object classname){
+	public void remove(BaseWindow classname){
 		windows.remove(classname);
 	}
 	
@@ -45,15 +45,15 @@ public class KeyboardListener implements KeyListener {
 			WindowCloser.close();
 		}
 		for(int index=0; index<windows.size();index++) {
-			Object window = windows.get(index);
-			if(window instanceof LoginWindow) {
+			BaseWindow window = windows.get(index);
+			if(window.name.equals("LoginWindow")) {
 				LoginWindow l = (LoginWindow) window;
 				if(k.getKeyCode() == KeyEvent.VK_ENTER) {
 					l.login();
 				}
 			}
 
-			if(window instanceof SinglePlayerGame){
+			if(window.name.equals("SinglePlayerGame")){
 				SinglePlayerGame g = (SinglePlayerGame) window;
 				if(k.getKeyCode() == KeyEvent.VK_F11){
 					g.game.toggleFullscreen();

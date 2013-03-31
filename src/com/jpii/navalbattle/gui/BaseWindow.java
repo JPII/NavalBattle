@@ -20,9 +20,6 @@ public class BaseWindow extends com.jpii.gamekit.gui.BaseWindow{
 		setTitle("NavalBattle");
 		addWindowListener(Constants.closer);
 		addKeyListener(Constants.keys);
-		addMouseListener(Constants.click);
-		addMouseMotionListener(Constants.movement);
-		addMouseWheelListener(Constants.wheel);
 		addFocusListener(new Focus(this));
 	}
 	

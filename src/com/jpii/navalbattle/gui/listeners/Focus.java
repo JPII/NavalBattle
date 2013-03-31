@@ -24,33 +24,23 @@ import com.jpii.navalbattle.gui.BaseWindow;
 
 public class Focus implements FocusListener{
 	
-	Object window;
+	BaseWindow window;
 	
-	public Focus(Object classname){
+	public Focus(BaseWindow classname){
 		super();
 		window = classname;
 	}
 	
 	@Override
 	public void focusGained(FocusEvent e) {
-		if(window instanceof BaseWindow) {
-			Constants.keys.add(window);
-			Constants.closer.add(window);
-			Constants.click.add(window);
-			Constants.movement.add(window);
-			Constants.wheel.add(window);
-		}
+		Constants.keys.add(window);
+		Constants.closer.add(window);
 	}
 
 	@Override
 	public void focusLost(FocusEvent e) {
-		if(window instanceof BaseWindow) {
-			Constants.keys.remove(window);
-			Constants.closer.remove(window);
-			Constants.click.remove(window);
-			Constants.movement.remove(window);
-			Constants.wheel.remove(window);
-		}
+		Constants.keys.remove(window);
+		Constants.closer.remove(window);
 	}
 
 }
