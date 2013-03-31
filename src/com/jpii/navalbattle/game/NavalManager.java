@@ -29,7 +29,7 @@ public class NavalManager extends EntityManager {
 	 */
 	public NavalManager(World w) {
 		super(w);
-		tm = new TurnManager(new PlayerManager(new Player()));
+		tm = new TurnManager(new PlayerManager(new Player("Player 1"),new Player("Player 2"),new Player("Player 3")));
 		battleShipId = new GridedEntityTileOrientation();
 		battleShipId.setLeftToRightImage(registerEntity(PavoHelper.imgUtilOutline(
 				FileUtils.getImage("drawable-game/battleship/battleship.png"),Game.Settings.GridColor),GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT));
@@ -89,13 +89,41 @@ public class NavalManager extends EntityManager {
 			else
 				c--;
 		}
+		tm.nextTurn();
+		for (int c = 0; c < 25; c++) {
+			Location poll = gh.pollNextWaterTile();
+			while((!(GridHelper.canPlaceInGrid(this,GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT, poll.getRow(), poll.getCol(), 5)) && !(GridHelper.canPlaceInGrid(this,GridedEntityTileOrientation.ORIENTATION_TOPTOBOTTOM, poll.getRow(), poll.getCol(), 5)))){
+				poll = gh.pollNextWaterTile(25);
+			}
+			if(GridHelper.canPlaceInGrid(this,GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT, poll.getRow(), poll.getCol(), 5))
+				tm.addEntity(new AircraftCarrier(this, poll, AircraftCarrier.AIRCRAFTCARRIER_ID,GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT,Game.Settings.rand.nextInt(0,3)));
+			else if(GridHelper.canPlaceInGrid(this,GridedEntityTileOrientation.ORIENTATION_TOPTOBOTTOM, poll.getRow(), poll.getCol(), 5))
+				tm.addEntity(new AircraftCarrier(this, poll, AircraftCarrier.AIRCRAFTCARRIER_ID,GridedEntityTileOrientation.ORIENTATION_TOPTOBOTTOM,Game.Settings.rand.nextInt(0,3)));
+			else
+				c--;
+		}
+		
+		for (int c = 0; c < 25; c++) {
+			Location poll = gh.pollNextWaterTile();
+			while((!(GridHelper.canPlaceInGrid(this,GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT, poll.getRow(), poll.getCol(), 2)) && !(GridHelper.canPlaceInGrid(this,GridedEntityTileOrientation.ORIENTATION_TOPTOBOTTOM, poll.getRow(), poll.getCol(), 2)))){
+				poll = gh.pollNextWaterTile(25);
+			}
+			if(GridHelper.canPlaceInGrid(this,GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT, poll.getRow(), poll.getCol(), 2))
+				tm.addEntity(new Submarine(this, poll, Submarine.SUBMARINE_ID,GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT,Game.Settings.rand.nextInt(0,3)));
+			else if(GridHelper.canPlaceInGrid(this,GridedEntityTileOrientation.ORIENTATION_TOPTOBOTTOM, poll.getRow(), poll.getCol(), 2))
+				tm.addEntity(new Submarine(this, poll, Submarine.SUBMARINE_ID,GridedEntityTileOrientation.ORIENTATION_TOPTOBOTTOM,Game.Settings.rand.nextInt(0,3)));
+			else
+				c--;
+		}
+		
+		tm.nextTurn();
 		for (int c = 0; c < 50; c++) {
 			Location poll = gh.pollNextWaterTile();
-			new Whale(this,poll,GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT,-1,w1,w2,w3);
+			tm.addEntity(new Whale(this,poll,GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT,-1,w1,w2,w3));
 		}
 		for (int c = 0; c < 10; c++) {
 			Location p3 = gh.pollNextShoreTile();
-			new PortEntity(this,p3,GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT,-1);
+			tm.addEntity(new PortEntity(this,p3,GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT,-1));
 			System.out.println("Port generated at " + p3);
 		}
 		System.out.println("Let me play you the song of my people.");

@@ -8,9 +8,11 @@ import com.jpii.navalbattle.pavo.grid.Entity;
 public class Player {
 	
 	ArrayList<Entity> entities;
+	public String name;
 	
-	public Player(){
+	public Player(String name){
 		entities = new ArrayList<Entity>();
+		this.name = name;
 	}
 	
 	public void nextTurn(){
