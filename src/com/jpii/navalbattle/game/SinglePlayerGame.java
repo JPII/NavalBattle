@@ -19,17 +19,18 @@ package com.jpii.navalbattle.game;
 
 import javax.swing.*;
 
+
 import com.jpii.navalbattle.NavalBattle;
+import com.jpii.navalbattle.gui.BaseWindow;
 import com.jpii.navalbattle.pavo.Game;
 import com.jpii.navalbattle.pavo.PavoOpenState;
-import com.jpii.navalbattle.gui.Window;
 
-public class SinglePlayerGame extends Window {
+public class SinglePlayerGame extends BaseWindow {
 	private static final long serialVersionUID = 1L;
 	public GameComponent game;
-
-	public SinglePlayerGame() {
-		
+	
+	public SinglePlayerGame(){
+		myHandler.registerWhiteList(this);
 	}
 	
 	public void setGameVars(PavoOpenState pos, String args) {
@@ -37,15 +38,15 @@ public class SinglePlayerGame extends Window {
 		game.setLocation(0,40);
 		setContentPane(game);
 		this.getContentPane().setLayout(null);
-		setsize(Game.Settings.currentWidth,Game.Settings.currentHeight-40);
-		setlocation(0,0);
+		setSize(Game.Settings.currentWidth,Game.Settings.currentHeight-40);
+		setLocation(0,0);
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
 	}
 	
 	public void setVisible(boolean visible){
 		super.setVisible(visible);
 		if(isVisible()){
-			NavalBattle.getWindowHandler().killAll();
+			NavalBattle.getWindowHandler().disposeContained();
 		}
 	}
 }

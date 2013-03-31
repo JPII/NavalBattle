@@ -10,7 +10,7 @@ import com.jpii.navalbattle.util.URLUtils;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class BroadcastWindow extends Window {
+public class BroadcastWindow extends BaseWindow {
 	private static final long serialVersionUID = 1L;
 	JLabel announcementTitle;
 	JTextPane announcementText;

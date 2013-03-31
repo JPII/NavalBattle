@@ -28,7 +28,7 @@ import com.jpii.navalbattle.NavalBattle;
 import com.jpii.navalbattle.data.Constants;
 import com.jpii.navalbattle.util.FileUtils;
 
-public class LoggingInWindow extends Window {
+public class LoggingInWindow extends BaseWindow {
 	private static final long serialVersionUID = 1L;
 	private Timer timer;
 	private int currentImage = 0;

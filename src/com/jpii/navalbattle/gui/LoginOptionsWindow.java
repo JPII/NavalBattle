@@ -27,7 +27,7 @@ import javax.swing.JButton;
 
 import com.jpii.navalbattle.data.Constants;
 
-public class LoginOptionsWindow extends Window {
+public class LoginOptionsWindow extends BaseWindow {
 	private static final long serialVersionUID = 1L;
 	private JTextField txtHttproketgamercocc;
 	

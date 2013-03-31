@@ -19,6 +19,7 @@ package com.jpii.navalbattle.gui;
 
 import javax.swing.*;
 import java.awt.event.*;
+
 import com.jpii.navalbattle.NavalBattle;
 import com.jpii.navalbattle.data.Constants;
 import com.jpii.navalbattle.gui.listeners.Focus;
@@ -28,7 +29,7 @@ import com.jpii.navalbattle.util.URLUtils;
 import com.roketgamer.Player;
 import com.roketgamer.rauth.*;
 
-public class LoginWindow extends Window {
+public class LoginWindow extends BaseWindow {
 	private static final long serialVersionUID = 1L;
 	JButton loginButton, updateButton, announcementButton;
 	JLabel usernameLabel, passwordLabel, lblCheckingForUpdate;
@@ -138,9 +139,6 @@ public class LoginWindow extends Window {
 			}
 		});
 		t.start();
-
-		setDefaults();	
-		setSize(500,190);
 		
 		loginButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent ae) {

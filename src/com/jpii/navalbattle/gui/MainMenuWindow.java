@@ -32,7 +32,7 @@ import com.jpii.navalbattle.io.NavalBattleIO;
 import com.jpii.navalbattle.pavo.PavoOpenState;
 import com.jpii.navalbattle.renderer.Helper;
 
-public class MainMenuWindow extends Window {
+public class MainMenuWindow extends BaseWindow {
 	private static final long serialVersionUID = 1L;
 	JButton btnRoketGamer;
 	SinglePlayerGame spg;
@@ -96,7 +96,7 @@ public class MainMenuWindow extends Window {
 			public void mouseClicked(MouseEvent e) {
 				spg.setGameVars(PavoOpenState.NORMAL,null);
 				spg.setVisible(true);
-				NavalBattle.getWindowHandler().killAll();
+				NavalBattle.getWindowHandler().disposeContained();
 			}
 		});		
 		btnHelp.addMouseListener(new MouseAdapter() {
@@ -142,7 +142,7 @@ public class MainMenuWindow extends Window {
 				NavalBattleIO.saveAttribute("lastGoodIP", ip);
 				spg.setGameVars(PavoOpenState.OPEN_SERVER,ip);
 				spg.setVisible(true);
-				NavalBattle.getWindowHandler().killAll();
+				NavalBattle.getWindowHandler().disposeContained();
 			}
 		});
 	}

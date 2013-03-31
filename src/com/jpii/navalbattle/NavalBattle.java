@@ -26,10 +26,7 @@ import com.jpii.gamekit.exception.InvalidApiLevelException;
 import com.jpii.gamekit.localization.LocalizationManager;
 import com.jpii.navalbattle.data.*;
 import com.jpii.navalbattle.debug.*;
-import com.jpii.navalbattle.game.SinglePlayerGame;
-import com.jpii.navalbattle.gui.Window;
 import com.jpii.navalbattle.io.*;
-import com.jpii.navalbattle.pavo.Game;
 import com.jpii.navalbattle.renderer.*;
 
 import com.roketgamer.RoketGamer;
@@ -76,7 +73,7 @@ public class NavalBattle {
 		getDebugWindow().printInfo("NavalBattle " + Constants.NAVALBATTLE_VERSION + " initialized");
 		getDebugWindow().printInfo("Successfully loaded GameKit " + GameKit.getVersion() + " (API " + GameKit.getApiLevel() + ")");
 		
-		windowHandler = new WindowHandler();
+		windowHandler = new WindowHandler(492,340);;
 		localizationManager = new LocalizationManager(NavalBattle.class, "/com/jpii/navalbattle/res/strings");
 		
 		getDebugWindow().printInfo("Locale set to " + localizationManager.getLocale());
@@ -90,16 +87,7 @@ public class NavalBattle {
 	
 	public static void onShutdown() {
 		try {
-		for (int c = 0; c < windowHandler.windows.size(); c++) {
-			Window w = windowHandler.windows.get(c);
-			if (w != null) {
-				if (w instanceof SinglePlayerGame) {
-					SinglePlayerGame spg = (SinglePlayerGame)w;
-					Game g = spg.game.getGame();
-					g.onShutdown();
-				}
-			}
-		}
+		windowHandler.disposeAll();
 		System.out.println("Game is closing.");
 		try {
 			Thread.sleep(250);

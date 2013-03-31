@@ -17,76 +17,24 @@
 
 package com.jpii.navalbattle.data;
 
-import java.util.*;
-import javax.swing.*;
-
 import com.jpii.gamekit.toaster.Toaster;
 import com.jpii.navalbattle.gui.*;
 
-public class WindowHandler {
+public class WindowHandler extends com.jpii.gamekit.gui.WindowHandler{
 	
-	public ArrayList<Window> windows;
 	private static Toaster toasterManager;
 	
-	/**
-	 * Default constructor for <code>WindowConstructor</code>
-	 */
-	public WindowHandler() {
+	public WindowHandler(int defaultx, int defaulty) {
+		super(defaultx, defaulty);
+		new LoginWindow();
+		new LoggingInWindow();
+		new LoginOptionsWindow();
+		new MainMenuWindow();
+		new HelpWindow();
+		new CreditsWindow();
+		new BroadcastWindow();
+		new UpdateWindow();
 		toasterManager = new Toaster();
-		windows = new ArrayList<Window>();
-		initArray();
-		windows.get(0).setVisible(true);
-	}
-	
-	/**
-	 * Initialize <code>ArrayList</code> of <code>Windows</code>.
-	 */
-	private void initArray() {
-		windows.add(new LoginWindow());
-		windows.add(new LoggingInWindow());
-		windows.add(new LoginOptionsWindow());
-		windows.add(new MainMenuWindow());
-		windows.add(new HelpWindow());
-		windows.add(new CreditsWindow());
-		windows.add(new BroadcastWindow());
-		windows.add(new UpdateWindow());
-	}
-	
-	/**
-	 * Open a new window from <code>String</code>.
-	 * @param a
-	 */
-	public void setNewWindow(String a) {
-		for(int index = 0; index < windows.size(); index++) {
-			JFrame temp = (Window) windows.get(index);
-			if(a.toLowerCase().equals(temp.getClass().toString().substring((temp.getClass().toString().lastIndexOf(".")+1)).toLowerCase() )){
-				temp.setVisible(true);
-			} else {
-				temp.setVisible(false);
-			}
-		}
-	}
-	
-	/**
-	 * Get instance of a <code>Window</code>. Must have been registered first!
-	 */
-	public Window getWindow(String a) {
-		Window temp = null;
-		for(int index = 0; index < windows.size(); index++) {
-			temp = (Window) windows.get(index);
-		}
-		
-		return temp;
-	}
-	
-	/**
-	 * Add a new <code>Window</code> to the <code>ArrayList</code>
-	 * and make it visible.
-	 * @param w
-	 */
-	public void add(Window w) {
-		windows.add(w);
-		w.setVisible(true);
 	}
 	
 	/**
@@ -95,14 +43,5 @@ public class WindowHandler {
 	 */
 	public Toaster getToasterManager() {
 		return toasterManager;
-	}
-	
-	public void killAll() {
-		for(int index = 0; index<windows.size(); index+=0){
-			JFrame temp = windows.get(index);
-			windows.remove(index);
-			((Window)temp).donewithMe();
-		}
-		System.out.println("Done!");
 	}
 }

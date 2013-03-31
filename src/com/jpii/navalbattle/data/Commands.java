@@ -147,19 +147,19 @@ public class Commands {
 	    	public void onRun(Command c, String[] args) {
 	    		args[0] = args[0].toLowerCase();
 	    		if(args[0].equals("login") || args[0].equals("0") || args[0].equals("loginwindow")) {
-	    			NavalBattle.getWindowHandler().add(new LoginWindow());
+	    			new LoginWindow();
 	    		}
 	    		
 	    		if(args[0].equals("main") || args[0].equals("1") || args[0].equals("mainmenu") || args[0].equals("mainmenuwindow")) {
-	    			NavalBattle.getWindowHandler().add(new MainMenuWindow());
+	    			new MainMenuWindow();
 	    		}
 	    		
 	    		if(args[0].equals("credits") || args[0].equals("2") || args[0].equals("creditswindow")) {
-	    			NavalBattle.getWindowHandler().add(new CreditsWindow());
+	    			new CreditsWindow();
 	    		}
 	    		
 	    		if(args[0].equals("help") || args[0].equals("3") || args[0].equals("helpwindow")) {
-	    			NavalBattle.getWindowHandler().add(new HelpWindow());
+	    			new HelpWindow();
 	    		}
 	    		
 	    		if(args[0].equals("roketgamer") || args[0].equals("4") || args[0].equals("roketgamerwindow")) {

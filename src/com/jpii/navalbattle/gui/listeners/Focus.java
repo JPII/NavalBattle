@@ -20,7 +20,7 @@ package com.jpii.navalbattle.gui.listeners;
 import java.awt.event.*;
 
 import com.jpii.navalbattle.data.Constants;
-import com.jpii.navalbattle.gui.*;
+import com.jpii.navalbattle.gui.BaseWindow;
 
 public class Focus implements FocusListener{
 	
@@ -33,7 +33,7 @@ public class Focus implements FocusListener{
 	
 	@Override
 	public void focusGained(FocusEvent e) {
-		if(window instanceof Window) {
+		if(window instanceof BaseWindow) {
 			Constants.keys.add(window);
 			Constants.closer.add(window);
 			Constants.click.add(window);
@@ -44,7 +44,7 @@ public class Focus implements FocusListener{
 
 	@Override
 	public void focusLost(FocusEvent e) {
-		if(window instanceof Window) {
+		if(window instanceof BaseWindow) {
 			Constants.keys.remove(window);
 			Constants.closer.remove(window);
 			Constants.click.remove(window);

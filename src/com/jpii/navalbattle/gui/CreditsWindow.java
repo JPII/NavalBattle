@@ -18,10 +18,11 @@
 package com.jpii.navalbattle.gui;
 
 import javax.swing.*;
+
 import java.awt.*;
 import java.awt.event.*;
 
-public class CreditsWindow extends Window {
+public class CreditsWindow extends BaseWindow {
 	private static final long serialVersionUID = 1L;
 	private JLabel gameTitle;
 	private JLabel licenseNotice;

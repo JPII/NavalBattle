@@ -55,19 +55,12 @@ public class MoveableEntity extends Entity {
 					int r = getRLR(y);
 					int c = getCLR(x);
 					if (r >= 0 && c >= 0) {
-						Tile<?> temp = getManager().getTile(r,c);
 						if(isPossibleMoveChoiceLR(x,y)){
 							getManager().setTileOverlay(r,c,good);
 						}
 						else {
 							getManager().setTileOverlay(r,c,bad);
 						}
-						/*if (getManager().getTilePercentLand(r,c) <= Game.Settings.waterThresholdBarrier && (temp==null||temp.getEntity().equals(this))) {
-							getManager().setTileOverlay(r,c,good);
-						}
-						else {
-							getManager().setTileOverlay(r,c,bad);
-						}*/
 					}
 				}
 			}
@@ -78,7 +71,6 @@ public class MoveableEntity extends Entity {
 					int c = (x + getLocation().getCol()) - (((getMovementLeft() * 2) + 1)/2);
 					int r = (y + getLocation().getRow()) - (getMovementLeft());
 					if (r >= 0 && c >= 0) {
-						Tile<?> temp = getManager().getTile(r,c);
 						if (isPossibleMoveChoiceTB(x,y)) {
 							getManager().setTileOverlay(r,c,good);
 						}
@@ -101,7 +93,7 @@ public class MoveableEntity extends Entity {
 	{
 		return (x + getLocation().getCol()) - (getMovementLeft());
 	}
-	public Tile getTileLR(int x, int y)
+	public Tile<?> getTileLR(int x, int y)
 	{
 		Tile<?> temps = getManager().getTile(getRLR(y),getCLR(x));
 		return temps;
@@ -109,9 +101,6 @@ public class MoveableEntity extends Entity {
 	
 	public boolean isPossibleMoveChoiceLR(int x, int y)
 	{
-		//(!getTile(x,y).getEntity().equals(this))
-		//
-		
 		boolean horizontal = true;
 		boolean vertical = true;
 		for(int p = 0 ; p < 4; p++){
@@ -138,7 +127,7 @@ public class MoveableEntity extends Entity {
 	{
 		return (x + getLocation().getCol()) - (((getMovementLeft() * 2) + 1)/2);
 	}
-	public Tile getTileTB(int x, int y)
+	public Tile<?> getTileTB(int x, int y)
 	{
 		Tile<?> temps = getManager().getTile(getRTB(y),getCTB(x));
 		return temps;

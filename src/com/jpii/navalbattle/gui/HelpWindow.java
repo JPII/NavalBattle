@@ -25,7 +25,7 @@ import com.jpii.navalbattle.util.URLUtils;
 import java.awt.*;
 import java.awt.event.*;
 
-public class HelpWindow extends Window {
+public class HelpWindow extends BaseWindow {
 	private static final long serialVersionUID = 1L;
 	private JLabel lblTitle;
 
