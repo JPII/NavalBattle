@@ -193,14 +193,8 @@ public class HUD extends PWindow{
 					display.toggleMovable();
 					display.toggleMovable();
 				}
-				if(tm.getTurn().canmoveEntity(display)){
-					move.setVisible(true);
-					moveB.setVisible(true);
-				}
-				else{
-					move.setVisible(false);
-					moveB.setVisible(false);
-				}
+				move.setVisible(true);
+				moveB.setVisible(true);
 				health = ("Health: "+display.getHealth()+"%");
 				movement = ("Movement Left: "+(display.getMaxMovement()-display.getMoved())+" out of "+display.getMaxMovement());
 			}
@@ -256,17 +250,14 @@ public class HUD extends PWindow{
 		return flag;
 	}
 	
-	public void showMoveShip(int x, int y){
-		if(!isShowingMove())
-			return;
-	}
-	
 	public boolean moveShip(int x, int y, boolean leftclick){
-		if(!isShowingMove())
-			return false;
 		if(display!=null)
 			if(display.getHandle() == 1){
 				MoveableEntity display = (MoveableEntity)this.display;
+		
+				if(!isShowingMove()&&tm.getTurn().canmoveEntity(display))
+					return false;
+		
 				int startr = display.getLocation().getRow();
 				int startc = display.getLocation().getCol();
 				if(leftclick && GridHelper.canMoveTo(display.getManager(), display, display.getCurrentOrientation(), y, x,display.getWidth())){
@@ -274,6 +265,7 @@ public class HUD extends PWindow{
 						display.toggleMovable();
 					}
 					display.moveTo(new Location(y,x));
+					addEvent("Moving ship from ("+startr+","+startc+") to ("+display.getLocation().getRow()+","+display.getLocation().getCol()+")");
 					int rowchange = Math.abs(startr - (display.getLocation().getRow())); 
 					int colchange = Math.abs(startc - (display.getLocation().getCol()));
 					if(rowchange>=colchange)
@@ -288,6 +280,7 @@ public class HUD extends PWindow{
 						display.toggleMovable();
 					}
 					display.moveTo(new Location(y,x),display.getOppositeOrientation());
+					addEvent("Moving ship from ("+startr+","+startc+") to ("+display.getLocation().getRow()+","+display.getLocation().getCol()+")");
 					int rowchange = Math.abs(startr - (display.getLocation().getRow())); 
 					int colchange = Math.abs(startc - (display.getLocation().getCol()));
 					if(rowchange>=colchange)

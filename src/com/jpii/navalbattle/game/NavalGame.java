@@ -204,13 +204,6 @@ public class NavalGame extends Game{
 	public void mouseMove(MouseEvent me) {
 		super.mouseMove(me);
 		omnimap.mouseMoved(me);
-		int chx = (-getWorld().getScreenX()) + me.getX();
-		int chy = (-getWorld().getScreenY()) + me.getY(); 
-		chx /= 50;
-		chy /= 50;
-		if(hud.isShowingMove()){
-			hud.showMoveShip(chx,chy);
-		}
 	}
 	BoxBlurFilter bbf = new BoxBlurFilter();
 	public void render() {
