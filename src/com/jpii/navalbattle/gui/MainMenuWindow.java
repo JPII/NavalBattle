@@ -43,8 +43,6 @@ public class MainMenuWindow extends BaseWindow {
 	public MainMenuWindow() {
 		super();
 		
-		spg = new SinglePlayerGame();
-		
 		getContentPane().setLayout(null);
 		
 		JLabel lblVersion = new JLabel(Constants.NAVALBATTLE_VERSION_TITLE);
@@ -94,8 +92,9 @@ public class MainMenuWindow extends BaseWindow {
 		btnSingleplayer.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				spg = new SinglePlayerGame();
 				spg.setGameVars(PavoOpenState.NORMAL,null);
-				spg.setVisible(true);
+				nextWindow("SinglePlayerGame");
 				NavalBattle.getWindowHandler().disposeContained();
 			}
 		});		
@@ -128,6 +127,7 @@ public class MainMenuWindow extends BaseWindow {
 		btnMultiplayer.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				spg = new SinglePlayerGame();
 				boolean valid = false;
 				String ip = NavalBattleIO.getAttribute("lastGoodIP");
 				while (!valid) {
@@ -141,7 +141,7 @@ public class MainMenuWindow extends BaseWindow {
 				}
 				NavalBattleIO.saveAttribute("lastGoodIP", ip);
 				spg.setGameVars(PavoOpenState.OPEN_SERVER,ip);
-				spg.setVisible(true);
+				nextWindow("SinglePlayerGame");
 				NavalBattle.getWindowHandler().disposeContained();
 			}
 		});

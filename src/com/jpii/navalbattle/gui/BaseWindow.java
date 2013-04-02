@@ -21,6 +21,7 @@ public class BaseWindow extends com.jpii.gamekit.gui.BaseWindow{
 		addWindowListener(Constants.closer);
 		addKeyListener(Constants.keys);
 		addFocusListener(new Focus(this));
+		super.setDefaults();
 	}
 	
 }

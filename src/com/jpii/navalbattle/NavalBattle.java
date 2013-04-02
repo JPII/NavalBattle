@@ -73,7 +73,7 @@ public class NavalBattle {
 		getDebugWindow().printInfo("NavalBattle " + Constants.NAVALBATTLE_VERSION + " initialized");
 		getDebugWindow().printInfo("Successfully loaded GameKit " + GameKit.getVersion() + " (API " + GameKit.getApiLevel() + ")");
 		
-		windowHandler = new WindowHandler(492,340);;
+		windowHandler = new WindowHandler(492,340);
 		localizationManager = new LocalizationManager(NavalBattle.class, "/com/jpii/navalbattle/res/strings");
 		
 		getDebugWindow().printInfo("Locale set to " + localizationManager.getLocale());
