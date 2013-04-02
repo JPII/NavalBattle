@@ -23,7 +23,7 @@ public class BroadcastService {
 	private String announcementCode, announcementTitle, announcementText, announcementUrl;
 	
 	/* Items for client */
-	private boolean needsUpdate, hasAnnouncement = false;
+	private boolean needsUpdate, hasAnnouncement, hasChecked = false;
 	
 	public BroadcastService() {
 		announcementId = NavalBattleIO.getAttribute("announcementId");
@@ -72,6 +72,10 @@ public class BroadcastService {
 		return hasAnnouncement;
 	}
 	
+	public boolean hasChecked() {
+		return hasChecked;
+	}
+	
 	class BroadcastThread extends Thread {
 		
 		public BroadcastThread() {
@@ -84,6 +88,8 @@ public class BroadcastService {
 			
 			checkForUpdates();
 			checkForAnnouncement();
+			
+			hasChecked = true;
 		}
 		
 		private void parseXml() {			

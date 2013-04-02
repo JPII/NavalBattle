@@ -122,7 +122,9 @@ public class LoginWindow extends BaseWindow {
 				
 				try {
 					Thread.sleep(3000);
-				} catch (InterruptedException ie) { }
+				} catch (Exception e) { }
+				
+				while(!NavalBattle.getBroadcastService().hasChecked()) { }
 				
 				SwingUtilities.invokeLater(new Runnable() {
 					public void run() {
@@ -212,7 +214,7 @@ public class LoginWindow extends BaseWindow {
 				JOptionPane.showMessageDialog(this, "Incorrect username or password. \nUse your application password to login.");
 			} else if (status == AuthStatus.OFFLINE) {
 				NavalBattle.getDebugWindow().printWarning("Authentication failed: AuthStatus.OFFLINE");	
-				JOptionPane.showMessageDialog(this, "Unable to login. RoketGamer is offline.");
+				JOptionPane.showMessageDialog(this, "Unable to login. RoketGamer API is offline. Check website.");
 			} else if (status == AuthStatus.INVALID_API_KEY) {
 				NavalBattle.getDebugWindow().printWarning("Authentication failed: AuthStatus.INVALID_API_KEY");	
 				JOptionPane.showMessageDialog(this, "Unable to login. API key is invalid.");
