@@ -25,6 +25,7 @@ import com.roketgamer.Player;
 import com.roketgamer.RoketGamer;
 
 public class Achievement {
+	
 	private int id;
 	
 	/**

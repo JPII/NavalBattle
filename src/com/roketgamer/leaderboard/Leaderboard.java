@@ -25,6 +25,7 @@ import com.roketgamer.Player;
 import com.roketgamer.RoketGamer;
 
 public class Leaderboard {
+	
 	private int id;
 	
 	/**

@@ -80,9 +80,9 @@ public class RoketGamer {
 				} else if (result.contains("Invalid user")) {
 					status = AuthStatus.BAD;
 					loggerHook.printError("Invalid user");
-				} else if(result.contains("API offline")) {
+				} else if(result.contains("offine")) {
 					status = AuthStatus.OFFLINE;
-					loggerHook.printError("API offline");
+					loggerHook.printError("Server is offline");
 				}
 			} else {
 				status = AuthStatus.UNKNOWN;
