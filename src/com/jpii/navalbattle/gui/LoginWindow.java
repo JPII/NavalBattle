@@ -121,7 +121,7 @@ public class LoginWindow extends BaseWindow {
 				});
 				
 				try {
-					Thread.sleep(3000);
+					Thread.sleep(3500);
 				} catch (Exception e) { }
 				
 				while(!NavalBattle.getBroadcastService().hasChecked()) { }
