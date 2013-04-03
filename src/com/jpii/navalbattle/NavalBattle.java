@@ -87,7 +87,6 @@ public class NavalBattle {
 	
 	public static void onShutdown() {
 		try {
-		windowHandler.disposeAll();
 		System.out.println("Game is closing.");
 		try {
 			Thread.sleep(250);
