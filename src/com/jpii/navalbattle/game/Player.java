@@ -44,8 +44,8 @@ public class Player {
 		}
 	}
 	
-	public int myEntity(Entity e){
-		return entities.indexOf(e);
+	public boolean myEntity(Entity e){
+		return entities.contains(e);
 	}
 	
 	public void addEntity(Entity e){
