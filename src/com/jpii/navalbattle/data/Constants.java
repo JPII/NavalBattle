@@ -33,7 +33,7 @@ public class Constants {
 	public static final String NAVALBATTLE_UPDATE_URL = "https://raw.github.com/JPII/NavalBattle/master/update.xml";
 	
 	public static final String CRITICAL_ERROR_HEADER = "NavalBattle encountered a critical error and must close.\n" +
-			"Try relaunching the game and if the error persists, report the error at: https://github.com/JPII/NavalBattle/issues \n\n";
+			"Report the error at: https://github.com/JPII/NavalBattle/issues \n\n";
 	
 	public static final boolean DEBUG_MODE = true;
 	
