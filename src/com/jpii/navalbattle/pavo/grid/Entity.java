@@ -266,7 +266,7 @@ public class Entity implements Serializable {
 		
 		
 		
-		moveTo(Location.Unknown,true);
+		//moveTo(Location.Unknown,true);
 		readyForMove = true;
 	}
 	
@@ -294,16 +294,13 @@ public class Entity implements Serializable {
 		rotateTo(gb);
 	}
 
-	private void hideEntity() {
-		if (getCurrentOrientation() == GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT) {
+	public void hideEntity() {
+		//if (getCurrentOrientation() == GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT) {
 			int row = getLocation().getRow();
 			int col = getLocation().getCol();	
-		for (int w = 0; w < width; w++) {
-			
-			manager.setTile(new Location(row,col+w),null);
-			//}
-		}
-		}
+			manager.setTile(new Location(row,col),null);
+			manager.getWorld().forceRender();
+		//}
 	}
 	
 	/**

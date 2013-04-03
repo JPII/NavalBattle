@@ -263,7 +263,8 @@ public class Game extends Renderable implements Runnable, Serializable {
 						e.currentLocation = PavoHelper.convertLocationToScreen(getWorld(), e.getOriginalLocation());
 						motionDest = PavoHelper.convertLocationToScreen(getWorld(), e.getLocation());
 						e.setLocation(e.getOriginalLocation());
-						e.moveTo(Location.Unknown);
+						//e.moveTo(new Location(0,0));//Location.Unknown);
+						e.hideEntity();
 						moveStandard = true;
 					}
 					else {
@@ -274,6 +275,7 @@ public class Game extends Renderable implements Runnable, Serializable {
 							getWorld().setMotionEntity(null);
 							getWorld().getMotionEntity().currentLocation = null;
 							getWorld().getMotionEntity().moveTo(e.destiny);
+							System.out.println("hehe");
 						}
 					}
 				}
