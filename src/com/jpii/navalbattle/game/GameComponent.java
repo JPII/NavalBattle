@@ -36,7 +36,7 @@ public class GameComponent extends JComponent {
 	JFrame frame;
 	Timer ticker;
 	Timer logicUpdator;
-	Game game;
+	NavalGame game;
 	WindowLib winlib;
 	boolean isFullscreen = false;
 	Timer alert;
@@ -148,7 +148,7 @@ public class GameComponent extends JComponent {
 		else
 			notifier = null;
 	}
-	public Game getGame() {
+	public NavalGame getGame() {
 		return game;
 	}
 	public void toggleFullscreen() {

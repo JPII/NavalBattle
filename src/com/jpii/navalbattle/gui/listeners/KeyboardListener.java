@@ -58,6 +58,9 @@ public class KeyboardListener implements KeyListener {
 				if(k.getKeyCode() == KeyEvent.VK_F11){
 					g.game.toggleFullscreen();
 				}
+				if(k.getKeyCode() == KeyEvent.VK_H){
+					g.game.getGame().getHud().togglePinable();
+				}
 			}
 		}
 	}

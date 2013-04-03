@@ -33,6 +33,7 @@ public class HUD extends PWindow{
 	String movement = new String("");
 	Entity display;
 	String[] events;
+	boolean pinned = true;
 	
 	PImage missile;
 	PImage bullet;
@@ -56,6 +57,7 @@ public class HUD extends PWindow{
 		centery = getHeight()/2;
 		events = new String[25];
 		initButtons();
+		update();
 	 }
 	 
 	 private void initButtons(){
@@ -138,22 +140,24 @@ public class HUD extends PWindow{
 	 
 	private void drawEntityBox(Graphics2D g){
 		drawFrame(g, boxx, boxy, boxwidth, boxheight);
-		g.drawImage(entityImg,boxx+50,boxy+50,null);
-		if (display!=null && display.getHandle() == 2) {
-			g.setColor(new Color(169,140,86));
-			g.drawRect(boxx+49,boxy+49,51,51);
+		if(display!=null){
+			g.drawImage(entityImg,boxx+50,boxy+50,null);
+			if (display.getHandle() == 2) {
+				g.setColor(new Color(169,140,86));
+				g.drawRect(boxx+49,boxy+49,51,51);
+			}
+			g.setColor(Color.red);
+			drawString(g,location, centerx, centery+60);
+			drawString(g,health, centerx, centery-35);
+			drawString(g,movement, centerx, centery+40);
 		}
-		g.setColor(Color.red);
-		drawString(g,location, centerx, centery+60);
-		drawString(g,health, centerx, centery-35);
-		drawString(g,movement, centerx, centery+40);
 	}
 	
 	private void drawHistoryBox(Graphics2D g){
 		g.setPaint(ht);
-		g.fillRoundRect(25,boxy,375,boxheight,25,25);
+		g.fillRoundRect(25,0,375,151,25,25);
 		g.setPaint(Color.black);
-		g.drawRoundRect(25,boxy,375,boxheight,25,25);
+		g.drawRoundRect(25,0,375,151,25,25);
 	}
 	
 	public void setEntity(Entity e){
@@ -172,35 +176,36 @@ public class HUD extends PWindow{
 	}
 	
 	public void update(){
-		if(display != null){
+		if(display != null || pinned){
 			setVisible(true);
-			if (display.getHandle()==2) {
-				PortEntity display = (PortEntity)this.display;
-				entityImg = display.getIcon();
-			}
-			else
-				entityImg = FileUtils.getImage(display.imgLocation);
-			int tempwidth = entityImg.getWidth();
-			int tempheight = entityImg.getHeight();
-			boxx = centerx - (tempwidth/2) - 50;
-			boxy = centery - (tempheight/2) - 50;
-			boxwidth = tempwidth+100;
-			boxheight = tempheight+100;
-			location = ("[X:"+display.getLocation().getCol()+" Y:"+display.getLocation().getRow()+"]");
-			if(display.getHandle()==1){
-				MoveableEntity display = (MoveableEntity)this.display;
-				if(display.isMovableTileBeingShown()){
-					display.toggleMovable();
-					display.toggleMovable();
+			move.setVisible(false);
+			moveB.setVisible(false);
+			boxx = boxy = boxheight = boxwidth = 0;
+			if(display!=null){
+				if (display.getHandle()==2) {
+					PortEntity display = (PortEntity)this.display;
+					entityImg = display.getIcon();
 				}
-				move.setVisible(true);
-				moveB.setVisible(true);
-				health = ("Health: "+display.getHealth()+"%");
-				movement = ("Movement Left: "+(display.getMaxMovement()-display.getMoved())+" out of "+display.getMaxMovement());
-			}
-			else{
-				move.setVisible(false);
-				moveB.setVisible(false);
+				else
+					entityImg = FileUtils.getImage(display.imgLocation);
+				int tempwidth = entityImg.getWidth();
+				int tempheight = entityImg.getHeight();
+				boxx = centerx - (tempwidth/2) - 50;
+				boxy = centery - (tempheight/2) - 50;
+				boxwidth = tempwidth+100;
+				boxheight = tempheight+100;
+				location = ("[X:"+display.getLocation().getCol()+" Y:"+display.getLocation().getRow()+"]");
+				if(display.getHandle()==1){
+					MoveableEntity display = (MoveableEntity)this.display;
+					if(display.isMovableTileBeingShown()){
+						display.toggleMovable();
+						display.toggleMovable();
+					}
+					move.setVisible(true);
+					moveB.setVisible(true);
+					health = ("Health: "+display.getHealth()+"%");
+					movement = ("Movement Left: "+(display.getMaxMovement()-display.getMoved())+" out of "+display.getMaxMovement());
+				}
 			}
 		}
 		else{
@@ -312,6 +317,11 @@ public class HUD extends PWindow{
 			}
 			events[events.length-1]=s;
 		}	
+	}
+	
+	public void togglePinable(){
+		pinned = !pinned;
+		update();
 	}
 	
 }
