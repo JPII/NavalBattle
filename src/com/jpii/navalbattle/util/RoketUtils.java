@@ -7,7 +7,7 @@ import com.roketgamer.leaderboard.Leaderboard;
 public class RoketUtils {
 	
 	/**
-	 * Quickly submit a <code>Leaderboard</code> to the server. Checks if offline or if game is outdated.
+	 * Quickly submit a <code>Leader-board</code> to the server. Checks if off-line or if game is out-dated.
 	 * @param leaderboard
 	 * @param score
 	 */
@@ -24,7 +24,7 @@ public class RoketUtils {
 	}
 	
 	/**
-	 * Quickly submit an <code>Achievement</code> to the server. Checks if offline or if game is outdated.
+	 * Quickly submit an <code>Achievement</code> to the server. Checks if off-line or if game is out-dated.
 	 * @param achievement
 	 * @param score
 	 */

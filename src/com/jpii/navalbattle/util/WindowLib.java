@@ -59,11 +59,10 @@ public class WindowLib {
 			wnd.addFocusListener(focus);
 		}
 		evilHackTimer = new Timer(75,al);
-		//evilHackTimer.start();
 	}
 	
 	/**
-	 * Returns if game is in fullscreen mode.
+	 * Returns if game is in full-screen mode.
 	 * @return
 	 */
 	public boolean isFullscreen() {
@@ -88,11 +87,10 @@ public class WindowLib {
 	}
 	
 	/**
-	 * Get game to fullscreen.
+	 * Get game to full-screen.
 	 * @return
 	 */
 	public boolean showFullscreen() {
-		//evilHackTimer.start();
 		if (FileUtils.getPlatform() == OS.windows) {
 			h = 0;
 			ready = true;
@@ -124,7 +122,7 @@ public class WindowLib {
 	}
 	
 	/**
-	 * Exit fullscreen.
+	 * Exit full-screen.
 	 */
 	public void hideFullscreen() {
 		h = 0;

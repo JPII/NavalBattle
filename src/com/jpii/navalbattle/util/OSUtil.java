@@ -41,7 +41,7 @@ public class OSUtil {
 	 * This method will only work with classes that have
 	 * nullary constructors.
 	 * 
-	 * It is highly recommmended that this method is used on
+	 * It is highly recommended that this method is used on
 	 * small classes.
 	 * 
 	 * This method will <b>not</b> copy native memory, nor sub

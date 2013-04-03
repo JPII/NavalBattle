@@ -28,7 +28,7 @@ public class Stopwatch {
 	}
 	
 	/**
-	 * Starts the stopwatch.
+	 * Starts the stop-watch.
 	 */
 	public void start() {
 		duration = -1;
@@ -36,7 +36,7 @@ public class Stopwatch {
 	}
 	
 	/**
-	 * Stops the stopwatch.
+	 * Stops the stop-watch.
 	 */
 	public void stop() {
 		duration = System.nanoTime() - startTime;

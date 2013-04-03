@@ -14,8 +14,6 @@ import maximusvladimir.dagen.Rand;
 
 /**
  * The rendering helper. Consists of static methods.
- * @author MKirkby
- *
  */
 public class Helper {
 	public static BufferedImage GUI_OMNIMAP_BACKGROUND1;
@@ -47,10 +45,6 @@ public class Helper {
 		GUI_GAME_FONT = new Font("Arial",0,16);
 		GUI_MENU_TITLE_FONT = new Font("Arial",0,56);
 		try {
-			//GUI_OMNIMAP_BACKGROUND1 = 
-				//	FileUtils.getImage(("drawable-gui/gui_omnimap_background1.png"));
-			//GUI_OMNIMAP_BACKGROUND2 = 
-				//	FileUtils.getImage(("drawable-gui/gui_omnimap_background2.png"));
 			GUI_WINDOW_ICON = FileUtils.getImage(("drawable-gui/gui_window_icon.png"));
 			GUI_GLYPHS= FileUtils.getImage(("font/glyphs.bmp"));
 			MessageBox.setMessageBoxErrorIcon(
@@ -65,7 +59,6 @@ public class Helper {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
 		
 		GUI_OMNIMAP_ICON_WORLD = new BufferedImage(20,20,BufferedImage.TYPE_INT_ARGB);
 		Graphics g = GUI_OMNIMAP_ICON_WORLD.getGraphics();
@@ -93,31 +86,6 @@ public class Helper {
         g.drawLine(1+xt, 16, 10+xt, 16);
         g.drawLine(2+xt, 17, 9+xt, 17);
         g.drawLine(4+xt, 18, 7+xt, 18);
-        //glyphParser();
-	}
-	private static void glyphParser() {
-		BufferedImage glyphs = GUI_GLYPHS;
-		int size = (glyphs.getWidth()/8)*(glyphs.getHeight()/11);
-		GUI_GLYPH_CHARS = new BufferedImage[size];
-		int c = 0;
-		for (int x = 0; x < (glyphs.getWidth()); x+=9) {
-			for (int y = 0; y < (glyphs.getHeight()); y+=12) {
-				if (x + 8 < glyphs.getWidth() && y + 11 < glyphs.getHeight()) {
-					GUI_GLYPH_CHARS[c] = glyphs.getSubimage(x,y,8,11);
-					BufferedImage copy = new BufferedImage(8,11,BufferedImage.TYPE_INT_ARGB);
-					Graphics g = copy.getGraphics();
-					for (int cx = 0; cx < GUI_GLYPH_CHARS[c].getWidth(); cx++) {
-						for (int cy = 0; cy < GUI_GLYPH_CHARS[c].getHeight(); cy++) {
-							if (new Color(GUI_GLYPH_CHARS[c].getRGB(cx,cy)).getBlue() > 20) {
-								g.setColor(Color.red);
-								g.drawLine(cx,cy,cx,cy);
-							}
-						}
-					}
-					c++;
-				}
-			}
-		}
 	}
 	public static void drawString(String txt, int x, int y, Graphics g) {
 		int x2 = 0;
@@ -240,33 +208,6 @@ public class Helper {
         g2.fillRect(0, 0, width,height);
         return shadowOuter;
 	}
-	/*public static BufferedImage genGrid(int width, int height, int spacing) {
-		BufferedImage grid = new BufferedImage(width,height,BufferedImage.TYPE_INT_ARGB);
-		Graphics g = grid.getGraphics();
-		Color def = new Color(60,60,60);
-		Color nwe = new Color(60,60,60,200);
-		int sub = height/spacing;
-		for (int gridy = 0; gridy < sub; gridy++) {
-			if (spacing <= 10 && (gridy % 4 == 0)) {
-				g.setColor(nwe);
-			}
-			else {
-				g.setColor(def);
-			}
-			g.drawLine(0, gridy*spacing, width, gridy*spacing);
-		}
-		sub = width/spacing;
-		for (int gridx = 0; gridx < sub; gridx++) {
-			if (spacing <= 10 && gridx % 4 == 0) {
-				g.setColor(nwe);
-			}
-			else {
-				g.setColor(def);
-			}
-			g.drawLine(gridx*spacing,0,gridx*spacing,height);
-		}
-		return grid;
-	}*/
 	
 	/**
 	 * Adjusts the double to fit it within 0.0 and 1.0.
@@ -313,7 +254,6 @@ public class Helper {
     	int alph = 0;
     	double tofd = RenderConstants.CURRENT_TIME_OF_DAY;
     	int nightl = 5;
-    	boolean changed = false;
     	if (tofd > 0 && tofd < le / nightl/2)
     	{
     		double t = tofd;
@@ -325,7 +265,6 @@ public class Helper {
     		if (!last.equals("Sunset"))
     		{
     			last = "Sunset";
-    			changed = true;
     		}
     	}
     	else if (tofd > le / nightl/2 && tofd < le / nightl * 2)
@@ -334,7 +273,6 @@ public class Helper {
     		if (!last.equals("Night"))
     		{
     			last = "Night";
-    			changed = true;
     		}
     	}
     	else if (tofd > le / nightl * 2 && tofd < (le / nightl * 2) + (le / nightl / 2))
@@ -348,14 +286,12 @@ public class Helper {
     		if (!last.equals("Sunrise"))
     		{
     			last = "Sunrise";
-    			changed = true;
     		}
     	}
     	else {
     		if (!last.equals("Daytime"))
     		{
     			last = "Daytime";
-    			changed = true;
     		}
     	}
     	return alph;
@@ -363,11 +299,11 @@ public class Helper {
     private static String last = "s";
     
     /**
-     * Randomise a preset color, by the maximum differencial as the maximum absolute value, with the random provider.
-     * @param orig The orginal color.
-     * @param maxDiff The maximum differencial.
+     * Randomize a preset color, by the maximum differential as the maximum absolute value, with the random provider.
+     * @param orig The original color.
+     * @param maxDiff The maximum differential.
      * @param rand The random number provider.
-     * @param includeAlpha Should alpha be included with the randomisation??? (Usually is false)
+     * @param includeAlpha Should alpha be included with the randomization??? (Usually is false)
      * @return
      */
     public static Color randomise(Color orig, int maxDiff, Random rand, boolean includeAlpha) {
@@ -402,8 +338,8 @@ public class Helper {
      * Adjusts a preset color to a roughness value.
      * @param orig The original color
      * @param a The roughness value.
-     * @param maxmin The maximum and minimum differencial.
-     * @return A color that has been adjust to match the orginal and roughness.
+     * @param maxmin The maximum and minimum differential.
+     * @return A color that has been adjust to match the original and roughness.
      */
     public static Color adjust(Color orig, double a, int maxmin) {
         if (a > 1) a = 1;

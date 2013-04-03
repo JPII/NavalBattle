@@ -20,7 +20,7 @@ package com.jpii.navalbattle.util;
 import maximusvladimir.dagen.Rand;
 
 /**
- * Primarly for the sake of AI name generation.
+ * Primarily for the sake of AI name generation.
  * Any real life persons that this generator generates is purely coincidental, and should not be taken offensively.
  */
 public class GrammarManager {
