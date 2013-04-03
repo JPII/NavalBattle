@@ -295,10 +295,14 @@ public class Entity implements Serializable {
 	}
 
 	private void hideEntity() {
-		for (int w = 0; w < getWidth(); w++) {
-			for (int h = 0; h < getHeight(); h++) {
-				manager.setTile(getLocation().getRow()+h, getLocation().getCol()+w,null);
-			}
+		if (getCurrentOrientation() == GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT) {
+			int row = getLocation().getRow();
+			int col = getLocation().getCol();	
+		for (int w = 0; w < width; w++) {
+			
+			manager.setTile(new Location(row,col+w),null);
+			//}
+		}
 		}
 	}
 	
