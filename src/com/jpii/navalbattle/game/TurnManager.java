@@ -11,7 +11,7 @@ public class TurnManager {
 	
 	public TurnManager(PlayerManager pm){
 		players = pm;
-		turnnumber=1;
+		turnnumber=0;
 		currentTurn = new Turn(players.getPlayer(turnnumber));
 	}
 	

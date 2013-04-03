@@ -128,7 +128,10 @@ public class HUD extends PWindow{
 				if(bullet.isVisible()){
 					if(display!=null && display.getHandle()==1){
 						MoveableEntity display2 = (MoveableEntity)display;
-						display2.toggleAttackRange();
+						if(display2.isAttackTileBeingShown()&&attackMissiles){
+						}
+						else	
+							display2.toggleAttackRange();
 						attackGuns = true;	
 						attackMissiles = false;	
 					}
@@ -141,7 +144,10 @@ public class HUD extends PWindow{
 				if(missile.isVisible()){
 					if(display!=null && display.getHandle()==1){
 						MoveableEntity display2 = (MoveableEntity)display;
-						display2.toggleAttackRange();
+						if(display2.isAttackTileBeingShown()&&attackGuns){
+						}
+						else	
+							display2.toggleAttackRange();
 						attackMissiles = true;
 						attackGuns = false;	
 					}
@@ -223,14 +229,17 @@ public class HUD extends PWindow{
 		if(display != null || pinned){
 			setVisible(true);
 			move.setVisible(false);
+			moveB.setVisible(false);
 			missile.setVisible(false);
 			bullet.setVisible(false);
 			missileB.setVisible(false);
 			bulletB.setVisible(false);
-			diplomacy.setVisible(true);
-			diplomacyB.setVisible(true);
+			diplomacy.setVisible(false);
+			diplomacyB.setVisible(false);
 			boxx = boxy = boxheight = boxwidth = 0;
 			if(display!=null){
+				diplomacy.setVisible(true);
+				diplomacyB.setVisible(true);
 				if (display.getHandle()==2) {
 					PortEntity display = (PortEntity)this.display;
 					entityImg = display.getIcon();

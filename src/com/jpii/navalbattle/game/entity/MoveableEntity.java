@@ -115,7 +115,7 @@ public class MoveableEntity extends Entity {
 					int r = getAttackR(y);
 					int c = getAttackC(x);
 					if (r >= 0 && c >= 0) {
-						if(isPossibleAttackChoice(x,y)){
+						if(isPossibleAttackChoice(c,r)){
 							getManager().setTileOverlay(r,c,good);
 						}
 						else {
