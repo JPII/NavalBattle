@@ -24,6 +24,9 @@ public class AircraftCarrier extends MoveableEntity {
 		}
 		moved=0;
 		maxMovement = 5;
+		attackRange = 7;
+		gunsAttackOption = true;
+		planeAttackOption = true;
 	}
 	
 	public void init() {

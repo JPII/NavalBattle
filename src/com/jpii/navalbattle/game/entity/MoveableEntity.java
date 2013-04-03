@@ -12,7 +12,14 @@ public class MoveableEntity extends Entity {
 	protected int maxMovement;
 	protected int moved;
 	private int health = 100;
+	protected int attackRange;
 	private boolean showMove = false;
+	private boolean showAttack = false;
+	private boolean usedGuns = false;
+	private boolean usedMissiles = false;
+	public boolean gunsAttackOption = false;
+	public boolean missileAttackOption = false;
+	public boolean planeAttackOption = false;
 	/**
 	 * @param em
 	 */
@@ -49,6 +56,52 @@ public class MoveableEntity extends Entity {
 		}
 			
 			
+		if (getCurrentOrientation() == GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT) {
+			for (int x = 0; x < (getMovementLeft() * 2) + 1; x++) {
+				for (int y = 0; y < (getMovementLeft() * 2) + 1; y++) {
+					int r = getRLR(y);
+					int c = getCLR(x);
+					if (r >= 0 && c >= 0) {
+						if(isPossibleMoveChoiceLR(x,y)){
+							getManager().setTileOverlay(r,c,good);
+						}
+						else {
+							getManager().setTileOverlay(r,c,bad);
+						}
+					}
+				}
+			}
+		}
+		else {
+			for (int x = 0; x < (getMovementLeft() * 2) + 1; x++) {
+				for (int y = 0; y < (getMovementLeft() * 2) + 1; y++) {
+					int c = (x + getLocation().getCol()) - (((getMovementLeft() * 2) + 1)/2);
+					int r = (y + getLocation().getRow()) - (getMovementLeft());
+					if (r >= 0 && c >= 0) {
+						if (isPossibleMoveChoiceTB(x,y)) {
+							getManager().setTileOverlay(r,c,good);
+						}
+						else {
+							getManager().setTileOverlay(r,c,bad);
+						}
+					}
+				}
+			}
+		}
+		getManager().getWorld().forceRender();
+	}
+	
+	public void toggleAttack(){
+		short good = (short)0x2f1d;
+		short bad = (short)0x001;
+		if(showAttack){
+			showAttack = false;
+			good = bad = 0;
+		}
+		else{
+			showAttack = true;
+		}
+		
 		if (getCurrentOrientation() == GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT) {
 			for (int x = 0; x < (getMovementLeft() * 2) + 1; x++) {
 				for (int y = 0; y < (getMovementLeft() * 2) + 1; y++) {
@@ -184,8 +237,17 @@ public class MoveableEntity extends Entity {
 		return maxMovement-moved;
 	}
 	
+	public int getAttackRange(){
+		return attackRange;
+	}
+	
 	public void resetMovement(){
 		moved = 0;
+	}
+	
+	public void resetAttack(){
+		usedGuns=false;
+		usedMissiles=false;
 	}
 	
 	public int getHealth(){
@@ -198,6 +260,14 @@ public class MoveableEntity extends Entity {
 	
 	public int getMoved(){
 		return moved;
+	}
+	
+	public boolean getUsedGuns(){
+		return usedGuns;
+	}
+	
+	public boolean getUsedMissiles(){
+		return usedMissiles;
 	}
 	
 	public void addMovement(int num){

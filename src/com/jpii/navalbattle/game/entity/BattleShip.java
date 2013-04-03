@@ -31,6 +31,9 @@ public class BattleShip extends MoveableEntity {
 		}
 		moved=0;
 		maxMovement = 4;
+		attackRange = 5;
+		gunsAttackOption = true;
+		missileAttackOption = true;
 	}
 	
 	public void init() {

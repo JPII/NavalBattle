@@ -24,6 +24,9 @@ public class Submarine extends MoveableEntity {
 		}
 		moved = 0;
 		maxMovement=4;
+		attackRange = 3;
+		gunsAttackOption = true;
+		missileAttackOption = true;
 	}
 	
 	public void init() {

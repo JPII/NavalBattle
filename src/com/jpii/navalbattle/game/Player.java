@@ -21,6 +21,7 @@ public class Player {
 	
 	public void reset(){
 		resetMovement();
+		resetAttack();
 	}
 	
 	public void resetMovement(){
@@ -29,6 +30,16 @@ public class Player {
 			if(e1.getHandle()==1){
 				MoveableEntity e = (MoveableEntity) e1;
 				e.resetMovement();
+			}
+		}
+	}
+	
+	public void resetAttack(){
+		for (int index =0; index<entities.size(); index++){
+			Entity e1 = entities.get(index);
+			if(e1.getHandle()==1){
+				MoveableEntity e = (MoveableEntity) e1;
+				e.resetAttack();
 			}
 		}
 	}
