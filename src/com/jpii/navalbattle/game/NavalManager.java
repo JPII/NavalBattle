@@ -29,7 +29,7 @@ public class NavalManager extends EntityManager {
 	 */
 	public NavalManager(World w) {
 		super(w);
-		tm = new TurnManager(new PlayerManager(new Player("Player 1"),new Player("Player 2"),new Player("Player 3")));
+		tm = new TurnManager(new PlayerManager(new Player("BattleshipPlayer"),new Player("Sub&ACPlayer"),new Player("AIofWhales&Ports")));
 		battleShipId = new GridedEntityTileOrientation();
 		battleShipId.setLeftToRightImage(registerEntity(PavoHelper.imgUtilOutline(
 				FileUtils.getImage("drawable-game/battleship/battleship.png"),Game.Settings.GridColor),GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT));

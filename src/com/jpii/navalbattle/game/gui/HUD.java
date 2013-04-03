@@ -194,6 +194,12 @@ public class HUD extends PWindow{
 			setVisible(true);
 			move.setVisible(false);
 			moveB.setVisible(false);
+			missile.setVisible(false);
+			bullet.setVisible(false);
+			diplomacy.setVisible(false);
+			missileB.setVisible(false);
+			bulletB.setVisible(false);
+			diplomacyB.setVisible(false);
 			boxx = boxy = boxheight = boxwidth = 0;
 			if(display!=null){
 				if (display.getHandle()==2) {
@@ -217,6 +223,12 @@ public class HUD extends PWindow{
 					}
 					move.setVisible(true);
 					moveB.setVisible(true);
+					missile.setVisible(true);
+					bullet.setVisible(true);
+					diplomacy.setVisible(true);
+					missileB.setVisible(true);
+					bulletB.setVisible(true);
+					diplomacyB.setVisible(true);
 					health = ("Health: "+display.getHealth()+"%");
 					movement = ("Movement Left: "+(display.getMaxMovement()-display.getMoved())+" out of "+display.getMaxMovement());
 				}
