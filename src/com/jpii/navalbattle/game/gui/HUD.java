@@ -61,23 +61,23 @@ public class HUD extends PWindow{
 	 }
 	 
 	 private void initButtons(){
-		addControl(missileB = new PButton(this,(getWidth()/2)-60,getHeight()-45,30,30));
-		addControl(bulletB = new PButton(this,(getWidth()/2)-20,getHeight()-45,30,30));
-		addControl(diplomacyB = new PButton(this,(getWidth()/2)+20,getHeight()-45,30,30));
-		addControl(moveB = new PButton(this,(getWidth()/2)+60,getHeight()-45,30,30));
-		addControl(nextMove = new PButton(this,"Next Player!",(getWidth()/3)+10,getHeight()-140,(getWidth()/3)-18,80));
+		addControl(missileB = new PButton(this,(getWidth()/2)-90,getHeight()-60,30,30));
+		addControl(bulletB = new PButton(this,(getWidth()/2)-30,getHeight()-60,30,30));
+		addControl(diplomacyB = new PButton(this,(getWidth()/2)+30,getHeight()-60,30,30));
+		addControl(moveB = new PButton(this,(getWidth()/2)+90,getHeight()-60,30,30));
+		addControl(nextMove = new PButton(this,"End Turn",(getWidth()/2)-60,getHeight()-130,150,40));
 		
-		nextMove.setFont(new Font("Arial",0,70));
+		nextMove.setFont(new Font("Arial",0,35));		
 		
 		missile = new PImage(this);
 		bullet = new PImage(this);
 		move = new PImage(this);
 		diplomacy = new PImage(this);
 		
-		missile.setLoc((getWidth()/2)-60,getHeight()-45);
-		bullet.setLoc((getWidth()/2)-20,getHeight()-45);
-		diplomacy.setLoc((getWidth()/2)+20,getHeight()-45);
-		move.setLoc((getWidth()/2)+60,getHeight()-45);
+		missile.setLoc((getWidth()/2)-90,getHeight()-60);
+		bullet.setLoc((getWidth()/2)-30,getHeight()-60);
+		diplomacy.setLoc((getWidth()/2)+30,getHeight()-60);
+		move.setLoc((getWidth()/2)+90,getHeight()-60);
 		
 		missile.setSize(30,30);
 		bullet.setSize(30,30);
@@ -122,9 +122,9 @@ public class HUD extends PWindow{
 		});
 		
 		this.repaint();
-	}
+	 }
 	
-	 public void paint(Graphics2D g) {
+	public void paint(Graphics2D g) {
 		super.paint(g);
 		
 		g.setPaint(gp);
@@ -134,10 +134,24 @@ public class HUD extends PWindow{
 		g.drawLine(getWidth()/3, 0, getWidth()/3, getHeight());
 		g.drawLine(2*getWidth()/3, 0, 2*getWidth()/3, getHeight());
 		
+		drawText(g);
 		drawEntityBox(g);	
 		drawHistoryBox(g);
 	}
-	 
+	
+	private void drawText(Graphics2D g){
+		Font perks = new Font("Arial",0,10);
+		g.setFont(perks);
+		g.drawString("Missile",(getWidth()/2)-90,getHeight()-62);
+		g.drawString("Bullet",(getWidth()/2)-30,getHeight()-62);
+		g.drawString("Diplomacy",(getWidth()/2)+18,getHeight()-62);
+		g.drawString("Move",(getWidth()/2)+90,getHeight()-62);
+		if(tm!=null)
+			if(tm.getTurn()!=null)
+				if(tm.getTurn().getPlayer()!=null)
+					g.drawString(""+tm.getTurn().getPlayer().name,200,100);
+	}
+	
 	private void drawEntityBox(Graphics2D g){
 		drawFrame(g, boxx, boxy, boxwidth, boxheight);
 		if(display!=null){
