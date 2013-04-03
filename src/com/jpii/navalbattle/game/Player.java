@@ -15,8 +15,12 @@ public class Player {
 		this.name = name;
 	}
 	
-	public void nextTurn(){
+	public void startTurn(){
 		
+	}
+	
+	public void endTurn(){
+		reset();
 	}
 	
 	public void reset(){

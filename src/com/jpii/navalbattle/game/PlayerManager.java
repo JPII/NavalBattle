@@ -26,12 +26,6 @@ public class PlayerManager {
 		temp.reset();
 	}
 	
-	public Player nextTurn(int turnnumber){
-		Player temp = getPlayer(turnnumber);
-		temp.nextTurn();
-		return temp;
-	}
-	
 	public void addPlayer(Player p){
 		players.add(p);
 	}

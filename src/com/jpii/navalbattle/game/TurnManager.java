@@ -16,9 +16,9 @@ public class TurnManager {
 	}
 	
 	public void nextTurn(){
-		players.reset(turnnumber);
+		currentTurn.endTurn();
 		turnnumber++;
-		currentTurn = new Turn(players.nextTurn(turnnumber));
+		currentTurn = new Turn(players.getPlayer(turnnumber));
 	}
 	
 	public Turn getTurn(){
