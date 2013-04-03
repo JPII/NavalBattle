@@ -101,7 +101,7 @@ public class HUD extends PWindow{
 		
 		moveB.addMouseListener(new PMouseEvent(){
 			public void mouseDown(int x, int y, int buttonid) {
-				if(moveB.isVisible()){
+				if(move.isVisible()){
 					if(display!=null && display.getHandle()==1){
 						MoveableEntity display2 = (MoveableEntity)display;
 						display2.toggleMovable();
@@ -130,16 +130,14 @@ public class HUD extends PWindow{
 		g.setPaint(gp);
 		g.fillRect(0,0,getWidth(),getHeight());
 		
-		g.setColor(Color.green);
-		g.drawLine(getWidth()/3, 0, getWidth()/3, getHeight());
-		g.drawLine(2*getWidth()/3, 0, 2*getWidth()/3, getHeight());
-		
 		drawText(g);
 		drawEntityBox(g);	
 		drawHistoryBox(g);
 	}
 	
 	private void drawText(Graphics2D g){
+		g.setColor(Color.green);
+		Font temp = g.getFont();
 		Font perks = new Font("Arial",0,10);
 		g.setFont(perks);
 		g.drawString("Missile",(getWidth()/2)-90,getHeight()-62);
@@ -150,6 +148,7 @@ public class HUD extends PWindow{
 			if(tm.getTurn()!=null)
 				if(tm.getTurn().getPlayer()!=null)
 					g.drawString(""+tm.getTurn().getPlayer().name,200,100);
+		g.setFont(temp);
 	}
 	
 	private void drawEntityBox(Graphics2D g){
@@ -221,7 +220,9 @@ public class HUD extends PWindow{
 						display.toggleMovable();
 						display.toggleMovable();
 					}
-					move.setVisible(true);
+					if(display.getMaxMovement()!=display.getMoved()){
+						move.setVisible(true);
+					}
 					moveB.setVisible(true);
 					missile.setVisible(true);
 					bullet.setVisible(true);
