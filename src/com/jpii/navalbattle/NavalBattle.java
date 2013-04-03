@@ -17,6 +17,11 @@
 
 package com.jpii.navalbattle;
 
+import java.awt.Dimension;
+import java.awt.Font;
+import java.io.PrintWriter;
+import java.io.StringWriter;
+
 import javax.swing.UIManager.*;
 import javax.swing.*;
 
@@ -157,19 +162,45 @@ public class NavalBattle {
 		        }
 		    }
 		} catch (UnsupportedLookAndFeelException e) {
-			NavalBattle.getDebugWindow().printError("NimbusLookAndFeel was unable to be loaded, unsuported");	
+			NavalBattle.getDebugWindow().printError("NimbusLookAndFeel was unable to be loaded, unsuported");
+			criticalError(e);
 		} catch (ClassNotFoundException e) {
-			NavalBattle.getDebugWindow().printError("NimbusLookAndFeel was unable to be loaded, class not found");	
+			NavalBattle.getDebugWindow().printError("NimbusLookAndFeel was unable to be loaded, class not found");
+			criticalError(e);
 		} catch (InstantiationException e) {
-			NavalBattle.getDebugWindow().printError("NimbusLookAndFeel was unable to be loaded, instantiation");	
+			NavalBattle.getDebugWindow().printError("NimbusLookAndFeel was unable to be loaded, instantiation");
+			criticalError(e);
 		} catch (IllegalAccessException e) {
-			NavalBattle.getDebugWindow().printError("NimbusLookAndFeel was unable to be loaded, illegalaccess");	
+			NavalBattle.getDebugWindow().printError("NimbusLookAndFeel was unable to be loaded, illegalaccess");
+			criticalError(e);
 		} catch (Exception e) {
-			NavalBattle.getDebugWindow().printError("NimbusLookAndFeel has encountered an error, " + e.getMessage());	
+			NavalBattle.getDebugWindow().printError("NimbusLookAndFeel has encountered an error, " + e.getMessage());
+			criticalError(e);
 		} catch (Error e) {
-			NavalBattle.getDebugWindow().printError("NimbusLookAndFeel has encountered an error, " + e.getMessage());	
+			NavalBattle.getDebugWindow().printError("NimbusLookAndFeel has encountered an error, " + e.getMessage());
+			criticalError(e);
 		} catch (Throwable thr) {
 			NavalBattle.getDebugWindow().printError("NimbusLookAndFeel has encountered an error, " + thr.getMessage());
+			criticalError(thr);
 		}
+	}
+	
+	/**
+	 * Global method in the event of something terrible. Reports the exception to the user for bug reporting.
+	 * @param thr
+	 */
+	public static void criticalError(Throwable thr) {
+		final JTextArea textArea = new JTextArea();
+		textArea.setFont(new Font("Sans-Serif", Font.PLAIN, 10));
+		textArea.setEditable(false);
+		StringWriter writer = new StringWriter();
+		thr.printStackTrace(new PrintWriter(writer));
+		textArea.setText(Constants.CRITICAL_ERROR_HEADER + writer.toString());
+
+		JScrollPane scrollPane = new JScrollPane(textArea);		
+		scrollPane.setPreferredSize(new Dimension(350, 150));
+
+		JOptionPane.showMessageDialog(new JFrame(), scrollPane, "Critical Error", JOptionPane.ERROR_MESSAGE);
+		System.exit(0);
 	}
 }
