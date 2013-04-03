@@ -225,6 +225,10 @@ public class HUD extends PWindow{
 			move.setVisible(false);
 			missile.setVisible(false);
 			bullet.setVisible(false);
+			missileB.setVisible(false);
+			bulletB.setVisible(false);
+			diplomacy.setVisible(true);
+			diplomacyB.setVisible(true);
 			boxx = boxy = boxheight = boxwidth = 0;
 			if(display!=null){
 				if (display.getHandle()==2) {
@@ -256,10 +260,12 @@ public class HUD extends PWindow{
 					moveB.setVisible(true);
 					missile.setVisible(true);
 					bullet.setVisible(true);
-					diplomacy.setVisible(true);
+					if(tm.getTurn().getPlayer().myEntity(display)){
+						diplomacy.setVisible(false);
+						diplomacyB.setVisible(false);
+					}
 					missileB.setVisible(true);
 					bulletB.setVisible(true);
-					diplomacyB.setVisible(true);
 					health = ("Health: "+display.getHealth()+"%");
 					movement = ("Movement Left: "+(display.getMaxMovement()-display.getMoved())+" out of "+display.getMaxMovement());
 				}
