@@ -141,13 +141,13 @@ public class HUD extends PWindow{
 		Font perks = new Font("Arial",0,10);
 		g.setFont(perks);
 		g.drawString("Missile",(getWidth()/2)-90,getHeight()-62);
-		g.drawString("Bullet",(getWidth()/2)-30,getHeight()-62);
+		g.drawString("Guns",(getWidth()/2)-28,getHeight()-62);
 		g.drawString("Diplomacy",(getWidth()/2)+18,getHeight()-62);
 		g.drawString("Move",(getWidth()/2)+90,getHeight()-62);
 		if(tm!=null)
 			if(tm.getTurn()!=null)
 				if(tm.getTurn().getPlayer()!=null)
-					g.drawString(""+tm.getTurn().getPlayer().name,200,100);
+					g.drawString(""+tm.getTurn().getPlayer().name,(getWidth()/3)+25,25);
 		g.setFont(temp);
 	}
 	
@@ -195,10 +195,10 @@ public class HUD extends PWindow{
 			moveB.setVisible(false);
 			missile.setVisible(false);
 			bullet.setVisible(false);
-			diplomacy.setVisible(false);
+		//	diplomacy.setVisible(false);
 			missileB.setVisible(false);
 			bulletB.setVisible(false);
-			diplomacyB.setVisible(false);
+		//	diplomacyB.setVisible(false);
 			boxx = boxy = boxheight = boxwidth = 0;
 			if(display!=null){
 				if (display.getHandle()==2) {
