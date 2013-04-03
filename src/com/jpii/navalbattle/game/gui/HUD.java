@@ -255,7 +255,10 @@ public class HUD extends PWindow{
 			if(display.getHandle() == 1){
 				MoveableEntity display = (MoveableEntity)this.display;
 		
-				if(!isShowingMove()&&tm.getTurn().canmoveEntity(display))
+				if(!isShowingMove())
+					return false;
+				
+				if(!tm.getTurn().canmoveEntity(display))
 					return false;
 		
 				int startr = display.getLocation().getRow();
