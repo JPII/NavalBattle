@@ -1,19 +1,11 @@
-/**
- * 
- */
 package com.jpii.navalbattle.pavo.io;
 
 import java.awt.Point;
 
-/**
- * @author maximusvladimir
- *
- */
 public class NetAttribute {
 	private String name = "";
 	private String value = "";
 	public NetAttribute() {
-		
 	}
 	
 	public NetAttribute(String name) {
@@ -31,7 +23,6 @@ public class NetAttribute {
 			v = Integer.parseInt(value);
 		}
 		catch (Throwable throwup) {
-			
 		}
 		return v;
 	}
@@ -42,7 +33,6 @@ public class NetAttribute {
 			v = Double.parseDouble(value);
 		}
 		catch (Throwable throwup) {
-			
 		}
 		return v;
 	}
@@ -53,7 +43,6 @@ public class NetAttribute {
 			v = Float.parseFloat(value);
 		}
 		catch (Throwable throwup) {
-			
 		}
 		return v;
 	}
@@ -71,7 +60,6 @@ public class NetAttribute {
 			p = new Point(p1int,p2int);
 		}
 		catch (Throwable throwup) {
-			
 		}
 		return p;
 	}

@@ -2,7 +2,6 @@ package com.jpii.navalbattle.pavo.mods;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
-import java.io.File;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -10,18 +9,13 @@ import java.util.ArrayList;
 
 import com.jpii.navalbattle.pavo.Game;
 
-/**
- * 
- * @author maximusvladimir
- *
- */
 public class ModLoader {
 	private static Mod m_tmp = null;
 	private static ArrayList<Mod> mods = new ArrayList<Mod>();
 	/**
 	 * Loads a mod through a given mod type.
 	 * @param m The mod to load.
-	 * @return A flag indicating whether the operation was sucessful or not.
+	 * @return A flag indicating whether the operation was successful or not.
 	 */
 	public synchronized static boolean loadMod(Mod m) {
 		boolean flag = false;
@@ -44,7 +38,7 @@ public class ModLoader {
 	 * Loads a mod into the virtual machine. A mod can be called this way using this method:
 	 * <code>loadMod("C:\Users\bgates\AppData\Roaming\.navalbattle\mods\MyMod.class");</code>
 	 * @param file The path of the file.
-	 * @return A flag indicating whether the load was sucessful or not.
+	 * @return A flag indicating whether the load was successful or not.
 	 */
 	public synchronized static boolean loadMod(String file) {
 		Class<?> c = null;

@@ -1,29 +1,16 @@
-/**
- * 
- */
 package com.jpii.navalbattle.pavo.io;
 
 import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.OutputStream;
-import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.net.UnknownHostException;
 import java.util.ArrayList;
 
 import com.jpii.navalbattle.pavo.Game;
-import com.jpii.navalbattle.util.OSUtil;
-import com.sun.corba.se.spi.activation.Server;
 
-/**
- * @author MKirkby
- *
- */
 public class PavoServer implements Runnable {
 	ServerSocket socket;
 	Socket client;
@@ -121,7 +108,6 @@ public class PavoServer implements Runnable {
 		while (doing) {
 			serverIsWriting = true;
 			out.println(sendTmp);
-			//out.println(OSUtil.xorEncode(sendTmp, "Aj390jnRIn9wO2o3409WJofn"));
 			sendTmp = "";
 			serverIsWriting = false;
 			try {
@@ -132,7 +118,6 @@ public class PavoServer implements Runnable {
 			}
             try {
             	String rl = br.readLine();
-            	//rl = OSUtil.xorDecode(rl, "Aj390jnRIn9wO2o3409WJofn");
             	if (rl.equals("HELLO")) {
             		onClientConnect();
             	}
@@ -254,7 +239,7 @@ public class PavoServer implements Runnable {
 		client = null;
 		socket = null;
 		try{
-			self.destroy();
+			self.interrupt();
 		}
 		catch (Throwable t) {
 			

@@ -1,6 +1,3 @@
-/**
- * 
- */
 package com.jpii.navalbattle.pavo.io;
 
 import java.awt.image.BufferedImage;
@@ -10,12 +7,9 @@ import java.awt.image.WritableRaster;
 import java.io.Serializable;
 import java.util.Hashtable;
 
-/**
- * @author maximusvladimir
- *
- */
 public class PavoImage extends BufferedImage implements Serializable {
 
+	private static final long serialVersionUID = 1L;
 	private static long Image_Counter = 0;
 	
 	/**
@@ -26,7 +20,6 @@ public class PavoImage extends BufferedImage implements Serializable {
 	public PavoImage(int arg0, int arg1, int arg2) {
 		super(arg0, arg1, arg2);
 		utilise342();
-		// TODO Auto-generated constructor stub
 	}
 
 	/**
@@ -38,7 +31,6 @@ public class PavoImage extends BufferedImage implements Serializable {
 	public PavoImage(int arg0, int arg1, int arg2, IndexColorModel arg3) {
 		super(arg0, arg1, arg2, arg3);
 		utilise342();
-		// TODO Auto-generated constructor stub
 	}
 
 	/**
@@ -51,12 +43,13 @@ public class PavoImage extends BufferedImage implements Serializable {
 			Hashtable<?, ?> arg3) {
 		super(arg0, arg1, arg2, arg3);
 		utilise342();
-		// TODO Auto-generated constructor stub
 	}
 	
 	private static void utilise342() {
 		Image_Counter++;
 	}
 	
-
+	public static long getImageID(){
+		return Image_Counter;
+	}
 }
