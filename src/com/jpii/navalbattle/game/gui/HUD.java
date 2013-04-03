@@ -223,13 +223,8 @@ public class HUD extends PWindow{
 		if(display != null || pinned){
 			setVisible(true);
 			move.setVisible(false);
-			moveB.setVisible(false);
 			missile.setVisible(false);
 			bullet.setVisible(false);
-		//	diplomacy.setVisible(false);
-			missileB.setVisible(false);
-			bulletB.setVisible(false);
-		//	diplomacyB.setVisible(false);
 			boxx = boxy = boxheight = boxwidth = 0;
 			if(display!=null){
 				if (display.getHandle()==2) {
