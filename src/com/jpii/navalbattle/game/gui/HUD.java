@@ -180,10 +180,10 @@ public class HUD extends PWindow{
 		Font temp = g.getFont();
 		Font perks = new Font("Arial",0,10);
 		g.setFont(perks);
-		g.drawString("Missile",(getWidth()/2)-90,getHeight()-62);
+		g.drawString("Missile",(getWidth()/2)-91,getHeight()-62);
 		g.drawString("Guns",(getWidth()/2)-28,getHeight()-62);
 		g.drawString("Diplomacy",(getWidth()/2)+18,getHeight()-62);
-		g.drawString("Move",(getWidth()/2)+90,getHeight()-62);
+		g.drawString("Move",(getWidth()/2)+92,getHeight()-62);
 		if(tm!=null)
 			if(tm.getTurn()!=null)
 				if(tm.getTurn().getPlayer()!=null)
