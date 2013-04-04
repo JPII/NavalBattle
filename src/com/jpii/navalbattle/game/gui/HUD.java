@@ -269,16 +269,17 @@ public class HUD extends PWindow{
 						display.toggleAttackRange();
 						display.toggleAttackRange();
 					}
-					if(display.getMaxMovement()!=display.getMoved()){
+					if(display.getMaxMovement()!=display.getMoved())
 						move.setVisible(true);
-					}
-					moveB.setVisible(true);
-					missile.setVisible(true);
-					bullet.setVisible(true);
+					if(!display.getUsedGuns())
+						bullet.setVisible(true);
+					if(!display.getUsedMissiles())
+						missile.setVisible(true);
 					if(tm.getTurn().getPlayer().myEntity(display)){
 						diplomacy.setVisible(false);
 						diplomacyB.setVisible(false);
 					}
+					moveB.setVisible(true);
 					missileB.setVisible(true);
 					bulletB.setVisible(true);
 					health = ("Health: "+display.getHealth()+"%");
@@ -396,26 +397,26 @@ public class HUD extends PWindow{
 	}
 	
 	private boolean attackGuns(int x, int y, boolean leftclick){
-		System.out.println("start debug");
 		if(!attackGuns)
 			return false;
-		System.out.println("guns armed");
 		if(!isShowingAttack())
 			return false;
-		System.out.println("showing attack");
 		MoveableEntity display = (MoveableEntity)this.display;			
 		
 		if(!tm.getTurn().canFireGuns(display))
 			return false;
-		System.out.println("locked & loaded");
 		int startr = display.getLocation().getRow();
 		int startc = display.getLocation().getCol();
+		if(display.getManager().getTile(y, x).getEntity().getHandle()==1){
+			MoveableEntity there = (MoveableEntity)display.getManager().getTile(y, x).getEntity();
+			if(tm.getTurn().getPlayer().myEntity(there))
+				return false;
+		}
 		if(leftclick && GridHelper.canAttackTo(display.getManager(), display, y, x)){
 			if(display.isAttackTileBeingShown()){
 				display.toggleAttackRange();
 			}
 			addEvent("Gunning ship from ("+startr+","+startc+") to ("+y+","+x+")");
-			System.out.println("Gunning ship from ("+startr+","+startc+") to ("+y+","+x+")");
 			display.useGuns();
 			update();
 			return true;
@@ -437,12 +438,16 @@ public class HUD extends PWindow{
 
 		int startr = display.getLocation().getRow();
 		int startc = display.getLocation().getCol();
+		if(display.getManager().getTile(y, x).getEntity().getHandle()==1){
+			MoveableEntity there = (MoveableEntity)display.getManager().getTile(y, x).getEntity();
+			if(tm.getTurn().getPlayer().myEntity(there))
+				return false;
+		}
 		if(leftclick && GridHelper.canAttackTo(display.getManager(), display, y, x)){
 			if(display.isAttackTileBeingShown()){
 				display.toggleAttackRange();
 			}
-			addEvent("Tomahawk ship from ("+startr+","+startc+") to ("+display.getLocation().getRow()+","+display.getLocation().getCol()+")");
-			System.out.println("Tomahawk ship from ("+startr+","+startc+") to ("+display.getLocation().getRow()+","+display.getLocation().getCol()+")");
+			addEvent("Tomahawk ship from ("+startr+","+startc+") to ("+y+","+x+")");
 			display.useMissiles();
 			update();
 			return true;

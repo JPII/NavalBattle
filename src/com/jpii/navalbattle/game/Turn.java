@@ -39,7 +39,7 @@ public class Turn {
 			flag = (player.myEntity(entity));
 		}
 		if(flag)
-			flag = entity.getUsedMissiles();
+			flag = !entity.getUsedMissiles();
 		return flag;
 	}
 	
