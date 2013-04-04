@@ -211,6 +211,15 @@ public class HUD extends PWindow{
 		g.fillRoundRect(25,0,375,151,25,25);
 		g.setPaint(Color.black);
 		g.drawRoundRect(25,0,375,151,25,25);
+		Font krillen = new Font("Arial",0,12);
+		g.setFont(krillen);
+		if(events!=null){
+			for(int q = 0; q < events.length; q++){
+				if(events[q]!=null){
+					g.drawString(events[q],28,getHeight()+(q*-6));
+				}
+			}
+		}
 	}
 	
 	public void setEntity(Entity e){
