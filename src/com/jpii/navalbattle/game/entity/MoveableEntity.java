@@ -51,7 +51,7 @@ public class MoveableEntity extends Entity {
 		return showAttack;
 	}
 	
-	public void toggleMovable() {
+	public void toggleMovable(Entity ent) {
 		short good = (short)0x2f1d;
 		short bad = (short)0x001;
 		if(showMove){
@@ -69,7 +69,7 @@ public class MoveableEntity extends Entity {
 					int r = getRLR(y);
 					int c = getCLR(x);
 					if (r >= 0 && c >= 0) {
-						if(isPossibleMoveChoiceLR(x,y)){
+						if(isPossibleMoveChoiceLR(x,y,ent)){
 							getManager().setTileOverlay(r,c,good);
 						}
 						else {
@@ -85,7 +85,7 @@ public class MoveableEntity extends Entity {
 					int c = (x + getLocation().getCol()) - (((getMovementLeft() * 2) + 1)/2);
 					int r = (y + getLocation().getRow()) - (getMovementLeft());
 					if (r >= 0 && c >= 0) {
-						if (isPossibleMoveChoiceTB(x,y)) {
+						if (isPossibleMoveChoiceTB(x,y,ent)) {
 							getManager().setTileOverlay(r,c,good);
 						}
 						else {
@@ -170,17 +170,17 @@ public class MoveableEntity extends Entity {
 		return temps;
 	}
 	
-	public boolean isPossibleMoveChoiceLR(int x, int y)
+	public boolean isPossibleMoveChoiceLR(int x, int y, Entity ent)
 	{
 		boolean horizontal = true;
 		boolean vertical = true;
-		for(int p = 0 ; p < 4; p++){
+		for(int p = 0 ; p < ent.getWidth(); p++){
 			if( ((getTileLR(x+p,y)!=null) && !getTileLR(x+p,y).getEntity().equals(this)) || (getManager().getTilePercentLand(getRLR(y),getCLR(x+p)) > Game.Settings.waterThresholdBarrier)){
 				horizontal = false;
 			}
 		}
 		
-		for(int q = 0 ; q < 4; q++){
+		for(int q = 0 ; q < ent.getWidth(); q++){
 			if( ((getTileLR(x,y-q)!=null) && !getTileLR(x,y-q).getEntity().equals(this)) || (getManager().getTilePercentLand(getRLR(y-q),getCLR(x)) > Game.Settings.waterThresholdBarrier)){
 				vertical = false;
 			}
@@ -204,17 +204,17 @@ public class MoveableEntity extends Entity {
 		return temps;
 	}
 	
-	public boolean isPossibleMoveChoiceTB(int x, int y)
+	public boolean isPossibleMoveChoiceTB(int x, int y, Entity ent)
 	{		
 		boolean horizontal = true;
 		boolean vertical = true;
-		for(int p = 0 ; p < 4; p++){
+		for(int p = 0 ; p < ent.getWidth(); p++){
 			if((getTileTB(x+p,y)!=null)  && !getTileTB(x+p,y).getEntity().equals(this) || (getManager().getTilePercentLand(getRTB(y),getCTB(x+p)) > Game.Settings.waterThresholdBarrier)){
 			horizontal = false;
 			}
 		}
 		
-		for(int q = 0 ; q < 4; q++){
+		for(int q = 0 ; q < ent.getWidth(); q++){
 			if((getTileTB(x,y-q)!=null)  && !getTileTB(x,y-q).getEntity().equals(this) || (getManager().getTilePercentLand(getRTB(y-q),getCLR(x)) > Game.Settings.waterThresholdBarrier)){
 				vertical = false;
 			}
