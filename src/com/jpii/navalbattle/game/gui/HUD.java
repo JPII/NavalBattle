@@ -12,6 +12,7 @@ import com.jpii.navalbattle.game.entity.PortEntity;
 import com.jpii.navalbattle.pavo.grid.Entity;
 import com.jpii.navalbattle.pavo.grid.GridHelper;
 import com.jpii.navalbattle.pavo.grid.Location;
+import com.jpii.navalbattle.pavo.grid.Tile;
 import com.jpii.navalbattle.pavo.gui.NewWindowManager;
 import com.jpii.navalbattle.pavo.gui.controls.PImage;
 import com.jpii.navalbattle.pavo.gui.controls.PWindow;
@@ -416,10 +417,16 @@ public class HUD extends PWindow{
 			return false;
 		int startr = display.getLocation().getRow();
 		int startc = display.getLocation().getCol();
-		if(display.getManager().getTile(y, x).getEntity().getHandle()==1){
-			MoveableEntity there = (MoveableEntity)display.getManager().getTile(y, x).getEntity();
-			if(tm.getTurn().getPlayer().myEntity(there))
-				return false;
+		Tile<Entity> temp = display.getManager().getTile(y,x);
+		if(temp!=null){
+			Entity e = temp.getEntity();
+			if(e.getHandle()==1){
+			MoveableEntity there = (MoveableEntity)e;
+				if(tm.getTurn().getPlayer().myEntity(there)){
+					System.out.println("You can;t attack your own team");
+					return false;
+				}
+			}
 		}
 		if(leftclick && GridHelper.canAttackTo(display.getManager(), display, y, x)){
 			if(display.isAttackTileBeingShown()){
@@ -447,10 +454,16 @@ public class HUD extends PWindow{
 
 		int startr = display.getLocation().getRow();
 		int startc = display.getLocation().getCol();
-		if(display.getManager().getTile(y, x).getEntity().getHandle()==1){
-			MoveableEntity there = (MoveableEntity)display.getManager().getTile(y, x).getEntity();
-			if(tm.getTurn().getPlayer().myEntity(there))
-				return false;
+		Tile<Entity> temp = display.getManager().getTile(y,x);
+		if(temp!=null){
+			Entity e = temp.getEntity();
+			if(e.getHandle()==1){
+			MoveableEntity there = (MoveableEntity)e;
+				if(tm.getTurn().getPlayer().myEntity(there)){
+					System.out.println("You can;t attack your own team");
+					return false;
+				}
+			}
 		}
 		if(leftclick && GridHelper.canAttackTo(display.getManager(), display, y, x)){
 			if(display.isAttackTileBeingShown()){
