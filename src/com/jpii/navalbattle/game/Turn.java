@@ -24,11 +24,11 @@ public class Turn {
 	public boolean canFireGuns(MoveableEntity entity) {
 		boolean flag=true;
 		if(flag){
-			System.out.println("ship is mine?" + player.myEntity(entity));
 			flag = (player.myEntity(entity));
 		}
-		if(flag)
-			flag = entity.getUsedGuns();
+		if(flag){
+			flag = !entity.getUsedGuns();
+		}
 		return flag;
 	}
 	

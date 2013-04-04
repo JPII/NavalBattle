@@ -106,6 +106,8 @@ public class HUD extends PWindow{
 				if(move.isVisible()){
 					if(display!=null && display.getHandle()==1){
 						MoveableEntity display2 = (MoveableEntity)display;
+						if(display2.isAttackTileBeingShown())
+							display2.toggleAttackRange();
 						display2.toggleMovable();
 					}
 				}
@@ -128,6 +130,8 @@ public class HUD extends PWindow{
 				if(bullet.isVisible()){
 					if(display!=null && display.getHandle()==1){
 						MoveableEntity display2 = (MoveableEntity)display;
+						if(display2.isMovableTileBeingShown())
+							display2.toggleMovable();
 						if(display2.isAttackTileBeingShown()&&attackMissiles){
 						}
 						else	
@@ -144,6 +148,8 @@ public class HUD extends PWindow{
 				if(missile.isVisible()){
 					if(display!=null && display.getHandle()==1){
 						MoveableEntity display2 = (MoveableEntity)display;
+						if(display2.isMovableTileBeingShown())
+							display2.toggleMovable();
 						if(display2.isAttackTileBeingShown()&&attackGuns){
 						}
 						else	
@@ -390,25 +396,26 @@ public class HUD extends PWindow{
 	}
 	
 	private boolean attackGuns(int x, int y, boolean leftclick){
+		System.out.println("start debug");
 		if(!attackGuns)
 			return false;
-		
+		System.out.println("guns armed");
 		if(!isShowingAttack())
 			return false;
-
+		System.out.println("showing attack");
 		MoveableEntity display = (MoveableEntity)this.display;			
 		
 		if(!tm.getTurn().canFireGuns(display))
 			return false;
-		
+		System.out.println("locked & loaded");
 		int startr = display.getLocation().getRow();
 		int startc = display.getLocation().getCol();
 		if(leftclick && GridHelper.canAttackTo(display.getManager(), display, y, x)){
 			if(display.isAttackTileBeingShown()){
 				display.toggleAttackRange();
 			}
-			addEvent("Gunning ship from ("+startr+","+startc+") to ("+display.getLocation().getRow()+","+display.getLocation().getCol()+")");
-			System.out.println("Gunning ship from ("+startr+","+startc+") to ("+display.getLocation().getRow()+","+display.getLocation().getCol()+")");
+			addEvent("Gunning ship from ("+startr+","+startc+") to ("+y+","+x+")");
+			System.out.println("Gunning ship from ("+startr+","+startc+") to ("+y+","+x+")");
 			display.useGuns();
 			update();
 			return true;
