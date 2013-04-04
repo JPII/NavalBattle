@@ -109,7 +109,7 @@ public class HUD extends PWindow{
 						MoveableEntity display2 = (MoveableEntity)display;
 						if(display2.isAttackTileBeingShown())
 							display2.toggleAttackRange();
-						display2.toggleMovable(display);
+						display2.toggleMovable();
 					}
 				}
 			}
@@ -132,7 +132,7 @@ public class HUD extends PWindow{
 					if(display!=null && display.getHandle()==1){
 						MoveableEntity display2 = (MoveableEntity)display;
 						if(display2.isMovableTileBeingShown())
-							display2.toggleMovable(display);
+							display2.toggleMovable();
 						if(display2.isAttackTileBeingShown()&&attackMissiles){
 						}
 						else	
@@ -150,7 +150,7 @@ public class HUD extends PWindow{
 					if(display!=null && display.getHandle()==1){
 						MoveableEntity display2 = (MoveableEntity)display;
 						if(display2.isMovableTileBeingShown())
-							display2.toggleMovable(display);
+							display2.toggleMovable();
 						if(display2.isAttackTileBeingShown()&&attackGuns){
 						}
 						else	
@@ -230,7 +230,7 @@ public class HUD extends PWindow{
 				if(display.getHandle()==1){
 					MoveableEntity display = (MoveableEntity)this.display;
 					if(display.isMovableTileBeingShown()){
-						display.toggleMovable(e);
+						display.toggleMovable();
 					}
 					if(display.isAttackTileBeingShown()){
 						display.toggleAttackRange();
@@ -273,8 +273,8 @@ public class HUD extends PWindow{
 				if(display.getHandle()==1){
 					MoveableEntity display = (MoveableEntity)this.display;
 					if(display.isMovableTileBeingShown()){
-						display.toggleMovable(this.display);
-						display.toggleMovable(this.display);
+						display.toggleMovable();
+						display.toggleMovable();
 					}
 					if(display.isAttackTileBeingShown()){
 						display.toggleAttackRange();
@@ -376,7 +376,7 @@ public class HUD extends PWindow{
 		int startc = display.getLocation().getCol();
 		if(leftclick && GridHelper.canMoveTo(display.getManager(), display, display.getCurrentOrientation(), y, x,display.getWidth())){
 			if(display.isMovableTileBeingShown()){
-				display.toggleMovable(this.display);
+				display.toggleMovable();
 			}
 			display.moveTo(new Location(y,x));
 			addEvent("Moving ship from ("+startr+","+startc+") to ("+display.getLocation().getRow()+","+display.getLocation().getCol()+")");
@@ -391,7 +391,7 @@ public class HUD extends PWindow{
 		}
 		else if(GridHelper.canMoveTo(display.getManager(), display, display.getOppositeOrientation(), y, x,display.getWidth())){
 			if(display.isMovableTileBeingShown()){
-				display.toggleMovable(this.display);
+				display.toggleMovable();
 			}
 			display.moveTo(new Location(y,x),display.getOppositeOrientation());
 			addEvent("Moving ship from ("+startr+","+startc+") to ("+display.getLocation().getRow()+","+display.getLocation().getCol()+")");
