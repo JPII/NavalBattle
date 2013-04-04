@@ -58,7 +58,7 @@ public class HUD extends PWindow{
 		setVisible(false);
 		centerx = getWidth()-210;
 		centery = getHeight()/2;
-		events = new String[25];
+		events = new String[5];
 		initButtons();
 		update();
 	 }
@@ -208,19 +208,20 @@ public class HUD extends PWindow{
 	}
 	
 	private void drawHistoryBox(Graphics2D g){
-		g.setPaint(ht);
-		g.fillRoundRect(25,0,375,151,25,25);
-		g.setPaint(Color.black);
-		g.drawRoundRect(25,0,375,151,25,25);
-		Font krillen = new Font("Arial",0,12);
-		g.setFont(krillen);
-		if(events!=null){
-			for(int q = 0; q < events.length; q++){
-				if(events[q]!=null){
-					g.drawString(events[q],28,getHeight()+(q*-6));
-				}
-			}
-		}
+//		g.setPaint(ht);
+//		g.fillRoundRect(25,0,375,151,25,25);
+//		g.setPaint(Color.black);
+//		g.drawRoundRect(25,0,375,151,25,25);
+//		Font krillen = new Font("Arial",0,12);
+//		g.setFont(krillen);
+//		if(events!=null){
+//			System.out.println("start");
+//			g.setColor(Color.green);
+//			for(int q = 0; q < events.length; q++){
+//				System.out.println(events[q]);
+//				drawString(g,events[q],28,getHeight()+(q*-6));
+//			}
+//		}
 	}
 	
 	public void setEntity(Entity e){
