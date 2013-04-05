@@ -23,6 +23,7 @@ import java.awt.event.MouseWheelEvent;
 
 import com.jpii.navalbattle.game.gui.HUD;
 import com.jpii.navalbattle.game.gui.PauseWindow;
+import com.jpii.navalbattle.game.gui.StatusBar;
 import com.jpii.navalbattle.pavo.*;
 import com.jpii.navalbattle.pavo.gui.MessageBox;
 import com.jpii.navalbattle.pavo.gui.MessageBoxIcon;
@@ -35,6 +36,7 @@ public class NavalGame extends Game{
 	private static final long serialVersionUID = 1L;
 	NavalManager nm;
 	HUD hud;
+	StatusBar sb;
 	OmniMap omnimap;
 	PauseWindow pw;
 	float airStrike = -1;
@@ -44,6 +46,7 @@ public class NavalGame extends Game{
 		pw = new PauseWindow(getWindows());
 		nm = new NavalManager(getWorld());
 		hud = new HUD(getWindows(),nm.getTurnManager(),0,Settings.currentHeight-150,Settings.currentWidth, 150);
+		sb = new StatusBar(getWindows(),this); 
 		getWorld().setEntityManager(nm);
 		omnimap = new OmniMap(getWorld());
 		getWindows().add(hud);
@@ -56,11 +59,13 @@ public class NavalGame extends Game{
 		super(pos,flags);
 		nm = new NavalManager(getWorld());
 		hud = new HUD(getWindows(),nm.getTurnManager(),0,Settings.currentHeight-150,Settings.currentWidth, 150);
+		sb = new StatusBar(getWindows(),this); 
 		getWorld().setEntityManager(nm);
 		pw = new PauseWindow(getWindows());
 		omnimap = new OmniMap(getWorld());
 		getWindows().add(hud);
 		getWindows().add(pw);
+		getWindows().add(sb);
 		MessageBox.show("Hey there!","Could not connect to RocketGamer servers.\n\nTrying again in 10 seconds.",
 				MessageBoxIcon.Notify, false);
 	}

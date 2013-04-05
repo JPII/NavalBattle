@@ -17,8 +17,8 @@ public class Control {
 	protected BufferedImage buffer;
 	protected int width;
 	protected int height;
-	private int x;
-	private int y;
+	protected int x;
+	protected int y;
 	private Control parent;
 	private boolean isPerPieceUpdateSupported = true;
 	protected boolean lastKnownTransMode = true;

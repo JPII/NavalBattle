@@ -7,16 +7,15 @@ import java.awt.image.BufferedImage;
 
 import com.jpii.navalbattle.NavalBattle;
 import com.jpii.navalbattle.pavo.Game;
-import com.jpii.navalbattle.pavo.PavoHelper;
-import com.jpii.navalbattle.pavo.gui.GameWindow;
 import com.jpii.navalbattle.pavo.gui.MessageBox;
 import com.jpii.navalbattle.pavo.gui.MessageBoxIcon;
+import com.jpii.navalbattle.pavo.gui.NewWindowManager;
+import com.jpii.navalbattle.pavo.gui.controls.PWindow;
 import com.jpii.navalbattle.util.FileUtils;
 
 import javax.swing.ImageIcon;
 
-public class StatusBar extends GameWindow {
-	private static final long serialVersionUID = 1L;
+public class StatusBar extends PWindow {
 	BufferedImage icn_mouse;
 	int mx, my;
 	Game gameThing;
@@ -24,20 +23,21 @@ public class StatusBar extends GameWindow {
 	/**
 	 * Initializes a new instance of <code>StatusBar</code>
 	 */
-	public StatusBar(Game game) {
-		super();
+	public StatusBar(NewWindowManager parent, Game game) {
+		super(parent);
 		gameThing = game;
 		icn_mouse = FileUtils.getImage("icons/game/mouse.png");
 		setBackgroundColor(Color.gray);
 		setTitleVisiblity(false);
 		setSize(Game.Settings.currentWidth,25);
-		setLoc(0,0);
-		render();
+		setLoc(100,200);
+		setVisible(true);
+		repaint();
 	}
 	
-	public void render() {
-		super.render();
-		Graphics2D g = PavoHelper.createGraphics(getBuffer());
+	public void paint(Graphics2D g) {
+		super.paint(g);
+//		Graphics2D g = PavoHelper.createGraphics(getBuffer());
 		g.drawImage(icn_mouse,1,3,null);
 		g.setColor(Color.black);
 		g.fillRect(19,2,60,20);
@@ -65,6 +65,7 @@ public class StatusBar extends GameWindow {
 		g.draw3DRect(width-221,2,100,20,true);
 		g.draw3DRect(width-220,3,98,18,true);
 		g.setColor(Color.white);
+		if(gameThing!=null)
 		g.drawString("Time: " + gameThing.getWorld().getTimeManager().getCurrentHour() + ":00"
 				, width-220+sd, 17);
 		
@@ -81,7 +82,7 @@ public class StatusBar extends GameWindow {
 			g.drawString(NavalBattle.getRoketGamer().getPlayer().getName(), width-325+sd, 17);
 		}
 		
-		g.dispose();
+//		g.dispose();
 	}
 
 	public void setMouseTileLocation(int x, int y) {
@@ -91,14 +92,15 @@ public class StatusBar extends GameWindow {
 		mx = x;
 		my = y;
 		if (flag)
-			render();
+			repaint();
 	}
 	
 	public void setLoc(int x, int y) {
-		this.x = x;
-		this.y = y;
-	}
-	
+			this.x = x;
+			this.y = y;
+			repaint();
+ 	}
+
 	public boolean mouseDown(MouseEvent me) {
 		if(me.getX() >= width-326 && me.getX() <= (width-326) + 100) {
 			if(NavalBattle.getGameState().isOffline())
