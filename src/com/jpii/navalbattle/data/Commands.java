@@ -34,14 +34,6 @@ public class Commands {
 	 */
 	@SuppressWarnings("serial")
 	public static final ArrayList<Command> COMMANDS = new ArrayList<Command>() {{
-	    add(new Command("help", "", "View all commands", new CommandAction() { 
-	    	public void onRun(Command c, String[] args) {
-	    		NavalBattle.getDebugWindow().println("----------------- NavalBattle Debug Help -----------------");
-	    		for(Command cmd : NavalBattle.getDebugWindow().getCommandHandler().getCommands()) {
-	    			NavalBattle.getDebugWindow().println(cmd.getCommand() + " " + cmd.getArgs() + " - " + cmd.getDescription());
-	    		}
-	    	}}
-	    ));
 	    
 	    add(new Command("quit", "", "Quit game", new CommandAction() { 
 	    	public void onRun(Command c, String[] args) {
@@ -60,20 +52,6 @@ public class Commands {
 	    add(new Command("version", "", "View version info", new CommandAction() { 
 	    	public void onRun(Command c, String[] args) {
 	    		NavalBattle.getDebugWindow().println(Constants.NAVALBATTLE_VERSION_TITLE + " (" + Constants.VERSION_CODE + ")");
-	    	}}
-	    ));
-	    
-	    add(new Command("echo", "<message>", "Print specified message", new CommandAction() { 
-	    	public void onRun(Command c, String[] args) {
-	    		if(args[0] == null) {
-	    			NavalBattle.getDebugWindow().printError("Missing or invalid arg: message");
-	    		}
-	    		
-	    		for(String s : args) {
-	    			NavalBattle.getDebugWindow().print(s + " ");
-	    		}
-	    		
-	    		NavalBattle.getDebugWindow().println("");
 	    	}}
 	    ));
 	    
@@ -138,20 +116,6 @@ public class Commands {
 	    	}}
 	    ));
 	    
-	    add(new Command("clear", "", "Clear debug window", new CommandAction() { 
-	    	public void onRun(Command c, String[] args) {
-	    		NavalBattle.getDebugWindow().printNew("");
-	    	}}
-	    
-	    ));
-	    
-	    add(new Command("cls", "", "Clear debug window", new CommandAction() { 
-	    	public void onRun(Command c, String[] args) {
-	    		NavalBattle.getDebugWindow().printNew("");
-	    	}}
-	    
-	    ));
-	    
 	    add(new Command("openwindow", "<windowid>", "Force a window to appear", new CommandAction() { 
 	    	public void onRun(Command c, String[] args) {
 	    		args[0] = args[0].toLowerCase();
@@ -178,14 +142,6 @@ public class Commands {
 	    		if(args[0].equals("game") || args[0].equals("6") || args[0].equals("gamewindow") || args[0].equals("newgame")) {
 	    			new SinglePlayerGame();
 	    		}
-	    	}}
-	    ));
-	    
-	    add(new Command("sysinfo", "", "Get system info", new CommandAction() { 
-	    	public void onRun(Command c, String[] args) {
-	    		NavalBattle.getDebugWindow().println("OS: " + System.getProperty("os.name") + " (" + System.getProperty("os.version") + ")");
-	    		NavalBattle.getDebugWindow().println("Java Home: " + System.getProperty("java.home"));
-	    		NavalBattle.getDebugWindow().println("Java Version: " + System.getProperty("java.version"));
 	    	}}
 	    ));
 	    
