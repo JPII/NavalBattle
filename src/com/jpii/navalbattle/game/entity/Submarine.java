@@ -10,19 +10,21 @@ public class Submarine extends MoveableEntity {
 	private static final long serialVersionUID = 1L;
 	public static GridedEntityTileOrientation SUBMARINE_ID;
 	public static GridedEntityTileOrientation SUBMARINEU_ID;
+	private boolean submerged=false;
 
 	public Submarine(EntityManager em) {
 		super(em);
 		imgLocation="drawable-game/submarine/submarine.png";
 	}
 
-	public Submarine(EntityManager em, Location loc, GridedEntityTileOrientation superId,byte orientation,int team) {
-		super(em, loc, superId,orientation,team);
+	public Submarine(EntityManager em, Location loc,byte orientation,int team) {
+		super(em, loc, SUBMARINE_ID,orientation,team);
 		imgLocation="drawable-game/submarine/submarine.png";
 		Game g = em.getWorld().getGame();
 		if (!g.isAClient()) {
 			g.getSelfServer().send("submarine:"+loc.getCol()+","+loc.getRow());
 		}
+		toggleElevation();
 		moved = 0;
 		maxMovement=4;
 		attackRange = 3;
@@ -52,6 +54,14 @@ public class Submarine extends MoveableEntity {
 		boolean flag = GridHelper.canRotate(getManager(), this, rotateto, getELocation().getRow(), getELocation().getCol(), getWidth());
 		if (flag)
 			super.rotateTo(rotateto);
+	}
+	
+	public void toggleElevation(){
+		if(submerged)
+			setId(SUBMARINE_ID);
+		else
+			setId(SUBMARINEU_ID);
+		submerged = !submerged;
 	}
 	
 	/**

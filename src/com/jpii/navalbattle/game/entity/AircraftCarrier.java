@@ -15,8 +15,8 @@ public class AircraftCarrier extends MoveableEntity {
 		imgLocation="drawable-game/aircraftcarrier/aircraftcarrier.png";
 	}
 
-	public AircraftCarrier(EntityManager em, Location loc, GridedEntityTileOrientation superId,byte orientation,int team) {
-		super(em, loc, superId,orientation,team);
+	public AircraftCarrier(EntityManager em, Location loc,byte orientation,int team) {
+		super(em, loc, AIRCRAFTCARRIER_ID,orientation,team);
 		imgLocation="drawable-game/aircraftcarrier/aircraftcarrier.png";
 		Game g = em.getWorld().getGame();
 		if (!g.isAClient()) {

@@ -29,7 +29,7 @@ public class NavalClient extends PavoClient {
 			int c = Integer.parseInt(col);
 			int r = Integer.parseInt(row);
 			new BattleShip(game.getWorld().getEntityManager(),
-					new Location(r,c), BattleShip.BATTLESHIP_ID,GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT,0);
+					new Location(r,c), GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT,0);
 		}
 		else if (message.startsWith("bounds:")) {
 			String part = message.replace("bounds:","");

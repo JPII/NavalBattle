@@ -52,7 +52,7 @@ public class NavalManager extends EntityManager {
 		submarineUId.setLeftToRightImage(registerEntity(PavoHelper.imgUtilOutline(
 				FileUtils.getImage("drawable-game/submarine/submarineU.png"),Game.Settings.GridColor),GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT));
 		submarineUId.setTopToBottomImage(registerEntity(PavoHelper.imgUtilOutline(
-				FileUtils.getImage("drawable-game/submarine/submarine_S.png"),Game.Settings.GridColor),GridedEntityTileOrientation.ORIENTATION_TOPTOBOTTOM));
+				FileUtils.getImage("drawable-game/submarine/submarineU_S.png"),Game.Settings.GridColor),GridedEntityTileOrientation.ORIENTATION_TOPTOBOTTOM));
 		
 		if (battleShipId != null) {
 			BattleShip.BATTLESHIP_ID = battleShipId;
@@ -90,9 +90,9 @@ public class NavalManager extends EntityManager {
 				poll = gh.pollNextWaterTile(25);
 			}
 			if(GridHelper.canPlaceInGrid(this,GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT, poll.getRow(), poll.getCol(), 4))
-				tm.addEntity(new BattleShip(this, poll, BattleShip.BATTLESHIP_ID,GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT,Game.Settings.rand.nextInt(0,3)));
+				tm.addEntity(new BattleShip(this, poll, GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT,Game.Settings.rand.nextInt(0,3)));
 			else if(GridHelper.canPlaceInGrid(this,GridedEntityTileOrientation.ORIENTATION_TOPTOBOTTOM, poll.getRow(), poll.getCol(), 4))
-				tm.addEntity(new BattleShip(this, poll, BattleShip.BATTLESHIP_ID,GridedEntityTileOrientation.ORIENTATION_TOPTOBOTTOM,Game.Settings.rand.nextInt(0,3)));
+				tm.addEntity(new BattleShip(this, poll,GridedEntityTileOrientation.ORIENTATION_TOPTOBOTTOM,Game.Settings.rand.nextInt(0,3)));
 			else
 				c--;
 		}
@@ -103,9 +103,9 @@ public class NavalManager extends EntityManager {
 				poll = gh.pollNextWaterTile(25);
 			}
 			if(GridHelper.canPlaceInGrid(this,GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT, poll.getRow(), poll.getCol(), 5))
-				tm.addEntity(new AircraftCarrier(this, poll, AircraftCarrier.AIRCRAFTCARRIER_ID,GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT,Game.Settings.rand.nextInt(0,3)));
+				tm.addEntity(new AircraftCarrier(this, poll,GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT,Game.Settings.rand.nextInt(0,3)));
 			else if(GridHelper.canPlaceInGrid(this,GridedEntityTileOrientation.ORIENTATION_TOPTOBOTTOM, poll.getRow(), poll.getCol(), 5))
-				tm.addEntity(new AircraftCarrier(this, poll, AircraftCarrier.AIRCRAFTCARRIER_ID,GridedEntityTileOrientation.ORIENTATION_TOPTOBOTTOM,Game.Settings.rand.nextInt(0,3)));
+				tm.addEntity(new AircraftCarrier(this, poll,GridedEntityTileOrientation.ORIENTATION_TOPTOBOTTOM,Game.Settings.rand.nextInt(0,3)));
 			else
 				c--;
 		}
@@ -116,9 +116,9 @@ public class NavalManager extends EntityManager {
 				poll = gh.pollNextWaterTile(25);
 			}
 			if(GridHelper.canPlaceInGrid(this,GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT, poll.getRow(), poll.getCol(), 2))
-				tm.addEntity(new Submarine(this, poll, Submarine.SUBMARINE_ID,GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT,Game.Settings.rand.nextInt(0,3)));
+				tm.addEntity(new Submarine(this, poll,GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT,Game.Settings.rand.nextInt(0,3)));
 			else if(GridHelper.canPlaceInGrid(this,GridedEntityTileOrientation.ORIENTATION_TOPTOBOTTOM, poll.getRow(), poll.getCol(), 2))
-				tm.addEntity(new Submarine(this, poll, Submarine.SUBMARINE_ID,GridedEntityTileOrientation.ORIENTATION_TOPTOBOTTOM,Game.Settings.rand.nextInt(0,3)));
+				tm.addEntity(new Submarine(this, poll,GridedEntityTileOrientation.ORIENTATION_TOPTOBOTTOM,Game.Settings.rand.nextInt(0,3)));
 			else
 				c--;
 		}
