@@ -176,7 +176,8 @@ public class PWindow extends Control {
 	}
 	
 	public void parentRepaint() {
-		pare.render();
+		if (pare != null)
+			pare.render();
 	}
 	
 	public void close() {

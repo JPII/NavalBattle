@@ -25,6 +25,7 @@ import com.jpii.navalbattle.NavalBattle;
 import com.jpii.navalbattle.game.SinglePlayerGame;
 import com.jpii.navalbattle.gui.*;
 import com.jpii.navalbattle.gui.listeners.WindowCloser;
+import com.jpii.navalbattle.pavo.boost.BoostBuilder;
 
 public class Commands {
 	
@@ -47,6 +48,14 @@ public class Commands {
 	    		WindowCloser.close();
 	    	}}
 	    ));
+	    
+	    add(new Command("boost", "", "Launches the Boost Game Thing", new CommandAction()
+	    {
+	    	public void onRun(Command c, String[] args) {
+	    		BoostBuilder builder = new BoostBuilder();
+	    		builder.setVisible(true);
+	    	}
+	    }));
 	    
 	    add(new Command("version", "", "View version info", new CommandAction() { 
 	    	public void onRun(Command c, String[] args) {
