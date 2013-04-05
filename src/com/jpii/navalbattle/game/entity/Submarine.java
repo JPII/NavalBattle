@@ -9,6 +9,7 @@ import com.jpii.navalbattle.pavo.grid.Location;
 public class Submarine extends MoveableEntity {
 	private static final long serialVersionUID = 1L;
 	public static GridedEntityTileOrientation SUBMARINE_ID;
+	public static GridedEntityTileOrientation SUBMARINEU_ID;
 
 	public Submarine(EntityManager em) {
 		super(em);

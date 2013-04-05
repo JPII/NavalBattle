@@ -48,6 +48,12 @@ public class NavalManager extends EntityManager {
 		submarineId.setTopToBottomImage(registerEntity(PavoHelper.imgUtilOutline(
 				FileUtils.getImage("drawable-game/submarine/submarine_S.png"),Game.Settings.GridColor),GridedEntityTileOrientation.ORIENTATION_TOPTOBOTTOM));
 		
+		submarineUId = new GridedEntityTileOrientation();
+		submarineUId.setLeftToRightImage(registerEntity(PavoHelper.imgUtilOutline(
+				FileUtils.getImage("drawable-game/submarine/submarineU.png"),Game.Settings.GridColor),GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT));
+		submarineUId.setTopToBottomImage(registerEntity(PavoHelper.imgUtilOutline(
+				FileUtils.getImage("drawable-game/submarine/submarine_S.png"),Game.Settings.GridColor),GridedEntityTileOrientation.ORIENTATION_TOPTOBOTTOM));
+		
 		if (battleShipId != null) {
 			BattleShip.BATTLESHIP_ID = battleShipId;
 		}
@@ -56,6 +62,7 @@ public class NavalManager extends EntityManager {
 		}
 		if (submarineId != null) {
 			Submarine.SUBMARINE_ID = submarineId;
+			Submarine.SUBMARINEU_ID = submarineUId;
 		}
 		else {
 		}

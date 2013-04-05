@@ -37,6 +37,7 @@ public class EntityManager implements Serializable {
 	public GridedEntityTileOrientation battleShipId;
 	public GridedEntityTileOrientation acarrierId;
 	public GridedEntityTileOrientation submarineId;
+	public GridedEntityTileOrientation submarineUId;
 	int counter = 0;
 	/**
 	 * Creates a new entity manager for the desired world.
