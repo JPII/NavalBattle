@@ -10,6 +10,7 @@ import java.awt.image.BufferedImage;
 import javax.swing.JEditorPane;
 
 import com.jpii.navalbattle.pavo.gui.controls.Control;
+import com.jpii.navalbattle.pavo.gui.controls.PText;
 import com.jpii.navalbattle.pavo.gui.controls.PWindow;
 
 /**
@@ -22,34 +23,64 @@ public class _Boost {
 	int width, height;
 	Control selected;
 	JEditorPane jep;
-	public _Boost(JEditorPane jep) {
+	BoostBuilder bb;
+	public _Boost(BoostBuilder bb, JEditorPane jep) {
 		this.jep = jep;
+		this.bb = bb;
+		wnd = new PWindow(null);
+		wnd.addControl(new PText(wnd,"Hello World.",2,30));
 		resize(800-144,600-177);
 	}
 	public void resize(int width, int height) {
 		this.width = width;
 		this.height = height;
-		wnd = new PWindow(null);
 		wnd.setLoc((width/2)-(wnd.getWidth()/2),(height/2)-(wnd.getHeight()/2));
 		buffer = new BufferedImage(width,height,BufferedImage.TYPE_3BYTE_BGR);
 	}
-	int lwmx = 0;
-	int lwmy = 0;
+	int lwmx = 0, lwmy = 0;
+	int lcpx = 0, lcpy = 0;
 	boolean md = false;
+	boolean mdf = false;
 	public void mouseDown(int x, int y,int button) {
 		int wmx = x - wnd.getLocX();
 		int wmy = y - wnd.getLocY();
+		boolean prevWnd = md;
 		md = false;
+		mdf = false;
+		selected = null;
 		if (wmx > 0 && wmx < wnd.getWidth() && wmy > 0 && wmy < 23) {
 			lwmx = wmx;
 			lwmy = wmy;
 			md = true;
+		}
+		else if (wmx > 0 && wmx < wnd.getWidth() && wmy > 0 && wmy > 23) {
+			for (int c = 0; c < wnd.getTotalControls(); c++) {
+				Control control = wnd.getControl(c);
+				if (wmx > control.getLocX() && wmx < control.getLocX() + control.getWidth() && 
+						wmy > control.getLocY() && wmy < control.getLocY() + control.getHeight()) {
+					lcpx = wmx - control.getLocX();
+					lcpy = wmy - control.getLocY();
+					selected = control;
+					bb.selectNew();
+					mdf = true;
+					c = wnd.getTotalControls() + 30;
+					return;
+				}
+			}
+		}
+		if (!prevWnd) {
+			bb.selectNew();
 		}
 	}
 	
 	public void mouseDrag(int x, int y,int button) {
 		if (md) {
 			wnd.setLoc((x-wnd.getLocX())-lwmx+wnd.getLocX(),(y-wnd.getLocY())-lwmy+wnd.getLocY());
+			compile();
+		}
+		if (mdf && selected != null) {
+			selected.setLoc(((x-wnd.getLocX())-selected.getLocX())-lcpx+(wnd.getLocX()+selected.getLocX())-wnd.getLocX(),
+					((y-wnd.getLocY())-selected.getLocY())-lcpy+(wnd.getLocY()+selected.getLocY())-wnd.getLocY());
 			compile();
 		}
 	}
@@ -70,8 +101,22 @@ public class _Boost {
 		t += "setSize(" + wnd.getWidth() + ", " + wnd.getHeight() + ");";
 		t += line;
 		t += "setText(\"" + wnd.getText() + "\");";
+		t += line;
+		String yn = "";
+		for (int c = 0; c < wnd.getTotalControls(); c++) {
+			Control control = wnd.getControl(c);
+			if (control instanceof PText) {
+				PText h = (PText)control;
+				yn += "PText text" + c + " = new PText(getWindowManager());";
+				yn += line + "text" + c + ".setText(\"" + h.getText() + "\");";
+				yn += line + "text" + c + ".setLoc(" + h.getLocX() + ", " + h.getLocY() + ");";
+				yn += line + "addControl(" + "text" + c + ");";
+			}
+			yn += "";
+		}
+		t += yn;
 		
-		t += "\r\n\t}";
+		t += "\r\n\r\n\t}";
 		t += "\r\n}";
 		
 		jep.setText(t);
@@ -89,5 +134,9 @@ public class _Boost {
 		g.setColor(Color.white);
 		g.fillRect(0,0,width,height);
 		g.drawImage(wnd.getBuffer(),wnd.getLocX(),wnd.getLocY(),null);
+		if (selected != null) {
+			g.setColor(Color.red);
+			g.drawRect(selected.getLocX() + wnd.getLocX(), selected.getLocY() + wnd.getLocY(),selected.getWidth(),selected.getHeight());
+		}
 	}
 }

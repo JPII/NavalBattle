@@ -30,6 +30,7 @@ import javax.swing.JButton;
 
 import com.jpii.navalbattle.pavo.gui.controls.Control;
 import com.jpii.navalbattle.pavo.gui.controls.PButton;
+import com.jpii.navalbattle.pavo.gui.controls.PProgress;
 import com.jpii.navalbattle.pavo.gui.controls.PText;
 import com.jpii.navalbattle.pavo.gui.controls.PWindow;
 
@@ -59,6 +60,7 @@ public class BoostBuilder extends JFrame {
 
 		DefaultSyntaxKit.initKit();
 		codeEditor = new JEditorPane();
+		//codeEditor.set
 		JScrollPane scrPane = new JScrollPane(codeEditor);
 		getContentPane().add(scrPane);
 		getContentPane().doLayout();
@@ -66,7 +68,7 @@ public class BoostBuilder extends JFrame {
 		scrPane.setBounds(0, 385, 784, 177);
 		codeEditor.setFont(new Font("Consolas", 0, 12));
 		codeEditor.setBackground(new Color(220, 220, 220));
-		booster = new _Boost(codeEditor);
+		booster = new _Boost(this,codeEditor);
 		booster.compile();
 
 		JPanel panel = new JPanel();
@@ -206,6 +208,25 @@ public class BoostBuilder extends JFrame {
 		};*/
 		//ticker = new Timer(150, al);
 		// ticker.start();
+	}
+	
+	public void selectNew() {
+		if (booster.getActiveControl() instanceof PWindow) {
+			PWindow pw = (PWindow)booster.getActiveControl();
+			textField.setText(pw.getText());
+		}
+		if (booster.getActiveControl() instanceof PText) {
+			PText pw = (PText)booster.getActiveControl();
+			textField.setText(pw.getText());
+		}
+		if (booster.getActiveControl() instanceof PButton) {
+			PButton pw = (PButton)booster.getActiveControl();
+			textField.setText(pw.getText());
+		}
+		if (booster.getActiveControl() instanceof PProgress) {
+			PProgress pw = (PProgress)booster.getActiveControl();
+			textField.setText(pw.getProgress()+"");
+		}
 	}
 
 	public void paint(Graphics g) {
