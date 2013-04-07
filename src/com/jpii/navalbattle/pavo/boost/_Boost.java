@@ -12,6 +12,7 @@ import javax.swing.JEditorPane;
 
 import com.jpii.navalbattle.pavo.gui.controls.Control;
 import com.jpii.navalbattle.pavo.gui.controls.PButton;
+import com.jpii.navalbattle.pavo.gui.controls.PFrame;
 import com.jpii.navalbattle.pavo.gui.controls.PText;
 import com.jpii.navalbattle.pavo.gui.controls.PWindow;
 
@@ -60,7 +61,7 @@ public class _Boost {
 			lwmy = wmy;
 			md = true;
 		} else if (wmx > 0 && wmx < wnd.getWidth() && wmy > 0 && wmy > 23) {
-			for (int c = 0; c < wnd.getTotalControls(); c++) {
+			for (int c = wnd.getTotalControls()-1; c >= 0; c--) {
 				Control control = wnd.getControl(c);
 				if (wmx > control.getLocX()
 						&& wmx < control.getLocX() + control.getWidth()
@@ -154,7 +155,23 @@ public class _Boost {
 						+ h.getLocY() + ");";
 				yn += line + "addControl(" + "button" + c + ");";
 				if (!h.getFont().equals(defaultFont)) {
-					yn += line + "text" + c + ".setFont(new Font(\""
+					yn += line + "button" + c + ".setFont(new Font(\""
+							+ h.getFont().getFontName() + "\", "
+							+ h.getFont().getStyle() + ", "
+							+ h.getFont().getSize() + "));";
+				}
+			}
+			if (control instanceof PFrame) {
+				PFrame h = (PFrame) control;
+				yn += "PFrame border" + c
+						+ " = new PFrame(getWindowManager());";
+				yn += line + "border" + c + ".setSize(" + h.getWidth()+ ", "+ h.getHeight()
+						+ ");";
+				yn += line + "border" + c + ".setLoc(" + h.getLocX() + ", "
+						+ h.getLocY() + ");";
+				yn += line + "addControl(" + "border" + c + ");";
+				if (!h.getFont().equals(defaultFont)) {
+					yn += line + "border" + c + ".setFont(new Font(\""
 							+ h.getFont().getFontName() + "\", "
 							+ h.getFont().getStyle() + ", "
 							+ h.getFont().getSize() + "));";

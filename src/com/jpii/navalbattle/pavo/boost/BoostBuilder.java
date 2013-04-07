@@ -47,6 +47,7 @@ public class BoostBuilder extends JFrame {
 	private JTextField textField;
 	private JTextField textField_1;
 	private JTextField textField_2;
+	JLabel lblTitle;
 
 	public BoostBuilder() {
 		setTitle("Pavo Boost Live Compiler");
@@ -99,8 +100,8 @@ public class BoostBuilder extends JFrame {
 		panel.add(textField);
 		textField.setColumns(10);
 
-		JLabel lblTitle = new JLabel("Value:");
-		lblTitle.setBounds(10, 11, 46, 14);
+		lblTitle = new JLabel("Value:");
+		lblTitle.setBounds(10, 11, 120, 14);
 		panel.add(lblTitle);
 
 		JLabel lblWidth = new JLabel("Width:");
@@ -118,11 +119,11 @@ public class BoostBuilder extends JFrame {
 				} catch (Throwable t) {
 
 				}
-				if (w < 800) {
-					if (w > 25)
-						booster.wnd.setWidth(w);
-					else if (!(booster.getActiveControl() instanceof PWindow))
+				if (w < 800 && w >= 25) {
+					if (!(booster.getActiveControl() instanceof PWindow))
 						booster.getActiveControl().setWidth(w);
+					else
+						booster.wnd.setWidth(w);
 					booster.compile();
 					repaint();
 				}
@@ -147,11 +148,11 @@ public class BoostBuilder extends JFrame {
 				} catch (Throwable t) {
 
 				}
-				if (h < 800) {
-					if (h > 25)
-						booster.wnd.setHeight(h);
-					else if (!(booster.getActiveControl() instanceof PWindow))
+				if (h < 800 && h >= 25) {
+					if (!(booster.getActiveControl() instanceof PWindow))
 						booster.getActiveControl().setHeight(h);
+					else
+						booster.wnd.setHeight(h);
 					booster.compile();
 					repaint();
 				}
@@ -294,6 +295,7 @@ public class BoostBuilder extends JFrame {
 		};
 		addMouseListener(ml);
 		addMouseMotionListener(mml);
+		selectNew();
 		/*
 		 * ActionListener al = new ActionListener() { public void
 		 * actionPerformed(ActionEvent arg0) { repaint(); } };
@@ -303,21 +305,42 @@ public class BoostBuilder extends JFrame {
 	}
 
 	public void selectNew() {
+		textField.setVisible(true);
+		lblTitle.setVisible(true);
 		if (booster.getActiveControl() instanceof PWindow) {
 			PWindow pw = (PWindow) booster.getActiveControl();
 			textField.setText(pw.getText());
+			lblTitle.setText("Window title:");
+			textField_1.setText(pw.getWidth()+"");
+			textField_2.setText(pw.getHeight()+"");
 		}
 		if (booster.getActiveControl() instanceof PText) {
 			PText pw = (PText) booster.getActiveControl();
 			textField.setText(pw.getText());
+			lblTitle.setText("Text value:");
+			textField_1.setText(pw.getWidth()+"");
+			textField_2.setText(pw.getHeight()+"");
 		}
 		if (booster.getActiveControl() instanceof PButton) {
 			PButton pw = (PButton) booster.getActiveControl();
 			textField.setText(pw.getText());
+			lblTitle.setText("Button text:");
+			textField_1.setText(pw.getWidth()+"");
+			textField_2.setText(pw.getHeight()+"");
 		}
 		if (booster.getActiveControl() instanceof PProgress) {
 			PProgress pw = (PProgress) booster.getActiveControl();
 			textField.setText(pw.getProgress() + "");
+			lblTitle.setText("Progress amount:");
+			textField_1.setText(pw.getWidth()+"");
+			textField_2.setText(pw.getHeight()+"");
+		}
+		if (booster.getActiveControl() instanceof PFrame) {
+			PFrame f = (PFrame)booster.getActiveControl();
+			textField.setVisible(false);
+			lblTitle.setVisible(false);
+			textField_1.setText(f.getWidth()+"");
+			textField_2.setText(f.getHeight()+"");
 		}
 	}
 
