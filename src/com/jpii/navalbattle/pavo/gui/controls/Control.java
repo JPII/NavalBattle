@@ -222,6 +222,21 @@ public class Control {
 		return null;
 	}
 	
+	public void removeControl(Control cnt) {
+		boolean removed = false;
+		for (int c = 0; c < getTotalControls(); c++) {
+			Control co = getControl(c);
+			if (co != null && co.HANDLE == cnt.HANDLE) {
+				controls.remove(co);
+				removed = true;
+				c = getTotalControls() + 10;
+				break;
+			}
+		}
+		if (removed)
+			paintUpdate();
+	}
+	
 	public boolean isDisposed() {
 		return disposed;
 	}

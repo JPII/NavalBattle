@@ -30,9 +30,11 @@ import javax.swing.JButton;
 
 import com.jpii.navalbattle.pavo.gui.controls.Control;
 import com.jpii.navalbattle.pavo.gui.controls.PButton;
+import com.jpii.navalbattle.pavo.gui.controls.PFrame;
 import com.jpii.navalbattle.pavo.gui.controls.PProgress;
 import com.jpii.navalbattle.pavo.gui.controls.PText;
 import com.jpii.navalbattle.pavo.gui.controls.PWindow;
+import java.awt.event.MouseAdapter;
 
 /**
  * @author maximusvladimir
@@ -60,7 +62,7 @@ public class BoostBuilder extends JFrame {
 
 		DefaultSyntaxKit.initKit();
 		codeEditor = new JEditorPane();
-		//codeEditor.set
+		// codeEditor.set
 		JScrollPane scrPane = new JScrollPane(codeEditor);
 		getContentPane().add(scrPane);
 		getContentPane().doLayout();
@@ -68,7 +70,7 @@ public class BoostBuilder extends JFrame {
 		scrPane.setBounds(0, 385, 784, 177);
 		codeEditor.setFont(new Font("Consolas", 0, 12));
 		codeEditor.setBackground(new Color(220, 220, 220));
-		booster = new _Boost(this,codeEditor);
+		booster = new _Boost(this, codeEditor);
 		booster.compile();
 
 		JPanel panel = new JPanel();
@@ -116,12 +118,14 @@ public class BoostBuilder extends JFrame {
 				} catch (Throwable t) {
 
 				}
-				if (w > 25)
-					booster.wnd.setWidth(w);
-				else if (!(booster.getActiveControl() instanceof PWindow))
-					booster.getActiveControl().setWidth(w);
-				booster.compile();
-				repaint();
+				if (w < 800) {
+					if (w > 25)
+						booster.wnd.setWidth(w);
+					else if (!(booster.getActiveControl() instanceof PWindow))
+						booster.getActiveControl().setWidth(w);
+					booster.compile();
+					repaint();
+				}
 			}
 		});
 		textField_1.setBounds(10, 88, 86, 30);
@@ -143,12 +147,14 @@ public class BoostBuilder extends JFrame {
 				} catch (Throwable t) {
 
 				}
-				if (h > 25)
-					booster.wnd.setHeight(h);
-				else if (!(booster.getActiveControl() instanceof PWindow))
-					booster.getActiveControl().setHeight(h);
-				booster.compile();
-				repaint();
+				if (h < 800) {
+					if (h > 25)
+						booster.wnd.setHeight(h);
+					else if (!(booster.getActiveControl() instanceof PWindow))
+						booster.getActiveControl().setHeight(h);
+					booster.compile();
+					repaint();
+				}
 			}
 		});
 		textField_2.setBounds(10, 154, 86, 30);
@@ -156,20 +162,107 @@ public class BoostBuilder extends JFrame {
 		textField_2.setColumns(10);
 
 		JButton btnNewButton = new JButton("New button");
-		btnNewButton.setBounds(7, 195, 97, 23);
+		btnNewButton.addMouseListener(new MouseAdapter() {
+			public void mouseReleased(MouseEvent arg0) {
+				booster.wnd.addControl(new PButton(booster.wnd, "New button",
+						1, 30));
+				booster.compile();
+				repaint();
+			}
+		});
+		btnNewButton.setBounds(1, 242, 104, 23);
 		panel.add(btnNewButton);
 
 		JButton btnNewLabel = new JButton("New label");
-		btnNewLabel.setBounds(7, 231, 97, 23);
+		btnNewLabel.setBounds(1, 263, 105, 23);
+		btnNewLabel.addMouseListener(new MouseAdapter() {
+			public void mouseReleased(MouseEvent arg0) {
+				booster.wnd
+						.addControl(new PText(booster.wnd, "New text", 1, 35));
+				booster.compile();
+				repaint();
+			}
+		});
 		panel.add(btnNewLabel);
 
 		JButton btnNewProgress = new JButton("New progress");
-		btnNewProgress.setBounds(7, 265, 97, 23);
+		btnNewProgress.setBounds(1, 285, 104, 23);
+		btnNewProgress.addMouseListener(new MouseAdapter() {
+			public void mouseReleased(MouseEvent arg0) {
+				booster.wnd.addControl(new PProgress(booster.wnd, 1, 40, 100,
+						23));
+				booster.compile();
+				repaint();
+			}
+		});
 		panel.add(btnNewProgress);
 
-		JButton btnNewImage = new JButton("New image");
-		btnNewImage.setBounds(7, 299, 89, 23);
+		JButton btnNewImage = new JButton("New frame");
+		btnNewImage.setBounds(1, 305, 104, 23);
+		btnNewImage.addMouseListener(new MouseAdapter() {
+			public void mouseReleased(MouseEvent arg0) {
+				booster.wnd.addControl(new PFrame(booster.wnd, 1, 30, 40, 40));
+				booster.compile();
+				repaint();
+			}
+		});
 		panel.add(btnNewImage);
+
+		final JFrame df = this;
+		JButton btnFont = new JButton("Font");
+		btnFont.addMouseListener(new MouseAdapter() {
+			public void mouseReleased(MouseEvent arg0) {
+				Control c = booster.getActiveControl();
+				if (!(c instanceof PWindow)) {
+					JFontChooser jfc = new JFontChooser();
+					jfc.showDialog(df);
+					Font d = jfc.getSelectedFont();
+					if (d != null)
+						c.setFont(d);
+					booster.compile();
+					repaint();
+				}
+			}
+		});
+		btnFont.setBounds(0, 208, 105, 23);
+		panel.add(btnFont);
+
+		JButton btnCenterControl = new JButton("Center Control");
+		btnCenterControl.addMouseListener(new MouseAdapter() {
+			public void mouseReleased(MouseEvent arg0) {
+				Control c = booster.getActiveControl();
+				if (!(c instanceof PWindow)) {
+					c.setLocX((booster.wnd.getWidth() / 2) - (c.getWidth() / 2));
+					booster.compile();
+					repaint();
+				} else {
+					booster.wnd.setLoc(
+							(booster.buffer.getWidth() / 2)
+									- (c.getWidth() / 2),
+							(booster.buffer.getHeight() / 2)
+									- (c.getHeight() / 2));
+					booster.compile();
+					repaint();
+				}
+			}
+		});
+		btnCenterControl.setBounds(1, 189, 104, 23);
+		panel.add(btnCenterControl);
+
+		JButton btnDelete = new JButton("Delete");
+		btnDelete.addMouseListener(new MouseAdapter() {
+			public void mouseReleased(MouseEvent arg0) {
+				Control c = booster.getActiveControl();
+				if (!(c instanceof PWindow)) {
+					booster.wnd.removeControl(c);
+					booster.compile();
+					booster.render();
+					repaint();
+				}
+			}
+		});
+		btnDelete.setBounds(0, 339, 105, 23);
+		panel.add(btnDelete);
 		MouseListener ml = new MouseListener() {
 			public void mouseClicked(MouseEvent arg0) {
 			}
@@ -201,31 +294,30 @@ public class BoostBuilder extends JFrame {
 		};
 		addMouseListener(ml);
 		addMouseMotionListener(mml);
-		/*ActionListener al = new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				repaint();
-			}
-		};*/
-		//ticker = new Timer(150, al);
+		/*
+		 * ActionListener al = new ActionListener() { public void
+		 * actionPerformed(ActionEvent arg0) { repaint(); } };
+		 */
+		// ticker = new Timer(150, al);
 		// ticker.start();
 	}
-	
+
 	public void selectNew() {
 		if (booster.getActiveControl() instanceof PWindow) {
-			PWindow pw = (PWindow)booster.getActiveControl();
+			PWindow pw = (PWindow) booster.getActiveControl();
 			textField.setText(pw.getText());
 		}
 		if (booster.getActiveControl() instanceof PText) {
-			PText pw = (PText)booster.getActiveControl();
+			PText pw = (PText) booster.getActiveControl();
 			textField.setText(pw.getText());
 		}
 		if (booster.getActiveControl() instanceof PButton) {
-			PButton pw = (PButton)booster.getActiveControl();
+			PButton pw = (PButton) booster.getActiveControl();
 			textField.setText(pw.getText());
 		}
 		if (booster.getActiveControl() instanceof PProgress) {
-			PProgress pw = (PProgress)booster.getActiveControl();
-			textField.setText(pw.getProgress()+"");
+			PProgress pw = (PProgress) booster.getActiveControl();
+			textField.setText(pw.getProgress() + "");
 		}
 	}
 
@@ -234,7 +326,7 @@ public class BoostBuilder extends JFrame {
 				BufferedImage.TYPE_INT_RGB);
 		Graphics g2 = buffer.getGraphics();
 		super.paint(g2);
-		//System.out.println(codeEditor.getText());
+		// System.out.println(codeEditor.getText());
 		booster.render();
 		g2.drawImage(booster.buffer, 0, 0, null);
 		g2.dispose();
