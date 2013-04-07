@@ -116,9 +116,9 @@ public class _Boost {
 	Font defaultFont = new Font("Arial", 0, 12);
 
 	public void compile() {
-		String t = "import com.jpii.navalbattle.pavo.gui.control.*;";
+		String t = "// Built by PavoBoost 0.3.8\r\n// Capable with Pavo 0.4.0\r\nimport com.jpii.navalbattle.pavo.gui.control.*;";
 		String line = "\r\n\t\t";
-		t += "\r\n";
+		t += "\r\n\r\n";
 		t += "public class MyWindow extends PWindow {";
 		t += "\r\n\r\n\tpublic MyWindow() {";
 		t += line;
