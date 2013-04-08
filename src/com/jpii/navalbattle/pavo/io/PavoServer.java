@@ -122,6 +122,7 @@ public class PavoServer implements Runnable {
             		onClientConnect();
             	}
             	else if (rl != null && !rl.equals("")) {
+            		connected = true;
             		if (rl.startsWith("NA")) {
             			rl = rl.replace("NA", "");
             			String name = rl.substring(0,rl.indexOf(":")+1);
@@ -171,6 +172,7 @@ public class PavoServer implements Runnable {
 		catch (Throwable te) {
 			
 		}
+		connected = false;
 		System.out.println("Client disconnected.");
 		if (autoReboot)
 			start();
@@ -210,6 +212,10 @@ public class PavoServer implements Runnable {
 			}
 		}
 		return attr;
+	}
+	boolean connected = false;
+	public boolean isConnected() {
+		return connected;
 	}
 	
 	public void onMessageRecieved(String msg) {

@@ -94,9 +94,9 @@ public class GameComponent extends JComponent {
 			}
 		};
 
-		ticker = new Timer(45, al);
+		ticker = new Timer(47, al);
 		ticker.start();
-		logicUpdator = new Timer(200,al2);
+		logicUpdator = new Timer(125,al2);
 		logicUpdator.start();
 	}
 	public void update() {

@@ -161,6 +161,9 @@ public class NavalGame extends Game{
 			getSelfClient().send("bounds:"+fgax+","+fgaz);
 		}
 		getWorld().setLoc(fgax, fgaz);
+		omnimap.writeBuffer();
+		forceUpdate();
+		getWorld().forceRender();
 	}
 	public void mouseWheelChange(MouseWheelEvent mwe) {
 		super.mouseWheelChange(mwe);
