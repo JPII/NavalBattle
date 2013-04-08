@@ -1,4 +1,4 @@
-package com.jpii.navalbattle.game;
+package com.jpii.navalbattle.turn;
 
 import java.util.ArrayList;
 
