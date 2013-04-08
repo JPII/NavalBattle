@@ -117,6 +117,7 @@ public class World extends Renderable implements Interactable {
 		gs2.dispose();
 	}
 	private void runLocLock(int x, int y) {
+		motionEntity = null;
 	}
 	public void setLoc(int x, int y) {
 		if (sx != x || sy != y)
