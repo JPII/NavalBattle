@@ -101,19 +101,8 @@ public class GameComponent extends JComponent {
 				updateGame();
 			}
 		};
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
+
 		ticker = new Timer(45, al);
-=======
-		ticker = new Timer(0, al);
->>>>>>> 9140b6111aab62d2434dbceadd7c29939a767f3b
-=======
-		ticker = new Timer(0, al);
->>>>>>> 9140b6111aab62d2434dbceadd7c29939a767f3b
-=======
-		ticker = new Timer(0, al);
->>>>>>> 9140b6111aab62d2434dbceadd7c29939a767f3b
 		ticker.start();
 		logicUpdator = new Timer(200,al2);
 		logicUpdator.start();
