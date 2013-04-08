@@ -21,6 +21,7 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.Polygon;
+import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseWheelEvent;
 import java.awt.image.BufferedImage;
@@ -538,6 +539,18 @@ public class Game extends Renderable implements Runnable, Serializable {
 		}
 		lastmx = me.getX();
 		lastmy = me.getY();
+	}
+	
+	public void keyDown(KeyEvent ke) {
+		
+	}
+	
+	public void keyUp(KeyEvent ke) {
+		
+	}
+	
+	public void keyTyped(KeyEvent ke) {
+		
 	}
 	
 	/**
