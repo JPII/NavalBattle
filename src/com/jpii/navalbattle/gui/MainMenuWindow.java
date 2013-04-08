@@ -94,12 +94,22 @@ public class MainMenuWindow extends BaseWindow {
 		label.setBounds(-83, -62, 569, 374);
 		getContentPane().add(label);
 		
-		btnSingleplayer.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
+		class SPGS implements Runnable {
+			public SPGS() {
+				
+			}
+			public void run() {
 				spg = new SinglePlayerGame();
 				spg.setGameVars(PavoOpenState.NORMAL,null);
-				nextWindow("SinglePlayerGame");
+				spg.setVisible(true);
+				//nextWindow("SinglePlayerGame");
+			}
+		}
+		
+		btnSingleplayer.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				SwingUtilities.invokeLater(new SPGS());
 				NavalBattle.getWindowHandler().disposeContained();
 			}
 		});	
