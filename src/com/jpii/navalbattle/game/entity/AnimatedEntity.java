@@ -42,6 +42,9 @@ public class AnimatedEntity extends MoveableEntity {
 	}
 	
 	public void updateFrame() {
+		if (isHidden()) {
+			return;
+		}
 		setCurrentFrame(nextIndex);
 		if (alternate) {
 		if (direction)

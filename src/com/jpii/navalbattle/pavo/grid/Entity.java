@@ -200,9 +200,10 @@ public class Entity implements Serializable {
 		if (loc == null)
 			return false;
 		if (loc == Location.Unknown) {
-			hideEntity();		
+			hideEntity();
 			return true;
 		}
+		isHide = false;
 		Tile<Entity> t = manager.getTile(loc);
 		if (t != null && ((t.getSuperId() != 0 || t.getEntity() != null) && !override)){
 			return false;
@@ -266,6 +267,7 @@ public class Entity implements Serializable {
 		
 		
 		
+		
 		//moveTo(Location.Unknown,true);
 		readyForMove = true;
 	}
@@ -293,14 +295,23 @@ public class Entity implements Serializable {
 			gb = GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT;
 		rotateTo(gb);
 	}
+	
+	boolean isHide = false;
+	
+	public boolean isHidden() {
+		return isHide;
+	}
 
 	public void hideEntity() {
-		//if (getCurrentOrientation() == GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT) {
+		if (getCurrentOrientation() == GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT) {
+			isHide = true;
 			int row = getLocation().getRow();
-			int col = getLocation().getCol();	
-			manager.setTile(new Location(row,col),null);
+			int col = getLocation().getCol();
+			for (int c = 0; c < getWidth(); c++) {
+				manager.setTile(new Location(row,col+c),null);
+			}
 			manager.getWorld().forceRender();
-		//}
+		}
 	}
 	
 	/**
