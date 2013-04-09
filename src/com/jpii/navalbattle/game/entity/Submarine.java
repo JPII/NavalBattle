@@ -15,6 +15,7 @@ public class Submarine extends MoveableEntity {
 	public Submarine(EntityManager em) {
 		super(em);
 		imgLocation="drawable-game/submarine/submarine.png";
+		handle = 11;
 	}
 
 	public Submarine(EntityManager em, Location loc,byte orientation,int team) {
