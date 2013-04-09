@@ -12,10 +12,8 @@ public class Turn {
 	
 	public boolean canmoveEntity(MoveableEntity entity) {
 		boolean flag=true;
-		if(flag){
-			System.out.println("ship is mine?" + player.myEntity(entity));
+		if(flag)
 			flag = (player.myEntity(entity));
-		}
 		if(flag)
 			flag = !(entity.getMoved()>=entity.getMaxMovement());
 		return flag;
@@ -23,21 +21,17 @@ public class Turn {
 	
 	public boolean canFireGuns(MoveableEntity entity) {
 		boolean flag=true;
-		if(flag){
+		if(flag)
 			flag = (player.myEntity(entity));
-		}
-		if(flag){
+		if(flag)
 			flag = !entity.getUsedGuns();
-		}
 		return flag;
 	}
 	
 	public boolean canFireMissiles(MoveableEntity entity) {
 		boolean flag=true;
-		if(flag){
-			System.out.println("ship is mine?" + player.myEntity(entity));
+		if(flag)
 			flag = (player.myEntity(entity));
-		}
 		if(flag)
 			flag = !entity.getUsedMissiles();
 		return flag;
@@ -47,11 +41,19 @@ public class Turn {
 		player.startTurn();
 	}
 	
+	public void takeTurn(){
+		player.takeTurn();
+	}
+	
 	public void endTurn(){
 		player.endTurn();
 	}
 	
 	public Player getPlayer(){
 		return player;
+	}
+	
+	public boolean isDone(){
+		return player.isTurnOver();
 	}
 }
