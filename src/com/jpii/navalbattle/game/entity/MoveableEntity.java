@@ -131,7 +131,7 @@ public class MoveableEntity extends Entity {
 					int c = (x + getLocation().getCol()) - (((getAttackRange() * 2) + 1)/2);
 					int r = (y + getLocation().getRow()) - (getAttackRange());
 					if (r >= 0 && c >= 0) {
-						if (isPossibleAttackChoice(x,y)) {
+						if (isPossibleAttackChoice(c,r)) {
 							getManager().setTileOverlay(r,c,good);
 						}
 						else {
@@ -226,7 +226,7 @@ public class MoveableEntity extends Entity {
 	public boolean isPossibleAttackChoice(int x, int y)
 	{
 		boolean good = false;
-		if(getManager().getTile(y,x)!=null )
+		if(getManager().getTile(y,x)!=null && !getManager().getTile(y,x).getEntity().equals(this))
 			good = true;
 		return good;
 	}
