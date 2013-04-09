@@ -28,6 +28,8 @@ import com.jpii.navalbattle.pavo.ProceduralLayeredMapGenerator;
 import com.jpii.navalbattle.pavo.PavoHelper;
 import com.jpii.navalbattle.pavo.Renderable;
 import com.jpii.navalbattle.pavo.World;
+import com.jpii.navalbattle.pavo.grid.Entity;
+import com.jpii.navalbattle.pavo.grid.EntityManager;
 import com.jpii.navalbattle.pavo.io.PavoImage;
 import com.jpii.navalbattle.renderer.Helper;
 import com.jpii.navalbattle.renderer.RenderConstants;
@@ -122,6 +124,15 @@ public class OmniMap extends Renderable {
 			g.setColor(Color.yellow);
 			g.drawRect(rwmx-1,rwmy-1,sw/2,sh/2);
 		}
+		EntityManager eme = w.getEntityManager();
+		g.setColor(Color.cyan);
+		for (int c = 0; c < eme.getTotalEntities(); c++) {
+			Entity ent = eme.getEntity(c);
+			int rdx = (int)(((ent.getLocation().getCol()*50)*100)/(PavoHelper.getGameWidth(w.getWorldSize()) * 100));
+			int rdy = (int)(((ent.getLocation().getRow()*50)*100)/(PavoHelper.getGameHeight(w.getWorldSize()) * 100));
+			g.drawLine(rdx,rdy,rdx,rdy);
+		}
+		
 		g.setColor(new Color(100, 78, 47));
         g.drawRect(1, 1, width - 3, 100 - 3);
         g.setColor(new Color(74, 30, 3));

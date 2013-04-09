@@ -113,7 +113,15 @@ public class Chunk extends Renderable{
 				}
 				if (lsy < 0.4) {
 					int rgs = Helper.colorSnap((int)(lsy*102));
-					g.setColor(new Color(63+rand.nextInt(-7,7),60+rand.nextInt(-7,7),rand.nextInt(90, 100)+rgs));
+					int mod = (int)((lsy * 12) / 0.4f);
+					if (mod <= 0) {
+						g.setColor(new Color(Helper.colorSnap(63+rand.nextInt(-20,20)),Helper.colorSnap(60+rand.nextInt(-20,20)),
+								Helper.colorSnap(rand.nextInt(85, 110)+rgs)));
+					}
+					else {
+						g.setColor(new Color(Helper.colorSnap(63+rand.nextInt(-9,7)+mod),Helper.colorSnap(60+rand.nextInt(-9,7))+mod,
+							Helper.colorSnap(rand.nextInt(90, 100)+rgs+mod)));
+					}
 					if (lsy > 0.38 && rand.nextInt(1,15) == 2) {
 						int h = rand.nextInt(200,210);
 						g.setColor(new Color(143,141,h));

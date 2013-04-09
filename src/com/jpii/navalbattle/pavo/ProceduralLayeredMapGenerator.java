@@ -49,11 +49,11 @@ public class ProceduralLayeredMapGenerator {
 		float lvl2 = getLevel2(x,z);
 		float lvl3 = getLevel3(x,z);
 		float lvl4 = getLevel4(x,z);
-		double mixer = ((lvl0*25.0f)+(lvl4*5)+(lvl2*2.5f)+(lvl3*2.5f)) * 0.02631578947368421052631578947368;
+		double mixer = (((lvl0*25.0f)+(lvl4*5)+(lvl2*2.5f)+(lvl3*2.5f)) * 0.02631578947368421052631578947368) + (lvl2*0.06);
 		double mixed = (((mixer+1)*0.5)-0.1);
 		
-		if (mixed > 0.57)
-			mixed += 0.26;
+		//if (mixed > 0.57)
+			//mixed += 0.19;
 		
 		float res = (float)((mixed - 0.3)*4.7619047619047619047619047619048) - 0.08f;
 		if (res > 1)

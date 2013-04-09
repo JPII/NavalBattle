@@ -50,7 +50,7 @@ public class World extends Renderable implements Interactable {
 	WorldStatus worldStatus;
 	public World(Game gameThing) {
 		game = gameThing;
-		ws = WorldSize.WORLD_LARGE;
+		ws = WorldSize.WORLD_MEDIUM;//WorldSize.WORLD_LARGE;
 		width = PavoHelper.getGameWidth(getWorldSize());
 		height = PavoHelper.getGameHeight(getWorldSize());
 		chunks = new Chunk[(width)*(height)];
