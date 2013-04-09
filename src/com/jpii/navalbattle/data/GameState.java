@@ -79,6 +79,10 @@ public class GameState {
 		this.score = 0;
 	}
 	
+	/**
+	 * Get number of turns taken.
+	 * @return
+	 */
 	public int getTurnNum(){
 		return turns;
 	}
