@@ -27,17 +27,14 @@ public class StatusBar extends PWindow {
 		super(parent);
 		gameThing = game;
 		icn_mouse = FileUtils.getImage("icons/game/mouse.png");
-		setBackgroundColor(Color.gray);
 		setTitleVisiblity(false);
 		setSize(Game.Settings.currentWidth,25);
-		setLoc(100,200);
 		setVisible(true);
 		repaint();
 	}
 	
 	public void paint(Graphics2D g) {
 		super.paint(g);
-//		Graphics2D g = PavoHelper.createGraphics(getBuffer());
 		g.drawImage(icn_mouse,1,3,null);
 		g.setColor(Color.black);
 		g.fillRect(19,2,60,20);
@@ -81,8 +78,6 @@ public class StatusBar extends PWindow {
 			g.drawImage(new ImageIcon(NavalBattle.getRoketGamer().getPlayer().getAvatarAsBytes(16)).getImage(),width-348+sd,5,null);
 			g.drawString(NavalBattle.getRoketGamer().getPlayer().getName(), width-325+sd, 17);
 		}
-		
-//		g.dispose();
 	}
 
 	public void setMouseTileLocation(int x, int y) {
