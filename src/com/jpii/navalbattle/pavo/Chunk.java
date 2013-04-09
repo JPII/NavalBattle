@@ -115,7 +115,7 @@ public class Chunk extends Renderable{
 					int rgs = Helper.colorSnap((int)(lsy*102));
 					int mod = (int)((lsy * 12) / 0.4f);
 					if (mod <= 0) {
-						g.setColor(new Color(Helper.colorSnap(63+rand.nextInt(-20,20)),Helper.colorSnap(60+rand.nextInt(-20,20)),
+						g.setColor(new Color(Helper.colorSnap(63+rand.nextInt(15)),Helper.colorSnap(60+rand.nextInt(15)),
 								Helper.colorSnap(rand.nextInt(85, 110)+rgs)));
 					}
 					else {

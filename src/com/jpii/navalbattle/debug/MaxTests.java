@@ -35,6 +35,34 @@ public class MaxTests {
 	 */
 	public static void run() {
 		
+		System.out.println("Warming up the clock.");
+		long bys = System.nanoTime();
+		bys = System.nanoTime();
+		bys = System.nanoTime();
+		bys = System.nanoTime();
+		bys = System.nanoTime();
+		bys = System.nanoTime();
+		bys = System.nanoTime();
+		bys = System.nanoTime();
+		double h = 1;
+		for (long byteallocate = 0; byteallocate < 81920000; byteallocate++) {
+			h = (byteallocate * 0.2)+h;
+		}
+		System.out.println("Took: " + (System.nanoTime()-bys)+"v:"+h);
+		
+		bys = System.nanoTime();
+		bys = System.nanoTime();
+		bys = System.nanoTime();
+		bys = System.nanoTime();
+		bys = System.nanoTime();
+		bys = System.nanoTime();
+		bys = System.nanoTime();
+		h = 1;
+		for (long byteallocate = 0; byteallocate < 81920000; byteallocate++) {
+			h = (byteallocate / 5)+h;
+		}
+		System.out.println("Took: " + (System.nanoTime()-bys)+"v:"+h);
+		
 		Rand r = new Rand();
 		for (int c = 0; c < 3; c++) {
 			System.out.println(GrammarManager.generateFullName(r.nextInt()));

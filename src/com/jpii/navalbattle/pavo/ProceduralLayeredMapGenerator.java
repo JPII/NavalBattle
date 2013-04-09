@@ -49,13 +49,26 @@ public class ProceduralLayeredMapGenerator {
 		float lvl2 = getLevel2(x,z);
 		float lvl3 = getLevel3(x,z);
 		float lvl4 = getLevel4(x,z);
-		double mixer = (((lvl0*25.0f)+(lvl4*5)+(lvl2*2.5f)+(lvl3*2.5f)) * 0.02631578947368421052631578947368) + (lvl2*0.06);
+		double mixer = (((lvl0*25.1f)+(lvl4*4.9f)+
+				(lvl2)+(lvl3*1.75f)) * 0.03053435114503816793893129770992) + (lvl2*0.06);
 		double mixed = (((mixer+1)*0.5)-0.1);
 		
 		//if (mixed > 0.57)
 			//mixed += 0.19;
 		
 		float res = (float)((mixed - 0.3)*4.7619047619047619047619047619048) - 0.08f;
+		
+		// NBBN
+		res = res * 0.5952f;
+		if (res >= 0.40 && res <= 0.55)
+			res += 0.005f + (getLevel9(x,z) * 0.002f);
+		else if (res >= 0.40)
+			res += (getLevel9(x,z) * 0.13233f);
+		if (res >= 0.6)
+			res += (getLevel9(x,z) * 0.265f);
+		if (res < 0.2)
+			res += (lvl4+lvl0) * 0.075f;
+		// NBBN
 		if (res > 1)
 			res = 1;
 		if (res < 0)
@@ -71,7 +84,9 @@ public class ProceduralLayeredMapGenerator {
 				res = 0;
 		}
 		
-		
+		//System.err.println(x + "," + z + ":" + res);
+		//float navalbattlesnapleft = 0.0f;
+		//float navalbattlesnapright = 0.7f;
 		
 		return res;
 	}
@@ -100,6 +115,9 @@ public class ProceduralLayeredMapGenerator {
 	}
 	private static float getLevel4(float x, float z) {
 		return berlin.noise(x/ld4,z/ld4);
+	}
+	private static float getLevel9(float x, float z) {
+		return berlin.noise(x/16,z/16);
 	}
 }
 class $kdOWj20Janro2 {
