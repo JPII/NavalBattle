@@ -58,15 +58,15 @@ public class PortEntity extends AnimatedEntity {
 		Rand randy = new Rand(Game.Settings.seed + 50);
 		int numStructures = randy.nextInt(6,10);
 		int counter = 0;
-		float wlx = ((loc.getCol() / 2)/32.666666666666666666f);
-		float wlz = ((loc.getRow() / 2)/32.666666666666666666f);
+		float wlx = loc.getCol() * 16;//((loc.getCol() / 2)/32.666666666666666666f);
+		float wlz = loc.getRow() * 16;//((loc.getRow() / 2)/32.666666666666666666f);
 		while (counter < numStructures) {
 			counter++;
 			int type = randy.nextInt(0,3);
 			int lx = randy.nextInt(4,40);
 			int ly = randy.nextInt(4,35);
 			if (type == 2) {
-				float h = ProceduralLayeredMapGenerator.getPoint(wlx+(lx/16.66666666666666666f),wlz+(ly/16.66666666666666666f));
+				float h = ProceduralLayeredMapGenerator.getPoint(wlx+((lx*50)/16),wlz+((ly*50)/16));
 				float h1 = 0;
 				float h2 = 0;
 				int tries = 0;
@@ -74,9 +74,9 @@ public class PortEntity extends AnimatedEntity {
 					lx = randy.nextInt(10,39);
 					ly = randy.nextInt(19,40);
 					tries++;
-					h = ProceduralLayeredMapGenerator.getPoint(wlx+(lx/32.66666666666666666f),wlz+(ly/32.66666666666666666f));
-					h1 = ProceduralLayeredMapGenerator.getPoint(wlx+((lx-8)/32.66666666666666666f),wlz+(ly/32.66666666666666666f));
-					h2 = ProceduralLayeredMapGenerator.getPoint(wlx+((lx+8)/32.66666666666666666f),wlz+(ly/32.66666666666666666f));
+					h = ProceduralLayeredMapGenerator.getPoint(wlx+((lx*50)/16),wlz+((ly*50)/16));
+					h1 = ProceduralLayeredMapGenerator.getPoint(wlx+(((lx-8)*50)/16),wlz+((ly*50)/16));
+					h2 = ProceduralLayeredMapGenerator.getPoint(wlx+(((lx-8)*50)/16),wlz+((ly*50)/16));
 				}
 				g1.setColor(new Color(126,105,65));
 				g2.setColor(new Color(126,105,65));
