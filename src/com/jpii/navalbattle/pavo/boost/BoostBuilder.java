@@ -6,15 +6,11 @@ package com.jpii.navalbattle.pavo.boost;
 import javax.swing.JEditorPane;
 import javax.swing.JFrame;
 import javax.swing.JScrollPane;
-import javax.swing.JTextPane;
 import javax.swing.Timer;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
@@ -36,11 +32,8 @@ import com.jpii.navalbattle.pavo.gui.controls.PText;
 import com.jpii.navalbattle.pavo.gui.controls.PWindow;
 import java.awt.event.MouseAdapter;
 
-/**
- * @author maximusvladimir
- * 
- */
 public class BoostBuilder extends JFrame {
+	private static final long serialVersionUID = 1L;
 	Timer ticker;
 	_Boost booster;
 	JEditorPane codeEditor;
@@ -54,16 +47,8 @@ public class BoostBuilder extends JFrame {
 		setSize(800, 600);
 		getContentPane().setLayout(null);
 
-		/*
-		 * JTextPane textPane = new JTextPane(); textPane.setBounds(0, 385, 784,
-		 * 177); textPane.setFont(new Font("Consolas",0,12));
-		 * textPane.setBackground(new Color(220,220,220));
-		 */
-		// getContentPane().add(textPane);
-
 		DefaultSyntaxKit.initKit();
 		codeEditor = new JEditorPane();
-		// codeEditor.set
 		JScrollPane scrPane = new JScrollPane(codeEditor);
 		getContentPane().add(scrPane);
 		getContentPane().doLayout();
@@ -83,8 +68,6 @@ public class BoostBuilder extends JFrame {
 		textField.setText("control #1");
 		textField.addKeyListener(new KeyAdapter() {
 			public void keyReleased(KeyEvent arg0) {
-				// if ()
-				// booster.wnd.setText(textField.getText());
 				Control c = booster.getActiveControl();
 				if (c instanceof PWindow)
 					((PWindow) c).setText(textField.getText());
@@ -296,12 +279,6 @@ public class BoostBuilder extends JFrame {
 		addMouseListener(ml);
 		addMouseMotionListener(mml);
 		selectNew();
-		/*
-		 * ActionListener al = new ActionListener() { public void
-		 * actionPerformed(ActionEvent arg0) { repaint(); } };
-		 */
-		// ticker = new Timer(150, al);
-		// ticker.start();
 	}
 
 	public void selectNew() {
