@@ -122,13 +122,14 @@ public class NavalGame extends Game{
 	public void becomingDay() {
 		
 	}
-
+	int pppx = 0;
+	int pppy = 0;
 	public void mouseDragged(MouseEvent me) {
 		super.mouseDragged(me);
 		
 		if (guiUsedMouseDrag)
 			return;
-		if (omnimap.mouseDragged(me))
+		if (omnimap.mouseDragged(me) && startInDown)
 			return;
 		int mx = me.getX();
 		int my = me.getY();
@@ -165,7 +166,7 @@ public class NavalGame extends Game{
 		}
 		getWorld().setLoc(fgax, fgaz);
 		//omnimap.writeBuffer();
-		omnimap.render();
+		//omnimap.render();
 		forceUpdate();
 		getWorld().forceRender();
 	}
@@ -203,12 +204,20 @@ public class NavalGame extends Game{
 		chx /= 50;
 		chy /= 50;
 		
-		if ((omnimap.mouseDown(me)))
+		startInDown = (omnimap.mouseDown(me));
+		if (startInDown) {
 			return;
+		}
+		
+		
 		
 		else if(hud.hudClick(chx,chy,me.getButton()==MouseEvent.BUTTON1)){
 			
 		}
+		
+
+		
+		
 		
 		else if(!isAClient()){
 			int chmaxx = (getWorld().getChunk(getWorld().getTotalChunks()-1).getX()+1)*2;
@@ -216,7 +225,10 @@ public class NavalGame extends Game{
 			if(chy>0 && chx>0 && chy<chmaxy&& chx<chmaxx)
 				getHud().setEntity(nm.findEntity(chy, chx));
 		}
+		//pppx = me.getX();
+		//pppy = me.getY();
 	}
+	boolean startInDown = false;
 	public void mouseUp(MouseEvent me) {
 		super.mouseUp(me);
 		

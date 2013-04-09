@@ -187,6 +187,10 @@ public class PavoHelper {
 		if (px-sx+100 >= 0 && py-sy+100 >= 0 && px-sx <= Game.Settings.currentWidth && py-sy <= Game.Settings.currentHeight){
 			return true;
 		}
+		//else if (sx > 0 && px == 1 && py-sy+100 >= 0 && py-sy <= Game.Settings.currentHeight)
+		//	return true;
+		//else if (sy > 0 && py == 1 && px-sx+100 >= 0 && px-sx <= Game.Settings.currentWidth)
+		//	return true;
 		else
 			return false;
 	}

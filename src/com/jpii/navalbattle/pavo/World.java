@@ -123,6 +123,7 @@ public class World extends Renderable implements Interactable {
 		if (sx != x || sy != y)
 			chunkrender = true;
 		runLocLock(x,y);
+		//System.out.println("x"+x+",y"+y);
 		sx = x;
 		sy = y;
 	}

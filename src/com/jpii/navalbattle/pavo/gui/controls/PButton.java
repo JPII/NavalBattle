@@ -84,18 +84,18 @@ public class PButton extends Control {
 			strWidth = g.getFontMetrics().stringWidth(getText());
 			textUpdated = false;
 			if (autoResize) {
-				this.width = strWidth+9;
-				this.height = (int)(getFont().getSize() * 1.5f)+1;
+				this.width = strWidth+13;
+				this.height = (int)(getFont().getSize() * 1.5f)+3;
 				createBuffer(true);
 				bufferNeedsIntemediatePaint();
 			}
 		}
 		int vwidth = strWidth+8;
 		if (vwidth < width)
-			vwidth = width-1;
+			vwidth = width-3;
 		int vheight = (int)(getFont().getSize() * 1.5f);
 		if (vheight < height)
-			vheight = height-1;
+			vheight = height-2;
 		if (heldDown) {
 			GradientPaint gp = new GradientPaint(0,0,new Color(134,111,68),0,(getFont().getSize() * 1.5f),new Color(87,72,45));
 			g.setPaint(gp);
