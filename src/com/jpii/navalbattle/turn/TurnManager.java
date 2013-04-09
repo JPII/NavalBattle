@@ -19,6 +19,10 @@ public class TurnManager {
 		currentTurn.endTurn();
 		turnnumber++;
 		currentTurn = new Turn(players.getPlayer(turnnumber));
+		currentTurn.takeTurn();
+		if(currentTurn.isDone()){
+			nextTurn();
+		}
 	}
 	
 	public Turn getTurn(){
@@ -29,8 +33,12 @@ public class TurnManager {
 		return turnnumber;
 	}
 	
-	public void addEntity(Entity e){
-		currentTurn.getPlayer().addEntity(e);
+	public void addEntity(Entity e,Player p){
+		p.addEntity(e);
+	}
+	
+	public Player getPlayer(int pos){
+		return players.getPlayer(pos-1);
 	}
 	
 }

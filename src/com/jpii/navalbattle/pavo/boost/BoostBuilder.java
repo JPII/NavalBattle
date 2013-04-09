@@ -326,7 +326,6 @@ public class BoostBuilder extends JFrame {
 				BufferedImage.TYPE_INT_RGB);
 		Graphics g2 = buffer.getGraphics();
 		super.paint(g2);
-		// System.out.println(codeEditor.getText());
 		booster.render();
 		g2.drawImage(booster.buffer, 0, 0, null);
 		g2.dispose();
