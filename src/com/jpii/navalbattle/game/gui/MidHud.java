@@ -31,7 +31,9 @@ public class MidHud{
 	PButton diplomacyB;
 	PButton shopB;
 	PButton elevationB;
+	
 	PButton nextMove;
+	PButton nextEntity;
 	
 	Entity display;
 	
@@ -111,9 +113,12 @@ public class MidHud{
 		c.addControl(diplomacyB = new PButton(c,(c.getWidth()/2)+30,c.getHeight()-60,30,30));
 		c.addControl(moveB = new PButton(c,(c.getWidth()/2)+90,c.getHeight()-60,30,30));
 		c.addControl(elevationB = new PButton(c,(c.getWidth()/2)+150,c.getHeight()-60,30,30));
-		c.addControl(nextMove = new PButton(c,"End Turn",(c.getWidth()/2)-60,c.getHeight()-130,150,40));
 		
-		nextMove.setFont(new Font("Arial",0,35));		
+		c.addControl(nextMove = new PButton(c,"End Turn",(c.getWidth()/2)-60,c.getHeight()-130,150,40));
+		c.addControl(nextEntity = new PButton(c,"Next Ship",(c.getWidth()/2)+120,c.getHeight()-130,70,20));
+		
+		nextMove.setFont(new Font("Arial",0,35));	
+		nextEntity.setFont(new Font("Arial",0,15));
 		
 		missile = new PImage(c);
 		bullet = new PImage(c);
