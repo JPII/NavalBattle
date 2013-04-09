@@ -29,7 +29,7 @@ public class RightHud {
 		drawFrame(g, boxx, boxy, boxwidth, boxheight);
 		if(display!=null){
 			g.drawImage(entityImg,boxx+50,boxy+50,null);
-			if (display.getHandle() == 2) {
+			if (display.getHandle()%10 == 2) {
 				g.setColor(new Color(169,140,86));
 				g.drawRect(boxx+49,boxy+49,51,51);
 			}
@@ -80,7 +80,7 @@ public class RightHud {
 	public void update(){
 		boxx = boxy = boxheight = boxwidth = 0;
 		if(display!=null){
-			if (display.getHandle()==2) {
+			if (display.getHandle()%10 == 2) {
 				PortEntity display = (PortEntity)this.display;
 				entityImg = display.getIcon();
 			}
@@ -93,7 +93,7 @@ public class RightHud {
 			boxwidth = tempwidth+100;
 			boxheight = tempheight+100;
 			location = ("[X:"+display.getLocation().getCol()+" Y:"+display.getLocation().getRow()+"]");
-			if(display.getHandle()==1){
+			if(display.getHandle()%10 == 1){
 				MoveableEntity display = (MoveableEntity)this.display;
 				health = ("Health: "+display.getHealth()+"%");
 				movement = ("Movement Left: "+(display.getMaxMovement()-display.getMoved())+" out of "+display.getMaxMovement());

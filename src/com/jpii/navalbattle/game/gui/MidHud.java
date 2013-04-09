@@ -81,7 +81,7 @@ public class MidHud{
 		if(display!=null){
 			diplomacy.setVisible(true);
 			diplomacyB.setVisible(true);
-			if(display.getHandle()==1){
+			if(display.getHandle()%10 == 1){
 				MoveableEntity display = (MoveableEntity)this.display;
 				if(display.getMaxMovement()!=display.getMoved())
 					move.setVisible(true);
@@ -160,7 +160,7 @@ public class MidHud{
 		moveB.addMouseListener(new PMouseEvent(){
 			public void mouseDown(int x, int y, int buttonid) {
 				if(move.isVisible()){
-					if(display!=null && display.getHandle()==1){
+					if(display!=null && display.getHandle()%10 == 1){
 						MoveableEntity display2 = (MoveableEntity)display;
 						if(display2.isAttackTileBeingShown())
 							display2.toggleAttackRange();
@@ -182,7 +182,7 @@ public class MidHud{
 		bulletB.addMouseListener(new PMouseEvent(){
 			public void mouseDown(int x, int y, int buttonid) {
 				if(bullet.isVisible()){
-					if(display!=null && display.getHandle()==1){
+					if(display!=null && display.getHandle()%10 == 1){
 						MoveableEntity display2 = (MoveableEntity)display;
 						if(display2.isMovableTileBeingShown())
 							display2.toggleMovable();
@@ -200,7 +200,7 @@ public class MidHud{
 		missileB.addMouseListener(new PMouseEvent(){
 			public void mouseDown(int x, int y, int buttonid) {
 				if(missile.isVisible()){
-					if(display!=null && display.getHandle()==1){
+					if(display!=null && display.getHandle()%10 == 1){
 						MoveableEntity display2 = (MoveableEntity)display;
 						if(display2.isMovableTileBeingShown())
 							display2.toggleMovable();
