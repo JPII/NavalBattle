@@ -39,6 +39,7 @@ public class NavalGame extends Game{
 	StatusBar sb;
 	OmniMap omnimap;
 	PauseWindow pw;
+	int lastMinute = 0;
 	float airStrike = -1;
 	
 	public NavalGame() {
@@ -217,6 +218,10 @@ public class NavalGame extends Game{
 	}
 	BoxBlurFilter bbf = new BoxBlurFilter();
 	public void render() {
+		if (lastMinute != getWorld().getTimeManager().getCurrentMinutes()) {
+			lastMinute = getWorld().getTimeManager().getCurrentMinutes();
+			sb.repaint();
+		}
 		super.render();
 		if (airStrike >= 0 && airStrike < 40) {
 			airStrike += 1.4f;
