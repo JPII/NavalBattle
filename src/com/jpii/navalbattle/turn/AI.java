@@ -1,13 +1,22 @@
 package com.jpii.navalbattle.turn;
 
-public class AI extends Player{
+import com.jpii.navalbattle.game.NavalManager;
 
-	public AI(String name) {
+public class AI extends Player{
+	
+	NavalManager nm;
+	
+	public AI(NavalManager nm,String name) {
 		super(name);
+		this.nm = nm;
 	}
 	
-	public void startTurn(){
-		
+	public void takeTurn(){
+		turnOver=true;
+	}
+	
+	public void endTurn(){
+		super.endTurn();
 	}
 	
 }

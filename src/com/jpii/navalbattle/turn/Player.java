@@ -9,13 +9,19 @@ public class Player {
 	
 	ArrayList<Entity> entities;
 	public String name;
+	protected boolean turnOver;
 	
 	public Player(String name){
 		entities = new ArrayList<Entity>();
 		this.name = name;
+		turnOver = false;
 	}
 	
 	public void startTurn(){
+		
+	}
+	
+	public void takeTurn(){
 		
 	}
 	
@@ -54,5 +60,9 @@ public class Player {
 	
 	public void addEntity(Entity e){
 		entities.add(e);
+	}
+	
+	public boolean isTurnOver(){
+		return turnOver;
 	}
 }

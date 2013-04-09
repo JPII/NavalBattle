@@ -28,7 +28,6 @@ public class WindowHandler extends com.jpii.gamekit.gui.WindowHandler{
 		super(defaultx, defaulty);
 		new LoginWindow();
 		new LoggingInWindow();
-		new LoginOptionsWindow();
 		new MainMenuWindow();
 		new HelpWindow();
 		new CreditsWindow();
