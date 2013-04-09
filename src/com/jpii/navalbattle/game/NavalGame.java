@@ -161,7 +161,8 @@ public class NavalGame extends Game{
 			getSelfClient().send("bounds:"+fgax+","+fgaz);
 		}
 		getWorld().setLoc(fgax, fgaz);
-		omnimap.writeBuffer();
+		//omnimap.writeBuffer();
+		omnimap.render();
 		forceUpdate();
 		getWorld().forceRender();
 	}

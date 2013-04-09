@@ -58,15 +58,21 @@ public class OmniMap extends Renderable {
 		int ay = me.getY() - 40;
 		if (ax > 100 || ay > 100 || ax < 0 || ay < 0)
 			return false;
-		int sw = (int)(((150 * Game.Settings.currentWidth)/(PavoHelper.getGameWidth(w.getWorldSize())*100)))/2;
-		int sh = (int)(((150 * Game.Settings.currentHeight)/(PavoHelper.getGameHeight(w.getWorldSize())*100)))/2;
+		int sw = (int)(((150 * Game.Settings.currentWidth)/(PavoHelper.getGameWidth(w.getWorldSize())*100))/3.33333333333f);
+		int sh = (int)(((150 * Game.Settings.currentHeight)/(PavoHelper.getGameHeight(w.getWorldSize())*100))/3.333333333333f);
+		
+		int sw3 = (int)((150 * Game.Settings.currentWidth)/(PavoHelper.getGameWidth(w.getWorldSize())*100));
+		int sh3 = (int)((150 * Game.Settings.currentHeight)/(PavoHelper.getGameHeight(w.getWorldSize())*100));
 		//System.err.println("s");
 		if (!w.getGame().isAClient())
 			w.getGame().getSelfServer().send("bounds:"+sw+","+sh);
 		else
 			w.getGame().getSelfClient().send("bounds:"+sw+","+sh);
 		//System.err.print("o");
-		w.setLoc((-(ax-sw)*PavoHelper.getGameWidth(w.getWorldSize()))+sw,(-(ay-sh)*PavoHelper.getGameHeight(w.getWorldSize())));
+		w.setLoc(
+				((-(ax-sw)*PavoHelper.getGameWidth(w.getWorldSize()))),
+				((-(ay-sh)*PavoHelper.getGameHeight(w.getWorldSize())))
+				);
 		render();
 		w.forceRender();
 		return true;
@@ -111,8 +117,10 @@ public class OmniMap extends Renderable {
 	public void render() {
 		Graphics2D g = PavoHelper.createGraphics(getBuffer());
 		g.drawImage(terrain, 0,0,null);
-		int rwx = (int) (Math.abs(w.getScreenX()-(Game.Settings.currentWidth/2)) * 33.333333 / (PavoHelper.getGameWidth(w.getWorldSize()) * 100))*3;
-		int rwy = (int) (Math.abs(w.getScreenY()-(Game.Settings.currentHeight/2)) * 33.333333 / (PavoHelper.getGameHeight(w.getWorldSize()) * 100))*3;
+		//int rwx = (int) (Math.abs(w.getScreenX()-(Game.Settings.currentWidth/2)) * 33.333333 / (PavoHelper.getGameWidth(w.getWorldSize()) * 100))*3;
+		//int rwy = (int) (Math.abs(w.getScreenY()-(Game.Settings.currentHeight/2)) * 33.333333 / (PavoHelper.getGameHeight(w.getWorldSize()) * 100))*3;
+		int rwx = (int)(-w.getScreenX()*100)/(PavoHelper.getGameWidth(w.getWorldSize()) * 100);
+		int rwy = (int)(-w.getScreenY()*100)/(PavoHelper.getGameHeight(w.getWorldSize()) * 100);
 		int sw = (int)((150 * Game.Settings.currentWidth)/(PavoHelper.getGameWidth(w.getWorldSize())*100));
 		int sh = (int)((150 * Game.Settings.currentHeight)/(PavoHelper.getGameHeight(w.getWorldSize())*100));
 		int rwmx = (int) (Math.abs(mpx-(Game.Settings.currentWidth/2)) * 33.333333 / (PavoHelper.getGameWidth(w.getWorldSize()) * 100))*3;
