@@ -255,6 +255,7 @@ public class Entity implements Serializable {
 	}
 	
 	public void animatedMoveTo(Location loc, float speed) {
+		
 		readyForMove = false;
 		if (ORIENTATION_BUFFER_POSITION != GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT)
 			return;
@@ -264,18 +265,21 @@ public class Entity implements Serializable {
 		destiny = loc;
 		
 		getManager().getWorld().setMotionEntity(this);
-		
-		
-		
-		
-		//moveTo(Location.Unknown,true);
+
 		readyForMove = true;
 	}
 	
 	public boolean moveTo(Location loc, byte position){
+		if (loc == null)
+			return false;
+		if (loc == Location.Unknown) {
+			hideEntity();
+			return true;
+		}
 		if (ORIENTATION_BUFFER_POSITION == GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT) {
 			for (int w = 0; w < getWidth(); w++) {
 				manager.setTile(location.getRow(),location.getCol()+w, null);
+				//(byte)0x2f1d
 			}
 		}
 		else if (ORIENTATION_BUFFER_POSITION == GridedEntityTileOrientation.ORIENTATION_TOPTOBOTTOM) {
@@ -284,7 +288,37 @@ public class Entity implements Serializable {
 			}
 		}
 		ORIENTATION_BUFFER_POSITION = getOppositeOrientation();
-		return moveTo(loc,true);
+		
+		isHide = false;
+		
+		if (getWidth() + loc.getCol() + 1 >= PavoHelper.getGameWidth(manager.getWorld().getWorldSize())*2 ||
+				getHeight() + loc.getRow() + 1 >= PavoHelper.getGameHeight(manager.getWorld().getWorldSize())*2){
+			return false;
+		}
+		if (loc.getRow() < 0 || loc.getCol() < 0){
+			return false;
+		}
+		if (ORIENTATION_BUFFER_POSITION == GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT) {
+			for (int w = 0; w < getWidth(); w++) {
+				Tile<Entity> t22 = new Tile<Entity>(this,loc.getRow(),loc.getCol()+w);
+				t22.setId(new Id(id.memCall(ORIENTATION_BUFFER_POSITION)[0],w));
+				manager.setTile(loc.getRow(),loc.getCol()+w, t22);
+			}
+			manager.getWorld().forceRender();
+		}
+		else if (ORIENTATION_BUFFER_POSITION == GridedEntityTileOrientation.ORIENTATION_TOPTOBOTTOM) {
+			for (int h = 0; h < getHeight(); h++) {
+				Tile<Entity> t22 = new Tile<Entity>(this,loc.getRow()+h-getHeight()+1,loc.getCol());
+				t22.setId(new Id(id.memCall(ORIENTATION_BUFFER_POSITION)[0],h));
+				manager.setTile(loc.getRow()+h-getHeight()+1,loc.getCol(), t22);
+			}
+			manager.getWorld().forceRender();
+		}
+		Location swap2 = getLocation();
+		setLocation(loc);
+		manager.getWorld().forceRender();
+		onMove(swap2);
+		return true;
 	}
 	
 	public void rotateNext() {
