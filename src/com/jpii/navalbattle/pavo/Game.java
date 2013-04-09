@@ -98,9 +98,9 @@ public class Game extends Renderable implements Runnable, Serializable {
 			client = new NavalClient(this,flags);
 			System.out.println("Client status: " + client.start());
 			isClient = true;
-			client.send("HELLO");
-			client.send("HELLO");
-			client.send("HELLO");
+			//client.send("HELLO");
+			//client.send("HELLO");
+			//client.send("HELLO");
 			while (client.getSeed() == Long.MIN_VALUE) {
 				
 			}

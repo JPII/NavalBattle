@@ -171,7 +171,17 @@ public class NavalGame extends Game{
 	public void mouseWheelChange(MouseWheelEvent mwe) {
 		super.mouseWheelChange(mwe);
 		
-		getWorld().setLoc(getWorld().getScreenX(),getWorld().getScreenY()+(-mwe.getWheelRotation() * 50));
+		int fgax = getWorld().getScreenX();
+		int fgaz = getWorld().getScreenY()+(-mwe.getWheelRotation() * 50);
+		if (fgax > 200)
+			fgax = 200;
+		if (fgaz > 200)
+			fgaz = 200;
+		if (fgax < -((PavoHelper.getGameWidth(getWorld().getWorldSize()) * 100)-100))
+			fgax = -((PavoHelper.getGameWidth(getWorld().getWorldSize()) * 100)-100);
+		if (fgaz < -((PavoHelper.getGameHeight(getWorld().getWorldSize()) * 100)-100))
+			fgaz = -((PavoHelper.getGameHeight(getWorld().getWorldSize()) * 100)-100);
+		getWorld().setLoc(fgax,fgaz);
 	}
 	public OmniMap getMap() {
 		return omnimap;
