@@ -144,7 +144,8 @@ public class MainMenuWindow extends BaseWindow {
 		btnMultiplayer.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				
+				JOptionPane.showMessageDialog(null,"Warning: Multiplayer is experiemental." +
+						"\nProceed with caution.","NavalBattle",JOptionPane.WARNING_MESSAGE);
 				spg = new SinglePlayerGame();
 				boolean valid = false;
 				String ip = NavalBattleIO.getAttribute("lastGoodIP");
