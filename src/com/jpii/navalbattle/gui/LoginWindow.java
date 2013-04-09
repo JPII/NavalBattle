@@ -49,7 +49,6 @@ public class LoginWindow extends BaseWindow {
 		loginButton = new JButton("Login");
 		JButton registerButton = new JButton("Register");
 		JButton offlineButton = new JButton("Offline");
-		JButton optionsButton = new JButton("Options");
 		JLabel lblVersion = new JLabel(Constants.NAVALBATTLE_VERSION_TITLE);
 		
 		usernameLabel.setText("Username");
@@ -62,9 +61,8 @@ public class LoginWindow extends BaseWindow {
 		passwordLabel.setBounds(295,39,78,30);
 		passwordField.setBounds(365,39,113,30);
 		loginButton.setBounds(400,81,78,30);
-		registerButton.setBounds(315, 113, 78, 30);
+		registerButton.setBounds(400, 113, 78, 30);
 		offlineButton.setBounds(315, 81, 78, 30);
-		optionsButton.setBounds(400, 113, 78, 30);
 		lblVersion.setBounds(6, 129, 193, 14);
 		getContentPane().add(usernameLabel);
 		getContentPane().add(usernameField);
@@ -74,12 +72,10 @@ public class LoginWindow extends BaseWindow {
 		getContentPane().add(lblVersion);
 		getContentPane().add(registerButton);
 		getContentPane().add(offlineButton);
-		getContentPane().add(optionsButton);
 		
 		loginButton.setFocusable(false);
 		registerButton.setFocusable(false);
 		offlineButton.setFocusable(false);
-		optionsButton.setFocusable(false);	
 		
 		passwordField.addKeyListener(Constants.keys);
 		usernameField.addKeyListener(Constants.keys);
@@ -122,9 +118,14 @@ public class LoginWindow extends BaseWindow {
 				
 				try {
 					Thread.sleep(3500);
-				} catch (Exception e) { }
+				} catch(Exception e) { }
 				
-				while(!NavalBattle.getBroadcastService().hasChecked()) { }
+				try {
+					while(!NavalBattle.getBroadcastService().hasChecked()) { }
+				} catch(Exception e) {
+					NavalBattle.getDebugWindow().printError("Error while checking BroadcastService!");
+					NavalBattle.getDebugWindow().printError(e.getMessage());
+				}
 				
 				SwingUtilities.invokeLater(new Runnable() {
 					public void run() {
@@ -163,12 +164,6 @@ public class LoginWindow extends BaseWindow {
 			public void actionPerformed(ActionEvent ae) {			
 				NavalBattle.getDebugWindow().printInfo("Opening register page");
 				URLUtils.openURL(NavalBattle.getRoketGamer().getServerLocation() + "/register.php?game=1&name=NavalBattle");
-			}
-		});
-		
-		optionsButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent ae) {
-				nextWindow("LoginOptionsWindow");
 			}
 		});
 		
