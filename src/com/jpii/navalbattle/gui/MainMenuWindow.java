@@ -36,15 +36,15 @@ public class MainMenuWindow extends BaseWindow {
 	private static final long serialVersionUID = 1L;
 	JButton btnRoketGamer;
 	SinglePlayerGame spg;
-	
+
 	/**
 	 * <code>MainMenuWindow</code> constructor.
 	 */
 	public MainMenuWindow() {
 		super();
-		
+
 		getContentPane().setLayout(null);
-		
+
 		JLabel lblVersion = new JLabel(Constants.NAVALBATTLE_VERSION_TITLE);
 		lblVersion.setForeground(Color.WHITE);
 		JLabel lblNavalBattle = new JLabel("NavalBattle");
@@ -54,7 +54,7 @@ public class MainMenuWindow extends BaseWindow {
 		JButton btnQuit = new JButton("Quit");
 		JButton btnCredits = new JButton("Credits");
 		JButton btnMultiplayer = new JButton("Multiplayer");
-		
+
 		lblNavalBattle.setBounds(10, 13, 466, 51);
 		lblVersion.setBounds(10, 287, 238, 14);
 		btnSingleplayer.setBounds(194, 74, 100, 30);
@@ -63,16 +63,13 @@ public class MainMenuWindow extends BaseWindow {
 		btnQuit.setBounds(194, 209, 100, 30);
 		btnCredits.setBounds(375, 267, 100, 30);
 		btnMultiplayer.setBounds(194, 107, 100, 30);
-		
+
 		lblNavalBattle.setForeground(Color.WHITE);
 		lblNavalBattle.setFont(Helper.GUI_MENU_TITLE_FONT);
 		lblNavalBattle.setHorizontalAlignment(SwingConstants.CENTER);
-		
-		if(NavalBattle.getGameState().isOffline()) {
-			btnMultiplayer.setEnabled(false);
-			btnMultiplayer.setToolTipText("Log in to RoketGamer to use multiplayer");
-		}
-		
+
+		btnMultiplayer.setEnabled(true);
+
 		getContentPane().add(lblVersion);
 		getContentPane().add(lblNavalBattle);
 		getContentPane().add(btnSingleplayer);
@@ -81,22 +78,22 @@ public class MainMenuWindow extends BaseWindow {
 		getContentPane().add(btnQuit);
 		getContentPane().add(btnCredits);
 		getContentPane().add(btnMultiplayer);
-		
+
 		btnSingleplayer.setFocusable(false);
 		btnMultiplayer.setFocusable(false);
 		btnHelp.setFocusable(false);
 		btnRoketGamer.setFocusable(false);
 		btnQuit.setFocusable(false);
 		btnCredits.setFocusable(false);
-		
+
 		JLabel label = new JLabel("");
 		label.setIcon(new ImageIcon(MainMenuWindow.class.getResource("/com/jpii/navalbattle/res/drawable-gui/menu_background.png")));
 		label.setBounds(-83, -62, 569, 374);
 		getContentPane().add(label);
-		
+
 		class SPGS implements Runnable {
 			public SPGS() {
-				
+
 			}
 			public void run() {
 				spg = new SinglePlayerGame();
@@ -105,7 +102,7 @@ public class MainMenuWindow extends BaseWindow {
 				//nextWindow("SinglePlayerGame");
 			}
 		}
-		
+
 		btnSingleplayer.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseReleased(MouseEvent e) {
@@ -113,14 +110,14 @@ public class MainMenuWindow extends BaseWindow {
 				NavalBattle.getWindowHandler().disposeContained();
 			}
 		});	
-		
+
 		btnHelp.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				nextWindow("HelpWindow");
 			}
 		});
-		
+
 		btnRoketGamer.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -130,57 +127,56 @@ public class MainMenuWindow extends BaseWindow {
 				}
 			}
 		});
-			
+
 		btnQuit.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
 				WindowCloser.close();
 			}
 		});
-		
+
 		btnCredits.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				nextWindow("CreditsWindow");
 			}
 		});
-		
-		if(!NavalBattle.getGameState().isOffline()) {
-			btnMultiplayer.addMouseListener(new MouseAdapter() {
-				@Override
-				public void mouseClicked(MouseEvent e) {
-					spg = new SinglePlayerGame();
-					boolean valid = false;
-					String ip = NavalBattleIO.getAttribute("lastGoodIP");
-					while (!valid) {
-						ip = JOptionPane.showInputDialog(null,(Object)"Enter IP address to connect to:",(Object)ip);
-						if (ip == null)
-							return;
-						if (ip.equals(""))
-							valid = false;
-						else
-							valid = validate(ip);
-					}
-					NavalBattleIO.saveAttribute("lastGoodIP", ip);
-					spg.setGameVars(PavoOpenState.OPEN_SERVER,ip);
-					nextWindow("SinglePlayerGame");
-					NavalBattle.getWindowHandler().disposeContained();
+
+		btnMultiplayer.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				
+				spg = new SinglePlayerGame();
+				boolean valid = false;
+				String ip = NavalBattleIO.getAttribute("lastGoodIP");
+				while (!valid) {
+					ip = JOptionPane.showInputDialog(null,(Object)"Enter IP address to connect to:",(Object)ip);
+					if (ip == null)
+						return;
+					if (ip.equals(""))
+						valid = false;
+					else
+						valid = validate(ip);
 				}
-			});
-		}
+				NavalBattleIO.saveAttribute("lastGoodIP", ip);
+				spg.setGameVars(PavoOpenState.OPEN_SERVER,ip);
+				nextWindow("SinglePlayerGame");
+				NavalBattle.getWindowHandler().disposeContained();
+			}
+		});
 	}
-	
+
 	private static final String PATTERN = 
-	        "^([01]?\\d\\d?|2[0-4]\\d|25[0-5])\\." +
-	        "([01]?\\d\\d?|2[0-4]\\d|25[0-5])\\." +
-	        "([01]?\\d\\d?|2[0-4]\\d|25[0-5])\\." +
-	        "([01]?\\d\\d?|2[0-4]\\d|25[0-5])$";
+			"^([01]?\\d\\d?|2[0-4]\\d|25[0-5])\\." +
+					"([01]?\\d\\d?|2[0-4]\\d|25[0-5])\\." +
+					"([01]?\\d\\d?|2[0-4]\\d|25[0-5])\\." +
+					"([01]?\\d\\d?|2[0-4]\\d|25[0-5])$";
 
 	public static boolean validate(final String ip) {          
-	      Pattern pattern = Pattern.compile(PATTERN);
-	      Matcher matcher = pattern.matcher(ip);
-	      return matcher.matches();             
+		Pattern pattern = Pattern.compile(PATTERN);
+		Matcher matcher = pattern.matcher(ip);
+		return matcher.matches();             
 	}
-	
+
 	/**
 	 * Set visible.
 	 */
