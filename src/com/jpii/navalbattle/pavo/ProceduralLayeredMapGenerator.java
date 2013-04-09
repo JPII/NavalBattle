@@ -46,9 +46,11 @@ public class ProceduralLayeredMapGenerator {
 	}
 	public static float getPoint(float x, float z) {
 		float lvl0 = getLevel0(x,z);
+		float lvl0b = getLevel0(z-512,x-512);
 		float lvl2 = getLevel2(x,z);
 		float lvl3 = getLevel3(x,z);
 		float lvl4 = getLevel4(x,z);
+		float lvl9 = getLevel9(x,z);
 		double mixer = (((lvl0*25.1f)+(lvl4*4.9f)+
 				(lvl2)+(lvl3*1.75f)) * 0.03053435114503816793893129770992) + (lvl2*0.06);
 		double mixed = (((mixer+1)*0.5)-0.1);
@@ -56,16 +58,16 @@ public class ProceduralLayeredMapGenerator {
 		//if (mixed > 0.57)
 			//mixed += 0.19;
 		
-		float res = (float)((mixed - 0.3)*4.7619047619047619047619047619048) - 0.08f;
+		float res = (float)((mixed - 0.3)*4.7619047619147619047619047619048) - 0.08f;
 		
 		// NBBN
 		res = res * 0.5952f;
 		if (res >= 0.40 && res <= 0.55)
-			res += 0.005f + (getLevel9(x,z) * 0.002f);
+			res += 0.005f + (lvl9 * 0.002f);
 		else if (res >= 0.40)
-			res += (getLevel9(x,z) * 0.13233f);
-		if (res >= 0.6)
-			res += (getLevel9(x,z) * 0.265f);
+			res += (lvl9 * 0.13233f);
+		if (res >= 0.57)
+			res += (lvl0b * 0.545f)+ (lvl9 * 0.12f);
 		if (res < 0.2)
 			res += (lvl4+lvl0) * 0.075f;
 		// NBBN
