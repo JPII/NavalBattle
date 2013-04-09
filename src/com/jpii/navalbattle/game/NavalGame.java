@@ -51,7 +51,7 @@ public class NavalGame extends Game{
 		getWorld().setEntityManager(nm);
 		omnimap = new OmniMap(getWorld());
 		getWindows().add(hud);
-		getWindows().add(pw);
+		//getWindows().add(pw);
 		getWindows().add(sb);
 		MessageBox.show("Hey there!","Could not connect to RocketGamer servers.\n\nTrying again in 10 seconds.",
 				MessageBoxIcon.Notify, false);
@@ -66,7 +66,7 @@ public class NavalGame extends Game{
 		pw = new PauseWindow(getWindows());
 		omnimap = new OmniMap(getWorld());
 		getWindows().add(hud);
-		getWindows().add(pw);
+		//getWindows().add(pw);
 		getWindows().add(sb);
 		MessageBox.show("Hey there!","Could not connect to RocketGamer servers.\n\nTrying again in 10 seconds.",
 				MessageBoxIcon.Notify, false);
