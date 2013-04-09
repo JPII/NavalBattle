@@ -51,6 +51,7 @@ public class NavalGame extends Game{
 		omnimap = new OmniMap(getWorld());
 		getWindows().add(hud);
 		getWindows().add(pw);
+		getWindows().add(sb);
 		MessageBox.show("Hey there!","Could not connect to RocketGamer servers.\n\nTrying again in 10 seconds.",
 				MessageBoxIcon.Notify, false);
 
