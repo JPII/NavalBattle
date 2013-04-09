@@ -6,8 +6,10 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.InetAddress;
+import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.net.UnknownHostException;
+import java.util.ArrayList;
 
 import com.jpii.navalbattle.pavo.Game;
 import com.jpii.navalbattle.pavo.gui.MessageBox;
@@ -22,8 +24,10 @@ public class PavoClient implements Runnable{
 	InetAddress address;
 	String selfIP;
 	boolean internetConnected = true;
+	ArrayList<NetAttribute> nas;
 	public PavoClient(String ipaddress) {
 		ip = ipaddress;
+		nas = new ArrayList<NetAttribute>();
 	}
 	
 	public boolean start() {
@@ -48,7 +52,9 @@ public class PavoClient implements Runnable{
 		if (!internetConnected)
 			Game.Settings.currentNetworkState = NetworkState.CONNECTED_TO_NETWORK_NO_INTERNET;
         try {
-			socket = new Socket(address, 670);
+			//socket = new Socket(address, 670);
+        	socket = new Socket();
+        	socket.connect(new InetSocketAddress(address, 670), 1000);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -84,18 +90,38 @@ public class PavoClient implements Runnable{
             		entry = true;
             		tmpMsg = "HELLO";
             	}
-            	String rl = br.readLine();
-            	if (rl != null && !rl.equals(""))
-            		onMessageRecieved(rl);
 				writingToServer = true;
             	pw.println(tmpMsg);
-            	tmpMsg = "";
+            	tmpMsg = null;
             	writingToServer = false;
-            	try {
-            		Thread.sleep(50);
+            	
+            	String rl = br.readLine();
+            	
+            	if (rl.equals("HELLO")) 
+            		onConnection();
+            	else if (rl != null && !rl.equals("")) {
+            		if (rl.startsWith("NA")) {
+            			rl = rl.replace("NA", "");
+            			String name = rl.substring(0,rl.indexOf(":")+1);
+            			String val = rl.replace(name, "");
+            			name = name.replace(":", "");
+            			nas.add(new NetAttribute(name,val));
+            		}
+            		else if (rl.startsWith("MSG")) {
+            			rl = rl.replace("MSG", "");
+            			onMessageRecieved(rl);
+            		}
+            		else
+            			System.out.println(rl);
             	}
-            	catch (Throwable t) {
-            	}
+            	//if (rl != null && !rl.equals(""))
+            		//onMessageRecieved(rl);
+            	
+//            	try {
+//            		Thread.sleep(50);
+//            	}
+//            	catch (Throwable t) {
+//            	}
 			} catch (IOException e) {
 				if (e.getMessage().equals("Connection reset")) {
 					doing = false;
@@ -132,6 +158,11 @@ public class PavoClient implements Runnable{
 		}
 	}
 	
+	
+	public void onConnection() {
+		
+	}
+	
 	public String getIP() {
 		return ip;
 	}
@@ -161,9 +192,38 @@ public class PavoClient implements Runnable{
 		thread = null;
 	}
 	String tmpMsg = "";
-	public void send(String message) {
+	/*public void send(String message) {
 		while (writingToServer) {
 		}
 		tmpMsg = message;
+	}*/
+	
+	
+
+	public void sendAttribute(NetAttribute attr) {
+		while (writingToServer || tmpMsg != null) {
+			
+		}
+		tmpMsg = attr.getComposite();
+	}
+	
+	public void sendMessage(String msg) {
+		while (writingToServer || tmpMsg != null) {
+			
+		}
+		tmpMsg = "MSG"+msg;
+	}
+	
+	public NetAttribute getNetAttribute(String name) {
+		NetAttribute attr = null;
+		for (int c = 0; c < nas.size(); c++) {
+			NetAttribute b = nas.get(c);
+			if (b.getName().toLowerCase().equals(name.toLowerCase())) {
+				attr = b;
+				c = nas.size() + 10;
+				break;
+			}
+		}
+		return attr;
 	}
 }

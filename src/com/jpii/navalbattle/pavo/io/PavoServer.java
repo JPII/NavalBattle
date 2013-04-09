@@ -108,7 +108,7 @@ public class PavoServer implements Runnable {
 		while (doing) {
 			serverIsWriting = true;
 			out.println(sendTmp);
-			sendTmp = "";
+			sendTmp = null;
 			serverIsWriting = false;
 			try {
 				Thread.sleep(50);
@@ -118,6 +118,25 @@ public class PavoServer implements Runnable {
 			}
             try {
             	String rl = br.readLine();
+            	if (rl.equals("HELLO")) 
+            		onClientConnect();
+            	else if (rl != null && !rl.equals("")) {
+            		connected = true;
+            		if (rl.startsWith("NA")) {
+            			rl = rl.replace("NA", "");
+            			String name = rl.substring(0,rl.indexOf(":")+1);
+            			String val = rl.replace(name, "");
+            			name = name.replace(":", "");
+            			nas.add(new NetAttribute(name,val));
+            		}
+            		else if (rl.startsWith("MSG")) {
+            			rl = rl.replace("MSG", "");
+            			onMessageRecieved(rl);
+            		}
+            		else
+            			System.out.println(rl);
+            	}
+            	/*String rl = br.readLine();
             	if (rl.equals("HELLO")) {
             		onClientConnect();
             	}
@@ -133,8 +152,8 @@ public class PavoServer implements Runnable {
             		else {
             			onMessageRecieved(rl);
             		}
-            	}
-			} catch (IOException e) {
+            	}*/
+			} catch (Exception e) {
 				if (e.getMessage().equals("Connection reset") || e.getMessage().equals("Software caused connection abort: recv failed")) {
 					doing = false;
 					break;
@@ -185,20 +204,26 @@ public class PavoServer implements Runnable {
 		
 	}
 	
-	String sendTmp = "";
+	String sendTmp = "HELLO";
 	boolean serverIsWriting = false;
-	public void send(String msg) {
+	/*public void send(String msg) {
 		while (serverIsWriting) {
 			
 		}
 		sendTmp = msg;
-	}
+	}*/
 	
 	public void sendAttribute(NetAttribute attr) {
-		while (serverIsWriting) {
+		while (serverIsWriting || sendTmp != null) {
 			
 		}
 		sendTmp = attr.getComposite();
+	}
+	public void sendMessage(String msg) {
+		while (serverIsWriting || sendTmp != null) {
+			
+		}
+		sendTmp = "MSG" + msg;
 	}
 	
 	public NetAttribute getNetAttribute(String name) {
