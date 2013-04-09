@@ -7,15 +7,15 @@ import com.jpii.navalbattle.renderer.Helper;
 public class BaseWindow extends com.jpii.gamekit.gui.BaseWindow{
 	private static final long serialVersionUID = 1L;
 	
-	public BaseWindow(){
+	public BaseWindow() {
 		super();
 	}
 	
-	public BaseWindow(int arg0, int arg1){
+	public BaseWindow(int arg0, int arg1) {
 		super(arg0, arg1);
 	}
 	
-	public void setDefaults(){
+	public void setDefaults() {
 		this.setIconImage(Helper.GUI_WINDOW_ICON);
 		setTitle("NavalBattle");
 		addWindowListener(Constants.closer);

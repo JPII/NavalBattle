@@ -33,6 +33,7 @@ public class WindowHandler extends com.jpii.gamekit.gui.WindowHandler{
 		new CreditsWindow();
 		new BroadcastWindow();
 		new UpdateWindow();
+		new GameOverWindow();
 		toasterManager = new Toaster();
 	}
 	
