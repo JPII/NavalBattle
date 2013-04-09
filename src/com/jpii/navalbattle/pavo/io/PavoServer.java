@@ -247,6 +247,10 @@ public class PavoServer implements Runnable {
 		System.out.println("Recieved from client (the requestor): " + msg);
 	}
 	
+	public void send(String me) {
+		//dummy function
+	}
+	
 	public void halt() {
 		doing = false;
 		try {

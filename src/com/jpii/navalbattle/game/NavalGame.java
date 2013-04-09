@@ -57,6 +57,7 @@ public class NavalGame extends Game{
 				MessageBoxIcon.Notify, false);
 
 	}
+	
 	public NavalGame(PavoOpenState pos, String flags) {
 		super(pos,flags);
 		nm = new NavalManager(getWorld());

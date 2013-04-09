@@ -207,6 +207,10 @@ public class PavoClient implements Runnable{
 		tmpMsg = attr.getComposite();
 	}
 	
+	public void send(String me) {
+		//dummy function
+	}
+	
 	public void sendMessage(String msg) {
 		while (writingToServer || tmpMsg != null) {
 			
