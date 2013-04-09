@@ -71,6 +71,8 @@ public class ProceduralLayeredMapGenerator {
 				res = 0;
 		}
 		
+		
+		
 		return res;
 	}
 	private static float ld0 = 1024;

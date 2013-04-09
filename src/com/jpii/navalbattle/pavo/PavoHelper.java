@@ -233,8 +233,10 @@ public class PavoHelper {
 			return 32;
 		else if (ws == WorldSize.WORLD_SMALL)
 			return 16;
+		else if (ws == WorldSize.WORLD_OF_NORTH_KOREA)
+			return 12;
 		else 
-			return 4;
+			return 14;
 	}
 	
 	/** Gets the height of the world.
@@ -250,8 +252,10 @@ public class PavoHelper {
 			return 32;
 		else if (ws == WorldSize.WORLD_SMALL)
 			return 16;
+		else if (ws == WorldSize.WORLD_OF_NORTH_KOREA)
+			return 12;
 		else 
-			return 4;
+			return 14;
 	}
 	
 	/**
