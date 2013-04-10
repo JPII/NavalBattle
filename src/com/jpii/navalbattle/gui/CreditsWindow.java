@@ -19,95 +19,110 @@ package com.jpii.navalbattle.gui;
 
 import javax.swing.*;
 
+import com.jpii.gamekit.GameKit;
+import com.jpii.navalbattle.data.Constants;
+import com.roketgamer.RoketGamer;
+
 import java.awt.*;
 import java.awt.event.*;
 
 public class CreditsWindow extends BaseWindow {
 	private static final long serialVersionUID = 1L;
-	private JLabel gameTitle;
-	private JLabel licenseNotice;
 	private JButton btnClose;
-	private JLabel mattWaller;
-	private JLabel zachMathewson;
-	private JLabel anthonyRole;
-	private JLabel thomasRole;
+	
+	private String contributorsText = "Many thanks to our contributors who have contributed to the project:" +
+			"<ul><li><b>Anthony \"abauer\" Bauer</b> - game design lead</li>" +
+			"<li><b>Thomas \"TexasGamer\" Gaubert</b> - SCM manager, RoketGamer lead</li>" +
+			"<li><b>Max \"maximusvladimir\" Kirkby</b> - grid and rendering lead</li>" +
+			"<li><b>JR \"DarkWarHero\" Vetus</b> - AI lead</li>" +
+			"<li><b>Matt \"Matthis5point0\" Waller</b> - QA and game-play lead</li>" +
+			"<li><b>Zach \"smeagle42\" Matthewson</b> - art and music lead</li>" +
+			"</ul>";
 
 	public CreditsWindow() {
 
 		getContentPane().setLayout(null);
-		gameTitle = new JLabel("NavalBattle");
-		licenseNotice = new JLabel("NavalBattle is open source under the GNU General Public License v3.");
 		btnClose = new JButton("Close");
-		JLabel anthonyBauer = new JLabel("Anthony \"abauer\" Bauer");
-		JLabel thomasGaubert = new JLabel("Thomas \"TexasGamer\" Gaubert");
-		JLabel maxKirkby = new JLabel("Max \"maximusvladimir\" Kirkby");
-		JLabel jrVetus = new JLabel("JR \"DarkWarHero\" Vetus");
-		mattWaller = new JLabel("Matt \"Matthis5point0\" Waller");
-		zachMathewson = new JLabel("Zach \"smeagle42\" Mathewson");
-		anthonyRole = new JLabel("Game design lead");
-		thomasRole = new JLabel("SCM manager, RoketGamer lead");
-		JLabel maxRole = new JLabel("Rendering lead");
-		JLabel jrRole = new JLabel("AI lead");
-		JLabel mattRole = new JLabel("QA lead, game-play lead");
-		JLabel zachRole = new JLabel("art lead, music lead");
-		JLabel gitHub = new JLabel("GitHub");
-		JLabel roketGamer = new JLabel("RoketGamer");
-		JLabel githubRole = new JLabel("Source code hosting, SCM");
-		JLabel roketgamerRole = new JLabel("Online social gaming");
-
-		gameTitle.setFont(new Font("Tahoma", Font.BOLD, 14));
-		anthonyRole.setFont(new Font("Tahoma", Font.BOLD, 11));
-		thomasRole.setFont(new Font("Tahoma", Font.BOLD, 11));
-		maxRole.setFont(new Font("Tahoma", Font.BOLD, 11));
-		jrRole.setFont(new Font("Tahoma", Font.BOLD, 11));
-		mattRole.setFont(new Font("Tahoma", Font.BOLD, 11));
-		zachRole.setFont(new Font("Tahoma", Font.BOLD, 11));
-		githubRole.setFont(new Font("Tahoma", Font.BOLD, 11));
-		roketgamerRole.setFont(new Font("Tahoma", Font.BOLD, 11));
-
-		gameTitle.setBounds(10, 11, 86, 14);
-		licenseNotice.setBounds(0, 292, 492, 15);
-		btnClose.setBounds(10, 251, 90, 30);
-		anthonyBauer.setBounds(10, 36, 209, 14);
-		thomasGaubert.setBounds(10, 61, 209, 14);
-		maxKirkby.setBounds(10, 86, 209, 14);
-		jrVetus.setBounds(10, 111, 220, 14);
-		mattWaller.setBounds(10, 135, 220, 14);
-		zachMathewson.setBounds(10, 161, 209, 14);
-		anthonyRole.setBounds(260, 37, 117, 14);
-		thomasRole.setBounds(260, 62, 189, 14);
-		maxRole.setBounds(260, 87, 189, 14);
-		jrRole.setBounds(260, 112, 189, 14);
-		mattRole.setBounds(260, 137, 189, 14);
-		zachRole.setBounds(260, 162, 189, 14);
-		gitHub.setBounds(10, 186, 46, 14);
-		roketGamer.setBounds(10, 211, 117, 14);
-		githubRole.setBounds(260, 187, 156, 14);
-		roketgamerRole.setBounds(260, 211, 117, 14);
-
-		licenseNotice.setHorizontalAlignment(SwingConstants.CENTER);
-
-		getContentPane().add(gameTitle);
-		getContentPane().add(licenseNotice);
-		getContentPane().add(btnClose);	
-		getContentPane().add(anthonyBauer);
-		getContentPane().add(thomasGaubert);
-		getContentPane().add(maxKirkby);
-		getContentPane().add(jrVetus);
-		getContentPane().add(mattWaller);
-		getContentPane().add(zachMathewson);		
-		getContentPane().add(anthonyRole);
-		getContentPane().add(thomasRole);
-		getContentPane().add(maxRole);
-		getContentPane().add(jrRole);
-		getContentPane().add(mattRole);		
-		getContentPane().add(zachRole);
-		getContentPane().add(gitHub);
-		getContentPane().add(roketGamer);
-		getContentPane().add(githubRole);
-		getContentPane().add(roketgamerRole);
+		btnClose.setBounds(10, 261, 90, 30);
+		getContentPane().add(btnClose);
 
 		btnClose.setFocusable(false);
+		
+		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
+		tabbedPane.setBounds(0, 0, 476, 250);
+		getContentPane().add(tabbedPane);
+		
+		JPanel navalbattlePanel = new JPanel();
+		tabbedPane.addTab("NavalBattle", null, navalbattlePanel, null);
+		navalbattlePanel.setLayout(null);
+		
+		JLabel lblNavalbattle = new JLabel("NavalBattle");
+		lblNavalbattle.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNavalbattle.setFont(new Font("Tahoma", Font.PLAIN, 38));
+		lblNavalbattle.setBounds(111, 11, 197, 46);
+		navalbattlePanel.add(lblNavalbattle);
+		
+		JLabel lblNBVersion = new JLabel("Version " + Constants.NAVALBATTLE_VERSION + " (" + Constants.NAVALBATTLE_CODENAME + ")");
+		lblNBVersion.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNBVersion.setBounds(111, 68, 197, 14);
+		navalbattlePanel.add(lblNBVersion);
+		
+		JLabel lblNBLicense = new JLabel("NavalBattle is open source under the GNU General Public License v3.");
+		lblNBLicense.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNBLicense.setBounds(10, 187, 409, 14);
+		navalbattlePanel.add(lblNBLicense);
+		
+		JPanel gamekitPanel = new JPanel();
+		tabbedPane.addTab("GameKit", null, gamekitPanel, null);
+		gamekitPanel.setLayout(null);
+		
+		JLabel lblGameKit = new JLabel("GameKit");
+		lblGameKit.setHorizontalAlignment(SwingConstants.CENTER);
+		lblGameKit.setFont(new Font("Tahoma", Font.PLAIN, 38));
+		lblGameKit.setBounds(111, 11, 197, 46);
+		gamekitPanel.add(lblGameKit);
+		
+		JLabel lblGKVersion = new JLabel("Version " + GameKit.getVersion() + " (" + GameKit.getApiLevel() + ")");
+		lblGKVersion.setHorizontalAlignment(SwingConstants.CENTER);
+		lblGKVersion.setBounds(111, 68, 197, 14);
+		gamekitPanel.add(lblGKVersion);
+		
+		JLabel lblGKLicense = new JLabel("GameKit is open source under the GNU General Public License v3.");
+		lblGKLicense.setHorizontalAlignment(SwingConstants.CENTER);
+		lblGKLicense.setBounds(10, 187, 409, 14);
+		gamekitPanel.add(lblGKLicense);
+		
+		JPanel panel = new JPanel();
+		tabbedPane.addTab("RoketGamer", null, panel, null);
+		panel.setLayout(null);
+		
+		JLabel lblRoketgamer = new JLabel("RoketGamer");
+		lblRoketgamer.setHorizontalAlignment(SwingConstants.CENTER);
+		lblRoketgamer.setFont(new Font("Tahoma", Font.PLAIN, 38));
+		lblRoketgamer.setBounds(92, 11, 241, 46);
+		panel.add(lblRoketgamer);
+		
+		JLabel lblRKVersion = new JLabel("Version " + RoketGamer.VERSION);
+		lblRKVersion.setHorizontalAlignment(SwingConstants.CENTER);
+		lblRKVersion.setBounds(111, 68, 197, 14);
+		panel.add(lblRKVersion);
+		
+		JLabel lblRGLink = new JLabel("http://www.roketgamer.com");
+		lblRGLink.setHorizontalAlignment(SwingConstants.CENTER);
+		lblRGLink.setBounds(10, 187, 409, 14);
+		panel.add(lblRGLink);
+		
+		JPanel contributorPanel = new JPanel();
+		tabbedPane.addTab("Contributors", null, contributorPanel, null);
+		contributorPanel.setLayout(null);
+		
+		JTextPane contributorsTextPane = new JTextPane();
+		contributorsTextPane.setFont(new Font("Arial", Font.PLAIN, 11));
+		contributorsTextPane.setContentType("text/html");
+		contributorsTextPane.setEditable(false);
+		contributorsTextPane.setBounds(0, 0, 473, 222);
+		contributorsTextPane.setText(contributorsText);
+		contributorPanel.add(contributorsTextPane);
 
 		btnClose.addMouseListener(new MouseAdapter() {
 			@Override
