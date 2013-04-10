@@ -184,6 +184,11 @@ public class NavalGame extends Game{
 		if (fgaz < -((PavoHelper.getGameHeight(getWorld().getWorldSize()) * 100)-100))
 			fgaz = -((PavoHelper.getGameHeight(getWorld().getWorldSize()) * 100)-100);
 		getWorld().setLoc(fgax,fgaz);
+		int chx = (-getWorld().getScreenX()) + mwe.getX();
+		int chy = (-getWorld().getScreenY()) + mwe.getY(); 
+		chx /= 50;
+		chy /= 50;
+		sb.setMouseTileLocation(chy, chx);
 	}
 	public OmniMap getMap() {
 		return omnimap;
@@ -238,6 +243,11 @@ public class NavalGame extends Game{
 	public void mouseMove(MouseEvent me) {
 		super.mouseMove(me);
 		omnimap.mouseMoved(me);
+		int chx = (-getWorld().getScreenX()) + me.getX();
+		int chy = (-getWorld().getScreenY()) + me.getY(); 
+		chx /= 50;
+		chy /= 50;
+		sb.setMouseTileLocation(chy, chx);
 	}
 	BoxBlurFilter bbf = new BoxBlurFilter();
 	public void render() {

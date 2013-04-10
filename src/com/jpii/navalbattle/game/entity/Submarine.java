@@ -2,7 +2,6 @@ package com.jpii.navalbattle.game.entity;
 
 import com.jpii.navalbattle.pavo.Game;
 import com.jpii.navalbattle.pavo.grid.EntityManager;
-import com.jpii.navalbattle.pavo.grid.GridHelper;
 import com.jpii.navalbattle.pavo.grid.GridedEntityTileOrientation;
 import com.jpii.navalbattle.pavo.grid.Location;
 
@@ -44,13 +43,6 @@ public class Submarine extends MoveableEntity {
 	public void onMouseDown(int x, int y, boolean leftbutton) {
 		super.onMouseDown(x, y, leftbutton);
 	}
-	
-	public void rotateTo(byte rotateto) {
-		boolean flag = GridHelper.canRotate(getManager(), this, rotateto, getELocation().getRow(), getELocation().getCol(), getWidth());
-		if (flag)
-			super.rotateTo(rotateto);
-	}
-	
 	public void toggleElevation(){
 		if(submerged)
 			setId(SUBMARINE_ID);
@@ -83,10 +75,8 @@ public class Submarine extends MoveableEntity {
 	
 	public void resetMovement(){
 		super.resetMovement();
-		System.out.println("here");
 		if(isSumberged()){
 			toggleElevation();
-			System.out.println("fix?");
 		}
 	}
 }

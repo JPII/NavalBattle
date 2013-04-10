@@ -61,6 +61,8 @@ public class GridHelper implements Serializable {
 		if (rotateto == GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT) {
 			for (int c = 0; c < width; c++) {
 				int p = em.getTilePercentLand(row,col+c);
+				if(col+c>=PavoHelper.getGameWidth(em.getWorld().getWorldSize())*2)
+					return false;
 				if (p > Game.Settings.waterThresholdBarrier) {
 					flag = false;
 					break;
@@ -75,6 +77,8 @@ public class GridHelper implements Serializable {
 		if (rotateto == GridedEntityTileOrientation.ORIENTATION_TOPTOBOTTOM) {
 			for (int c = 0; c < width; c++) {
 				int p = em.getTilePercentLand(row-c,col);
+				if(row-c<0)
+					return false;
 				if (p > Game.Settings.waterThresholdBarrier) {
 					flag = false;
 					break;
@@ -89,43 +93,12 @@ public class GridHelper implements Serializable {
 		return flag;
 	}
 	
-	public static boolean canRotate(EntityManager em,Entity e,byte rotateto, int row, int col, int width) {
-		boolean flag = true;
-		if (rotateto == GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT) {
-			for (int c = 0; c < width; c++) {
-				int p = em.getTilePercentLand(row-(width-1),col+c);
-				if (p > Game.Settings.waterThresholdBarrier) {
-					flag = false;
-					break;
-				}
-				Tile<Entity> temp = em.getTile(row-(width-1),col+c);
-				if(temp!=null&&!temp.getEntity().equals(e)){
-					flag=false;
-					break;
-				}
-			}
-		}
-		if (rotateto == GridedEntityTileOrientation.ORIENTATION_TOPTOBOTTOM) {
-			for (int c = 0; c < width; c++) {
-				int p = em.getTilePercentLand(row-c,col);
-				if (p > Game.Settings.waterThresholdBarrier) {
-					flag = false;
-					break;
-				}
-				Tile<Entity> temp = em.getTile(row-c,col);
-				if(temp!=null&&!temp.getEntity().equals(e)){
-					flag=false;
-					break;
-				}
-			}
-		}
-		return flag;
-	}
-	
 	public static boolean canMoveTo(EntityManager em,MoveableEntity e,byte position, int row, int col, int width) {
 		if (position == GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT) {
 			for (int c = 0; c < width; c++) {
 				int p = em.getTilePercentLand(row,col+c);
+				if(col+c>=PavoHelper.getGameWidth(em.getWorld().getWorldSize())*2)
+					return false;
 				if(!e.isInMoveRange(col,row)){
 					return false;
 				}
@@ -141,6 +114,8 @@ public class GridHelper implements Serializable {
 		if (position == GridedEntityTileOrientation.ORIENTATION_TOPTOBOTTOM) {
 			for (int c = 0; c < width; c++) {
 				int p = em.getTilePercentLand(row-c,col);
+				if(row-c<0)
+					return false;
 				if(!e.isInMoveRange(col,row))
 					return false;
 				if (p > Game.Settings.waterThresholdBarrier)
