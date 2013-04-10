@@ -122,10 +122,7 @@ public class LoginWindow extends BaseWindow {
 				
 				try {
 					while(!NavalBattle.getBroadcastService().hasChecked()) { }
-				} catch(Exception e) {
-					NavalBattle.getDebugWindow().printError("Error while checking BroadcastService!");
-					NavalBattle.getDebugWindow().printError(e.getMessage());
-				}
+				} catch(Exception e) { }
 				
 				SwingUtilities.invokeLater(new Runnable() {
 					public void run() {
