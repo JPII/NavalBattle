@@ -63,7 +63,7 @@ public class LoginWindow extends BaseWindow {
 		loginButton.setBounds(400,81,78,30);
 		registerButton.setBounds(400, 113, 78, 30);
 		offlineButton.setBounds(315, 81, 78, 30);
-		lblVersion.setBounds(6, 129, 193, 14);
+		lblVersion.setBounds(7, 139, 193, 14);
 		getContentPane().add(usernameLabel);
 		getContentPane().add(usernameField);
 		getContentPane().add(passwordLabel);
