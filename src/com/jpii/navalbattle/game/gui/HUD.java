@@ -55,19 +55,6 @@ public class HUD extends PWindow{
 	}
 	
 	public void setEntity(Entity e){
-		if(display!=null){
-			if(e==null || !display.equals(e)){
-				if(display.getHandle()==1){
-					MoveableEntity display = (MoveableEntity)this.display;
-					if(display.isMovableTileBeingShown()){
-						display.toggleMovable();
-					}
-					if(display.isAttackTileBeingShown()){
-						display.toggleAttackRange();
-					}
-				}
-			}
-		}
 		display = e;
 		right.setEntity(e);
 		mid.setEntity(e);
@@ -79,7 +66,7 @@ public class HUD extends PWindow{
 		mid.update();
 		if(display != null){
 			setVisible(true);
-			if(display.getHandle()==1){
+			if(display.getHandle()%10 == 1){
 				MoveableEntity display = (MoveableEntity)this.display;
 				if(display.isMovableTileBeingShown()){
 					display.toggleMovable();
@@ -101,7 +88,7 @@ public class HUD extends PWindow{
 	public boolean isShowingMove(){
 		boolean flag = false;
 		if(display!=null)
-			if(display.getHandle() == 1)
+			if(display.getHandle()%10 == 1)
 				flag = ((MoveableEntity) display).isMovableTileBeingShown();
 		return flag;
 	}
@@ -109,7 +96,7 @@ public class HUD extends PWindow{
 	public boolean isShowingAttack(){
 		boolean flag = false;
 		if(display!=null)
-			if(display.getHandle() == 1)
+			if(display.getHandle()%10 == 1)
 				flag = ((MoveableEntity) display).isAttackTileBeingShown();
 		return flag;
 	}
@@ -182,7 +169,7 @@ public class HUD extends PWindow{
 		Tile<Entity> temp = display.getManager().getTile(y,x);
 		if(temp!=null){
 			Entity e = temp.getEntity();
-			if(e.getHandle()==1){
+			if(e.getHandle()%10 == 1){
 			MoveableEntity there = (MoveableEntity)e;
 				if(tm.getTurn().getPlayer().myEntity(there)){
 					System.out.println("You can;t attack your own team");
@@ -219,7 +206,7 @@ public class HUD extends PWindow{
 		Tile<Entity> temp = display.getManager().getTile(y,x);
 		if(temp!=null){
 			Entity e = temp.getEntity();
-			if(e.getHandle()==1){
+			if(e.getHandle()%10 == 1){
 			MoveableEntity there = (MoveableEntity)e;
 				if(tm.getTurn().getPlayer().myEntity(there)){
 					System.out.println("You can;t attack your own team");

@@ -23,12 +23,6 @@ public class MoveableEntity extends Entity {
 	public boolean gunsAttackOption = false;
 	public boolean missileAttackOption = false;
 	public boolean planeAttackOption = false;
-	/**
-	 * @param em
-	 */
-	public MoveableEntity(EntityManager em) {
-		super(em);
-	}
 
 	/**
 	 * @param em

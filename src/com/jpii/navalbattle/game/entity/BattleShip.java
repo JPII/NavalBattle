@@ -9,13 +9,6 @@ import com.jpii.navalbattle.pavo.grid.Location;
 public class BattleShip extends MoveableEntity {
 	private static final long serialVersionUID = 1L;
 	public static GridedEntityTileOrientation BATTLESHIP_ID;
-	/**
-	 * @param em
-	 */
-	public BattleShip(EntityManager em) {
-		super(em);
-		imgLocation="drawable-game/battleship/battleship.png";
-	}
 
 	/**
 	 * @param em

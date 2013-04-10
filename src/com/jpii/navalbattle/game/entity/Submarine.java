@@ -11,13 +11,7 @@ public class Submarine extends MoveableEntity {
 	public static GridedEntityTileOrientation SUBMARINE_ID;
 	public static GridedEntityTileOrientation SUBMARINEU_ID;
 	private boolean submerged=false;
-
-	public Submarine(EntityManager em) {
-		super(em);
-		imgLocation="drawable-game/submarine/submarine.png";
-		handle = 11;
-	}
-
+	
 	public Submarine(EntityManager em, Location loc,byte orientation,int team) {
 		super(em, loc, SUBMARINE_ID,orientation,team);
 		imgLocation="drawable-game/submarine/submarine.png";
@@ -25,7 +19,7 @@ public class Submarine extends MoveableEntity {
 		if (!g.isAClient()) {
 			g.getSelfServer().send("submarine:"+loc.getCol()+","+loc.getRow());
 		}
-		toggleElevation();
+		handle = 11;
 		moved = 0;
 		maxMovement=4;
 		attackRange = 3;
@@ -65,6 +59,10 @@ public class Submarine extends MoveableEntity {
 		submerged = !submerged;
 	}
 	
+	public boolean isSumberged(){
+		return submerged;
+	}
+	
 	/**
 	 * Gets the bow of the ship.
 	 * @return The location. Could be "Unknown", if the Entity is not in the Grid.
@@ -81,5 +79,14 @@ public class Submarine extends MoveableEntity {
 		}
 	
 		return temp;
+	}
+	
+	public void resetMovement(){
+		super.resetMovement();
+		System.out.println("here");
+		if(isSumberged()){
+			toggleElevation();
+			System.out.println("fix?");
+		}
 	}
 }

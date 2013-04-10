@@ -37,7 +37,7 @@ public class Player {
 	public void resetMovement(){
 		for (int index =0; index<entities.size(); index++){
 			Entity e1 = entities.get(index);
-			if(e1.getHandle()==1){
+			if(e1.getHandle()%10 == 1){
 				MoveableEntity e = (MoveableEntity) e1;
 				e.resetMovement();
 			}
@@ -47,7 +47,7 @@ public class Player {
 	public void resetAttack(){
 		for (int index =0; index<entities.size(); index++){
 			Entity e1 = entities.get(index);
-			if(e1.getHandle()==1){
+			if(e1.getHandle()%10 == 1){
 				MoveableEntity e = (MoveableEntity) e1;
 				e.resetAttack();
 			}

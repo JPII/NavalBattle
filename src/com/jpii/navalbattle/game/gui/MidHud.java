@@ -5,6 +5,7 @@ import java.awt.Font;
 import java.awt.Graphics2D;
 
 import com.jpii.navalbattle.game.entity.MoveableEntity;
+import com.jpii.navalbattle.game.entity.Submarine;
 import com.jpii.navalbattle.pavo.grid.Entity;
 import com.jpii.navalbattle.pavo.gui.controls.Control;
 import com.jpii.navalbattle.pavo.gui.controls.PButton;
@@ -53,6 +54,19 @@ public class MidHud{
 	}
 	
 	public void setEntity(Entity e){
+		if(display!=null){
+			if(e==null || !display.equals(e)){
+				if(display.getHandle()%10 == 1){
+					MoveableEntity display = (MoveableEntity)this.display;
+					if(display.isMovableTileBeingShown()){
+						display.toggleMovable();
+					}
+					if(display.isAttackTileBeingShown()){
+						display.toggleAttackRange();
+					}
+				}
+			}
+		}
 		display = e;
 	}
 
@@ -79,12 +93,22 @@ public class MidHud{
 		bulletB.setVisible(false);
 		diplomacy.setVisible(false);
 		diplomacyB.setVisible(false);
+		shop.setVisible(false);
+		shopB.setVisible(false);
+		elevation.setVisible(false);
+		elevationB.setVisible(false);
 		
 		if(display!=null){
 			diplomacy.setVisible(true);
 			diplomacyB.setVisible(true);
 			if(display.getHandle()%10 == 1){
 				MoveableEntity display = (MoveableEntity)this.display;
+				if(display.getHandle()==11){
+					Submarine sub = (Submarine)display;
+					elevationB.setVisible(true);
+					if(!sub.isSumberged()&&tm.getTurn().getPlayer().myEntity(sub))
+						elevation.setVisible(true);
+				}
 				if(display.getMaxMovement()!=display.getMoved())
 					move.setVisible(true);
 				if(!display.getUsedGuns())
@@ -94,14 +118,12 @@ public class MidHud{
 				if(tm.getTurn().getPlayer().myEntity(display)){
 					diplomacy.setVisible(false);
 					diplomacyB.setVisible(false);
+					shop.setVisible(true);
+					shopB.setVisible(true);
 				}
 				moveB.setVisible(true);
 				missileB.setVisible(true);
 				bulletB.setVisible(true);
-				shopB.setVisible(true);
-				elevationB.setVisible(true);
-				shop.setVisible(true);
-				elevation.setVisible(true);
 			}
 		}
 	}
@@ -172,6 +194,7 @@ public class MidHud{
 						display2.toggleMovable();
 					}
 				}
+				update();
 			}
 		});
 		
@@ -181,6 +204,7 @@ public class MidHud{
 					final TurnManager tm2 = tm;
 					tm2.nextTurn();
 				}
+				update();
 			}
 		});
 		
@@ -199,6 +223,7 @@ public class MidHud{
 						attackMissiles = false;	
 					}
 				}
+				update();
 			}
 		});
 		
@@ -217,9 +242,24 @@ public class MidHud{
 						attackGuns = false;	
 					}
 				}
+				update();
 			}
 		});
 		
+		elevationB.addMouseListener(new PMouseEvent(){
+			public void mouseDown(int x, int y, int buttonid) {
+				if(elevation.isVisible()){
+						Submarine sub = (Submarine)display;
+						if(!sub.isSumberged()){
+							sub.toggleElevation();
+							sub.useGuns();
+							sub.useMissiles();
+						}
+				}
+				update();
+			}
+		});
+
 		c.repaint();
 	}
 
