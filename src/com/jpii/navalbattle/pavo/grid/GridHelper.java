@@ -28,6 +28,13 @@ public class GridHelper implements Serializable {
 		}
 		return new Location(r,c);
 	}
+	public Location pollNearLocation(Location l) {
+		Location ln = new Location(random.nextInt(-4, 4)+l.getRow(), random.nextInt(-4,4)+l.getCol());
+		boolean flag = Location.validate(ln);
+		if (flag)
+			System.out.println("Invalid location selected.");
+		return ln;
+	}
 	public Location pollNextWaterTile(int tolerance) {
 		return pollNextLiquidSpace(0, tolerance);
 	}

@@ -24,6 +24,7 @@ import java.awt.Polygon;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseWheelEvent;
+import java.awt.geom.Point2D;
 import java.awt.image.BufferedImage;
 import java.io.Serializable;
 import java.util.Calendar;
@@ -256,31 +257,6 @@ public class Game extends Renderable implements Runnable, Serializable {
 				forceUpdate = false;
 				long updateStart = System.currentTimeMillis();
 				
-				if (getWorld().getMotionEntity() != null && getWorld().getMotionEntity().readyForMove) {
-					Entity e = getWorld().getMotionEntity();
-					if (e.currentLocation == null) {
-						moveStandard = false;
-						loadMotionImage = FileUtils.getImage(e.imgLocation);
-						e.currentLocation = PavoHelper.convertLocationToScreen(getWorld(), e.getOriginalLocation());
-						motionDest = PavoHelper.convertLocationToScreen(getWorld(), e.getLocation());
-						e.setLocation(e.getOriginalLocation());
-						//e.moveTo(new Location(0,0));//Location.Unknown);
-						e.hideEntity();
-						moveStandard = true;
-					}
-					else {
-						Point cl = e.currentLocation;
-						e.currentLocation = new Point(cl.x-3,cl.y-3);//movePointTowards(cl.x-1,cl.y-1);//,motionDest,10);
-						if (e.currentLocation.x > motionDest.x - 5 && e.currentLocation.x < motionDest.y + 5
-								&& e.currentLocation.y > motionDest.y - 5 && e.currentLocation.y < motionDest.y + 5) {
-							getWorld().setMotionEntity(null);
-							getWorld().getMotionEntity().currentLocation = null;
-							getWorld().getMotionEntity().moveTo(e.destiny);
-							System.out.println("hehe");
-						}
-					}
-				}
-				
 				while (getWorld().isLocked()) {}
 				getWorld().lock();
 				getWorld().update();
@@ -450,6 +426,41 @@ public class Game extends Renderable implements Runnable, Serializable {
 			}
 		}
 		
+		
+		if (getWorld().getMotionEntity() != null && getWorld().getMotionEntity().readyForMove) {
+			Entity e = getWorld().getMotionEntity();
+			if (e.currentLocation == null) {
+				moveStandard = false;
+				loadMotionImage = FileUtils.getImage(e.imgLocation);
+				e.currentLocation = PavoHelper.convertLocationToScreen(getWorld(), e.getOriginalLocation());
+				motionDest = PavoHelper.convertLocationToScreen(getWorld(), e.getLocation());
+				e.setLocation(e.getOriginalLocation());
+				//e.moveTo(new Location(0,0));//Location.Unknown);
+				e.hideEntity();
+				moveStandard = true;
+			}
+			else {
+				//Point cl = e.currentLocation;
+				
+				//e.currentLocation = new Point(cl.x-3,cl.y-3);//movePointTowards(cl.x-1,cl.y-1);//,motionDest,10);
+				Point des =PavoHelper.convertLocationToScreen(getWorld(),e.destiny);
+				double d
+				= Math.sqrt(Math.pow(e.currentLocation.x-des.x,2)+Math.pow(e.currentLocation.y-des.y,2));
+				e.currentLocation = movePointTowards(e.currentLocation, des, (int)(d/100));
+				//System.out.println(e.currentLocation);
+				if (e.currentLocation.x > motionDest.x - 5 && e.currentLocation.x < motionDest.y + 5
+						&& e.currentLocation.y > motionDest.y - 5 && e.currentLocation.y < motionDest.y + 5) {
+					getWorld().getMotionEntity().currentLocation = null;
+					getWorld().getMotionEntity().moveTo(e.destiny);
+					getWorld().setMotionEntity(null);
+					//System.out.println("hehe");
+				}
+				//else
+					//forceUpdate = true;
+			}
+		}
+		
+		
 		if (getWorld().getMotionEntity() != null && getWorld().getMotionEntity().readyForMove && moveStandard) {
 			Entity e = getWorld().getMotionEntity();
 			if (e != null && e.currentLocation != null)
@@ -468,10 +479,17 @@ public class Game extends Renderable implements Runnable, Serializable {
 	
 	public Point movePointTowards(Point a, Point b, int distance)
 	{
-	    Point vector = new Point(b.x - a.x, b.y - a.y);
+	    /*Point vector = new Point(b.x - a.x, b.y - a.y);
 	    int length = (int)Math.sqrt(vector.x * vector.x + vector.y * vector.y);
 	    Point unitVector = new Point(vector.x / length, vector.y / length);
-	    return new Point(a.x + unitVector.x * distance, a.y + unitVector.y * distance);
+	    return new Point(a.x + unitVector.x * distance, a.y + unitVector.y * distance);*/
+		//nextLocation = a + UnitVector(a, b) * stepSize
+		Point2D.Double vector = new Point2D.Double(b.x - a.x, b.y - a.y);
+		double length = Math.sqrt(vector.x * vector.x + vector.y * vector.y);
+		Point2D.Double unitVector = new Point2D.Double(vector.x / length, vector.y / length);
+		Point move = new Point((int)(a.x + unitVector.x * 2.3),(int)(a.y + unitVector.y * 2.3));
+		//move.translate(Math.sqrt(Math));
+		return move;
 	}
 	/**
 	 * Gets the active world for the Game.

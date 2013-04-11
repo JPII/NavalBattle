@@ -72,7 +72,7 @@ public class NavalManager extends EntityManager {
 		}
 		gh = new GridHelper(this);
 	}
-	GridHelper gh;
+	public GridHelper gh;
 	
 	public void gameDoneGenerating() {
 		int w1_ = registerEntity(PavoHelper.imgUtilOutline(FileUtils.getImage("drawable-game/other/whaleleft.png"),Game.Settings.GridColor),GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT);
