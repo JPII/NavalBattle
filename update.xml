@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <navalbattle>
-	<string name="version_code">6</string>
-	<string name="version_readable">0.6</string>
-	<string name="update_text"> NavalBattle 0.6 is the next milestone and first beta! Please pull the latest code from GitHub.
+	<string name="version_code">7</string>
+	<string name="version_readable">0.7</string>
+	<string name="update_text"> NavalBattle 0.7 is the next milestone and first beta! Please pull the latest code from GitHub.
 		Changelog:
-		 * Turn system
-		 * Movement of ships
-		 * HUD
-		 * Game saves
-		 * Bug and stability fixes
+		 * Attack system
+		 * Better submarines
+		 * Improved OmniMap
+		 * Readded status bar
+		 * Ports
+		 * Bug fixes and increased stability
 	</string>
 	<string name="update_url">http://github.com/JPII/NavalBattle</string>
 	
