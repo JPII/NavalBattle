@@ -180,8 +180,6 @@ public class PavoHelper {
 	public static boolean isChunkVisibleOnScreen(World w, Chunk c) {
 		if (w == null || c == null)
 			return false;
-		else
-			return true;
 		/*
 		 * DO NOT DELETE THIS CODE. THIS IS A TEMPORARLY FIX, AND MAX WILL BE MAD IF
 		 * THE CODE DISAPPEARS!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -199,8 +197,9 @@ public class PavoHelper {
 		 * !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 		 * !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 		 * !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-		int sx = Math.abs(w.getScreenX());
-		int sy = Math.abs(w.getScreenY());
+		 */
+		int sx = w.getScreenX()*-1;
+		int sy = w.getScreenY()*-1;
 		int px = c.getX() * 100;
 		int py = c.getZ() * 100;
 		if (px-sx+100 >= 0 && py-sy+100 >= 0 && px-sx <= Game.Settings.currentWidth && py-sy <= Game.Settings.currentHeight){
@@ -212,7 +211,6 @@ public class PavoHelper {
 			return true;
 		else
 			return false;
-		*/
 	}
 	
 	public static Point convertLocationToScreen(World w, Location l) {
