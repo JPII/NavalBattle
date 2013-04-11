@@ -37,6 +37,7 @@ public class MidHud{
 	PButton nextEntity;
 	
 	Entity display;
+	MoveableEntity moveE;
 	
 	int width,height;
 	
@@ -53,9 +54,10 @@ public class MidHud{
 		drawText(g);
 	}
 	
-	public void setEntity(Entity e){
+	public void setEntity(Entity e,MoveableEntity me){
+		moveE = me;
 		if(display!=null){
-			if(e==null || !display.equals(e)){
+			if(moveE==null || !display.equals(moveE)){
 				if(display.getHandle()%10 == 1){
 					MoveableEntity display = (MoveableEntity)this.display;
 					if(display.isMovableTileBeingShown()){
@@ -101,21 +103,20 @@ public class MidHud{
 		if(display!=null){
 			diplomacy.setVisible(true);
 			diplomacyB.setVisible(true);
-			if(display.getHandle()%10 == 1){
-				MoveableEntity display = (MoveableEntity)this.display;
-				if(display.getHandle()==11){
-					Submarine sub = (Submarine)display;
+			if(moveE!=null){
+				if(moveE.getHandle()==11){
+					Submarine sub = (Submarine)moveE;
 					elevationB.setVisible(true);
 					if(!sub.isSumberged()&&tm.getTurn().getPlayer().myEntity(sub))
 						elevation.setVisible(true);
 				}
-				if(display.getMaxMovement()!=display.getMoved())
+				if(moveE.getMaxMovement()!=moveE.getMoved())
 					move.setVisible(true);
-				if(!display.getUsedGuns())
+				if(!moveE.getUsedGuns())
 					bullet.setVisible(true);
-				if(!display.getUsedMissiles())
+				if(!moveE.getUsedMissiles())
 					missile.setVisible(true);
-				if(tm.getTurn().getPlayer().myEntity(display)){
+				if(tm.getTurn().getPlayer().myEntity(moveE)){
 					diplomacy.setVisible(false);
 					diplomacyB.setVisible(false);
 					shop.setVisible(true);
@@ -187,11 +188,10 @@ public class MidHud{
 		moveB.addMouseListener(new PMouseEvent(){
 			public void mouseDown(int x, int y, int buttonid) {
 				if(move.isVisible()){
-					if(display!=null && display.getHandle()%10 == 1){
-						MoveableEntity display2 = (MoveableEntity)display;
-						if(display2.isAttackTileBeingShown())
-							display2.toggleAttackRange();
-						display2.toggleMovable();
+					if(moveE!=null){
+						if(moveE.isAttackTileBeingShown())
+							moveE.toggleAttackRange();
+						moveE.toggleMovable();
 					}
 				}
 				update();
@@ -211,14 +211,13 @@ public class MidHud{
 		bulletB.addMouseListener(new PMouseEvent(){
 			public void mouseDown(int x, int y, int buttonid) {
 				if(bullet.isVisible()){
-					if(display!=null && display.getHandle()%10 == 1){
-						MoveableEntity display2 = (MoveableEntity)display;
-						if(display2.isMovableTileBeingShown())
-							display2.toggleMovable();
-						if(display2.isAttackTileBeingShown()&&attackMissiles){
+					if(moveE!=null){
+						if(moveE.isMovableTileBeingShown())
+							moveE.toggleMovable();
+						if(moveE.isAttackTileBeingShown()&&attackMissiles){
 						}
 						else	
-							display2.toggleAttackRange();
+							moveE.toggleAttackRange();
 						attackGuns = true;	
 						attackMissiles = false;	
 					}
@@ -230,14 +229,13 @@ public class MidHud{
 		missileB.addMouseListener(new PMouseEvent(){
 			public void mouseDown(int x, int y, int buttonid) {
 				if(missile.isVisible()){
-					if(display!=null && display.getHandle()%10 == 1){
-						MoveableEntity display2 = (MoveableEntity)display;
-						if(display2.isMovableTileBeingShown())
-							display2.toggleMovable();
-						if(display2.isAttackTileBeingShown()&&attackGuns){
+					if(moveE!=null){
+						if(moveE.isMovableTileBeingShown())
+							moveE.toggleMovable();
+						if(moveE.isAttackTileBeingShown()&&attackGuns){
 						}
 						else	
-							display2.toggleAttackRange();
+							moveE.toggleAttackRange();
 						attackMissiles = true;
 						attackGuns = false;	
 					}

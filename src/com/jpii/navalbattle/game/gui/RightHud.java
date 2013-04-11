@@ -19,6 +19,7 @@ public class RightHud {
 	String movement = new String("");
 	
 	Entity display;
+	MoveableEntity move;
 	
 	public RightHud(int width, int height){
 		centerx = width-210;
@@ -40,8 +41,9 @@ public class RightHud {
 		}
 	}
 	
-	public void setEntity(Entity e){
+	public void setEntity(Entity e,MoveableEntity me){
 		display = e;
+		move = me;
 	}
 	
 	private void drawFrame(Graphics2D g,int x, int y, int width, int height) {
@@ -93,10 +95,9 @@ public class RightHud {
 			boxwidth = tempwidth+100;
 			boxheight = tempheight+100;
 			location = ("[X:"+display.getLocation().getCol()+" Y:"+display.getLocation().getRow()+"]");
-			if(display.getHandle()%10 == 1){
-				MoveableEntity display = (MoveableEntity)this.display;
-				health = ("Health: "+display.getHealth()+"%");
-				movement = ("Movement Left: "+(display.getMaxMovement()-display.getMoved())+" out of "+display.getMaxMovement());
+			if(move!=null){
+				health = ("Health: "+move.getHealth()+"%");
+				movement = ("Movement Left: "+(move.getMaxMovement()-move.getMoved())+" out of "+move.getMaxMovement());
 			}
 		}
 	}
