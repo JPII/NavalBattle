@@ -178,13 +178,14 @@ public class PWindow extends Control {
 	public void onMouseHover(int x, int y) {
 		super.onMouseHover(x, y);
 		cmh = null;
-		for (int c = getTotalControls(); c>0; c--) {
+		for (int c = getTotalControls()-1; c>=0; c--) {
 			Control cn = getControl(c);
 			if (cn != null) {
 				int lx = x - cn.getLocX();
 				int ly = y - cn.getLocY();
 				if (lx >= 0 && ly >= 0 && lx < cn.getWidth() && ly < cn.getHeight()) {
 					cmh = cn;
+					//System.err.println("picked control!");
 					c = getTotalControls() + 5;
 					break;
 				}

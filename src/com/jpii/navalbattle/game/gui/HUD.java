@@ -29,6 +29,7 @@ public class HUD extends PWindow{
 		super(parent, x, y, width, height);
 		this.tm = tm;
 		System.out.println(tm);
+		setToolTip("This is the HUD.");
 		right = new RightHud(width,height);
 		mid = new MidHud(this,tm);
 		left = new LeftHud(height);

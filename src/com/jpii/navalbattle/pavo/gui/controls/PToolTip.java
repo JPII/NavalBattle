@@ -65,7 +65,8 @@ public class PToolTip extends Control {
 		g.setColor(Color.black);
 		g.drawRect(0,0,getWidth(),getHeight());
 		g.setFont(getFont());
-		g.drawString(getMessage(), 3, getHeight()-4);
+		if (getMessage() != null)
+			g.drawString(getMessage(), 3, getHeight()-4);
 	}
 	
 	

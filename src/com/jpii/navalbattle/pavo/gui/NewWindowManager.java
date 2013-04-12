@@ -29,11 +29,12 @@ public class NewWindowManager extends Renderable {
 	Game g;
 	PavoImage grided = null;
 	int lwsw = 0,lwsh = 0;
-	Control tooltipschedule;
+	Control tooltipschedule = null;
 	public static NewWindowManager Inst;
 	java.util.Timer tooltipticker;
 	boolean showtip = false;
 	PToolTip tip;
+	int lmx = 0, lmy = 0;
 	/**
 	 * 
 	 */
@@ -49,17 +50,18 @@ public class NewWindowManager extends Renderable {
 	class CANDYLANDMOUNTAIN extends TimerTask {
 		NewWindowManager nwm;
 		long startTicks = 0;
-		Control tipsch;
+		Control tipsch = null;
 		public CANDYLANDMOUNTAIN(NewWindowManager nwm) {
 			this.nwm = nwm;
 		}
 		public void run() {
 			if (tipsch != nwm.tooltipschedule) {
 				startTicks = System.currentTimeMillis();
+				System.out.println("Tool tip scheduled.");
 				tipsch = nwm.tooltipschedule;
 			}
 			
-			if (System.currentTimeMillis() - startTicks >= 2000) {
+			if (System.currentTimeMillis() - startTicks >= 2000 && tipsch != null && !nwm.showtip) {
 				nwm.showtip = true;
 				tip.setToolTip(tipsch.getToolTip());
 			}
@@ -83,6 +85,8 @@ public class NewWindowManager extends Renderable {
 	public boolean mouseMove(MouseEvent me) {
 		int mx = me.getX();
 		int my = me.getY();
+		lmx = me.getX();
+		lmy = me.getY();
 		for (int c = 0; c < wins.size(); c++) {
 			PWindow gw = wins.get(c);
 			if (gw != null && gw.isVisible()) {
@@ -90,12 +94,14 @@ public class NewWindowManager extends Renderable {
 						&& my >= gw.getLocY() && my <= gw.getLocY() + gw.getHeight()) {
 					gw.onMouseHover(mx-gw.getLocX(), my-gw.getLocY());
 					if (gw.mouseMovedUpon() != tooltipschedule) {
+						//System.out.println("tip cah");
 						if (gw.mouseMovedUpon() != null && gw.mouseMovedUpon().getToolTip() != null
 								&& gw.mouseMovedUpon().getToolTip() != "") {
 							tooltipschedule = gw.mouseMovedUpon();
 							render();
 						}
-						if (gw.mouseMovedUpon() == null) {
+						if (tooltipschedule != null && gw.mouseMovedUpon() == null) {
+							tooltipschedule = null;
 							render();
 						}
 					}
@@ -257,6 +263,10 @@ public class NewWindowManager extends Renderable {
 			int gwy = gw.getLocY();
 			BufferedImage gwb = gw.getBuffer();
 			g2.drawImage(gwb, gwx,gwy, null);
+		}
+		
+		if (tip != null && showtip) {
+			g2.drawImage(tip.getBuffer(), lmx,lmy,null);
 		}
 		g2.dispose();
 	}
