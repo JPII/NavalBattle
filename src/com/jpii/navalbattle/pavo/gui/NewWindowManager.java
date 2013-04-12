@@ -2,13 +2,23 @@ package com.jpii.navalbattle.pavo.gui;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
+import java.util.Timer;
+import java.util.TimerTask;
+
+//import javax.swing.Timer;
+
+//import javax.swing.Timer;
 
 import com.jpii.navalbattle.pavo.Game;
 import com.jpii.navalbattle.pavo.PavoHelper;
 import com.jpii.navalbattle.pavo.Renderable;
+import com.jpii.navalbattle.pavo.gui.controls.Control;
+import com.jpii.navalbattle.pavo.gui.controls.PToolTip;
 import com.jpii.navalbattle.pavo.gui.controls.PWindow;
 import com.jpii.navalbattle.pavo.io.PavoImage;
 
@@ -19,15 +29,41 @@ public class NewWindowManager extends Renderable {
 	Game g;
 	PavoImage grided = null;
 	int lwsw = 0,lwsh = 0;
+	Control tooltipschedule;
 	public static NewWindowManager Inst;
+	java.util.Timer tooltipticker;
+	boolean showtip = false;
+	PToolTip tip;
 	/**
 	 * 
 	 */
 	public NewWindowManager(Game g) {
 		super();
 		this.g = g;
+		tooltipticker = new Timer();
+		tooltipticker.schedule(new CANDYLANDMOUNTAIN(this),0,250);
+		tip = PToolTip.NOTOUCHING_GeneratorRex("Unknown perk.", 2000);
 		wins = new ArrayList<PWindow>();
 		Inst = this;
+	}
+	class CANDYLANDMOUNTAIN extends TimerTask {
+		NewWindowManager nwm;
+		long startTicks = 0;
+		Control tipsch;
+		public CANDYLANDMOUNTAIN(NewWindowManager nwm) {
+			this.nwm = nwm;
+		}
+		public void run() {
+			if (tipsch != nwm.tooltipschedule) {
+				startTicks = System.currentTimeMillis();
+				tipsch = nwm.tooltipschedule;
+			}
+			
+			if (System.currentTimeMillis() - startTicks >= 2000) {
+				nwm.showtip = true;
+				tip.setToolTip(tipsch.getToolTip());
+			}
+		}
 	}
 	public Game getGame() {
 		return g;
@@ -53,6 +89,16 @@ public class NewWindowManager extends Renderable {
 				if (mx >= gw.getLocX() && mx <= gw.getLocX() + gw.getWidth()
 						&& my >= gw.getLocY() && my <= gw.getLocY() + gw.getHeight()) {
 					gw.onMouseHover(mx-gw.getLocX(), my-gw.getLocY());
+					if (gw.mouseMovedUpon() != tooltipschedule) {
+						if (gw.mouseMovedUpon() != null && gw.mouseMovedUpon().getToolTip() != null
+								&& gw.mouseMovedUpon().getToolTip() != "") {
+							tooltipschedule = gw.mouseMovedUpon();
+							render();
+						}
+						if (gw.mouseMovedUpon() == null) {
+							render();
+						}
+					}
 					return true;
 				}
 			}

@@ -31,6 +31,7 @@ public class Control {
 	private Color foreColor = Color.black;
 	private Color backColor = new Color(193,172,134);
 	private boolean intermediate = false;
+	private String tooltip = null;
 	protected ArrayList<PMouseListener> pml = new ArrayList<PMouseListener>();
 	public Control(Control parent) {
 		this.parent = parent;
@@ -598,6 +599,14 @@ public class Control {
 		if (parent != null && !parent.isDisposed()) {
 			parent.repaint();
 		}
+	}
+	
+	public void setToolTip(String message) {
+		tooltip = message;
+	}
+	
+	public String getToolTip() {
+		return tooltip;
 	}
 	
 	protected void createBuffer(boolean transparencyEnabled) {

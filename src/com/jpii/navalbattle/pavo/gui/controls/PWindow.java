@@ -20,6 +20,7 @@ public class PWindow extends Control {
 	private NewWindowManager pare;
 	private PWindowEffect pwething = PWindowEffect.NONE;
 	private boolean centerTitle = false;
+	private Control cmh;
 	
 	/**
 	 * @param parent
@@ -59,6 +60,10 @@ public class PWindow extends Control {
 			centerTitle = value;
 			repaint();
 		}
+	}
+	
+	public Control mouseMovedUpon() {
+		return cmh;
 	}
 	
 	public boolean isTitleCentered() {
@@ -172,7 +177,19 @@ public class PWindow extends Control {
 	
 	public void onMouseHover(int x, int y) {
 		super.onMouseHover(x, y);
-		
+		cmh = null;
+		for (int c = getTotalControls(); c>0; c--) {
+			Control cn = getControl(c);
+			if (cn != null) {
+				int lx = x - cn.getLocX();
+				int ly = y - cn.getLocY();
+				if (lx >= 0 && ly >= 0 && lx < cn.getWidth() && ly < cn.getHeight()) {
+					cmh = cn;
+					c = getTotalControls() + 5;
+					break;
+				}
+			}
+		}
 		lastMouseTitleBarX = x;
 	}
 	
