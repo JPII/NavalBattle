@@ -178,10 +178,10 @@ public class Chunk extends Renderable{
 		Graphics2D g = PavoHelper.createGraphics(buffer);
 		g.drawImage(terrain, 0, 0,103,103, null);
 		
-		g.drawImage(w.getEntityManager().getImage(Tile00), 0, 0, null);
-		g.drawImage(w.getEntityManager().getImage(Tile10), 50, 0, null);
-		g.drawImage(w.getEntityManager().getImage(Tile01), 0, 50, null);
-		g.drawImage(w.getEntityManager().getImage(Tile11), 50, 50, null);
+//		g.drawImage(w.getEntityManager().getImage(Tile00), 0, 0, null);
+//		g.drawImage(w.getEntityManager().getImage(Tile10), 50, 0, null);
+//		g.drawImage(w.getEntityManager().getImage(Tile01), 0, 50, null);
+//		g.drawImage(w.getEntityManager().getImage(Tile11), 50, 50, null);
 		if (Overlay00 != 0) {
 			g.setColor(PavoHelper.changeAlpha(PavoHelper.getColorFromByte(Overlay00), 60));
 			g.fillRect(0,0,50,50);
@@ -198,6 +198,10 @@ public class Chunk extends Renderable{
 			g.setColor(PavoHelper.changeAlpha(PavoHelper.getColorFromByte(Overlay11), 60));
 			g.fillRect(50,50,50,50);
 		}
+		g.drawImage(w.getEntityManager().getImage(Tile00), 0, 0, null);
+		g.drawImage(w.getEntityManager().getImage(Tile10), 50, 0, null);
+		g.drawImage(w.getEntityManager().getImage(Tile01), 0, 50, null);
+		g.drawImage(w.getEntityManager().getImage(Tile11), 50, 50, null);
 		nesa = false;
 		g.dispose();
 		w.chunkrender = true;
