@@ -132,7 +132,7 @@ public class OmniMap extends Renderable {
 		for (int c = 0; c < eme.getTotalEntities(); c++) {
 			Entity ent = eme.getEntity(c);
 			if (ent instanceof PortEntity)
-				g.setColor(Color.green);
+				g.setColor(Color.magenta);
 			else
 				g.setColor(Color.cyan);
 			int rdx = (int)(((ent.getLocation().getCol()*50)*100)/(PavoHelper.getGameWidth(w.getWorldSize()) * 100));
