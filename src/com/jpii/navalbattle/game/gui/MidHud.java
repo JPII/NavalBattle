@@ -130,12 +130,12 @@ public class MidHud{
 	}
 	
 	private void initButtons(Control c){
-		c.addControl(shopB = new PButton(c,(c.getWidth()/2)-150,c.getHeight()-60,30,30));
-		c.addControl(missileB = new PButton(c,(c.getWidth()/2)-90,c.getHeight()-60,30,30));
-		c.addControl(bulletB = new PButton(c,(c.getWidth()/2)-30,c.getHeight()-60,30,30));
-		c.addControl(diplomacyB = new PButton(c,(c.getWidth()/2)+30,c.getHeight()-60,30,30));
-		c.addControl(moveB = new PButton(c,(c.getWidth()/2)+90,c.getHeight()-60,30,30));
-		c.addControl(elevationB = new PButton(c,(c.getWidth()/2)+150,c.getHeight()-60,30,30));
+		c.addControl(shopB = new PButton(c,(c.getWidth()/2)-150,c.getHeight()-60,32,31));
+		c.addControl(missileB = new PButton(c,(c.getWidth()/2)-90,c.getHeight()-60,32,31));
+		c.addControl(bulletB = new PButton(c,(c.getWidth()/2)-30,c.getHeight()-60,32,31));
+		c.addControl(diplomacyB = new PButton(c,(c.getWidth()/2)+30,c.getHeight()-60,32,31));
+		c.addControl(moveB = new PButton(c,(c.getWidth()/2)+90,c.getHeight()-60,32,31));
+		c.addControl(elevationB = new PButton(c,(c.getWidth()/2)+150,c.getHeight()-60,32,31));
 		
 		c.addControl(nextMove = new PButton(c,"End Turn",(c.getWidth()/2)-60,c.getHeight()-130,150,40));
 		c.addControl(nextEntity = new PButton(c,"Next Ship",(c.getWidth()/2)+120,c.getHeight()-130,70,20));
