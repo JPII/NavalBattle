@@ -3,10 +3,7 @@ package com.jpii.navalbattle.turn;
 import java.util.ArrayList;
 
 import com.jpii.navalbattle.game.NavalManager;
-import com.jpii.navalbattle.game.entity.MoveableEntity;
 import com.jpii.navalbattle.pavo.grid.Entity;
-import com.jpii.navalbattle.pavo.grid.EntityManager;
-import com.jpii.navalbattle.pavo.grid.Location;
 
 public class AI extends Player{
 	
@@ -27,8 +24,8 @@ public class AI extends Player{
 	public void takeTurn(){
 		for(int k = 0; k < getTotalEntities(); k++)
 		{
-			Entity ent = getEntity(k);
-			MoveableEntity currentEntity = (MoveableEntity)ent;
+//			Entity ent = getEntity(k);
+//			MoveableEntity currentEntity = (MoveableEntity)ent;
 		}
 		turnOver=true;
 	}
