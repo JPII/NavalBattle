@@ -13,6 +13,7 @@ import com.jpii.navalbattle.pavo.gui.controls.PButton;
 import com.jpii.navalbattle.pavo.gui.controls.PImage;
 import com.jpii.navalbattle.pavo.gui.events.PMouseEvent;
 import com.jpii.navalbattle.turn.PortShop;
+import com.jpii.navalbattle.turn.ShipShop;
 import com.jpii.navalbattle.turn.TurnManager;
 import com.jpii.navalbattle.util.FileUtils;
 
@@ -42,6 +43,7 @@ public class MidHud{
 	MoveableEntity moveE;
 	
 	PortShop ps;
+	ShipShop ss;
 	NewWindowManager parent;
 	
 	int width,height;
@@ -125,6 +127,8 @@ public class MidHud{
 				if(tm.getTurn().getPlayer().myEntity(moveE)){
 					diplomacy.setVisible(false);
 					diplomacyB.setVisible(false);
+					shop.setVisible(true);
+					shopB.setVisible(true);
 				}
 				moveB.setVisible(true);
 				missileB.setVisible(true);
@@ -272,6 +276,11 @@ public class MidHud{
 					ps = new PortShop(parent);
 					update();
 				}
+				else if(moveE!=null){
+					ss = new ShipShop(parent);
+					update();
+				}
+					
 			}
 		});
 
