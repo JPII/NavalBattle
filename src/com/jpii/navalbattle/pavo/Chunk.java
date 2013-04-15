@@ -149,7 +149,7 @@ public class Chunk extends Renderable{
 			for (int zc = 100/3; zc > 0; zc--) {
 				float frsh = ProceduralLayeredMapGenerator.getPoint((xc+(100.0f/3.0f*x))*4.0f, (zc+(100.0f/3.0f*z))*4.0f);
 				float lasy = ProceduralLayeredMapGenerator.getPoint(xc+(100.0f/3.0f*x), zc+(100.0f/3.0f*z));
-				if (lasy > 0.4f && frsh > 0.6f && Game.Settings.rand.nextInt(32) == 2) {
+				if (lasy > 0.4f && frsh > 0.2f && Game.Settings.rand.nextInt(32) == 2) {
 					g.setColor(new Color(120+Game.Settings.rand.nextInt(-25,25),80+Game.Settings.rand.nextInt(-25,25),
 							Game.Settings.rand.nextInt(0,25)));
 					g.drawLine(xc,zc-1,xc,zc+3);

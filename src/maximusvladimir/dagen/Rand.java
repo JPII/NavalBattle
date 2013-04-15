@@ -181,7 +181,13 @@ public class Rand implements Serializable{
 	}
 	public double nextDouble(double min, double max) {
 		double sample = nextDouble();
-		sample += (double)nextInt((int)min,(int)max);
+		if (min < 1.0 && max < 1.0) {
+			double st =((double)nextInt((int)(min*1000000),(int)(max*1000000)))/1000000;
+			sample = 0;
+			sample = st;
+		}
+		else
+			sample += (double)nextInt((int)(min),(int)(max));
 		//sample *= (max+min);
 		//sample -= min;
 		calculations--;

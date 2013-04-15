@@ -51,8 +51,8 @@ public class ProceduralLayeredMapGenerator {
 		float lvl3 = getLevel3(x,z);
 		float lvl4 = getLevel4(x,z);
 		float lvl9 = getLevel9(x,z);
-		double mixer = (((lvl0*25.1f)+(lvl4*4.9f)+
-				(lvl2)+(lvl3*1.75f)) * 0.03053435114503816793893129770992) + (lvl2*0.06);
+		double mixer = (((lvl0*26.76f)+(lvl4*3.9f)+
+				(lvl2)+(lvl3)) * 0.03053435114503816793893129770992) + (lvl2*0.02);
 		double mixed = (((mixer+1)*0.5)-0.1);
 		
 		//if (mixed > 0.57)
@@ -62,14 +62,21 @@ public class ProceduralLayeredMapGenerator {
 		
 		// NBBN
 		res = res * 0.5952f;
-		if (res >= 0.40 && res <= 0.55)
-			res += 0.005f + (lvl9 * 0.002f);
-		else if (res >= 0.40)
-			res += (lvl9 * 0.13233f);
-		if (res >= 0.57)
-			res += (lvl0b * 0.545f)+ (lvl9 * 0.12f);
+		if (res >= 0.40 && res <= 0.55) {
+			float nb=(lvl9 * 0.02f);
+			if (nb > 0.0f && nb < 0.02f)
+				res += nb;
+		}
+		//else if (res >= 0.40)
+			//res += Game.Settings.rand.nextFloat(0.1f,0.3f);//(lvl9 * 0.13233f);
+		if (res >= 0.45) {
+			//float yn= (lvl0b * 0.545f) + (lvl9 * 0.12f);
+			float yn = ((res - 0.45f) * 1.75f) + (lvl0b * 0.2f);///Game.Settings.rand.nextFloat(0.2f,0.5f);
+			//System.out.println("g"+yn);
+			res += yn;
+		}
 		if (res < 0.2)
-			res += (lvl4+lvl0) * 0.075f;
+			res += (lvl4+lvl0) * 0.081f;
 		// NBBN
 		if (res > 1)
 			res = 1;
