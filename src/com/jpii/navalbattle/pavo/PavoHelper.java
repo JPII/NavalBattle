@@ -248,14 +248,14 @@ public class PavoHelper {
 	 */
 	public static int getGameWidth(WorldSize ws) {
 		if (ws == WorldSize.WORLD_HUGE)
-			return 86;
+			return 70;
 		else if (ws == WorldSize.WORLD_LARGE)
-			return 64;
+			return 62;
 		else if (ws == WorldSize.WORLD_MEDIUM)
-			return 32;
+			return 48;
 		else if (ws == WorldSize.WORLD_SMALL)
-			return 16;
-		else if (ws == WorldSize.WORLD_OF_NORTH_KOREA)
+			return 24;
+		else if (ws == WorldSize.WORLD_TINY)
 			return 12;
 		else 
 			return 14;
@@ -266,7 +266,7 @@ public class PavoHelper {
 	 * @return
 	 */
 	public static int getGameHeight(WorldSize ws) {
-		if (ws == WorldSize.WORLD_HUGE)
+		/*if (ws == WorldSize.WORLD_HUGE)
 			return 86;
 		else if (ws == WorldSize.WORLD_LARGE)
 			return 64;
@@ -275,6 +275,18 @@ public class PavoHelper {
 		else if (ws == WorldSize.WORLD_SMALL)
 			return 16;
 		else if (ws == WorldSize.WORLD_OF_NORTH_KOREA)
+			return 12;
+		else 
+			return 14;*/
+		if (ws == WorldSize.WORLD_HUGE)
+			return 70;
+		else if (ws == WorldSize.WORLD_LARGE)
+			return 62;
+		else if (ws == WorldSize.WORLD_MEDIUM)
+			return 48;
+		else if (ws == WorldSize.WORLD_SMALL)
+			return 24;
+		else if (ws == WorldSize.WORLD_TINY)
 			return 12;
 		else 
 			return 14;
