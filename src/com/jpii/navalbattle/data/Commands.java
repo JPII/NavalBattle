@@ -22,6 +22,7 @@ import java.util.ArrayList;
 import com.jpii.gamekit.GameKit;
 import com.jpii.gamekit.debug.*;
 import com.jpii.navalbattle.NavalBattle;
+import com.jpii.navalbattle.game.NavalGame;
 import com.jpii.navalbattle.game.SinglePlayerGame;
 import com.jpii.navalbattle.gui.*;
 import com.jpii.navalbattle.gui.listeners.WindowCloser;
@@ -73,8 +74,8 @@ public class Commands {
 	    add(new Command("setscore", "<score>", "Set game score", new CommandAction() { 
 	    	public void onRun(Command c, String[] args) {
 	    		try {
-	    			NavalBattle.getGameState().setScore(Integer.parseInt(args[0]));
-		    		NavalBattle.getDebugWindow().printInfo("Game score set to " + NavalBattle.getGameState().getScore());
+	    			NavalGame.getManager().getTurnManager().getTurn().getPlayer().setscore(Integer.parseInt(args[0]));
+		    		NavalBattle.getDebugWindow().printInfo("Game score set to " + NavalGame.getManager().getTurnManager().getTurn().getPlayer().getScore());
 	    		} catch (Exception ex) {
 	    			NavalBattle.getDebugWindow().printError("Missing or invalid arg: score");
 	    		}
@@ -84,8 +85,8 @@ public class Commands {
 	    add(new Command("addscore", "<score>", "Add to game score", new CommandAction() { 
 	    	public void onRun(Command c, String[] args) {
 	    		try {
-	    			NavalBattle.getGameState().addScore(Integer.parseInt(args[0]));
-		    		NavalBattle.getDebugWindow().printInfo("Game score set to " + NavalBattle.getGameState().getScore());
+	    			NavalGame.getManager().getTurnManager().getTurn().getPlayer().addscore(Integer.parseInt(args[0]));
+		    		NavalBattle.getDebugWindow().printInfo("Game score set to " + NavalGame.getManager().getTurnManager().getTurn().getPlayer().getScore());
 	    		} catch (Exception ex) {
 	    			NavalBattle.getDebugWindow().printError("Missing or invalid arg: score");
 	    		}
@@ -95,8 +96,8 @@ public class Commands {
 	    add(new Command("removescore", "<score>", "Subtract from game score", new CommandAction() { 
 	    	public void onRun(Command c, String[] args) {
 	    		try {
-	    			NavalBattle.getGameState().subtractScore(Integer.parseInt(args[0]));
-		    		NavalBattle.getDebugWindow().printInfo("Game score set to " + NavalBattle.getGameState().getScore());
+	    			NavalGame.getManager().getTurnManager().getTurn().getPlayer().subtractscore(Integer.parseInt(args[0]));
+		    		NavalBattle.getDebugWindow().printInfo("Game score set to " + NavalGame.getManager().getTurnManager().getTurn().getPlayer().getScore());
 	    		} catch (Exception ex) {
 	    			NavalBattle.getDebugWindow().printError("Missing or invalid arg: score");
 	    		}
@@ -105,14 +106,7 @@ public class Commands {
 	    
 	    add(new Command("getscore", "", "Get game score", new CommandAction() { 
 	    	public void onRun(Command c, String[] args) {
-		    	NavalBattle.getDebugWindow().printInfo("Game score: " + NavalBattle.getGameState().getScore());
-	    	}}
-	    ));
-	    
-	    add(new Command("resetscore", "", "Set game score to 0", new CommandAction() { 
-	    	public void onRun(Command c, String[] args) {
-	    		NavalBattle.getGameState().resetScore();
-		    	NavalBattle.getDebugWindow().printInfo("Game score reset");
+		    	NavalBattle.getDebugWindow().printInfo("Game score: " + NavalGame.getManager().getTurnManager().getTurn().getPlayer().getScore());
 	    	}}
 	    ));
 	    

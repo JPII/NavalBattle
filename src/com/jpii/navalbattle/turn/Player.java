@@ -66,8 +66,16 @@ public class Player {
 		entities.add(e);
 	}
 	
+	public Entity getEntity(int index) {
+		return entities.get(index);
+	}
+	
 	public boolean isTurnOver(){
 		return turnOver;
+	}
+	
+	public int getTotalEntities() {
+		return entities.size();
 	}
 	
 	public void addscore(int add){
