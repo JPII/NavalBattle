@@ -1,11 +1,8 @@
 package com.jpii.navalbattle.game.gui;
 
-import java.awt.Color;
-import java.awt.GradientPaint;
 import java.awt.Graphics2D;
 
 import com.jpii.navalbattle.game.entity.MoveableEntity;
-import com.jpii.navalbattle.pavo.Game;
 import com.jpii.navalbattle.pavo.grid.Entity;
 import com.jpii.navalbattle.pavo.grid.GridHelper;
 import com.jpii.navalbattle.pavo.grid.Location;
@@ -17,7 +14,6 @@ import com.jpii.navalbattle.turn.TurnManager;
 public class HUD extends PWindow{
 	
 	TurnManager tm;
-//	GradientPaint gp;
 	Entity display;
 	MoveableEntity move;
 	boolean pinned = true;
@@ -31,28 +27,26 @@ public class HUD extends PWindow{
 		System.out.println(tm);
 		setToolTip("This is the HUD.");
 		right = new RightHud(width,height);
-		mid = new MidHud(this,tm);
+		mid = new MidHud(this,tm,parent);
 		left = new LeftHud(height);
-//		gp = new GradientPaint(0,0,new Color(96,116,190),0,height,new Color(0,0,54));
 		setTitleVisiblity(false);
 		setVisible(false);
 		update();
-		int ui1 = ui1 = Game.Settings.rand.nextInt();
-		int ui2 = ui2 = ui1 + 5;
-		int ui3 = ui3 = (ui2 & 2) + ui1;
-		int ui4 = ui4 = ui3 >> 2;
-		int ui5 = ui5 = ui4 + 2;
-		int ui6 = ui6 = ui5 / 2;
-		int ui7 = ui7 = ui6 + 5;
-		int ui8 = ui8 = ui7 * -1;
-		System.out.println("ui8"+ui8);
+////		int ui1 = ui1 = Game.Settings.rand.nextInt();
+////		int ui2 = ui2 = ui1 + 5;
+////		int ui3 = ui3 = (ui2 & 2) + ui1;
+////		int ui4 = ui4 = ui3 >> 2;
+////		int ui5 = ui5 = ui4 + 2;
+////		int ui6 = ui6 = ui5 / 2;
+////		int ui7 = ui7 = ui6 + 5;
+////		int ui8 = ui8 = ui7 * -1;
+//		System.out.println("ui8"+ui8);
 	 }
 	 
 	 
 	
 	public void paint(Graphics2D g) {
 		super.paint(g);
-//	 	g.setPaint(gp);
 		g.fillRect(0,0,getWidth(),getHeight());
 		if(right!=null&&mid!=null&&left!=null){
 			right.draw(g);

@@ -6,8 +6,6 @@ package com.jpii.navalbattle.pavo.gui.controls;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.GraphicsConfiguration;
-import java.awt.font.FontRenderContext;
 import java.awt.image.BufferedImage;
 
 import com.jpii.navalbattle.pavo.PavoHelper;

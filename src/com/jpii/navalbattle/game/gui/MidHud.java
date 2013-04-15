@@ -7,10 +7,12 @@ import java.awt.Graphics2D;
 import com.jpii.navalbattle.game.entity.MoveableEntity;
 import com.jpii.navalbattle.game.entity.Submarine;
 import com.jpii.navalbattle.pavo.grid.Entity;
+import com.jpii.navalbattle.pavo.gui.NewWindowManager;
 import com.jpii.navalbattle.pavo.gui.controls.Control;
 import com.jpii.navalbattle.pavo.gui.controls.PButton;
 import com.jpii.navalbattle.pavo.gui.controls.PImage;
 import com.jpii.navalbattle.pavo.gui.events.PMouseEvent;
+import com.jpii.navalbattle.turn.PortShop;
 import com.jpii.navalbattle.turn.TurnManager;
 import com.jpii.navalbattle.util.FileUtils;
 
@@ -39,14 +41,18 @@ public class MidHud{
 	Entity display;
 	MoveableEntity moveE;
 	
+	PortShop ps;
+	NewWindowManager parent;
+	
 	int width,height;
 	
 	TurnManager tm;
 	
-	public MidHud(Control c, TurnManager tm){
+	public MidHud(Control c, TurnManager tm,NewWindowManager pare){
 		initButtons(c);
 		width = c.getWidth();
 		height = c.getHeight();
+		parent = pare;
 		this.tm = tm;
 	}
 
@@ -119,12 +125,14 @@ public class MidHud{
 				if(tm.getTurn().getPlayer().myEntity(moveE)){
 					diplomacy.setVisible(false);
 					diplomacyB.setVisible(false);
-					shop.setVisible(true);
-					shopB.setVisible(true);
 				}
 				moveB.setVisible(true);
 				missileB.setVisible(true);
 				bulletB.setVisible(true);
+			}
+			if(display.getHandle()%10 == 2){
+				shop.setVisible(true);
+				shopB.setVisible(true);
 			}
 		}
 	}
@@ -255,6 +263,15 @@ public class MidHud{
 						}
 				}
 				update();
+			}
+		});
+		
+		shopB.addMouseListener(new PMouseEvent(){
+			public void mouseDown(int x, int y, int buttonid) {
+				if(display!=null&&display.getHandle()%10 == 2){
+					ps = new PortShop(parent);
+					update();
+				}
 			}
 		});
 

@@ -14,24 +14,11 @@ public class LeftHud {
 	}
 	
 	public void draw(Graphics2D g){
-		drawHistoryBox(g);
+		drawPlayerBox(g);
 	}
 	
-	private void drawHistoryBox(Graphics2D g){
-//		g.setPaint(ht);
-//		g.fillRoundRect(25,0,375,151,25,25);
-//		g.setPaint(Color.black);
-//		g.drawRoundRect(25,0,375,151,25,25);
-//		Font krillen = new Font("Arial",0,12);
-//		g.setFont(krillen);
-//		if(events!=null){
-//			System.out.println("start");
-//			g.setColor(Color.green);
-//			for(int q = 0; q < events.length; q++){
-//				System.out.println(events[q]);
-//				drawString(g,events[q],28,getHeight()+(q*-6));
-//			}
-//		}
+	private void drawPlayerBox(Graphics2D g){
+		
 	}
 	
 	public void addEvent(String s){

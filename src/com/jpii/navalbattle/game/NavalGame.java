@@ -34,8 +34,8 @@ import com.jpii.navalbattle.pavo.gui.OmniMap;
  */
 public class NavalGame extends Game{
 	private static final long serialVersionUID = 1L;
-	NavalManager nm;
-	HUD hud;
+	static NavalManager nm;
+	static HUD hud;
 	StatusBar sb;
 	OmniMap omnimap;
 	PauseWindow pw;
@@ -272,7 +272,11 @@ public class NavalGame extends Game{
 		g.dispose();
 	}
 	
-	public HUD getHud(){
+	public static HUD getHud(){
 		return hud;
+	}
+	
+	public static NavalManager getManager(){
+		return nm;
 	}
 }

@@ -6,6 +6,7 @@ import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 
 import com.jpii.navalbattle.NavalBattle;
+import com.jpii.navalbattle.game.NavalGame;
 import com.jpii.navalbattle.pavo.Game;
 import com.jpii.navalbattle.pavo.gui.MessageBox;
 import com.jpii.navalbattle.pavo.gui.MessageBoxIcon;
@@ -52,7 +53,7 @@ public class StatusBar extends PWindow {
 		g.draw3DRect(width-111,2,100,20,true);
 		g.draw3DRect(width-110,3,98,18,true);
 		g.setColor(Color.white);
-		String score = "Score: "+NavalBattle.getGameState().getScore();
+		String score = "Score: "+NavalGame.getManager().getTurnManager().getTurn().getPlayer().getScore();
 		int sd = 2;
 		g.drawString(score, width-110+sd, 17);
 		

@@ -2,6 +2,7 @@ package com.jpii.navalbattle.turn;
 
 import java.util.ArrayList;
 
+import com.jpii.navalbattle.game.NavalGame;
 import com.jpii.navalbattle.game.entity.MoveableEntity;
 import com.jpii.navalbattle.pavo.grid.Entity;
 
@@ -10,11 +11,13 @@ public class Player {
 	ArrayList<Entity> entities;
 	public String name;
 	protected boolean turnOver;
+	int score;
 	
 	public Player(String name){
 		entities = new ArrayList<Entity>();
 		this.name = name;
 		turnOver = false;
+		score = 0;
 	}
 	
 	public void startTurn(){
@@ -32,6 +35,7 @@ public class Player {
 	public void reset(){
 		resetMovement();
 		resetAttack();
+		NavalGame.getHud().update();
 	}
 	
 	public void resetMovement(){
@@ -64,5 +68,21 @@ public class Player {
 	
 	public boolean isTurnOver(){
 		return turnOver;
+	}
+	
+	public void addscore(int add){
+		score +=add;
+	}
+	
+	public void setscore(int set){
+		score = set;
+	}
+	
+	public void subtractscore(int sub){
+		score -=sub;
+	}
+	
+	public int getScore(){
+		return score;
 	}
 }
