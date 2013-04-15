@@ -17,7 +17,7 @@ import com.jpii.navalbattle.turn.TurnManager;
 public class HUD extends PWindow{
 	
 	TurnManager tm;
-	GradientPaint gp;
+//	GradientPaint gp;
 	Entity display;
 	MoveableEntity move;
 	boolean pinned = true;
@@ -33,7 +33,7 @@ public class HUD extends PWindow{
 		right = new RightHud(width,height);
 		mid = new MidHud(this,tm);
 		left = new LeftHud(height);
-		gp = new GradientPaint(0,0,new Color(96,116,190),0,height,new Color(0,0,54));
+//		gp = new GradientPaint(0,0,new Color(96,116,190),0,height,new Color(0,0,54));
 		setTitleVisiblity(false);
 		setVisible(false);
 		update();
@@ -52,7 +52,7 @@ public class HUD extends PWindow{
 	
 	public void paint(Graphics2D g) {
 		super.paint(g);
-		g.setPaint(gp);
+//		g.setPaint(gp);
 		g.fillRect(0,0,getWidth(),getHeight());
 		if(right!=null&&mid!=null&&left!=null){
 			right.draw(g);
