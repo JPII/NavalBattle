@@ -52,7 +52,7 @@ public class HUD extends PWindow{
 	
 	public void paint(Graphics2D g) {
 		super.paint(g);
-//		g.setPaint(gp);
+//	 	g.setPaint(gp);
 		g.fillRect(0,0,getWidth(),getHeight());
 		if(right!=null&&mid!=null&&left!=null){
 			right.draw(g);
