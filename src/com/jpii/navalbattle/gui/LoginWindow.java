@@ -132,10 +132,16 @@ public class LoginWindow extends BaseWindow {
 				
 				SwingUtilities.invokeLater(new Runnable() {
 					public void run() {
-						updateButton.setVisible(NavalBattle.getBroadcastService().needsUpdate());
-						announcementButton.setVisible(NavalBattle.getBroadcastService().hasAnnouncement());
+						try {
+							updateButton.setVisible(NavalBattle.getBroadcastService().needsUpdate());
+							announcementButton.setVisible(NavalBattle.getBroadcastService().hasAnnouncement());
+						} catch(Exception e) {
+							NavalBattle.getDebugWindow().printWarning("Error while setting BroadcastService button(s) visible.");
+						}
 					}
 				});
+				
+				repaint();
 			}
 		});
 		t.start();
