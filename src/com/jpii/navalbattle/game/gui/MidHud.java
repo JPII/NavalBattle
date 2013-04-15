@@ -81,7 +81,7 @@ public class MidHud{
 	}
 
 	private void drawText(Graphics2D g){
-		g.setColor(Color.green);
+		g.setColor(Color.black);
 		Font temp = g.getFont();
 		Font perks = new Font("Arial",0,10);
 		g.setFont(perks);

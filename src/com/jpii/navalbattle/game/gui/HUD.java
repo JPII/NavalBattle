@@ -1,6 +1,8 @@
 package com.jpii.navalbattle.game.gui;
 
+import java.awt.Color;
 import java.awt.Graphics2D;
+import java.awt.Paint;
 
 import com.jpii.navalbattle.game.entity.MoveableEntity;
 import com.jpii.navalbattle.pavo.grid.Entity;
