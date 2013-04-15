@@ -18,10 +18,10 @@ public class LeftHud {
 	}
 	
 	private void drawHistoryBox(Graphics2D g){
-//		g.setPaint(ht);
-//		g.fillRoundRect(25,0,375,151,25,25);
-//		g.setPaint(Color.black);
-//		g.drawRoundRect(25,0,375,151,25,25);
+		g.setPaint(ht);
+		g.fillRoundRect(25,0,375,151,25,25);
+		g.setPaint(Color.black);
+		g.drawRoundRect(25,0,375,151,25,25);
 //		Font krillen = new Font("Arial",0,12);
 //		g.setFont(krillen);
 //		if(events!=null){
