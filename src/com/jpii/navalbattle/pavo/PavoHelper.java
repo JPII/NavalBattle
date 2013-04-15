@@ -216,8 +216,8 @@ public class PavoHelper {
 	public static Point convertLocationToScreen(World w, Location l) {
 		if (w == null || l == null)
 			return null;
-		int sx = Math.abs(w.getScreenX());
-		int sy = Math.abs(w.getScreenY());
+		int sx = -(w.getScreenX());
+		int sy = -(w.getScreenY());
 		int px = l.getCol() * 50;
 		int py = l.getRow() * 50;
 		return new Point(px-sx,py-sy);

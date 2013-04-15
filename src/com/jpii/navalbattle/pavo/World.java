@@ -26,6 +26,7 @@ import maximusvladimir.dagen.Rand;
 import com.jpii.navalbattle.io.Interactable;
 import com.jpii.navalbattle.pavo.grid.Entity;
 import com.jpii.navalbattle.pavo.grid.EntityManager;
+import com.jpii.navalbattle.pavo.grid.Location;
 import com.jpii.navalbattle.pavo.io.PavoImage;
 
 
@@ -44,6 +45,7 @@ public class World extends Renderable implements Interactable {
 	EntityManager em;
 	TimeManager time = new TimeManager();
 	int sx = 0, anisx = 0, anisy = 0,sy = 0;
+	int anix, aniy;
 	PavoImage noise;
 	int zlevel;
 	Game game;
@@ -118,6 +120,16 @@ public class World extends Renderable implements Interactable {
 	}
 	private void runLocLock(int x, int y) {
 		motionEntity = null;
+		anix = x;
+		aniy = y;
+	}
+	/*public void animatedSetLoc(Location l) {
+		Point p = PavoHelper.convertLocationToScreen(this, l);
+		animatedSetLoc(p.x,p.y);
+	}*/
+	public void animatedSetLoc(int x, int y) {
+		anix = x;
+		aniy = y;
 	}
 	public void setLoc(int x, int y) {
 		if (sx != x || sy != y)
@@ -193,7 +205,29 @@ public class World extends Renderable implements Interactable {
 		chunkrender = true;
 	}
 	public synchronized void render() {
-		if (!needsReChunkRender())
+		if (anix != sx || aniy != sy) {
+			int destx = anix;
+			int desty = aniy;
+			int dx = Math.abs(destx) - Math.abs(sx);
+			int dy = Math.abs(desty) - Math.abs(sy);
+			int ds = 90;
+			int ddx = (dx/ds);
+			int ddy = (dy/ds);
+			if (ddx > 1 && ddx < 6)
+				ddx = 5;
+			if (ddy > 1 && ddy < 6)
+				ddy = 5;
+			if (dx > 0)
+				sx += ddx;
+			else
+				sx -= ddx;
+			
+			if (dy > 0)
+				sy += ddy;
+			else
+				sy -= ddy;
+		}
+		else if (!needsReChunkRender())
 			return;
 		long waitStart = System.currentTimeMillis();
 		while (bufferLock) {
