@@ -20,6 +20,7 @@ package com.jpii.navalbattle.gui.listeners;
 import java.awt.event.*;
 import java.util.ArrayList;
 
+import com.jpii.navalbattle.game.NavalGame;
 import com.jpii.navalbattle.game.SinglePlayerGame;
 import com.jpii.navalbattle.gui.*;
 
@@ -59,7 +60,7 @@ public class KeyboardListener implements KeyListener {
 					g.game.toggleFullscreen();
 				}
 				if(k.getKeyCode() == KeyEvent.VK_H){
-					g.game.getGame().getHud().togglePinable();
+					NavalGame.getHud().togglePinable();
 				}
 			}
 		}
