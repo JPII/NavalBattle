@@ -169,7 +169,7 @@ public class HUD extends PWindow{
 	}
 	
 	private boolean attackGuns(int x, int y, boolean leftclick){
-		if(!move.isPrimaryTileBeingShown())
+		if(move!=null && move.isPrimaryTileBeingShown())
 			return false;	
 		
 		if(!tm.getTurn().canFireGuns(move))
@@ -200,7 +200,7 @@ public class HUD extends PWindow{
 	}
 	
 	private boolean attackMissile(int x, int y, boolean leftclick){
-		if(!move.isSecondaryTileBeingShown())
+		if(move!=null && move.isSecondaryTileBeingShown())
 			return false;
 		
 		if(!tm.getTurn().canFireMissiles(move))

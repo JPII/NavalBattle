@@ -47,15 +47,15 @@ import com.jpii.navalbattle.pavo.gui.controls.PWindow;
 	  text6.setLoc(388, 63);
 	  addControl(text6);
 	  PText text7 = new PText(this);
-	  text7.setText("100,000");
+	  text7.setText("1000");
 	  text7.setLoc(380, 81);
 	  addControl(text7);
 	  PText text8 = new PText(this);
-	  text8.setText("25,000");
+	  text8.setText("1250");
 	  text8.setLoc(378, 105);
 	  addControl(text8);
 	  PText text9 = new PText(this);
-	  text9.setText("50,000");
+	  text9.setText("1250");
 	  text9.setLoc(379, 136);
 	  addControl(text9);
 	 }
