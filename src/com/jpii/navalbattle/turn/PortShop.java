@@ -14,14 +14,13 @@ import com.jpii.navalbattle.pavo.gui.controls.PWindow;
 			super(parent);
 			setVisible(true);
 			parent.add(this);
-			setLoc(78, 86);
 			setSize(500, 250);
+			setLoc(390, 275);
 			setText("Port Shop");
 			initItems();
 		}
 		
 		private void initItems(){
-			
 			PText shop = new PText(this);
 			PText score = new PText(this);
 			PButton bship = new PButton(this);
@@ -37,6 +36,9 @@ import com.jpii.navalbattle.pavo.gui.controls.PWindow;
 			PText rprice = new PText(this);
 			
 			shop.setFont(new Font("Verdana Bold", 1, 18));
+			score.setFont(new Font("Verdana Bold", 1, 12));
+			stock.setFont(new Font("Verdana Bold", 1, 12));
+			price.setFont(new Font("Verdana Bold", 1, 12));
 			
 			shop.setText("Port Shop");
 			score.setText("Your Current Score is "+NavalGame.getManager().getTurnManager().getTurn().getPlayer().getScore());
@@ -52,19 +54,19 @@ import com.jpii.navalbattle.pavo.gui.controls.PWindow;
 			acprice.setText("1250");
 			rprice.setText("400");
 			
-			shop.setLoc(199, 32);
-			score.setLoc(4, 224);
-			bship.setLoc(16, 86);
-			sub.setLoc(16, 114);
-			ac.setLoc(16, 143);
-			repair.setLoc(16, 170);
+			shop.setLoc(200,35);
+			score.setLoc(5, 230);
+			bship.setLoc(20, 90);
+			sub.setLoc(20, 120);
+			ac.setLoc(20, 150);
+			repair.setLoc(20, 180);
 			
-			stock.setLoc(55, 60);
-			price.setLoc(388, 63);
-			bprice.setLoc(380, 81);
-			sprice.setLoc(378, 105);
-			acprice.setLoc(379, 136);
-			rprice.setLoc(390, 170);
+			stock.setLoc(60, 60);
+			price.setLoc(390, 60);
+			bprice.setLoc(390, 90);
+			sprice.setLoc(390, 120);
+			acprice.setLoc(390, 150);
+			rprice.setLoc(390, 180);
 			
 			addControl(shop);
 			addControl(score);		
@@ -79,5 +81,4 @@ import com.jpii.navalbattle.pavo.gui.controls.PWindow;
 			addControl(repair);
 			addControl(rprice);
 		}
-
 	}
