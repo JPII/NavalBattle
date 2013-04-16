@@ -3,12 +3,14 @@ package com.jpii.navalbattle.game.gui;
 import java.awt.Graphics2D;
 
 import com.jpii.navalbattle.game.entity.MoveableEntity;
+import com.jpii.navalbattle.game.entity.PortEntity;
 import com.jpii.navalbattle.pavo.grid.Entity;
 import com.jpii.navalbattle.pavo.grid.GridHelper;
 import com.jpii.navalbattle.pavo.grid.Location;
 import com.jpii.navalbattle.pavo.grid.Tile;
 import com.jpii.navalbattle.pavo.gui.NewWindowManager;
 import com.jpii.navalbattle.pavo.gui.controls.PWindow;
+import com.jpii.navalbattle.turn.DamageCalculator;
 import com.jpii.navalbattle.turn.TurnManager;
 
 public class HUD extends PWindow{
@@ -26,7 +28,7 @@ public class HUD extends PWindow{
 		this.tm = tm;
 		System.out.println(tm);
 		setToolTip("This is the HUD.");
-		right = new RightHud(width,height);
+		right = new RightHud(this,width,height);
 		mid = new MidHud(this,tm,parent);
 		left = new LeftHud(height);
 		setTitleVisiblity(false);
@@ -107,13 +109,7 @@ public class HUD extends PWindow{
 	}
 	
 	public boolean hudClick(int x, int y, boolean leftclick){
-		if(moveShip(x,y,leftclick))
-			return true;
-		if(attackGuns(x,y,leftclick))
-			return true;
-		if(attackMissile(x,y,leftclick))
-			return true;
-		return false;
+		return moveShip(x,y,leftclick) || attackGuns(x,y,leftclick) || attackMissile(x,y,leftclick);
 	}
 	
 	private boolean moveShip(int x, int y, boolean leftclick){	
@@ -130,7 +126,7 @@ public class HUD extends PWindow{
 				move.toggleMovable();
 			}
 			move.moveTo(new Location(y,x));
-			addEvent("Moving ship from ("+startr+","+startc+") to ("+move.getLocation().getRow()+","+move.getLocation().getCol()+")");
+			System.out.println("[chat] Moving ship from ("+startr+","+startc+") to ("+move.getLocation().getRow()+","+move.getLocation().getCol()+")");
 			int rowchange = Math.abs(startr - (move.getLocation().getRow())); 
 			int colchange = Math.abs(startc - (move.getLocation().getCol()));
 			if(rowchange>=colchange)
@@ -145,7 +141,7 @@ public class HUD extends PWindow{
 				move.toggleMovable();
 			}
 			move.moveTo(new Location(y,x),move.getOppositeOrientation());
-			addEvent("Moving ship from ("+startr+","+startc+") to ("+move.getLocation().getRow()+","+move.getLocation().getCol()+")");
+			System.out.println("[chat] Moving ship from ("+startr+","+startc+") to ("+move.getLocation().getRow()+","+move.getLocation().getCol()+")");
 			int rowchange = Math.abs(startr - (move.getLocation().getRow())); 
 			int colchange = Math.abs(startc - (move.getLocation().getCol()));
 			if(rowchange>=colchange)
@@ -159,20 +155,22 @@ public class HUD extends PWindow{
 	}
 	
 	private boolean attackGuns(int x, int y, boolean leftclick){
-		if(move!=null && move.isPrimaryTileBeingShown())
+		System.out.println("guns");
+		if(move==null || !move.isPrimaryTileBeingShown())
 			return false;	
-		
 		if(!tm.getTurn().canFireGuns(move))
 			return false;
 		int startr = move.getLocation().getRow();
 		int startc = move.getLocation().getCol();
 		Tile<Entity> temp = move.getManager().getTile(y,x);
+		MoveableEntity there = null;
+		Entity e = null;
 		if(temp!=null){
-			Entity e = temp.getEntity();
+			e = temp.getEntity();
 			if(e.getHandle()%10 == 1){
-			MoveableEntity there = (MoveableEntity)e;
+			there = (MoveableEntity)e;
 				if(tm.getTurn().getPlayer().myEntity(there)){
-					System.out.println("You can;t attack your own team");
+					System.out.println("[chat] You can;t attack your own team");
 					return false;
 				}
 			}
@@ -181,8 +179,13 @@ public class HUD extends PWindow{
 			if(move.isPrimaryTileBeingShown()){
 				move.togglePrimaryRange();
 			}
-			addEvent("Gunning ship from ("+startr+","+startc+") to ("+y+","+x+")");
-			move.useGuns();
+			System.out.println("[chat] Gunning ship from ("+startr+","+startc+") to ("+y+","+x+")");
+			if(there!=null)
+				DamageCalculator.doPrimaryDamage(move, there);
+			if(e.getHandle()==2){
+				PortEntity attacked = (PortEntity)e;
+				DamageCalculator.doPrimaryDamage(move, attacked);
+			}
 			update();
 			return true;
 		}
@@ -190,7 +193,8 @@ public class HUD extends PWindow{
 	}
 	
 	private boolean attackMissile(int x, int y, boolean leftclick){
-		if(move!=null && move.isSecondaryTileBeingShown())
+		System.out.println("missile");
+		if(move==null || !move.isSecondaryTileBeingShown())
 			return false;
 		
 		if(!tm.getTurn().canFireMissiles(move))
@@ -199,12 +203,14 @@ public class HUD extends PWindow{
 		int startr = move.getLocation().getRow();
 		int startc = move.getLocation().getCol();
 		Tile<Entity> temp = move.getManager().getTile(y,x);
+		MoveableEntity there = null;
+		Entity e = null;
 		if(temp!=null){
-			Entity e = temp.getEntity();
+			e = temp.getEntity();
 			if(e.getHandle()%10 == 1){
-			MoveableEntity there = (MoveableEntity)e;
+			there = (MoveableEntity)e;
 				if(tm.getTurn().getPlayer().myEntity(there)){
-					System.out.println("You can;t attack your own team");
+					System.out.println("[chat] You can;t attack your own team");
 					return false;
 				}
 			}
@@ -213,16 +219,17 @@ public class HUD extends PWindow{
 			if(move.isSecondaryTileBeingShown()){
 				move.toggleSecondaryRange();
 			}
-			addEvent("Tomahawk ship from ("+startr+","+startc+") to ("+y+","+x+")");
-			move.useMissiles();
+			System.out.println("[chat] Tomahawk ship from ("+startr+","+startc+") to ("+y+","+x+")");
+			if(there!=null)
+				DamageCalculator.doSecondaryDamage(move, there);
+			if(e.getHandle()==2){
+				PortEntity attacked = (PortEntity)e;
+				DamageCalculator.doSecondaryDamage(move, attacked);
+			}
 			update();
 			return true;
 		}
 		return false;
-	}
-	
-	public void addEvent(String s){
-		
 	}
 	
 	public void togglePinable(){

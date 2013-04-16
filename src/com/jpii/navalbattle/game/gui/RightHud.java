@@ -7,6 +7,8 @@ import java.awt.image.BufferedImage;
 import com.jpii.navalbattle.game.entity.MoveableEntity;
 import com.jpii.navalbattle.game.entity.PortEntity;
 import com.jpii.navalbattle.pavo.grid.Entity;
+import com.jpii.navalbattle.pavo.gui.controls.Control;
+import com.jpii.navalbattle.pavo.gui.controls.PProgress;
 import com.jpii.navalbattle.util.FileUtils;
 
 public class RightHud {
@@ -20,10 +22,15 @@ public class RightHud {
 	
 	Entity display;
 	MoveableEntity move;
+	PProgress heal;
 	
-	public RightHud(int width, int height){
+	public RightHud(Control parent,int width, int height){
 		centerx = width-210;
 		centery = height/2;
+		heal = new PProgress(parent);
+		heal.setLoc(parent.getWidth()/2-150, parent.getHeight()-60);
+		heal.setSize(100, 10);
+		heal.setVisible(true);
 	}
 	
 	public void draw(Graphics2D g){
@@ -97,6 +104,7 @@ public class RightHud {
 			location = ("[X:"+display.getLocation().getCol()+" Y:"+display.getLocation().getRow()+"]");
 			if(move!=null){
 				health = ("Health: "+move.getPercentHealth()+"%");
+				heal.setProgress((int)move.getPercentHealth());
 				movement = ("Movement Left: "+(move.getMaxMovement()-move.getMoved())+" out of "+move.getMaxMovement());
 			}
 		}

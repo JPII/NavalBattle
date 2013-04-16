@@ -147,7 +147,7 @@ public class MidHud{
 		}
 	}
 	
-	private void initButtons(Control c){
+	private void initButtons(Control c){		
 		c.addControl(shopB = new PButton(c,(c.getWidth()/2)-150,c.getHeight()-60,32,31));
 		c.addControl(missileB = new PButton(c,(c.getWidth()/2)-90,c.getHeight()-60,32,31));
 		c.addControl(bulletB = new PButton(c,(c.getWidth()/2)-30,c.getHeight()-60,32,31));
@@ -300,8 +300,8 @@ public class MidHud{
 			Submarine sub = (Submarine)display;
 			if(!sub.isSumberged()){
 				sub.toggleElevation();
-				sub.useGuns();
-				sub.useMissiles();
+				sub.usePrimary();
+				sub.useSecondary();
 			}
 		}
 		update();
