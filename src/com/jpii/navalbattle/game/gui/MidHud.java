@@ -211,88 +211,111 @@ public class MidHud{
 		
 		moveB.addMouseListener(new PMouseEvent(){
 			public void mouseDown(int x, int y, int buttonid) {
-				if(move.isVisible()){
-					if(moveE!=null){
-						if(moveE.isSecondaryTileBeingShown())
-							moveE.toggleSecondaryRange();
-						if(moveE.isPrimaryTileBeingShown())	
-							moveE.togglePrimaryRange();	
-						moveE.toggleMovable();
-					}
-				}
-				update();
+				moveAction();
 			}
 		});
 		
 		nextMove.addMouseListener(new PMouseEvent(){
 			public void mouseDown(int x, int y, int buttonid) {
-				if(nextMove.isVisible()){
-					final TurnManager tm2 = tm;
-					tm2.nextTurn();
-				}
-				update();
+				turnAction();
 			}
 		});
 		
 		bulletB.addMouseListener(new PMouseEvent(){
 			public void mouseDown(int x, int y, int buttonid) {
-				if(bullet.isVisible()){
-					if(moveE!=null){
-						if(moveE.isMovableTileBeingShown())
-							moveE.toggleMovable();
-						if(moveE.isSecondaryTileBeingShown())
-							moveE.toggleSecondaryRange();	
-						moveE.togglePrimaryRange();	
-					}
-				}
-				update();
+				primaryAction();
 			}
 		});
 		
 		missileB.addMouseListener(new PMouseEvent(){
 			public void mouseDown(int x, int y, int buttonid) {
-				if(missile.isVisible()||airstrike.isVisible()){
-					if(moveE!=null){
-						if(moveE.isMovableTileBeingShown())
-							moveE.toggleMovable();
-						if(moveE.isPrimaryTileBeingShown())
-							moveE.togglePrimaryRange();
-						moveE.toggleSecondaryRange();	
-					}
-				}
-				update();
+				secondaryAction();
 			}
 		});
 		
 		elevationB.addMouseListener(new PMouseEvent(){
 			public void mouseDown(int x, int y, int buttonid) {
-				if(elevation.isVisible()){
-						Submarine sub = (Submarine)display;
-						if(!sub.isSumberged()){
-							sub.toggleElevation();
-							sub.useGuns();
-							sub.useMissiles();
-						}
-				}
-				update();
+				submergeAction();
 			}
 		});
 		
 		shopB.addMouseListener(new PMouseEvent(){
 			public void mouseDown(int x, int y, int buttonid) {
-				if(display!=null&&display.getHandle()%10 == 2){
-					ps = new PortShop(parent);
-					update();
-				}
-				else if(moveE!=null){
-					ss = new ShipShop(parent);
-					update();
-				}
-					
+				shopAction();					
 			}
 		});
 
 		c.repaint();
+	}
+	
+	public void moveAction(){
+		if(move.isVisible()){
+			if(moveE!=null){
+				if(moveE.isSecondaryTileBeingShown())
+					moveE.toggleSecondaryRange();
+				if(moveE.isPrimaryTileBeingShown())	
+					moveE.togglePrimaryRange();	
+				moveE.toggleMovable();
+			}
+		}
+		update();
+	}
+	
+	public void turnAction(){
+		if(nextMove.isVisible()){
+			final TurnManager tm2 = tm;
+			tm2.nextTurn();
+		}
+		update();
+	}
+	
+	public void primaryAction(){
+		if(bullet.isVisible()){
+			if(moveE!=null){
+				if(moveE.isMovableTileBeingShown())
+					moveE.toggleMovable();
+				if(moveE.isSecondaryTileBeingShown())
+					moveE.toggleSecondaryRange();	
+				moveE.togglePrimaryRange();	
+			}
+		}
+		update();
+	}
+	
+	public void secondaryAction(){
+		if(missile.isVisible()||airstrike.isVisible()){
+			if(moveE!=null){
+				if(moveE.isMovableTileBeingShown())
+					moveE.toggleMovable();
+				if(moveE.isPrimaryTileBeingShown())
+					moveE.togglePrimaryRange();
+				moveE.toggleSecondaryRange();	
+			}
+		}
+		update();
+	}
+	
+	public void submergeAction(){
+		if(elevation.isVisible()){
+			Submarine sub = (Submarine)display;
+			if(!sub.isSumberged()){
+				sub.toggleElevation();
+				sub.useGuns();
+				sub.useMissiles();
+			}
+		}
+		update();
+	}
+	
+	public void shopAction(){
+		if(display!=null&&display.getHandle()%10 == 2){
+			ps = new PortShop(parent);
+			update();
+		}
+		else if(moveE!=null){
+			ss = new ShipShop(parent);
+			update();
+		}
 	}
 
 }

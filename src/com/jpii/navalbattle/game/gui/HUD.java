@@ -230,4 +230,8 @@ public class HUD extends PWindow{
 		update();
 	}
 	
+	public MidHud getMid(){
+		return mid;
+	}
+	
 }
