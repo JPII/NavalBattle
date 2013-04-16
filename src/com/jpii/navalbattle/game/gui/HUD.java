@@ -62,12 +62,10 @@ public class HUD extends PWindow{
 	
 	public void setEntity(Entity e){
 		display = e;
-		if(display!=null)
-			if(display.getHandle()%10 == 1){
-				move = (MoveableEntity)display;
-			}
-			else
-				move = null;
+		if(display!=null&&display.getHandle()%10 == 1)
+			move = (MoveableEntity)display;
+		else
+			move = null;
 		right.setEntity(e,move);
 		mid.setEntity(e,move);
 		update();
@@ -107,14 +105,6 @@ public class HUD extends PWindow{
 				flag = move.isMovableTileBeingShown();
 		return flag;
 	}
-	
-//	public boolean isShowingAttack(){
-//		boolean flag = false;
-//		if(display!=null)
-//			if(move!=null)
-//				flag = move.isAttackTileBeingShown();
-//		return flag;
-//	}
 	
 	public boolean hudClick(int x, int y, boolean leftclick){
 		if(moveShip(x,y,leftclick))
