@@ -83,9 +83,13 @@ public class HUD extends PWindow{
 					move.toggleMovable();
 					move.toggleMovable();
 				}
-				if(move.isAttackTileBeingShown()){
-					move.toggleAttackRange();
-					move.toggleAttackRange();
+				if(move.isPrimaryTileBeingShown()){
+					move.togglePrimaryRange();
+					move.togglePrimaryRange();
+				}
+				if(move.isSecondaryTileBeingShown()){
+					move.toggleSecondaryRange();
+					move.toggleSecondaryRange();
 				}					
 			}
 		}
@@ -104,13 +108,13 @@ public class HUD extends PWindow{
 		return flag;
 	}
 	
-	public boolean isShowingAttack(){
-		boolean flag = false;
-		if(display!=null)
-			if(move!=null)
-				flag = move.isAttackTileBeingShown();
-		return flag;
-	}
+//	public boolean isShowingAttack(){
+//		boolean flag = false;
+//		if(display!=null)
+//			if(move!=null)
+//				flag = move.isAttackTileBeingShown();
+//		return flag;
+//	}
 	
 	public boolean hudClick(int x, int y, boolean leftclick){
 		if(moveShip(x,y,leftclick))
@@ -165,10 +169,8 @@ public class HUD extends PWindow{
 	}
 	
 	private boolean attackGuns(int x, int y, boolean leftclick){
-		if(!mid.attackGuns)
-			return false;
-		if(!isShowingAttack())
-			return false;		
+		if(!move.isPrimaryTileBeingShown())
+			return false;	
 		
 		if(!tm.getTurn().canFireGuns(move))
 			return false;
@@ -185,9 +187,9 @@ public class HUD extends PWindow{
 				}
 			}
 		}
-		if(leftclick && GridHelper.canAttackTo(move.getManager(), move, y, x)){
-			if(move.isAttackTileBeingShown()){
-				move.toggleAttackRange();
+		if(leftclick && GridHelper.canAttackPrimaryTo(move.getManager(), move, y, x)){
+			if(move.isPrimaryTileBeingShown()){
+				move.togglePrimaryRange();
 			}
 			addEvent("Gunning ship from ("+startr+","+startc+") to ("+y+","+x+")");
 			move.useGuns();
@@ -198,11 +200,8 @@ public class HUD extends PWindow{
 	}
 	
 	private boolean attackMissile(int x, int y, boolean leftclick){
-		if(!mid.attackMissiles)
+		if(!move.isSecondaryTileBeingShown())
 			return false;
-		
-		if(!isShowingAttack())
-			return false;		
 		
 		if(!tm.getTurn().canFireMissiles(move))
 			return false;
@@ -220,9 +219,9 @@ public class HUD extends PWindow{
 				}
 			}
 		}
-		if(leftclick && GridHelper.canAttackTo(move.getManager(), move, y, x)){
-			if(move.isAttackTileBeingShown()){
-				move.toggleAttackRange();
+		if(leftclick && GridHelper.canAttackSecondaryTo(move.getManager(), move, y, x)){
+			if(move.isSecondaryTileBeingShown()){
+				move.toggleSecondaryRange();
 			}
 			addEvent("Tomahawk ship from ("+startr+","+startc+") to ("+y+","+x+")");
 			move.useMissiles();

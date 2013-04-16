@@ -19,9 +19,12 @@ public class Submarine extends MoveableEntity {
 			g.getSelfServer().send("submarine:"+loc.getCol()+","+loc.getRow());
 		}
 		handle = 11;
+		maxHealth = 600;
+		currentHealth = maxHealth;
 		moved = 0;
-		maxMovement=4;
-		attackRange = 3;
+		maxMovement=7;
+		primaryRange = 5;
+		secondaryRange = 7;
 		gunsAttackOption = true;
 		missileAttackOption = true;
 	}

@@ -16,9 +16,13 @@ public class AircraftCarrier extends MoveableEntity {
 		if (!g.isAClient()) {
 			g.getSelfServer().send("aircraftcarrier:"+loc.getCol()+","+loc.getRow());
 		}
+		handle=21;
 		moved=0;
-		maxMovement = 5;
-		attackRange = 7;
+		maxMovement = 3;
+		maxHealth = 2000;
+		currentHealth = maxHealth;
+		primaryRange = 5;
+		secondaryRange = 9;
 		gunsAttackOption = true;
 		planeAttackOption = true;
 	}

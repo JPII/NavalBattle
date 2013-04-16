@@ -21,9 +21,12 @@ public class BattleShip extends MoveableEntity {
 		if (!g.isAClient()) {
 			g.getSelfServer().send("battleship:"+loc.getCol()+","+loc.getRow());
 		}
+		maxHealth = 1200;
+		currentHealth = maxHealth;
 		moved=0;
-		maxMovement = 4;
-		attackRange = 5;
+		maxMovement = 5;
+		primaryRange = 5;
+		secondaryRange = 7;
 		gunsAttackOption = true;
 		missileAttackOption = true;
 	}

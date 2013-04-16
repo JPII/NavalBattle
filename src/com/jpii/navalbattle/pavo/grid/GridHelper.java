@@ -135,8 +135,19 @@ public class GridHelper implements Serializable {
 		return true;
 	}
 	
-	public static boolean canAttackTo(EntityManager em,MoveableEntity e, int row, int col) {
-		if(!e.isInAttackRange(col,row)){
+	public static boolean canAttackPrimaryTo(EntityManager em,MoveableEntity e, int row, int col) {
+		if(!e.isInPrimaryRange(col,row)){
+			return false;
+		}
+		Tile<Entity> temp = em.getTile(row,col);
+		if((temp==null||temp.getEntity().equals(e))){
+			return false;
+		}
+		return true;
+	}
+	
+	public static boolean canAttackSecondaryTo(EntityManager em,MoveableEntity e, int row, int col) {
+		if(!e.isInSecondaryRange(col,row)){
 			return false;
 		}
 		Tile<Entity> temp = em.getTile(row,col);

@@ -14,10 +14,13 @@ public class MoveableEntity extends Entity {
 	private static final long serialVersionUID = 1L;
 	protected int maxMovement;
 	protected int moved;
-	private int health = 100;
-	protected int attackRange;
+	protected int maxHealth = 100;
+	protected int	currentHealth = 100;
+	protected int primaryRange;
+	protected int secondaryRange;
 	private boolean showMove = false;
-	private boolean showAttack = false;
+	private boolean showPrimary = false;
+	private boolean showSecondary = false;
 	private boolean usedGuns = false;
 	private boolean usedMissiles = false;
 	public boolean gunsAttackOption = false;
@@ -41,8 +44,12 @@ public class MoveableEntity extends Entity {
 		return showMove;
 	}
 	
-	public boolean isAttackTileBeingShown() {
-		return showAttack;
+	public boolean isPrimaryTileBeingShown() {
+		return showPrimary;
+	}
+	
+	public boolean isSecondaryTileBeingShown() {
+		return showSecondary;
 	}
 	
 	public void toggleMovable() {
@@ -92,22 +99,22 @@ public class MoveableEntity extends Entity {
 		getManager().getWorld().forceRender();
 	}
 	
-	public void toggleAttackRange(){
+	public void togglePrimaryRange(){
 		short good = PavoHelper.getByteFromColor(new Color(165,42,42));
 		short bad = (short)0x2f1d;
-		if(showAttack){
-			showAttack = false;
+		if(showPrimary){
+			showPrimary = false;
 			good = bad = 0;
 		}
 		else{
-			showAttack = true;
+			showPrimary = true;
 		}
 		
 		if (getCurrentOrientation() == GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT) {
-			for (int x = 0; x < (getAttackRange() * 2) + 1; x++) {
-				for (int y = 0; y < (getAttackRange() * 2) + 1; y++) {
-					int r = getAttackR(y);
-					int c = getAttackC(x);
+			for (int x = 0; x < (getPrimaryRange() * 2) + 1; x++) {
+				for (int y = 0; y < (getPrimaryRange() * 2) + 1; y++) {
+					int r = getPrimaryAttackR(y);
+					int c = getPrimaryAttackC(x);
 					if (r >= 0 && c >= 0) {
 						if(isPossibleAttackChoice(c,r)){
 							getManager().setTileOverlay(r,c,good);
@@ -120,10 +127,56 @@ public class MoveableEntity extends Entity {
 			}
 		}
 		else {
-			for (int x = 0; x < (getAttackRange() * 2) + 1; x++) {
-				for (int y = 0; y < (getAttackRange() * 2) + 1; y++) {
-					int c = (x + getLocation().getCol()) - (((getAttackRange() * 2) + 1)/2);
-					int r = (y + getLocation().getRow()) - (getAttackRange());
+			for (int x = 0; x < (getPrimaryRange() * 2) + 1; x++) {
+				for (int y = 0; y < (getPrimaryRange() * 2) + 1; y++) {
+					int c = (x + getLocation().getCol()) - (((getPrimaryRange() * 2) + 1)/2);
+					int r = (y + getLocation().getRow()) - (getPrimaryRange());
+					if (r >= 0 && c >= 0) {
+						if (isPossibleAttackChoice(c,r)) {
+							getManager().setTileOverlay(r,c,good);
+						}
+						else {
+							getManager().setTileOverlay(r,c,bad);
+						}
+					}
+				}
+			}
+		}
+		getManager().getWorld().forceRender();
+	}
+	
+	public void toggleSecondaryRange(){
+		short good = PavoHelper.getByteFromColor(new Color(165,42,42));
+		short bad = (short)0x2f1d;
+		if(showSecondary){
+			showSecondary = false;
+			good = bad = 0;
+		}
+		else{
+			showSecondary = true;
+		}
+		
+		if (getCurrentOrientation() == GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT) {
+			for (int x = 0; x < (getSecondaryRange() * 2) + 1; x++) {
+				for (int y = 0; y < (getSecondaryRange() * 2) + 1; y++) {
+					int r = getSecondaryAttackR(y);
+					int c = getSecondaryAttackC(x);
+					if (r >= 0 && c >= 0) {
+						if(isPossibleAttackChoice(c,r)){
+							getManager().setTileOverlay(r,c,good);
+						}
+						else {
+							getManager().setTileOverlay(r,c,bad);
+						}
+					}
+				}
+			}
+		}
+		else {
+			for (int x = 0; x < (getSecondaryRange() * 2) + 1; x++) {
+				for (int y = 0; y < (getSecondaryRange() * 2) + 1; y++) {
+					int c = (x + getLocation().getCol()) - (((getSecondaryRange() * 2) + 1)/2);
+					int r = (y + getLocation().getRow()) - (getSecondaryRange());
 					if (r >= 0 && c >= 0) {
 						if (isPossibleAttackChoice(c,r)) {
 							getManager().setTileOverlay(r,c,good);
@@ -148,14 +201,24 @@ public class MoveableEntity extends Entity {
 		return (x + getLocation().getCol()) - (getMovementLeft());
 	}
 	
-	public int getAttackR(int y)
+	public int getPrimaryAttackR(int y)
 	{
-		return (y + getLocation().getRow()) - (((getAttackRange() * 2) + 1)/2);
+		return (y + getLocation().getRow()) - (((getPrimaryRange() * 2) + 1)/2);
 	}
 	
-	public int getAttackC(int x)
+	public int getPrimaryAttackC(int x)
 	{
-		return (x + getLocation().getCol()) - (getAttackRange());
+		return (x + getLocation().getCol()) - (getPrimaryRange());
+	}
+	
+	public int getSecondaryAttackR(int y)
+	{
+		return (y + getLocation().getRow()) - (((getSecondaryRange() * 2) + 1)/2);
+	}
+	
+	public int getSecondaryAttackC(int x)
+	{
+		return (x + getLocation().getCol()) - (getSecondaryRange());
 	}
 	
 	public Tile<?> getTileLR(int x, int y)
@@ -248,23 +311,46 @@ public class MoveableEntity extends Entity {
 		return flag;
 	}
 	
-	public boolean isInAttackRange(int chx, int chy){
-		if(!showAttack)
+	public boolean isInPrimaryRange(int chx, int chy){
+		if(!showPrimary)
 			return false;
 		boolean flag = false;
 		if (getCurrentOrientation() == GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT) {
-			int minr = getLocation().getRow() - getAttackRange();
-			int maxr = getLocation().getRow() + getAttackRange();
-			int minc = getLocation().getCol() - getAttackRange();
-			int maxc = getLocation().getCol() + getAttackRange();
+			int minr = getLocation().getRow() - getPrimaryRange();
+			int maxr = getLocation().getRow() + getPrimaryRange();
+			int minc = getLocation().getCol() - getPrimaryRange();
+			int maxc = getLocation().getCol() + getPrimaryRange();
 			if(chx<=maxc && chx>=minc && chy<=maxr && chy>=minr)
 				flag = true;
 		}
 		else {
-			int minr = getLocation().getRow() - getAttackRange();
-			int maxr = getLocation().getRow() + getAttackRange();
-			int minc = getLocation().getCol() - getAttackRange();
-			int maxc = getLocation().getCol() + getAttackRange();
+			int minr = getLocation().getRow() - getPrimaryRange();
+			int maxr = getLocation().getRow() + getPrimaryRange();
+			int minc = getLocation().getCol() - getPrimaryRange();
+			int maxc = getLocation().getCol() + getPrimaryRange();
+			if(chx<=maxc && chx>=minc && chy<=maxr && chy>=minr)
+				flag = true;
+		}
+		return flag;
+	}
+	
+	public boolean isInSecondaryRange(int chx, int chy){
+		if(!showSecondary)
+			return false;
+		boolean flag = false;
+		if (getCurrentOrientation() == GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT) {
+			int minr = getLocation().getRow() - getSecondaryRange();
+			int maxr = getLocation().getRow() + getSecondaryRange();
+			int minc = getLocation().getCol() - getSecondaryRange();
+			int maxc = getLocation().getCol() + getSecondaryRange();
+			if(chx<=maxc && chx>=minc && chy<=maxr && chy>=minr)
+				flag = true;
+		}
+		else {
+			int minr = getLocation().getRow() - getSecondaryRange();
+			int maxr = getLocation().getRow() + getSecondaryRange();
+			int minc = getLocation().getCol() - getSecondaryRange();
+			int maxc = getLocation().getCol() + getSecondaryRange();
 			if(chx<=maxc && chx>=minc && chy<=maxr && chy>=minr)
 				flag = true;
 		}
@@ -275,8 +361,12 @@ public class MoveableEntity extends Entity {
 		return maxMovement-moved;
 	}
 	
-	public int getAttackRange(){
-		return attackRange;
+	public int getPrimaryRange(){
+		return primaryRange;
+	}
+	
+	public int getSecondaryRange(){
+		return secondaryRange;
 	}
 	
 	public void resetMovement(){
@@ -288,8 +378,8 @@ public class MoveableEntity extends Entity {
 		usedMissiles=false;
 	}
 	
-	public int getHealth(){
-		return health;
+	public int getPercentHealth(){
+		return currentHealth/maxHealth*100;
 	}
 	
 	public int getMaxMovement(){

@@ -18,9 +18,6 @@ import com.jpii.navalbattle.turn.TurnManager;
 import com.jpii.navalbattle.util.FileUtils;
 
 public class MidHud{
-
-	boolean attackGuns = false;
-	boolean attackMissiles = false;
 	
 	PImage missile;
 	PImage bullet;
@@ -28,6 +25,7 @@ public class MidHud{
 	PImage diplomacy;
 	PImage shop;
 	PImage elevation;
+	PImage airstrike;
 	
 	PButton missileB;
 	PButton bulletB;
@@ -71,8 +69,11 @@ public class MidHud{
 					if(display.isMovableTileBeingShown()){
 						display.toggleMovable();
 					}
-					if(display.isAttackTileBeingShown()){
-						display.toggleAttackRange();
+					if(display.isPrimaryTileBeingShown()){
+						display.togglePrimaryRange();
+					}
+					if(display.isSecondaryTileBeingShown()){
+						display.toggleSecondaryRange();
 					}
 				}
 			}
@@ -107,6 +108,7 @@ public class MidHud{
 		shopB.setVisible(false);
 		elevation.setVisible(false);
 		elevationB.setVisible(false);
+		airstrike.setVisible(false);
 		
 		if(display!=null){
 			diplomacy.setVisible(true);
@@ -133,6 +135,10 @@ public class MidHud{
 				moveB.setVisible(true);
 				missileB.setVisible(true);
 				bulletB.setVisible(true);
+				if(moveE.getHandle()==21){
+					airstrike.setVisible(missile.isVisible());
+					missile.setVisible(false);
+				}
 			}
 			if(display.getHandle()%10 == 2){
 				shop.setVisible(true);
@@ -161,6 +167,7 @@ public class MidHud{
 		diplomacy = new PImage(c);
 		shop = new PImage(c);
 		elevation = new PImage(c);
+		airstrike = new PImage(c);
 		
 		shop.setLoc((c.getWidth()/2)-150,c.getHeight()-60);
 		missile.setLoc((c.getWidth()/2)-90,c.getHeight()-60);
@@ -168,6 +175,7 @@ public class MidHud{
 		diplomacy.setLoc((c.getWidth()/2)+30,c.getHeight()-60);
 		move.setLoc((c.getWidth()/2)+90,c.getHeight()-60);
 		elevation.setLoc((c.getWidth()/2)+150,c.getHeight()-60);
+		airstrike.setLoc((c.getWidth()/2)-90,c.getHeight()-60);
 		
 		shop.setSize(30,30);
 		missile.setSize(30,30);
@@ -175,6 +183,7 @@ public class MidHud{
 		diplomacy.setSize(30,30);
 		move.setSize(30,30);
 		elevation.setSize(30,30);
+		airstrike.setSize(30,30);
 		
 		shop.setImage(PImage.registerImage(FileUtils.getImage("drawable-game/Buttons/Shop.png")));
 		missile.setImage(PImage.registerImage(FileUtils.getImage("drawable-game/Buttons/Missile.png")));
@@ -182,6 +191,7 @@ public class MidHud{
 		diplomacy.setImage(PImage.registerImage(FileUtils.getImage("drawable-game/Buttons/Diplomacy.png")));
 		move.setImage(PImage.registerImage(FileUtils.getImage("drawable-game/Buttons/Move.png")));
 		elevation.setImage(PImage.registerImage(FileUtils.getImage("drawable-game/Buttons/Elevation.png")));
+		airstrike.setImage(PImage.registerImage(FileUtils.getImage("drawable-game/Buttons/Airplane.png")));
 		
 		shop.repaint();
 		missile.repaint();
@@ -189,6 +199,7 @@ public class MidHud{
 		diplomacy.repaint();
 		move.repaint();
 		elevation.repaint();
+		airstrike.repaint();
 		
 		c.addControl(shop);
 		c.addControl(missile);
@@ -196,13 +207,16 @@ public class MidHud{
 		c.addControl(diplomacy);
 		c.addControl(move);
 		c.addControl(elevation);
+		c.addControl(airstrike);
 		
 		moveB.addMouseListener(new PMouseEvent(){
 			public void mouseDown(int x, int y, int buttonid) {
 				if(move.isVisible()){
 					if(moveE!=null){
-						if(moveE.isAttackTileBeingShown())
-							moveE.toggleAttackRange();
+						if(moveE.isSecondaryTileBeingShown())
+							moveE.toggleSecondaryRange();
+						if(moveE.isPrimaryTileBeingShown())	
+							moveE.togglePrimaryRange();	
 						moveE.toggleMovable();
 					}
 				}
@@ -226,12 +240,9 @@ public class MidHud{
 					if(moveE!=null){
 						if(moveE.isMovableTileBeingShown())
 							moveE.toggleMovable();
-						if(moveE.isAttackTileBeingShown()&&attackMissiles){
-						}
-						else	
-							moveE.toggleAttackRange();
-						attackGuns = true;	
-						attackMissiles = false;	
+						if(moveE.isSecondaryTileBeingShown())
+							moveE.toggleSecondaryRange();	
+						moveE.togglePrimaryRange();	
 					}
 				}
 				update();
@@ -240,16 +251,13 @@ public class MidHud{
 		
 		missileB.addMouseListener(new PMouseEvent(){
 			public void mouseDown(int x, int y, int buttonid) {
-				if(missile.isVisible()){
+				if(missile.isVisible()||airstrike.isVisible()){
 					if(moveE!=null){
 						if(moveE.isMovableTileBeingShown())
 							moveE.toggleMovable();
-						if(moveE.isAttackTileBeingShown()&&attackGuns){
-						}
-						else	
-							moveE.toggleAttackRange();
-						attackMissiles = true;
-						attackGuns = false;	
+						if(moveE.isPrimaryTileBeingShown())
+							moveE.togglePrimaryRange();
+						moveE.toggleSecondaryRange();	
 					}
 				}
 				update();
