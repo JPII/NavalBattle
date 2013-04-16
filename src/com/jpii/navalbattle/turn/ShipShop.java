@@ -43,7 +43,7 @@ import com.jpii.navalbattle.pavo.gui.controls.PWindow;
 		 button1.setLoc(16, 86);
 		 addControl(button1);
 		 PText text4 = new PText(this);
-		 text4.setText("100");
+		 text4.setText("300");
 		 text4.setLoc(390, 86);
 		 addControl(text4);
 		 
