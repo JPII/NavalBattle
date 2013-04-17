@@ -51,6 +51,8 @@ public class MidHud{
 	
 	public MidHud(Control c, TurnManager tm,NewWindowManager pare){
 		initButtons(c);
+		ps = new PortShop(pare);
+		ss = new ShipShop(pare);
 		width = c.getWidth();
 		height = c.getHeight();
 		parent = pare;

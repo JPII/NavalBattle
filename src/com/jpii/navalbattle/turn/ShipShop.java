@@ -7,6 +7,7 @@ import com.jpii.navalbattle.pavo.gui.NewWindowManager;
 import com.jpii.navalbattle.pavo.gui.controls.PButton;
 import com.jpii.navalbattle.pavo.gui.controls.PText;
 import com.jpii.navalbattle.pavo.gui.controls.PWindow;
+import com.jpii.navalbattle.pavo.gui.events.PMouseEvent;
 
 	public class ShipShop extends PWindow {
 
@@ -88,5 +89,55 @@ import com.jpii.navalbattle.pavo.gui.controls.PWindow;
 			addControl(rprice);
 			addControl(amprice);
 			addControl(reprice);
+			
+			hull.addMouseListener(new PMouseEvent(){
+				public void mouseDown(int x, int y, int buttonid) {
+					armorAction();
+				}
+			});
+			
+			missile.addMouseListener(new PMouseEvent(){
+				public void mouseDown(int x, int y, int buttonid) {
+					nukeAction();
+				}
+			});
+			
+			range.addMouseListener(new PMouseEvent(){
+				public void mouseDown(int x, int y, int buttonid) {
+					sniperAction();
+				}
+			});
+			
+			antimissile.addMouseListener(new PMouseEvent(){
+				public void mouseDown(int x, int y, int buttonid) {
+					flareAction();
+				}
+			});
+			
+			repair.addMouseListener(new PMouseEvent(){
+				public void mouseDown(int x, int y, int buttonid) {
+					medicAction();
+				}
+			});
+		}
+		
+		private void armorAction(){
+			
+		}
+		
+		private void nukeAction(){
+			
+		}
+		
+		private void sniperAction(){
+			
+		}
+		
+		private void flareAction(){
+			
+		}
+		
+		private void medicAction(){
+			
 		}
 	}
