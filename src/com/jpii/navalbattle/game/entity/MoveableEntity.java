@@ -12,7 +12,7 @@ public class MoveableEntity extends Entity {
 	protected int maxMovement;
 	protected int moved;
 	protected int maxHealth = 100;
-	protected int	currentHealth = 100;
+	protected int currentHealth = 100;
 	protected int primaryRange;
 	protected int secondaryRange;
 	private boolean showMove = false;
