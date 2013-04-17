@@ -600,6 +600,9 @@ public class PavoHelper {
 			return Byte.MIN_VALUE;
 		return matchColor(c);
 	}
+	/**
+	 * Color data stole from JGHelper Evil Software, LLC.
+	 */
 	private static Color[] csamples = {
 		Color.red,
 		Color.black,
