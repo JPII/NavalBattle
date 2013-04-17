@@ -614,6 +614,7 @@ public class PavoHelper {
 		Color.lightGray,
 		Color.magenta,
 		Color.orange,
+		Color.white,
 		new Color(255,128,128),
 		new Color(255,192,192),
 		new Color(192,0,0),

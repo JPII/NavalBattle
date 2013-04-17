@@ -134,7 +134,7 @@ public class EntityManager implements Serializable {
 			chunk.Tile11 = t;
 		chunk.writeBuffer();
 	}
-	public void setTileOverlay(int r, int c, short color) {
+	public void setTileOverlay(int r, int c, byte color) {
 		if (c >= PavoHelper.getGameWidth(w.getWorldSize())*2 ||
 				r >= PavoHelper.getGameHeight(w.getWorldSize())*2 || c < 0 || r < 0)
 			return;

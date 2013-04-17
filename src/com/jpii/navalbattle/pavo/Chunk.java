@@ -37,7 +37,8 @@ public class Chunk extends Renderable{
 	int x,z;
 	boolean generated = false;
 	public Tile<Entity> Tile00, Tile10, Tile01,Tile11;
-	public short Overlay00, Overlay10, Overlay01, Overlay11;
+	//byte Overlay00;
+	public byte Overlay00,Overlay10, Overlay01, Overlay11;
 	public short water00 = 0,water01 = 0,water10 = 0,water11 = 0;
 	static Perlin p = new Perlin(Game.Settings.rand.nextLong(),0,0);
 	static Rand rand = new Rand();
@@ -191,19 +192,19 @@ public class Chunk extends Renderable{
 //		g.drawImage(w.getEntityManager().getImage(Tile01), 0, 50, null);
 //		g.drawImage(w.getEntityManager().getImage(Tile11), 50, 50, null);
 		if (Overlay00 != 0) {
-			g.setColor(PavoHelper.changeAlpha(PavoHelper.getColorFromByte(Overlay00), 60));
+			g.setColor(PavoHelper.changeAlpha(PavoHelper.convertByteToColor(Overlay00), 60));
 			g.fillRect(0,0,50,50);
 		}
 		if (Overlay10 != 0) {
-			g.setColor(PavoHelper.changeAlpha(PavoHelper.getColorFromByte(Overlay10), 60));
+			g.setColor(PavoHelper.changeAlpha(PavoHelper.convertByteToColor(Overlay10), 60));
 			g.fillRect(50,0,50,50);
 		}
 		if (Overlay01 != 0) {
-			g.setColor(PavoHelper.changeAlpha(PavoHelper.getColorFromByte(Overlay01), 60));
+			g.setColor(PavoHelper.changeAlpha(PavoHelper.convertByteToColor(Overlay01), 60));
 			g.fillRect(0,50,50,50);
 		}
 		if (Overlay11 != 0) {
-			g.setColor(PavoHelper.changeAlpha(PavoHelper.getColorFromByte(Overlay11), 60));
+			g.setColor(PavoHelper.changeAlpha(PavoHelper.convertByteToColor(Overlay11), 60));
 			g.fillRect(50,50,50,50);
 		}
 		g.drawImage(w.getEntityManager().getImage(Tile00), 0, 0, null);
