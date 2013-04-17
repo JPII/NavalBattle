@@ -1,5 +1,8 @@
 package com.jpii.navalbattle.game.entity;
 
+import java.awt.geom.Area;
+import java.awt.geom.Rectangle2D;
+
 import com.jpii.navalbattle.pavo.Game;
 import com.jpii.navalbattle.pavo.grid.EntityManager;
 import com.jpii.navalbattle.pavo.grid.GridedEntityTileOrientation;
@@ -30,6 +33,20 @@ public class BattleShip extends MoveableEntity {
 		secondaryRange = 7;
 		gunsAttackOption = true;
 		missileAttackOption = true;
+	}
+	public void onTeamColorBeingDrawn(Area a) {
+		if (getCurrentOrientation() == GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT) {
+			if (getLocation().getCol() % 2 == 0)
+				a.add(new Area(new Rectangle2D.Float(95,0,50,0)));
+			else
+				a.add(new Area(new Rectangle2D.Float(145,0,50,0)));
+		}
+		else if (getCurrentOrientation() == GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT) {
+			if (getLocation().getRow() % 2 == 0)
+				a.add(new Area(new Rectangle2D.Float(0,95,0,50)));
+			else
+				a.add(new Area(new Rectangle2D.Float(0,145,0,50)));
+		}
 	}
 	
 	public void init() {
