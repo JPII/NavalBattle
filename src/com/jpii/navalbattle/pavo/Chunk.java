@@ -141,6 +141,14 @@ public class Chunk extends Renderable{
 					base1 = Helper.randomise(base1, 8, rand, false);
 					g.setColor(base1);
 				}
+				if (lsy >= 0.395f && lsy <= 0.405f) {
+					int rgs = Helper.colorSnap((int)(lsy*102));
+					int mod = (int)((lsy * 12) / 0.4f);
+					Color ocean = (new Color(Helper.colorSnap(63+rand.nextInt(-9,7)+mod),Helper.colorSnap(60+rand.nextInt(-9,7))+mod,
+							Helper.colorSnap(rand.nextInt(90, 100)+rgs+mod)));
+					float interpolate = (lsy - 0.395f) / 0.01f;
+					g.setColor(PavoHelper.Lerp(ocean, new Color(199,189,122), interpolate));
+				}
 				g.drawLine(lsx,lsz,lsx,lsz);
 			}
 		}
