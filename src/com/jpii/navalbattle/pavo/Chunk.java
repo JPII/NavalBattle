@@ -18,6 +18,7 @@
 package com.jpii.navalbattle.pavo;
 
 import java.awt.*;
+import java.awt.geom.Area;
 import java.awt.image.BufferedImage;
 import java.util.Random;
 
@@ -206,6 +207,37 @@ public class Chunk extends Renderable{
 		if (Overlay11 != 0) {
 			g.setColor(PavoHelper.changeAlpha(PavoHelper.convertByteToColor(Overlay11), 60));
 			g.fillRect(50,50,50,50);
+		}
+		if (Tile00 != null && Tile00.getEntity() != null && Tile00.getEntity().getTeamColor() != -1) {
+			Area as = new Area();
+			Tile00.getEntity().onTeamColorBeingDrawn(as);
+			g.setColor(PavoHelper.convertByteToColor(Tile00.getEntity().getTeamColor()));
+			//g.translate(x, y)
+			g.fill(as);
+		}
+		if (Tile10 != null && Tile10.getEntity() != null && Tile10.getEntity().getTeamColor() != -1) {
+			Area as = new Area();
+			Tile10.getEntity().onTeamColorBeingDrawn(as);
+			g.setColor(PavoHelper.convertByteToColor(Tile10.getEntity().getTeamColor()));
+			g.translate(50, 0);
+			g.fill(as);
+			g.translate(-50, 0);
+		}
+		if (Tile01 != null && Tile01.getEntity() != null && Tile01.getEntity().getTeamColor() != -1) {
+			Area as = new Area();
+			Tile01.getEntity().onTeamColorBeingDrawn(as);
+			g.translate(0,50);
+			g.setColor(PavoHelper.convertByteToColor(Tile01.getEntity().getTeamColor()));
+			g.fill(as);
+			g.translate(0,-50);
+		}
+		if (Tile11 != null && Tile11.getEntity() != null && Tile11.getEntity().getTeamColor() != -1) {
+			Area as = new Area();
+			Tile11.getEntity().onTeamColorBeingDrawn(as);
+			g.setColor(PavoHelper.convertByteToColor(Tile11.getEntity().getTeamColor()));
+			g.translate(50, 50);
+			g.fill(as);
+			g.translate(-50, -50);
 		}
 		g.drawImage(w.getEntityManager().getImage(Tile00), 0, 0, null);
 		g.drawImage(w.getEntityManager().getImage(Tile10), 50, 0, null);

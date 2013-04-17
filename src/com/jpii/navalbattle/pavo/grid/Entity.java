@@ -17,7 +17,10 @@
 
 package com.jpii.navalbattle.pavo.grid;
 
+import java.awt.Graphics;
 import java.awt.Point;
+import java.awt.Shape;
+import java.awt.geom.Area;
 import java.io.Serializable;
 
 
@@ -30,6 +33,7 @@ public class Entity implements Serializable {
 	private String tag = "";
 	public long lastUpdate = 0;
 	private int width;
+	private byte teamColor = -1;
 	private EntityManager manager;
 	private GridedEntityTileOrientation id;
 	public int teamId;
@@ -53,6 +57,17 @@ public class Entity implements Serializable {
 			return GridedEntityTileOrientation.ORIENTATION_TOPTOBOTTOM;
 		else
 			return GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT;
+	}
+	
+	public void setTeamColor(byte team) {
+		if (teamColor != team) {
+			teamColor = team;
+			setId(id);
+		}
+	}
+	
+	public byte getTeamColor() {
+		return teamColor;
 	}
 	
 	public int getCurrentId() {
@@ -132,6 +147,11 @@ public class Entity implements Serializable {
 			}
 		}
 	}
+	
+	public void onTeamColorBeingDrawn(Area a) {
+		
+	}
+	
 	/**
 	 * Moves the entity to the specified location on the grid.
 	 * @param r The row to move the entity to.
