@@ -104,7 +104,7 @@ public class RightHud {
 			location = ("[X:"+display.getLocation().getCol()+" Y:"+display.getLocation().getRow()+"]");
 			if(move!=null){
 				health = ("Health: "+move.getPercentHealth()+"%");
-				heal.setProgress((int)move.getPercentHealth());
+				heal.setProgress(move.getPercentHealth());
 				movement = ("Movement Left: "+(move.getMaxMovement()-move.getMoved())+" out of "+move.getMaxMovement());
 			}
 		}

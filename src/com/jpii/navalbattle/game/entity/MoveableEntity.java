@@ -378,8 +378,8 @@ public class MoveableEntity extends Entity {
 		usedMissiles=false;
 	}
 	
-	public double getPercentHealth(){
-		return (double)currentHealth/(double)maxHealth*100.0;
+	public int getPercentHealth(){
+		return (int)((double)currentHealth/(double)maxHealth*100.0);
 	}
 	
 	public int getMaxMovement(){
@@ -410,7 +410,11 @@ public class MoveableEntity extends Entity {
 		usedMissiles=true;
 	}
 	
-	public void takeDamage(int dealt){		
+	public boolean takeDamage(int dealt){		
+		int b4 = getPercentHealth();
 		currentHealth -= dealt;
+		if(currentHealth<0)
+			currentHealth=0;
+		return((b4>25&&getPercentHealth()<25)||getPercentHealth()==0);
 	}
 }
