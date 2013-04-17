@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 import com.jpii.navalbattle.game.NavalManager;
 import com.jpii.navalbattle.pavo.grid.Entity;
-import com.jpii.navalbattle.pavo.grid.GridedEntityTileOrientation;
 import com.jpii.navalbattle.game.entity.MoveableEntity;
 
 public class AI extends Player{

@@ -148,8 +148,8 @@ public class Entity implements Serializable {
 		}
 	}
 	
-	public Tile[] getTiles() {
-		Tile[] tiles = new Tile[getWidth()];
+	public Tile<?>[] getTiles() {
+		Tile<?>[] tiles = new Tile[getWidth()];
 		if (getCurrentOrientation() == GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT)
 			for (int w = 0; w < getWidth(); w++) {
 				tiles[w] = manager.getTile(location.getRow(), location.getCol()+w);
