@@ -573,4 +573,113 @@ public class PavoHelper {
 		g.dispose();
 		return b;
 	}
+	
+	public static Color convertByteToColor(byte c) {
+		if (c > csamples.length || c < 0) {
+			return new Rand(c).nextColor();
+		}
+		else
+			return csamples[c];
+	}
+	public static byte matchColor(Color c) {
+		int r=1000,g=1000,b=1000,i=0;
+		int combinatronix = 100000;
+		for (int z = 0; z < csamples.length; z++) {
+			Color grab = csamples[z];
+			int calc = Math.abs(c.getRed()-grab.getRed()) + Math.abs(c.getGreen()-grab.getGreen()) +
+					Math.abs(c.getBlue()-grab.getBlue());
+			if (calc < combinatronix) {
+				combinatronix = calc;
+				i = z;
+			}
+		}
+		return (byte)i;
+	}
+	public static byte convertColorToByte(Color c) {
+		if (c == null)
+			return Byte.MIN_VALUE;
+		return matchColor(c);
+	}
+	private static Color[] csamples = {
+		Color.red,
+		Color.black,
+		Color.blue,
+		Color.cyan,
+		Color.darkGray,
+		Color.gray,
+		Color.green,
+		Color.lightGray,
+		Color.magenta,
+		Color.orange,
+		new Color(255,128,128),
+		new Color(255,192,192),
+		new Color(192,0,0),
+		new Color(128,0,0),
+		new Color(255,224,0),
+		new Color(255,224,64),
+		new Color(255,128,0),
+		new Color(255,64,0),
+		new Color(255,255,128),
+		new Color(255,255,192),
+		new Color(192,192,0),
+		new Color(128,128,0),
+		new Color(128,255,128),
+		new Color(192,255,192),
+		new Color(0,128,0),
+		new Color(0,64,0),
+		new Color(128,128,255),
+		new Color(192,192,255),
+		new Color(0,0,128),
+		new Color(0,0,64),
+		new Color(255,64,255),
+		new Color(255,128,255),
+		new Color(192,0,192),
+		new Color(128,0,128),
+		new Color(128,255,255),
+		new Color(192,255,255),
+		new Color(0,192,192),
+		new Color(0,128,128),
+		new Color(255,194,194),
+		new Color(255,216,216),
+		new Color(240,150,150),
+		new Color(224,128,128),
+		new Color(210,180,140),
+		new Color(231,198,154),
+		new Color(252,216,168),
+		new Color(189,145,87),
+		new Color(168,124,66),
+		new Color(150,100,15),
+		new Color(240,128,240),
+		new Color(128,0,128),
+		new Color(64,224,208),
+		new Color(221,160,221),
+		new Color(75,0,130),
+		new Color(0,255,255),
+		new Color(127,255,112),
+		new Color(218,168,32),
+		new Color(255,215,0),
+		new Color(192,192,192),
+		new Color(164,102,40),
+		new Color(0,128,128),
+		new Color(128,0,0),
+		new Color(255,0,255),
+		new Color(230,230,250),
+		new Color(50,205,50),
+		new Color(0,0,128),
+		new Color(127,255,0),
+		new Color(178,34,34),
+		new Color(255,228,181),
+		new Color(128,128,0),
+		new Color(250,128,114),
+		new Color(240,230,140),
+		new Color(220,20,60),
+		new Color(218,112,214),
+		new Color(160,82,45),
+		new Color(254,186,73),
+		new Color(243,132,0),
+		new Color(226,114,91),
+		new Color(152,118,54),
+		new Color(192,64,0),
+		new Color(255,191,0)
+		};
 }
