@@ -45,21 +45,8 @@ public class AircraftCarrier extends MoveableEntity {
 		super.onMouseDown(x, y, leftbutton);
 	}
 	
-	/**
-	 * Gets the bow of the ship.
-	 * @return The location. Could be "Unknown", if the Entity is not in the Grid.
-	 */
-	public Location getELocation(){
-		Location temp = super.getLocation();
-		if(getCurrentOrientation() == GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT){
-			return temp;
-		}
-		else if(getCurrentOrientation() == GridedEntityTileOrientation.ORIENTATION_TOPTOBOTTOM){
-			temp = new Location(temp.getRow()+(getWidth()-1),temp.getCol());
-			if(startpos)
-				temp = new Location(temp.getRow()+(getWidth()-1),temp.getCol());
-		}
-	
-		return temp;
+	public boolean getUsedMissiles(){
+		missileCount=1;
+		return super.getUsedMissiles();
 	}
 }

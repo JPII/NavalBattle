@@ -395,7 +395,7 @@ public class MoveableEntity extends Entity {
 	}
 	
 	public boolean getUsedMissiles(){
-		return usedMissiles;
+		return usedMissiles && missileCount>0;
 	}
 	
 	public void addMovement(int num){

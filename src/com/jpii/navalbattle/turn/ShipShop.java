@@ -15,6 +15,8 @@ import com.jpii.navalbattle.pavo.gui.events.PMouseEvent;
 		MoveableEntity move;
 		Player current;
 		
+		PButton missile = null;
+		
 		public ShipShop(NewWindowManager parent){
 			super(parent);
 			setVisible(true);
@@ -29,7 +31,7 @@ import com.jpii.navalbattle.pavo.gui.events.PMouseEvent;
 			PText shop = new PText(this);
 			PText score = new PText(this);
 			PButton hull = new PButton(this);
-			PButton missile = new PButton(this);
+			missile = new PButton(this);
 			PButton range = new PButton(this);
 			PButton antimissile = new PButton(this);
 			PButton repair = new PButton(this);
@@ -127,7 +129,7 @@ import com.jpii.navalbattle.pavo.gui.events.PMouseEvent;
 		
 		private void hardenHullAction(){
 			if(current!=null && move!=null){
-				if(current.getScore()>200){
+				if(current.getScore()>=200){
 					current.subtractscore(200);
 					move.hardenHull();
 				}
@@ -136,7 +138,7 @@ import com.jpii.navalbattle.pavo.gui.events.PMouseEvent;
 		
 		private void increaseMissileAction(){
 			if(current!=null && move!=null){
-				if(current.getScore()>250){
+				if(current.getScore()>=250){
 					current.subtractscore(250);
 					move.increaseMissile();
 				}
@@ -145,7 +147,7 @@ import com.jpii.navalbattle.pavo.gui.events.PMouseEvent;
 		
 		private void deflectMisileAction(){
 			if(current!=null && move!=null){
-				if(current.getScore()>350){
+				if(current.getScore()>=350){
 					current.subtractscore(350);
 					move.deflectMissile();
 				}
@@ -154,7 +156,7 @@ import com.jpii.navalbattle.pavo.gui.events.PMouseEvent;
 		
 		private void increaseRangeAction(){
 			if(current!=null && move!=null){
-				if(current.getScore()>700 && move.rangeLimit>0){
+				if(current.getScore()>=700 && move.rangeLimit>0){
 					current.subtractscore(700);
 					move.increaseRange();
 				}
@@ -163,7 +165,7 @@ import com.jpii.navalbattle.pavo.gui.events.PMouseEvent;
 		
 		private void repairAction(){
 			if(current!=null && move!=null){
-				if(current.getScore()>300){
+				if(current.getScore()>=300){
 					current.subtractscore(300);
 					move.repair();
 				}
@@ -180,11 +182,14 @@ import com.jpii.navalbattle.pavo.gui.events.PMouseEvent;
 		public void setVisilbe(MoveableEntity me){
 			move = me;
 			current = null;
+			missile.setVisible(true);
 			if(move == null)
 				super.setVisible(false);
 			else{
 				super.setVisible(true);
 				current = NavalGame.getManager().getTurnManager().findPlayer(me);
+				if(move.getHandle()==21)
+					missile.setVisible(false);
 			}
 		}
 	}

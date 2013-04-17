@@ -58,24 +58,6 @@ public class Submarine extends MoveableEntity {
 		return submerged;
 	}
 	
-	/**
-	 * Gets the bow of the ship.
-	 * @return The location. Could be "Unknown", if the Entity is not in the Grid.
-	 */
-	public Location getELocation(){
-		Location temp = super.getLocation();
-		if(getCurrentOrientation() == GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT){
-			return temp;
-		}
-		else if(getCurrentOrientation() == GridedEntityTileOrientation.ORIENTATION_TOPTOBOTTOM){
-			temp = new Location(temp.getRow()+(getWidth()-1),temp.getCol());
-			if(startpos)
-				temp = new Location(temp.getRow()+(getWidth()-1),temp.getCol());
-		}
-	
-		return temp;
-	}
-	
 	public void resetMovement(){
 		super.resetMovement();
 		if(isSumberged()){
