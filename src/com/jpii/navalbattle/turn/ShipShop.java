@@ -3,6 +3,7 @@ package com.jpii.navalbattle.turn;
 import java.awt.Font;
 
 import com.jpii.navalbattle.game.NavalGame;
+import com.jpii.navalbattle.game.entity.MoveableEntity;
 import com.jpii.navalbattle.pavo.gui.NewWindowManager;
 import com.jpii.navalbattle.pavo.gui.controls.PButton;
 import com.jpii.navalbattle.pavo.gui.controls.PText;
@@ -139,5 +140,20 @@ import com.jpii.navalbattle.pavo.gui.events.PMouseEvent;
 		
 		private void medicAction(){
 			
+		}
+		
+		/**
+		 * @deprecated
+		 */
+		public void setVisible(boolean sight){
+			super.setVisible(false);
+		}
+		
+		public void setVisilbe(MoveableEntity move){
+			if(move == null)
+				super.setVisible(false);
+			else{
+				super.setVisible(true);
+			}
 		}
 	}

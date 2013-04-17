@@ -5,6 +5,7 @@ import java.awt.Font;
 import java.awt.Graphics2D;
 
 import com.jpii.navalbattle.game.entity.MoveableEntity;
+import com.jpii.navalbattle.game.entity.PortEntity;
 import com.jpii.navalbattle.game.entity.Submarine;
 import com.jpii.navalbattle.pavo.grid.Entity;
 import com.jpii.navalbattle.pavo.gui.NewWindowManager;
@@ -314,11 +315,11 @@ public class MidHud{
 	
 	public void shopAction(){
 		if(display!=null&&display.getHandle()%10 == 2){
-			ps = new PortShop(parent);
+			ps.setVisilbe((PortEntity)display);
 			update();
 		}
 		else if(moveE!=null){
-			ss = new ShipShop(parent);
+			ss.setVisilbe(moveE);
 			update();
 		}
 	}

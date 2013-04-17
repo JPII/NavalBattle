@@ -582,7 +582,7 @@ public class PavoHelper {
 			return csamples[c];
 	}
 	public static byte matchColor(Color c) {
-		int r=1000,g=1000,b=1000,i=0;
+		int i=0;
 		int combinatronix = 100000;
 		for (int z = 0; z < csamples.length; z++) {
 			Color grab = csamples[z];
