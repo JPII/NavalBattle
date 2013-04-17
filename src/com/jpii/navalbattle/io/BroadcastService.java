@@ -141,7 +141,6 @@ public class BroadcastService {
 	            }
 
 	        } catch (Exception ex) {
-	            ex.printStackTrace();
 	            NavalBattle.getDebugWindow().printError("BroadcastService encountered an error while downloading data");
 	        }
 		}
