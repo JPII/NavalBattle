@@ -1,14 +1,16 @@
-
+<?xml version="1.0" encoding="UTF-8"?>
 <resources>
 	<!-- Global strings -->
 	<string name="global_game_title">"NavalBattle"</string>
 	<string name="global_yes">"Ja"</string>
-	<string name="global_no">"\"NEIN!"</string>
+	<string name="global_no">"Nein"</string>
 	<string name="global_close">"Schließen"</string>
 	<string name="global_back">"Rücken."</string>
+	
 	<!-- Toast strings -->
 	<string name="toast_offline_mode">"Offline-Modus aktiviert"</string>
 	<string name="toast_popup_closed">"Pop-up geschlossen"</string>
+	
 	<!-- LoginWindow strings -->
 	<string name="login_username">"Benutzername"</string>
 	<string name="login_password">"Passwort"</string>
@@ -17,6 +19,7 @@
 	<string name="login_login">"Anmelden"</string>
 	<string name="login_options">"Einstellungen"</string>
 	<string name="login_exit">"Beenden"</string>
+	
 	<!-- MainMenuWindow strings -->
 	<string name="mainmenu_singleplayer">"Einzelspieler!"</string>
 	<string name="mainmenu_multiplayer">"Mehrspieler"</string>
@@ -24,6 +27,7 @@
 	<string name="mainmenu_roketgamer">"RoketGamer"</string>
 	<string name="mainmenu_quit">"Beenden"</string>
 	<string name="mainmenu_credits">"Mitarbeiterverzeichnis"</string>
+	
 	<!-- HelpWindow strings -->
 	<string name="help_title">"NavalBattle Hilfe"</string>
 	<string name="help_subtitle">"YouTube Tutorials"</string>
