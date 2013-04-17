@@ -210,9 +210,9 @@ public class Chunk extends Renderable{
 		}
 		if (Tile00 != null && Tile00.getEntity() != null && Tile00.getEntity().getTeamColor() != -1) {
 			Area as = new Area();
+			Entity es = Tile00.getEntity();
 			Tile00.getEntity().onTeamColorBeingDrawn(as);
 			g.setColor(PavoHelper.convertByteToColor(Tile00.getEntity().getTeamColor()));
-			//g.translate(x, y)
 			g.fill(as);
 		}
 		if (Tile10 != null && Tile10.getEntity() != null && Tile10.getEntity().getTeamColor() != -1) {

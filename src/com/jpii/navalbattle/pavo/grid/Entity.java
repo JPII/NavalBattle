@@ -150,8 +150,21 @@ public class Entity implements Serializable {
 		}
 	}
 	
+	public Tile[] getTiles() {
+		Tile[] tiles = new Tile[getWidth()];
+		if (getCurrentOrientation() == GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT)
+			for (int w = 0; w < getWidth(); w++) {
+				tiles[w] = manager.getTile(location.getRow(), location.getCol()+w);
+			}
+		else if (getCurrentOrientation() == GridedEntityTileOrientation.ORIENTATION_TOPTOBOTTOM)
+			for (int w = 0; w < getWidth(); w++) {
+				tiles[w] = manager.getTile(location.getRow()+w-getHeight()+1, location.getCol());
+			}
+		return tiles;
+	}
+	
 	public void onTeamColorBeingDrawn(Area a) {
-		a.add(new Area(new Rectangle2D.Float(0,0,20,50)));
+		a.add(new Area(new Rectangle2D.Float(0,0,80,50)));
 	}
 	
 	/**
