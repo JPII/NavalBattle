@@ -46,13 +46,13 @@ public class LoginWindow extends BaseWindow {
 		usernameField = new JTextField(25);
 		passwordLabel = new JLabel();
 		passwordField = new JPasswordField(25);
-		loginButton = new JButton("Login");
-		JButton registerButton = new JButton("Register");
-		JButton offlineButton = new JButton("Offline");
+		loginButton = new JButton(NavalBattle.getLocalizationManager().getString("login_login"));
+		JButton registerButton = new JButton(NavalBattle.getLocalizationManager().getString("login_register"));
+		JButton offlineButton = new JButton(NavalBattle.getLocalizationManager().getString("login_offline"));
 		JLabel lblVersion = new JLabel(Constants.NAVALBATTLE_VERSION_TITLE);
 		
-		usernameLabel.setText("Username");
-		passwordLabel.setText("Password");
+		usernameLabel.setText(NavalBattle.getLocalizationManager().getString("login_username"));
+		passwordLabel.setText(NavalBattle.getLocalizationManager().getString("login_password"));
 		passwordLabel.setToolTipText("Use RoketGamer application password");
 		passwordField.setToolTipText("Use RoketGamer application password");
 		
