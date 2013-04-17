@@ -53,8 +53,6 @@ public class MoveableEntity extends Entity {
 	}
 	
 	public void toggleMovable() {
-		//short good = (short)0x2f1d;
-		//short bad = (short)0x001;
 		byte good = (byte)0x2f;
 		byte bad = (byte)0x001;
 		if(showMove){
@@ -102,9 +100,6 @@ public class MoveableEntity extends Entity {
 	}
 	
 	public void togglePrimaryRange(){
-		// THAT'S A BAD LINE A CODE:
-		// short good = PavoHelper.getByteFromColor(new Color(165,42,42)); <- NEVER DO THIS
-		//short bad = (short)0x2f1d;
 		byte good = (byte)0x2f;
 		byte bad = (byte)0x001;
 		if(showPrimary){
@@ -151,8 +146,6 @@ public class MoveableEntity extends Entity {
 	}
 	
 	public void toggleSecondaryRange(){
-		// GRRR: short good = PavoHelper.getByteFromColor(new Color(165,42,42));
-		//short bad = (short)0x2f1d;
 		byte good = (byte)0x2f;
 		byte bad = (byte)0x001;
 		if(showSecondary){
