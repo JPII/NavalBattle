@@ -383,7 +383,13 @@ public class Game extends Renderable implements Runnable, Serializable {
 		getWorld().lock();
 		if (!Settings.isUsingMultithreadedRenderer)
 			getWorld().render();
+//		g.translate(-640,-480);
+//		g.scale(1,0.75f);
+//		g.shear(0.45f,0);
 		g.drawImage(getWorld().getBuffer(),0,0,null);
+//		g.shear(-0.45f,0);
+//		g.scale(1,1.333333333333333f);
+//		g.translate(640,480);
 		g.drawImage(getWorld().getTimeManager().getBuffer(),0,0,null);
 		
 		GameStatistics gs = getStats();

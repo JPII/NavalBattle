@@ -98,7 +98,7 @@ public class Chunk extends Renderable{
 		Random rp = new Random(Game.Settings.seed+(x&z)+x-z+(z|x));
 		rand = new Rand(rp.nextLong());
 		terrain = new BufferedImage(34,34,BufferedImage.TYPE_USHORT_555_RGB);
-		Graphics g = terrain.getGraphics();
+		Graphics2D g = (Graphics2D)terrain.getGraphics();
 		for (int lsx = 0; lsx < 100/3; lsx++) {
 			for (int lsz = 0; lsz < 100/3; lsz++) {
 				float frsh = ProceduralLayeredMapGenerator.getPoint(lsx+(100.0f/3.0f*x), lsz+(100.0f/3.0f*z));
@@ -154,7 +154,7 @@ public class Chunk extends Renderable{
 				g.drawLine(lsx,lsz,lsx,lsz);
 			}
 		}
-		
+		//g.shear(-0.45f,0);
 		for (int xc = 100/3; xc > 0; xc--) {
 			for (int zc = 100/3; zc > 0; zc--) {
 				float frsh = ProceduralLayeredMapGenerator.getPoint((xc+(100.0f/3.0f*x))*4.0f, (zc+(100.0f/3.0f*z))*4.0f);
@@ -173,6 +173,7 @@ public class Chunk extends Renderable{
 				}
 			}
 		}
+		//g.shear(0.45f,0);
 		w.getEntityManager().AQms03KampOQ9103nmJMs((getZ()*2), (getX()*2), water00);
 		w.getEntityManager().AQms03KampOQ9103nmJMs((getZ()*2)+1, (getX()*2), water01);
 		w.getEntityManager().AQms03KampOQ9103nmJMs((getZ()*2), (getX()*2)+1, water10);
@@ -246,10 +247,13 @@ public class Chunk extends Renderable{
 			
 			
 		}
+		//g.shear(-0.45f,0);
+		//g.scale(1,1.333333333333333f);
 		g.drawImage(w.getEntityManager().getImage(Tile00), 0, 0, null);
 		g.drawImage(w.getEntityManager().getImage(Tile10), 50, 0, null);
 		g.drawImage(w.getEntityManager().getImage(Tile01), 0, 50, null);
 		g.drawImage(w.getEntityManager().getImage(Tile11), 50, 50, null);
+		//g.shear(0.45f,0);
 		nesa = false;
 		g.dispose();
 		w.chunkrender = true;
