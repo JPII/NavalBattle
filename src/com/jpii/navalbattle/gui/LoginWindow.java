@@ -148,6 +148,14 @@ public class LoginWindow extends BaseWindow {
 		
 		loginButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent ae) {
+				if(updateButton.isVisible()) {
+					int dialogResult = JOptionPane.showConfirmDialog (null, "There is an update to NavalBattle.\nRoketGamer will be disabled until you update. Continue?",  "NavalBattle",JOptionPane.YES_NO_OPTION);
+					
+					if (dialogResult != JOptionPane.YES_OPTION) {
+						return;
+					}
+				}
+				
 				login();
 			}
 		});
