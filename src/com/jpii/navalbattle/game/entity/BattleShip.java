@@ -24,11 +24,9 @@ public class BattleShip extends MoveableEntity {
 		if (!g.isAClient()) {
 			g.getSelfServer().send("battleship:"+loc.getCol()+","+loc.getRow());
 		}
-		setTeamColor((byte) ((Game.Settings.rand.nextBoolean()) ? 5 : 9));
 		handle = 31;
 		maxHealth = 1200;
 		currentHealth = maxHealth;
-		
 		moved=0;
 		maxMovement = 5;
 		primaryRange = 5;
@@ -42,6 +40,12 @@ public class BattleShip extends MoveableEntity {
 				a.add(new Area(new Rectangle2D.Float(95,0,50,0)));
 			else
 				a.add(new Area(new Rectangle2D.Float(145,0,50,0)));
+		}
+		else if (getCurrentOrientation() == GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT) {
+			if (getLocation().getRow() % 2 == 0)
+				a.add(new Area(new Rectangle2D.Float(0,95,0,50)));
+			else
+				a.add(new Area(new Rectangle2D.Float(0,145,0,50)));
 		}
 	}
 	

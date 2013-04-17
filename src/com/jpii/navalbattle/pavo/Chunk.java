@@ -18,7 +18,6 @@
 package com.jpii.navalbattle.pavo;
 
 import java.awt.*;
-import java.awt.geom.Area;
 import java.awt.image.BufferedImage;
 import java.util.Random;
 

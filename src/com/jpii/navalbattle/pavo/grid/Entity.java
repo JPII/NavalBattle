@@ -18,8 +18,6 @@
 package com.jpii.navalbattle.pavo.grid;
 
 import java.awt.Point;
-import java.awt.geom.Area;
-import java.awt.geom.Rectangle2D;
 import java.io.Serializable;
 
 
