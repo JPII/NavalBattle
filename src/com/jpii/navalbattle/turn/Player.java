@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 import com.jpii.navalbattle.game.NavalGame;
 import com.jpii.navalbattle.game.entity.MoveableEntity;
-import com.jpii.navalbattle.pavo.Game;
 import com.jpii.navalbattle.pavo.grid.Entity;
 
 public class Player {
@@ -14,13 +13,21 @@ public class Player {
 	protected boolean turnOver;
 	int score;
 	byte color;
+	int playernumber;
 	
 	public Player(String name){
 		entities = new ArrayList<Entity>();
 		this.name = name;
 		turnOver = false;
 		score = 0;
-		color = ((byte) ((Game.Settings.rand.nextBoolean()) ? 5 : 9));
+	}
+	
+	public void setPlayerNumber(int pnum){
+		playernumber = pnum;
+	}
+	
+	public void setTeamColor(byte b){
+		color = b;
 	}
 	
 	public void startTurn(){

@@ -5,19 +5,15 @@ import java.util.ArrayList;
 public class PlayerManager {
 	
 	ArrayList<Player> players;
-	
-	public PlayerManager(){
-		players = new ArrayList<Player>();
-	}
-	
-	public PlayerManager(ArrayList<Player> players){
-		this.players = players;
-	}
+	int count = 0;
 	
 	public PlayerManager(Player... players){
 		this.players = new ArrayList<Player>();
 		for(int index = 0; index<players.length; index++){
 			this.players.add(players[index]);
+			count++;
+			players[index].setPlayerNumber(count);
+			players[index].setTeamColor(PlayerManager.getPlayerColor(count));
 		}
 	}
 	
@@ -35,5 +31,10 @@ public class PlayerManager {
 			current-=players.size();
 		return players.get(current);
 	}
+	
+	public static byte getPlayerColor(int num){
+		return (byte)num;
+	}
+	
 	
 }
