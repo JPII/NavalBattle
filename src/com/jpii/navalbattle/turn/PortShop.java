@@ -7,6 +7,7 @@ import com.jpii.navalbattle.pavo.gui.NewWindowManager;
 import com.jpii.navalbattle.pavo.gui.controls.PButton;
 import com.jpii.navalbattle.pavo.gui.controls.PText;
 import com.jpii.navalbattle.pavo.gui.controls.PWindow;
+import com.jpii.navalbattle.pavo.gui.events.PMouseEvent;
 
 	public class PortShop extends PWindow {
 
@@ -80,5 +81,45 @@ import com.jpii.navalbattle.pavo.gui.controls.PWindow;
 			addControl(acprice);
 			addControl(repair);
 			addControl(rprice);
+			
+			bship.addMouseListener(new PMouseEvent(){
+				public void mouseDown(int x, int y, int buttonid) {
+					battleAction();
+				}
+			});
+			
+			sub.addMouseListener(new PMouseEvent(){
+				public void mouseDown(int x, int y, int buttonid) {
+					waterAction();
+				}
+			});
+			
+			ac.addMouseListener(new PMouseEvent(){
+				public void mouseDown(int x, int y, int buttonid) {
+					airAction();
+				}
+			});
+			
+			repair.addMouseListener(new PMouseEvent(){
+				public void mouseDown(int x, int y, int buttonid) {
+					medicAction();
+				}
+			});
+		}
+		
+		private void battleAction(){
+			
+		}
+		
+		private void waterAction(){
+			
+		}
+		
+		private void airAction(){
+			
+		}
+		
+		private void medicAction(){
+			
 		}
 	}
