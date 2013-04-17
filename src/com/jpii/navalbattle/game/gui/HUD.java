@@ -26,7 +26,6 @@ public class HUD extends PWindow{
 	 public HUD(NewWindowManager parent,TurnManager tm,int x, int y, int width, int height){
 		super(parent, x, y, width, height);
 		this.tm = tm;
-		System.out.println(tm);
 		setToolTip("This is the HUD.");
 		right = new RightHud(this,width,height);
 		mid = new MidHud(this,tm,parent);
@@ -155,7 +154,6 @@ public class HUD extends PWindow{
 	}
 	
 	private boolean attackGuns(int x, int y, boolean leftclick){
-		System.out.println("guns");
 		if(move==null || !move.isPrimaryTileBeingShown())
 			return false;	
 		if(!tm.getTurn().canFireGuns(move))
@@ -193,7 +191,6 @@ public class HUD extends PWindow{
 	}
 	
 	private boolean attackMissile(int x, int y, boolean leftclick){
-		System.out.println("missile");
 		if(move==null || !move.isSecondaryTileBeingShown())
 			return false;
 		
