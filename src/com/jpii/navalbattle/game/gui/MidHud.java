@@ -45,6 +45,7 @@ public class MidHud{
 	NewWindowManager parent;
 	
 	int width,height;
+	String secondary = "Missiles";
 	
 	TurnManager tm;
 	
@@ -87,7 +88,7 @@ public class MidHud{
 		Font perks = new Font("Arial",0,10);
 		g.setFont(perks);
 		g.drawString("Shop",(width/2)-148,height-62);
-		g.drawString("Missile",(width/2)-91,height-62);
+		g.drawString(secondary,(width/2)-91,height-62);
 		g.drawString("Guns",(width/2)-28,height-62);
 		g.drawString("Diplomacy",(width/2)+18,height-62);
 		g.drawString("Move",(width/2)+92,height-62);
@@ -109,6 +110,7 @@ public class MidHud{
 		elevation.setVisible(false);
 		elevationB.setVisible(false);
 		airstrike.setVisible(false);
+		secondary = "Missile";
 		
 		if(display!=null){
 			diplomacy.setVisible(true);
@@ -138,6 +140,7 @@ public class MidHud{
 				if(moveE.getHandle()==21){
 					airstrike.setVisible(missile.isVisible());
 					missile.setVisible(false);
+					secondary = "Airstrike";
 				}
 			}
 			if(display.getHandle()%10 == 2){

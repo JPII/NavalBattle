@@ -37,11 +37,6 @@ public class RightHud {
 		drawFrame(g, boxx, boxy, boxwidth, boxheight);
 		if(display!=null){
 			g.drawImage(entityImg,boxx+50,boxy+50,null);
-			if (display.getHandle()%10 == 2) {
-				g.setColor(new Color(169,140,86));
-				g.drawRect(boxx+49,boxy+49,51,51);
-			}
-			g.setColor(Color.red);
 			drawString(g,location, centerx, centery+60);
 			drawString(g,health, centerx, centery-35);
 			drawString(g,movement, centerx, centery+40);
