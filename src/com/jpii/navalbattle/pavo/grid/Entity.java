@@ -21,6 +21,7 @@ import java.awt.Graphics;
 import java.awt.Point;
 import java.awt.Shape;
 import java.awt.geom.Area;
+import java.awt.geom.Rectangle2D;
 import java.io.Serializable;
 
 
@@ -86,6 +87,7 @@ public class Entity implements Serializable {
 		manager = em;
 		location = loc;
 		teamId=teams;
+		teamColor = Game.Settings.rand.nextByte();
 		ORIENTATION_BUFFER_POSITION = orientation;
 		try {
 			moveTo(loc,true);
@@ -149,7 +151,7 @@ public class Entity implements Serializable {
 	}
 	
 	public void onTeamColorBeingDrawn(Area a) {
-		
+		a.add(new Area(new Rectangle2D.Float(0,0,20,50)));
 	}
 	
 	/**
