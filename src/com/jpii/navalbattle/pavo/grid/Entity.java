@@ -405,9 +405,12 @@ public class Entity implements Serializable {
 	
 	/**
 	 * Same as <code>truncate()</code>.
+	 * @return true
 	 */
-	public void dispose() {
+	public boolean dispose() {
 		truncate();
+		getManager().removeEntity(this);
+		return true;
 	}
 	
 	/*

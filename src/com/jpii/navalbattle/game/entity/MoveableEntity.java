@@ -1,5 +1,6 @@
 package com.jpii.navalbattle.game.entity;
 
+import com.jpii.navalbattle.game.NavalManager;
 import com.jpii.navalbattle.pavo.Game;
 import com.jpii.navalbattle.pavo.grid.Entity;
 import com.jpii.navalbattle.pavo.grid.EntityManager;
@@ -25,7 +26,7 @@ public class MoveableEntity extends Entity {
 	public boolean planeAttackOption = false;
 	public byte missileCount;
 	public byte percentEvade;
-	public byte rangeLimit =3;
+	public byte rangeLimit = 3;
 
 	/**
 	 * @param em
@@ -413,9 +414,12 @@ public class MoveableEntity extends Entity {
 	public boolean takeDamage(int dealt){		
 		int b4 = getPercentHealth();
 		currentHealth -= dealt;
-		if(currentHealth<0)
+		if(currentHealth<=0){
 			currentHealth=0;
-		return((b4>25&&getPercentHealth()<25)||getPercentHealth()==0);
+			((NavalManager)getManager()).getTurnManager().removeEntity(this);
+			return dispose();
+		}
+		return((b4>25&&getPercentHealth()<25));
 	}
 	
 	public void hardenHull(){
