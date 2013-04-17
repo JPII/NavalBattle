@@ -314,12 +314,12 @@ public class MidHud{
 	}
 	
 	public void shopAction(){
-		if(display!=null&&display.getHandle()%10 == 2){
+		if(display!=null&&ps!=null&&display.getHandle()%10 == 2){
 			ps.setVisilbe((PortEntity)display);
 			update();
 		}
-		else if(moveE!=null){
-			ss.setVisilbe(moveE);
+		else if(moveE!=null&&ss!=null){
+			ss.setVisible(moveE);
 			update();
 		}
 	}

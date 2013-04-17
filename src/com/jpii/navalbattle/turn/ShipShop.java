@@ -179,7 +179,7 @@ import com.jpii.navalbattle.pavo.gui.events.PMouseEvent;
 			super.setVisible(false);
 		}
 		
-		public void setVisilbe(MoveableEntity me){
+		public void setVisible(MoveableEntity me){
 			move = me;
 			current = null;
 			missile.setVisible(true);
