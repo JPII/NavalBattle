@@ -106,7 +106,15 @@ public class MainMenuWindow extends BaseWindow {
 		btnSingleplayer.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseReleased(MouseEvent e) {
-				SwingUtilities.invokeLater(new SPGS());
+				//SwingUtilities.invokeLater(new SPGS());
+				Thread immediate = new Thread(new SPGS());
+				immediate.start();
+				try {
+					Thread.sleep(200);
+				}
+				catch (Throwable t) {
+					
+				}
 				NavalBattle.getWindowHandler().disposeContained();
 			}
 		});	
