@@ -154,7 +154,7 @@ import com.jpii.navalbattle.pavo.gui.events.PMouseEvent;
 		
 		private void increaseRangeAction(){
 			if(current!=null && move!=null){
-				if(current.getScore()>700){
+				if(current.getScore()>700 && move.rangeLimit>0){
 					current.subtractscore(700);
 					move.increaseRange();
 				}
