@@ -24,7 +24,7 @@ public class MoveableEntity extends Entity {
 	public boolean gunsAttackOption = false;
 	public boolean missileAttackOption = false;
 	public boolean planeAttackOption = false;
-	public byte missileCount;
+	public byte missileCount = 0;
 	public byte percentEvade;
 	public byte rangeLimit = 3;
 

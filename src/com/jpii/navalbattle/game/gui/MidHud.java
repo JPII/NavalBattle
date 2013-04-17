@@ -141,7 +141,7 @@ public class MidHud{
 				missileB.setVisible(true);
 				bulletB.setVisible(true);
 				if(moveE.getHandle()==21){
-					airstrike.setVisible(missile.isVisible());
+					airstrike.setVisible(true);
 					missile.setVisible(false);
 					secondary = "Airstrike";
 				}
