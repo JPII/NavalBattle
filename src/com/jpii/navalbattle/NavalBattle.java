@@ -67,6 +67,12 @@ public class NavalBattle {
 		debugInstance = new Debugger("NavalBattle");
 		debugInstance.registerCommands(Commands.COMMANDS);
 		
+		localizationManager = new LocalizationManager(NavalBattle.class, "/com/jpii/navalbattle/res/strings");
+		
+		getDebugWindow().printInfo("Locale set to " + localizationManager.getLocale());
+		getDebugWindow().printInfo("Loaded " + localizationManager.getDefaultStrings().size() + " default strings.");
+		getDebugWindow().printInfo("Loaded " + localizationManager.getCurrentStrings().size() + " current strings.");
+		
 		NavalBattleIO.run();
 		
 		if(Constants.DEBUG_MODE)
@@ -79,11 +85,6 @@ public class NavalBattle {
 		getDebugWindow().printInfo("Successfully loaded GameKit " + GameKit.getVersion() + " (API " + GameKit.getApiLevel() + ")");
 		
 		windowHandler = new WindowHandler(492,340);
-		localizationManager = new LocalizationManager(NavalBattle.class, "/com/jpii/navalbattle/res/strings");
-		
-		getDebugWindow().printInfo("Locale set to " + localizationManager.getLocale());
-		getDebugWindow().printInfo("Loaded " + localizationManager.getDefaultStrings().size() + " default strings.");
-		getDebugWindow().printInfo("Loaded " + localizationManager.getCurrentStrings().size() + " current strings.");
 		
 		broadcastService = new BroadcastService();
 		
