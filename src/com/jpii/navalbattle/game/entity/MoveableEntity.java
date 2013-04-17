@@ -23,6 +23,9 @@ public class MoveableEntity extends Entity {
 	public boolean gunsAttackOption = false;
 	public boolean missileAttackOption = false;
 	public boolean planeAttackOption = false;
+	public byte missileCount;
+	public byte percentEvade;
+	public byte rangeLimit =3;
 
 	/**
 	 * @param em
@@ -423,22 +426,26 @@ public class MoveableEntity extends Entity {
 	}
 	
 	public void hardenHull(){
-		
+		maxHealth *=2;
+		currentHealth *=2;
+		maxMovement/=2;
+		moved*=2;
 	}
 	
 	public void increaseMissile(){
-		
+		missileCount+=5;
 	}
 	
 	public void deflectMissile(){
-		
+		percentEvade+=5;
 	}
 	
 	public void increaseRange(){
-		
+		maxMovement++;
+		rangeLimit--;
 	}
 
 	public void repair(){
-		
+		currentHealth=maxHealth;
 	}
 }
