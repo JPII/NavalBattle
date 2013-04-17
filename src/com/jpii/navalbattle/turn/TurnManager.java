@@ -48,4 +48,10 @@ public class TurnManager {
 		}
 		return null;
 	}
+	
+	public void removeEntity(Entity e){
+		for(int index = 0; index<players.players.size(); index++){
+			players.players.get(index).removeEntity(e);				
+		}
+	}
 }

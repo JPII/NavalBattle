@@ -93,4 +93,9 @@ public class Player {
 	public int getScore(){
 		return score;
 	}
+	
+	public void removeEntity(Entity e){
+		while(entities.remove(e))
+			;
+	}
 }

@@ -150,4 +150,5 @@ public class NavalManager extends EntityManager {
 	public TurnManager getTurnManager(){
 		return tm;
 	}
+	
 }
