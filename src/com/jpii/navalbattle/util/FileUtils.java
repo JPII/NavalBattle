@@ -106,7 +106,7 @@ public class FileUtils {
 		try {
 			i = ImageIO.read(FileUtils.class.getResource("/com/jpii/navalbattle/res/"+s));
 		} catch (Throwable e) {
-			System.out.println(e.getMessage());
+			System.out.println("Failed to load:" + s + "@" + e.getMessage());
 		}
 		return i;
 	}
@@ -121,7 +121,7 @@ public class FileUtils {
 		try {
 			i = ImageIO.read(FileUtils.class.getResource(s));
 		} catch (Throwable e) {
-			System.out.println(e.getMessage());
+			System.out.println("Failed to load:" + s + "@" + e.getMessage());
 		}
 		return i;
 	}
