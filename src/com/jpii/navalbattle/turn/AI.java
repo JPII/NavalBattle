@@ -57,6 +57,7 @@ public class AI extends Player{
 		turnOver=true;
 	}
 	
+
 	public void endTurn(){
 		super.endTurn();
 	}

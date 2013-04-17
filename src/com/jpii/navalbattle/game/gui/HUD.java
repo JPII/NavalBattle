@@ -170,7 +170,7 @@ public class HUD extends PWindow{
 			if(e.getHandle()%10 == 1){
 			there = (MoveableEntity)e;
 				if(tm.getTurn().getPlayer().myEntity(there)){
-					System.out.println("[chat] You can;t attack your own team");
+					System.out.println("[chat] You can't attack your own team");
 					return false;
 				}
 			}
