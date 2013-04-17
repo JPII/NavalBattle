@@ -2,6 +2,7 @@ package com.jpii.navalbattle.turn;
 
 import java.util.ArrayList;
 
+import com.jpii.navalbattle.game.NavalGame;
 import com.jpii.navalbattle.game.NavalManager;
 import com.jpii.navalbattle.pavo.grid.Entity;
 import com.jpii.navalbattle.game.entity.MoveableEntity;
@@ -17,7 +18,7 @@ public class AI extends Player{
 		this.nm = nm;
 	}
 	
-	public void addEntity(Entity e){
+	public void addEnemyEntity(Entity e){
 		enemies.add(e);
 	}
 	
@@ -31,6 +32,18 @@ public class AI extends Player{
 				currentEntity = (MoveableEntity)ent;
 				if(currentEntity.getHandle()==21){
 					//AC
+					for (int x = 0; x < (currentEntity.getMovementLeft() * 2) + 1; x++) {
+						for (int y = 0; y < (currentEntity.getMovementLeft() * 2) + 1; y++) {
+							Entity location = currentEntity.getManager().findEntity(y, x);
+							Player temp = NavalGame.getManager().getTurnManager().findPlayer(location); 
+							if(!(temp.equals(this))&&!enemies.contains(location)){
+								//entity at spot is not owned by this AI
+								addEnemyEntity(location);
+							}
+						}
+					
+					
+				}
 				}
 				if(currentEntity.getHandle()==11){
 					//Sub

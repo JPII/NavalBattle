@@ -41,9 +41,9 @@ public class TurnManager {
 		return players.getPlayer(pos-1);
 	}
 	
-	public Player findPlayer(Entity e){
+	public Player findPlayer(Entity b){
 		for(int index = 0; index<players.players.size(); index++){
-			if(players.players.get(index).myEntity(e))
+			if(players.players.get(index).myEntity(b))
 				return players.players.get(index);
 		}
 		return null;
