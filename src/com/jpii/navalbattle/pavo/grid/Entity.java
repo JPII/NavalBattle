@@ -85,7 +85,7 @@ public class Entity implements Serializable {
 		manager = em;
 		location = loc;
 		teamId=teams;
-		teamColor = Game.Settings.rand.nextByte();
+		//teamColor = Game.Settings.rand.nextByte();
 		ORIENTATION_BUFFER_POSITION = orientation;
 		try {
 			moveTo(loc,true);
@@ -161,9 +161,9 @@ public class Entity implements Serializable {
 		return tiles;
 	}
 	
-	public void onTeamColorBeingDrawn(Area a) {
-		a.add(new Area(new Rectangle2D.Float(0,0,80,50)));
-	}
+	//public void onTeamColorBeingDrawn(Area a) {
+	//	a.add(new Area(new Rectangle2D.Float(0,0,80,50)));
+	//}
 	
 	/**
 	 * Moves the entity to the specified location on the grid.
@@ -173,6 +173,7 @@ public class Entity implements Serializable {
 	public void moveTo(int r, int c) {
 		moveTo(new Location(r,c));
 	}
+	
 	/**
 	 * Sets the generic id of the entity. This shouldn't have to be called by the client.
 	 * @param id The identifier to set the entity to.
@@ -276,7 +277,6 @@ public class Entity implements Serializable {
 		onMove(swap2);
 		return true;
 	}
-	
 	Location originality = Location.Unknown;
 	public Location destiny = null;
 	

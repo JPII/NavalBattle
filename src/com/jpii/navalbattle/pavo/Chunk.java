@@ -209,34 +209,42 @@ public class Chunk extends Renderable{
 			g.fillRect(50,50,50,50);
 		}
 		if (Tile00 != null && Tile00.getEntity() != null && Tile00.getEntity().getTeamColor() != -1) {
-			Area as = new Area();
-			Tile00.getEntity().onTeamColorBeingDrawn(as);
+//<<<<<<< HEAD
+//			Area as = new Area();
+//			Tile00.getEntity().onTeamColorBeingDrawn(as);
+//=======
+//			//Area as = new Area();
+//			//Tile00.getEntity().onTeamColorBeingDrawn(as);
+//>>>>>>> Team colors.
+			
 			g.setColor(PavoHelper.convertByteToColor(Tile00.getEntity().getTeamColor()));
-			g.fill(as);
+			g.drawRect(2,2,47,47);
+			
+			
 		}
 		if (Tile10 != null && Tile10.getEntity() != null && Tile10.getEntity().getTeamColor() != -1) {
-			Area as = new Area();
-			Tile10.getEntity().onTeamColorBeingDrawn(as);
+			//Area as = new Area();
+			//Tile10.getEntity().onTeamColorBeingDrawn(as);
 			g.setColor(PavoHelper.convertByteToColor(Tile10.getEntity().getTeamColor()));
-			g.translate(50, 0);
-			g.fill(as);
-			g.translate(-50, 0);
+			g.drawRect(52,2,47,47);
+			
+			
 		}
 		if (Tile01 != null && Tile01.getEntity() != null && Tile01.getEntity().getTeamColor() != -1) {
-			Area as = new Area();
-			Tile01.getEntity().onTeamColorBeingDrawn(as);
-			g.translate(0,50);
+			//Area as = new Area();
+			//Tile01.getEntity().onTeamColorBeingDrawn(as);
 			g.setColor(PavoHelper.convertByteToColor(Tile01.getEntity().getTeamColor()));
-			g.fill(as);
-			g.translate(0,-50);
+			g.drawRect(2,52,47,47);
+			
+			
 		}
 		if (Tile11 != null && Tile11.getEntity() != null && Tile11.getEntity().getTeamColor() != -1) {
-			Area as = new Area();
-			Tile11.getEntity().onTeamColorBeingDrawn(as);
+			//Area as = new Area();
+			//Tile11.getEntity().onTeamColorBeingDrawn(as);
 			g.setColor(PavoHelper.convertByteToColor(Tile11.getEntity().getTeamColor()));
-			g.translate(50, 50);
-			g.fill(as);
-			g.translate(-50, -50);
+			g.drawRect(52,52,47,47);
+			
+			
 		}
 		g.drawImage(w.getEntityManager().getImage(Tile00), 0, 0, null);
 		g.drawImage(w.getEntityManager().getImage(Tile10), 50, 0, null);
