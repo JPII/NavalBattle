@@ -11,7 +11,10 @@ import com.jpii.navalbattle.pavo.gui.controls.PWindow;
 import com.jpii.navalbattle.pavo.gui.events.PMouseEvent;
 
 	public class PortShop extends PWindow {
-
+		
+		PortEntity port;
+		Player current;
+		
 		public PortShop(NewWindowManager parent) {
 			super(parent);
 			setVisible(true);
@@ -54,7 +57,7 @@ import com.jpii.navalbattle.pavo.gui.events.PMouseEvent;
 			bprice.setText("1000");
 			sprice.setText("1250");
 			acprice.setText("1250");
-			rprice.setText("400");
+			rprice.setText("500");
 			
 			shop.setLoc(200,35);
 			score.setLoc(5, 230);
@@ -85,43 +88,63 @@ import com.jpii.navalbattle.pavo.gui.events.PMouseEvent;
 			
 			bship.addMouseListener(new PMouseEvent(){
 				public void mouseDown(int x, int y, int buttonid) {
-					battleAction();
+					buyBattleShip();
 				}
 			});
 			
 			sub.addMouseListener(new PMouseEvent(){
 				public void mouseDown(int x, int y, int buttonid) {
-					waterAction();
+					buySubmarine();
 				}
 			});
 			
 			ac.addMouseListener(new PMouseEvent(){
 				public void mouseDown(int x, int y, int buttonid) {
-					airAction();
+					buyCarrier();
 				}
 			});
 			
 			repair.addMouseListener(new PMouseEvent(){
 				public void mouseDown(int x, int y, int buttonid) {
-					medicAction();
+					repairAction();
 				}
 			});
 		}
 		
-		private void battleAction(){
-			
+		private void buyBattleShip(){
+			if(current!=null && port!=null){
+				if(current.getScore()>=1000){
+					current.subtractscore(1000);
+					port.spawnBattleship();
+				}
+			}
 		}
 		
-		private void waterAction(){
-			
+		private void buySubmarine(){
+			if(current!=null && port!=null){
+				if(current.getScore()>=1250){
+					current.subtractscore(1250);
+					port.spawnSubmarine();
+				}
+			}
 		}
 		
-		private void airAction(){
-			
+		private void buyCarrier(){
+			if(current!=null && port!=null){
+				if(current.getScore()>=1250){
+					current.subtractscore(1250);
+					port.spawnAC();
+				}
+			}
 		}
 		
-		private void medicAction(){
-			
+		private void repairAction(){
+			if(current!=null && port!=null){
+				if(current.getScore()>=500){
+					current.subtractscore(500);
+					port.repair();
+				}
+			}
 		}
 		
 		/**
@@ -132,10 +155,14 @@ import com.jpii.navalbattle.pavo.gui.events.PMouseEvent;
 		}
 		
 		public void setVisilbe(PortEntity pe){
-			if(pe == null)
+			port = pe;
+			current = null;
+			if(port == null){
 				super.setVisible(false);
+			}
 			else{
 				super.setVisible(true);
+				current = NavalGame.getManager().getTurnManager().findPlayer(pe);
 			}
 		}
 	}

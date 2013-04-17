@@ -139,4 +139,20 @@ public class PortEntity extends AnimatedEntity {
 		w4.setTopToBottomImage(fl4);
 		return new GridedEntityTileOrientation[] {w1,w2,w3,w4};
 	}
+	
+	public void spawnBattleship(){
+
+	}
+	
+	public void spawnSubmarine(){
+
+	}
+	
+	public void spawnAC(){
+
+	}
+	
+	public void repair(){
+
+	}
 }

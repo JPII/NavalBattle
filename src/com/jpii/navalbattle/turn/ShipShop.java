@@ -11,7 +11,10 @@ import com.jpii.navalbattle.pavo.gui.controls.PWindow;
 import com.jpii.navalbattle.pavo.gui.events.PMouseEvent;
 
 	public class ShipShop extends PWindow {
-
+		
+		MoveableEntity move;
+		Player current;
+		
 		public ShipShop(NewWindowManager parent){
 			super(parent);
 			setVisible(true);
@@ -93,53 +96,78 @@ import com.jpii.navalbattle.pavo.gui.events.PMouseEvent;
 			
 			hull.addMouseListener(new PMouseEvent(){
 				public void mouseDown(int x, int y, int buttonid) {
-					armorAction();
+					hardenHullAction();
 				}
 			});
 			
 			missile.addMouseListener(new PMouseEvent(){
 				public void mouseDown(int x, int y, int buttonid) {
-					nukeAction();
+					increaseMissileAction();
 				}
 			});
 			
 			range.addMouseListener(new PMouseEvent(){
 				public void mouseDown(int x, int y, int buttonid) {
-					sniperAction();
+					increaseRangeAction();
 				}
 			});
 			
 			antimissile.addMouseListener(new PMouseEvent(){
 				public void mouseDown(int x, int y, int buttonid) {
-					flareAction();
+					deflectMisileAction();
 				}
 			});
 			
 			repair.addMouseListener(new PMouseEvent(){
 				public void mouseDown(int x, int y, int buttonid) {
-					medicAction();
+					repairAction();
 				}
 			});
 		}
 		
-		private void armorAction(){
-			
+		private void hardenHullAction(){
+			if(current!=null && move!=null){
+				if(current.getScore()>200){
+					current.subtractscore(200);
+					move.hardenHull();
+				}
+			}
 		}
 		
-		private void nukeAction(){
-			
+		private void increaseMissileAction(){
+			if(current!=null && move!=null){
+				if(current.getScore()>250){
+					current.subtractscore(250);
+					move.increaseMissile();
+				}
+			}
 		}
 		
-		private void sniperAction(){
-			
+		private void deflectMisileAction(){
+			if(current!=null && move!=null){
+				if(current.getScore()>350){
+					current.subtractscore(350);
+					move.deflectMissile();
+				}
+			}
 		}
 		
-		private void flareAction(){
-			
+		private void increaseRangeAction(){
+			if(current!=null && move!=null){
+				if(current.getScore()>700){
+					current.subtractscore(700);
+					move.increaseRange();
+				}
+			}
 		}
 		
-		private void medicAction(){
-			
+		private void repairAction(){
+			if(current!=null && move!=null){
+				if(current.getScore()>300){
+					current.subtractscore(300);
+					move.repair();
+				}
+			}
 		}
 		
 		/**
@@ -149,11 +177,14 @@ import com.jpii.navalbattle.pavo.gui.events.PMouseEvent;
 			super.setVisible(false);
 		}
 		
-		public void setVisilbe(MoveableEntity move){
+		public void setVisilbe(MoveableEntity me){
+			move = me;
+			current = null;
 			if(move == null)
 				super.setVisible(false);
 			else{
 				super.setVisible(true);
+				current = NavalGame.getManager().getTurnManager().findPlayer(me);
 			}
 		}
 	}

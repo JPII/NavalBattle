@@ -421,4 +421,24 @@ public class MoveableEntity extends Entity {
 			currentHealth=0;
 		return((b4>25&&getPercentHealth()<25)||getPercentHealth()==0);
 	}
+	
+	public void hardenHull(){
+		
+	}
+	
+	public void increaseMissile(){
+		
+	}
+	
+	public void deflectMissile(){
+		
+	}
+	
+	public void increaseRange(){
+		
+	}
+
+	public void repair(){
+		
+	}
 }
