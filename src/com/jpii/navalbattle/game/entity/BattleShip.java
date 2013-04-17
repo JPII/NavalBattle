@@ -21,6 +21,7 @@ public class BattleShip extends MoveableEntity {
 		if (!g.isAClient()) {
 			g.getSelfServer().send("battleship:"+loc.getCol()+","+loc.getRow());
 		}
+		handle = 31;
 		maxHealth = 1200;
 		currentHealth = maxHealth;
 		moved=0;

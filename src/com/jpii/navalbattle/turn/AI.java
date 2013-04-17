@@ -4,6 +4,8 @@ import java.util.ArrayList;
 
 import com.jpii.navalbattle.game.NavalManager;
 import com.jpii.navalbattle.pavo.grid.Entity;
+import com.jpii.navalbattle.pavo.grid.GridedEntityTileOrientation;
+import com.jpii.navalbattle.game.entity.MoveableEntity;
 
 public class AI extends Player{
 	
@@ -24,8 +26,21 @@ public class AI extends Player{
 	public void takeTurn(){
 		for(int k = 0; k < getTotalEntities(); k++)
 		{
-//			Entity ent = getEntity(k);
-//			MoveableEntity currentEntity = (MoveableEntity)ent;
+			Entity ent = getEntity(k);
+			MoveableEntity currentEntity;
+			if(ent.getHandle()%10 == 1){
+				currentEntity = (MoveableEntity)ent;
+				if(currentEntity.getHandle()==21){
+					//AC
+				}
+				if(currentEntity.getHandle()==11){
+					//Sub
+				}
+				if(currentEntity.getHandle()==31){
+					//BS
+				}
+			}
+			
 		}
 		turnOver=true;
 	}
