@@ -21,7 +21,6 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.URL;
 
-import com.roketgamer.Player;
 import com.roketgamer.RoketGamer;
 
 public class PlayerUtils {
@@ -69,35 +68,5 @@ public class PlayerUtils {
 		} catch (Exception e) { 
 			return "";
 		}
-	}
-	
-	/**
-	 * Get a user's number of friends.
-	 * @param username
-	 * @return
-	 */
-	public static int getFriendCount(String username) {
-		// TODO: Implement
-		return 0;
-	}
-	
-	/**
-	 * Get a user's number of friends.
-	 * @param id
-	 * @return
-	 */
-	public static int getFriendCount(int id) {
-		// TODO: Implement
-		return 0;
-	}
-	
-	/**
-	 * Get a user's number of friends.
-	 * @param player
-	 * @return
-	 */
-	public static int getFriendCount(Player player) {
-		// TODO: Implement
-		return 0;
 	}
 }
