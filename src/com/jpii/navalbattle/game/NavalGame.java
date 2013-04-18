@@ -25,8 +25,6 @@ import com.jpii.navalbattle.game.gui.HUD;
 import com.jpii.navalbattle.game.gui.PauseWindow;
 import com.jpii.navalbattle.game.gui.StatusBar;
 import com.jpii.navalbattle.pavo.*;
-import com.jpii.navalbattle.pavo.gui.MessageBox;
-import com.jpii.navalbattle.pavo.gui.MessageBoxIcon;
 import com.jpii.navalbattle.pavo.gui.OmniMap;
 
 /**
@@ -41,38 +39,29 @@ public class NavalGame extends Game{
 	PauseWindow pw;
 	int lastMinute = 0;
 	float airStrike = -1;
-	
-	public NavalGame() {
-		super();
-		pw = new PauseWindow(getWindows());
-		nm = new NavalManager(getWorld());
-		hud = new HUD(getWindows(),nm.getTurnManager(),0,Settings.currentHeight-150,Settings.currentWidth, 150);
-		sb = new StatusBar(getWindows(),this); 
-		getWorld().setEntityManager(nm);
-		omnimap = new OmniMap(getWorld());
-		getWindows().add(hud);
-		//getWindows().add(pw);
-		getWindows().add(sb);
-		MessageBox.show("Hey there!","Could not connect to RocketGamer servers.\n\nTrying again in 10 seconds.",
-				MessageBoxIcon.Notify, false);
-
-	}
-	
-	public NavalGame(PavoOpenState pos, String flags) {
-		super(pos,flags);
-		nm = new NavalManager(getWorld());
-		hud = new HUD(getWindows(),nm.getTurnManager(),0,Settings.currentHeight-150,Settings.currentWidth, 150);
-		sb = new StatusBar(getWindows(),this); 
-		getWorld().setEntityManager(nm);
-		pw = new PauseWindow(getWindows());
-		omnimap = new OmniMap(getWorld());
-		getWindows().add(hud);
-		//getWindows().add(pw);
-		getWindows().add(sb);
-		MessageBox.show("Hey there!","Could not connect to RocketGamer servers.\n\nTrying again in 10 seconds.",
-				MessageBoxIcon.Notify, false);
-	}
 	int hw = 0, hh = 0;
+	
+	public NavalGame(WorldSize ws){
+		super(ws);
+		init();
+	}
+	
+	public NavalGame(WorldSize ws,PavoOpenState pos, String flags) {
+		super(ws,pos,flags);
+		init();
+	}
+	
+	private void init(){
+		pw = new PauseWindow(getWindows());
+		nm = new NavalManager(getWorld());
+		hud = new HUD(getWindows(),nm.getTurnManager(),0,Settings.currentHeight-150,Settings.currentWidth, 150);
+		sb = new StatusBar(getWindows(),this);
+		getWorld().setEntityManager(nm);
+		omnimap = new OmniMap(getWorld());
+		getWindows().add(hud);
+		getWindows().add(sb);
+	}
+	
 	/**
 	 * Mulithreaded updater.
 	 */

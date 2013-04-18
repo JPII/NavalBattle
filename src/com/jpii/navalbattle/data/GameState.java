@@ -20,9 +20,6 @@ package com.jpii.navalbattle.data;
 public class GameState {
 	
 	private boolean offline = true;
-	private int score = 0;
-	private int difficutly = 1;
-	private int turns = 0;
 	
 	/**
 	 * Get if game is in off-line mode.
@@ -38,68 +35,5 @@ public class GameState {
 	 */
 	public void setOffline(boolean offline) {
 		this.offline = offline;
-	}
-	
-	/**
-	 * Get current score.
-	 * @return score
-	 */
-	public int getScore() {
-		return score;
-	}
-	
-	/**
-	 * Set score to specified amount.
-	 * @param score
-	 */
-	public void setScore(int score) {
-		this.score = score;
-	}
-	
-	/**
-	 * Add to current score.
-	 * @param score
-	 */
-	public void addScore(int score) {
-		this.score += score;
-	}
-	
-	/**
-	 * Subtract from current score.
-	 * @param score
-	 */
-	public void subtractScore(int score) {
-		this.score -= score;
-	}
-	
-	/**
-	 * Reset score.
-	 */
-	public void resetScore() {
-		this.score = 0;
-	}
-	
-	/**
-	 * Get number of turns taken.
-	 * @return
-	 */
-	public int getTurnNum(){
-		return turns;
-	}
-	
-	/**
-	 * Sets the difficulty of the game.
-	 * @param difficulty
-	 */
-	public void setDifficulty(int difficulty) {
-		this.difficutly = difficulty;
-	}
-	
-	/**
-	 * Gets the difficulty of the game.
-	 * @return difficulty
-	 */
-	public int getDifficulty() {
-		return difficutly;
 	}
 }

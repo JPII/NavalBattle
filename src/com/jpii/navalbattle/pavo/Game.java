@@ -68,11 +68,11 @@ public class Game extends Renderable implements Runnable, Serializable {
 	/**
 	 * Creates a new instance of the game.
 	 */
-	public Game() {
+	public Game(WorldSize ws) {
 		server = new NavalServer(this);
 		System.out.println("Server status: " + server.start());
 		windowsnt = new NewWindowManager(this);
-		world = new World(this);
+		world = new World(this,ws);
 		threadInit();
 		buffer = new PavoImage(Game.Settings.currentWidth,Game.Settings.currentHeight,BufferedImage.TYPE_3BYTE_BGR);
 		shadow = (PavoImage)PavoHelper.createInnerShadow(Game.Settings.currentWidth,Game.Settings.currentHeight);
@@ -94,7 +94,7 @@ public class Game extends Renderable implements Runnable, Serializable {
 	 * @param flags The flags/parameters for the
 	 * <code>PavoOpenState</code>.
 	 */
-	public Game(PavoOpenState pos, String flags) {
+	public Game(WorldSize ws,PavoOpenState pos, String flags) {
 		if (pos == PavoOpenState.OPEN_SERVER) {
 			client = new NavalClient(this,flags);
 			System.out.println("Client status: " + client.start());
@@ -111,7 +111,7 @@ public class Game extends Renderable implements Runnable, Serializable {
 			NavalBattle.getWindowHandler().getToasterManager().showToaster("Sucessfully connected to the server.");
 		}
 		windowsnt = new NewWindowManager(this);
-		world = new World(this);
+		world = new World(this,ws);
 		threadInit();
 		buffer = new PavoImage(Game.Settings.currentWidth,Game.Settings.currentHeight,BufferedImage.TYPE_3BYTE_BGR);
 		shadow = (PavoImage)PavoHelper.createInnerShadow(Game.Settings.currentWidth,Game.Settings.currentHeight);

@@ -20,6 +20,7 @@ import javax.swing.Timer;
 import com.jpii.navalbattle.pavo.Game;
 import com.jpii.navalbattle.pavo.PavoHelper;
 import com.jpii.navalbattle.pavo.PavoOpenState;
+import com.jpii.navalbattle.pavo.WorldSize;
 import com.jpii.navalbattle.pavo.io.PavoImage;
 import com.jpii.navalbattle.util.WindowLib;
 
@@ -34,13 +35,13 @@ public class GameComponent extends JComponent {
 	Timer alert;
 	boolean startDialog = false;
 	PavoImage notifier;
-	public GameComponent(JFrame frame, PavoOpenState pos, String params) {
+	public GameComponent(WorldSize ws,JFrame frame, PavoOpenState pos, String params) {
 		this.frame = frame;
 		winlib = new WindowLib(frame);
 		if (pos != PavoOpenState.NORMAL)
-			game = new NavalGame(pos,params);
+			game = new NavalGame(ws,pos,params);
 		else
-			game = new NavalGame();
+			game = new NavalGame(ws);
 		MouseListener ml = new MouseListener() {
 			public void mouseClicked(MouseEvent arg0) {
 			}

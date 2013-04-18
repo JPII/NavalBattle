@@ -45,4 +45,9 @@ public class PavoSettings {
 	public NetworkState currentNetworkState = NetworkState.UNKNOWN;
 	public boolean isUsingMultithreadedRenderer = false;
 	public int waterThresholdBarrier = 8;
+	
+	public void resetSeed(long s){
+		seed = s;
+		rand = new Rand(seed);
+	}
 }

@@ -24,6 +24,7 @@ import com.jpii.navalbattle.NavalBattle;
 import com.jpii.navalbattle.gui.BaseWindow;
 import com.jpii.navalbattle.pavo.Game;
 import com.jpii.navalbattle.pavo.PavoOpenState;
+import com.jpii.navalbattle.pavo.WorldSize;
 
 public class SinglePlayerGame extends BaseWindow {
 	private static final long serialVersionUID = 1L;
@@ -36,7 +37,7 @@ public class SinglePlayerGame extends BaseWindow {
 	}
 	
 	public void setGameVars(PavoOpenState pos, String args) {
-		sm.setGameVars(this,pos,args);
+		sm.setGameVars(WorldSize.WORLD_MEDIUM,this,pos,args);
 		GameComponent game = sm.getGameComponent();
 		game.setLocation(0,40);
 		setContentPane(game);

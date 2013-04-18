@@ -49,9 +49,9 @@ public class World extends Renderable implements Interactable {
 	int zlevel;
 	Game game;
 	WorldStatus worldStatus;
-	public World(Game gameThing) {
+	public World(Game gameThing,WorldSize w) {
 		game = gameThing;
-		ws = WorldSize.WORLD_MEDIUM;
+		ws = w;
 		width = PavoHelper.getGameWidth(getWorldSize());
 		height = PavoHelper.getGameHeight(getWorldSize());
 		chunks = new Chunk[(width)*(height)];
