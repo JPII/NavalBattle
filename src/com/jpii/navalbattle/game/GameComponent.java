@@ -99,6 +99,7 @@ public class GameComponent extends JComponent {
 		logicUpdator = new Timer(125,al2);
 		logicUpdator.start();
 	}
+	
 	public void update() {
 		game.render();
 		Game.Settings.currentWidth = frame.getWidth();
@@ -144,6 +145,11 @@ public class GameComponent extends JComponent {
 	public NavalGame getGame() {
 		return game;
 	}
+	
+	public void setGame(NavalGame ng){
+		game = ng;
+	}
+	
 	public void toggleFullscreen() {
 		if (isFullscreen) {
 			isFullscreen = false;
