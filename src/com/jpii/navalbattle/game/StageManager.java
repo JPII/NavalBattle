@@ -2,7 +2,6 @@ package com.jpii.navalbattle.game;
 
 import javax.swing.JFrame;
 
-import com.jpii.navalbattle.pavo.Game;
 import com.jpii.navalbattle.pavo.PavoOpenState;
 import com.jpii.navalbattle.pavo.WorldSize;
 
