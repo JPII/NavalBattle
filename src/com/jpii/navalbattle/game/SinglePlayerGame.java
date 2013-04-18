@@ -27,7 +27,7 @@ import com.jpii.navalbattle.pavo.PavoOpenState;
 
 public class SinglePlayerGame extends BaseWindow {
 	private static final long serialVersionUID = 1L;
-	private GameComponent game;
+	
 	StageManager sm;
 	
 	public SinglePlayerGame(){
@@ -36,7 +36,8 @@ public class SinglePlayerGame extends BaseWindow {
 	}
 	
 	public void setGameVars(PavoOpenState pos, String args) {
-		game = new GameComponent(this,pos,args);
+		sm.setGameVars(this,pos,args);
+		GameComponent game = sm.getGameComponent();
 		game.setLocation(0,40);
 		setContentPane(game);
 		this.getContentPane().setLayout(null);
@@ -53,6 +54,6 @@ public class SinglePlayerGame extends BaseWindow {
 	}
 	
 	public void toggleFullscreen(){
-		game.toggleFullscreen();
+		sm.toggleFullscreen();
 	}
 }
