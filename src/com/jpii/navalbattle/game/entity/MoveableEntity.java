@@ -101,8 +101,8 @@ public class MoveableEntity extends Entity {
 	}
 	
 	public void togglePrimaryRange(){
-		byte good = (byte)0x2f;
-		byte bad = (byte)0x001;
+		byte bad = (byte)0x2f;
+		byte good = (byte)0x001;
 		if(showPrimary){
 			showPrimary = false;
 			good = bad = 0;
@@ -147,8 +147,8 @@ public class MoveableEntity extends Entity {
 	}
 	
 	public void toggleSecondaryRange(){
-		byte good = (byte)0x2f;
-		byte bad = (byte)0x001;
+		byte bad = (byte)0x2f;
+		byte good = (byte)0x001;
 		if(showSecondary){
 			showSecondary = false;
 			good = bad = 0;
