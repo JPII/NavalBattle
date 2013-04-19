@@ -109,4 +109,22 @@ public class Player {
 		while(entities.remove(e))
 			;
 	}
+	
+	public void nextEntity(Entity e){
+		Entity temp = null;
+		if(e==null){
+			temp = entities.get(0);
+		}
+		else{
+			if(entities.contains(e)){
+				temp = entities.get(entities.indexOf(e));
+			}
+			else{
+				entities.get(0);
+			}
+		}
+		if(temp == null)
+			return;
+		temp.getManager().getWorld().animatedSetLoc(temp.getLocation());
+	}
 }

@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics2D;
 
+import com.jpii.navalbattle.game.NavalGame;
 import com.jpii.navalbattle.game.entity.MoveableEntity;
 import com.jpii.navalbattle.game.entity.PortEntity;
 import com.jpii.navalbattle.game.entity.Submarine;
@@ -245,6 +246,12 @@ public class MidHud{
 				shopAction();					
 			}
 		});
+		
+		nextEntity.addMouseListener(new PMouseEvent(){
+			public void mouseDown(int x, int y, int buttonid) {
+				nextAction();
+			}
+		});
 
 		c.repaint();
 	}
@@ -317,6 +324,10 @@ public class MidHud{
 			new ShipShop(parent,moveE);
 			update();
 		}
+	}
+	
+	public void nextAction(){
+		NavalGame.getManager().getTurnManager().getTurn().getPlayer().nextEntity(display);
 	}
 
 }
