@@ -87,8 +87,6 @@ public class NavalBattle {
 		windowHandler = new WindowHandler(492,340);
 		
 		broadcastService = new BroadcastService();
-		
-		MaxTests.run();
 	}
 	
 	public static void onShutdown() {
