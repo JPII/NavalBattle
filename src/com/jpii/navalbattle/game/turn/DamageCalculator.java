@@ -118,11 +118,11 @@ public class DamageCalculator {
 		 */
 		
 		if(attackedClass == 11) { // Submarine
-			return !(15 >= getRandomNumber(1,100));
+			return (15 >= getRandomNumber(1,100));
 		} else if(attackedClass == 21) { // Aircraft carrier
-			return !(5 >= getRandomNumber(1,100));
+			return (5 >= getRandomNumber(1,100));
 		} else if(attackedClass == 31) { // Battleship
-			return !(10 >= getRandomNumber(1,100));
+			return (10 >= getRandomNumber(1,100));
 		}
 		
 		return false;
