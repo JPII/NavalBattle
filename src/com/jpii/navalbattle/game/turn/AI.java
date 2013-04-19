@@ -33,17 +33,33 @@ public class AI extends Player{
 				if(currentEntity.getHandle()==11){
 					//Sub
 					determineCurrentEnemies(currentEntity);
-					pickEnemy(1);
+					System.out.println("Ships next to me: " + pickEnemy(1));
+					if(pickEnemy(1)!=-1){
+					Entity ene = enemies.get(pickEnemy(1));
+					MoveableEntity enemyEntity;
+					enemyEntity = (MoveableEntity)ene;
+					DamageCalculator.doPrimaryDamage(currentEntity, enemyEntity);
+					}
 				}
 				if(currentEntity.getHandle()==21){
 					//AC
 				determineCurrentEnemies(currentEntity);
-				pickEnemy(2);
+				if(pickEnemy(2)!=-1){
+				Entity ene = enemies.get(pickEnemy(2));
+				MoveableEntity enemyEntity;
+				enemyEntity = (MoveableEntity)ene;
+				DamageCalculator.doPrimaryDamage(currentEntity, enemyEntity);
+				}
 				}
 				if(currentEntity.getHandle()==31){
 					//BS
 					determineCurrentEnemies(currentEntity);
-					pickEnemy(3);
+					if(pickEnemy(3)!=-1){
+					Entity ene = enemies.get(pickEnemy(3));
+					MoveableEntity enemyEntity;
+					enemyEntity = (MoveableEntity)ene;
+					DamageCalculator.doPrimaryDamage(currentEntity, enemyEntity);
+					}
 				}
 			}
 			
