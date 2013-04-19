@@ -30,7 +30,6 @@ import com.jpii.gamekit.debug.Debugger;
 import com.jpii.gamekit.exception.InvalidApiLevelException;
 import com.jpii.gamekit.localization.LocalizationManager;
 import com.jpii.navalbattle.data.*;
-import com.jpii.navalbattle.debug.*;
 import com.jpii.navalbattle.io.*;
 import com.jpii.navalbattle.renderer.*;
 
