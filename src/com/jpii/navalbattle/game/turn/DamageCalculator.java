@@ -21,7 +21,13 @@ public class DamageCalculator {
 	}
 	
 	public static void doPrimaryDamage(MoveableEntity deal, PortEntity take){
+		Player player = NavalGame.getManager().getTurnManager().getTurn().getPlayer();
 		deal.usePrimary();
+		int damage = 100;
+		if(take.takeDamage(damage)){
+			NavalGame.getManager().getTurnManager().removeEntity(take);
+			player.addEntity(take);
+		}
 	}
 	
 	public static void doSecondaryDamage(MoveableEntity deal, MoveableEntity take){		
