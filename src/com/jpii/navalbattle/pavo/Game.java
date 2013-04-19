@@ -176,7 +176,7 @@ public class Game extends Renderable implements Runnable, Serializable {
 		if (isAClient())
 			this.getSelfClient().halt();
 		else
-			this.getSelfServer().halt();
+			this.getSelfServer().stop();
 		
 		gameRunning = false;
 		try {

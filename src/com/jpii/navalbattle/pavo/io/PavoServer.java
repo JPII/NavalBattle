@@ -282,5 +282,8 @@ public class PavoServer implements Runnable {
 		self = null;
 	}
 	
-	
+	public void stop() {
+		doing = false;
+		halt();
+	}
 }
