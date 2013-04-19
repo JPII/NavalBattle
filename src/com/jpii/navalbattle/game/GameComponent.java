@@ -167,4 +167,8 @@ public class GameComponent extends JComponent {
 			Game.Settings.isGameFullscreen = true;
 		}
 	}
+	
+	public void dispose(){
+		getGame().getSelfServer().halt();
+	}
 }

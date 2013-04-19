@@ -22,7 +22,7 @@ public class StageManager {
 	}
 	
 	private GameComponent newGameComponent(int num){
-//		game.getGame().getSelfServer().halt();
+//		game.dispose();
 //		switch(num){
 //			case 1: Game.Settings.resetSeed(0); game.setGame(new NavalGame(WorldSize.WORLD_TINY)); break;
 //			case 2: break;

@@ -38,7 +38,7 @@ public class SinglePlayerGame extends BaseWindow {
 	
 	public void setGameVars(PavoOpenState pos, String args) {
 		sm.setGameVars(WorldSize.WORLD_MEDIUM,this,pos,args);
-		GameComponent game = sm.getGameComponent();
+		GameComponent game = new GameComponent(WorldSize.WORLD_MEDIUM,this,pos,args);
 		game.setLocation(0,40);
 		setContentPane(game);
 		this.getContentPane().setLayout(null);
