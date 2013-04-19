@@ -172,6 +172,21 @@ public class Game extends Renderable implements Runnable, Serializable {
 		return isClient;
 	}
 	
+	public void shutdown() {
+		if (isAClient())
+			this.getSelfClient().halt();
+		else
+			this.getSelfServer().halt();
+		
+		gameRunning = false;
+		try {
+			Thread.sleep(250);
+		}
+		catch (Throwable t)  {
+			
+		}
+	}
+	
 	/**
 	 * Gets the window manager for the Game.
 	 * @return
