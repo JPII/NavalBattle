@@ -256,7 +256,7 @@ public class PavoHelper {
 		else if (ws == WorldSize.WORLD_SMALL)
 			return 24;
 		else if (ws == WorldSize.WORLD_TINY)
-			return 12;
+			return 16;
 		else 
 			return 14;
 	}
@@ -287,7 +287,7 @@ public class PavoHelper {
 		else if (ws == WorldSize.WORLD_SMALL)
 			return 24;
 		else if (ws == WorldSize.WORLD_TINY)
-			return 12;
+			return 16;
 		else 
 			return 14;
 	}
