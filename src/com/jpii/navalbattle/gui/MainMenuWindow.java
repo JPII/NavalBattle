@@ -29,7 +29,6 @@ import com.jpii.navalbattle.data.Constants;
 import com.jpii.navalbattle.game.SinglePlayerGame;
 import com.jpii.navalbattle.gui.listeners.*;
 import com.jpii.navalbattle.io.NavalBattleIO;
-import com.jpii.navalbattle.pavo.PavoOpenState;
 import com.jpii.navalbattle.renderer.Helper;
 
 public class MainMenuWindow extends BaseWindow {
@@ -97,7 +96,7 @@ public class MainMenuWindow extends BaseWindow {
 			}
 			public void run() {
 				spg = new SinglePlayerGame();
-				spg.setGameVars(PavoOpenState.NORMAL,null);
+				spg.setGameVars();
 				spg.setVisible(true);
 				//nextWindow("SinglePlayerGame");
 			}
@@ -167,7 +166,7 @@ public class MainMenuWindow extends BaseWindow {
 						valid = validate(ip);
 				}
 				NavalBattleIO.saveAttribute("lastGoodIP", ip);
-				spg.setGameVars(PavoOpenState.OPEN_SERVER,ip);
+				spg.setGameVars();
 				nextWindow("SinglePlayerGame");
 				NavalBattle.getWindowHandler().disposeContained();
 			}

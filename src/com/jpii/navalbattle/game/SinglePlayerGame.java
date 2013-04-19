@@ -23,28 +23,32 @@ import javax.swing.*;
 import com.jpii.navalbattle.NavalBattle;
 import com.jpii.navalbattle.gui.BaseWindow;
 import com.jpii.navalbattle.pavo.Game;
-import com.jpii.navalbattle.pavo.PavoOpenState;
-import com.jpii.navalbattle.pavo.WorldSize;
 
 public class SinglePlayerGame extends BaseWindow {
 	private static final long serialVersionUID = 1L;
 	
 	StageManager sm;
+	GameComponent game;
 	
 	public SinglePlayerGame(){
 		myHandler.registerWhiteList(this);
 		sm = new StageManager();
+		GameComponent.frame = this;
+		game = sm.getGameComponent();
 	}
 	
-	public void setGameVars(PavoOpenState pos, String args) {
-		sm.setGameVars(WorldSize.WORLD_MEDIUM,this,pos,args);
-		GameComponent game = new GameComponent(WorldSize.WORLD_MEDIUM,this,pos,args);
+	public void setGameVars() {
 		game.setLocation(0,40);
 		setContentPane(game);
 		this.getContentPane().setLayout(null);
 		setSize(Game.Settings.currentWidth,Game.Settings.currentHeight-40);
 		setLocation(0,0);
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
+	}
+	
+	public void setNewGame(){
+		game = sm.getGameComponent();
+		setGameVars();
 	}
 	
 	public void setVisible(boolean visible){
@@ -55,6 +59,6 @@ public class SinglePlayerGame extends BaseWindow {
 	}
 	
 	public void toggleFullscreen(){
-		sm.toggleFullscreen();
+		game.toggleFullscreen();
 	}
 }

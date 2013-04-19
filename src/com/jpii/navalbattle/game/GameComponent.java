@@ -26,7 +26,7 @@ import com.jpii.navalbattle.util.WindowLib;
 
 public class GameComponent extends JComponent {
 	private static final long serialVersionUID = 1L;
-	JFrame frame;
+	public static JFrame frame;
 	Timer ticker;
 	Timer logicUpdator;
 	NavalGame game;
@@ -35,8 +35,68 @@ public class GameComponent extends JComponent {
 	Timer alert;
 	boolean startDialog = false;
 	PavoImage notifier;
-	public GameComponent(WorldSize ws,JFrame frame, PavoOpenState pos, String params) {
-		this.frame = frame;
+	public GameComponent(NavalGame ng){
+		winlib = new WindowLib(frame);
+		game = ng;MouseListener ml = new MouseListener() {
+			public void mouseClicked(MouseEvent arg0) {
+			}
+			public void mouseEntered(MouseEvent arg0) {
+			}
+			public void mouseExited(MouseEvent arg0) {		
+			}
+			public void mousePressed(MouseEvent arg0) {
+				if (game == null)
+					return;
+				game.mouseDown(arg0);
+			}
+			public void mouseReleased(MouseEvent arg0) {
+				if (game == null)
+					return;
+				game.mouseUp(arg0);
+			}		
+		};
+		MouseWheelListener mwl = new MouseWheelListener() {
+			public void mouseWheelMoved(MouseWheelEvent arg0) {
+				if (game == null)
+					return;
+				game.mouseWheelChange(arg0);
+			}
+		};
+		MouseMotionListener mml = new MouseMotionListener() {
+			public void mouseDragged(MouseEvent arg0) {
+				if (game == null)
+					return;
+				game.mouseDragged(arg0);
+			}
+			public void mouseMoved(MouseEvent arg0) {
+				if (game == null)
+					return;
+				game.mouseMove(arg0);
+			}	
+		};
+		addMouseWheelListener(mwl);
+		addMouseMotionListener(mml);
+		addMouseListener(ml);
+		ActionListener al = new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				update();
+				updateDialog();
+				repaint();
+			}
+		};
+		ActionListener al2 = new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				updateGame();
+			}
+		};
+
+		ticker = new Timer(47, al);
+		ticker.start();
+		logicUpdator = new Timer(125,al2);
+		logicUpdator.start();
+	}
+	
+	public GameComponent(WorldSize ws, PavoOpenState pos, String params) {
 		winlib = new WindowLib(frame);
 		if (pos != PavoOpenState.NORMAL)
 			game = new NavalGame(ws,pos,params);

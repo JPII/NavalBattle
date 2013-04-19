@@ -59,6 +59,9 @@ public class KeyboardListener implements KeyListener {
 				if(k.getKeyCode() == KeyEvent.VK_F11){
 					g.toggleFullscreen();
 				}
+				if(k.getKeyCode() == KeyEvent.VK_U){
+					g.setNewGame();
+				}
 				if(k.getKeyCode() == KeyEvent.VK_H){
 					NavalGame.getHud().togglePinable();
 				}
