@@ -103,7 +103,7 @@ public class AI extends Player{
 	{
 		for (int x = 0; x < (e.getMovementLeft() * 2) + 1; x++) {
 			for (int y = 0; y < (e.getMovementLeft() * 2) + 1; y++) {
-				Entity location = e.getManager().findEntity(e.getRLR(y), e.getCLR(x));
+				Entity location = e.getManager().findEntity(y-(e.getMovementLeft()),x-(e.getMovementLeft()));
 				if(location!=null){
 					Player temp = NavalGame.getManager().getTurnManager().findPlayer(location); 
 					if(!(temp.equals(this))&&!enemies.contains(location)){
