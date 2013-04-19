@@ -39,6 +39,7 @@ public class Entity implements Serializable {
 	private static int ENTITYMASTERRECORDSYSTEMPLEASEDONOTTOUCHTHIS = 0;
 	protected byte handle = -1;
 	protected boolean startpos = false;
+	protected boolean disposed = false;
 	
 	public Entity(EntityManager em) {
 		manager = em;
@@ -408,6 +409,7 @@ public class Entity implements Serializable {
 	public boolean dispose() {
 		truncate();
 		getManager().removeEntity(this);
+		disposed = true;
 		return true;
 	}
 	

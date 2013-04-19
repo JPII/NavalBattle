@@ -445,4 +445,8 @@ public class MoveableEntity extends Entity {
 	public void repair(){
 		currentHealth=maxHealth;
 	}
+
+	public boolean isDisposed() {
+		return disposed;
+	}
 }
