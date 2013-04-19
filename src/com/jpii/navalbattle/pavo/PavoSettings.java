@@ -49,5 +49,18 @@ public class PavoSettings {
 	public void resetSeed(long s){
 		seed = s;
 		rand = new Rand(seed);
+		
+		initialWidth = Toolkit.getDefaultToolkit().getScreenSize().width;
+		initialHeight = Toolkit.getDefaultToolkit().getScreenSize().height;
+		currentWidth = initialWidth;
+		currentHeight = initialHeight;
+		OverClock = true;
+		isGameFullscreen = false;
+		GridColor = new Color(120,120,120,100);
+		hasGameBeenModded = false;
+		isFinishedGenerating = false;
+		currentNetworkState = NetworkState.UNKNOWN;
+		isUsingMultithreadedRenderer = false;
+		waterThresholdBarrier = 8;
 	}
 }

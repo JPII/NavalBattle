@@ -173,7 +173,12 @@ public class GameComponent extends JComponent {
 	public void paintComponent(Graphics g) {
 		//g.setColor(Color.black);
 		//g.fillRect(0,0,DynamicConstants.WND_WDTH,DynamicConstants.WND_HGHT);
-		g.drawImage(game.getBuffer(),0,0,null);
+		if (game != null)
+			g.drawImage(game.getBuffer(),0,0,null);
+		else {
+			g.setColor(Color.red);
+			g.fillRect(0,0,getWidth(),getHeight());
+		}
 		if (notifier != null)
 			g.drawImage(notifier,(Game.Settings.currentWidth/2)-(notifier.getWidth()/2),
 				(Game.Settings.currentHeight/2)-(notifier.getHeight()/2),null);
@@ -231,15 +236,17 @@ public class GameComponent extends JComponent {
 	public void dispose(){
 		ticker.stop();
 		logicUpdator.stop();
-		alert.stop();
+		//alert.stop();
 		getGame().shutdown();
 		ticker = null;
 		logicUpdator = null;
 		alert = null;
+		game = null;
+		repaint();
 		Game.Instance = null;
 		System.gc();
 		try {
-			Thread.sleep(200);
+			Thread.sleep(600);
 		}
 		catch (Throwable t) {
 			
