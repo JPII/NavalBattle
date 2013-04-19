@@ -213,9 +213,9 @@ public class World extends Renderable implements Interactable {
 			int ddx = (dx/ds);
 			int ddy = (dy/ds);
 			if (ddx > 1 && ddx < 6)
-				ddx = 5;
+				sx = destx;
 			if (ddy > 1 && ddy < 6)
-				ddy = 5;
+				sy = desty;
 			if (dx > 0)
 				sx += ddx;
 			else
