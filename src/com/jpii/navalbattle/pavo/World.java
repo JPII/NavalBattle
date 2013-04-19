@@ -26,6 +26,7 @@ import maximusvladimir.dagen.Rand;
 import com.jpii.navalbattle.io.Interactable;
 import com.jpii.navalbattle.pavo.grid.Entity;
 import com.jpii.navalbattle.pavo.grid.EntityManager;
+import com.jpii.navalbattle.pavo.grid.Location;
 import com.jpii.navalbattle.pavo.io.PavoImage;
 
 
@@ -122,10 +123,11 @@ public class World extends Renderable implements Interactable {
 		anix = x;
 		aniy = y;
 	}
-	/*public void animatedSetLoc(Location l) {
-		Point p = PavoHelper.convertLocationToScreen(this, l);
-		animatedSetLoc(p.x,p.y);
-	}*/
+	public void animatedSetLoc(Location l) {
+		int sc = l.getCol() * -50;
+		int sr = l.getRow() * -50;
+		animatedSetLoc(sc,sr);
+	}
 	public void animatedSetLoc(int x, int y) {
 		anix = x;
 		aniy = y;
