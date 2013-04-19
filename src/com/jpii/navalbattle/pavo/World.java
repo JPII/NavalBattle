@@ -301,10 +301,10 @@ public class World extends Renderable implements Interactable {
 	public int getScreenY() {
 		return sy;
 	}
-	public void moveScreenTo(int x, int y) {
-		anisx = x;
-		anisy = y;
-	}
+//	public void moveScreenTo(int x, int y) {
+//		anisx = x;
+//		anisy = y;
+//	}
 	public WorldSize getWorldSize() {
 		return ws;
 	}
