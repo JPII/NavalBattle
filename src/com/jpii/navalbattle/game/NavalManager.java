@@ -129,9 +129,9 @@ public class NavalManager extends EntityManager {
 		
 		for(int c =0; c<10; c++){
 			Location poll = gh.pollNextWaterTile();
-			tm.addEntity(new Whale(this,poll,GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT,-1,w1,w2,w3),tm.getPlayer(3));
+			new Whale(this,poll,GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT,-1,w1,w2,w3);
 			poll = gh.pollNextShoreTile();
-			tm.addEntity(new PortEntity(this,poll,GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT,-1),tm.getPlayer(3));
+			tm.addEntity(new PortEntity(this,poll,GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT,-1),tm.getPlayer(2));
 			System.out.println("Port generated at " + poll);
 		}
 		

@@ -165,6 +165,7 @@ public class PortEntity extends AnimatedEntity {
 		boolean flag = false; // used when returning if changed teams
 		if(currentHealth <= 0){
 			flag = true; // changed teams;
+			repair();
 		}
 		return flag;
 	}

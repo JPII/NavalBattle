@@ -21,6 +21,7 @@ public class DamageCalculator {
 	}
 	
 	public static void doPrimaryDamage(MoveableEntity deal, PortEntity take){
+		System.out.println("Port was attacked!");
 		Player player = NavalGame.getManager().getTurnManager().getTurn().getPlayer();
 		deal.usePrimary();
 		int damage = 100;

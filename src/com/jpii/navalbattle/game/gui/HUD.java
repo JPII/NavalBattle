@@ -33,15 +33,6 @@ public class HUD extends PWindow{
 		setTitleVisiblity(false);
 		setVisible(false);
 		update();
-////		int ui1 = ui1 = Game.Settings.rand.nextInt();
-////		int ui2 = ui2 = ui1 + 5;
-////		int ui3 = ui3 = (ui2 & 2) + ui1;
-////		int ui4 = ui4 = ui3 >> 2;
-////		int ui5 = ui5 = ui4 + 2;
-////		int ui6 = ui6 = ui5 / 2;
-////		int ui7 = ui7 = ui6 + 5;
-////		int ui8 = ui8 = ui7 * -1;
-//		System.out.println("ui8"+ui8);
 	 }
 	 
 	 
@@ -178,8 +169,9 @@ public class HUD extends PWindow{
 				move.togglePrimaryRange();
 			}
 			System.out.println("[chat] Gunning ship from ("+startr+","+startc+") to ("+y+","+x+")");
-			if(there!=null)
+			if(there!=null){
 				DamageCalculator.doPrimaryDamage(move, there);
+			}
 			if(e.getHandle()==2){
 				PortEntity attacked = (PortEntity)e;
 				DamageCalculator.doPrimaryDamage(move, attacked);
