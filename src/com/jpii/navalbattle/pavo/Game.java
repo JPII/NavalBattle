@@ -452,6 +452,11 @@ public class Game extends Renderable implements Runnable, Serializable {
 				Point des =PavoHelper.convertLocationToScreen(getWorld(),e.destiny);
 				double d
 				= Math.sqrt(Math.pow(e.currentLocation.x-des.x,2)+Math.pow(e.currentLocation.y-des.y,2));
+				if (d / 100 <= 3) {
+					e.currentLocation.x = motionDest.x;
+					e.currentLocation.y = motionDest.y;
+				}
+				
 				e.currentLocation = movePointTowards(e.currentLocation, des, (int)(d/100));
 				//System.out.println(e.currentLocation);
 				if (e.currentLocation.x > motionDest.x - 5 && e.currentLocation.x < motionDest.y + 5
