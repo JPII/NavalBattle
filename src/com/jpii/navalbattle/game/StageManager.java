@@ -20,8 +20,10 @@ public class StageManager {
 	}
 	
 	private GameComponent newGameComponent(int num){
-		if(game!=null)
+		if(game!=null) {
+			System.out.println("Disposing.");
 			game.dispose();
+		}
 		switch(num){
 			case 1: Game.Settings.resetSeed(0); game=new GameComponent(new NavalGame(WorldSize.WORLD_TINY)); break;
 			case 2: Game.Settings.resetSeed(10); game=new GameComponent(new NavalGame(WorldSize.WORLD_SMALL));  break;

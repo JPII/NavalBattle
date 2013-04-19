@@ -229,6 +229,21 @@ public class GameComponent extends JComponent {
 	}
 	
 	public void dispose(){
-		getGame().getSelfServer().halt();
+		ticker.stop();
+		logicUpdator.stop();
+		alert.stop();
+		getGame().shutdown();
+		ticker = null;
+		logicUpdator = null;
+		alert = null;
+		Game.Instance = null;
+		System.gc();
+		try {
+			Thread.sleep(200);
+		}
+		catch (Throwable t) {
+			
+		}
+		System.gc();
 	}
 }
