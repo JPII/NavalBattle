@@ -111,12 +111,6 @@ public class DamageCalculator {
 	private static boolean calculateDeflect(MoveableEntity e) {
 		byte attackedClass = e.getHandle();
 		
-		/*
-		 * 11 - S
-		 * 21 - AC
-		 * 31 - B
-		 */
-		
 		if(attackedClass == 11) { // Submarine
 			return (15 >= getRandomNumber(1,100));
 		} else if(attackedClass == 21) { // Aircraft carrier
