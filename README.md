@@ -13,8 +13,6 @@ We depend on the following projects. They can be found in the libs folder. If yo
 * GameKit
 * Apache Commons IO, Lang, Codec
 
-We also require Java 7 or later.
-
 ## Members
 * **TexasGamer** - SCM manager, RoketGamer lead
 * **abauer** - game design lead
