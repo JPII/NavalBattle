@@ -13,10 +13,10 @@ import com.jpii.navalbattle.pavo.grid.EntityManager;
 import com.jpii.navalbattle.pavo.grid.GridHelper;
 import com.jpii.navalbattle.pavo.grid.GridedEntityTileOrientation;
 import com.jpii.navalbattle.pavo.grid.Location;
-import com.jpii.navalbattle.turn.AI;
-import com.jpii.navalbattle.turn.Player;
-import com.jpii.navalbattle.turn.PlayerManager;
-import com.jpii.navalbattle.turn.TurnManager;
+import com.jpii.navalbattle.game.turn.AI;
+import com.jpii.navalbattle.game.turn.Player;
+import com.jpii.navalbattle.game.turn.PlayerManager;
+import com.jpii.navalbattle.game.turn.TurnManager;
 import com.jpii.navalbattle.util.FileUtils;
 
 /**

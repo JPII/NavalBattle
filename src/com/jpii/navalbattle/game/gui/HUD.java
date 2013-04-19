@@ -10,8 +10,8 @@ import com.jpii.navalbattle.pavo.grid.Location;
 import com.jpii.navalbattle.pavo.grid.Tile;
 import com.jpii.navalbattle.pavo.gui.NewWindowManager;
 import com.jpii.navalbattle.pavo.gui.controls.PWindow;
-import com.jpii.navalbattle.turn.DamageCalculator;
-import com.jpii.navalbattle.turn.TurnManager;
+import com.jpii.navalbattle.game.turn.DamageCalculator;
+import com.jpii.navalbattle.game.turn.TurnManager;
 
 public class HUD extends PWindow{
 	

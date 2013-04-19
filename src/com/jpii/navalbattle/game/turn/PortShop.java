@@ -1,4 +1,4 @@
-package com.jpii.navalbattle.turn;
+package com.jpii.navalbattle.game.turn;
 
 import java.awt.Font;
 

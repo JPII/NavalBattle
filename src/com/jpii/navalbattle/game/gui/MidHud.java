@@ -13,9 +13,9 @@ import com.jpii.navalbattle.pavo.gui.controls.Control;
 import com.jpii.navalbattle.pavo.gui.controls.PButton;
 import com.jpii.navalbattle.pavo.gui.controls.PImage;
 import com.jpii.navalbattle.pavo.gui.events.PMouseEvent;
-import com.jpii.navalbattle.turn.PortShop;
-import com.jpii.navalbattle.turn.ShipShop;
-import com.jpii.navalbattle.turn.TurnManager;
+import com.jpii.navalbattle.game.turn.PortShop;
+import com.jpii.navalbattle.game.turn.ShipShop;
+import com.jpii.navalbattle.game.turn.TurnManager;
 import com.jpii.navalbattle.util.FileUtils;
 
 public class MidHud{
