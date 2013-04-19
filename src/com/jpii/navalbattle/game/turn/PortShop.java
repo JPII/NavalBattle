@@ -15,14 +15,23 @@ import com.jpii.navalbattle.pavo.gui.events.PMouseEvent;
 		PortEntity port;
 		Player current;
 		
-		public PortShop(NewWindowManager parent) {
+		public PortShop(NewWindowManager parent,PortEntity pe) {
 			super(parent);
-			setVisible(true);
 			parent.add(this);
 			setSize(500, 250);
 			setLoc(390, 275);
 			setText("Port Shop");
 			initItems();
+			
+			port = pe;
+			current = null;
+			if(port == null){
+				super.setVisible(false);
+			}
+			else{
+				super.setVisible(true);
+				current = NavalGame.getManager().getTurnManager().findPlayer(pe);
+			}
 		}
 		
 		private void initItems(){
@@ -144,25 +153,6 @@ import com.jpii.navalbattle.pavo.gui.events.PMouseEvent;
 					current.subtractscore(500);
 					port.repair();
 				}
-			}
-		}
-		
-		/**
-		 * @deprecated
-		 */
-		public void setVisible(boolean sight){
-			super.setVisible(false);
-		}
-		
-		public void setVisilbe(PortEntity pe){
-			port = pe;
-			current = null;
-			if(port == null){
-				super.setVisible(false);
-			}
-			else{
-				super.setVisible(true);
-				current = NavalGame.getManager().getTurnManager().findPlayer(pe);
 			}
 		}
 	}

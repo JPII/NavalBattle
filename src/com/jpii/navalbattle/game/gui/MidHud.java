@@ -40,9 +40,6 @@ public class MidHud{
 	
 	Entity display;
 	MoveableEntity moveE;
-	
-	PortShop ps;
-	ShipShop ss;
 	NewWindowManager parent;
 	
 	int width,height;
@@ -52,8 +49,6 @@ public class MidHud{
 	
 	public MidHud(Control c, TurnManager tm,NewWindowManager pare){
 		initButtons(c);
-		ps = new PortShop(pare);
-		ss = new ShipShop(pare);
 		width = c.getWidth();
 		height = c.getHeight();
 		parent = pare;
@@ -314,12 +309,12 @@ public class MidHud{
 	}
 	
 	public void shopAction(){
-		if(display!=null&&ps!=null&&display.getHandle()%10 == 2){
-			ps.setVisilbe((PortEntity)display);
+		if(display!=null&&display.getHandle()%10 == 2){
+			new PortShop(parent,(PortEntity)display);
 			update();
 		}
-		else if(moveE!=null&&ss!=null){
-			ss.setVisible(moveE);
+		else if(moveE!=null){
+			new ShipShop(parent,moveE);
 			update();
 		}
 	}

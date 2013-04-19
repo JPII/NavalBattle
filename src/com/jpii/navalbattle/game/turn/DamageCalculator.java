@@ -75,7 +75,7 @@ public class DamageCalculator {
 		return 100;
 	}
 	
-	private static int calculateSecondaryDamage(MoveableEntity deal, MoveableEntity take) {
+	public static int calculateSecondaryDamage(MoveableEntity deal, MoveableEntity take) {
 		byte attackerClass = deal.getHandle();
 		byte attackedClass = take.getHandle();
 		

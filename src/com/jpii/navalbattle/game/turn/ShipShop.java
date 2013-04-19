@@ -17,14 +17,25 @@ import com.jpii.navalbattle.pavo.gui.events.PMouseEvent;
 		
 		PButton missile = null;
 		
-		public ShipShop(NewWindowManager parent){
+		public ShipShop(NewWindowManager parent,MoveableEntity e){
 			super(parent);
-			setVisible(true);
 			parent.add(this);
 			setSize(500, 250);
 			setLoc(390, 275);
 			setText("Ship Shop");
 			initItems();
+			
+			move = e;
+			current = null;
+			missile.setVisible(true);
+			if(move == null)
+				setVisible(false);
+			else{
+				setVisible(true);
+				current = NavalGame.getManager().getTurnManager().findPlayer(e);
+				if(move.getHandle()==21)
+					missile.setVisible(false);
+			}
 		}
 	 
 		private void initItems(){
@@ -169,28 +180,6 @@ import com.jpii.navalbattle.pavo.gui.events.PMouseEvent;
 					current.subtractscore(300);
 					move.repair();
 				}
-			}
-		}
-		
-		/**
-		 * @deprecated
-		 */
-		public void setVisible(boolean sight){
-			super.setVisible(false);
-		}
-		
-		public void setVisible(MoveableEntity me){
-			move = me;
-			current = null;
-			if(missile!=null)
-				missile.setVisible(true);
-			if(move == null)
-				super.setVisible(false);
-			else{
-				super.setVisible(true);
-				current = NavalGame.getManager().getTurnManager().findPlayer(me);
-				if(move.getHandle()==21)
-					missile.setVisible(false);
 			}
 		}
 	}
