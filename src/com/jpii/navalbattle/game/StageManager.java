@@ -9,7 +9,7 @@ public class StageManager {
 	int stageNumber;
 	
 	public StageManager(){
-		stageNumber = 0;
+		stageNumber = 10;
 	}
 	/**
 	 * @return the GameComponent, can be null
