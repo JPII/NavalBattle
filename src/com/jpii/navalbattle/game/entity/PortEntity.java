@@ -16,6 +16,9 @@ import com.jpii.navalbattle.pavo.grid.Location;
 public class PortEntity extends AnimatedEntity {
 	private static final long serialVersionUID = 1L;
 	BufferedImage icon;
+	private int maxHealth;
+	private int currentHealth;
+	
 	/**
 	 * @param em
 	 * @param loc
@@ -26,9 +29,11 @@ public class PortEntity extends AnimatedEntity {
 	public PortEntity(EntityManager em, Location loc, byte orientation,
 			int team) {
 		super(em, loc, orientation, team, generatePort(em,loc));
-		handle = 2;
 		icon = em.getImage(em.getTile(loc));
 		this.setAlternatingDirection(false);
+		handle = 2;
+		maxHealth = 2500;
+		currentHealth = maxHealth;
 	}
 	
 	public BufferedImage getIcon() {
@@ -141,18 +146,26 @@ public class PortEntity extends AnimatedEntity {
 	}
 	
 	public void spawnBattleship(){
-
+		
 	}
 	
 	public void spawnSubmarine(){
-
+		
 	}
 	
 	public void spawnAC(){
-
-	}
+		
+	}	
 	
 	public void repair(){
-
+		currentHealth = maxHealth;
+	}
+	
+	public boolean takeDamage(int damage){
+		boolean flag = false; // used when returning if changed teams
+		if(currentHealth <= 0){
+			flag = true; // changed teams;
+		}
+		return flag;
 	}
 }
