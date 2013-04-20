@@ -1,12 +1,7 @@
 NavalBattle
 ==========
 
-Strategic turn-based naval game. Coming soon.
-
-[For visual snapshots of the latest commits and information see the snapshots wiki page](http://bit.ly/nbsnapshots)
-[For documentation and reference](http://bit.ly/navalbattledoc)
-
-![Your internet is slow](http://bit.ly/navalthing0701)
+Strategic turn-based naval game.
 
 ## Dependencies
 We depend on the following projects. They can be found in the libs folder. If you use Eclipse, everything is already taken care of!
@@ -24,12 +19,16 @@ We depend on the following projects. They can be found in the libs folder. If yo
 ## License
 NavalBattle is licensed under the irrevocable GNU General Public License v3.
 
+ * [Documentation](http://bit.ly/navalbattledoc)
+
 ## Versioning
 NavalBattle will be released with the following versioning scheme:
     
     major.minor.build
 
 Names of United States Navy ships will be used for codenames.
+
+ * [Snapshots](http://bit.ly/nbsnapshots)
 
 ## Commit updates
 Follow @NavalBattle for real-time commit logs.
