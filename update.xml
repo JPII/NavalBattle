@@ -2,14 +2,16 @@
 <navalbattle>
 	<string name="version_code">7</string>
 	<string name="version_readable">0.7</string>
-	<string name="update_text"> NavalBattle 0.7 is the next milestone! Please pull the latest code from GitHub.
-		Changelog:
-		 * Attack system
-		 * Better submarines
-		 * Improved OmniMap
-		 * Readded status bar
-		 * Ports
-		 * Bug fixes and increased stability
+	<string name="update_text"> 
+NavalBattle 0.7 is the next milestone! Please pull the latest code from GitHub.
+
+Changelog:
++ Attack system
++ Better submarines
++ Improved OmniMap
++ Readded status bar
++ Ports
++ Bug fixes and increased stability
 	</string>
 	<string name="update_url">http://github.com/JPII/NavalBattle</string>
 	
