@@ -21,13 +21,14 @@ public class DamageCalculator {
 	}
 	
 	public static void doPrimaryDamage(MoveableEntity deal, PortEntity take){
-		System.out.println("Port was attacked!");
 		Player player = NavalGame.getManager().getTurnManager().getTurn().getPlayer();
 		deal.usePrimary();
-		int damage = 100;
-		if(take.takeDamage(damage)){
-			NavalGame.getManager().getTurnManager().removeEntity(take);
-			player.addEntity(take);
+		
+		if(calculateDeflect(take)) {
+			if(take.takeDamage(calculatePrimaryDamage(deal,take))){
+				NavalGame.getManager().getTurnManager().removeEntity(take);
+				player.addEntity(take);
+			}
 		}
 	}
 	
@@ -46,7 +47,15 @@ public class DamageCalculator {
 	}
 	
 	public static void doSecondaryDamage(MoveableEntity deal, PortEntity take){
+		Player player = NavalGame.getManager().getTurnManager().getTurn().getPlayer();
 		deal.useSecondary();
+		
+		if(calculateDeflect(take)) {
+			if(take.takeDamage(calculateSecondaryDamage(deal,take))){
+				NavalGame.getManager().getTurnManager().removeEntity(take);
+				player.addEntity(take);
+			}
+		}
 	}
 	
 	private static int calculatePrimaryDamage(MoveableEntity deal, MoveableEntity take) {
@@ -115,6 +124,34 @@ public class DamageCalculator {
 		return 200;
 	}
 	
+	private static int calculatePrimaryDamage(MoveableEntity deal, PortEntity take) {
+		byte attackerClass = deal.getHandle();
+		
+		if(attackerClass == 31) { // Battleship
+			return getRandomNumber(300,500);
+		} else if(attackerClass == 21) { // Aircraft carrier
+			return getRandomNumber(300,500);
+		} else if(attackerClass == 11) { // Submarine
+			return getRandomNumber(300,500);
+		}
+		
+		return 100;
+	}
+	
+	private static int calculateSecondaryDamage(MoveableEntity deal, PortEntity take) {
+		byte attackerClass = deal.getHandle();
+		
+		if(attackerClass == 31) { // Battleship
+			return getRandomNumber(300,500) * 2;
+		} else if(attackerClass == 21) { // Aircraft carrier
+			return getRandomNumber(300,500) * 2;
+		} else if(attackerClass == 11) { // Submarine
+			return getRandomNumber(300,500) * 2;
+		}
+		
+		return 200;
+	}
+	
 	private static boolean calculateDeflect(MoveableEntity e) {
 		byte attackedClass = e.getHandle();
 		
@@ -127,6 +164,10 @@ public class DamageCalculator {
 		}
 		
 		return false;
+	}
+	
+	private static boolean calculateDeflect(PortEntity e) {
+		return (5 >= getRandomNumber(1,100));
 	}
 	
 	private static int getRandomNumber(int min, int max) {
