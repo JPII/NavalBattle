@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import com.jpii.navalbattle.game.NavalGame;
 import com.jpii.navalbattle.game.NavalManager;
 import com.jpii.navalbattle.pavo.grid.Entity;
+import com.jpii.navalbattle.pavo.grid.GridHelper;
+import com.jpii.navalbattle.pavo.grid.Location;
 import com.jpii.navalbattle.game.entity.MoveableEntity;
 
 public class AI extends Player{
@@ -32,34 +34,37 @@ public class AI extends Player{
 				currentEntity = (MoveableEntity)ent;
 				if(currentEntity.getHandle()==11){
 					//Sub
+				//	moveAIShip(currentEntity);
 					determineCurrentEnemies(currentEntity);
-					System.out.println("Ships next to me: " + pickEnemy(1));
+				/*	System.out.println("Ships next to me: " + pickEnemy(1));
 					if(pickEnemy(1)!=-1){
 					Entity ene = enemies.get(pickEnemy(1));
 					MoveableEntity enemyEntity;
 					enemyEntity = (MoveableEntity)ene;
 					DamageCalculator.doPrimaryDamage(currentEntity, enemyEntity);
-					}
+					}*/
 				}
 				if(currentEntity.getHandle()==21){
 					//AC
+					//moveAIShip(currentEntity);
 				determineCurrentEnemies(currentEntity);
-				if(pickEnemy(2)!=-1){
+				/*if(pickEnemy(2)!=-1){
 				Entity ene = enemies.get(pickEnemy(2));
 				MoveableEntity enemyEntity;
 				enemyEntity = (MoveableEntity)ene;
 				DamageCalculator.doPrimaryDamage(currentEntity, enemyEntity);
-				}
+				}*/
 				}
 				if(currentEntity.getHandle()==31){
 					//BS
+					//moveAIShip(currentEntity);
 					determineCurrentEnemies(currentEntity);
-					if(pickEnemy(3)!=-1){
+			/*		if(pickEnemy(3)!=-1){
 					Entity ene = enemies.get(pickEnemy(3));
 					MoveableEntity enemyEntity;
 					enemyEntity = (MoveableEntity)ene;
 					DamageCalculator.doPrimaryDamage(currentEntity, enemyEntity);
-					}
+					}*/
 				}
 			}
 			
@@ -114,11 +119,29 @@ public class AI extends Player{
 	}
 		return -1;
 	}
-	
-	public void determineCurrentEnemies(MoveableEntity e)
-	{
-		for (int x = 0; x < (e.getMovementLeft() * 2) + 1; x++) {
-			for (int y = 0; y < (e.getMovementLeft() * 2) + 1; y++) {
+	public void moveAIShip(MoveableEntity e){
+		int topX = e.getLocation().getCol();	   
+		int topY = e.getLocation().getRow();
+		int currentX;
+		int currentY;
+		int count= 0;
+		e.toggleMovable();
+		e.toggleMovable();
+	do
+		{	
+			currentX = topX;
+			currentY = topY;
+			currentX += (int) (Math.random()*((e.getMovementLeft() * 2) + 1));
+			currentY += (int) (Math.random()*((e.getMovementLeft() * 2) + 1));
+		}
+		while(!GridHelper.canMoveTo(e.getManager(), e, e.getCurrentOrientation(), currentY, currentX,e.getWidth())||count == 10);
+		e.moveTo(new Location(currentY,currentX));
+	}
+	public void determineCurrentEnemies(MoveableEntity e){
+		int topX = (e.getLocation().getCol()-e.getMovementLeft());	   
+		int topY = (e.getLocation().getRow()-e.getMovementLeft());	 		
+		for (int x = topX; x < (e.getMovementLeft() * 2) + 1; x++) {
+			for (int y = topY; y < (e.getMovementLeft() * 2) + 1; y++) {
 				Entity location = e.getManager().findEntity(y-(e.getMovementLeft()),x-(e.getMovementLeft()));
 				if(location!=null){
 					Player temp = NavalGame.getManager().getTurnManager().findPlayer(location); 
