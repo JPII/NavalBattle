@@ -13,7 +13,7 @@ public class PlayerManager {
 			this.players.add(players[index]);
 			count++;
 			players[index].setPlayerNumber(count);
-			players[index].setTeamColor(PlayerManager.getPlayerColor(count));
+			players[index].setTeamColor((byte)(PlayerManager.getPlayerColor(count)+1));
 		}
 	}
 	
