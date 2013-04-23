@@ -8,7 +8,6 @@ import com.jpii.navalbattle.game.entity.MoveableEntity;
 import com.jpii.navalbattle.game.entity.PortEntity;
 import com.jpii.navalbattle.pavo.grid.Entity;
 import com.jpii.navalbattle.pavo.gui.controls.Control;
-import com.jpii.navalbattle.pavo.gui.controls.PProgress;
 import com.jpii.navalbattle.util.FileUtils;
 
 public class RightHud {
@@ -19,18 +18,14 @@ public class RightHud {
 	String location = new String("");
 	String health = new String("");
 	String movement = new String("");
+	String missiles = new String("");
 	
 	Entity display;
 	MoveableEntity move;
-	PProgress heal;
 	
 	public RightHud(Control parent,int width, int height){
 		centerx = width-210;
 		centery = height/2;
-		heal = new PProgress(parent);
-		heal.setLoc(parent.getWidth()/2-150, parent.getHeight()-60);
-		heal.setSize(100, 10);
-		heal.setVisible(true);
 	}
 	
 	public void draw(Graphics2D g){
@@ -38,8 +33,9 @@ public class RightHud {
 		if(display!=null){
 			g.drawImage(entityImg,boxx+50,boxy+50,null);
 			drawString(g,location, centerx, centery+60);
-			drawString(g,health, centerx, centery-35);
+			drawString(g,health, centerx, centery-60);
 			drawString(g,movement, centerx, centery+40);
+			drawString(g,missiles, centerx, centery-40);
 		}
 	}
 	
@@ -83,7 +79,7 @@ public class RightHud {
 	
 	public void update(){
 		boxx = boxy = boxheight = boxwidth = 0;
-		health = movement = "";
+		missiles = health = movement = "";
 		if(display!=null){
 			if (display.getHandle()%10 == 2) {
 				PortEntity display = (PortEntity)this.display;
@@ -100,13 +96,16 @@ public class RightHud {
 			location = ("[X:"+display.getLocation().getCol()+" Y:"+display.getLocation().getRow()+"]");
 			if(move!=null){
 				health = ("Health: "+move.getPercentHealth()+"%");
-				heal.setProgress(move.getPercentHealth());
 				movement = ("Movement Left: "+(move.getMaxMovement()-move.getMoved())+" out of "+move.getMaxMovement());
+				if(move.getMissileCount()>0){
+					if(move.getHandle()!=21){
+						missiles=move.getMissileCount()+" missiles left";
+					}
+				}
 			}
 			else if(display.getHandle()%10 == 2){
 				PortEntity temp = (PortEntity) display;
 				health = ("Health: "+temp.getPercentHealth()+"%");
-				heal.setProgress(temp.getPercentHealth());
 			}
 		}
 	}

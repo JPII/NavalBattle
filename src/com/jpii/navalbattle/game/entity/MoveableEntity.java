@@ -412,6 +412,10 @@ public class MoveableEntity extends Entity {
 		usedMissiles=true;
 	}
 	
+	public int getMissileCount(){
+		return missileCount;
+	}
+	
 	public boolean takeDamage(int dealt){		
 		int b4 = getPercentHealth();
 		currentHealth -= dealt;
