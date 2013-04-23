@@ -70,8 +70,8 @@ public class HUD extends PWindow{
 			setVisible(true);
 			if(move!=null){
 				if(move.isMovableTileBeingShown()){
-					move.toggleMovable();
-					move.toggleMovable();
+					move.toggleMoveable();
+					move.toggleMoveable();
 				}
 				if(move.isPrimaryTileBeingShown()){
 					move.togglePrimaryRange();
@@ -113,7 +113,7 @@ public class HUD extends PWindow{
 		int startc = move.getLocation().getCol();
 		if(leftclick && GridHelper.canMoveTo(move.getManager(), move, move.getCurrentOrientation(), y, x,move.getWidth())){
 			if(move.isMovableTileBeingShown()){
-				move.toggleMovable();
+				move.toggleMoveable();
 			}
 			move.moveTo(new Location(y,x));
 			System.out.println("[chat] Moving ship from ("+startr+","+startc+") to ("+move.getLocation().getRow()+","+move.getLocation().getCol()+")");
@@ -128,7 +128,7 @@ public class HUD extends PWindow{
 		}
 		else if(GridHelper.canMoveTo(move.getManager(), move, move.getOppositeOrientation(), y, x,move.getWidth())){
 			if(move.isMovableTileBeingShown()){
-				move.toggleMovable();
+				move.toggleMoveable();
 			}
 			move.moveTo(new Location(y,x),move.getOppositeOrientation());
 			System.out.println("[chat] Moving ship from ("+startr+","+startc+") to ("+move.getLocation().getRow()+","+move.getLocation().getCol()+")");

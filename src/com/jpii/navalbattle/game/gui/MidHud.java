@@ -67,7 +67,7 @@ public class MidHud{
 				if(display.getHandle()%10 == 1){
 					MoveableEntity display = (MoveableEntity)this.display;
 					if(display.isMovableTileBeingShown()){
-						display.toggleMovable();
+						display.toggleMoveable();
 					}
 					if(display.isPrimaryTileBeingShown()){
 						display.togglePrimaryRange();
@@ -263,7 +263,7 @@ public class MidHud{
 					moveE.toggleSecondaryRange();
 				if(moveE.isPrimaryTileBeingShown())	
 					moveE.togglePrimaryRange();	
-				moveE.toggleMovable();
+				moveE.toggleMoveable();
 			}
 		}
 		update();
@@ -281,7 +281,7 @@ public class MidHud{
 		if(bullet.isVisible()){
 			if(moveE!=null){
 				if(moveE.isMovableTileBeingShown())
-					moveE.toggleMovable();
+					moveE.toggleMoveable();
 				if(moveE.isSecondaryTileBeingShown())
 					moveE.toggleSecondaryRange();	
 				moveE.togglePrimaryRange();	
@@ -294,7 +294,7 @@ public class MidHud{
 		if(missile.isVisible()||airstrike.isVisible()){
 			if(moveE!=null){
 				if(moveE.isMovableTileBeingShown())
-					moveE.toggleMovable();
+					moveE.toggleMoveable();
 				if(moveE.isPrimaryTileBeingShown())
 					moveE.togglePrimaryRange();
 				moveE.toggleSecondaryRange();	

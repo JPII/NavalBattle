@@ -53,7 +53,7 @@ public class MoveableEntity extends Entity {
 		return showSecondary;
 	}
 	
-	public void toggleMovable() {
+	public void toggleMoveable() {
 		byte good = (byte)0x2f;
 		byte bad = (byte)0x001;
 		if(showMove){

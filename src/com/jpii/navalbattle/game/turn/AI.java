@@ -31,9 +31,11 @@ public class AI extends Player{
 			MoveableEntity currentEntity;
 			if(ent.getHandle()%10 == 1){
 				currentEntity = (MoveableEntity)ent;
+				System.out.println("my Location is... "+currentEntity.getLocation());
 				if(currentEntity.getHandle()==11){
 					//Sub
-				//	moveAIShip(currentEntity);
+					System.out.println("I am a submarine");
+					moveAIShip(currentEntity);
 					determineCurrentEnemies(currentEntity);
 				/*	System.out.println("Ships next to me: " + pickEnemy(1));
 					if(pickEnemy(1)!=-1){
@@ -45,7 +47,8 @@ public class AI extends Player{
 				}
 				if(currentEntity.getHandle()==21){
 					//AC
-					//moveAIShip(currentEntity);
+					System.out.println("I am a aircraft");
+					moveAIShip(currentEntity);
 				determineCurrentEnemies(currentEntity);
 				/*if(pickEnemy(2)!=-1){
 				Entity ene = enemies.get(pickEnemy(2));
@@ -56,7 +59,8 @@ public class AI extends Player{
 				}
 				if(currentEntity.getHandle()==31){
 					//BS
-					//moveAIShip(currentEntity);
+					System.out.println("I am a battleship");
+					moveAIShip(currentEntity);
 					determineCurrentEnemies(currentEntity);
 			/*		if(pickEnemy(3)!=-1){
 					Entity ene = enemies.get(pickEnemy(3));
@@ -66,8 +70,8 @@ public class AI extends Player{
 					}*/
 				}
 			}
-			
 		}
+		
 		turnOver=true;
 	}
 	
@@ -119,21 +123,24 @@ public class AI extends Player{
 		return -1;
 	}
 	public void moveAIShip(MoveableEntity e){
-		int topX = e.getLocation().getCol();	   
-		int topY = e.getLocation().getRow();
-		int currentX;
-		int currentY;
-		int count= 0;
-		e.toggleMovable();
-		e.toggleMovable();
+		int topX = e.getLocation().getCol()-e.getMovementLeft();	   
+		int topY = e.getLocation().getRow()-e.getMovementLeft();
+		int currentX=topX;
+		int currentY=topY;
+		int count = 0;
+		e.toggleMoveable();
+		//delay!
+		e.toggleMoveable();
 	do
 		{	
-			currentX = topX;
-			currentY = topY;
+			currentX=topX;
+			currentY=topY;
 			currentX += (int) (Math.random()*((e.getMovementLeft() * 2) + 1));
 			currentY += (int) (Math.random()*((e.getMovementLeft() * 2) + 1));
+			count++;
 		}
-		while(!GridHelper.canMoveTo(e.getManager(), e, e.getCurrentOrientation(), currentY, currentX,e.getWidth())||count == 10);
+		while(!GridHelper.canMoveTo(e.getManager(), e, e.getCurrentOrientation(), currentY, currentX,e.getWidth())&&count <= 10);
+		System.out.println("I am moving to ..."+new Location(currentY,currentX));
 		e.moveTo(new Location(currentY,currentX));
 	}
 	public void determineCurrentEnemies(MoveableEntity e){
