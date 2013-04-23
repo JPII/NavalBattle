@@ -1,5 +1,6 @@
 package com.jpii.navalbattle.game.turn;
 
+import com.jpii.navalbattle.data.Constants;
 import com.jpii.navalbattle.game.NavalGame;
 import com.jpii.navalbattle.game.entity.MoveableEntity;
 import com.jpii.navalbattle.game.entity.PortEntity;
@@ -11,11 +12,11 @@ public class DamageCalculator {
 		deal.usePrimary();
 		
 		if(calculateDeflect(take)){
-			NavalGame.getManager().getTurnManager().findPlayer(take).addscore(50);
+			NavalGame.getManager().getTurnManager().findPlayer(take).addscore(Constants.DEFLECT_SHOT_SCORE);
 		} else if(take.takeDamage(calculatePrimaryDamage(deal, take))){
-			player.addscore(100);
+			player.addscore(Constants.HIT_SHIP_SCORE);
 			if(take == null || take.isDisposed()){
-				player.addscore(400);
+				player.addscore(Constants.SINK_SHIP_SCORE);
 			}
 		}
 	}
@@ -26,7 +27,7 @@ public class DamageCalculator {
 		
 		if(calculateDeflect(take)) {
 			if(take.takeDamage(calculatePrimaryDamage(deal,take))) {
-				player.addscore(500);
+				player.addscore(Constants.DESTROY_PORT_SCORE);
 				NavalGame.getManager().getTurnManager().removeEntity(take);
 				player.addEntity(take);
 			}
@@ -38,11 +39,11 @@ public class DamageCalculator {
 		deal.useSecondary();
 		
 		if(calculateDeflect(take)){
-			NavalGame.getManager().getTurnManager().findPlayer(take).addscore(50);
+			NavalGame.getManager().getTurnManager().findPlayer(take).addscore(Constants.DEFLECT_SHOT_SCORE);
 		} else if(take.takeDamage(calculatePrimaryDamage(deal, take))) {
-			player.addscore(100);
+			player.addscore(Constants.HIT_SHIP_SCORE);
 			if(take == null || take.isDisposed()){
-				player.addscore(400);
+				player.addscore(Constants.SINK_SHIP_SCORE);
 			}
 		}
 	}
@@ -53,7 +54,7 @@ public class DamageCalculator {
 		
 		if(calculateDeflect(take)) {
 			if(take.takeDamage(calculateSecondaryDamage(deal,take))){
-				player.addscore(500);
+				player.addscore(Constants.DESTROY_PORT_SCORE);
 				NavalGame.getManager().getTurnManager().removeEntity(take);
 				player.addEntity(take);
 			}
@@ -158,18 +159,18 @@ public class DamageCalculator {
 		byte attackedClass = e.getHandle();
 		
 		if(attackedClass == 11) { // Submarine
-			return (15 >= getRandomNumber(1,100));
+			return (Constants.SUBMARINE_DEFLECT_CHANCE >= getRandomNumber(1,100));
 		} else if(attackedClass == 21) { // Aircraft carrier
-			return (5 >= getRandomNumber(1,100));
+			return (Constants.CARRIER_DEFLECT_CHANCE >= getRandomNumber(1,100));
 		} else if(attackedClass == 31) { // Battleship
-			return (10 >= getRandomNumber(1,100));
+			return (Constants.BATTLESHIP_DEFLECT_CHANCE >= getRandomNumber(1,100));
 		}
 		
 		return false;
 	}
 	
 	private static boolean calculateDeflect(PortEntity e) {
-		return (5 >= getRandomNumber(1,100));
+		return (Constants.PORT_DEFLECT_CHANCE >= getRandomNumber(1,100));
 	}
 	
 	private static int getRandomNumber(int min, int max) {

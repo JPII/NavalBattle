@@ -46,27 +46,24 @@ public class Constants {
 	/*
 	 * Game engine
 	 */
-	public static int WINDOW_WIDTH = 800;
-	public static int WINDOW_HEIGHT = 600;
-	public static int CHUNK_SIZE = 100;
-	public static int MAIN_SEED = (int)(Math.random() * (256));
-	public static Rand MAIN_RAND = new Rand("34892u8ewdniohrqi3jowd9ehui");
+	public static final int WINDOW_WIDTH = 800;
+	public static final int WINDOW_HEIGHT = 600;
+	public static final int CHUNK_SIZE = 100;
+	public static final int MAIN_SEED = (int)(Math.random() * (256));
+	public static final Rand MAIN_RAND = new Rand("34892u8ewdniohrqi3jowd9ehui");
 	
 	/*
 	 * Gameplay
 	 */
-	public static final int WHALE_HEALTH = 50;
-	public static final int BATTLESHIP_HEALTH = 125;
-	public static final int SUBMARINE_HEALTH = 100;
-	public static final int CARRIER_HEALTH = 200;
+	public static final int HIT_SHIP_SCORE = 100;
+	public static final int SINK_SHIP_SCORE = 400;
+	public static final int DEFLECT_SHOT_SCORE = 50;
+	public static final int DESTROY_PORT_SCORE = 500;
 	
-	public static final int SINK_SCORE = 100;
-	public static final int DISABLE_SCORE = 50;
-	public static final int DAMAGE_SCORE = 1;
-	public static final int DEFENSE_SCORE = 15;
-	public static final int SINK_SUB_SCORE = 200;
-	public static final int SURFACE_SUB_SCORE = 100;
-	public static final int WHALE_KILL_SCORE = 50;
+	public static final int BATTLESHIP_DEFLECT_CHANCE = 10;
+	public static final int SUBMARINE_DEFLECT_CHANCE = 15;
+	public static final int CARRIER_DEFLECT_CHANCE = 5;
+	public static final int PORT_DEFLECT_CHANCE = 5;
 	
 	/*
 	 * RoketGamer
