@@ -176,6 +176,7 @@ public class PortEntity extends AnimatedEntity {
 	
 	public boolean takeDamage(int damage){
 		boolean flag = false; // used when returning if changed teams
+		currentHealth-=damage;
 		if(currentHealth <= 0){
 			flag = true; // changed teams;
 			repair();
@@ -225,5 +226,9 @@ public class PortEntity extends AnimatedEntity {
 	private boolean meetsSpawningCondition(int x, int y, int width){
 		return (GridHelper.canPlaceInGrid(getManager(), GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT, y, x, width) ||
 				GridHelper.canPlaceInGrid(getManager(), GridedEntityTileOrientation.ORIENTATION_TOPTOBOTTOM, y, x, width) );
+	}
+	
+	public int getPercentHealth(){
+		return (int)((double)currentHealth/(double)maxHealth*100.0);
 	}
 }

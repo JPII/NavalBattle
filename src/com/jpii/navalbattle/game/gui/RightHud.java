@@ -83,6 +83,7 @@ public class RightHud {
 	
 	public void update(){
 		boxx = boxy = boxheight = boxwidth = 0;
+		health = movement = "";
 		if(display!=null){
 			if (display.getHandle()%10 == 2) {
 				PortEntity display = (PortEntity)this.display;
@@ -101,6 +102,11 @@ public class RightHud {
 				health = ("Health: "+move.getPercentHealth()+"%");
 				heal.setProgress(move.getPercentHealth());
 				movement = ("Movement Left: "+(move.getMaxMovement()-move.getMoved())+" out of "+move.getMaxMovement());
+			}
+			else if(display.getHandle()%10 == 2){
+				PortEntity temp = (PortEntity) display;
+				health = ("Health: "+temp.getPercentHealth()+"%");
+				heal.setProgress(temp.getPercentHealth());
 			}
 		}
 	}
