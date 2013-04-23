@@ -27,13 +27,16 @@ import com.roketgamer.RoketGamer;
 public class Achievement {
 	
 	private int id;
+	private String name;
 	
 	/**
 	 * Create a new <code>Achievement</code>.
 	 * @param id
+	 * @param name
 	 */
-	public Achievement(int id) {
+	public Achievement(int id, String name) {
 		this.id = id;
+		this.name = name;
 	}
 	
 	/**
@@ -42,6 +45,14 @@ public class Achievement {
 	 */
 	public int getID() {
 		return id;
+	}
+	
+	/**
+	 * Get <code>Achievement</code> name.
+	 * @return name
+	 */
+	public String getName() {
+		return name;
 	}
 	
 	/**
@@ -78,14 +89,5 @@ public class Achievement {
 		}
 		
 		return false;
-	}
-	
-	/**
-	 * Returns the number of users who have completed the achievement.
-	 * @return
-	 */
-	public int numberAchieved() {
-		// TODO: Implement
-		return 0;
 	}
 }

@@ -1,5 +1,7 @@
 package com.jpii.navalbattle.util;
 
+import javax.swing.ImageIcon;
+
 import com.jpii.navalbattle.NavalBattle;
 import com.roketgamer.achievement.Achievement;
 import com.roketgamer.leaderboard.Leaderboard;
@@ -15,6 +17,9 @@ public class RoketUtils {
 		if(!NavalBattle.getGameState().isOffline()) {
 			if(!NavalBattle.getBroadcastService().needsUpdate()) {
 				leaderboard.submit(score);
+				NavalBattle.getWindowHandler().getToasterManager().showToaster(
+						new ImageIcon(RoketUtils.class.getResource("/com/roketgamer/res/logo_100px.png")),
+						"Submitted score of " + score + " to server");
 			} else {
 				NavalBattle.getDebugWindow().printWarning("NavalBattle is outdated. Score cannot be submitted.");
 			}
@@ -32,6 +37,9 @@ public class RoketUtils {
 		if(!NavalBattle.getGameState().isOffline()) {
 			if(!NavalBattle.getBroadcastService().needsUpdate()) {
 				achievement.submit();
+				NavalBattle.getWindowHandler().getToasterManager().showToaster(
+						new ImageIcon(RoketUtils.class.getResource("/com/roketgamer/res/logo_100px.png")),
+						"Achievement Unlocked: " + achievement.getName());
 			} else {
 				NavalBattle.getDebugWindow().printWarning("NavalBattle is outdated. Acheivement cannot be submitted.");
 			}
