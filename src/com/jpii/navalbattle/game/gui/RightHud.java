@@ -33,9 +33,9 @@ public class RightHud {
 		if(display!=null){
 			g.drawImage(entityImg,boxx+50,boxy+50,null);
 			drawString(g,location, centerx, centery+60);
-			drawString(g,health, centerx, centery-60);
+			drawString(g,health, centerx, centery-45);
 			drawString(g,movement, centerx, centery+40);
-			drawString(g,missiles, centerx, centery-40);
+			drawString(g,missiles, centerx, centery-25);
 		}
 	}
 	
@@ -99,7 +99,7 @@ public class RightHud {
 				movement = ("Movement Left: "+(move.getMaxMovement()-move.getMoved())+" out of "+move.getMaxMovement());
 				if(move.getMissileCount()>0){
 					if(move.getHandle()!=21){
-						missiles=move.getMissileCount()+" missiles left";
+						missiles="Missiles Left: "+move.getMissileCount();
 					}
 				}
 			}
