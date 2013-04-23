@@ -37,6 +37,7 @@ public class AI extends Player{
 					System.out.println("I am a submarine");
 					moveAIShip(currentEntity);
 					determineCurrentEnemies(currentEntity);
+	
 				/*	System.out.println("Ships next to me: " + pickEnemy(1));
 					if(pickEnemy(1)!=-1){
 					Entity ene = enemies.get(pickEnemy(1));
@@ -73,6 +74,7 @@ public class AI extends Player{
 		}
 		
 		turnOver=true;
+		enemies.clear();
 	}
 	
 	public int pickEnemy(int currentShip)
@@ -123,8 +125,8 @@ public class AI extends Player{
 		return -1;
 	}
 	public void moveAIShip(MoveableEntity e){
-		int topX = e.getLocation().getCol()-e.getMovementLeft();	   
-		int topY = e.getLocation().getRow()-e.getMovementLeft();
+		int topX = e.getLocation().getCol()-e.getMovementLeft()+1;	   
+		int topY = e.getLocation().getRow()-e.getMovementLeft()+1;
 		int currentX=topX;
 		int currentY=topY;
 		int count = 0;
@@ -144,16 +146,19 @@ public class AI extends Player{
 		e.moveTo(new Location(currentY,currentX));
 	}
 	public void determineCurrentEnemies(MoveableEntity e){
-		int topX = (e.getLocation().getCol()-e.getMovementLeft());	   
-		int topY = (e.getLocation().getRow()-e.getMovementLeft());	 		
-		for (int x = topX; x < (e.getMovementLeft() * 2) + 1; x++) {
-			for (int y = topY; y < (e.getMovementLeft() * 2) + 1; y++) {
-				Entity location = e.getManager().findEntity(y-(e.getMovementLeft()),x-(e.getMovementLeft()));
+		int topX = (e.getLocation().getCol()-e.getMovementLeft())+1;	   
+		int topY = (e.getLocation().getRow()-e.getMovementLeft())+1;	 		
+		for (int x = topX; x < (e.getLocation().getCol()+e.getMovementLeft())+1; x++) {
+			for (int y = topY; y < (e.getLocation().getRow()+e.getMovementLeft())+1; y++) {
+				Entity location = e.getManager().findEntity(y,x);
 				if(location!=null){
 					Player temp = NavalGame.getManager().getTurnManager().findPlayer(location); 
+					if (temp!=null){
 					if(!(temp.equals(this))&&!enemies.contains(location)){
 						//entity at spot is not owned by this AI
+						System.out.println("Enemies that are next to me with Location: "+ location.getLocation() );
 						addEnemyEntity(location);
+					}
 					}
 				}
 			}
