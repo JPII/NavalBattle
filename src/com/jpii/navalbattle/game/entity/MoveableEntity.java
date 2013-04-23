@@ -38,6 +38,7 @@ public class MoveableEntity extends Entity {
 			GridedEntityTileOrientation id, byte orientation) {
 		super(em, loc, id, orientation);
 		handle = 1;
+		moveTo(loc, orientation);
 	}
 	
 	public boolean isMovableTileBeingShown() {

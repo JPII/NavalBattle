@@ -317,7 +317,7 @@ public class Entity implements Serializable {
 				manager.setTile(location.getRow()+h-getHeight()+1,location.getCol(),null);
 			}
 		}
-		ORIENTATION_BUFFER_POSITION = getOppositeOrientation();
+		ORIENTATION_BUFFER_POSITION = position;
 		
 		isHide = false;
 		
