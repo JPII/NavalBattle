@@ -9,8 +9,8 @@ public class AircraftCarrier extends MoveableEntity {
 	private static final long serialVersionUID = 1L;
 	public static GridedEntityTileOrientation AIRCRAFTCARRIER_ID;
 
-	public AircraftCarrier(EntityManager em, Location loc,byte orientation,int team) {
-		super(em, loc, AIRCRAFTCARRIER_ID,orientation,team);
+	public AircraftCarrier(EntityManager em, Location loc,byte orientation) {
+		super(em, loc, AIRCRAFTCARRIER_ID,orientation);
 		imgLocation="drawable-game/aircraftcarrier/aircraftcarrier.png";
 		Game g = em.getWorld().getGame();
 		if (!g.isAClient()) {

@@ -14,8 +14,8 @@ public class AnimatedEntity extends Entity {
 	 * @param loc The Location of the Entity.
 	 * @param animationFrameIds The animation frame sequences.
 	 */
-	public AnimatedEntity(EntityManager em, Location loc,byte orientation,int team, GridedEntityTileOrientation... animationFrameIds) {
-		super(em, loc, animationFrameIds[0],orientation,team);
+	public AnimatedEntity(EntityManager em, Location loc,byte orientation, GridedEntityTileOrientation... animationFrameIds) {
+		super(em, loc, animationFrameIds[0],orientation);
 		animationids = animationFrameIds;
 		handle = 3;
 	}

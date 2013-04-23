@@ -95,9 +95,9 @@ public class NavalManager extends EntityManager {
 				poll = gh.pollNextWaterTile(25);
 				placed = true;
 				if(GridHelper.canPlaceInGrid(this,GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT, poll.getRow(), poll.getCol(), 2))
-					tm.addEntity(new Submarine(this, poll,GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT,Game.Settings.rand.nextInt(0,3)),tm.getPlayer(1));
+					tm.addEntity(new Submarine(this, poll,GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT),tm.getPlayer(1));
 				else if(GridHelper.canPlaceInGrid(this,GridedEntityTileOrientation.ORIENTATION_TOPTOBOTTOM, poll.getRow(), poll.getCol(), 2))
-					tm.addEntity(new Submarine(this, poll,GridedEntityTileOrientation.ORIENTATION_TOPTOBOTTOM,Game.Settings.rand.nextInt(0,3)),tm.getPlayer(1));
+					tm.addEntity(new Submarine(this, poll,GridedEntityTileOrientation.ORIENTATION_TOPTOBOTTOM),tm.getPlayer(1));
 				else
 					placed = false;
 			}
@@ -106,9 +106,9 @@ public class NavalManager extends EntityManager {
 				poll = gh.pollNextWaterTile(25);
 				placed = true;
 				if(GridHelper.canPlaceInGrid(this,GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT, poll.getRow(), poll.getCol(), 5))
-					tm.addEntity(new AircraftCarrier(this, poll,GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT,Game.Settings.rand.nextInt(0,3)),tm.getPlayer(1));
+					tm.addEntity(new AircraftCarrier(this, poll,GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT),tm.getPlayer(1));
 				else if(GridHelper.canPlaceInGrid(this,GridedEntityTileOrientation.ORIENTATION_TOPTOBOTTOM, poll.getRow(), poll.getCol(), 5))
-					tm.addEntity(new AircraftCarrier(this, poll,GridedEntityTileOrientation.ORIENTATION_TOPTOBOTTOM,Game.Settings.rand.nextInt(0,3)),tm.getPlayer(1));
+					tm.addEntity(new AircraftCarrier(this, poll,GridedEntityTileOrientation.ORIENTATION_TOPTOBOTTOM),tm.getPlayer(1));
 				else
 					placed = false;
 			}
@@ -117,9 +117,9 @@ public class NavalManager extends EntityManager {
 				poll = gh.pollNextWaterTile();
 				placed = true;
 				if(GridHelper.canPlaceInGrid(this,GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT, poll.getRow(), poll.getCol(), 4))
-					tm.addEntity(new BattleShip(this, poll, GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT,Game.Settings.rand.nextInt(0,3)),tm.getPlayer(1));
+					tm.addEntity(new BattleShip(this, poll, GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT),tm.getPlayer(1));
 				else if(GridHelper.canPlaceInGrid(this,GridedEntityTileOrientation.ORIENTATION_TOPTOBOTTOM, poll.getRow(), poll.getCol(), 4))
-					tm.addEntity(new BattleShip(this, poll,GridedEntityTileOrientation.ORIENTATION_TOPTOBOTTOM,Game.Settings.rand.nextInt(0,3)),tm.getPlayer(1));
+					tm.addEntity(new BattleShip(this, poll,GridedEntityTileOrientation.ORIENTATION_TOPTOBOTTOM),tm.getPlayer(1));
 				else
 					c--;
 			}
@@ -132,9 +132,9 @@ public class NavalManager extends EntityManager {
 				poll = gh.pollNextWaterTile(25);
 				placed = true;
 				if(GridHelper.canPlaceInGrid(this,GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT, poll.getRow(), poll.getCol(), 2))
-					tm.addEntity(new Submarine(this, poll,GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT,Game.Settings.rand.nextInt(0,3)),tm.getPlayer(2));
+					tm.addEntity(new Submarine(this, poll,GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT),tm.getPlayer(2));
 				else if(GridHelper.canPlaceInGrid(this,GridedEntityTileOrientation.ORIENTATION_TOPTOBOTTOM, poll.getRow(), poll.getCol(), 2))
-					tm.addEntity(new Submarine(this, poll,GridedEntityTileOrientation.ORIENTATION_TOPTOBOTTOM,Game.Settings.rand.nextInt(0,3)),tm.getPlayer(2));
+					tm.addEntity(new Submarine(this, poll,GridedEntityTileOrientation.ORIENTATION_TOPTOBOTTOM),tm.getPlayer(2));
 				else
 					placed = false;
 			}
@@ -143,9 +143,9 @@ public class NavalManager extends EntityManager {
 				poll = gh.pollNextWaterTile(25);
 				placed = true;
 				if(GridHelper.canPlaceInGrid(this,GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT, poll.getRow(), poll.getCol(), 5))
-					tm.addEntity(new AircraftCarrier(this, poll,GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT,Game.Settings.rand.nextInt(0,3)),tm.getPlayer(2));
+					tm.addEntity(new AircraftCarrier(this, poll,GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT),tm.getPlayer(2));
 				else if(GridHelper.canPlaceInGrid(this,GridedEntityTileOrientation.ORIENTATION_TOPTOBOTTOM, poll.getRow(), poll.getCol(), 5))
-					tm.addEntity(new AircraftCarrier(this, poll,GridedEntityTileOrientation.ORIENTATION_TOPTOBOTTOM,Game.Settings.rand.nextInt(0,3)),tm.getPlayer(2));
+					tm.addEntity(new AircraftCarrier(this, poll,GridedEntityTileOrientation.ORIENTATION_TOPTOBOTTOM),tm.getPlayer(2));
 				else
 					placed = false;
 			}
@@ -154,9 +154,9 @@ public class NavalManager extends EntityManager {
 				poll = gh.pollNextWaterTile();
 				placed = true;
 				if(GridHelper.canPlaceInGrid(this,GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT, poll.getRow(), poll.getCol(), 4))
-					tm.addEntity(new BattleShip(this, poll, GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT,Game.Settings.rand.nextInt(0,3)),tm.getPlayer(2));
+					tm.addEntity(new BattleShip(this, poll, GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT),tm.getPlayer(2));
 				else if(GridHelper.canPlaceInGrid(this,GridedEntityTileOrientation.ORIENTATION_TOPTOBOTTOM, poll.getRow(), poll.getCol(), 4))
-					tm.addEntity(new BattleShip(this, poll,GridedEntityTileOrientation.ORIENTATION_TOPTOBOTTOM,Game.Settings.rand.nextInt(0,3)),tm.getPlayer(2));
+					tm.addEntity(new BattleShip(this, poll,GridedEntityTileOrientation.ORIENTATION_TOPTOBOTTOM),tm.getPlayer(2));
 				else
 					c--;
 			}
@@ -164,9 +164,9 @@ public class NavalManager extends EntityManager {
 		
 		for(int c =0; c<10; c++){
 			Location poll = gh.pollNextWaterTile();
-			new Whale(this,poll,GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT,-1,w1,w2,w3);
+			new Whale(this,poll,GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT,w1,w2,w3);
 			poll = gh.pollNextShoreTile();
-			tm.addEntity(new PortEntity(this,poll,GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT,-1),tm.getPlayer(2));
+			tm.addEntity(new PortEntity(this,poll,GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT),tm.getPlayer(1));
 			System.out.println("Port generated at " + poll);
 		}
 		

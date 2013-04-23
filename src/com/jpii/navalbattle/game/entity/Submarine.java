@@ -11,8 +11,8 @@ public class Submarine extends MoveableEntity {
 	public static GridedEntityTileOrientation SUBMARINEU_ID;
 	private boolean submerged=false;
 	
-	public Submarine(EntityManager em, Location loc,byte orientation,int team) {
-		super(em, loc, SUBMARINE_ID,orientation,team);
+	public Submarine(EntityManager em, Location loc,byte orientation) {
+		super(em, loc, SUBMARINE_ID,orientation);
 		imgLocation="drawable-game/submarine/submarine.png";
 		Game g = em.getWorld().getGame();
 		if (!g.isAClient()) {

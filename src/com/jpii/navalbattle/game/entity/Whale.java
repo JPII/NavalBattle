@@ -17,8 +17,8 @@ public class Whale extends AnimatedEntity {
 	 * @param loc
 	 * @param animationFrameIds
 	 */
-	public Whale(EntityManager em, Location loc,byte orientation, int team, GridedEntityTileOrientation... animationFrameIds) {
-		super(em, loc, orientation, team, animationFrameIds);
+	public Whale(EntityManager em, Location loc,byte orientation, GridedEntityTileOrientation... animationFrameIds) {
+		super(em, loc, orientation, animationFrameIds);
 		nextIndex = Game.Settings.rand.nextInt(0,3);
 		imgLocation="drawable-game/other/whaleright.png";
 	}

@@ -6,10 +6,12 @@ import java.awt.image.BufferedImage;
 
 import maximusvladimir.dagen.Rand;
 
+import com.jpii.navalbattle.game.NavalGame;
 import com.jpii.navalbattle.pavo.Game;
 import com.jpii.navalbattle.pavo.PavoHelper;
 import com.jpii.navalbattle.pavo.ProceduralLayeredMapGenerator;
 import com.jpii.navalbattle.pavo.grid.EntityManager;
+import com.jpii.navalbattle.pavo.grid.GridHelper;
 import com.jpii.navalbattle.pavo.grid.GridedEntityTileOrientation;
 import com.jpii.navalbattle.pavo.grid.Location;
 
@@ -26,9 +28,8 @@ public class PortEntity extends AnimatedEntity {
 	 * @param team
 	 * @param animationFrameIds
 	 */
-	public PortEntity(EntityManager em, Location loc, byte orientation,
-			int team) {
-		super(em, loc, orientation, team, generatePort(em,loc));
+	public PortEntity(EntityManager em, Location loc, byte orientation) {
+		super(em, loc, orientation, generatePort(em,loc));
 		icon = em.getImage(em.getTile(loc));
 		this.setAlternatingDirection(false);
 		handle = 2;
@@ -146,15 +147,27 @@ public class PortEntity extends AnimatedEntity {
 	}
 	
 	public void spawnBattleship(){
-		
+		Location to = spawnAt(4); //static way of accessing width?
+		if(GridHelper.canPlaceInGrid(getManager(),GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT, to.getRow(), to.getCol(), 4))
+			NavalGame.getManager().getTurnManager().addEntity(new BattleShip(getManager(), to, GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT),NavalGame.getManager().getTurnManager().findPlayer(this));
+		else if(GridHelper.canPlaceInGrid(getManager(),GridedEntityTileOrientation.ORIENTATION_TOPTOBOTTOM, to.getRow(), to.getCol(), 4))
+			NavalGame.getManager().getTurnManager().addEntity(new BattleShip(getManager(), to,GridedEntityTileOrientation.ORIENTATION_TOPTOBOTTOM),NavalGame.getManager().getTurnManager().findPlayer(this));
 	}
 	
 	public void spawnSubmarine(){
-		
+		Location to = spawnAt(2); //static way of accessing width?
+		if(GridHelper.canPlaceInGrid(getManager(),GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT, to.getRow(), to.getCol(), 2))
+			NavalGame.getManager().getTurnManager().addEntity(new Submarine(getManager(), to, GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT),NavalGame.getManager().getTurnManager().findPlayer(this));
+		else if(GridHelper.canPlaceInGrid(getManager(),GridedEntityTileOrientation.ORIENTATION_TOPTOBOTTOM, to.getRow(), to.getCol(), 2))
+			NavalGame.getManager().getTurnManager().addEntity(new Submarine(getManager(), to,GridedEntityTileOrientation.ORIENTATION_TOPTOBOTTOM),NavalGame.getManager().getTurnManager().findPlayer(this));
 	}
 	
 	public void spawnAC(){
-		
+		Location to = spawnAt(5); //static way of accessing width?
+		if(GridHelper.canPlaceInGrid(getManager(),GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT, to.getRow(), to.getCol(), 5))
+			NavalGame.getManager().getTurnManager().addEntity(new AircraftCarrier(getManager(), to, GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT),NavalGame.getManager().getTurnManager().findPlayer(this));
+		else if(GridHelper.canPlaceInGrid(getManager(),GridedEntityTileOrientation.ORIENTATION_TOPTOBOTTOM, to.getRow(), to.getCol(), 5))
+			NavalGame.getManager().getTurnManager().addEntity(new AircraftCarrier(getManager(), to,GridedEntityTileOrientation.ORIENTATION_TOPTOBOTTOM),NavalGame.getManager().getTurnManager().findPlayer(this));
 	}	
 	
 	public void repair(){
@@ -168,5 +181,49 @@ public class PortEntity extends AnimatedEntity {
 			repair();
 		}
 		return flag;
+	}
+	
+	private Location spawnAt(int width){
+		int currentx, currenty, tempx, tempy;
+		int length = 0;
+		currentx = tempx = getLocation().getCol();
+		currenty = tempy = getLocation().getRow();
+		
+		while(!meetsSpawningCondition(currentx, currenty, width)){
+			length++;
+			for(int k = 1; k<=length; k++){
+				tempx=currentx-k;
+				if(meetsSpawningCondition(tempx, tempy, width))
+					return new Location(tempy,tempx);
+			}
+			currentx = tempx;
+			for(int k = 1; k<=length; k++){
+				tempy=currenty-k;
+				if(meetsSpawningCondition(tempx, tempy, width))
+					return new Location(tempy,tempx);
+			}
+			currenty = tempy;
+			
+			length++;
+			for(int k = 1; k<=length; k++){
+				tempx=currentx+k;
+				if(meetsSpawningCondition(tempx, tempy, width))
+					return new Location(tempy,tempx);
+			}
+			currentx = tempx;
+			for(int k = 1; k<=length; k++){
+				tempy=currenty+k;
+				if(meetsSpawningCondition(tempx, tempy, width))
+					return new Location(tempy,tempx);
+			}
+			currenty = tempy;
+		}
+		
+		return new Location(currenty,currentx);
+	}
+	
+	private boolean meetsSpawningCondition(int x, int y, int width){
+		return (GridHelper.canPlaceInGrid(getManager(), GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT, y, x, width) ||
+				GridHelper.canPlaceInGrid(getManager(), GridedEntityTileOrientation.ORIENTATION_TOPTOBOTTOM, y, x, width) );
 	}
 }

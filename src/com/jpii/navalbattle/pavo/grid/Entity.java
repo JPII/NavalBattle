@@ -33,7 +33,6 @@ public class Entity implements Serializable {
 	private byte teamColor = -1;
 	private EntityManager manager;
 	private GridedEntityTileOrientation id;
-	public int teamId;
 	private byte ORIENTATION_BUFFER_POSITION = GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT;
 	public String imgLocation;
 	private static int ENTITYMASTERRECORDSYSTEMPLEASEDONOTTOUCHTHIS = 0;
@@ -80,10 +79,9 @@ public class Entity implements Serializable {
 		this.tag = tag;
 	}
 	
-	public Entity(EntityManager em,Location loc, GridedEntityTileOrientation id,byte orientation,int teams) {
+	public Entity(EntityManager em,Location loc, GridedEntityTileOrientation id,byte orientation) {
 		manager = em;
 		location = loc;
-		teamId=teams;
 		//teamColor = Game.Settings.rand.nextByte();
 		ORIENTATION_BUFFER_POSITION = orientation;
 		try {

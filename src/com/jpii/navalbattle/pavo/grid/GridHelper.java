@@ -55,7 +55,7 @@ public class GridHelper implements Serializable {
 		return new Location(r,c);
 	}
 	/**
-	 * 
+	 * !USE WHEN ENTITY DOES NOT EXIST PREVIOUSLY!
 	 * @param em - needed to get Tile Percent Land to check for if land is in the way
 	 * @param rotate - needed to check which direction your checking for
 	 * @param row - needed to find the starting row

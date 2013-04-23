@@ -14,8 +14,8 @@ public class BattleShip extends MoveableEntity {
 	 * @param loc
 	 * @param superId
 	 */
-	public BattleShip(EntityManager em, Location loc,byte orientation,int team) {
-		super(em, loc, BATTLESHIP_ID,orientation,team);
+	public BattleShip(EntityManager em, Location loc,byte orientation) {
+		super(em, loc, BATTLESHIP_ID,orientation);
 		imgLocation="drawable-game/battleship/battleship.png";
 		Game g = em.getWorld().getGame();
 		if (!g.isAClient()) {

@@ -33,11 +33,10 @@ public class MoveableEntity extends Entity {
 	 * @param loc
 	 * @param id
 	 * @param orientation
-	 * @param teams
 	 */
 	public MoveableEntity(EntityManager em, Location loc,
-			GridedEntityTileOrientation id, byte orientation, int teams) {
-		super(em, loc, id, orientation, teams);
+			GridedEntityTileOrientation id, byte orientation) {
+		super(em, loc, id, orientation);
 		handle = 1;
 	}
 	
