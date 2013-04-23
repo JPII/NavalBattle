@@ -187,10 +187,10 @@ public class Entity implements Serializable {
 			}
 		}
 		else if (ORIENTATION_BUFFER_POSITION == GridedEntityTileOrientation.ORIENTATION_TOPTOBOTTOM) {
-			for (int h = 0; h < getHeight(); h++) {
-				Tile<Entity> t22 = new Tile<Entity>(this,location.getRow()+h,location.getCol());
+			for (int h = 0; h < getWidth(); h++) {
+				Tile<Entity> t22 = new Tile<Entity>(this,location.getRow()-(getWidth()-1)+h,location.getCol());
 				t22.setId(new Id(id.memCall(ORIENTATION_BUFFER_POSITION)[0],h));
-				manager.setTile(location.getRow()+h,location.getCol(), t22);
+				manager.setTile(location.getRow()-(getWidth()-1)+h,location.getCol(), t22);
 			}
 		}
 		manager.getWorld().forceRender();
