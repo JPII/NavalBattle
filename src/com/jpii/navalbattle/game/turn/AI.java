@@ -8,6 +8,7 @@ import com.jpii.navalbattle.pavo.grid.Entity;
 import com.jpii.navalbattle.pavo.grid.GridHelper;
 import com.jpii.navalbattle.pavo.grid.Location;
 import com.jpii.navalbattle.game.entity.MoveableEntity;
+import com.jpii.navalbattle.game.turn.DamageCalculator;
 
 public class AI extends Player{
 	
@@ -37,38 +38,22 @@ public class AI extends Player{
 					System.out.println("I am a submarine");
 					moveAIShip(currentEntity);
 					determineCurrentEnemies(currentEntity);
-	
-				/*	System.out.println("Ships next to me: " + pickEnemy(1));
-					if(pickEnemy(1)!=-1){
-					Entity ene = enemies.get(pickEnemy(1));
-					MoveableEntity enemyEntity;
-					enemyEntity = (MoveableEntity)ene;
-					DamageCalculator.doPrimaryDamage(currentEntity, enemyEntity);
-					}*/
+					attackEnemies(1, currentEntity);
+			
 				}
 				if(currentEntity.getHandle()==21){
 					//AC
 					System.out.println("I am a aircraft");
 					moveAIShip(currentEntity);
 				determineCurrentEnemies(currentEntity);
-				/*if(pickEnemy(2)!=-1){
-				Entity ene = enemies.get(pickEnemy(2));
-				MoveableEntity enemyEntity;
-				enemyEntity = (MoveableEntity)ene;
-				DamageCalculator.doPrimaryDamage(currentEntity, enemyEntity);
-				}*/
+				attackEnemies(2, currentEntity);
 				}
 				if(currentEntity.getHandle()==31){
 					//BS
 					System.out.println("I am a battleship");
 					moveAIShip(currentEntity);
 					determineCurrentEnemies(currentEntity);
-			/*		if(pickEnemy(3)!=-1){
-					Entity ene = enemies.get(pickEnemy(3));
-					MoveableEntity enemyEntity;
-					enemyEntity = (MoveableEntity)ene;
-					DamageCalculator.doPrimaryDamage(currentEntity, enemyEntity);
-					}*/
+					attackEnemies(3, currentEntity);
 				}
 			}
 		}
@@ -76,10 +61,73 @@ public class AI extends Player{
 		turnOver=true;
 		enemies.clear();
 	}
+
+	public void attackEnemies(int n, MoveableEntity currentEntity)
+	{
+		
+		if(pickEnemy(n)!=-1){
+		//primaryAttack(n, currentEntity); not done
+		secondaryAttack(n, currentEntity);
+		}
+		enemies.clear();
+	}
+	public void primaryAttack(int n, MoveableEntity currentEntity )
+	{
+		int count = 0;
+		int size = 0;
+		boolean finish = false;
+		MoveableEntity enemyEntity;
+		MoveableEntity enemyEntity1;
+		
+		currentEntity.togglePrimaryRange();
+		
+		Entity enes = enemies.get(size);
+		enemyEntity1 = (MoveableEntity)enes;
+		Entity ene = enemies.get(pickEnemy(n));
+		enemyEntity = (MoveableEntity)ene;
+		
+		if(GridHelper.canAttackPrimaryTo(currentEntity.getManager(), currentEntity, ene.getLocation().getRow(), ene.getLocation().getCol())){
+			DamageCalculator.doPrimaryDamage(currentEntity, enemyEntity1);
+			finish = true;
+		}
+			
+		if(!finish){
+		do{
+			
+			if(size < enemies.size())
+			{
+			enes = enemies.get(size);
+			enemyEntity1 = (MoveableEntity)enes;
+			}
+			count++;
+			size++;
+			if(size == enemies.size())
+				count = 123;
+				
+		}
+		while(count != 123 || !GridHelper.canAttackPrimaryTo(currentEntity.getManager(), currentEntity, enemyEntity1.getLocation().getRow(), enemyEntity1.getLocation().getCol()));
+		DamageCalculator.doPrimaryDamage(currentEntity, enemyEntity1);
+		}
+		currentEntity.togglePrimaryRange();
+	}
+	
+	public void secondaryAttack(int n, MoveableEntity currentEntity)
+	{
+		Entity ene = enemies.get(pickEnemy(n));
+		MoveableEntity enemyEntity;
+		enemyEntity = (MoveableEntity)ene;
+		DamageCalculator.doSecondaryDamage(currentEntity, enemyEntity);
+	}
 	
 	public int pickEnemy(int currentShip)
 	{
+		//always prioritize to attack ports
 		if(!enemies.isEmpty()){
+		/*	
+			for(int k = 0; k < enemies.size(); k++){
+				if(enemies.get(k).getHandle()==2)
+					return k;
+			}*/
 		switch (currentShip) {
 	      case 1:	for(int k = 0; k < enemies.size(); k++){
 						if(enemies.get(k).getHandle()==21)
@@ -145,10 +193,10 @@ public class AI extends Player{
 		//delay
 	}
 	public void determineCurrentEnemies(MoveableEntity e){
-		int topX = (e.getLocation().getCol()-e.getMovementLeft())+1;	   
-		int topY = (e.getLocation().getRow()-e.getMovementLeft())+1;	 		
-		for (int x = topX; x < (e.getLocation().getCol()+e.getMovementLeft())+1; x++) {
-			for (int y = topY; y < (e.getLocation().getRow()+e.getMovementLeft())+1; y++) {
+		int topX = (e.getLocation().getCol()-e.getSecondaryRange())+1;	   
+		int topY = (e.getLocation().getRow()-e.getSecondaryRange())+1;	 		
+		for (int x = topX; x < (e.getLocation().getCol()+e.getSecondaryRange())+1; x++) {
+			for (int y = topY; y < (e.getLocation().getRow()+e.getSecondaryRange())+1; y++) {
 				Entity location = e.getManager().findEntity(y,x);
 				if(location!=null){
 					Player temp = NavalGame.getManager().getTurnManager().findPlayer(location); 
