@@ -25,7 +25,7 @@ public class DamageCalculator {
 		Player player = NavalGame.getManager().getTurnManager().getTurn().getPlayer();
 		deal.usePrimary();
 		
-		if(calculateDeflect(take)) {
+		if(!calculateDeflect(take)) {
 			if(take.takeDamage(calculatePrimaryDamage(deal,take))) {
 				player.addscore(Constants.DESTROY_PORT_SCORE);
 				NavalGame.getManager().getTurnManager().removeEntity(take);
@@ -52,7 +52,7 @@ public class DamageCalculator {
 		Player player = NavalGame.getManager().getTurnManager().getTurn().getPlayer();
 		deal.useSecondary();
 		
-		if(calculateDeflect(take)) {
+		if(!calculateDeflect(take)) {
 			if(take.takeDamage(calculateSecondaryDamage(deal,take))){
 				player.addscore(Constants.DESTROY_PORT_SCORE);
 				NavalGame.getManager().getTurnManager().removeEntity(take);
