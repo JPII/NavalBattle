@@ -20,7 +20,6 @@ public class Helper {
 	public static BufferedImage GUI_OMNIMAP_BACKGROUND2;
 	public static BufferedImage GUI_OMNIMAP_ICON_WORLD;
 	public static BufferedImage GUI_WINDOW_ICON;
-	public static BufferedImage GUI_GLYPHS;
 	private static BufferedImage[] GUI_GLYPH_CHARS;
 	public static Font GUI_GAME_FONT;
 	public static Font GUI_MENU_TITLE_FONT;
@@ -46,7 +45,6 @@ public class Helper {
 		GUI_MENU_TITLE_FONT = new Font("Arial",0,56);
 		try {
 			GUI_WINDOW_ICON = FileUtils.getImage(("drawable-gui/gui_window_icon.png"));
-			GUI_GLYPHS= FileUtils.getImage(("font/glyphs.bmp"));
 			MessageBox.setMessageBoxErrorIcon(
 					FileUtils.getImageFromOtherPath("/com/jpii/navalbattle/pavo/res/msg_error.png"));
 			MessageBox.setMessageBoxWarnIcon(
