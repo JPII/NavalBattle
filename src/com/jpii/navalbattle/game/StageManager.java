@@ -30,7 +30,7 @@ public class StageManager {
 			case 3: Game.Settings.resetSeed(15); game=new GameComponent(new NavalGame(WorldSize.WORLD_SMALL));  break;
 			case 4: Game.Settings.resetSeed(20); game=new GameComponent(new NavalGame(WorldSize.WORLD_SMALL));  break;
 			case 5: Game.Settings.resetSeed(25); game=new GameComponent(new NavalGame(WorldSize.WORLD_SMALL));  break;
-			default: Game.Settings.resetSeed(100); game=new GameComponent(new NavalGame(WorldSize.WORLD_MEDIUM));  break;
+			default: Game.Settings.resetSeed(1000); game=new GameComponent(new NavalGame(WorldSize.WORLD_MEDIUM));  break;
 		}
 		return game;
 	}

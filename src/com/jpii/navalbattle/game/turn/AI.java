@@ -23,8 +23,7 @@ public class AI extends Player{
 	public void addEnemyEntity(Entity e){
 		enemies.add(e);
 	}
-	
-	
+
 	public void takeTurn(){
 		for(int k = 0; k < getTotalEntities(); k++)
 		{
