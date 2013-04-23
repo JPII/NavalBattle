@@ -16,6 +16,7 @@ import com.jpii.navalbattle.pavo.gui.events.PMouseEvent;
 		Player current;
 		
 		PButton missile = null;
+		PText score;
 		
 		public ShipShop(NewWindowManager parent,MoveableEntity e){
 			super(parent);
@@ -40,7 +41,7 @@ import com.jpii.navalbattle.pavo.gui.events.PMouseEvent;
 	 
 		private void initItems(){
 			PText shop = new PText(this);
-			PText score = new PText(this);
+			score = new PText(this);
 			PButton hull = new PButton(this);
 			missile = new PButton(this);
 			PButton range = new PButton(this);
@@ -138,12 +139,17 @@ import com.jpii.navalbattle.pavo.gui.events.PMouseEvent;
 			});
 		}
 		
+		public void update(){
+			score.setText("Your Current Score is "+NavalGame.getManager().getTurnManager().getTurn().getPlayer().getScore());
+		}
+		
 		private void hardenHullAction(){
 			if(current!=null && move!=null){
 				if(current.getScore()>=200){
 					current.subtractscore(200);
 					move.hardenHull();
 				}
+				update();
 			}
 		}
 		
@@ -153,6 +159,7 @@ import com.jpii.navalbattle.pavo.gui.events.PMouseEvent;
 					current.subtractscore(250);
 					move.increaseMissile();
 				}
+				update();
 			}
 		}
 		
@@ -162,6 +169,7 @@ import com.jpii.navalbattle.pavo.gui.events.PMouseEvent;
 					current.subtractscore(350);
 					move.deflectMissile();
 				}
+				update();
 			}
 		}
 		
@@ -171,6 +179,7 @@ import com.jpii.navalbattle.pavo.gui.events.PMouseEvent;
 					current.subtractscore(700);
 					move.increaseRange();
 				}
+				update();
 			}
 		}
 		
@@ -180,6 +189,7 @@ import com.jpii.navalbattle.pavo.gui.events.PMouseEvent;
 					current.subtractscore(300);
 					move.repair();
 				}
+				update();
 			}
 		}
 	}

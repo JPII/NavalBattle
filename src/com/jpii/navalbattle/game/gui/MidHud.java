@@ -131,11 +131,11 @@ public class MidHud{
 					diplomacy.setVisible(false);
 					diplomacyB.setVisible(false);
 					shop.setVisible(true);
-					shopB.setVisible(true);
 				}
 				moveB.setVisible(true);
 				missileB.setVisible(true);
 				bulletB.setVisible(true);
+				shopB.setVisible(true);
 				if(moveE.getHandle()==21){
 					airstrike.setVisible(!moveE.getUsedMissiles());
 					missile.setVisible(false);
@@ -143,8 +143,11 @@ public class MidHud{
 				}
 			}
 			if(display.getHandle()%10 == 2){
-				shop.setVisible(true);
+				PortEntity temp = (PortEntity) display;
 				shopB.setVisible(true);
+				if(tm.getTurn().getPlayer().myEntity(temp)){
+					shop.setVisible(true);
+				}
 			}
 		}
 	}

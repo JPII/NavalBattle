@@ -15,6 +15,8 @@ import com.jpii.navalbattle.pavo.gui.events.PMouseEvent;
 		PortEntity port;
 		Player current;
 		
+		PText score;
+		
 		public PortShop(NewWindowManager parent,PortEntity pe) {
 			super(parent);
 			parent.add(this);
@@ -36,7 +38,7 @@ import com.jpii.navalbattle.pavo.gui.events.PMouseEvent;
 		
 		private void initItems(){
 			PText shop = new PText(this);
-			PText score = new PText(this);
+			score = new PText(this);
 			PButton bship = new PButton(this);
 			PButton sub = new PButton(this);
 			PButton ac = new PButton(this);
@@ -120,12 +122,17 @@ import com.jpii.navalbattle.pavo.gui.events.PMouseEvent;
 			});
 		}
 		
+		public void update(){
+			score.setText("Your Current Score is "+NavalGame.getManager().getTurnManager().getTurn().getPlayer().getScore());
+		}
+		
 		private void buyBattleShip(){
 			if(current!=null && port!=null){
 				if(current.getScore()>=1000){
 					current.subtractscore(1000);
 					port.spawnBattleship();
 				}
+				update();
 			}
 		}
 		
@@ -135,6 +142,7 @@ import com.jpii.navalbattle.pavo.gui.events.PMouseEvent;
 					current.subtractscore(1250);
 					port.spawnSubmarine();
 				}
+				update();
 			}
 		}
 		
@@ -144,6 +152,7 @@ import com.jpii.navalbattle.pavo.gui.events.PMouseEvent;
 					current.subtractscore(1250);
 					port.spawnAC();
 				}
+				update();
 			}
 		}
 		
@@ -153,6 +162,7 @@ import com.jpii.navalbattle.pavo.gui.events.PMouseEvent;
 					current.subtractscore(500);
 					port.repair();
 				}
+				update();
 			}
 		}
 	}
