@@ -118,7 +118,7 @@ public class MidHud{
 				if(moveE.getHandle()==11){
 					Submarine sub = (Submarine)moveE;
 					elevationB.setVisible(true);
-					if(!sub.isSumberged()&&tm.getTurn().getPlayer().myEntity(sub))
+					if(!sub.isSumberged()&&sub.canSubmerge()&&tm.getTurn().getPlayer().myEntity(sub))
 						elevation.setVisible(true);
 				}
 				if(moveE.getMaxMovement()!=moveE.getMoved())
@@ -309,7 +309,7 @@ public class MidHud{
 	public void submergeAction(){
 		if(elevation.isVisible()){
 			Submarine sub = (Submarine)display;
-			if(!sub.isSumberged()){
+			if(!sub.isSumberged()&&sub.canSubmerge()){
 				sub.toggleElevation();
 				sub.usePrimary();
 				sub.useSecondary();

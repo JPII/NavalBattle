@@ -10,6 +10,7 @@ public class Submarine extends MoveableEntity {
 	public static GridedEntityTileOrientation SUBMARINE_ID;
 	public static GridedEntityTileOrientation SUBMARINEU_ID;
 	private boolean submerged=false;
+	private boolean canSubmerge=true;
 	
 	public Submarine(EntityManager em, Location loc,byte orientation) {
 		super(em, loc, SUBMARINE_ID,orientation);
@@ -58,10 +59,26 @@ public class Submarine extends MoveableEntity {
 		return submerged;
 	}
 	
+	public boolean canSubmerge(){
+		return canSubmerge;
+	}
+	
 	public void resetMovement(){
 		super.resetMovement();
+		canSubmerge=true;
 		if(isSumberged()){
 			toggleElevation();
 		}
+	}
+	
+	public void usePrimary(){
+		usedGuns=true;
+		canSubmerge=false;
+	}
+	
+	public void useSecondary(){
+		missileCount--;
+		usedMissiles=true;
+		canSubmerge=false;
 	}
 }

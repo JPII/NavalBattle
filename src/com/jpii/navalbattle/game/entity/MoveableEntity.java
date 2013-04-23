@@ -19,7 +19,7 @@ public class MoveableEntity extends Entity {
 	private boolean showMove = false;
 	private boolean showPrimary = false;
 	private boolean showSecondary = false;
-	private boolean usedGuns = false;
+	protected boolean usedGuns = false;
 	protected boolean usedMissiles = false;
 	public boolean gunsAttackOption = false;
 	public boolean missileAttackOption = false;
