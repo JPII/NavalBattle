@@ -20,7 +20,7 @@ public class MoveableEntity extends Entity {
 	private boolean showPrimary = false;
 	private boolean showSecondary = false;
 	private boolean usedGuns = false;
-	private boolean usedMissiles = false;
+	protected boolean usedMissiles = false;
 	public boolean gunsAttackOption = false;
 	public boolean missileAttackOption = false;
 	public boolean planeAttackOption = false;
@@ -408,6 +408,7 @@ public class MoveableEntity extends Entity {
 	}
 	
 	public void useSecondary(){
+		missileCount--;
 		usedMissiles=true;
 	}
 	

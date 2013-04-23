@@ -49,4 +49,8 @@ public class AircraftCarrier extends MoveableEntity {
 		missileCount=1;
 		return super.getUsedMissiles();
 	}
+	
+	public void useSecondary(){
+		usedMissiles=true;
+	}
 }
