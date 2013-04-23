@@ -25,7 +25,8 @@ public class DamageCalculator {
 		deal.usePrimary();
 		
 		if(calculateDeflect(take)) {
-			if(take.takeDamage(calculatePrimaryDamage(deal,take))){
+			if(take.takeDamage(calculatePrimaryDamage(deal,take))) {
+				player.addscore(500);
 				NavalGame.getManager().getTurnManager().removeEntity(take);
 				player.addEntity(take);
 			}
@@ -38,7 +39,7 @@ public class DamageCalculator {
 		
 		if(calculateDeflect(take)){
 			NavalGame.getManager().getTurnManager().findPlayer(take).addscore(50);
-		} else if(take.takeDamage(calculatePrimaryDamage(deal, take))){
+		} else if(take.takeDamage(calculatePrimaryDamage(deal, take))) {
 			player.addscore(100);
 			if(take == null || take.isDisposed()){
 				player.addscore(400);
@@ -52,6 +53,7 @@ public class DamageCalculator {
 		
 		if(calculateDeflect(take)) {
 			if(take.takeDamage(calculateSecondaryDamage(deal,take))){
+				player.addscore(500);
 				NavalGame.getManager().getTurnManager().removeEntity(take);
 				player.addEntity(take);
 			}
