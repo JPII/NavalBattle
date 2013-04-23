@@ -129,21 +129,20 @@ public class AI extends Player{
 		int topY = e.getLocation().getRow()-e.getMovementLeft()+1;
 		int currentX=topX;
 		int currentY=topY;
-		int count = 0;
 		e.toggleMoveable();
 		//delay!
-		e.toggleMoveable();
 	do
 		{	
 			currentX=topX;
 			currentY=topY;
 			currentX += (int) (Math.random()*((e.getMovementLeft() * 2) + 1));
 			currentY += (int) (Math.random()*((e.getMovementLeft() * 2) + 1));
-			count++;
 		}
-		while(!GridHelper.canMoveTo(e.getManager(), e, e.getCurrentOrientation(), currentY, currentX,e.getWidth())&&count <= 10);
+		while(!GridHelper.canMoveTo(e.getManager(), e, e.getCurrentOrientation(), currentY, currentX,e.getWidth()));
 		System.out.println("I am moving to ..."+new Location(currentY,currentX));
+		e.toggleMoveable();
 		e.moveTo(new Location(currentY,currentX));
+		//delay
 	}
 	public void determineCurrentEnemies(MoveableEntity e){
 		int topX = (e.getLocation().getCol()-e.getMovementLeft())+1;	   
