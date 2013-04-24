@@ -211,9 +211,10 @@ public class World extends Renderable implements Interactable {
 			int desty = aniy;
 			//int dx = Math.abs(destx) - Math.abs(sx);
 			//int dy = Math.abs(desty) - Math.abs(sy);
-			int dx = -(sx+destx);
-			int dy = -(sy+desty);
-			
+			//int dx = -Math.abs(Math.abs(sx)+destx);
+			//int dy = -Math.abs(Math.abs(sy)+desty);
+			int dx = Math.abs(destx) + sx;
+			int dy = Math.abs(desty) + sy;
 			
 			System.out.println("dest("+destx+","+desty+"), s("+sx+","+sy+"), d("+dx+","+dy+")");
 			
@@ -253,6 +254,7 @@ public class World extends Renderable implements Interactable {
 		int liveChunks = 0;
 		Graphics2D g = PavoHelper.createGraphics(buffer);
 		g.drawImage(noise, 0, 0, null);
+		System.out.println("s("+sx+","+sy+")");
 		int startsyncx = (-sx) / 100;
 		int startsyncz = (-sy) / 100;
 		if (startsyncx < 0)
