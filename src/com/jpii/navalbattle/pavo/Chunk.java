@@ -217,7 +217,7 @@ public class Chunk extends Renderable{
 //			//Tile00.getEntity().onTeamColorBeingDrawn(as);
 //>>>>>>> Team colors.
 			
-			g.setColor(PavoHelper.convertByteToColor(Tile00.getEntity().getTeamColor()));
+			g.setColor(PavoHelper.changeAlpha(PavoHelper.convertByteToColor(Tile00.getEntity().getTeamColor()),50));
 			g.fillRect(2,2,47,47);
 			
 			
@@ -225,7 +225,7 @@ public class Chunk extends Renderable{
 		if (Tile10 != null && Tile10.getEntity() != null && Tile10.getEntity().getTeamColor() != -1) {
 			//Area as = new Area();
 			//Tile10.getEntity().onTeamColorBeingDrawn(as);
-			g.setColor(PavoHelper.convertByteToColor(Tile10.getEntity().getTeamColor()));
+			g.setColor(PavoHelper.changeAlpha(PavoHelper.convertByteToColor(Tile10.getEntity().getTeamColor()),50));
 			g.fillRect(52,2,47,47);
 			
 			
@@ -233,7 +233,7 @@ public class Chunk extends Renderable{
 		if (Tile01 != null && Tile01.getEntity() != null && Tile01.getEntity().getTeamColor() != -1) {
 			//Area as = new Area();
 			//Tile01.getEntity().onTeamColorBeingDrawn(as);
-			g.setColor(PavoHelper.convertByteToColor(Tile01.getEntity().getTeamColor()));
+			g.setColor(PavoHelper.changeAlpha(PavoHelper.convertByteToColor(Tile01.getEntity().getTeamColor()),50));
 			g.fillRect(2,52,47,47);
 			
 			
@@ -241,7 +241,7 @@ public class Chunk extends Renderable{
 		if (Tile11 != null && Tile11.getEntity() != null && Tile11.getEntity().getTeamColor() != -1) {
 			//Area as = new Area();
 			//Tile11.getEntity().onTeamColorBeingDrawn(as);
-			g.setColor(PavoHelper.convertByteToColor(Tile11.getEntity().getTeamColor()));
+			g.setColor(PavoHelper.changeAlpha(PavoHelper.convertByteToColor(Tile11.getEntity().getTeamColor()),50));
 			g.fillRect(52,52,47,47);
 			
 			
