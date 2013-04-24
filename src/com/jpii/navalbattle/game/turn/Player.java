@@ -125,6 +125,6 @@ public class Player {
 		}
 		if(temp == null)
 			return;
-		temp.getManager().getWorld().animatedSetLoc(temp.getLocation());
+		temp.getManager().getWorld().animatedSetLoc(temp.getLocation(),0.054392019f);
 	}
 }

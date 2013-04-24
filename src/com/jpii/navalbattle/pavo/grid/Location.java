@@ -19,6 +19,12 @@ package com.jpii.navalbattle.pavo.grid;
 
 import java.io.Serializable;
 
+import com.jpii.navalbattle.pavo.Game;
+import com.jpii.navalbattle.pavo.PavoHelper;
+import com.jpii.navalbattle.pavo.World;
+
+import maximusvladimir.dagen.Rand;
+
 public class Location implements Serializable
 {
 
@@ -33,6 +39,12 @@ public class Location implements Serializable
     	row = -1;
     	col = -1;
     	isunknown = true;
+    }
+    
+    public static Location random(World w,Rand provider) {
+    	return new Location(
+    			provider.nextInt(PavoHelper.getGameWidth(w.getWorldSize())),
+    			provider.nextInt(PavoHelper.getGameHeight(w.getWorldSize())));
     }
     
     public boolean isUnknown() {

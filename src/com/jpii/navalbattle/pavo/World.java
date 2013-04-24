@@ -122,15 +122,22 @@ public class World extends Renderable implements Interactable {
 		motionEntity = null;
 		anix = x;
 		aniy = y;
+		stopani = true;
 	}
-	public void animatedSetLoc(Location l) {
-		int sc = l.getCol() * -50;
-		int sr = l.getRow() * -50;
+	float _internalspeedconstant = 1.0f;
+	public void animatedSetLoc(Location l, float speed) {
+		_internalspeedconstant = 1.0f/speed;
+		int sc = l.getCol() * 50;
+		int sr = l.getRow() * 50;
+		//System.out.println("Headn towardz: "+ l);
 		animatedSetLoc(sc,sr);
 	}
 	public void animatedSetLoc(int x, int y) {
-		anix = x;
-		aniy = y;
+		int ssx = Game.Settings.currentWidth/2;
+		int ssy = Game.Settings.currentHeight/2;
+		anix = x - ssx;
+		aniy = y - ssy;
+		stopani = false;
 	}
 	public void setLoc(int x, int y) {
 		if (sx != x || sy != y)
@@ -195,6 +202,7 @@ public class World extends Renderable implements Interactable {
 		motionEntity = e;
 	}
 	boolean chunkrender = false;
+	boolean stopani = true;
 	public boolean needsReChunkRender() {
 		return chunkrender;
 	}
@@ -206,18 +214,16 @@ public class World extends Renderable implements Interactable {
 		chunkrender = true;
 	}
 	public synchronized void render() {
-		if (anix != sx || aniy != sy) {
+		if (!stopani) {
 			int destx = anix;
 			int desty = aniy;
 			//int dx = Math.abs(destx) - Math.abs(sx);
 			//int dy = Math.abs(desty) - Math.abs(sy);
 			//int dx = -Math.abs(Math.abs(sx)+destx);
 			//int dy = -Math.abs(Math.abs(sy)+desty);
-			int dx = Math.abs(destx) + sx;
-			int dy = Math.abs(desty) + sy;
-			
-			System.out.println("dest("+destx+","+desty+"), s("+sx+","+sy+"), d("+dx+","+dy+")");
-			
+			//int dx = Math.abs(destx) + sx;
+			//int dy = Math.abs(desty) + sy;
+			/*int 
 			int ds = 90;
 			int ddx = (dx/ds);
 			int ddy = (dy/ds);
@@ -233,7 +239,18 @@ public class World extends Renderable implements Interactable {
 			if (dy > 0)
 				sy += ddy;
 			else
-				sy -= ddy;
+				sy -= ddy;*/
+			//float theta = (float)Math.atan2((-desty)-sy,(-destx)-sx);
+			//sx = 
+			float dx = destx + (sx);
+			float dy = desty + (sy);
+			//System.out.println("d("+(-destx)+","+(-desty)+") s("+(sx+101)+","+(sy+100)+")");
+			int ccx = (int)(dx/_internalspeedconstant);
+			int ccy = (int)(dy/_internalspeedconstant);
+			if (ccx == 0 && ccy == 0)
+				stopani = true;
+			sx -= ccx;
+			sy -= ccy;
 		}
 		else if (!needsReChunkRender())
 			return;
@@ -254,7 +271,7 @@ public class World extends Renderable implements Interactable {
 		int liveChunks = 0;
 		Graphics2D g = PavoHelper.createGraphics(buffer);
 		g.drawImage(noise, 0, 0, null);
-		System.out.println("s("+sx+","+sy+")");
+		//System.out.println("s("+sx+","+sy+")");
 		int startsyncx = (-sx) / 100;
 		int startsyncz = (-sy) / 100;
 		if (startsyncx < 0)
