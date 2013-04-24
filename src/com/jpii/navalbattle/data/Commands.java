@@ -26,6 +26,8 @@ import com.jpii.navalbattle.game.NavalGame;
 import com.jpii.navalbattle.game.SinglePlayerGame;
 import com.jpii.navalbattle.gui.*;
 import com.jpii.navalbattle.gui.listeners.WindowCloser;
+import com.jpii.navalbattle.io.NavalBattleIO;
+import com.jpii.navalbattle.pavo.Game;
 import com.jpii.navalbattle.pavo.boost.BoostBuilder;
 
 public class Commands {
@@ -61,7 +63,7 @@ public class Commands {
 	    		NavalBattle.getDebugWindow().println("----------------- NavalBattle Credits -----------------");
 	    		NavalBattle.getDebugWindow().println("Anthony \"abauer\" Bauer - game design lead");
 	    		NavalBattle.getDebugWindow().println("Thomas \"TexasGamer\" Gaubert - SCM manager; RoketGamer lead");
-	    		NavalBattle.getDebugWindow().println("Max \"maximusvladimir\" Kirkby - TBD");
+	    		NavalBattle.getDebugWindow().println("Max \"maximusvladimir\" K. - rendering lead, grid lead, Pavo lead");
 	    		NavalBattle.getDebugWindow().println("JR \"DarkWarHero\" Vetus - TBD");
 	    		NavalBattle.getDebugWindow().println("Matt \"Matthis5point0\" Waller - TBD");
 	    		NavalBattle.getDebugWindow().println("Zach \"smeagle42\" Mathewson - Ship Designer");
@@ -103,6 +105,13 @@ public class Commands {
 	    		}
 	    	}}
 	    ));
+	    
+	    add(new Command("save", "<gamename>", "Saves the current game.", new CommandAction() {
+	    	public void onRun(Command c, String[] args) {
+	    		args[0] = args[0].toLowerCase();
+	    		NavalBattleIO.saveGame(Game.Instance,args[0]);
+	    	}
+	    }));
 	    
 	    add(new Command("getscore", "", "Get game score", new CommandAction() { 
 	    	public void onRun(Command c, String[] args) {
