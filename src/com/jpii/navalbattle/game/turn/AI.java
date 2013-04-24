@@ -77,10 +77,10 @@ public class AI extends Player{
 	public void attackEnemies(int n, MoveableEntity currentEntity)
 	{
 		
+		if(pickEnemyP(n)!=-1)
+		primaryAttack(n, currentEntity);
 		if(pickEnemyS(n)!=-1)
 		secondaryAttack(n, currentEntity);
-		//if(pickEnemyP(n)!=-1)
-		//primaryAttack(n, currentEntity);
 		
 		secondaryEnemies.clear();
 		primaryEnemies.clear();
