@@ -20,6 +20,7 @@ package com.roketgamer.leaderboard;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.URL;
+import java.util.ArrayList;
 
 import com.roketgamer.Player;
 import com.roketgamer.RoketGamer;
@@ -45,46 +46,6 @@ public class Leaderboard {
 	}
 	
 	/**
-	 * Get score at a position on the leaderboard.
-	 * @param position
-	 * @return
-	 */
-	public int getScoreAt(int position) {
-		// TODO: Implement
-		return 0;
-	}
-	
-	/**
-	 * Get username at a position on the leaderboard.
-	 * @param position
-	 * @return
-	 */
-	public String getUserAt(int position) {
-		// TODO: Implement
-		return "";
-	}
-	
-	/**
-	 * Get current user's top position.
-	 * @param player
-	 * @return
-	 */
-	public int getUserPos(Player player) {
-		// TODO: Implement
-		return 0;
-	}
-	
-	/**
-	 * Get current user's top score.
-	 * @param player
-	 * @return
-	 */
-	public int getUserTopScore(Player player) {
-		// TODO: Implement
-		return 0;
-	}
-	
-	/**
 	 * Submit a leaderboard score. Returns if operation is successful.
 	 * @param leaderboard
 	 * @param score
@@ -92,7 +53,7 @@ public class Leaderboard {
 	 */
 	public boolean submit(int score) {
 		try {
-			URL url = new URL(RoketGamer.SERVER_LOCATION + "/api/" + RoketGamer.VERSION + "/leaderboard/submit.php?id=" + getID() + "?session=" + RoketGamer.getInstance().getSession().getSessionKey().trim()  + "&score=" + score);
+			URL url = new URL(RoketGamer.SERVER_LOCATION + "/api/" + RoketGamer.VERSION + "/leaderboard/submit.php?session=" + RoketGamer.getInstance().getSession().getSessionKey().trim() + "&id=" + getID() + "&score=" + score);
 			
 			BufferedReader in = new BufferedReader(new InputStreamReader(url.openStream()));
 
@@ -100,7 +61,6 @@ public class Leaderboard {
 			if (result.contains("true")) {
 				in.close();
 				return true;
-				
 			} else {
 				in.close();
 				return false;
@@ -110,5 +70,42 @@ public class Leaderboard {
 		}
 		
 		return false;
+	}
+	
+	/**
+	 * Get scores on a leaderboard.
+	 * @param entries Number of scores to return.
+	 * @return
+	 */
+	public ArrayList<LeaderboardEntry> getScores(int entries) {
+		try {
+			URL url = new URL(RoketGamer.SERVER_LOCATION + "/api/" + RoketGamer.VERSION + "/leaderboard/view.php?session=" + RoketGamer.getInstance().getSession().getSessionKey().trim() + "&id=" + getID() + "&entries=" + entries);
+			
+			BufferedReader in = new BufferedReader(new InputStreamReader(url.openStream()));
+
+			String result = in.readLine();
+			
+			if (result.contains("false") || result.contains("")) {
+				in.close();
+				return new ArrayList<LeaderboardEntry>();
+			} else {
+				ArrayList<LeaderboardEntry> scores = new ArrayList<LeaderboardEntry>();
+				scores.add(new LeaderboardEntry(result, Integer.parseInt(in.readLine())));
+				
+				result = in.readLine();
+				
+				while(!result.contains("true")) {
+					scores.add(new LeaderboardEntry(result, Integer.parseInt(in.readLine())));
+					result = in.readLine();
+				}
+				
+				in.close();
+				return scores;
+			}
+
+		} catch (Exception e) {
+		}
+		
+		return new ArrayList<LeaderboardEntry>();
 	}
 }
