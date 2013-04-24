@@ -8,6 +8,7 @@ import com.jpii.navalbattle.pavo.grid.Entity;
 import com.jpii.navalbattle.pavo.grid.GridHelper;
 import com.jpii.navalbattle.pavo.grid.Location;
 import com.jpii.navalbattle.game.entity.MoveableEntity;
+import com.jpii.navalbattle.game.entity.Submarine;
 import com.jpii.navalbattle.game.turn.DamageCalculator;
 
 public class AI extends Player{
@@ -240,7 +241,15 @@ public class AI extends Player{
 					if (temp!=null){
 					if(!(temp.equals(this))&&!secondaryEnemies.contains(location)){
 						//entity at spot is not owned by this AI
-						addEnemyEntityS(location);
+						if(location.getHandle()==11) {
+							if(!((Submarine)location).isSumberged()){
+								addEnemyEntityS(location);
+							}
+						}
+						else{
+							addEnemyEntityS(location);
+						}
+
 					}
 					}
 				}
@@ -259,7 +268,14 @@ public class AI extends Player{
 					if (temp!=null){
 					if(!(temp.equals(this))&&!primaryEnemies.contains(location)){
 						//entity at spot is not owned by this AI
-						addEnemyEntityP(location);
+						if(location.getHandle()==11) {
+							if(!((Submarine)location).isSumberged()){
+								addEnemyEntityS(location);
+							}
+						}
+						else{
+							addEnemyEntityS(location);
+						}
 					}
 					}
 				}

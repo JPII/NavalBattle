@@ -35,11 +35,11 @@ public class Player {
 	}
 	
 	public void takeTurn(){
-		
+		reset();
 	}
 	
 	public void endTurn(){
-		reset();
+		
 	}
 	
 	public void reset(){
