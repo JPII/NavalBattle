@@ -213,6 +213,8 @@ public class World extends Renderable implements Interactable {
 			//int dy = Math.abs(desty) - Math.abs(sy);
 			int dx = (0 - sx);
 			int dy = (0 - sy);
+			
+			
 			int ds = 90;
 			int ddx = (dx/ds);
 			int ddy = (dy/ds);
