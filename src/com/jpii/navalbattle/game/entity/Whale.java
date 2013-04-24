@@ -38,8 +38,8 @@ public class Whale extends AnimatedEntity {
 	}
 	
 	public void onMouseDown(int x, int y, boolean leftClick) {
-		this.animatedMoveTo(/*new Location(3,3)*/((NavalManager)getManager()).gh.pollNearLocation(getLocation()), 0.25f);
-		getManager().getWorld().animatedSetLoc(Game.Settings.rand.nextInt(-2000, -1000),Game.Settings.rand.nextInt(-2000, -1000));
+		//this.animatedMoveTo(/*new Location(3,3)*/((NavalManager)getManager()).gh.pollNearLocation(getLocation()), 0.25f);
+		getManager().getWorld().animatedSetLoc(Game.Settings.rand.nextInt(1000, 2000),Game.Settings.rand.nextInt(1000, 2000));
 	}
 	
 	

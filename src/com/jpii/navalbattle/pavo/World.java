@@ -209,8 +209,10 @@ public class World extends Renderable implements Interactable {
 		if (anix != sx || aniy != sy) {
 			int destx = anix;
 			int desty = aniy;
-			int dx = Math.abs(destx) - Math.abs(sx);
-			int dy = Math.abs(desty) - Math.abs(sy);
+			//int dx = Math.abs(destx) - Math.abs(sx);
+			//int dy = Math.abs(desty) - Math.abs(sy);
+			int dx = (0 - sx);
+			int dy = (0 - sy);
 			int ds = 90;
 			int ddx = (dx/ds);
 			int ddy = (dy/ds);
