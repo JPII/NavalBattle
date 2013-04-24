@@ -162,7 +162,7 @@ public class NavalManager extends EntityManager {
 			}
 		}
 		
-		for(int c =0; c<10; c++){
+		for(int c =0; c<20; c++){
 			Location poll = gh.pollNextWaterTile();
 			while(!GridHelper.canPlaceInGrid(this, GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT, poll.getRow(), poll.getCol(), 1)){
 				poll = gh.pollNextWaterTile();
