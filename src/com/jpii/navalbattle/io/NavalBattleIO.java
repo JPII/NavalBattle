@@ -19,9 +19,14 @@ package com.jpii.navalbattle.io;
 
 import com.jpii.navalbattle.NavalBattle;
 import com.jpii.navalbattle.io.SettingsAttribute;
+import com.jpii.navalbattle.pavo.Game;
+import com.jpii.navalbattle.pavo.grid.Entity;
 import com.jpii.navalbattle.util.FileUtils;
+import com.roketgamer.rauth.AuthStatus;
 
 import java.io.File;
+
+import maximusvladimir.dagen.Rand;
 
 /**
  * NavalBattle IO manager.
@@ -112,5 +117,40 @@ public class NavalBattleIO {
 	 */
 	public static String getSettingsPath() {
 		return (FileUtils.getSavingDirectory().getAbsolutePath()+"\\settings.ini");
+	}
+	
+	public static boolean saveGame(Game g, String name) {
+		String ultimatePath = FileUtils.getSavingDirectory().getAbsolutePath() + "\\" + name + "\\" + new Rand(name).nextString(10,15) + ".inf";
+		String entitycomposition = "";
+		for (int c = 0; c < g.getWorld().getEntityManager().getTotalEntities(); c++) {
+			Entity ent = g.getWorld().getEntityManager().getEntity(c);
+			if (ent != null) {
+				entitycomposition += "(" + ent.getLocation().getRow() + "," +
+						ent.getLocation().getCol() + "," + ent.getCurrentId() + ")";
+			}
+			if (c != g.getWorld().getEntityManager().getTotalEntities() - 1)
+				entitycomposition += " & ";
+		}
+		//String recordData =
+			//	"seed: " + Game.Settings.seed +
+				//"enty: " + entitycomposition +
+				//"vsgn: " + com.jpii.navalbattle.data.Constants.NAVALBATTLE_VERSION +
+				//"rokt: " + (NavalBattle.getRoketGamer().getStatus() == AuthStatus.OFFLINE ? "offline" : "online") +
+				//"estr: " + Boolean.toString(NavalBattle.getGameState().isOffline());
+		try {
+			new File(ultimatePath).mkdirs();
+		}
+		catch (Throwable t) {
+			return false;
+		}
+		SettingsIO tmp = new SettingsIO(ultimatePath);
+		tmp.setAttribute(new SettingsAttribute("seed",Game.Settings.seed+""));
+		tmp.setAttribute(new SettingsAttribute("enty",entitycomposition));
+		tmp.setAttribute(new SettingsAttribute("vsgn",com.jpii.navalbattle.data.Constants.NAVALBATTLE_VERSION));
+		//tmp.setAttribute(new SettingsAttribute("rokt",(NavalBattle.getRoketGamer().getStatus() == AuthStatus.OFFLINE ? "offline" : "online")));
+		tmp.setAttribute(new SettingsAttribute("estr",Boolean.toString(NavalBattle.getGameState().isOffline())));
+		tmp.refresh();
+		tmp = null;
+		return true;
 	}
 }
