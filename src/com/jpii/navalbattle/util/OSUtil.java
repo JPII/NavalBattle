@@ -4,9 +4,19 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Field;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.Arrays;
+
+import javax.crypto.BadPaddingException;
+import javax.crypto.Cipher;
+import javax.crypto.IllegalBlockSizeException;
+import javax.crypto.KeyGenerator;
+import javax.crypto.NoSuchPaddingException;
+import javax.crypto.SecretKey;
 
 public class OSUtil {
 	private static long totalRam = -2;
@@ -146,5 +156,48 @@ public class OSUtil {
 			queryOSRAM();
 		
 		return totalRam;
+	}
+	
+	public static String slowEncrypt(String msg, String password) {
+		KeyGenerator keyGenerator = null;
+		try {
+			keyGenerator = KeyGenerator.getInstance("DESede");
+		} catch (Throwable e1) {
+			e1.printStackTrace();
+		}
+		if (keyGenerator == null)
+			return "";
+		keyGenerator.init(168);
+		SecretKey secretKey = new SecretKeySpec(password.getBytes("UTF8"),"DESede");
+		Cipher cipher = null;
+		try {
+			cipher = Cipher.getInstance("DESede");
+		} catch (Throwable t) {
+			t.printStackTrace();
+		}
+		String clearText = msg;
+		byte[] clearTextBytes = null;
+		try {
+			clearTextBytes = clearText.getBytes("UTF8");
+		} catch (Throwable e) {
+			e.printStackTrace();
+		}
+		try {
+			cipher.init(Cipher.ENCRYPT_MODE, secretKey);
+		} catch (Throwable e) {
+			e.printStackTrace();
+		}
+		byte[] cipherBytes = null;
+		try {
+			cipherBytes = cipher.doFinal(clearTextBytes);
+		} catch (Throwable e) {
+			e.printStackTrace();
+		}
+		try {
+			return new String(cipherBytes, "UTF8");
+		} catch (Throwable t) {
+			t.printStackTrace();
+		}
+		return "";
 	}
 }
