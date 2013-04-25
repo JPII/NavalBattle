@@ -120,7 +120,7 @@ public class NavalBattleIO {
 	}
 	
 	public static boolean saveGame(Game g, String name) {
-		String ultimatePath = FileUtils.getSavingDirectory().getAbsolutePath() + "\\" + name + "\\" + new Rand(name).nextString(10,15) + ".inf";
+		String ultimatePath = FileUtils.getSavingDirectory().getAbsolutePath() + "\\saves\\" + name + "\\" + new Rand(name).nextString(10,15) + ".inf";
 		String entitycomposition = "";
 		for (int c = 0; c < g.getWorld().getEntityManager().getTotalEntities(); c++) {
 			Entity ent = g.getWorld().getEntityManager().getEntity(c);
@@ -138,7 +138,14 @@ public class NavalBattleIO {
 				//"rokt: " + (NavalBattle.getRoketGamer().getStatus() == AuthStatus.OFFLINE ? "offline" : "online") +
 				//"estr: " + Boolean.toString(NavalBattle.getGameState().isOffline());
 		try {
-			new File(FileUtils.getSavingDirectory().getAbsolutePath() + "\\" + name + "\\").mkdirs();
+			File del = new File(FileUtils.getSavingDirectory().getAbsolutePath() + "\\saves\\" + name + "\\");
+			del.delete();
+		}
+		catch (Throwable t) {
+			
+		}
+		try {
+			new File(FileUtils.getSavingDirectory().getAbsolutePath() + "\\saves\\" + name + "\\").mkdirs();
 		}
 		catch (Throwable t) {
 			return false;
