@@ -138,7 +138,7 @@ public class NavalBattleIO {
 				//"rokt: " + (NavalBattle.getRoketGamer().getStatus() == AuthStatus.OFFLINE ? "offline" : "online") +
 				//"estr: " + Boolean.toString(NavalBattle.getGameState().isOffline());
 		try {
-			new File(ultimatePath).mkdirs();
+			new File(FileUtils.getSavingDirectory().getAbsolutePath() + "\\" + name + "\\").mkdirs();
 		}
 		catch (Throwable t) {
 			return false;
