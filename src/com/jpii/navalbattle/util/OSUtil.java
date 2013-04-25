@@ -159,6 +159,52 @@ public class OSUtil {
 		return totalRam;
 	}
 	
+	public static SecretKey createCryptographyKey(String password) {
+		SecretKey secretKey = null;
+		try {
+			secretKey = new SecretKeySpec(password.getBytes("UTF8"),"DESede");
+		} catch (UnsupportedEncodingException e1) {
+			e1.printStackTrace();
+		}
+		return secretKey;
+	}
+	
+	private static Cipher cipherer;
+	
+	public static String fastBlobEncrypt(String msg, SecretKey secretKey) {
+		if (cipherer == null) {
+			try {
+				cipherer = Cipher.getInstance("DESede");
+			} catch (Throwable t) {
+				t.printStackTrace();
+			}
+		}
+		String clearText = msg;
+		byte[] clearTextBytes = null;
+		try {
+			clearTextBytes = clearText.getBytes("UTF8");
+		} catch (Throwable e) {
+			e.printStackTrace();
+		}
+		try {
+			cipherer.init(Cipher.ENCRYPT_MODE, secretKey);
+		} catch (Throwable e) {
+			e.printStackTrace();
+		}
+		byte[] cipherBytes = null;
+		try {
+			cipherBytes = cipherer.doFinal(clearTextBytes);
+		} catch (Throwable e) {
+			e.printStackTrace();
+		}
+		try {
+			return new String(cipherBytes, "UTF8");
+		} catch (Throwable t) {
+			t.printStackTrace();
+		}
+		return "";
+	}
+	
 	public static String slowEncrypt(String msg, String password) {
 //		KeyGenerator keyGenerator = null;
 //		try {
