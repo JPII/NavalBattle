@@ -17,6 +17,7 @@ import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.KeyGenerator;
 import javax.crypto.NoSuchPaddingException;
 import javax.crypto.SecretKey;
+import javax.crypto.spec.SecretKeySpec;
 
 public class OSUtil {
 	private static long totalRam = -2;
@@ -159,16 +160,21 @@ public class OSUtil {
 	}
 	
 	public static String slowEncrypt(String msg, String password) {
-		KeyGenerator keyGenerator = null;
+//		KeyGenerator keyGenerator = null;
+//		try {
+//			keyGenerator = KeyGenerator.getInstance("DESede");
+//		} catch (Throwable e1) {
+//			e1.printStackTrace();
+//		}
+//		if (keyGenerator == null)
+//			return "";
+//		keyGenerator.init(168);
+		SecretKey secretKey = null;
 		try {
-			keyGenerator = KeyGenerator.getInstance("DESede");
-		} catch (Throwable e1) {
+			secretKey = new SecretKeySpec(password.getBytes("UTF8"),"DESede");
+		} catch (UnsupportedEncodingException e1) {
 			e1.printStackTrace();
 		}
-		if (keyGenerator == null)
-			return "";
-		keyGenerator.init(168);
-		SecretKey secretKey = new SecretKeySpec(password.getBytes("UTF8"),"DESede");
 		Cipher cipher = null;
 		try {
 			cipher = Cipher.getInstance("DESede");
