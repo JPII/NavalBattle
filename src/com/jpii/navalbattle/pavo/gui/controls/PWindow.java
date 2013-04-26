@@ -202,6 +202,7 @@ public class PWindow extends Control {
 	public void close() {
 		onClose();
 		dispose();
+		pare.remove(this);
 	}
 	
 	public NewWindowManager getWindowManager() {
