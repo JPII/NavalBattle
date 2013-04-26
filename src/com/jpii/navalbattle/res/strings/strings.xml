@@ -9,7 +9,6 @@
 	
 	<!-- Toast strings -->
 	<string name="toast_offline_mode">Offline mode enabled</string>
-	<string name="toast_popup_closed">Pop-up closed</string>
 	
 	<!-- LoginWindow strings -->
 	<string name="login_username">Username</string>
@@ -19,6 +18,11 @@
 	<string name="login_login">Login</string>
 	<string name="login_options">Options</string>
 	<string name="login_exit">Exit</string>
+	<string name="login_roketgamer_tooltip">Use RoketGamer application password</string>
+	<string name="login_announcement">Announcement!</string>
+	<string name="login_update">Update</string>
+	<string name="login_checking">Checking for updates...</string>
+	<string name="login_update_alert">There is an update to NavalBattle.\nRoketGamer will be disabled until you update. Continue?</string>
 	
 	<!-- MainMenuWindow strings -->
 	<string name="mainmenu_singleplayer">Singleplayer</string>
