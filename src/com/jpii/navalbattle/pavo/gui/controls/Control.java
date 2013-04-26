@@ -568,7 +568,7 @@ public class Control {
 		}
 	}
 	
-	private void throwBadState() {
+	protected void throwBadState() {
 		if (disposed)
 			throw new IllegalStateException("The specified control is disposed. It can no longer be used, however the majority of its" +
 					" properties can most likely be retrieved. (The majority of its properties can most likely not be set either.)");

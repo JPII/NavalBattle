@@ -12,8 +12,8 @@ public class GridHelper implements Serializable {
 	private static final long serialVersionUID = 1L;
 	EntityManager man;
 	Rand random;
-	public GridHelper(EntityManager eman) {
-		random = Game.Settings.rand;
+	public GridHelper(long randomSeed,EntityManager eman) {
+		random = new Rand(randomSeed);
 		man = eman;
 	}
 	public Location pollNextLiquidSpace(int amountOfWater, int tolerance) {

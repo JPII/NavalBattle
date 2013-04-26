@@ -21,6 +21,7 @@ public class PWindow extends Control {
 	private PWindowEffect pwething = PWindowEffect.NONE;
 	private boolean centerTitle = false;
 	private Control cmh;
+	private boolean closed = false;
 	
 	/**
 	 * @param parent
@@ -143,7 +144,7 @@ public class PWindow extends Control {
 	}
 	
 	public void onClose() {
-		
+		closed = true;
 	}
 	
 	private int lastMouseTitleBarX = 0, lastMouseTitleBarY = 0;
@@ -199,10 +200,17 @@ public class PWindow extends Control {
 			pare.render();
 	}
 	
+	protected void throwBadState() {
+		if (closed)
+			return;
+		
+		super.throwBadState();
+	}
+	
 	public void close() {
-		onClose();
-		dispose();
 		pare.remove(this);
+		onClose();
+		//dispose();
 	}
 	
 	public NewWindowManager getWindowManager() {

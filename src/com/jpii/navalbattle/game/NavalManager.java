@@ -70,7 +70,7 @@ public class NavalManager extends EntityManager {
 		}
 		else {
 		}
-		gh = new GridHelper(this);
+		gh = new GridHelper(Game.Settings.rand.nextLong(),this);
 	}
 	public GridHelper gh;
 	
