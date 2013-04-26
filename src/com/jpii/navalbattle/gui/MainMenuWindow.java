@@ -84,7 +84,9 @@ public class MainMenuWindow extends BaseWindow {
 		btnRoketGamer.setFocusable(false);
 		btnQuit.setFocusable(false);
 		btnCredits.setFocusable(false);
-
+		
+		btnMultiplayer.disable();
+		
 		JLabel label = new JLabel("");
 		label.setIcon(new ImageIcon(MainMenuWindow.class.getResource("/com/jpii/navalbattle/res/drawable-gui/menu_background.png")));
 		label.setBounds(-83, -62, 569, 374);

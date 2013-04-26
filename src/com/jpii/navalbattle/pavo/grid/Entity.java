@@ -84,16 +84,10 @@ public class Entity implements Serializable {
 		location = loc;
 		//teamColor = Game.Settings.rand.nextByte();
 		ORIENTATION_BUFFER_POSITION = orientation;
-		try {
-			moveTo(loc,true);
-		}
-		catch (Throwable throwable) {
-			
-		}
 		manager.addEntity(this);
 		init();
 		if(getCurrentOrientation()==GridedEntityTileOrientation.ORIENTATION_TOPTOBOTTOM){
-			location = new Location(loc.getRow()-(getWidth()-1),loc.getCol());
+			location = new Location(loc.getRow(),loc.getCol());
 			startpos = true;
 		}
 		setId(id);
