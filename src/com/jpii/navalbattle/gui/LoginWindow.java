@@ -53,8 +53,8 @@ public class LoginWindow extends BaseWindow {
 		
 		usernameLabel.setText(NavalBattle.getLocalizationManager().getString("login_username"));
 		passwordLabel.setText(NavalBattle.getLocalizationManager().getString("login_password"));
-		passwordLabel.setToolTipText("Use RoketGamer application password");
-		passwordField.setToolTipText("Use RoketGamer application password");
+		passwordLabel.setToolTipText(NavalBattle.getLocalizationManager().getString("login_roketgamer_tooltip"));
+		passwordField.setToolTipText(NavalBattle.getLocalizationManager().getString("login_roketgamer_tooltip"));
 		
 		usernameLabel.setBounds(295,8,78,30);
 		usernameField.setBounds(365,8,113,30);
@@ -81,7 +81,7 @@ public class LoginWindow extends BaseWindow {
 		usernameField.addKeyListener(Constants.keys);
 		usernameField.setText(NavalBattleIO.getAttribute("lastGoodUserName"));
 		
-		announcementButton = new JButton("Announcement!");
+		announcementButton = new JButton(NavalBattle.getLocalizationManager().getString("login_announcement"));
 		announcementButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
@@ -90,7 +90,7 @@ public class LoginWindow extends BaseWindow {
 		announcementButton.setBounds(34, 68, 117, 30);
 		getContentPane().add(announcementButton);
 		
-		updateButton = new JButton("Update");
+		updateButton = new JButton(NavalBattle.getLocalizationManager().getString("login_update"));
 		updateButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
@@ -99,7 +99,7 @@ public class LoginWindow extends BaseWindow {
 		updateButton.setBounds(34, 27, 117, 30);
 		getContentPane().add(updateButton);
 		
-		lblCheckingForUpdate = new JLabel("Checking for updates...");
+		lblCheckingForUpdate = new JLabel(NavalBattle.getLocalizationManager().getString("login_checking"));
 		lblCheckingForUpdate.setBounds(34, 55, 153, 14);
 		getContentPane().add(lblCheckingForUpdate);
 		passwordField.addFocusListener(new Focus(this));
@@ -149,7 +149,7 @@ public class LoginWindow extends BaseWindow {
 		loginButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent ae) {
 				if(updateButton.isVisible()) {
-					int dialogResult = JOptionPane.showConfirmDialog (null, "There is an update to NavalBattle.\nRoketGamer will be disabled until you update. Continue?",  "NavalBattle",JOptionPane.YES_NO_OPTION);
+					int dialogResult = JOptionPane.showConfirmDialog (null, NavalBattle.getLocalizationManager().getString("login_update_alert"), "NavalBattle",JOptionPane.YES_NO_OPTION);
 					
 					if (dialogResult != JOptionPane.YES_OPTION) {
 						return;
@@ -162,7 +162,7 @@ public class LoginWindow extends BaseWindow {
 		
 		offlineButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent ae) {
-				NavalBattle.getWindowHandler().getToasterManager().showToaster(new ImageIcon(getClass().getResource("/com/roketgamer/res/logo_100px.png")), "Offline mode enabled");
+				NavalBattle.getWindowHandler().getToasterManager().showToaster(new ImageIcon(getClass().getResource("/com/roketgamer/res/logo_100px.png")), NavalBattle.getLocalizationManager().getString("toast_offline_mode"));
 				NavalBattle.getDebugWindow().printInfo("Opening in offline mode");
 				NavalBattle.getDebugWindow().printWarning("RoketGamer disabled");
 				NavalBattle.getGameState().setOffline(true);
