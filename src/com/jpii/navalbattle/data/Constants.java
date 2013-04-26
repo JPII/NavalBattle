@@ -26,9 +26,9 @@ public class Constants {
 	/*
 	 * General
 	 */
-	public static final String NAVALBATTLE_VERSION = "0.7b";
-	public static final String VERSION_CODE = "7";
-	public static final String NAVALBATTLE_CODENAME = "Champion";
+	public static final String NAVALBATTLE_VERSION = "0.8b";
+	public static final String VERSION_CODE = "8";
+	public static final String NAVALBATTLE_CODENAME = "Sentry";
 	public static final String NAVALBATTLE_VERSION_TITLE = "NavalBattle " + NAVALBATTLE_VERSION + " (" + NAVALBATTLE_CODENAME + ")";
 	public static final String NAVALBATTLE_UPDATE_URL = "https://raw.github.com/JPII/NavalBattle/master/update.xml";
 	
