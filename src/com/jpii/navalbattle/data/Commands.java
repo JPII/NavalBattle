@@ -44,7 +44,7 @@ public class Commands {
 	    	}}
 	    ));
 	    
-	    add(new Command("boost", "", "Launches the Boost Game Thing", new CommandAction()
+	    add(new Command("boost", "", "Launches PavoBoost visual editor", new CommandAction()
 	    {
 	    	public void onRun(Command c, String[] args) {
 	    		BoostBuilder builder = new BoostBuilder();
