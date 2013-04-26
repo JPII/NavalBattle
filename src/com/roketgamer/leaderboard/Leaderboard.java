@@ -20,8 +20,10 @@ package com.roketgamer.leaderboard;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.URL;
+import java.net.URLConnection;
 import java.util.ArrayList;
 
+import com.roketgamer.Player;
 import com.roketgamer.RoketGamer;
 
 public class Leaderboard {
@@ -54,7 +56,13 @@ public class Leaderboard {
 		try {
 			URL url = new URL(RoketGamer.SERVER_LOCATION + "/api/" + RoketGamer.VERSION + "/leaderboard/submit.php?session=" + RoketGamer.getInstance().getSession().getSessionKey().trim() + "&id=" + getID() + "&score=" + score);
 			
-			BufferedReader in = new BufferedReader(new InputStreamReader(url.openStream()));
+			URLConnection connection = url.openConnection();
+		    connection.addRequestProperty("Protocol", "Http/1.1");
+		    connection.addRequestProperty("Connection", "keep-alive");
+		    connection.addRequestProperty("Keep-Alive", "1000");
+		    connection.addRequestProperty("User-Agent", "Web-Agent");
+
+			BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
 
 			String result = in.readLine();
 			if (result.contains("true")) {
@@ -80,11 +88,17 @@ public class Leaderboard {
 		try {
 			URL url = new URL(RoketGamer.SERVER_LOCATION + "/api/" + RoketGamer.VERSION + "/leaderboard/view.php?session=" + RoketGamer.getInstance().getSession().getSessionKey().trim() + "&id=" + getID() + "&entries=" + entries);
 			
-			BufferedReader in = new BufferedReader(new InputStreamReader(url.openStream()));
+			URLConnection connection = url.openConnection();
+		    connection.addRequestProperty("Protocol", "Http/1.1");
+		    connection.addRequestProperty("Connection", "keep-alive");
+		    connection.addRequestProperty("Keep-Alive", "1000");
+		    connection.addRequestProperty("User-Agent", "Web-Agent");
+
+			BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
 
 			String result = in.readLine();
 			
-			if (result.contains("false") || result.contains("")) {
+			if (result.contains("false") || result.contains("Bad session")) {
 				in.close();
 				return new ArrayList<LeaderboardEntry>();
 			} else {
@@ -94,6 +108,7 @@ public class Leaderboard {
 				result = in.readLine();
 				
 				while(!result.contains("true")) {
+					System.out.println(result);
 					scores.add(new LeaderboardEntry(result, Integer.parseInt(in.readLine())));
 					result = in.readLine();
 				}
@@ -103,6 +118,7 @@ public class Leaderboard {
 			}
 
 		} catch (Exception e) {
+			e.printStackTrace();
 		}
 		
 		return new ArrayList<LeaderboardEntry>();
