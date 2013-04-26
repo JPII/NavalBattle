@@ -154,21 +154,34 @@ public class EntityManager implements Serializable {
 		chunk.writeBuffer();
 	}
 	public Entity findEntity(int r, int c) {
-		if (r >= 0 && c >= 0) {
+		if (r >= 0 && c >= 0 && c < PavoHelper.getGameWidth(getWorld().getWorldSize()) * 2
+				&& r < PavoHelper.getGameHeight(getWorld().getWorldSize()) * 2) {
 			Chunk chuck = PavoHelper.convertGridLocationToChunk(getWorld(), new Location(r,c));
-			if (chuck == null)
-				return null;
-			if (chuck.Tile00 != null && chuck.Tile00.parent != null)
+//			if (chuck == null)
+//				return null;
+//			if (chuck.Tile00 != null && chuck.Tile00.parent != null)
+//				return chuck.Tile00.parent;
+//			else if (chuck.Tile10 != null && chuck.Tile10.parent != null)
+//				return chuck.Tile10.parent;
+//			else if (chuck.Tile01 != null && chuck.Tile01.parent != null)
+//				return chuck.Tile01.parent;
+//			else if (chuck.Tile11 != null && chuck.Tile11.parent != null)
+//				return chuck.Tile11.parent;
+//			else {
+//				return null;
+//			}
+			int rrr = r % 2;
+			int rrc = c % 2;
+			if (rrr == 0 && rrc == 0)
 				return chuck.Tile00.parent;
-			else if (chuck.Tile10 != null && chuck.Tile10.parent != null)
+			else if (rrr == 0 && rrc != 0)
 				return chuck.Tile10.parent;
-			else if (chuck.Tile01 != null && chuck.Tile01.parent != null)
+			else if (rrr != 0 && rrc == 0)
 				return chuck.Tile01.parent;
-			else if (chuck.Tile11 != null && chuck.Tile11.parent != null)
+			else if (rrc != 0 && rrr != 0)
 				return chuck.Tile11.parent;
-			else {
+			else
 				return null;
-			}
 		}
 		return null;
 	}
