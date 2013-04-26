@@ -117,7 +117,7 @@ public class Player {
 		}
 		else{
 			if(entities.contains(e)){
-				temp = entities.get(entities.indexOf(e));
+				temp = entities.get(entities.indexOf(e)+1);
 			}
 			else{
 				entities.get(0);
@@ -126,5 +126,6 @@ public class Player {
 		if(temp == null)
 			return;
 		temp.getManager().getWorld().animatedSetLoc(temp.getLocation(),0.054392019f);
+		NavalGame.getHud().setEntity(temp);
 	}
 }
