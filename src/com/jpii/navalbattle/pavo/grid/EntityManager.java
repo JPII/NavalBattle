@@ -172,13 +172,13 @@ public class EntityManager implements Serializable {
 //			}
 			int rrr = r % 2;
 			int rrc = c % 2;
-			if (rrr == 0 && rrc == 0)
+			if (rrr == 0 && rrc == 0 && chuck.Tile00 != null)
 				return chuck.Tile00.parent;
-			else if (rrr == 0 && rrc != 0)
+			else if (rrr == 0 && rrc != 0 && chuck.Tile10 != null)
 				return chuck.Tile10.parent;
-			else if (rrr != 0 && rrc == 0)
+			else if (rrr != 0 && rrc == 0 && chuck.Tile01 != null)
 				return chuck.Tile01.parent;
-			else if (rrc != 0 && rrr != 0)
+			else if (rrc != 0 && rrr != 0 && chuck.Tile11 != null)
 				return chuck.Tile11.parent;
 			else
 				return null;
