@@ -120,7 +120,7 @@ public class Player {
 				int index = entities.indexOf(e)+1;
 				if(index>=entities.size())
 					index -= entities.size();
-				temp = entities.get(1);
+				temp = entities.get(index);
 			}
 			else{
 				temp = entities.get(0);
