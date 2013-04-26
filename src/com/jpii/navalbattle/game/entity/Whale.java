@@ -1,6 +1,5 @@
 package com.jpii.navalbattle.game.entity;
 
-import com.jpii.navalbattle.game.NavalManager;
 import com.jpii.navalbattle.pavo.Game;
 import com.jpii.navalbattle.pavo.PavoHelper;
 import com.jpii.navalbattle.pavo.grid.EntityManager;

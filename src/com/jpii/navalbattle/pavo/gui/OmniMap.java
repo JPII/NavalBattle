@@ -23,7 +23,6 @@ import java.awt.*;
 
 import maximusvladimir.dagen.Rand;
 
-import com.jpii.navalbattle.game.entity.PortEntity;
 import com.jpii.navalbattle.pavo.Game;
 import com.jpii.navalbattle.pavo.ProceduralLayeredMapGenerator;
 import com.jpii.navalbattle.pavo.PavoHelper;

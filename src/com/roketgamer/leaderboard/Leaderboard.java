@@ -22,7 +22,6 @@ import java.io.InputStreamReader;
 import java.net.URL;
 import java.util.ArrayList;
 
-import com.roketgamer.Player;
 import com.roketgamer.RoketGamer;
 
 public class Leaderboard {

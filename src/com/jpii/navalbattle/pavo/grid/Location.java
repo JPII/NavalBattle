@@ -19,7 +19,6 @@ package com.jpii.navalbattle.pavo.grid;
 
 import java.io.Serializable;
 
-import com.jpii.navalbattle.pavo.Game;
 import com.jpii.navalbattle.pavo.PavoHelper;
 import com.jpii.navalbattle.pavo.World;
 

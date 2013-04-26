@@ -22,7 +22,6 @@ import com.jpii.navalbattle.io.SettingsAttribute;
 import com.jpii.navalbattle.pavo.Game;
 import com.jpii.navalbattle.pavo.grid.Entity;
 import com.jpii.navalbattle.util.FileUtils;
-import com.roketgamer.rauth.AuthStatus;
 
 import java.io.File;
 
