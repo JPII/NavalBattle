@@ -23,7 +23,6 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.util.ArrayList;
 
-import com.roketgamer.Player;
 import com.roketgamer.RoketGamer;
 
 public class Leaderboard {
@@ -108,7 +107,6 @@ public class Leaderboard {
 				result = in.readLine();
 				
 				while(!result.contains("true")) {
-					System.out.println(result);
 					scores.add(new LeaderboardEntry(result, Integer.parseInt(in.readLine())));
 					result = in.readLine();
 				}
