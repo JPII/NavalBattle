@@ -157,8 +157,8 @@ public class EntityManager implements Serializable {
 		if (r >= 0 && c >= 0 && c < PavoHelper.getGameWidth(getWorld().getWorldSize()) * 2
 				&& r < PavoHelper.getGameHeight(getWorld().getWorldSize()) * 2) {
 			Chunk chuck = PavoHelper.convertGridLocationToChunk(getWorld(), new Location(r,c));
-//			if (chuck == null)
-//				return null;
+			if (chuck == null)
+				return null;
 //			if (chuck.Tile00 != null && chuck.Tile00.parent != null)
 //				return chuck.Tile00.parent;
 //			else if (chuck.Tile10 != null && chuck.Tile10.parent != null)
