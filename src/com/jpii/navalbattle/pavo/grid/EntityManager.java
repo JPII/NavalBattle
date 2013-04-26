@@ -155,7 +155,8 @@ public class EntityManager implements Serializable {
 	}
 	public Entity findEntity(int r, int c) {
 		if (r >= 0 && c >= 0) {
-			Chunk chuck = w.getChunk(c/2,r/2);
+			Chunk chuck;// = w.getChunk(c/2,r/2);
+			chuck = PavoHelper.convertGridLocationToChunk(getWorld(), new Location(r,c));
 			if (chuck == null)
 				return null;
 			if (chuck.Tile00 != null && chuck.Tile00.parent != null)
