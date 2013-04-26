@@ -274,8 +274,9 @@ public class MidHud{
 	
 	public void turnAction(){
 		if(nextMove.isVisible()){
-			final TurnManager tm2 = tm;
-			tm2.nextTurn();
+			if(!TurnConfirmation.viewed){
+				new TurnConfirmation(parent);
+			}
 		}
 		update();
 	}
