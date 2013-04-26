@@ -82,7 +82,6 @@ public class Entity implements Serializable {
 	public Entity(EntityManager em,Location loc, GridedEntityTileOrientation id,byte orientation) {
 		manager = em;
 		location = loc;
-		//teamColor = Game.Settings.rand.nextByte();
 		ORIENTATION_BUFFER_POSITION = orientation;
 		manager.addEntity(this);
 		init();
