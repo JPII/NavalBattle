@@ -117,10 +117,13 @@ public class Player {
 		}
 		else{
 			if(entities.contains(e)){
-				temp = entities.get(entities.indexOf(e)+1);
+				int index = entities.indexOf(e)+1;
+				if(index>=entities.size())
+					index -= entities.size();
+				temp = entities.get(1);
 			}
 			else{
-				entities.get(0);
+				temp = entities.get(0);
 			}
 		}
 		if(temp == null)
