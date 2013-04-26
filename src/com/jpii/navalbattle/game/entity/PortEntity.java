@@ -224,8 +224,10 @@ public class PortEntity extends AnimatedEntity {
 	}
 	
 	private boolean meetsSpawningCondition(int x, int y, int width){
-		return (GridHelper.canPlaceInGrid(getManager(), GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT, y, x, width) ||
+		boolean flag = (GridHelper.canPlaceInGrid(getManager(), GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT, y, x, width) ||
 				GridHelper.canPlaceInGrid(getManager(), GridedEntityTileOrientation.ORIENTATION_TOPTOBOTTOM, y, x, width) );
+		System.out.println("placed? "+flag+" "+new Location(y,x));
+		return flag;
 	}
 	
 	public int getPercentHealth(){
