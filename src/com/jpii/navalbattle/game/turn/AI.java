@@ -8,6 +8,7 @@ import com.jpii.navalbattle.pavo.grid.Entity;
 import com.jpii.navalbattle.pavo.grid.GridHelper;
 import com.jpii.navalbattle.pavo.grid.Location;
 import com.jpii.navalbattle.game.entity.MoveableEntity;
+import com.jpii.navalbattle.game.entity.PortEntity;
 import com.jpii.navalbattle.game.entity.Submarine;
 import com.jpii.navalbattle.game.turn.DamageCalculator;
 
@@ -40,32 +41,34 @@ public class AI extends Player{
 			MoveableEntity currentEntity;
 			if(ent.getHandle()%10 == 1){
 				currentEntity = (MoveableEntity)ent;
-				System.out.println("my Location is... "+currentEntity.getLocation());
 				if(currentEntity.getHandle()==11){
 					//Sub
-					System.out.println("I am a submarine");
 					moveAIShip(currentEntity);
 					determineCurrentEnemiesP(currentEntity);
 					if(currentEntity.getMissileCount()>0)
 					determineCurrentEnemiesS(currentEntity);
+					organizeMoveableEnemiesHP(primaryEnemies);
+					organizeMoveableEnemiesHP(secondaryEnemies);
 					attackEnemies(1, currentEntity);
 			
 				}
 				if(currentEntity.getHandle()==21){
 					//AC
-					System.out.println("I am a aircraft");
 					moveAIShip(currentEntity);
 					determineCurrentEnemiesP(currentEntity);
 				determineCurrentEnemiesS(currentEntity);
+				organizeMoveableEnemiesHP(primaryEnemies);
+				organizeMoveableEnemiesHP(secondaryEnemies);
 				attackEnemies(2, currentEntity);
 				}
 				if(currentEntity.getHandle()==31){
 					//BS
-					System.out.println("I am a battleship");
 					moveAIShip(currentEntity);
 					determineCurrentEnemiesP(currentEntity);
 					if(currentEntity.getMissileCount()>0)
 					determineCurrentEnemiesS(currentEntity);
+					organizeMoveableEnemiesHP(primaryEnemies);
+					organizeMoveableEnemiesHP(secondaryEnemies);
 					attackEnemies(3, currentEntity);
 				}
 			}
@@ -100,6 +103,28 @@ public class AI extends Player{
 		MoveableEntity enemyEntity;
 		enemyEntity = (MoveableEntity)ene;
 		DamageCalculator.doSecondaryDamage(currentEntity, enemyEntity);
+	}
+	private void organizeMoveableEnemiesHP(ArrayList<Entity> Enemy){		
+		Entity temp;
+		for (int p = 1; p < Enemy.size(); p++){			
+			for (int q = 0; q < Enemy.size()-1; q++){
+				if(getHealth(Enemy.get(q))<getHealth(Enemy.get(q+1))){
+					temp = Enemy.get(q);
+					Enemy.set(q,Enemy.get(q+1));
+					Enemy.set((q+1), temp);
+				}
+			}
+		}
+	}
+	
+	private int getHealth(Entity e){
+		if(e.getHandle()==2)
+			return ((PortEntity)e).getPercentHealth();
+		if(e.getHandle()%10==1)
+			return ((MoveableEntity)e).getPercentHealth();
+		else{
+			return -1;
+		}
 	}
 	
 	public int pickEnemyS(int currentShip)
@@ -225,7 +250,6 @@ public class AI extends Player{
 			currentY += (int) (Math.random()*((e.getMovementLeft() * 2) + 1));
 		}
 		while(!GridHelper.canMoveTo(e.getManager(), e, e.getCurrentOrientation(), currentY, currentX,e.getWidth()));
-		System.out.println("I am moving to ..."+new Location(currentY,currentX));
 		e.toggleMoveable();
 		e.moveTo(new Location(currentY,currentX));
 		//delay
@@ -246,7 +270,7 @@ public class AI extends Player{
 								addEnemyEntityS(location);
 							}
 						}
-						else{
+						else {
 							addEnemyEntityS(location);
 						}
 
