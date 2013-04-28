@@ -92,17 +92,31 @@ public class AI extends Player{
 	public void primaryAttack(int n, MoveableEntity currentEntity )
 	{
 		Entity ene = primaryEnemies.get(pickEnemyP(n));
+		if(ene.getHandle()==2){
+			PortEntity enemyEntity;
+			enemyEntity = (PortEntity)ene;
+			DamageCalculator.doPrimaryDamage(currentEntity, enemyEntity);
+		}
+		else{
 		MoveableEntity enemyEntity;
 		enemyEntity = (MoveableEntity)ene;
 		DamageCalculator.doPrimaryDamage(currentEntity, enemyEntity);
+		}
 	}
 	
 	public void secondaryAttack(int n, MoveableEntity currentEntity)
 	{
 		Entity ene = secondaryEnemies.get(pickEnemyS(n));
+		if(ene.getHandle()==2){
+			PortEntity enemyEntity;
+			enemyEntity = (PortEntity)ene;
+			DamageCalculator.doSecondaryDamage(currentEntity, enemyEntity);
+		}
+		else{
 		MoveableEntity enemyEntity;
 		enemyEntity = (MoveableEntity)ene;
 		DamageCalculator.doSecondaryDamage(currentEntity, enemyEntity);
+		}
 	}
 	private void organizeMoveableEnemiesHP(ArrayList<Entity> Enemy){		
 		Entity temp;
@@ -131,11 +145,11 @@ public class AI extends Player{
 	{
 
 		if(!secondaryEnemies.isEmpty()){
-		/*	
-			for(int k = 0; k < enemies.size(); k++){
-				if(enemies.get(k).getHandle()==2)
+			
+			for(int k = 0; k < secondaryEnemies.size(); k++){
+				if(secondaryEnemies.get(k).getHandle()==2)
 					return k;
-			}*/
+			}
 		switch (currentShip) {
 	      case 1:	for(int k = 0; k < secondaryEnemies.size(); k++){
 						if(secondaryEnemies.get(k).getHandle()==21)
@@ -185,11 +199,10 @@ public class AI extends Player{
 	{
 
 		if(!primaryEnemies.isEmpty()){
-		/*	
-			for(int k = 0; k < enemies.size(); k++){
-				if(enemies.get(k).getHandle()==2)
+			for(int k = 0; k < primaryEnemies.size(); k++){
+				if(primaryEnemies.get(k).getHandle()==2)
 					return k;
-			}*/
+			}
 		switch (currentShip) {
 	      case 1:	for(int k = 0; k < primaryEnemies.size(); k++){
 						if(primaryEnemies.get(k).getHandle()==21)
