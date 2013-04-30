@@ -13,9 +13,6 @@ import com.jpii.navalbattle.pavo.grid.EntityManager;
 import com.jpii.navalbattle.pavo.grid.GridHelper;
 import com.jpii.navalbattle.pavo.grid.GridedEntityTileOrientation;
 import com.jpii.navalbattle.pavo.grid.Location;
-import com.jpii.navalbattle.game.turn.AI;
-import com.jpii.navalbattle.game.turn.Player;
-import com.jpii.navalbattle.game.turn.PlayerManager;
 import com.jpii.navalbattle.game.turn.TurnManager;
 import com.jpii.navalbattle.util.FileUtils;
 
@@ -25,7 +22,7 @@ import com.jpii.navalbattle.util.FileUtils;
 public class NavalManager extends EntityManager {
 	private static final long serialVersionUID = 1L;
 	public static GridedEntityTileOrientation w1, w2, w3;
-	TurnManager tm;
+	static TurnManager tm;
 	
 	/**
 	 * Creates a new instance of the NavalManager.
@@ -33,7 +30,6 @@ public class NavalManager extends EntityManager {
 	 */
 	public NavalManager(World w) {
 		super(w);
-		tm = new TurnManager(new PlayerManager(new Player("BattleshipPlayer"),new AI(this,"AIPlayer")));
 		battleShipId = new GridedEntityTileOrientation();
 		battleShipId.setLeftToRightImage(registerEntity(PavoHelper.imgUtilOutline(
 				FileUtils.getImage("drawable-game/battleship/battleship.png"),Game.Settings.GridColor),GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT));
@@ -113,6 +109,10 @@ public class NavalManager extends EntityManager {
 	
 	public TurnManager getTurnManager(){
 		return tm;
+	}
+	
+	public static void setTurnManager(TurnManager tm2){
+		tm = tm2;
 	}
 	
 }

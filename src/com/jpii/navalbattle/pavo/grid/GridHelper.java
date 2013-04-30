@@ -18,13 +18,18 @@ public class GridHelper implements Serializable {
 	}
 	public Location pollNextLiquidSpace(int amountOfWater, int tolerance) {
 		boolean found = false;
-		int r = 0, c = 0;
-		while (!found) {
+		int r = 0, c = 0, count = 0;
+		while (!found&&count<20) {
+			count++;
 			r = random.nextInt(PavoHelper.getGameHeight(man.getWorld().getWorldSize())*2);
 			c = random.nextInt(PavoHelper.getGameWidth(man.getWorld().getWorldSize())*2);
 			int b = man.getTilePercentLand(r, c);
 			if (b > amountOfWater - tolerance && b < amountOfWater + tolerance)
 				found = true;
+		}
+		if(count>=20){
+			System.out.println("There was an error finding a LiquidSpace");
+			return Location.Unknown;
 		}
 		return new Location(r,c);
 	}
@@ -44,13 +49,18 @@ public class GridHelper implements Serializable {
 	
 	public Location pollNextShoreTile() {
 		boolean found = false;
-		int r = 0, c = 0;
-		while (!found) {
+		int r = 0, c = 0, count=0;
+		while (!found&&count<20) {
+			count++;
 			r = random.nextInt(PavoHelper.getGameHeight(man.getWorld().getWorldSize())*2);
 			c = random.nextInt(PavoHelper.getGameWidth(man.getWorld().getWorldSize())*2);
 			int b = man.getTilePercentLand(r, c);
 			if (b > 10 && b < 70)
 				found = true;
+		}
+		if(count>=20){
+			System.out.println("There was an error finding a ShoreSpace");
+			return Location.Unknown;
 		}
 		return new Location(r,c);
 	}

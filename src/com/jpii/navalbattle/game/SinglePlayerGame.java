@@ -29,10 +29,14 @@ public class SinglePlayerGame extends BaseWindow {
 	
 	StageManager sm;
 	GameComponent game;
+	String playerName;
 	
 	public SinglePlayerGame(){
 		myHandler.registerWhiteList(this);
-		sm = new StageManager();
+		playerName = "";
+		if(NavalBattle.getRoketGamer().getPlayer()!=null)
+			playerName = NavalBattle.getRoketGamer().getPlayer().getName();
+		sm = new StageManager(playerName);
 		GameComponent.frame = this;
 		game = sm.getGameComponent();
 	}

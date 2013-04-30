@@ -21,7 +21,7 @@ public class AI extends Player{
 	ArrayList<Entity> secondaryEnemies;
 	
 	
-	public AI(NavalManager nm,String name) {
+	public AI(NavalManager nm) {
 		super(getNewName());
 		primaryEnemies = new ArrayList<Entity>();
 		secondaryEnemies = new ArrayList<Entity>();

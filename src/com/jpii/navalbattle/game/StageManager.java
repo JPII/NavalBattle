@@ -3,7 +3,9 @@ package com.jpii.navalbattle.game;
 import com.jpii.navalbattle.game.entity.AircraftCarrier;
 import com.jpii.navalbattle.game.entity.BattleShip;
 import com.jpii.navalbattle.game.entity.Submarine;
+import com.jpii.navalbattle.game.turn.AI;
 import com.jpii.navalbattle.game.turn.Player;
+import com.jpii.navalbattle.game.turn.PlayerManager;
 import com.jpii.navalbattle.game.turn.TurnManager;
 import com.jpii.navalbattle.pavo.Game;
 import com.jpii.navalbattle.pavo.WorldSize;
@@ -15,16 +17,24 @@ public class StageManager {
 	
 	private GameComponent game;
 	int stageNumber;
+	Player persists;
+	AI ai;
 	
-	public StageManager(){
+	public StageManager(String playerName){
 		stageNumber = 0;
+		if(playerName.equals(""))
+			playerName = "Player 1";
+		ai = new AI(NavalGame.getManager());
+		persists = new Player(playerName);
 	}
 	/**
 	 * @return the GameComponent
 	 */
 	public GameComponent getGameComponent(){
 		stageNumber++;
-		return newGameComponent(stageNumber);
+		GameComponent temp = newGameComponent(stageNumber);
+		setStage(stageNumber);
+		return temp;
 	}
 	
 	private GameComponent newGameComponent(int num){
@@ -33,7 +43,10 @@ public class StageManager {
 			game.dispose();
 		}
 		switch(num){
-			case 1: Game.Settings.resetSeed(0); game=new GameComponent(new NavalGame(WorldSize.WORLD_TINY)); break;
+			case 1: Game.Settings.resetSeed(0); 
+					NavalManager.setTurnManager(new TurnManager(new PlayerManager(persists,ai)));
+					game=new GameComponent(new NavalGame(WorldSize.WORLD_TINY));
+					break;
 			case 2: Game.Settings.resetSeed(10); game=new GameComponent(new NavalGame(WorldSize.WORLD_SMALL));  break;
 			case 3: Game.Settings.resetSeed(15); game=new GameComponent(new NavalGame(WorldSize.WORLD_SMALL));  break;
 			case 4: Game.Settings.resetSeed(20); game=new GameComponent(new NavalGame(WorldSize.WORLD_SMALL));  break;
@@ -43,8 +56,27 @@ public class StageManager {
 		return game;
 	}
 	
-	private void addEntities(Player p, int bss, int subs, int acs){
-		
+	private void setStage(int num){
+		testWait();
+		switch(num){
+			case 1: 
+				addEntities(persists, 1, 0, 0);
+				addEntities(ai, 1, 0, 0);
+				break;
+			case 2:  break;
+			case 3:  break;
+			case 4:  break;
+			case 5:  break;
+		   default:  break;
+		}
+	}
+	
+	private void testWait(){
+		while(NavalGame.getStats().isGenerating())
+			;
+	}
+	
+	private void addEntities(Player p, int bss, int subs, int acs){		
 		NavalManager nm = NavalGame.getManager();
 		GridHelper gh = new GridHelper(0,nm);
 		boolean placed = false;
