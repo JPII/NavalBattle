@@ -456,15 +456,16 @@ public class Game extends Renderable implements Runnable, Serializable {
 			}
 			else {
 				Point p = PavoHelper.convertLocationToScreen(getWorld(),motionDestiny);
-				if (p.x - 6 < motionDest.x && p.x + 6 > motionDest.x &&
-						p.y - 6 < motionDest.y - 6 && p.y + 6 > motionDest.y) {
+				if (p.x - 14 < motionDest.x && p.x + 14 > motionDest.x &&
+						p.y - 14 < motionDest.y - 14 && p.y + 14 > motionDest.y) {
 					// its there!
 					e.moveTo(motionDestiny);
 					motionEnt = null;
 					loadMotionImage = null;
 				}
 				else
-					motionDest = new Point(motionDest.x,motionDest.y+4);
+					motionDest = movePointTowards(motionDest,p,2);
+					//motionDest = new Point(motionDest.x,motionDest.y+4);
 			}
 		}
 		
@@ -539,7 +540,7 @@ public class Game extends Renderable implements Runnable, Serializable {
 		Point2D.Double vector = new Point2D.Double(b.x - a.x, b.y - a.y);
 		double length = Math.sqrt(vector.x * vector.x + vector.y * vector.y);
 		Point2D.Double unitVector = new Point2D.Double(vector.x / length, vector.y / length);
-		Point move = new Point((int)(a.x + unitVector.x * 2.3),(int)(a.y + unitVector.y * 2.3));
+		Point move = new Point((int)(a.x + unitVector.x * 3.9),(int)(a.y + unitVector.y * 3.9));
 		//move.translate(Math.sqrt(Math));
 		return move;
 	}
