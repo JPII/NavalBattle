@@ -2,9 +2,7 @@ package com.jpii.navalbattle.game;
 
 import com.jpii.navalbattle.game.entity.AircraftCarrier;
 import com.jpii.navalbattle.game.entity.BattleShip;
-import com.jpii.navalbattle.game.entity.PortEntity;
 import com.jpii.navalbattle.game.entity.Submarine;
-import com.jpii.navalbattle.game.entity.Whale;
 import com.jpii.navalbattle.pavo.Game;
 import com.jpii.navalbattle.pavo.PavoHelper;
 import com.jpii.navalbattle.pavo.World;
@@ -12,7 +10,6 @@ import com.jpii.navalbattle.pavo.grid.Entity;
 import com.jpii.navalbattle.pavo.grid.EntityManager;
 import com.jpii.navalbattle.pavo.grid.GridHelper;
 import com.jpii.navalbattle.pavo.grid.GridedEntityTileOrientation;
-import com.jpii.navalbattle.pavo.grid.Location;
 import com.jpii.navalbattle.game.turn.TurnManager;
 import com.jpii.navalbattle.util.FileUtils;
 
@@ -82,19 +79,7 @@ public class NavalManager extends EntityManager {
 		w2.setTopToBottomImage(w2_);
 		w3 = new GridedEntityTileOrientation();
 		w3.setLeftToRightImage(w3_);
-		w3.setTopToBottomImage(w3_);
-		
-		for(int c =0; c<20; c++){
-			Location poll = gh.pollNextWaterTile();
-			while(!GridHelper.canPlaceInGrid(this, GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT, poll.getRow(), poll.getCol(), 1)){
-				poll = gh.pollNextWaterTile();
-			}
-				new Whale(this,poll,GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT,w1,w2,w3);
-			poll = gh.pollNextShoreTile();
-			tm.addEntity(new PortEntity(this,poll,GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT),tm.getPlayer(2));
-			System.out.println("Port generated at " + poll);
-		}
-		
+		w3.setTopToBottomImage(w3_);		
 		System.out.println("Let me play you the song of my people.");
 	}	
 	
