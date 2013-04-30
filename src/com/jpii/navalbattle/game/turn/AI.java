@@ -91,6 +91,7 @@ public class AI extends Player{
 	}
 	public void primaryAttack(int n, MoveableEntity currentEntity )
 	{
+		
 		Entity ene = primaryEnemies.get(pickEnemyP(n));
 		if(ene.getHandle()==2){
 			PortEntity enemyEntity;
@@ -122,7 +123,7 @@ public class AI extends Player{
 		Entity temp;
 		for (int p = 1; p < Enemy.size(); p++){			
 			for (int q = 0; q < Enemy.size()-1; q++){
-				if(getHealth(Enemy.get(q))<getHealth(Enemy.get(q+1))){
+				if(getHealth(Enemy.get(q))>getHealth(Enemy.get(q+1))){
 					temp = Enemy.get(q);
 					Enemy.set(q,Enemy.get(q+1));
 					Enemy.set((q+1), temp);
