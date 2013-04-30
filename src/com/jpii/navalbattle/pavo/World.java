@@ -119,10 +119,11 @@ public class World extends Renderable implements Interactable {
 		gs2.dispose();
 	}
 	private void runLocLock(int x, int y) {
-		motionEntity = null;
+		//motionEntity = null;
 		anix = x;
 		aniy = y;
 		stopani = true;
+		game.onWorldChange();
 	}
 	float _internalspeedconstant = 1.0f;
 	public void animatedSetLoc(Location l, float speed) {
@@ -194,13 +195,13 @@ public class World extends Renderable implements Interactable {
 			chunks[c] = chunk;
 		}
 	}
-	public Entity getMotionEntity() {
-		return motionEntity;
-	}
-	Entity motionEntity;
-	public void setMotionEntity(Entity e) {
-		motionEntity = e;
-	}
+//	public Entity getMotionEntity() {
+//		return motionEntity;
+//	}
+//	Entity motionEntity;
+//	public void setMotionEntity(Entity e) {
+//		motionEntity = e;
+//	}
 	boolean chunkrender = false;
 	boolean stopani = true;
 	public boolean needsReChunkRender() {

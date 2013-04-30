@@ -270,7 +270,7 @@ public class Entity implements Serializable {
 	Location originality = Location.Unknown;
 	public Location destiny = null;
 	
-	public Point currentLocation = null;
+	//public Point currentLocation = null;
 	public boolean readyForMove = false;
 	
 	public Location getOriginalLocation() {
@@ -280,15 +280,13 @@ public class Entity implements Serializable {
 	public void animatedMoveTo(Location loc, float speed) {
 		
 		readyForMove = false;
-		if (ORIENTATION_BUFFER_POSITION != GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT)
+		if (ORIENTATION_BUFFER_POSITION != GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT) {
+			moveTo(loc);
 			return;
-		
-		originality = getLocation();
-		setLocation(loc);
-		destiny = loc;
-		
-		getManager().getWorld().setMotionEntity(this);
-
+		}
+		getManager().getWorld().getGame().setAnimatedMotion(this, loc);
+		//moveTo(loc);
+		hideEntity();
 		readyForMove = true;
 	}
 	

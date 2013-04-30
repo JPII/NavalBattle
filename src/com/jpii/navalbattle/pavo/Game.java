@@ -252,7 +252,6 @@ public class Game extends Renderable implements Runnable, Serializable {
 		return stats;
 	}
 	BufferedImage loadMotionImage = null;
-	Point motionDest = null;
 	boolean moveStandard = false;
 	/**
 	 * Immortal caller.
@@ -448,49 +447,32 @@ public class Game extends Renderable implements Runnable, Serializable {
 		}
 		
 		
-		if (getWorld().getMotionEntity() != null && getWorld().getMotionEntity().readyForMove) {
-			Entity e = getWorld().getMotionEntity();
-			if (e.currentLocation == null) {
-				moveStandard = false;
+		if (motionEnt != null && motionEnt.readyForMove) {
+			Entity e = motionEnt;
+			
+			if (loadMotionImage == null) {
 				loadMotionImage = FileUtils.getImage(e.imgLocation);
-				e.currentLocation = PavoHelper.convertLocationToScreen(getWorld(), e.getOriginalLocation());
-				motionDest = PavoHelper.convertLocationToScreen(getWorld(), e.getLocation());
-				e.setLocation(e.getOriginalLocation());
-				//e.moveTo(new Location(0,0));//Location.Unknown);
-				e.hideEntity();
-				moveStandard = true;
+				motionDest = PavoHelper.convertLocationToScreen(getWorld(),e.getLocation());
 			}
 			else {
-				//Point cl = e.currentLocation;
-				
-				//e.currentLocation = new Point(cl.x-3,cl.y-3);//movePointTowards(cl.x-1,cl.y-1);//,motionDest,10);
-				Point des =PavoHelper.convertLocationToScreen(getWorld(),e.destiny);
-				double d
-				= Math.sqrt(Math.pow(e.currentLocation.x-des.x,2)+Math.pow(e.currentLocation.y-des.y,2));
-				//if (d / 100 <= 3) {
-				//	e.currentLocation.x = motionDest.x;
-				//	e.currentLocation.y = motionDest.y;
-				//}
-				
-				e.currentLocation = movePointTowards(e.currentLocation, des, (int)(d/100));
-				//System.out.println(e.currentLocation);
-				if (e.currentLocation.x > motionDest.x - 5 && e.currentLocation.x < motionDest.y + 5
-						&& e.currentLocation.y > motionDest.y - 5 && e.currentLocation.y < motionDest.y + 5) {
-					getWorld().getMotionEntity().currentLocation = null;
-					getWorld().getMotionEntity().moveTo(e.destiny);
-					getWorld().setMotionEntity(null);
-					//System.out.println("hehe");
+				Point p = PavoHelper.convertLocationToScreen(getWorld(),e.getLocation());
+				if (p.x - 6 < motionDest.x && p.x + 6 > motionDest.x &&
+						p.y - 6 < motionDest.y - 6 && p.y + 6 > motionDest.y) {
+					// its there!
+					e.moveTo(motionDestiny);
+					motionEnt = null;
+					loadMotionImage = null;
 				}
-				//else
-					//forceUpdate = true;
+				else
+					motionDest = new Point(motionDest.x,motionDest.y+1);
 			}
 		}
 		
 		
-		if (getWorld().getMotionEntity() != null && getWorld().getMotionEntity().readyForMove && moveStandard) {
-			Entity e = getWorld().getMotionEntity();
-			if (e != null && e.currentLocation != null)
-				g.drawImage(this.loadMotionImage, e.currentLocation.x,e.currentLocation.y,null);
+		if (motionEnt != null && motionEnt.readyForMove) {
+			Entity e = motionEnt;
+			if (e != null)
+				g.drawImage(this.loadMotionImage, motionDest.x,motionDest.y,null);
 		}
 		
 		if (PavoHelper.getCalculatedSystemSpeed() != SystemSpeed.CREEPER && 
@@ -501,6 +483,27 @@ public class Game extends Renderable implements Runnable, Serializable {
 		g.dispose();
 		getWindows().unlock();
 		Game.getStats().sBm3ns02AKa99mqp392(System.currentTimeMillis() - sjan);
+	}
+	Entity motionEnt;
+	float motionSpeed = 2.35f;
+	Point motionDest = new Point(0,0);
+	Location motionDestiny = Location.Unknown;
+	public void onWorldChange() {
+		if (motionEnt != null) {
+			motionEnt.moveTo(motionDestiny);
+		}
+		motionEnt = null;
+		loadMotionImage = null;
+	}
+	public void setAnimatedMotion(Entity motionEntity,Location destiny) {
+		if (motionEnt != null) {
+			motionEnt.moveTo(motionDestiny);
+			motionEnt = null;
+			loadMotionImage = null;
+		}
+			
+		motionEnt = motionEntity;
+		motionDestiny = destiny;
 	}
 	
 	public Point movePointTowards(Point a, Point b, int distance)
