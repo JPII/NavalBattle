@@ -2,7 +2,9 @@ package com.jpii.navalbattle.game;
 
 import com.jpii.navalbattle.game.entity.AircraftCarrier;
 import com.jpii.navalbattle.game.entity.BattleShip;
+import com.jpii.navalbattle.game.entity.PortEntity;
 import com.jpii.navalbattle.game.entity.Submarine;
+import com.jpii.navalbattle.game.entity.Whale;
 import com.jpii.navalbattle.game.turn.AI;
 import com.jpii.navalbattle.game.turn.Player;
 import com.jpii.navalbattle.game.turn.PlayerManager;
@@ -60,8 +62,9 @@ public class StageManager {
 		testWait();
 		switch(num){
 			case 1: 
-				addEntities(persists, 1, 0, 0);
-				addEntities(ai, 1, 0, 0);
+				addEntities(persists, 1, 0, 0,1);
+				addEntities(ai, 1, 0, 0,1);
+				addWhales(5);
 				break;
 			case 2:  break;
 			case 3:  break;
@@ -76,7 +79,7 @@ public class StageManager {
 			;
 	}
 	
-	private void addEntities(Player p, int bss, int subs, int acs){		
+	private void addEntities(Player p, int bss, int subs, int acs,int ports){		
 		NavalManager nm = NavalGame.getManager();
 		GridHelper gh = new GridHelper(0,nm);
 		boolean placed = false;
@@ -124,23 +127,30 @@ public class StageManager {
 					placed = false;
 			}
 		}
+		
+		for(int index = 0; index<ports; index++){
+			placed = false;
+			while (!placed){
+				poll = gh.pollNextShoreTile();
+				placed = true;
+				tm.addEntity(new PortEntity(nm,poll,GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT),p);
+				System.out.println("Port generated at " + poll);
+			}
+		}
 	}
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+	private void addWhales(int whales){
+		NavalManager nm = NavalGame.getManager();
+		GridHelper gh = new GridHelper(0,nm);
+		boolean placed = false;
+		Location poll;			
+		for(int index = 0; index<whales; index++){
+			placed = false;
+			while (!placed){
+				poll = gh.pollNextWaterTile();
+				placed = true;
+				new Whale(nm,poll,GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT,NavalManager.w1,NavalManager.w2,NavalManager.w3);
+			}
+		}
+	}
 }
