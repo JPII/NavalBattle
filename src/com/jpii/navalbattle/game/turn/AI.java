@@ -4,9 +4,11 @@ import java.util.ArrayList;
 
 import com.jpii.navalbattle.game.NavalGame;
 import com.jpii.navalbattle.game.NavalManager;
+import com.jpii.navalbattle.pavo.Game;
 import com.jpii.navalbattle.pavo.grid.Entity;
 import com.jpii.navalbattle.pavo.grid.GridHelper;
 import com.jpii.navalbattle.pavo.grid.Location;
+import com.jpii.navalbattle.util.GrammarManager;
 import com.jpii.navalbattle.game.entity.MoveableEntity;
 import com.jpii.navalbattle.game.entity.PortEntity;
 import com.jpii.navalbattle.game.entity.Submarine;
@@ -18,11 +20,16 @@ public class AI extends Player{
 	ArrayList<Entity> primaryEnemies;
 	ArrayList<Entity> secondaryEnemies;
 	
+	
 	public AI(NavalManager nm,String name) {
-		super(name);
+		super(getNewName());
 		primaryEnemies = new ArrayList<Entity>();
 		secondaryEnemies = new ArrayList<Entity>();
 		this.nm = nm;
+	}
+	
+	private static String getNewName() {
+		return GrammarManager.generateFullName(Game.Settings.rand.nextInt());
 	}
 	
 	public void addEnemyEntityP(Entity e){
@@ -44,36 +51,44 @@ public class AI extends Player{
 				if(currentEntity.getHandle()==11){
 					//Sub
 					moveAIShip(currentEntity);
+					if(!diplomacy){
 					determineCurrentEnemiesP(currentEntity);
 					if(currentEntity.getMissileCount()>0)
 					determineCurrentEnemiesS(currentEntity);
 					organizeMoveableEnemiesHP(primaryEnemies);
 					organizeMoveableEnemiesHP(secondaryEnemies);
 					attackEnemies(1, currentEntity);
+					}
 			
 				}
 				if(currentEntity.getHandle()==21){
 					//AC
-					moveAIShip(currentEntity);
-					determineCurrentEnemiesP(currentEntity);
+				moveAIShip(currentEntity);
+				if(!diplomacy){
+				determineCurrentEnemiesP(currentEntity);
 				determineCurrentEnemiesS(currentEntity);
 				organizeMoveableEnemiesHP(primaryEnemies);
 				organizeMoveableEnemiesHP(secondaryEnemies);
 				attackEnemies(2, currentEntity);
 				}
+				}
 				if(currentEntity.getHandle()==31){
 					//BS
 					moveAIShip(currentEntity);
+					if(!diplomacy){
 					determineCurrentEnemiesP(currentEntity);
 					if(currentEntity.getMissileCount()>0)
 					determineCurrentEnemiesS(currentEntity);
 					organizeMoveableEnemiesHP(primaryEnemies);
 					organizeMoveableEnemiesHP(secondaryEnemies);
 					attackEnemies(3, currentEntity);
+					}
 				}
 			}
 		}
-		
+		diplomacyCounter--;
+		if(diplomacyCounter == 0)
+			diplomacy = false;
 		turnOver=true;
 
 	}
@@ -130,6 +145,71 @@ public class AI extends Player{
 				}
 			}
 		}
+	}
+	
+	private void determineDiplomacy(){
+			int diplomacyLevel = 0;
+			for(int k = 0; k < getTotalEntities(); k++)
+			{
+				if(getHealth(getEntity(k))>70 && diplomacyLevel < 2){
+					diplomacyLevel = 1;
+				}
+				else if(getHealth(getEntity(k))<70 && getHealth(getEntity(k)) >40 && diplomacyLevel < 3){
+					diplomacyLevel = 2;
+				}
+				else{
+					diplomacyLevel = 3;
+				}
+			}
+			
+			if(this.getScore() > 9000)
+			{
+				if(diplomacyLevel > 0)
+					diplomacy = true;
+				
+				if(diplomacyLevel == 3){
+					this.subtractscore(8000);
+					diplomacyCounter = 5;
+				}
+				else if (diplomacyLevel == 2){
+					this.subtractscore(2000);
+					diplomacyCounter = 3;
+				}
+				else if (diplomacyLevel == 1){
+					this.subtractscore(500);
+					diplomacyCounter = 1;
+				}
+			}
+			else if(this.getScore() > 3000){
+				if(diplomacyLevel > 0)
+					diplomacy = true;
+				
+				if (diplomacyLevel == 2 || diplomacyLevel == 3){
+					this.subtractscore(2000);
+					diplomacyCounter = 3;
+				}
+				else if (diplomacyLevel == 1){
+					this.subtractscore(500);
+					diplomacyCounter = 1;
+				}
+				
+			}
+			
+			else if(this.getScore() > 1500){
+				if(diplomacyLevel > 0){
+					diplomacy = true;
+					this.subtractscore(500);
+					diplomacyCounter = 1;
+				}
+				
+			}
+			
+			
+			//long diplomacy cost: 8000 5 turns
+			//medium diplomacy cost: 2000 3 turns
+			//short diplomacy cost: 500 1 turn
+		
+			
 	}
 	
 	private int getHealth(Entity e){

@@ -14,6 +14,8 @@ public class Player {
 	int score;
 	byte color;
 	int playernumber;
+	int diplomacyCounter = 0;
+	boolean diplomacy = false;
 	
 	public Player(String name){
 		entities = new ArrayList<Entity>();
