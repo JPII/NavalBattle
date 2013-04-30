@@ -35,6 +35,7 @@ import com.jpii.navalbattle.NavalBattle;
 import com.jpii.navalbattle.game.NavalClient;
 import com.jpii.navalbattle.game.NavalServer;
 import com.jpii.navalbattle.pavo.grid.Entity;
+import com.jpii.navalbattle.pavo.grid.GridedEntityTileOrientation;
 import com.jpii.navalbattle.pavo.grid.Location;
 import com.jpii.navalbattle.pavo.grid.Tile;
 import com.jpii.navalbattle.pavo.gui.GridWindow;
@@ -447,7 +448,7 @@ public class Game extends Renderable implements Runnable, Serializable {
 			}
 		}
 		
-		
+		int tol = 20;
 		if (motionEnt != null && motionEnt.readyForMove) {
 			Entity e = motionEnt;
 			
@@ -456,16 +457,21 @@ public class Game extends Renderable implements Runnable, Serializable {
 			}
 			else {
 				Point p = PavoHelper.convertLocationToScreen(getWorld(),motionDestiny);
-				if (p.x - 14 < motionDest.x && p.x + 14 > motionDest.x &&
-						p.y - 14 < motionDest.y - 14 && p.y + 14 > motionDest.y) {
+				if ((p.x - tol < motionDest.x && p.x + tol > motionDest.x &&
+						p.y - tol < motionDest.y - tol && p.y + tol > motionDest.y)
+						|| (motionDest.x < 3 && motionDest.y < 3)) {
 					// its there!
-					e.moveTo(motionDestiny);
 					motionEnt = null;
 					loadMotionImage = null;
+					motionDest = null;
+					e.moveTo(motionDestiny);
+					e = null;
+					motionDestiny = null;
 				}
-				else
+				else {
 					motionDest = movePointTowards(motionDest,p,2);
 					//motionDest = new Point(motionDest.x,motionDest.y+4);
+				}
 			}
 		}
 		
@@ -511,11 +517,15 @@ public class Game extends Renderable implements Runnable, Serializable {
 			motionEnt = null;
 			loadMotionImage = null;
 		}
-			
+		
+		String w6 = motionEntity.imgLocation;
+		if (motionEntity.getCurrentOrientation() == GridedEntityTileOrientation.ORIENTATION_TOPTOBOTTOM) {
+			w6 = w6.replace(".png", "_S.png");
+		}
 		motionEnt = motionEntity;
 		motionDestiny = destiny;
 		motionDest = PavoHelper.convertLocationToScreen(getWorld(),motionEntity.getLocation());
-		loadMotionImage = FileUtils.getImage(motionEntity.imgLocation);
+		loadMotionImage = FileUtils.getImage(w6);
 		Graphics g = loadMotionImage.getGraphics();
 		Color copy = PavoHelper.changeAlpha(PavoHelper.convertByteToColor(motionEnt.getTeamColor()), 100);
 		for (int x = 0; x < loadMotionImage.getWidth(); x++) {
