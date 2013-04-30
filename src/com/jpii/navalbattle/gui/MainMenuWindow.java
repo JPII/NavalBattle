@@ -52,7 +52,7 @@ public class MainMenuWindow extends BaseWindow {
 		btnRoketGamer = new JButton("RoketGamer");
 		JButton btnQuit = new JButton("Quit");
 		JButton btnCredits = new JButton("Credits");
-		JButton btnMultiplayer = new JButton("Multiplayer");
+		final JButton btnMultiplayer = new JButton("Multiplayer");
 
 		lblNavalBattle.setBounds(10, 13, 466, 51);
 		lblVersion.setBounds(10, 287, 238, 14);
@@ -85,7 +85,7 @@ public class MainMenuWindow extends BaseWindow {
 		btnQuit.setFocusable(false);
 		btnCredits.setFocusable(false);
 		
-		btnMultiplayer.disable();
+		btnMultiplayer.setEnabled(false);
 		
 		JLabel label = new JLabel("");
 		label.setIcon(new ImageIcon(MainMenuWindow.class.getResource("/com/jpii/navalbattle/res/drawable-gui/menu_background.png")));
@@ -153,24 +153,26 @@ public class MainMenuWindow extends BaseWindow {
 		btnMultiplayer.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				JOptionPane.showMessageDialog(null,"Warning: Multiplayer is experiemental." +
-						"\nProceed with caution.","NavalBattle",JOptionPane.WARNING_MESSAGE);
-				spg = new SinglePlayerGame();
-				boolean valid = false;
-				String ip = NavalBattleIO.getAttribute("lastGoodIP");
-				while (!valid) {
-					ip = JOptionPane.showInputDialog(null,(Object)"Enter IP address to connect to:",(Object)ip);
-					if (ip == null)
-						return;
-					if (ip.equals(""))
-						valid = false;
-					else
-						valid = validate(ip);
+				if(btnMultiplayer.isEnabled()){
+					JOptionPane.showMessageDialog(null,"Warning: Multiplayer is experiemental." +
+							"\nProceed with caution.","NavalBattle",JOptionPane.WARNING_MESSAGE);
+					spg = new SinglePlayerGame();
+					boolean valid = false;
+					String ip = NavalBattleIO.getAttribute("lastGoodIP");
+					while (!valid) {
+						ip = JOptionPane.showInputDialog(null,(Object)"Enter IP address to connect to:",(Object)ip);
+						if (ip == null)
+							return;
+						if (ip.equals(""))
+							valid = false;
+						else
+							valid = validate(ip);
+					}
+					NavalBattleIO.saveAttribute("lastGoodIP", ip);
+					spg.setGameVars();
+					nextWindow("SinglePlayerGame");
+					NavalBattle.getWindowHandler().disposeContained();
 				}
-				NavalBattleIO.saveAttribute("lastGoodIP", ip);
-				spg.setGameVars();
-				nextWindow("SinglePlayerGame");
-				NavalBattle.getWindowHandler().disposeContained();
 			}
 		});
 	}
