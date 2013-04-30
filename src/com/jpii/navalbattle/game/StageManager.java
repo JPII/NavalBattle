@@ -1,7 +1,15 @@
 package com.jpii.navalbattle.game;
 
+import com.jpii.navalbattle.game.entity.AircraftCarrier;
+import com.jpii.navalbattle.game.entity.BattleShip;
+import com.jpii.navalbattle.game.entity.Submarine;
+import com.jpii.navalbattle.game.turn.Player;
+import com.jpii.navalbattle.game.turn.TurnManager;
 import com.jpii.navalbattle.pavo.Game;
 import com.jpii.navalbattle.pavo.WorldSize;
+import com.jpii.navalbattle.pavo.grid.GridHelper;
+import com.jpii.navalbattle.pavo.grid.GridedEntityTileOrientation;
+import com.jpii.navalbattle.pavo.grid.Location;
 
 public class StageManager {
 	
@@ -9,7 +17,7 @@ public class StageManager {
 	int stageNumber;
 	
 	public StageManager(){
-		stageNumber = 10;
+		stageNumber = 0;
 	}
 	/**
 	 * @return the GameComponent
@@ -34,5 +42,73 @@ public class StageManager {
 		}
 		return game;
 	}
+	
+	private void addEntities(Player p, int bss, int subs, int acs){
+		
+		NavalManager nm = NavalGame.getManager();
+		GridHelper gh = new GridHelper(0,nm);
+		boolean placed = false;
+		Location poll;
+		TurnManager tm = nm.getTurnManager();
+		
+		for(int index = 0; index<bss; index++){
+			placed = false;
+			while (!placed){
+				poll = gh.pollNextWaterTile();
+				placed = true;
+				if(GridHelper.canPlaceInGrid(nm,GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT, poll.getRow(), poll.getCol(), 4))
+					tm.addEntity(new BattleShip(nm, poll, GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT),p);
+				else if(GridHelper.canPlaceInGrid(nm,GridedEntityTileOrientation.ORIENTATION_TOPTOBOTTOM, poll.getRow(), poll.getCol(), 4))
+					tm.addEntity(new BattleShip(nm, poll,GridedEntityTileOrientation.ORIENTATION_TOPTOBOTTOM),p);
+				else
+					placed = false;
+			}
+		}
+		
+		for(int index = 0; index<subs; index++){
+			placed = false;
+			while (!placed){
+				poll = gh.pollNextWaterTile(25);
+				placed = true;
+				if(GridHelper.canPlaceInGrid(nm,GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT, poll.getRow(), poll.getCol(), 2))
+					tm.addEntity(new Submarine(nm, poll,GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT),p);
+				else if(GridHelper.canPlaceInGrid(nm,GridedEntityTileOrientation.ORIENTATION_TOPTOBOTTOM, poll.getRow(), poll.getCol(), 2))
+					tm.addEntity(new Submarine(nm, poll,GridedEntityTileOrientation.ORIENTATION_TOPTOBOTTOM),p);
+				else
+					placed = false;
+			}
+		}
+		
+		for(int index = 0; index<acs; index++){
+			placed = false;
+			while (!placed){
+				poll = gh.pollNextWaterTile(25);
+				placed = true;
+				if(GridHelper.canPlaceInGrid(nm,GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT, poll.getRow(), poll.getCol(), 5))
+					tm.addEntity(new AircraftCarrier(nm, poll,GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT),p);
+				else if(GridHelper.canPlaceInGrid(nm,GridedEntityTileOrientation.ORIENTATION_TOPTOBOTTOM, poll.getRow(), poll.getCol(), 5))
+					tm.addEntity(new AircraftCarrier(nm, poll,GridedEntityTileOrientation.ORIENTATION_TOPTOBOTTOM),p);
+				else
+					placed = false;
+			}
+		}
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 }

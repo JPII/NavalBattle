@@ -213,7 +213,6 @@ public class NavalGame extends Game{
 			int chmaxx = (getWorld().getChunk(getWorld().getTotalChunks()-1).getX()+1)*2;
 			int chmaxy = (getWorld().getChunk(getWorld().getTotalChunks()-1).getZ()+1)*2;
 			if(chy>0 && chx>0 && chy<chmaxy&& chx<chmaxx){
-				System.out.println("this is here:");
 				getHud().setEntity(nm.findEntity(chy, chx));
 			}
 		}
