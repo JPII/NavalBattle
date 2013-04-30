@@ -280,7 +280,8 @@ public class Entity implements Serializable {
 	public void animatedMoveTo(Location loc, float speed) {
 		
 		readyForMove = false;
-		if (ORIENTATION_BUFFER_POSITION != GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT) {
+		if (ORIENTATION_BUFFER_POSITION != 
+				GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT) {
 			moveTo(loc);
 			return;
 		}

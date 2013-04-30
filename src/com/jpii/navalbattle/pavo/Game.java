@@ -18,6 +18,7 @@
 package com.jpii.navalbattle.pavo;
 
 import java.awt.Color;
+import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.Polygon;
@@ -451,11 +452,10 @@ public class Game extends Renderable implements Runnable, Serializable {
 			Entity e = motionEnt;
 			
 			if (loadMotionImage == null) {
-				loadMotionImage = FileUtils.getImage(e.imgLocation);
 				motionDest = PavoHelper.convertLocationToScreen(getWorld(),e.getLocation());
 			}
 			else {
-				Point p = PavoHelper.convertLocationToScreen(getWorld(),e.getLocation());
+				Point p = PavoHelper.convertLocationToScreen(getWorld(),motionDestiny);
 				if (p.x - 6 < motionDest.x && p.x + 6 > motionDest.x &&
 						p.y - 6 < motionDest.y - 6 && p.y + 6 > motionDest.y) {
 					// its there!
@@ -464,7 +464,7 @@ public class Game extends Renderable implements Runnable, Serializable {
 					loadMotionImage = null;
 				}
 				else
-					motionDest = new Point(motionDest.x,motionDest.y+1);
+					motionDest = new Point(motionDest.x,motionDest.y+4);
 			}
 		}
 		
@@ -504,6 +504,20 @@ public class Game extends Renderable implements Runnable, Serializable {
 			
 		motionEnt = motionEntity;
 		motionDestiny = destiny;
+		motionDest = PavoHelper.convertLocationToScreen(getWorld(),motionEntity.getLocation());
+		loadMotionImage = FileUtils.getImage(motionEntity.imgLocation);
+		Graphics g = loadMotionImage.getGraphics();
+		Color copy = PavoHelper.changeAlpha(PavoHelper.convertByteToColor(motionEnt.getTeamColor()), 100);
+		for (int x = 0; x < loadMotionImage.getWidth(); x++) {
+			for (int y = 0; y < loadMotionImage.getHeight(); y++) {
+				int pixel = loadMotionImage.getRGB(x,y);
+				if((pixel>>24) != 0x00 ) {
+					g.setColor(copy);
+					g.drawLine(x,y,x,y);
+				}
+			}
+		}
+		g.dispose();
 	}
 	
 	public Point movePointTowards(Point a, Point b, int distance)
