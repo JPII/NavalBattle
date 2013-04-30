@@ -59,20 +59,29 @@ public class EntityManager implements Serializable {
 		entityRegister = new ArrayList<Integer>();
 		entityRegister.add(0);
 	}
+	
+	public boolean isEntityAnimated() {
+		return getWorld().getGame().NOTOUCH_primitivesbeinginvoked();
+	}
+	
 	public boolean isReadyForGen() {
 		if (tileAccessor == null)
 			return false;
 		return true;
 	}
+	
 	public void update(long ticksPassed) {
 
 	}
+	
 	public Entity getEntity(int index) {
 		return entities.get(index);
 	}
+	
 	public void removeEntity(Entity e) {
 		entities.remove(e);
 	}
+	
 	public void removeEntity(int index) {
 		entities.remove(index);
 	}

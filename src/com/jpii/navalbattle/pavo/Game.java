@@ -495,6 +495,15 @@ public class Game extends Renderable implements Runnable, Serializable {
 		motionEnt = null;
 		loadMotionImage = null;
 	}
+	
+	public boolean NOTOUCH_primitivesbeinginvoked() {
+		if (motionEnt == null) {
+			return false;
+		}
+		else
+			return true;
+	}
+	
 	public void setAnimatedMotion(Entity motionEntity,Location destiny) {
 		if (motionEnt != null) {
 			motionEnt.moveTo(motionDestiny);
