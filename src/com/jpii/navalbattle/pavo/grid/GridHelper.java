@@ -73,7 +73,7 @@ public class GridHelper implements Serializable {
 		NE = getClosestShoreCorner(NE,0);
 		SW = getClosestShoreCorner(SW,0);
 		SE = getClosestShoreCorner(SE,0);
-		switch(random.nextInt(0,3)){
+		switch(random.nextInt(1,4)){
 			case 1: return NW;
 			case 2: return NE;
 			case 3: return SE;
