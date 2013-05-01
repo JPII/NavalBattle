@@ -183,7 +183,15 @@ public class Location implements Serializable
         }
         return new Location(getRow() + dr, getCol() + dc);
     }
-
+    
+    public double getDistanceFrom(Location target){
+    	if(target.equals(Location.Unknown))
+    		return 10000000.0;
+        int dx = target.getCol() - getCol();
+        int dy = target.getRow() - getRow();
+    	return Math.sqrt((Math.pow(dx, 2)+Math.pow(dy, 2)));
+    }
+    
     /**
      * Returns the direction from this location toward another location. The
      * direction is rounded to the nearest compass direction.
@@ -264,11 +272,10 @@ public class Location implements Serializable
     }
     
     
-    public static boolean validate(Location l) {
+    public static boolean isValid(Location l,EntityManager em) {
     	if (l.getCol() < 0 || l.getRow() < 0)
     		return false;
-    	
-    	if (l.getCol() > 128 || l.getRow() > 128)
+    	if (l.getCol() >= PavoHelper.getGameWidth(em.getWorld().getWorldSize())*2 || l.getRow() >= PavoHelper.getGameHeight(em.getWorld().getWorldSize())*2)
     		return false;
     	
     	return true;

@@ -253,6 +253,10 @@ public class EntityManager implements Serializable {
 			return 0;
 		return tileAccessor[c][r];
 	}
+	public int getTilePercentLand(Location l){
+		return getTilePercentLand(l.getRow(), l.getCol());
+	}
+	
 	public static int lastid = 0;
 	public <T> int registerEntity(BufferedImage horizontalImage,byte orientation) {
 		int swap = lastid + 1;

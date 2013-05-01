@@ -35,7 +35,7 @@ public class GridHelper implements Serializable {
 	}
 	public Location pollNearLocation(Location l) {
 		Location ln = new Location(random.nextInt(-4, 4)+l.getRow(), random.nextInt(-4,4)+l.getCol());
-		boolean flag = Location.validate(ln);
+		boolean flag = Location.isValid(ln,man);
 		if (flag)
 			System.out.println("Invalid location selected.");
 		return ln;
@@ -60,10 +60,70 @@ public class GridHelper implements Serializable {
 		}
 		if(count>=20){
 			System.out.println("There was an error finding a ShoreSpace");
-			return Location.Unknown;
+			return getShoreCorner();
 		}
 		return new Location(r,c);
 	}
+	
+	public Location getShoreCorner(){
+		int maxr = PavoHelper.getGameHeight(man.getWorld().getWorldSize())*2-1;
+		int maxc = PavoHelper.getGameWidth(man.getWorld().getWorldSize())*2-1;
+		Location NW=new Location(0,0),NE=new Location(0,maxr),SW=new Location(maxr,maxc),SE=new Location(maxr,0);
+		NW = getClosestShoreCorner(NW,0);
+		NE = getClosestShoreCorner(NE,0);
+		SW = getClosestShoreCorner(SW,0);
+		SE = getClosestShoreCorner(SE,0);
+		switch(random.nextInt(0,3)){
+			case 1: return NW;
+			case 2: return NE;
+			case 3: return SE;
+			default: return SW;
+		}
+	}
+	
+	private Location getClosestShoreCorner(Location l,int distance){
+		if(!Location.isValid(l, man) || distance>5)
+			return Location.Unknown;
+		Location flag = Location.Unknown;
+		Location[] list = new Location[9];
+		if(!testShoreTile(l)){			
+			list[0] = getClosestShoreCorner(l.getAdjacentLocation(Location.NORTHWEST),distance+1);
+			list[1] = getClosestShoreCorner(l.getAdjacentLocation(Location.NORTH),distance+1);
+			list[2] = getClosestShoreCorner(l.getAdjacentLocation(Location.NORTHEAST),distance+1);
+			list[3] = getClosestShoreCorner(l.getAdjacentLocation(Location.WEST),distance+1);
+			list[4] = getClosestShoreCorner(l.getAdjacentLocation(Location.EAST),distance+1);
+			list[5] = getClosestShoreCorner(l.getAdjacentLocation(Location.SOUTHWEST),distance+1);
+			list[6] = getClosestShoreCorner(l.getAdjacentLocation(Location.SOUTH),distance+1);
+			list[7] = getClosestShoreCorner(l.getAdjacentLocation(Location.SOUTHEAST),distance+1);
+		}
+		else{
+			flag = l;
+		}
+		double leastDistance = 1000.0;
+		
+		for(int index = 0; index<list.length; index++){
+			if(list[index]!=null){
+				if(Location.isValid(list[index],man)){
+					if(list[index].getDistanceFrom(l)<leastDistance){
+						leastDistance = list[index].getDistanceFrom(l);
+						flag = list[index];
+					}	
+				}
+			}
+		}		
+		return flag;
+	}
+	private boolean testShoreTile(Location l){
+		boolean flag = false;
+		if(man.getTile(l)!=null)
+			;
+		else
+			flag = true;
+		return flag;
+		
+	}
+	
+	
 	/**
 	 * !USE WHEN ENTITY DOES NOT EXIST PREVIOUSLY!
 	 * @param em - needed to get Tile Percent Land to check for if land is in the way
