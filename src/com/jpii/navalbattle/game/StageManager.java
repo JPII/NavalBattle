@@ -65,6 +65,7 @@ public class StageManager {
 				addEntities(persists, 1, 0, 0,1);
 				addEntities(ai, 1, 0, 0,1);
 				addWhales(5);
+				System.out.println("Let me play you the sounds of my people people");
 				break;
 			case 2:  break;
 			case 3:  break;
@@ -75,7 +76,7 @@ public class StageManager {
 	}
 	
 	private void testWait(){
-		while(NavalGame.getStats().isGenerating())
+		while(NavalManager.isGenerating())
 			;
 	}
 	
@@ -148,6 +149,9 @@ public class StageManager {
 			placed = false;
 			while (!placed){
 				poll = gh.pollNextWaterTile();
+				while(!GridHelper.canPlaceInGrid(nm, GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT, poll.getRow(), poll.getCol(), 1)){
+					poll = gh.pollNextWaterTile();
+				}
 				placed = true;
 				new Whale(nm,poll,GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT,NavalManager.w1,NavalManager.w2,NavalManager.w3);
 			}

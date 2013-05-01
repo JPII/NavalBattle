@@ -20,6 +20,7 @@ public class NavalManager extends EntityManager {
 	private static final long serialVersionUID = 1L;
 	public static GridedEntityTileOrientation w1, w2, w3;
 	static TurnManager tm;
+	static boolean generating;
 	
 	/**
 	 * Creates a new instance of the NavalManager.
@@ -27,6 +28,7 @@ public class NavalManager extends EntityManager {
 	 */
 	public NavalManager(World w) {
 		super(w);
+		generating = true;
 		battleShipId = new GridedEntityTileOrientation();
 		battleShipId.setLeftToRightImage(registerEntity(PavoHelper.imgUtilOutline(
 				FileUtils.getImage("drawable-game/battleship/battleship.png"),Game.Settings.GridColor),GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT));
@@ -80,6 +82,7 @@ public class NavalManager extends EntityManager {
 		w3 = new GridedEntityTileOrientation();
 		w3.setLeftToRightImage(w3_);
 		w3.setTopToBottomImage(w3_);		
+		generating = false;
 		System.out.println("Let me play you the song of my people.");
 	}	
 	
@@ -98,6 +101,10 @@ public class NavalManager extends EntityManager {
 	
 	public static void setTurnManager(TurnManager tm2){
 		tm = tm2;
+	}
+
+	public static boolean isGenerating() {
+		return generating;
 	}
 	
 }

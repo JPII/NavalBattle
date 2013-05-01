@@ -17,8 +17,7 @@
 
 package com.jpii.navalbattle.game;
 
-import javax.swing.*;
-
+import javax.swing.JFrame;
 
 import com.jpii.navalbattle.NavalBattle;
 import com.jpii.navalbattle.gui.BaseWindow;
@@ -41,6 +40,11 @@ public class SinglePlayerGame extends BaseWindow {
 		game = sm.getGameComponent();
 	}
 	
+	public void setNewGame(){
+		game = sm.getGameComponent();
+		setGameVars();
+	}
+	
 	public void setGameVars() {
 		game.setLocation(0,40);
 		setContentPane(game);
@@ -48,11 +52,7 @@ public class SinglePlayerGame extends BaseWindow {
 		setSize(Game.Settings.currentWidth,Game.Settings.currentHeight-40);
 		setLocation(0,0);
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
-	}
-	
-	public void setNewGame(){
-		game = sm.getGameComponent();
-		setGameVars();
+		System.out.println(Game.Settings.currentWidth);
 	}
 	
 	public void setVisible(boolean visible){

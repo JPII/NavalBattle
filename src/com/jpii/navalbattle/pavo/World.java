@@ -24,7 +24,6 @@ import java.io.File;
 import maximusvladimir.dagen.Rand;
 
 import com.jpii.navalbattle.io.Interactable;
-import com.jpii.navalbattle.pavo.grid.Entity;
 import com.jpii.navalbattle.pavo.grid.EntityManager;
 import com.jpii.navalbattle.pavo.grid.Location;
 import com.jpii.navalbattle.pavo.io.PavoImage;

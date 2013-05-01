@@ -17,7 +17,6 @@
 
 package com.jpii.navalbattle.pavo.grid;
 
-import java.awt.Point;
 import java.io.Serializable;
 
 
