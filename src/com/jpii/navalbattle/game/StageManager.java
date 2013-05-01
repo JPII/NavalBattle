@@ -10,6 +10,7 @@ import com.jpii.navalbattle.game.turn.Player;
 import com.jpii.navalbattle.game.turn.PlayerManager;
 import com.jpii.navalbattle.game.turn.TurnManager;
 import com.jpii.navalbattle.pavo.Game;
+import com.jpii.navalbattle.pavo.PavoHelper;
 import com.jpii.navalbattle.pavo.WorldSize;
 import com.jpii.navalbattle.pavo.grid.GridHelper;
 import com.jpii.navalbattle.pavo.grid.GridedEntityTileOrientation;
@@ -21,6 +22,7 @@ public class StageManager {
 	int stageNumber;
 	Player persists;
 	AI ai;
+	GridHelper gh;
 	
 	public StageManager(String playerName){
 		stageNumber = 0;
@@ -59,12 +61,19 @@ public class StageManager {
 	}
 	
 	private void setStage(int num){
+		NavalManager nm = NavalGame.getManager();
+		TurnManager tm = nm.getTurnManager();
 		testWait();
 		switch(num){
 			case 1: 
-				addEntities(persists, 1, 0, 0,1);
-				addEntities(ai, 1, 0, 0,1);
+				addEntities(persists, 1, 0, 0, 0);
+				addEntities(ai, 1, 0, 0, 0);
 				addWhales(5);
+				Location poll = gh.getClosestLocation(new Location(0,0), 0);
+				tm.addEntity(new PortEntity(nm,poll,GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT),persists);
+				poll = gh.getClosestLocation(new Location(PavoHelper.getGameHeight(nm.getWorld().getWorldSize())*2-1,PavoHelper.getGameWidth(nm.getWorld().getWorldSize())*2-1), 0);
+				tm.addEntity(new PortEntity(nm,poll,GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT),ai);
+				
 				System.out.println("Let me play you the sounds of my people people");
 				break;
 			case 2:  break;
@@ -82,7 +91,7 @@ public class StageManager {
 	
 	private void addEntities(Player p, int bss, int subs, int acs,int ports){		
 		NavalManager nm = NavalGame.getManager();
-		GridHelper gh = new GridHelper(0,nm);
+		gh = new GridHelper(0,nm);
 		boolean placed = false;
 		Location poll;
 		TurnManager tm = nm.getTurnManager();

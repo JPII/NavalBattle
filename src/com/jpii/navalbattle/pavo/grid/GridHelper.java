@@ -60,19 +60,19 @@ public class GridHelper implements Serializable {
 		}
 		if(count>=20){
 			System.out.println("There was an error finding a ShoreSpace");
-			return getShoreCorner();
+			return getRandomCorner();
 		}
 		return new Location(r,c);
 	}
 	
-	public Location getShoreCorner(){
+	public Location getRandomCorner(){
 		int maxr = PavoHelper.getGameHeight(man.getWorld().getWorldSize())*2-1;
 		int maxc = PavoHelper.getGameWidth(man.getWorld().getWorldSize())*2-1;
 		Location NW=new Location(0,0),NE=new Location(0,maxr),SW=new Location(maxr,maxc),SE=new Location(maxr,0);
-		NW = getClosestShoreCorner(NW,0);
-		NE = getClosestShoreCorner(NE,0);
-		SW = getClosestShoreCorner(SW,0);
-		SE = getClosestShoreCorner(SE,0);
+		NW = getClosestLocation(NW,0);
+		NE = getClosestLocation(NE,0);
+		SW = getClosestLocation(SW,0);
+		SE = getClosestLocation(SE,0);
 		switch(random.nextInt(1,4)){
 			case 1: return NW;
 			case 2: return NE;
@@ -81,20 +81,20 @@ public class GridHelper implements Serializable {
 		}
 	}
 	
-	private Location getClosestShoreCorner(Location l,int distance){
+	public Location getClosestLocation(Location l,int distance){
 		if(!Location.isValid(l, man) || distance>5)
 			return Location.Unknown;
 		Location flag = Location.Unknown;
 		Location[] list = new Location[9];
 		if(!testShoreTile(l)){			
-			list[0] = getClosestShoreCorner(l.getAdjacentLocation(Location.NORTHWEST),distance+1);
-			list[1] = getClosestShoreCorner(l.getAdjacentLocation(Location.NORTH),distance+1);
-			list[2] = getClosestShoreCorner(l.getAdjacentLocation(Location.NORTHEAST),distance+1);
-			list[3] = getClosestShoreCorner(l.getAdjacentLocation(Location.WEST),distance+1);
-			list[4] = getClosestShoreCorner(l.getAdjacentLocation(Location.EAST),distance+1);
-			list[5] = getClosestShoreCorner(l.getAdjacentLocation(Location.SOUTHWEST),distance+1);
-			list[6] = getClosestShoreCorner(l.getAdjacentLocation(Location.SOUTH),distance+1);
-			list[7] = getClosestShoreCorner(l.getAdjacentLocation(Location.SOUTHEAST),distance+1);
+			list[0] = getClosestLocation(l.getAdjacentLocation(Location.NORTHWEST),distance+1);
+			list[1] = getClosestLocation(l.getAdjacentLocation(Location.NORTH),distance+1);
+			list[2] = getClosestLocation(l.getAdjacentLocation(Location.NORTHEAST),distance+1);
+			list[3] = getClosestLocation(l.getAdjacentLocation(Location.WEST),distance+1);
+			list[4] = getClosestLocation(l.getAdjacentLocation(Location.EAST),distance+1);
+			list[5] = getClosestLocation(l.getAdjacentLocation(Location.SOUTHWEST),distance+1);
+			list[6] = getClosestLocation(l.getAdjacentLocation(Location.SOUTH),distance+1);
+			list[7] = getClosestLocation(l.getAdjacentLocation(Location.SOUTHEAST),distance+1);
 		}
 		else{
 			flag = l;

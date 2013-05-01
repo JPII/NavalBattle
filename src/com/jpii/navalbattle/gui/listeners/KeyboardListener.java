@@ -59,7 +59,7 @@ public class KeyboardListener implements KeyListener {
 				if(k.getKeyCode() == KeyEvent.VK_F11){
 					g.toggleFullscreen();
 				}
-				if(k.getKeyCode() == KeyEvent.VK_U){
+				if(k.getKeyCode() == KeyEvent.VK_U){ // used for debug purposes only
 					g.setNewGame();
 				}
 				if(k.getKeyCode() == KeyEvent.VK_H){
