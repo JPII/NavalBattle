@@ -9,6 +9,7 @@ import com.jpii.navalbattle.game.turn.AI;
 import com.jpii.navalbattle.game.turn.Player;
 import com.jpii.navalbattle.game.turn.PlayerManager;
 import com.jpii.navalbattle.game.turn.TurnManager;
+import com.jpii.navalbattle.gui.MainMenuWindow;
 import com.jpii.navalbattle.pavo.Game;
 import com.jpii.navalbattle.pavo.PavoHelper;
 import com.jpii.navalbattle.pavo.WorldSize;
@@ -36,13 +37,9 @@ public class StageManager {
 		game = newGameComponent();
 	}
 	
-	public void checkForCompletion(){
-		boolean complete = false;
-		
-		
-		
+	public void checkForCompletion(boolean complete){
 		if(complete){
-			
+			MainMenuWindow.spg.setNewGame();
 		}
 	}
 	

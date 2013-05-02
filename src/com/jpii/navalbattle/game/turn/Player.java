@@ -135,4 +135,20 @@ public class Player {
 		temp.getManager().getWorld().animatedSetLoc(temp.getLocation(),0.054392019f);
 		((NavalGame)temp.getManager().getWorld().getGame()).getHud().setEntity(temp);
 	}
+
+	public boolean ownsEntity() {
+		for(int index = 0; index<entities.size();index++){
+			if(entities.get(0).getHandle()%10 == 1)
+				return true;
+		}
+		return false;
+	}
+
+	public boolean ownsPort() {		
+		for(int index = 0; index<entities.size();index++){
+			if(entities.get(0).getHandle() == 2)
+				return true;
+		}		
+		return false;
+	}
 }

@@ -1,5 +1,6 @@
 package com.jpii.navalbattle.game.turn;
 
+import com.jpii.navalbattle.gui.MainMenuWindow;
 import com.jpii.navalbattle.pavo.grid.Entity;
 
 public class TurnManager {
@@ -53,5 +54,26 @@ public class TurnManager {
 		for(int index = 0; index<players.players.size(); index++){
 			players.players.get(index).removeEntity(e);				
 		}
+	}
+	
+	public void checkDone(){
+		boolean flag = false;
+		
+		for(int index = 0; index<players.players.size(); index++){
+			if(!flag)
+				flag = doesPlayerHaveEntities(players.getPlayer(index));
+			if(!flag)
+				flag = doesPlayerHavePort(players.getPlayer(index));		
+		}
+		
+		MainMenuWindow.spg.getStageManager().checkForCompletion(flag);
+	}
+	
+	private boolean doesPlayerHaveEntities(Player p){
+		return p.ownsEntity();
+	}
+	
+	private boolean doesPlayerHavePort(Player p){
+		return p.ownsPort();
 	}
 }

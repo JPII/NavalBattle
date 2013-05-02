@@ -77,4 +77,8 @@ public class SinglePlayerGame extends BaseWindow {
 	public NavalGame getGame(){
 		return game.getGame();
 	}
+	
+	public StageManager getStageManager(){
+		return sm;
+	}
 }
