@@ -208,13 +208,7 @@ public class NavalGame extends Game{
 		else if(hud.hudClick(chx,chy,me.getButton()==MouseEvent.BUTTON1)){ }		
 		
 		else if(!isAClient()){
-			// These two lines is the reason that those nulls were appearing:
-			// then create a better way to get these
-			int chmaxx = (getWorld().getChunk(getWorld().getTotalChunks()-1).getX()+1)*2;
-			int chmaxy = (getWorld().getChunk(getWorld().getTotalChunks()-1).getZ()+1)*2;
-			if(chy>0 && chx>0 && chy<chmaxy&& chx<chmaxx){
-				getHud().setEntity(nm.findEntity(chy, chx));
-			}
+			getHud().setEntity(nm.findEntity(chy, chx));
 		}
 	}
 	boolean startInDown = false;
