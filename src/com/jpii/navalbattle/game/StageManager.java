@@ -15,6 +15,7 @@ import com.jpii.navalbattle.pavo.WorldSize;
 import com.jpii.navalbattle.pavo.grid.GridHelper;
 import com.jpii.navalbattle.pavo.grid.GridedEntityTileOrientation;
 import com.jpii.navalbattle.pavo.grid.Location;
+import com.jpii.navalbattle.pavo.gui.NewWindowManager;
 
 public class StageManager {
 	
@@ -63,6 +64,7 @@ public class StageManager {
 	private void setStage(int num){
 		NavalManager nm = NavalGame.getManager();
 		TurnManager tm = nm.getTurnManager();
+		NewWindowManager wm = nm.getWorld().getGame().getWindows();
 		testWait();
 		switch(num){
 			case 1: 
@@ -73,8 +75,7 @@ public class StageManager {
 				tm.addEntity(new PortEntity(nm,poll,GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT),persists);
 				poll = gh.getClosestLocation(new Location(PavoHelper.getGameHeight(nm.getWorld().getWorldSize())*2-1,PavoHelper.getGameWidth(nm.getWorld().getWorldSize())*2-1), 0);
 				tm.addEntity(new PortEntity(nm,poll,GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT),ai);
-				
-				System.out.println("Let me play you the sounds of my people people");
+				new TutorialWindow(wm,"Test","a;ldsjf;lkasd","as");
 				break;
 			case 2:  break;
 			case 3:  break;
@@ -82,6 +83,7 @@ public class StageManager {
 			case 5:  break;
 		   default:  break;
 		}
+		System.out.println("Let me play you the sounds of my people people");
 	}
 	
 	private void testWait(){
