@@ -92,6 +92,21 @@ public class AI extends Player{
 		turnOver=true;
 
 	}
+	public void shipShopping(MoveableEntity E){
+		//hull upgrade: 200
+		//Missile X5 : 250
+		//increase range 700
+		//anti missile 350
+		//repair ship 300		
+	}
+	
+	public void portShopping(PortEntity P){
+		//purchase battleship 1000
+		//purchase sub 1250
+		//purchase ac 1250
+		//repair port 500
+		
+	}
 
 	public void attackEnemies(int n, MoveableEntity currentEntity)
 	{
@@ -345,7 +360,10 @@ public class AI extends Player{
 		}
 		while(!GridHelper.canMoveTo(e.getManager(), e, e.getCurrentOrientation(), currentY, currentX,e.getWidth()));
 		e.toggleMoveable();
-		e.moveTo(new Location(currentY,currentX));
+		if (!e.getManager().isEntityAnimated())
+			e.animatedMoveTo(new Location(currentY,currentX), 30);
+		else
+			e.moveTo(new Location(currentY,currentX));
 		//delay
 	}
 	public void determineCurrentEnemiesS(MoveableEntity e){
