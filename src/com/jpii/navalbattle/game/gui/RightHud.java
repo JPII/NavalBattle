@@ -93,7 +93,7 @@ public class RightHud {
 			boxy = centery - (tempheight/2) - 50;
 			boxwidth = tempwidth+100;
 			boxheight = tempheight+100;
-			location = ("[X:"+display.getLocation().getCol()+" Y:"+display.getLocation().getRow()+"]");
+			location = ("[R:"+display.getLocation().getRow()+" C:"+display.getLocation().getCol()+"]");
 			if(move!=null){
 				health = ("Health: "+move.getPercentHealth()+"%");
 				movement = ("Movement Left: "+(move.getMaxMovement()-move.getMoved())+" out of "+move.getMaxMovement());
