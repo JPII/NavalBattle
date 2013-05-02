@@ -5,7 +5,6 @@ import java.awt.Font;
 import java.awt.Graphics2D;
 
 import com.jpii.navalbattle.game.NavalGame;
-import com.jpii.navalbattle.game.NavalManager;
 import com.jpii.navalbattle.game.entity.MoveableEntity;
 import com.jpii.navalbattle.game.entity.PortEntity;
 import com.jpii.navalbattle.game.entity.Submarine;
@@ -332,7 +331,7 @@ public class MidHud{
 	}
 	
 	public void nextAction(){
-		((NavalManager)display.getManager()).getGame().getTurnManager().getTurn().getPlayer().nextEntity(display);
+		((NavalGame)parent.getGame()).getTurnManager().getTurn().getPlayer().nextEntity(display);
 	}
 
 }

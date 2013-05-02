@@ -57,6 +57,7 @@ public class TurnManager {
 	}
 	
 	public void checkDone(){
+		System.out.println("Checking game progress");
 		boolean flag = false;
 		
 		for(int index = 0; index<players.players.size(); index++){
@@ -65,8 +66,8 @@ public class TurnManager {
 			if(!flag)
 				flag = doesPlayerHavePort(players.getPlayer(index));		
 		}
-		
-		MainMenuWindow.spg.getStageManager().checkForCompletion(flag);
+		System.out.println("T/F The game is over "+flag);
+//		MainMenuWindow.spg.getStageManager().checkForCompletion(flag);
 	}
 	
 	private boolean doesPlayerHaveEntities(Player p){

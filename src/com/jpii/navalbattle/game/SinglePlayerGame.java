@@ -60,7 +60,6 @@ public class SinglePlayerGame extends BaseWindow {
 		setSize(Game.Settings.initialWidth,Game.Settings.initialHeight-40);
 		setLocation(0,0);
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
-		System.out.println(Game.Settings.currentWidth);
 	}
 	
 	public void setVisible(boolean visible){
