@@ -42,14 +42,22 @@ public class SinglePlayerGame extends BaseWindow {
 	
 	public void setNewGame(){
 		game = sm.getGameComponent();
+		setSize(Game.Settings.initialWidth,Game.Settings.initialHeight-40);
 		setGameVars();
+	}
+	
+	public void setSize(int width, int height) {
+		if (game != null) {
+			game.setSize(width,height);
+		}
+		super.setSize(width,height);
 	}
 	
 	public void setGameVars() {
 		game.setLocation(0,40);
 		setContentPane(game);
 		this.getContentPane().setLayout(null);
-		setSize(Game.Settings.currentWidth,Game.Settings.currentHeight-40);
+		setSize(Game.Settings.initialWidth,Game.Settings.initialHeight-40);
 		setLocation(0,0);
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
 		System.out.println(Game.Settings.currentWidth);
