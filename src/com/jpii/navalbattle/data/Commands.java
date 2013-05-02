@@ -75,8 +75,8 @@ public class Commands {
 	    add(new Command("setscore", "<score>", "Set game score", new CommandAction() { 
 	    	public void onRun(Command c, String[] args) {
 	    		try {
-	    			MainMenuWindow.spg.getGame().getManager().getTurnManager().getTurn().getPlayer().setscore(Integer.parseInt(args[0]));
-		    		NavalBattle.getDebugWindow().printInfo("Game score set to " + MainMenuWindow.spg.getGame().getManager().getTurnManager().getTurn().getPlayer().getScore());
+	    			MainMenuWindow.spg.getGame().getTurnManager().getTurn().getPlayer().setscore(Integer.parseInt(args[0]));
+		    		NavalBattle.getDebugWindow().printInfo("Game score set to " + MainMenuWindow.spg.getGame().getTurnManager().getTurn().getPlayer().getScore());
 	    		} catch (Exception ex) {
 	    			NavalBattle.getDebugWindow().printError("Missing or invalid arg: score");
 	    		}
@@ -86,8 +86,8 @@ public class Commands {
 	    add(new Command("addscore", "<score>", "Add to game score", new CommandAction() { 
 	    	public void onRun(Command c, String[] args) {
 	    		try {
-	    			MainMenuWindow.spg.getGame().getManager().getTurnManager().getTurn().getPlayer().addscore(Integer.parseInt(args[0]));
-		    		NavalBattle.getDebugWindow().printInfo("Game score set to " + MainMenuWindow.spg.getGame().getManager().getTurnManager().getTurn().getPlayer().getScore());
+	    			MainMenuWindow.spg.getGame().getTurnManager().getTurn().getPlayer().addscore(Integer.parseInt(args[0]));
+		    		NavalBattle.getDebugWindow().printInfo("Game score set to " + MainMenuWindow.spg.getGame().getTurnManager().getTurn().getPlayer().getScore());
 	    		} catch (Exception ex) {
 	    			NavalBattle.getDebugWindow().printError("Missing or invalid arg: score");
 	    		}
@@ -97,8 +97,8 @@ public class Commands {
 	    add(new Command("removescore", "<score>", "Subtract from game score", new CommandAction() { 
 	    	public void onRun(Command c, String[] args) {
 	    		try {
-	    			MainMenuWindow.spg.getGame().getManager().getTurnManager().getTurn().getPlayer().subtractscore(Integer.parseInt(args[0]));
-		    		NavalBattle.getDebugWindow().printInfo("Game score set to " + MainMenuWindow.spg.getGame().getManager().getTurnManager().getTurn().getPlayer().getScore());
+	    			MainMenuWindow.spg.getGame().getTurnManager().getTurn().getPlayer().subtractscore(Integer.parseInt(args[0]));
+		    		NavalBattle.getDebugWindow().printInfo("Game score set to " + MainMenuWindow.spg.getGame().getTurnManager().getTurn().getPlayer().getScore());
 	    		} catch (Exception ex) {
 	    			NavalBattle.getDebugWindow().printError("Missing or invalid arg: score");
 	    		}
@@ -114,7 +114,7 @@ public class Commands {
 	    
 	    add(new Command("getscore", "", "Get game score", new CommandAction() { 
 	    	public void onRun(Command c, String[] args) {
-		    	NavalBattle.getDebugWindow().printInfo("Game score: " + MainMenuWindow.spg.getGame().getManager().getTurnManager().getTurn().getPlayer().getScore());
+		    	NavalBattle.getDebugWindow().printInfo("Game score: " + MainMenuWindow.spg.getGame().getTurnManager().getTurn().getPlayer().getScore());
 	    	}}
 	    ));
 	    

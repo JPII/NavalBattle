@@ -17,12 +17,10 @@ public class Player {
 	int playernumber;
 	int diplomacyCounter = 0;
 	boolean diplomacy = false;
-	NavalManager nm;
 	
-	public Player(String name,NavalManager nm){
+	public Player(String name){
 		entities = new ArrayList<Entity>();
 		this.name = name;
-		this.nm = nm;
 		turnOver = false;
 		score = 0;
 	}
@@ -50,7 +48,8 @@ public class Player {
 	public void reset(){
 		resetMovement();
 		resetAttack();
-		((NavalGame)nm.getWorld().getGame()).getHud().update();
+		if(entities.size()>0&&entities.get(0)!=null)
+		((NavalManager)entities.get(0).getManager()).getGame().getHud().update();
 	}
 	
 	public void resetMovement(){

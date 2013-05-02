@@ -421,7 +421,7 @@ public class MoveableEntity extends Entity {
 		currentHealth -= dealt;
 		if(currentHealth<=0){
 			currentHealth=0;
-			((NavalManager)getManager()).getTurnManager().removeEntity(this);
+			((NavalManager)getManager()).getGame().getTurnManager().removeEntity(this);
 			return dispose();
 		}
 		return((b4>25&&getPercentHealth()<25));

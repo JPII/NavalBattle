@@ -41,7 +41,7 @@ public class TurnConfirmation extends PWindow {
 		
 		button2.addMouseListener(new PMouseEvent(){
 			public void mouseDown(int x, int y, int buttonid) {
-				ng.getManager().getTurnManager().nextTurn();
+				ng.getTurnManager().nextTurn();
 				close();
 			}
 		});

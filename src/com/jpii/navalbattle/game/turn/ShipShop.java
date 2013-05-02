@@ -33,7 +33,7 @@ import com.jpii.navalbattle.pavo.gui.events.PMouseEvent;
 				setVisible(false);
 			else{
 				setVisible(true);
-				current = ((NavalManager)e.getManager()).getTurnManager().findPlayer(e);
+				current = ((NavalManager)e.getManager()).getGame().getTurnManager().findPlayer(e);
 				if(move.getHandle()==21)
 					missile.setVisible(false);
 			}
@@ -62,7 +62,7 @@ import com.jpii.navalbattle.pavo.gui.events.PMouseEvent;
 			price.setFont(new Font("Verdana Bold", 1, 12));
 		 
 			shop.setText("Ship Shop");
-			score.setText("Your Current Score is "+((NavalManager)move.getManager()).getTurnManager().getTurn().getPlayer().getScore());
+			score.setText("Your Current Score is "+((NavalManager)move.getManager()).getGame().getTurnManager().getTurn().getPlayer().getScore());
 			hull.setText("Hull Upgrade");
 			missile.setText("Missile X5");
 			range.setText("Increase Range");
@@ -140,7 +140,7 @@ import com.jpii.navalbattle.pavo.gui.events.PMouseEvent;
 		}
 		
 		public void update(){
-			score.setText("Your Current Score is "+((NavalManager)move.getManager()).getTurnManager().getTurn().getPlayer().getScore());
+			score.setText("Your Current Score is "+((NavalManager)move.getManager()).getGame().getTurnManager().getTurn().getPlayer().getScore());
 		}
 		
 		private void hardenHullAction(){

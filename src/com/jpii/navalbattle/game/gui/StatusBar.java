@@ -54,8 +54,8 @@ public class StatusBar extends PWindow {
 		g.draw3DRect(width-110,3,98,18,true);
 		g.setColor(Color.white);
 		int sd = 2;
-		if(gameThing!=null&&gameThing.getManager()!=null&&gameThing.getManager().getTurnManager()!=null)
-			g.drawString("Score: "+gameThing.getManager().getTurnManager().getTurn().getPlayer().getScore(), width-110+sd, 17);
+		if(gameThing!=null&&gameThing.getManager()!=null&&gameThing.getTurnManager()!=null)
+			g.drawString("Score: "+gameThing.getTurnManager().getTurn().getPlayer().getScore(), width-110+sd, 17);
 		
 		g.setColor(Color.black);
 		g.fillRect(width-221, 2, 100, 20);

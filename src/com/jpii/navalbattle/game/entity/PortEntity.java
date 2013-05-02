@@ -6,6 +6,7 @@ import java.awt.image.BufferedImage;
 
 import maximusvladimir.dagen.Rand;
 import com.jpii.navalbattle.game.NavalManager;
+import com.jpii.navalbattle.game.turn.TurnManager;
 import com.jpii.navalbattle.pavo.Game;
 import com.jpii.navalbattle.pavo.PavoHelper;
 import com.jpii.navalbattle.pavo.ProceduralLayeredMapGenerator;
@@ -146,27 +147,30 @@ public class PortEntity extends AnimatedEntity {
 	}
 	
 	public void spawnBattleship(){
+		TurnManager tm = ((NavalManager)getManager()).getGame().getTurnManager();
 		Location to = spawnAt(4); //static way of accessing width?
 		if(GridHelper.canPlaceInGrid(getManager(),GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT, to.getRow(), to.getCol(), 4))
-			((NavalManager)getManager()).getTurnManager().addEntity(new BattleShip(getManager(), to, GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT),((NavalManager)getManager()).getTurnManager().findPlayer(this));
+			tm.addEntity(new BattleShip(getManager(), to, GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT),tm.findPlayer(this));
 		else if(GridHelper.canPlaceInGrid(getManager(),GridedEntityTileOrientation.ORIENTATION_TOPTOBOTTOM, to.getRow(), to.getCol(), 4))
-			((NavalManager)getManager()).getTurnManager().addEntity(new BattleShip(getManager(), to,GridedEntityTileOrientation.ORIENTATION_TOPTOBOTTOM),((NavalManager)getManager()).getTurnManager().findPlayer(this));
+			tm.addEntity(new BattleShip(getManager(), to,GridedEntityTileOrientation.ORIENTATION_TOPTOBOTTOM),tm.findPlayer(this));
 	}
 	
 	public void spawnSubmarine(){
+		TurnManager tm = ((NavalManager)getManager()).getGame().getTurnManager();
 		Location to = spawnAt(2); //static way of accessing width?
 		if(GridHelper.canPlaceInGrid(getManager(),GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT, to.getRow(), to.getCol(), 2))
-			((NavalManager)getManager()).getTurnManager().addEntity(new Submarine(getManager(), to, GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT),((NavalManager)getManager()).getTurnManager().findPlayer(this));
+			tm.addEntity(new Submarine(getManager(), to, GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT),tm.findPlayer(this));
 		else if(GridHelper.canPlaceInGrid(getManager(),GridedEntityTileOrientation.ORIENTATION_TOPTOBOTTOM, to.getRow(), to.getCol(), 2))
-			((NavalManager)getManager()).getTurnManager().addEntity(new Submarine(getManager(), to,GridedEntityTileOrientation.ORIENTATION_TOPTOBOTTOM),((NavalManager)getManager()).getTurnManager().findPlayer(this));
+			tm.addEntity(new Submarine(getManager(), to,GridedEntityTileOrientation.ORIENTATION_TOPTOBOTTOM),tm.findPlayer(this));
 	}
 	
 	public void spawnAC(){
+		TurnManager tm = ((NavalManager)getManager()).getGame().getTurnManager();
 		Location to = spawnAt(5); //static way of accessing width?
 		if(GridHelper.canPlaceInGrid(getManager(),GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT, to.getRow(), to.getCol(), 5))
-			((NavalManager)getManager()).getTurnManager().addEntity(new AircraftCarrier(getManager(), to, GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT),((NavalManager)getManager()).getTurnManager().findPlayer(this));
+			tm.addEntity(new AircraftCarrier(getManager(), to, GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT),tm.findPlayer(this));
 		else if(GridHelper.canPlaceInGrid(getManager(),GridedEntityTileOrientation.ORIENTATION_TOPTOBOTTOM, to.getRow(), to.getCol(), 5))
-			((NavalManager)getManager()).getTurnManager().addEntity(new AircraftCarrier(getManager(), to,GridedEntityTileOrientation.ORIENTATION_TOPTOBOTTOM),((NavalManager)getManager()).getTurnManager().findPlayer(this));
+			tm.addEntity(new AircraftCarrier(getManager(), to,GridedEntityTileOrientation.ORIENTATION_TOPTOBOTTOM),tm.findPlayer(this));
 	}	
 	
 	public void repair(){

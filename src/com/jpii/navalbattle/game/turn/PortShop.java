@@ -32,7 +32,7 @@ import com.jpii.navalbattle.pavo.gui.events.PMouseEvent;
 			}
 			else{
 				super.setVisible(true);
-				current = ((NavalManager)port.getManager()).getTurnManager().findPlayer(pe);
+				current = ((NavalManager)port.getManager()).getGame().getTurnManager().findPlayer(pe);
 			}
 		}
 		
@@ -57,7 +57,7 @@ import com.jpii.navalbattle.pavo.gui.events.PMouseEvent;
 			price.setFont(new Font("Verdana Bold", 1, 12));
 			
 			shop.setText("Port Shop");
-			score.setText("Your Current Score is "+((NavalManager)port.getManager()).getTurnManager().getTurn().getPlayer().getScore());
+			score.setText("Your Current Score is "+((NavalManager)port.getManager()).getGame().getTurnManager().getTurn().getPlayer().getScore());
 			bship.setText("Purchase Battleship");
 			sub.setText("Purchase Submarine");
 			ac.setText("Purchase Aircraft Carrier");
@@ -123,7 +123,7 @@ import com.jpii.navalbattle.pavo.gui.events.PMouseEvent;
 		}
 		
 		public void update(){
-			score.setText("Your Current Score is "+((NavalManager)port.getManager()).getTurnManager().getTurn().getPlayer().getScore());
+			score.setText("Your Current Score is "+((NavalManager)port.getManager()).getGame().getTurnManager().getTurn().getPlayer().getScore());
 		}
 		
 		private void buyBattleShip(){

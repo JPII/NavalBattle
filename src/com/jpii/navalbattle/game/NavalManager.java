@@ -10,7 +10,6 @@ import com.jpii.navalbattle.pavo.grid.Entity;
 import com.jpii.navalbattle.pavo.grid.EntityManager;
 import com.jpii.navalbattle.pavo.grid.GridHelper;
 import com.jpii.navalbattle.pavo.grid.GridedEntityTileOrientation;
-import com.jpii.navalbattle.game.turn.TurnManager;
 import com.jpii.navalbattle.util.FileUtils;
 
 /**
@@ -19,7 +18,6 @@ import com.jpii.navalbattle.util.FileUtils;
 public class NavalManager extends EntityManager {
 	private static final long serialVersionUID = 1L;
 	public static GridedEntityTileOrientation w1, w2, w3;
-	static TurnManager tm;
 	static boolean generating;
 	
 	/**
@@ -94,17 +92,13 @@ public class NavalManager extends EntityManager {
 			}
 		}
 	}
-	
-	public TurnManager getTurnManager(){
-		return tm;
-	}
-	
-	public void setTurnManager(TurnManager tm2){
-		tm = tm2;
-	}
 
 	public boolean isGenerating() {
 		return generating;
+	}
+	
+	public NavalGame getGame(){
+		return (NavalGame)getWorld().getGame();
 	}
 	
 }

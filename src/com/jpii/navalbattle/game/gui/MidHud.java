@@ -332,7 +332,7 @@ public class MidHud{
 	}
 	
 	public void nextAction(){
-		((NavalManager)display.getManager()).getTurnManager().getTurn().getPlayer().nextEntity(display);
+		((NavalManager)display.getManager()).getGame().getTurnManager().getTurn().getPlayer().nextEntity(display);
 	}
 
 }

@@ -24,6 +24,7 @@ import java.awt.event.MouseWheelEvent;
 import com.jpii.navalbattle.game.gui.HUD;
 import com.jpii.navalbattle.game.gui.PauseWindow;
 import com.jpii.navalbattle.game.gui.StatusBar;
+import com.jpii.navalbattle.game.turn.TurnManager;
 import com.jpii.navalbattle.pavo.*;
 import com.jpii.navalbattle.pavo.gui.OmniMap;
 
@@ -33,6 +34,7 @@ import com.jpii.navalbattle.pavo.gui.OmniMap;
 public class NavalGame extends Game{
 	private static final long serialVersionUID = 1L;
 	NavalManager nm;
+	TurnManager tm;
 	HUD hud;
 	StatusBar sb;
 	OmniMap omnimap;
@@ -41,20 +43,21 @@ public class NavalGame extends Game{
 	float airStrike = -1;
 	int hw = 0, hh = 0;
 	
-	public NavalGame(WorldSize ws){
+	public NavalGame(WorldSize ws,TurnManager tm){
 		super(ws);
-		init();
+		init(tm);
 	}
 	
-	public NavalGame(WorldSize ws,PavoOpenState pos, String flags) {
+	public NavalGame(WorldSize ws,TurnManager tm,PavoOpenState pos, String flags) {
 		super(ws,pos,flags);
-		init();
+		init(tm);
 	}
 	
-	private void init(){
+	private void init(TurnManager tm){
 		pw = new PauseWindow(getWindows());
 		nm = new NavalManager(getWorld());
-		hud = new HUD(getWindows(),nm.getTurnManager(),0,Settings.currentHeight-150,Settings.currentWidth, 150);
+		this.tm = tm;
+		hud = new HUD(getWindows(),getTurnManager(),0,Settings.currentHeight-150,Settings.currentWidth, 150);
 		sb = new StatusBar(getWindows(),this);
 		getWorld().setEntityManager(nm);
 		omnimap = new OmniMap(getWorld());
@@ -256,5 +259,10 @@ public class NavalGame extends Game{
 	
 	public NavalManager getManager(){
 		return nm;
+	}
+	
+	
+	public TurnManager getTurnManager(){
+		return tm;
 	}
 }

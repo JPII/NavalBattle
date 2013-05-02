@@ -20,8 +20,8 @@ public class AI extends Player{
 	int numBS, numPS, numAC, numSM;
 	
 	
-	public AI(NavalManager nm) {
-		super(getNewName(),nm);
+	public AI() {
+		super(getNewName());
 		primaryEnemies = new ArrayList<Entity>();
 		secondaryEnemies = new ArrayList<Entity>();
 	}
@@ -450,7 +450,7 @@ public class AI extends Player{
 			for (int y = topY; y < (e.getLocation().getRow()+e.getSecondaryRange())+1; y++) {
 				Entity location = e.getManager().findEntity(y,x);
 				if(location!=null){
-					Player temp = nm.getTurnManager().findPlayer(location); 
+					Player temp = ((NavalManager)location.getManager()).getGame().getTurnManager().findPlayer(location); 
 					if (temp!=null){
 					if(!(temp.equals(this))&&!secondaryEnemies.contains(location)){
 						//entity at spot is not owned by this AI
@@ -477,7 +477,7 @@ public class AI extends Player{
 			for (int y = topY; y < (e.getLocation().getRow()+e.getPrimaryRange())+1; y++) {
 				Entity location = e.getManager().findEntity(y,x);
 				if(location!=null){
-					Player temp = nm.getTurnManager().findPlayer(location); 
+					Player temp = ((NavalManager)location.getManager()).getGame().getTurnManager().findPlayer(location); 
 					if (temp!=null){
 					if(!(temp.equals(this))&&!primaryEnemies.contains(location)){
 						//entity at spot is not owned by this AI

@@ -21,6 +21,7 @@ public class StageManager {
 	
 	private GameComponent game;
 	private NavalManager nm;
+	TurnManager tm;
 	int stageNumber;
 	Player persists;
 	String playerName;
@@ -57,27 +58,26 @@ public class StageManager {
 		if(game!=null) {
 			game.dispose();
 		}
+		persists = new Player(playerName);
+		ai = new AI();
+		tm = (new TurnManager(new PlayerManager(persists,ai)));
 		switch(stageNumber){
 			case 1: Game.Settings.resetSeed(0); 
-					game=new GameComponent(new NavalGame(WorldSize.WORLD_TINY));
+					game=new GameComponent(new NavalGame(WorldSize.WORLD_TINY,tm));
 					break;
-			case 2: Game.Settings.resetSeed(10); game=new GameComponent(new NavalGame(WorldSize.WORLD_SMALL));  break;
-			case 3: Game.Settings.resetSeed(15); game=new GameComponent(new NavalGame(WorldSize.WORLD_SMALL));  break;
-			case 4: Game.Settings.resetSeed(20); game=new GameComponent(new NavalGame(WorldSize.WORLD_SMALL));  break;
-			case 5: Game.Settings.resetSeed(25); game=new GameComponent(new NavalGame(WorldSize.WORLD_SMALL));  break;
-			default: Game.Settings.resetSeed(1000); game=new GameComponent(new NavalGame(WorldSize.WORLD_MEDIUM));  break;
+			case 2: Game.Settings.resetSeed(10); game=new GameComponent(new NavalGame(WorldSize.WORLD_SMALL,tm));  break;
+			case 3: Game.Settings.resetSeed(15); game=new GameComponent(new NavalGame(WorldSize.WORLD_SMALL,tm));  break;
+			case 4: Game.Settings.resetSeed(20); game=new GameComponent(new NavalGame(WorldSize.WORLD_SMALL,tm));  break;
+			case 5: Game.Settings.resetSeed(25); game=new GameComponent(new NavalGame(WorldSize.WORLD_SMALL,tm));  break;
+			default: Game.Settings.resetSeed(1000); game=new GameComponent(new NavalGame(WorldSize.WORLD_MEDIUM,tm));  break;
 		}
 		nm = game.getGame().getManager();
-		persists = new Player(playerName,nm);
-		ai = new AI(nm);
 		setStage();
 		return game;
 	}
 	
 	private void setStage(){
 		waitForGenerator();
-		game.getGame().getManager().setTurnManager(new TurnManager(new PlayerManager(persists,ai)));
-		TurnManager tm = nm.getTurnManager();
 		NewWindowManager wm = nm.getWorld().getGame().getWindows();
 		switch(stageNumber){
 			case 1: 
@@ -108,7 +108,6 @@ public class StageManager {
 		gh = new GridHelper(0,nm);
 		boolean placed = false;
 		Location poll;
-		TurnManager tm = nm.getTurnManager();
 		
 		for(int index = 0; index<bss; index++){
 			placed = false;

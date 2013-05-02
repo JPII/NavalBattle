@@ -17,6 +17,7 @@ import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.Timer;
 
+import com.jpii.navalbattle.game.turn.TurnManager;
 import com.jpii.navalbattle.pavo.Game;
 import com.jpii.navalbattle.pavo.PavoHelper;
 import com.jpii.navalbattle.pavo.PavoOpenState;
@@ -96,12 +97,12 @@ public class GameComponent extends JComponent {
 		logicUpdator.start();
 	}
 	
-	public GameComponent(WorldSize ws, PavoOpenState pos, String params) {
+	public GameComponent(WorldSize ws,TurnManager tm, PavoOpenState pos, String params) {
 		winlib = new WindowLib(frame);
 		if (pos != PavoOpenState.NORMAL)
-			game = new NavalGame(ws,pos,params);
+			game = new NavalGame(ws,tm,pos,params);
 		else
-			game = new NavalGame(ws);
+			game = new NavalGame(ws,tm);
 		MouseListener ml = new MouseListener() {
 			public void mouseClicked(MouseEvent arg0) {
 			}
