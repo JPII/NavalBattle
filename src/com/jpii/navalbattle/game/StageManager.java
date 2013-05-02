@@ -34,6 +34,17 @@ public class StageManager {
 			playerName = "Player 1";
 		game = newGameComponent();
 	}
+	
+	public void checkForCompletion(){
+		boolean complete = false;
+		
+		
+		
+		if(complete){
+			
+		}
+	}
+	
 	/**
 	 * @return the GameComponent
 	 */
@@ -64,7 +75,7 @@ public class StageManager {
 	}
 	
 	private void setStage(){
-		testWait();
+		waitForGenerator();
 		game.getGame().getManager().setTurnManager(new TurnManager(new PlayerManager(persists,ai)));
 		TurnManager tm = nm.getTurnManager();
 		NewWindowManager wm = nm.getWorld().getGame().getWindows();
@@ -88,7 +99,7 @@ public class StageManager {
 		System.out.println("Let me play you the sounds of my people people");
 	}
 	
-	private void testWait(){
+	private void waitForGenerator(){
 		while(game.getGame().getManager().isGenerating())
 			;
 	}
