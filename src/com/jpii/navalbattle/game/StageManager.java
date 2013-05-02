@@ -44,7 +44,6 @@ public class StageManager {
 	private GameComponent newGameComponent(){
 		stageNumber++;
 		if(game!=null) {
-			System.out.println("Disposing.");
 			game.dispose();
 		}
 		switch(stageNumber){
@@ -106,10 +105,8 @@ public class StageManager {
 				poll = gh.pollNextWaterTile();
 				placed = true;
 				System.out.println("test");
-				if(GridHelper.canPlaceInGrid(nm,GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT, poll.getRow(), poll.getCol(), 4)){
-					System.out.println("NULL INCOMING:"+nm+" p:"+p+" tm:"+tm);
+				if(GridHelper.canPlaceInGrid(nm,GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT, poll.getRow(), poll.getCol(), 4))
 					tm.addEntity(new BattleShip(nm, poll, GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT),p);
-				}
 				else if(GridHelper.canPlaceInGrid(nm,GridedEntityTileOrientation.ORIENTATION_TOPTOBOTTOM, poll.getRow(), poll.getCol(), 4))
 					tm.addEntity(new BattleShip(nm, poll,GridedEntityTileOrientation.ORIENTATION_TOPTOBOTTOM),p);
 				else
