@@ -17,6 +17,7 @@ public class AI extends Player{
 	
 	ArrayList<Entity> primaryEnemies;
 	ArrayList<Entity> secondaryEnemies;
+	int numBS, numPS, numAC, numSM;
 	
 	
 	public AI(NavalManager nm) {
@@ -42,8 +43,9 @@ public class AI extends Player{
 		for(int k = 0; k < getTotalEntities(); k++)
 		{
 			Entity ent = getEntity(k);
-			MoveableEntity currentEntity;
+			
 			if(ent.getHandle()%10 == 1){
+				MoveableEntity currentEntity;
 				currentEntity = (MoveableEntity)ent;
 				if(currentEntity.getHandle()==11){
 					//Sub
@@ -85,6 +87,11 @@ public class AI extends Player{
 					}
 				}
 			}
+			else{
+				PortEntity currentEntityP;
+				currentEntityP = (PortEntity)ent;
+				portShopping(currentEntityP);				
+			}
 		}
 		diplomacyCounter--;
 		if(diplomacyCounter == 0)
@@ -92,7 +99,7 @@ public class AI extends Player{
 		turnOver=true;
 
 	}
-	public void shipShopping(MoveableEntity e){
+	private void shipShopping(MoveableEntity e){
 		//hull upgrade: 200
 		if(this.getScore()>250 && e.getPercentHealth()<50){
 		this.subtractscore(200);
@@ -124,19 +131,57 @@ public class AI extends Player{
 		}
 	}
 	
-	public void portShopping(PortEntity p){
-		//purchase battleship 1000
-		this.subtractscore(1000);
-		p.spawnBattleship();
-		//purchase sub 1250
-		this.subtractscore(1250);
-		p.spawnSubmarine();
-		//purchase ac 1250
-		this.subtractscore(1250);
-		p.spawnAC();
+	private void getShipNumbers(){
+	numPS = numBS = numSM = numAC = 0;
+		for(int k = 0; k < getTotalEntities(); k++){
+			Entity ent = getEntity(k);
+			if(ent.getHandle()%10 == 1){
+				MoveableEntity currentEntity;
+				currentEntity = (MoveableEntity)ent;
+				if(currentEntity.getHandle()==11){
+				numSM++;
+				}
+				if(currentEntity.getHandle()==21){
+				numAC++;
+				}
+				if(currentEntity.getHandle()==11){
+				numBS++;
+				}
+			}
+	
+		else{
+			numPS++;
+			}
+		}
+	}
+	
+	
+	private void portShopping(PortEntity p){
+		getShipNumbers();
 		//repair port 500
+		if(this.getScore()>550 && p.getPercentHealth()<25){
 		this.subtractscore(500);
 		p.repair();
+		}
+		
+		//purchase battleship 1000
+		if(this.getScore()>1050 && numBS<2){
+		this.subtractscore(1000);
+		p.spawnBattleship();
+		}
+		
+		//purchase sub 1250
+		if(this.getScore()>1300 && numSM<2){
+		this.subtractscore(1250);
+		p.spawnSubmarine();
+		}
+		
+		//purchase ac 1250
+		if(this.getScore()>1300 ){
+		this.subtractscore(1250);
+		p.spawnAC();
+		}
+
 		
 	}
 
