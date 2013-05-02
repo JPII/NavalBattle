@@ -9,7 +9,7 @@ public class TurnConfirmation extends PWindow {
 	
 	public static boolean viewed;
 	
-	public TurnConfirmation(NewWindowManager parent) {
+	public TurnConfirmation(NewWindowManager parent,final NavalGame ng) {
 		super(parent);
 		parent.add(this);
 		setLoc(228, 136);
@@ -41,7 +41,7 @@ public class TurnConfirmation extends PWindow {
 		
 		button2.addMouseListener(new PMouseEvent(){
 			public void mouseDown(int x, int y, int buttonid) {
-				NavalGame.getManager().getTurnManager().nextTurn();
+				ng.getManager().getTurnManager().nextTurn();
 				close();
 			}
 		});

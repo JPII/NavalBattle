@@ -99,11 +99,11 @@ public class NavalManager extends EntityManager {
 		return tm;
 	}
 	
-	public static void setTurnManager(TurnManager tm2){
+	public void setTurnManager(TurnManager tm2){
 		tm = tm2;
 	}
 
-	public static boolean isGenerating() {
+	public boolean isGenerating() {
 		return generating;
 	}
 	

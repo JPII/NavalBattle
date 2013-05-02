@@ -1,18 +1,19 @@
 package com.jpii.navalbattle.game.turn;
 
 import com.jpii.navalbattle.data.Constants;
-import com.jpii.navalbattle.game.NavalGame;
+import com.jpii.navalbattle.game.NavalManager;
 import com.jpii.navalbattle.game.entity.MoveableEntity;
 import com.jpii.navalbattle.game.entity.PortEntity;
 
 public class DamageCalculator {
 	
 	public static void doPrimaryDamage(MoveableEntity deal, MoveableEntity take){
-		Player player = NavalGame.getManager().getTurnManager().getTurn().getPlayer();
+		NavalManager nm = ((NavalManager)deal.getManager());
+		Player player = nm.getTurnManager().getTurn().getPlayer();
 		deal.usePrimary();
 		
 		if(calculateDeflect(take)){
-			NavalGame.getManager().getTurnManager().findPlayer(take).addscore(Constants.DEFLECT_SHOT_SCORE);
+			nm.getTurnManager().findPlayer(take).addscore(Constants.DEFLECT_SHOT_SCORE);
 		} else if(take.takeDamage(calculatePrimaryDamage(deal, take))){
 			player.addscore(Constants.HIT_SHIP_SCORE);
 			if(take == null || take.isDisposed()){
@@ -22,24 +23,26 @@ public class DamageCalculator {
 	}
 	
 	public static void doPrimaryDamage(MoveableEntity deal, PortEntity take){
-		Player player = NavalGame.getManager().getTurnManager().getTurn().getPlayer();
+		NavalManager nm = ((NavalManager)deal.getManager());
+		Player player = nm.getTurnManager().getTurn().getPlayer();
 		deal.usePrimary();
 		
 		if(!calculateDeflect(take)) {
 			if(take.takeDamage(calculatePrimaryDamage(deal,take))) {
 				player.addscore(Constants.DESTROY_PORT_SCORE);
-				NavalGame.getManager().getTurnManager().removeEntity(take);
+				nm.getTurnManager().removeEntity(take);
 				player.addEntity(take);
 			}
 		}
 	}
 	
-	public static void doSecondaryDamage(MoveableEntity deal, MoveableEntity take){		
-		Player player = NavalGame.getManager().getTurnManager().getTurn().getPlayer();
+	public static void doSecondaryDamage(MoveableEntity deal, MoveableEntity take){
+		NavalManager nm = ((NavalManager)deal.getManager());
+		Player player = nm.getTurnManager().getTurn().getPlayer();
 		deal.useSecondary();
 		
 		if(calculateDeflect(take)){
-			NavalGame.getManager().getTurnManager().findPlayer(take).addscore(Constants.DEFLECT_SHOT_SCORE);
+			nm.getTurnManager().findPlayer(take).addscore(Constants.DEFLECT_SHOT_SCORE);
 		} else if(take.takeDamage(calculatePrimaryDamage(deal, take))) {
 			player.addscore(Constants.HIT_SHIP_SCORE);
 			if(take == null || take.isDisposed()){
@@ -49,13 +52,14 @@ public class DamageCalculator {
 	}
 	
 	public static void doSecondaryDamage(MoveableEntity deal, PortEntity take){
-		Player player = NavalGame.getManager().getTurnManager().getTurn().getPlayer();
+		NavalManager nm = ((NavalManager)deal.getManager());
+		Player player = nm.getTurnManager().getTurn().getPlayer();
 		deal.useSecondary();
 		
 		if(!calculateDeflect(take)) {
 			if(take.takeDamage(calculateSecondaryDamage(deal,take))){
 				player.addscore(Constants.DESTROY_PORT_SCORE);
-				NavalGame.getManager().getTurnManager().removeEntity(take);
+				nm.getTurnManager().removeEntity(take);
 				player.addEntity(take);
 			}
 		}

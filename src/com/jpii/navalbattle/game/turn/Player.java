@@ -3,6 +3,7 @@ package com.jpii.navalbattle.game.turn;
 import java.util.ArrayList;
 
 import com.jpii.navalbattle.game.NavalGame;
+import com.jpii.navalbattle.game.NavalManager;
 import com.jpii.navalbattle.game.entity.MoveableEntity;
 import com.jpii.navalbattle.pavo.grid.Entity;
 
@@ -16,10 +17,12 @@ public class Player {
 	int playernumber;
 	int diplomacyCounter = 0;
 	boolean diplomacy = false;
+	NavalManager nm;
 	
-	public Player(String name){
+	public Player(String name,NavalManager nm){
 		entities = new ArrayList<Entity>();
 		this.name = name;
+		this.nm = nm;
 		turnOver = false;
 		score = 0;
 	}
@@ -47,7 +50,7 @@ public class Player {
 	public void reset(){
 		resetMovement();
 		resetAttack();
-		NavalGame.getHud().update();
+		((NavalGame)nm.getWorld().getGame()).getHud().update();
 	}
 	
 	public void resetMovement(){
@@ -131,6 +134,6 @@ public class Player {
 		if(temp == null)
 			return;
 		temp.getManager().getWorld().animatedSetLoc(temp.getLocation(),0.054392019f);
-		NavalGame.getHud().setEntity(temp);
+		((NavalGame)temp.getManager().getWorld().getGame()).getHud().setEntity(temp);
 	}
 }

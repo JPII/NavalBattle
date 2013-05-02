@@ -31,12 +31,12 @@ public class SinglePlayerGame extends BaseWindow {
 	String playerName;
 	
 	public SinglePlayerGame(){
+		GameComponent.frame = this;
 		myHandler.registerWhiteList(this);
 		playerName = "";
 		if(NavalBattle.getRoketGamer().getPlayer()!=null)
 			playerName = NavalBattle.getRoketGamer().getPlayer().getName();
 		sm = new StageManager(playerName);
-		GameComponent.frame = this;
 		game = sm.getGameComponent();
 	}
 	
@@ -72,5 +72,9 @@ public class SinglePlayerGame extends BaseWindow {
 	
 	public void toggleFullscreen(){
 		game.toggleFullscreen();
+	}
+	
+	public NavalGame getGame(){
+		return game.getGame();
 	}
 }

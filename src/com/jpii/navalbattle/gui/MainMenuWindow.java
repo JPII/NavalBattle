@@ -34,7 +34,7 @@ import com.jpii.navalbattle.renderer.Helper;
 public class MainMenuWindow extends BaseWindow {
 	private static final long serialVersionUID = 1L;
 	JButton btnRoketGamer;
-	SinglePlayerGame spg;
+	public static SinglePlayerGame spg;
 
 	/**
 	 * <code>MainMenuWindow</code> constructor.

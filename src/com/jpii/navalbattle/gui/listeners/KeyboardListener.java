@@ -20,7 +20,6 @@ package com.jpii.navalbattle.gui.listeners;
 import java.awt.event.*;
 import java.util.ArrayList;
 
-import com.jpii.navalbattle.game.NavalGame;
 import com.jpii.navalbattle.game.SinglePlayerGame;
 import com.jpii.navalbattle.gui.*;
 
@@ -63,25 +62,25 @@ public class KeyboardListener implements KeyListener {
 					g.setNewGame();
 				}
 				if(k.getKeyCode() == KeyEvent.VK_H){
-					NavalGame.getHud().togglePinable();
+					g.getGame().getHud().togglePinable();
 				}
 				if(k.getKeyCode() == KeyEvent.VK_M){
-					NavalGame.getHud().getMid().moveAction();
+					g.getGame().getHud().getMid().moveAction();
 				}
 				if(k.getKeyCode() == KeyEvent.VK_G || k.getKeyCode() == KeyEvent.VK_1){
-					NavalGame.getHud().getMid().primaryAction();
+					g.getGame().getHud().getMid().primaryAction();
 				}
 				if(k.getKeyCode() == KeyEvent.VK_2 || k.getKeyCode() == KeyEvent.VK_A){
-					NavalGame.getHud().getMid().secondaryAction();
+					g.getGame().getHud().getMid().secondaryAction();
 				}
 				if(k.getKeyCode() == KeyEvent.VK_S){
-					NavalGame.getHud().getMid().shopAction();
+					g.getGame().getHud().getMid().shopAction();
 				}
 				if(k.getKeyCode() == KeyEvent.VK_D){
-					NavalGame.getHud().getMid().submergeAction();
+					g.getGame().getHud().getMid().submergeAction();
 				}
 				if(k.getKeyCode() == KeyEvent.VK_N || k.getKeyCode() == KeyEvent.VK_T){
-					NavalGame.getHud().getMid().turnAction();
+					g.getGame().getHud().getMid().turnAction();
 				}
 			}
 		}

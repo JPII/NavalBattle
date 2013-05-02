@@ -43,7 +43,6 @@ public class NavalBattle {
 	private static WindowHandler windowHandler;
 	private static LocalizationManager localizationManager;
 	private static BroadcastService broadcastService;
-	
 	/**
 	 * <code>NavalBattle</code> main method. Ran on launch.
 	 * @param args

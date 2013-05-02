@@ -20,36 +20,35 @@ import com.jpii.navalbattle.pavo.gui.NewWindowManager;
 public class StageManager {
 	
 	private GameComponent game;
+	private NavalManager nm;
 	int stageNumber;
 	Player persists;
+	String playerName;
 	AI ai;
 	GridHelper gh;
 	
-	public StageManager(String playerName){
+	public StageManager(String pn){
 		stageNumber = 0;
+		playerName = pn;
 		if(playerName.equals(""))
 			playerName = "Player 1";
-		ai = new AI(NavalGame.getManager());
-		persists = new Player(playerName);
+		game = newGameComponent();
 	}
 	/**
 	 * @return the GameComponent
 	 */
 	public GameComponent getGameComponent(){
-		stageNumber++;
-		GameComponent temp = newGameComponent(stageNumber);
-		setStage(stageNumber);
-		return temp;
+		return game;
 	}
 	
-	private GameComponent newGameComponent(int num){
+	private GameComponent newGameComponent(){
+		stageNumber++;
 		if(game!=null) {
 			System.out.println("Disposing.");
 			game.dispose();
 		}
-		switch(num){
+		switch(stageNumber){
 			case 1: Game.Settings.resetSeed(0); 
-					NavalManager.setTurnManager(new TurnManager(new PlayerManager(persists,ai)));
 					game=new GameComponent(new NavalGame(WorldSize.WORLD_TINY));
 					break;
 			case 2: Game.Settings.resetSeed(10); game=new GameComponent(new NavalGame(WorldSize.WORLD_SMALL));  break;
@@ -58,15 +57,19 @@ public class StageManager {
 			case 5: Game.Settings.resetSeed(25); game=new GameComponent(new NavalGame(WorldSize.WORLD_SMALL));  break;
 			default: Game.Settings.resetSeed(1000); game=new GameComponent(new NavalGame(WorldSize.WORLD_MEDIUM));  break;
 		}
+		nm = game.getGame().getManager();
+		persists = new Player(playerName,nm);
+		ai = new AI(nm);
+		setStage();
 		return game;
 	}
 	
-	private void setStage(int num){
-		NavalManager nm = NavalGame.getManager();
+	private void setStage(){
+		testWait();
+		game.getGame().getManager().setTurnManager(new TurnManager(new PlayerManager(persists,ai)));
 		TurnManager tm = nm.getTurnManager();
 		NewWindowManager wm = nm.getWorld().getGame().getWindows();
-		testWait();
-		switch(num){
+		switch(stageNumber){
 			case 1: 
 				addEntities(persists, 1, 0, 0, 0);
 				addEntities(ai, 1, 0, 0, 0);
@@ -87,12 +90,11 @@ public class StageManager {
 	}
 	
 	private void testWait(){
-		while(NavalManager.isGenerating())
+		while(game.getGame().getManager().isGenerating())
 			;
 	}
 	
-	private void addEntities(Player p, int bss, int subs, int acs,int ports){		
-		NavalManager nm = NavalGame.getManager();
+	private void addEntities(Player p, int bss, int subs, int acs,int ports){	
 		gh = new GridHelper(0,nm);
 		boolean placed = false;
 		Location poll;
@@ -103,8 +105,11 @@ public class StageManager {
 			while (!placed){
 				poll = gh.pollNextWaterTile();
 				placed = true;
-				if(GridHelper.canPlaceInGrid(nm,GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT, poll.getRow(), poll.getCol(), 4))
+				System.out.println("test");
+				if(GridHelper.canPlaceInGrid(nm,GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT, poll.getRow(), poll.getCol(), 4)){
+					System.out.println("NULL INCOMING:"+nm+" p:"+p+" tm:"+tm);
 					tm.addEntity(new BattleShip(nm, poll, GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT),p);
+				}
 				else if(GridHelper.canPlaceInGrid(nm,GridedEntityTileOrientation.ORIENTATION_TOPTOBOTTOM, poll.getRow(), poll.getCol(), 4))
 					tm.addEntity(new BattleShip(nm, poll,GridedEntityTileOrientation.ORIENTATION_TOPTOBOTTOM),p);
 				else
@@ -152,7 +157,6 @@ public class StageManager {
 	}
 	
 	private void addWhales(int whales){
-		NavalManager nm = NavalGame.getManager();
 		GridHelper gh = new GridHelper(0,nm);
 		boolean placed = false;
 		Location poll;			

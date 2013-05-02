@@ -26,7 +26,7 @@ import com.jpii.navalbattle.util.WindowLib;
 
 public class GameComponent extends JComponent {
 	private static final long serialVersionUID = 1L;
-	public static JFrame frame;
+	static JFrame frame;
 	Timer ticker;
 	Timer logicUpdator;
 	NavalGame game;

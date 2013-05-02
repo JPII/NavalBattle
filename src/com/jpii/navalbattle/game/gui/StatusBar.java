@@ -19,12 +19,12 @@ import javax.swing.ImageIcon;
 public class StatusBar extends PWindow {
 	BufferedImage icn_mouse;
 	int mx, my;
-	Game gameThing;
+	NavalGame gameThing;
 	
 	/**
 	 * Initializes a new instance of <code>StatusBar</code>
 	 */
-	public StatusBar(NewWindowManager parent, Game game) {
+	public StatusBar(NewWindowManager parent, NavalGame game) {
 		super(parent);
 		gameThing = game;
 		icn_mouse = FileUtils.getImage("icons/game/mouse.png");
@@ -53,9 +53,9 @@ public class StatusBar extends PWindow {
 		g.draw3DRect(width-111,2,100,20,true);
 		g.draw3DRect(width-110,3,98,18,true);
 		g.setColor(Color.white);
-		String score = "Score: "+NavalGame.getManager().getTurnManager().getTurn().getPlayer().getScore();
 		int sd = 2;
-		g.drawString(score, width-110+sd, 17);
+		if(gameThing!=null&&gameThing.getManager()!=null&&gameThing.getManager().getTurnManager()!=null)
+			g.drawString("Score: "+gameThing.getManager().getTurnManager().getTurn().getPlayer().getScore(), width-110+sd, 17);
 		
 		g.setColor(Color.black);
 		g.fillRect(width-221, 2, 100, 20);
@@ -64,8 +64,7 @@ public class StatusBar extends PWindow {
 		g.draw3DRect(width-220,3,98,18,true);
 		g.setColor(Color.white);
 		if(gameThing!=null)
-		g.drawString("Time: " + gameThing.getWorld().getTimeManager().getCurrentHour() + ":00"
-				, width-220+sd, 17);
+			g.drawString("Time: " + gameThing.getWorld().getTimeManager().getCurrentHour() + ":00", width-220+sd, 17);
 		
 		g.setColor(Color.black);
 		g.fillRect(width-326, 2, 100, 20);
