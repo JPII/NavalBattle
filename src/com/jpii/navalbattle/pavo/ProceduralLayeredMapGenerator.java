@@ -95,6 +95,8 @@ public class ProceduralLayeredMapGenerator {
 				(lvl2)+(lvl3)) * 0.03053435114503816793893129770992) + (lvl2*0.02);
 		double mixed = (((mixer+1)*0.5)-0.1);
 		
+		mixed = ((mixed * 95.0) + (berlin.noise1((x*z)+z)*5.0))/100.0;
+		
 		//if (mixed > 0.57)
 			//mixed += 0.19;
 		

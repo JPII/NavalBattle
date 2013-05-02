@@ -61,7 +61,7 @@ public class Perlin extends Generator {
         return lerp(w, lerp(v, lerp(u, c1, c2), lerp(u, c3, c4)),
                        lerp(v, lerp(u, c5, c6), lerp(u, c7, c8)));
     }
-    private float noise1(float x)
+    public float noise1(float x)
     {
         float t = x + N;
         int bx0 = ((int) t) & BM;
