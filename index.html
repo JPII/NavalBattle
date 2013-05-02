@@ -1,81 +1,136 @@
-<!doctype html>
-<html>
+<!DOCTYPE html>
+<html lang="en">
   <head>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
     <title>NavalBattle</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
 
-    <link rel="stylesheet" href="stylesheets/styles.css">
-    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!-- Le styles -->
+    <link href="assets/css/bootstrap.css" rel="stylesheet">
+    <link href="assets/css/bootstrap-responsive.css" rel="stylesheet">
+    <link href="assets/css/docs.css" rel="stylesheet">
+    <link href="assets/js/google-code-prettify/prettify.css" rel="stylesheet">
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
-    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+      <script src="assets/js/html5shiv.js"></script>
     <![endif]-->
+
+    <!-- Le fav and touch icons -->
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="assets/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="assets/ico/apple-touch-icon-114-precomposed.png">
+      <link rel="apple-touch-icon-precomposed" sizes="72x72" href="assets/ico/apple-touch-icon-72-precomposed.png">
+                    <link rel="apple-touch-icon-precomposed" href="assets/ico/apple-touch-icon-57-precomposed.png">
+                                   <link rel="shortcut icon" href="assets/ico/favicon.png">
+
   </head>
-  <body>
-    <div class="wrapper">
-      <header>
-        <h1>NavalBattle</h1>
-        <p>Strategic turn-based naval game.</p>
 
-        <p class="view"><small>JPII/NavalBattle</small></p>
+  <body data-spy="scroll" data-target=".bs-docs-sidebar">
 
-
-        <ul>
-          <li><a href="https://roketgamer.com">View on <strong>RoketGamer</strong></a></li>
-          <li><a href="updates.html">View <strong>Updates</strong></a></li>
-          <li><a href="https://github.com/JPII/NavalBattle">View On <strong>GitHub</strong></a></li>
-        </ul>
-      </header>
-      <section>
-		<p>A new RoketGamer-powered game. Coming soon.</p>
-
-		<p><a href="https://github.com/JPII/NavalBattle/wiki/Snapshots">For visual snapshots of the latest commits and information see this wiki page</a></p>
-
-		<h2>Dependencies</h2>
-
-		<p>We depend on the following projects. We plan on moving to Maven soon to help automatically handle dependencies.</p>
-
-		<ul>
-		<li>GameKit</li>
-		<li>Apache Commons IO, Lang, Codec</li>
-		</ul><h2>Members</h2>
-
-		<ul>
-		<li>
-		<strong>TexasGamer</strong> - SCM manager, RoketGamer lead</li>
-		<li>
-		<strong>abauer</strong> - game design lead</li>
-		<li>
-		<strong>DarkWarHero</strong> - AI lead</li>
-		<li>
-		<strong>maximusvladimir</strong> - grid and rendering lead</li>
-		<li>
-		<strong>smeagle42</strong> - art lead, music lead</li>
-		<li>
-		<strong>Matthis5point0</strong> - QA lead, game-play lead</li>
-		</ul><h2>License</h2>
-
-		<p>NavalBattle is licensed under the irrevocable GNU General Public License v3.</p>
-
-		<h2>Versioning</h2>
-
-		<p>NavalBattle will be released with the following versioning scheme:</p>
-
-		<pre><code>major.minor.build
-		</code></pre>
-
-		<p>Names of United States Navy ships will be used for codenames.</p>
-
-		<h2>Commit updates</h2>
-
-		<p>Follow @NavalBattle for real-time commit logs.</p>
-      </section>
-      <footer>
-        <p><small>Hosted on GitHub Pages &mdash; &copy; 2013 JPII and contributors</small></p>
-      </footer>
+    <!-- Navbar
+    ================================================== -->
+    <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="brand" href="index.html">NavalBattle</a>
+          <div class="nav-collapse collapse">
+            <ul class="nav">
+              <li class="active">
+                <a href="index.html">Home</a>
+              </li>
+              <li class="">
+                <a href="updates.html">Updates</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
     </div>
-    <script src="javascripts/scale.fix.js"></script>
-    
+
+<div class="jumbotron masthead">
+  <div class="container">
+    <h1>NavalBattle</h1>
+    <p>Strategic turn-based naval game.</p>
+    <p>
+      <a href="assets/bootstrap.zip" class="btn btn-primary btn-large" >Download NavalBattle</a>
+    </p>
+    <ul class="masthead-links">
+      <li>
+        <a href="http://github.com/twitter/bootstrap" >GitHub project</a>
+      </li>
+      <li>
+        <a href="http://roketgamer.com" >RoketGamer</a>
+      </li>
+      <li>
+        <a href="updates.html" >Update History</a>
+      </li>
+      <li>
+        Version 1.0
+      </li>
+    </ul>
+  </div>
+</div>
+
+<div class="bs-docs-social">
+  <div class="container">
+    <ul class="bs-docs-social-buttons">
+      <li>
+        <iframe class="github-btn" src="http://ghbtns.com/github-btn.html?user=JPII&repo=NavalBattle&type=watch&count=true" allowtransparency="true" frameborder="0" scrolling="0" width="100px" height="20px"></iframe>
+      </li>
+      <li>
+        <iframe class="github-btn" src="http://ghbtns.com/github-btn.html?user=JPII&repo=NavalBattle&type=fork&count=true" allowtransparency="true" frameborder="0" scrolling="0" width="102px" height="20px"></iframe>
+      </li>
+    </ul>
+  </div>
+
+    <!-- Footer
+    ================================================== -->
+    <footer class="footer">
+      <div class="container">
+        <p>Designed and built by <a href="http://github.com/JPII" target="_blank">JPII</a>.</p>
+        <p>Code licensed under <a href="http://www.gnu.org/licenses/gpl.html" target="_blank">GNU General Public License v3</a>.</p>
+        <ul class="footer-links">
+          <li><a href="https://github.com/JPII/NavalBattle/issues?state=open">Issues</a></li>
+          <li class="muted">&middot;</li>
+          <li><a href="updates.html">Changelog</a></li>
+        </ul>
+      </div>
+    </footer>
+</div>
+
+
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
+    <script src="assets/js/jquery.js"></script>
+    <script src="assets/js/bootstrap-transition.js"></script>
+    <script src="assets/js/bootstrap-alert.js"></script>
+    <script src="assets/js/bootstrap-modal.js"></script>
+    <script src="assets/js/bootstrap-dropdown.js"></script>
+    <script src="assets/js/bootstrap-scrollspy.js"></script>
+    <script src="assets/js/bootstrap-tab.js"></script>
+    <script src="assets/js/bootstrap-tooltip.js"></script>
+    <script src="assets/js/bootstrap-popover.js"></script>
+    <script src="assets/js/bootstrap-button.js"></script>
+    <script src="assets/js/bootstrap-collapse.js"></script>
+    <script src="assets/js/bootstrap-carousel.js"></script>
+    <script src="assets/js/bootstrap-typeahead.js"></script>
+    <script src="assets/js/bootstrap-affix.js"></script>
+
+    <script src="assets/js/holder/holder.js"></script>
+    <script src="assets/js/google-code-prettify/prettify.js"></script>
+
+    <script src="assets/js/application.js"></script>
+
+
+
   </body>
 </html>
