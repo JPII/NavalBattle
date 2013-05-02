@@ -28,15 +28,18 @@ public class Achievement {
 	
 	private int id;
 	private String name;
+	private boolean isSecret;
 	
 	/**
 	 * Create a new <code>Achievement</code>.
 	 * @param id
 	 * @param name
+	 * @param isSecret
 	 */
-	public Achievement(int id, String name) {
+	public Achievement(int id, String name, boolean isSecret) {
 		this.id = id;
 		this.name = name;
+		this.isSecret = isSecret;
 	}
 	
 	/**
@@ -53,6 +56,14 @@ public class Achievement {
 	 */
 	public String getName() {
 		return name;
+	}
+	
+	/**
+	 * Returns if <code>Achievement</code> is secret.
+	 * @return
+	 */
+	public boolean isSecret() {
+		return isSecret;
 	}
 	
 	/**
