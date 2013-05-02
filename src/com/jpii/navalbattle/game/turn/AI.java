@@ -57,6 +57,7 @@ public class AI extends Player{
 					determineCurrentEnemiesS(currentEntity);
 					organizeMoveableEnemiesHP(primaryEnemies);
 					organizeMoveableEnemiesHP(secondaryEnemies);
+					shipShopping(currentEntity);
 					attackEnemies(1, currentEntity);
 					}
 			
@@ -69,6 +70,7 @@ public class AI extends Player{
 				determineCurrentEnemiesS(currentEntity);
 				organizeMoveableEnemiesHP(primaryEnemies);
 				organizeMoveableEnemiesHP(secondaryEnemies);
+				shipShopping(currentEntity);
 				attackEnemies(2, currentEntity);
 				}
 				}
@@ -81,6 +83,7 @@ public class AI extends Player{
 					determineCurrentEnemiesS(currentEntity);
 					organizeMoveableEnemiesHP(primaryEnemies);
 					organizeMoveableEnemiesHP(secondaryEnemies);
+					shipShopping(currentEntity);
 					attackEnemies(3, currentEntity);
 					}
 				}
@@ -92,19 +95,51 @@ public class AI extends Player{
 		turnOver=true;
 
 	}
-	public void shipShopping(MoveableEntity E){
+	public void shipShopping(MoveableEntity e){
 		//hull upgrade: 200
+		if(this.getScore()>250 && e.getPercentHealth()<50){
+		this.subtractscore(200);
+		e.hardenHull();
+		}
+		
 		//Missile X5 : 250
+		if(this.getScore()>300 && primaryEnemies.size()>3){
+		this.subtractscore(250);
+		e.increaseMissile();
+		}
+		
 		//increase range 700
+		if(this.getScore()>750 && e.getPercentHealth()>50 && primaryEnemies.size()<1){
+		this.subtractscore(700);
+		e.increaseRange();
+		}
+		
 		//anti missile 350
+		if(this.getScore()>400 && primaryEnemies.size()>4){
+		this.subtractscore(350);
+		e.deflectMissile();
+		}
+		
 		//repair ship 300		
+		if(this.getScore()> 350 && e.getPercentHealth()<25){
+			this.subtractscore(300);
+			e.repair();
+		}
 	}
 	
-	public void portShopping(PortEntity P){
+	public void portShopping(PortEntity p){
 		//purchase battleship 1000
+		this.subtractscore(1000);
+		p.spawnBattleship();
 		//purchase sub 1250
+		this.subtractscore(1250);
+		p.spawnSubmarine();
 		//purchase ac 1250
+		this.subtractscore(1250);
+		p.spawnAC();
 		//repair port 500
+		this.subtractscore(500);
+		p.repair();
 		
 	}
 
