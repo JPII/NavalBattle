@@ -102,28 +102,28 @@ import com.jpii.navalbattle.util.RoketUtils;
 			bship.addMouseListener(new PMouseEvent(){
 				public void mouseDown(int x, int y, int buttonid) {
 					buyBattleShip();
-					RoketUtils.submitAchievement(RoketGamerData.ACHIEVEMENT_PORKCHOP);
+					RoketUtils.submitAchievement(RoketGamerData.ACHIEVEMENT_THRIFT_SHOP);
 				}
 			});
 			
 			sub.addMouseListener(new PMouseEvent(){
 				public void mouseDown(int x, int y, int buttonid) {
 					buySubmarine();
-					RoketUtils.submitAchievement(RoketGamerData.ACHIEVEMENT_PORKCHOP);
+					RoketUtils.submitAchievement(RoketGamerData.ACHIEVEMENT_THRIFT_SHOP);
 				}
 			});
 			
 			ac.addMouseListener(new PMouseEvent(){
 				public void mouseDown(int x, int y, int buttonid) {
 					buyCarrier();
-					RoketUtils.submitAchievement(RoketGamerData.ACHIEVEMENT_PORKCHOP);
+					RoketUtils.submitAchievement(RoketGamerData.ACHIEVEMENT_THRIFT_SHOP);
 				}
 			});
 			
 			repair.addMouseListener(new PMouseEvent(){
 				public void mouseDown(int x, int y, int buttonid) {
 					repairAction();
-					RoketUtils.submitAchievement(RoketGamerData.ACHIEVEMENT_PORKCHOP);
+					RoketUtils.submitAchievement(RoketGamerData.ACHIEVEMENT_THRIFT_SHOP);
 				}
 			});
 		}

@@ -113,35 +113,35 @@ import com.jpii.navalbattle.util.RoketUtils;
 			hull.addMouseListener(new PMouseEvent(){
 				public void mouseDown(int x, int y, int buttonid) {
 					hardenHullAction();
-					RoketUtils.submitAchievement(RoketGamerData.ACHIEVEMENT_PORKCHOP);
+					RoketUtils.submitAchievement(RoketGamerData.ACHIEVEMENT_THRIFT_SHOP);
 				}
 			});
 			
 			missile.addMouseListener(new PMouseEvent(){
 				public void mouseDown(int x, int y, int buttonid) {
 					increaseMissileAction();
-					RoketUtils.submitAchievement(RoketGamerData.ACHIEVEMENT_PORKCHOP);
+					RoketUtils.submitAchievement(RoketGamerData.ACHIEVEMENT_THRIFT_SHOP);
 				}
 			});
 			
 			range.addMouseListener(new PMouseEvent(){
 				public void mouseDown(int x, int y, int buttonid) {
 					increaseRangeAction();
-					RoketUtils.submitAchievement(RoketGamerData.ACHIEVEMENT_PORKCHOP);
+					RoketUtils.submitAchievement(RoketGamerData.ACHIEVEMENT_THRIFT_SHOP);
 				}
 			});
 			
 			antimissile.addMouseListener(new PMouseEvent(){
 				public void mouseDown(int x, int y, int buttonid) {
 					deflectMisileAction();
-					RoketUtils.submitAchievement(RoketGamerData.ACHIEVEMENT_PORKCHOP);
+					RoketUtils.submitAchievement(RoketGamerData.ACHIEVEMENT_THRIFT_SHOP);
 				}
 			});
 			
 			repair.addMouseListener(new PMouseEvent(){
 				public void mouseDown(int x, int y, int buttonid) {
 					repairAction();
-					RoketUtils.submitAchievement(RoketGamerData.ACHIEVEMENT_PORKCHOP);
+					RoketUtils.submitAchievement(RoketGamerData.ACHIEVEMENT_THRIFT_SHOP);
 				}
 			});
 		}

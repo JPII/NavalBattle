@@ -5,6 +5,8 @@ import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 
 import maximusvladimir.dagen.Rand;
+
+import com.jpii.navalbattle.data.RoketGamerData;
 import com.jpii.navalbattle.game.NavalManager;
 import com.jpii.navalbattle.game.turn.TurnManager;
 import com.jpii.navalbattle.pavo.Game;
@@ -14,6 +16,7 @@ import com.jpii.navalbattle.pavo.grid.EntityManager;
 import com.jpii.navalbattle.pavo.grid.GridHelper;
 import com.jpii.navalbattle.pavo.grid.GridedEntityTileOrientation;
 import com.jpii.navalbattle.pavo.grid.Location;
+import com.jpii.navalbattle.util.RoketUtils;
 
 public class PortEntity extends AnimatedEntity {
 	private static final long serialVersionUID = 1L;
@@ -183,6 +186,7 @@ public class PortEntity extends AnimatedEntity {
 		if(currentHealth <= 0){
 			flag = true; // changed teams;
 			repair();
+			RoketUtils.submitAchievement(RoketGamerData.ACHIEVEMENT_PORKCHOP);
 		}
 		return flag;
 	}
