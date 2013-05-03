@@ -1,5 +1,6 @@
 package com.jpii.navalbattle.game.entity;
 
+import com.jpii.navalbattle.data.RoketGamerData;
 import com.jpii.navalbattle.game.NavalManager;
 import com.jpii.navalbattle.pavo.Game;
 import com.jpii.navalbattle.pavo.grid.Entity;
@@ -7,6 +8,7 @@ import com.jpii.navalbattle.pavo.grid.EntityManager;
 import com.jpii.navalbattle.pavo.grid.GridedEntityTileOrientation;
 import com.jpii.navalbattle.pavo.grid.Location;
 import com.jpii.navalbattle.pavo.grid.Tile;
+import com.jpii.navalbattle.util.RoketUtils;
 
 public class MoveableEntity extends Entity {
 	private static final long serialVersionUID = 1L;
@@ -422,6 +424,9 @@ public class MoveableEntity extends Entity {
 		if(currentHealth<=0){
 			currentHealth=0;
 			((NavalManager)getManager()).getGame().getTurnManager().removeEntity(this);
+			
+			if(this instanceof BattleShip)
+				RoketUtils.submitAchievement(RoketGamerData.ACHIEVEMENT_SUNK_MY_BATTLESHIP);
 			return dispose();
 		}
 		return((b4>25&&getPercentHealth()<25));
