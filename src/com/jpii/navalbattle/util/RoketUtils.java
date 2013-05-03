@@ -3,6 +3,7 @@ package com.jpii.navalbattle.util;
 import javax.swing.ImageIcon;
 
 import com.jpii.navalbattle.NavalBattle;
+import com.jpii.navalbattle.data.RoketGamerData;
 import com.roketgamer.achievement.Achievement;
 import com.roketgamer.leaderboard.Leaderboard;
 
@@ -20,6 +21,8 @@ public class RoketUtils {
 				NavalBattle.getWindowHandler().getToasterManager().showToaster(
 						new ImageIcon(RoketUtils.class.getResource("/com/roketgamer/res/logo_100px.png")),
 						"Submitted score of " + score + " to server");
+				
+				submitAchievement(RoketGamerData.ACHIEVEMENT_SYNCING_SHIP);
 			} else {
 				NavalBattle.getDebugWindow().printWarning("NavalBattle is outdated. Score cannot be submitted.");
 			}
