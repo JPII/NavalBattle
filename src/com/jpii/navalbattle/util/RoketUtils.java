@@ -38,8 +38,10 @@ public class RoketUtils {
 			if(!NavalBattle.getBroadcastService().needsUpdate()) {
 				achievement.submit();
 				NavalBattle.getWindowHandler().getToasterManager().showToaster(
-						new ImageIcon(RoketUtils.class.getResource("/com/roketgamer/res/logo_100px.png")),
-						"Achievement Unlocked: " + achievement.getName());
+						new ImageIcon(NavalBattle.class.getResource("/com/roketgamer/res/logo_100px.png")), 
+						"Achievement Unlocked!\n" + achievement.getName());
+				
+				NavalBattle.getDebugWindow().printInfo("Achievement \"" + achievement.getName() + "\" submitted.");
 			} else {
 				NavalBattle.getDebugWindow().printWarning("NavalBattle is outdated. Acheivement cannot be submitted.");
 			}
