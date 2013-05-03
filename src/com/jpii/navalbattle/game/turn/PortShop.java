@@ -23,9 +23,9 @@ import com.jpii.navalbattle.pavo.gui.events.PMouseEvent;
 			setSize(500, 250);
 			setLoc(390, 275);
 			setText("Port Shop");
+			port = pe;
 			initItems();
 			
-			port = pe;
 			current = null;
 			if(port == null){
 				super.setVisible(false);
