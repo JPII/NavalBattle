@@ -33,7 +33,7 @@ public class RoketUtils {
 	 * @param achievement
 	 * @param score
 	 */
-	public static void submitAchievement(Achievement achievement, int score) {
+	public static void submitAchievement(Achievement achievement) {
 		if(!NavalBattle.getGameState().isOffline()) {
 			if(!NavalBattle.getBroadcastService().needsUpdate()) {
 				achievement.submit();
