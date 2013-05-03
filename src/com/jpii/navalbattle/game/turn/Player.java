@@ -138,7 +138,7 @@ public class Player {
 
 	public boolean ownsEntity() {
 		for(int index = 0; index<entities.size();index++){
-			if(entities.get(0).getHandle()%10 == 1)
+			if(entities.get(index).getHandle()%10 == 1)
 				return true;
 		}
 		return false;
@@ -146,7 +146,7 @@ public class Player {
 
 	public boolean ownsPort() {		
 		for(int index = 0; index<entities.size();index++){
-			if(entities.get(0).getHandle() == 2)
+			if(entities.get(index).getHandle() == 2)
 				return true;
 		}		
 		return false;

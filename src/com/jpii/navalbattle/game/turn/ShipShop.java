@@ -24,9 +24,9 @@ import com.jpii.navalbattle.pavo.gui.events.PMouseEvent;
 			setSize(500, 250);
 			setLoc(390, 275);
 			setText("Ship Shop");
+			move = e;
 			initItems();
 			
-			move = e;
 			current = null;
 			missile.setVisible(true);
 			if(move == null)

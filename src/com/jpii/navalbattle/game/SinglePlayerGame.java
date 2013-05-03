@@ -41,7 +41,7 @@ public class SinglePlayerGame extends BaseWindow {
 	}
 	
 	public void setNewGame(){
-		game = sm.getGameComponent();
+		game = sm.newGameComponent();
 		setSize(Game.Settings.initialWidth,Game.Settings.initialHeight-40);
 		setGameVars();
 	}

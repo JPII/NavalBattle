@@ -62,19 +62,21 @@ public class TurnManager {
 		
 		for(int index = 0; index<players.players.size(); index++){
 			if(!flag)
-				flag = doesPlayerHaveEntities(players.getPlayer(index));
+				flag = (!doesPlayerHaveEntities(players.getPlayer(index)));
 			if(!flag)
-				flag = doesPlayerHavePort(players.getPlayer(index));		
+				flag = (!doesPlayerHavePort(players.getPlayer(index)));		
 		}
 		System.out.println("T/F The game is over "+flag);
-//		MainMenuWindow.spg.getStageManager().checkForCompletion(flag);
+		MainMenuWindow.spg.getStageManager().checkForCompletion(flag);
 	}
 	
 	private boolean doesPlayerHaveEntities(Player p){
+		System.out.println(p.ownsEntity());
 		return p.ownsEntity();
 	}
 	
 	private boolean doesPlayerHavePort(Player p){
+		System.out.println(p.ownsPort());
 		return p.ownsPort();
 	}
 }

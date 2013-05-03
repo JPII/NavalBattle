@@ -50,7 +50,7 @@ public class StageManager {
 		return game;
 	}
 	
-	private GameComponent newGameComponent(){
+	public GameComponent newGameComponent(){
 		stageNumber++;
 		if(game!=null) {
 			game.dispose();
@@ -87,11 +87,12 @@ public class StageManager {
 				tm.addEntity(new PortEntity(nm,poll,GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT),ai);
 				new TutorialWindow(wm,"Test","a;ldsjf;lkasd","as");
 				break;
-			case 2:  break;
-			case 3:  break;
-			case 4:  break;
-			case 5:  break;
-		   default:  break;
+		   default:
+			   	addEntities(persists, 3, 3, 3, 2);
+				addEntities(ai, 3, 3, 3, 2);
+				addWhales(10);
+				new TutorialWindow(wm,"You have","created a","default stage");
+				break;
 		}
 		System.out.println("Let me play you the sounds of my people people");
 	}
