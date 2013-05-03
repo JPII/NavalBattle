@@ -2,6 +2,7 @@ package com.jpii.navalbattle.game.turn;
 
 import java.awt.Font;
 
+import com.jpii.navalbattle.data.RoketGamerData;
 import com.jpii.navalbattle.game.NavalManager;
 import com.jpii.navalbattle.game.entity.MoveableEntity;
 import com.jpii.navalbattle.pavo.gui.NewWindowManager;
@@ -9,6 +10,7 @@ import com.jpii.navalbattle.pavo.gui.controls.PButton;
 import com.jpii.navalbattle.pavo.gui.controls.PText;
 import com.jpii.navalbattle.pavo.gui.controls.PWindow;
 import com.jpii.navalbattle.pavo.gui.events.PMouseEvent;
+import com.jpii.navalbattle.util.RoketUtils;
 
 	public class ShipShop extends PWindow {
 		
@@ -111,30 +113,35 @@ import com.jpii.navalbattle.pavo.gui.events.PMouseEvent;
 			hull.addMouseListener(new PMouseEvent(){
 				public void mouseDown(int x, int y, int buttonid) {
 					hardenHullAction();
+					RoketUtils.submitAchievement(RoketGamerData.ACHIEVEMENT_PORKCHOP);
 				}
 			});
 			
 			missile.addMouseListener(new PMouseEvent(){
 				public void mouseDown(int x, int y, int buttonid) {
 					increaseMissileAction();
+					RoketUtils.submitAchievement(RoketGamerData.ACHIEVEMENT_PORKCHOP);
 				}
 			});
 			
 			range.addMouseListener(new PMouseEvent(){
 				public void mouseDown(int x, int y, int buttonid) {
 					increaseRangeAction();
+					RoketUtils.submitAchievement(RoketGamerData.ACHIEVEMENT_PORKCHOP);
 				}
 			});
 			
 			antimissile.addMouseListener(new PMouseEvent(){
 				public void mouseDown(int x, int y, int buttonid) {
 					deflectMisileAction();
+					RoketUtils.submitAchievement(RoketGamerData.ACHIEVEMENT_PORKCHOP);
 				}
 			});
 			
 			repair.addMouseListener(new PMouseEvent(){
 				public void mouseDown(int x, int y, int buttonid) {
 					repairAction();
+					RoketUtils.submitAchievement(RoketGamerData.ACHIEVEMENT_PORKCHOP);
 				}
 			});
 		}

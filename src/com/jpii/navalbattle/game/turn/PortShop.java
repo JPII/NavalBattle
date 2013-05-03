@@ -2,6 +2,7 @@ package com.jpii.navalbattle.game.turn;
 
 import java.awt.Font;
 
+import com.jpii.navalbattle.data.RoketGamerData;
 import com.jpii.navalbattle.game.NavalManager;
 import com.jpii.navalbattle.game.entity.PortEntity;
 import com.jpii.navalbattle.pavo.gui.NewWindowManager;
@@ -9,6 +10,7 @@ import com.jpii.navalbattle.pavo.gui.controls.PButton;
 import com.jpii.navalbattle.pavo.gui.controls.PText;
 import com.jpii.navalbattle.pavo.gui.controls.PWindow;
 import com.jpii.navalbattle.pavo.gui.events.PMouseEvent;
+import com.jpii.navalbattle.util.RoketUtils;
 
 	public class PortShop extends PWindow {
 		
@@ -100,24 +102,28 @@ import com.jpii.navalbattle.pavo.gui.events.PMouseEvent;
 			bship.addMouseListener(new PMouseEvent(){
 				public void mouseDown(int x, int y, int buttonid) {
 					buyBattleShip();
+					RoketUtils.submitAchievement(RoketGamerData.ACHIEVEMENT_PORKCHOP);
 				}
 			});
 			
 			sub.addMouseListener(new PMouseEvent(){
 				public void mouseDown(int x, int y, int buttonid) {
 					buySubmarine();
+					RoketUtils.submitAchievement(RoketGamerData.ACHIEVEMENT_PORKCHOP);
 				}
 			});
 			
 			ac.addMouseListener(new PMouseEvent(){
 				public void mouseDown(int x, int y, int buttonid) {
 					buyCarrier();
+					RoketUtils.submitAchievement(RoketGamerData.ACHIEVEMENT_PORKCHOP);
 				}
 			});
 			
 			repair.addMouseListener(new PMouseEvent(){
 				public void mouseDown(int x, int y, int buttonid) {
 					repairAction();
+					RoketUtils.submitAchievement(RoketGamerData.ACHIEVEMENT_PORKCHOP);
 				}
 			});
 		}
