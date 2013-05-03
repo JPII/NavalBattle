@@ -1,9 +1,11 @@
 package com.jpii.navalbattle.game.turn;
 
 import com.jpii.navalbattle.data.Constants;
+import com.jpii.navalbattle.data.RoketGamerData;
 import com.jpii.navalbattle.game.NavalManager;
 import com.jpii.navalbattle.game.entity.MoveableEntity;
 import com.jpii.navalbattle.game.entity.PortEntity;
+import com.jpii.navalbattle.util.RoketUtils;
 
 public class DamageCalculator {
 	
@@ -14,6 +16,9 @@ public class DamageCalculator {
 		
 		if(calculateDeflect(take)){
 			nm.getGame().getTurnManager().findPlayer(take).addscore(Constants.DEFLECT_SHOT_SCORE);
+			
+			if(take.getPercentHealth() <= 25)
+				RoketUtils.submitAchievement(RoketGamerData.ACHIEVEMENT_LUCKY_SHOT);
 		} else if(take.takeDamage(calculatePrimaryDamage(deal, take))){
 			player.addscore(Constants.HIT_SHIP_SCORE);
 			if(take == null || take.isDisposed()){
@@ -47,6 +52,9 @@ public class DamageCalculator {
 		
 		if(calculateDeflect(take)){
 			nm.getGame().getTurnManager().findPlayer(take).addscore(Constants.DEFLECT_SHOT_SCORE);
+			
+			if(take.getPercentHealth() <= 25)
+				RoketUtils.submitAchievement(RoketGamerData.ACHIEVEMENT_LUCKY_SHOT);
 		} else if(take.takeDamage(calculatePrimaryDamage(deal, take))) {
 			player.addscore(Constants.HIT_SHIP_SCORE);
 			if(take == null || take.isDisposed()){
