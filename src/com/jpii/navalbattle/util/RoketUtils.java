@@ -39,12 +39,17 @@ public class RoketUtils {
 	public static void submitAchievement(Achievement achievement) {
 		if(!NavalBattle.getGameState().isOffline()) {
 			if(!NavalBattle.getBroadcastService().needsUpdate()) {
-				achievement.submit();
-				NavalBattle.getWindowHandler().getToasterManager().showToaster(
-						new ImageIcon(NavalBattle.class.getResource("/com/roketgamer/res/logo_100px.png")), 
-						"Achievement Unlocked!\n" + achievement.getName());
-				
-				NavalBattle.getDebugWindow().printInfo("Achievement \"" + achievement.getName() + "\" submitted.");
+				if(!achievement.hasAchieved()) {
+					achievement.submit();
+					
+					NavalBattle.getWindowHandler().getToasterManager().showToaster(
+							new ImageIcon(NavalBattle.class.getResource("/com/roketgamer/res/logo_100px.png")), 
+							"Achievement Unlocked!\n" + achievement.getName());
+					
+					NavalBattle.getDebugWindow().printInfo("Achievement \"" + achievement.getName() + "\" submitted.");
+				} else {
+					NavalBattle.getDebugWindow().printWarning("Achievement \"" + achievement.getName() + "\" has already been submitted.");
+				}
 			} else {
 				NavalBattle.getDebugWindow().printWarning("NavalBattle is outdated. Acheivement cannot be submitted.");
 			}
