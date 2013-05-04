@@ -425,7 +425,7 @@ public class MoveableEntity extends Entity {
 			currentHealth=0;
 			((NavalManager)getManager()).getGame().getTurnManager().removeEntity(this);
 			
-			if(this instanceof BattleShip)
+			if(this.getHandle() == 31)
 				RoketUtils.submitAchievement(RoketGamerData.ACHIEVEMENT_SUNK_MY_BATTLESHIP);
 			return dispose();
 		}
