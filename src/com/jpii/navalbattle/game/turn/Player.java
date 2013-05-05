@@ -38,14 +38,14 @@ public class Player {
 	}
 	
 	public void takeTurn(){
-		reset();
+		resetTurn();
 	}
 	
 	public void endTurn(){
 		
 	}
 	
-	public void reset(){
+	public void resetTurn(){
 		resetMovement();
 		resetAttack();
 		if(entities.size()>0&&entities.get(0)!=null)

@@ -19,7 +19,7 @@ public class PlayerManager {
 	
 	public void reset(int turnnumber){
 		Player temp = getPlayer(turnnumber);
-		temp.reset();
+		temp.resetTurn();
 	}
 	
 	public void addPlayer(Player p){

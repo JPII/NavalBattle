@@ -12,6 +12,7 @@ import com.jpii.navalbattle.pavo.gui.NewWindowManager;
 import com.jpii.navalbattle.pavo.gui.controls.PWindow;
 import com.jpii.navalbattle.game.turn.DamageCalculator;
 import com.jpii.navalbattle.game.turn.TurnManager;
+import com.jpii.navalbattle.gui.MainMenuWindow;
 
 public class HUD extends PWindow{
 	
@@ -124,6 +125,7 @@ public class HUD extends PWindow{
 				move.addMovement(rowchange);
 			else
 				move.addMovement(colchange);
+			easterEgg16(y,x);
 			update();
 			return true;
 		}
@@ -139,6 +141,7 @@ public class HUD extends PWindow{
 				move.addMovement(rowchange);
 			else
 				move.addMovement(colchange);
+			easterEgg16(y,x);
 			update();
 			return true;
 		}
@@ -229,6 +232,39 @@ public class HUD extends PWindow{
 	
 	public MidHud getMid(){
 		return mid;
+	}
+	
+	private void easterEgg16(int r, int c){
+		if(r == 1 && c == 16){
+			if(MainMenuWindow.spg.getStageManager().getStageNumber()>10){
+				if(isPrime(MainMenuWindow.spg.getStageManager().getStageNumber())){
+					if(move.getHandle()==31){
+						System.out.println("The time has come!");
+						MainMenuWindow.spg.getStageManager().easterEgg16();
+					}
+				}
+			}
+		}
+	}
+	
+	private boolean isPrime(int ask){
+		if(ask==1)
+			return false;
+		boolean[] tests = new boolean[ask];
+		for(int index = 0; index<ask; index++){
+			tests[index]=true;
+		}
+		
+		int size = 2;
+		while(size<ask){
+			for(int index = 1; index<=ask; index++){
+				if(index!=size)
+					if(index%size==0)
+						tests[index-1]=false;
+			}
+			size++;
+		}
+		return tests[ask-1];
 	}
 	
 }

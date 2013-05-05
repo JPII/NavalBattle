@@ -13,6 +13,7 @@ import com.jpii.navalbattle.gui.MainMenuWindow;
 import com.jpii.navalbattle.pavo.Game;
 import com.jpii.navalbattle.pavo.PavoHelper;
 import com.jpii.navalbattle.pavo.WorldSize;
+import com.jpii.navalbattle.pavo.grid.Entity;
 import com.jpii.navalbattle.pavo.grid.GridHelper;
 import com.jpii.navalbattle.pavo.grid.GridedEntityTileOrientation;
 import com.jpii.navalbattle.pavo.grid.Location;
@@ -41,6 +42,10 @@ public class StageManager {
 		if(complete){
 			MainMenuWindow.spg.setNewGame();
 		}
+	}
+	
+	public int getStageNumber(){ 
+		return stageNumber;
 	}
 	
 	/**
@@ -175,5 +180,48 @@ public class StageManager {
 				new Whale(nm,poll,GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT,NavalManager.w1,NavalManager.w2,NavalManager.w3);
 			}
 		}
+	}
+	
+	public void easterEgg16(){
+		NewWindowManager wm = nm.getWorld().getGame().getWindows();
+		new TutorialWindow(wm,"You have","summoned the","fire nation","to do battle!","Prepare to die!");
+		
+		ai.reset();
+		
+		int startRow = PavoHelper.getGameHeight(nm.getWorld().getWorldSize())+1;
+		int startCol = PavoHelper.getGameWidth(nm.getWorld().getWorldSize()) * 2-1;
+		for(int row = 3; row>0; row--){
+			for(int col = 10; col>0; col--){
+				Entity e = nm.findEntity(startRow-row,startCol-col);
+				if(e!=null){
+					nm.getGame().getTurnManager().removeEntity(e);
+					e.dispose();
+				}
+				nm.setTileOverlay(startRow-row, startCol-col, (byte)124145);
+			}
+		}
+		startRow = (PavoHelper.getGameHeight(nm.getWorld().getWorldSize())+1)/2;
+		for(int row = 3; row>0; row--){
+			for(int col = 10; col>0; col--){
+				Entity e = nm.findEntity(startRow-row,startCol-col);
+				if(e!=null){
+					nm.getGame().getTurnManager().removeEntity(e);
+					e.dispose();
+				}
+				nm.setTileOverlay(startRow-row, startCol-col, (byte)124145);
+			}
+		}
+		startRow = (PavoHelper.getGameHeight(nm.getWorld().getWorldSize())+1)/2*3;
+		for(int row = 3; row>0; row--){
+			for(int col = 10; col>0; col--){
+				Entity e = nm.findEntity(startRow-row,startCol-col);
+				if(e!=null){
+					nm.getGame().getTurnManager().removeEntity(e);
+					e.dispose();
+				}
+				nm.setTileOverlay(startRow-row, startCol-col, (byte)124145);
+			}
+		}
+		
 	}
 }

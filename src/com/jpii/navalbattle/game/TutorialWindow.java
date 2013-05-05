@@ -22,7 +22,7 @@ public class TutorialWindow extends PWindow {
 		for(int index=0;index<text.length;index++){
 			texts[index] = new PText(this);
 			texts[index].setText(text[index]);
-			texts[index].setLoc((getWidth()/2)-(texts[index].getWidth()/2), index*20+5);
+			texts[index].setLoc((getWidth()/2)-(texts[index].getWidth()/2), (index+1)*20+5);
 			addControl(texts[index]);
 		}
 	}

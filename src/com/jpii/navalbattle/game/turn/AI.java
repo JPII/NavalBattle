@@ -496,6 +496,24 @@ public class AI extends Player{
 		}
 	}
 	
+	public void reset(){
+		if(entities.size()==0)
+			return;
+		NavalManager nm = (NavalManager)entities.get(0).getManager();
+		
+		for(int index = 0; index<primaryEnemies.size(); index+=0){
+			primaryEnemies.get(index).dispose();
+			nm.getGame().getTurnManager().removeEntity(primaryEnemies.remove(index));
+		}
+		for(int index = 0; index<secondaryEnemies.size(); index+=0){
+			secondaryEnemies.get(index).dispose();
+			nm.getGame().getTurnManager().removeEntity(secondaryEnemies.remove(index));
+		}
+		for(int index = 0; index<entities.size(); index+=0){
+			entities.get(index).dispose();
+			nm.getGame().getTurnManager().removeEntity(entities.remove(index));
+		}
+	}
 	
 	public void endTurn(){
 		super.endTurn();
