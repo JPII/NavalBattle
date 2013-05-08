@@ -99,7 +99,6 @@ public class StageManager {
 				new TutorialWindow(wm,"You have","created a","default stage");
 				break;
 		}
-		System.out.println("Let me play you the sounds of my people people");
 	}
 	
 	private void waitForGenerator(){
