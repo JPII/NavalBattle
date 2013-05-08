@@ -46,7 +46,8 @@ public class RoketUtils {
 					NavalBattle.getWindowHandler().getToasterManager().showToaster(
 							new ImageIcon(NavalBattle.class.getResource("/com/roketgamer/res/logo_100px.png")), 
 							"Achievement Unlocked!\n" + achievement.getName());
-					// TODO: Sound
+
+					SoundUtils.playSound(RoketUtils.class.getResourceAsStream("/com/jpii/navalbattle/res/sfx/achievement.wav"));
 					
 					NavalBattle.getDebugWindow().printInfo("Achievement \"" + achievement.getName() + "\" submitted.");
 				} else {
