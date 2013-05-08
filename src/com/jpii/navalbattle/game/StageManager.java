@@ -31,7 +31,7 @@ public class StageManager {
 	GridHelper gh;
 	
 	public StageManager(String pn){
-		stageNumber = 10;
+		stageNumber = 0;
 		playerName = pn;
 		if(playerName.equals(""))
 			playerName = "Player 1";
