@@ -2,6 +2,7 @@ package com.jpii.navalbattle.game.turn;
 
 import java.util.ArrayList;
 
+import com.jpii.navalbattle.game.NavalGame;
 import com.jpii.navalbattle.game.NavalManager;
 import com.jpii.navalbattle.pavo.Game;
 import com.jpii.navalbattle.pavo.grid.Entity;
@@ -38,11 +39,29 @@ public class AI extends Player{
 		secondaryEnemies.add(e);
 	}
 	
+	public static void delay(int n)
+	{
+		long startDelay = System.currentTimeMillis();
+		long endDelay = 0;
+		while (endDelay - startDelay < n)
+			endDelay = System.currentTimeMillis();
+	}
 	
 	public void takeTurn(){
 		for(int k = 0; k < getTotalEntities(); k++)
 		{
 			Entity ent = getEntity(k);
+			
+		//	this.nextEntity(ent);
+			//delay(10000);
+			/*while (ent.getManager().getWorld().isBeingAnimated()) {
+				try {
+					Thread.sleep(0);
+				}
+				catch (Throwable t) {
+					
+				}
+			}*/
 			
 			if(ent.getHandle()%10 == 1){
 				MoveableEntity currentEntity;

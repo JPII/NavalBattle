@@ -213,6 +213,11 @@ public class World extends Renderable implements Interactable {
 	public void forceRender() {
 		chunkrender = true;
 	}
+	
+	public boolean isBeingAnimated() {
+		return !stopani;
+	}
+	
 	public synchronized void render() {
 		if (!stopani) {
 			int destx = anix;
