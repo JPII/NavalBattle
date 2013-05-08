@@ -94,12 +94,12 @@ public class ProceduralLayeredMapGenerator {
 		double mixer = (((lvl0*26.76f)+(lvl4*3.9f)+
 				(lvl2)+(lvl3)) * 0.03053435114503816793893129770992) + (lvl2*0.02);
 		double mixed = (((mixer+1)*0.5)-0.1);
-		double fd3n = berlin.noise1(((x*z)+z)/30);
+		/*double fd3n = berlin.noise1(((x*z)+z)/30);
 		if (fd3n < 0)
 			fd3n = fd3n * -1;
 		if (fd3n > 1)
 			fd3n = 1;
-		mixed = ((mixed * 60.0) + (fd3n*40.0))/100.0;
+		mixed = ((mixed * 60.0) + (fd3n*40.0))/100.0;*/
 		
 		//if (mixed > 0.57)
 			//mixed += 0.19;
