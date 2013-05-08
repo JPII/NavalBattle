@@ -46,6 +46,11 @@ public class MidHud{
 	int width,height;
 	
 	String secondary = "Missiles";
+	String bullets = "Guns";
+	String store = "Shop";
+	String friend = "Diplomacy";
+	String transport = "Move";
+	String submerge = "Submerge";
 	
 	TurnManager tm;
 	
@@ -87,12 +92,12 @@ public class MidHud{
 		Font temp = g.getFont();
 		Font perks = new Font("Arial",0,10);
 		g.setFont(perks);
-		g.drawString("Shop",(width/2)-148,height-62);
+		g.drawString(store,(width/2)-148,height-62);
 		g.drawString(secondary,(width/2)-91,height-62);
-		g.drawString("Guns",(width/2)-28,height-62);
-		g.drawString("Diplomacy",(width/2)+18,height-62);
-		g.drawString("Move",(width/2)+92,height-62);
-		g.drawString("Submerge",(width/2)+142,height-62);
+		g.drawString(bullets,(width/2)-28,height-62);
+		g.drawString(friend,(width/2)+18,height-62);
+		g.drawString(transport,(width/2)+92,height-62);
+		g.drawString(submerge,(width/2)+142,height-62);
 		g.setFont(temp);
 	}
 	
@@ -110,7 +115,6 @@ public class MidHud{
 		elevation.setVisible(false);
 		elevationB.setVisible(false);
 		airstrike.setVisible(false);
-<<<<<<< HEAD
 		
 		secondary = "";
 		bullets = "";
@@ -118,55 +122,57 @@ public class MidHud{
 		friend = "";
 		transport = "";
 		submerge = "";
-=======
-		secondary = "Missile";
->>>>>>> parent of 3b98fc7... Button Work
 		
 		if(display!=null){
 			diplomacy.setVisible(true);
 			diplomacyB.setVisible(true);
+			friend = "Diplomacy";
 			if(moveE!=null){
 				if(moveE.getHandle()==11){
 					Submarine sub = (Submarine)moveE;
 					elevationB.setVisible(true);
+					submerge = "Submerge";
 					if(!sub.isSumberged()&&sub.canSubmerge()&&tm.getTurn().getPlayer().myEntity(sub))
 						elevation.setVisible(true);
 				}
-				if(moveE.getMaxMovement()!=moveE.getMoved())
+				if(moveE.getMaxMovement()!=moveE.getMoved() && tm.getTurn().getPlayer().myEntity(moveE))
 					move.setVisible(true);
-				if(!moveE.getUsedGuns())
+				if(!moveE.getUsedGuns() && tm.getTurn().getPlayer().myEntity(moveE))
 					bullet.setVisible(true);
 				if(!moveE.getUsedMissiles())
 					missile.setVisible(true);
 				if(tm.getTurn().getPlayer().myEntity(moveE)){
+					moveB.setVisible(true);
+					missileB.setVisible(true);
+					bulletB.setVisible(true);
+					shopB.setVisible(true);
 					diplomacy.setVisible(false);
 					diplomacyB.setVisible(false);
 					shop.setVisible(true);
-<<<<<<< HEAD
 					friend = "";
 					secondary = "Missile";
 					bullets = "Guns";
 					store = "Shop";
 					transport = "Move";
-=======
->>>>>>> parent of 3b98fc7... Button Work
 				}
-				moveB.setVisible(true);
-				missileB.setVisible(true);
-				bulletB.setVisible(true);
-				shopB.setVisible(true);
 				if(moveE.getHandle()==21){
 					airstrike.setVisible(!moveE.getUsedMissiles());
 					missile.setVisible(false);
 					friend = "";
 					secondary = "Airstrike";
+					bullets = "Guns";
+					store = "Shop";
 				}
 			}
 			if(display.getHandle()%10 == 2){
 				PortEntity temp = (PortEntity) display;
-				shopB.setVisible(true);
+				diplomacyB.setVisible(false);
+				diplomacy.setVisible(false);
+				friend = "";
 				if(tm.getTurn().getPlayer().myEntity(temp)){
 					shop.setVisible(true);
+					shopB.setVisible(true);
+					store = "Shop";
 				}
 			}
 		}
