@@ -258,6 +258,14 @@ public class AI extends Player{
 		}
 	}
 	
+	public int diplomacyCost(Player p){
+		return 100;
+	}
+	
+	public void recieveDiplomacy(){
+		
+	}
+	
 	private void determineDiplomacy(){
 			int diplomacyLevel = 0;
 			for(int k = 0; k < getTotalEntities(); k++)

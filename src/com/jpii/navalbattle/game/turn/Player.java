@@ -93,7 +93,7 @@ public class Player {
 		return entities.size();
 	}
 	
-	public void addscore(int add){
+	public void addScore(int add){
 		score +=add;
 	}
 	
@@ -150,5 +150,14 @@ public class Player {
 				return true;
 		}		
 		return false;
+	}
+	
+	public int diplomacyCost(Player p){
+		// new request window
+		return 100;
+	}
+	
+	public void recieveDiplomacy(){
+		
 	}
 }

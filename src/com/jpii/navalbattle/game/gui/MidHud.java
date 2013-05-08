@@ -14,6 +14,7 @@ import com.jpii.navalbattle.pavo.gui.controls.Control;
 import com.jpii.navalbattle.pavo.gui.controls.PButton;
 import com.jpii.navalbattle.pavo.gui.controls.PImage;
 import com.jpii.navalbattle.pavo.gui.events.PMouseEvent;
+import com.jpii.navalbattle.game.turn.Player;
 import com.jpii.navalbattle.game.turn.PortShop;
 import com.jpii.navalbattle.game.turn.ShipShop;
 import com.jpii.navalbattle.game.turn.TurnManager;
@@ -233,6 +234,12 @@ public class MidHud{
 			}
 		});
 		
+		diplomacy.addMouseListener(new PMouseEvent(){
+			public void mouseDown(int x, int y, int buttonid) {
+				diplomacyAction();
+			}
+		});
+		
 		missileB.addMouseListener(new PMouseEvent(){
 			public void mouseDown(int x, int y, int buttonid) {
 				secondaryAction();
@@ -268,6 +275,23 @@ public class MidHud{
 				if(moveE.isPrimaryTileBeingShown())	
 					moveE.togglePrimaryRange();	
 				moveE.toggleMoveable();
+			}
+		}
+		update();
+	}
+	
+	public void diplomacyAction(){
+		if(diplomacy.isVisible()){
+			if(moveE!=null) {
+				Player ai = tm.findPlayer(moveE);
+				Player me = tm.getTurn().getPlayer();
+				if(!me.equals(ai)){
+					if(me.getScore()>=ai.diplomacyCost(me)){
+						me.subtractscore(ai.diplomacyCost(me));
+						ai.addScore(ai.diplomacyCost(me));
+						ai.recieveDiplomacy();
+					}
+				}
 			}
 		}
 		update();
