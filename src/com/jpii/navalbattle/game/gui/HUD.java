@@ -116,8 +116,8 @@ public class HUD extends PWindow{
 			if(move.isMovableTileBeingShown()){
 				move.toggleMoveable();
 			}
-			//move.moveTo(new Location(y,x));
-			move.animatedMoveTo(new Location(y,x), 0.45f);
+			move.moveTo(new Location(y,x));
+//			move.animatedMoveTo(new Location(y,x), 0.45f);
 			System.out.println("[chat] Moving ship from ("+startr+","+startc+") to ("+move.getLocation().getRow()+","+move.getLocation().getCol()+")");
 			int rowchange = Math.abs(startr - (move.getLocation().getRow())); 
 			int colchange = Math.abs(startc - (move.getLocation().getCol()));
