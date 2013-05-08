@@ -86,7 +86,7 @@ public class Commands {
 	    add(new Command("addscore", "<score>", "Add to game score", new CommandAction() { 
 	    	public void onRun(Command c, String[] args) {
 	    		try {
-	    			MainMenuWindow.spg.getGame().getTurnManager().getTurn().getPlayer().addscore(Integer.parseInt(args[0]));
+	    			MainMenuWindow.spg.getGame().getTurnManager().getTurn().getPlayer().addScore(Integer.parseInt(args[0]));
 		    		NavalBattle.getDebugWindow().printInfo("Game score set to " + MainMenuWindow.spg.getGame().getTurnManager().getTurn().getPlayer().getScore());
 	    		} catch (Exception ex) {
 	    			NavalBattle.getDebugWindow().printError("Missing or invalid arg: score");

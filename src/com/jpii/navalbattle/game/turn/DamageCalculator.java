@@ -15,14 +15,14 @@ public class DamageCalculator {
 		deal.usePrimary();
 		
 		if(calculateDeflect(take)){
-			nm.getGame().getTurnManager().findPlayer(take).addscore(Constants.DEFLECT_SHOT_SCORE);
+			nm.getGame().getTurnManager().findPlayer(take).addScore(Constants.DEFLECT_SHOT_SCORE);
 			
 			if(take.getPercentHealth() <= 25)
 				RoketUtils.submitAchievement(RoketGamerData.ACHIEVEMENT_LUCKY_SHOT);
 		} else if(take.takeDamage(calculatePrimaryDamage(deal, take))){
-			player.addscore(Constants.HIT_SHIP_SCORE);
+			player.addScore(Constants.HIT_SHIP_SCORE);
 			if(take == null || take.isDisposed()){
-				player.addscore(Constants.SINK_SHIP_SCORE);
+				player.addScore(Constants.SINK_SHIP_SCORE);
 			}
 		}
 		
@@ -36,7 +36,7 @@ public class DamageCalculator {
 		
 		if(!calculateDeflect(take)) {
 			if(take.takeDamage(calculatePrimaryDamage(deal,take))) {
-				player.addscore(Constants.DESTROY_PORT_SCORE);
+				player.addScore(Constants.DESTROY_PORT_SCORE);
 				nm.getGame().getTurnManager().removeEntity(take);
 				player.addEntity(take);
 			}
@@ -51,14 +51,14 @@ public class DamageCalculator {
 		deal.useSecondary();
 		
 		if(calculateDeflect(take)){
-			nm.getGame().getTurnManager().findPlayer(take).addscore(Constants.DEFLECT_SHOT_SCORE);
+			nm.getGame().getTurnManager().findPlayer(take).addScore(Constants.DEFLECT_SHOT_SCORE);
 			
 			if(take.getPercentHealth() <= 25)
 				RoketUtils.submitAchievement(RoketGamerData.ACHIEVEMENT_LUCKY_SHOT);
 		} else if(take.takeDamage(calculatePrimaryDamage(deal, take))) {
-			player.addscore(Constants.HIT_SHIP_SCORE);
+			player.addScore(Constants.HIT_SHIP_SCORE);
 			if(take == null || take.isDisposed()){
-				player.addscore(Constants.SINK_SHIP_SCORE);
+				player.addScore(Constants.SINK_SHIP_SCORE);
 			}
 		}
 		
@@ -72,7 +72,7 @@ public class DamageCalculator {
 		
 		if(!calculateDeflect(take)) {
 			if(take.takeDamage(calculateSecondaryDamage(deal,take))){
-				player.addscore(Constants.DESTROY_PORT_SCORE);
+				player.addScore(Constants.DESTROY_PORT_SCORE);
 				nm.getGame().getTurnManager().removeEntity(take);
 				player.addEntity(take);
 			}
