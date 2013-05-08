@@ -116,22 +116,20 @@ public class MidHud{
 		elevationB.setVisible(false);
 		airstrike.setVisible(false);
 		
-		secondary = "";
-		bullets = "";
-		store = "";
-		friend = "";
-		transport = "";
-		submerge = "";
+		secondary = "Missile";
+		bullets = "Guns";
+		store = "Shop";
+		friend = "Diplomacy";
+		transport = "Move";
+		submerge = "Submerge";
 		
 		if(display!=null){
 			diplomacy.setVisible(true);
 			diplomacyB.setVisible(true);
-			friend = "Diplomacy";
 			if(moveE!=null){
 				if(moveE.getHandle()==11){
 					Submarine sub = (Submarine)moveE;
 					elevationB.setVisible(true);
-					submerge = "Submerge";
 					if(!sub.isSumberged()&&sub.canSubmerge()&&tm.getTurn().getPlayer().myEntity(sub))
 						elevation.setVisible(true);
 				}
@@ -149,30 +147,18 @@ public class MidHud{
 					diplomacy.setVisible(false);
 					diplomacyB.setVisible(false);
 					shop.setVisible(true);
-					friend = "";
-					secondary = "Missile";
-					bullets = "Guns";
-					store = "Shop";
-					transport = "Move";
 				}
 				if(moveE.getHandle()==21){
 					airstrike.setVisible(!moveE.getUsedMissiles());
 					missile.setVisible(false);
-					friend = "";
 					secondary = "Airstrike";
-					bullets = "Guns";
-					store = "Shop";
 				}
 			}
 			if(display.getHandle()%10 == 2){
 				PortEntity temp = (PortEntity) display;
-				diplomacyB.setVisible(false);
-				diplomacy.setVisible(false);
-				friend = "";
 				if(tm.getTurn().getPlayer().myEntity(temp)){
 					shop.setVisible(true);
 					shopB.setVisible(true);
-					store = "Shop";
 				}
 			}
 		}
