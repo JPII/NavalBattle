@@ -94,7 +94,7 @@ public class MidHud{
 		Font perks = new Font("Arial",0,10);
 		g.setFont(perks);
 		g.drawString(store,(width/2)-148,height-62);
-		g.drawString(secondary,(width/2)-91,height-62);
+		g.drawString(secondary,(width/2)-93,height-62);
 		g.drawString(cannon,(width/2)-28,height-62);
 		g.drawString(friend,(width/2)+18,height-62);
 		g.drawString(transport,(width/2)+92,height-62);
@@ -144,10 +144,8 @@ public class MidHud{
 					bullet.setVisible(true);
 					cannon = "Guns";
 				}
-				if(!moveE.getUsedMissiles()){
+				if(!moveE.getUsedMissiles())
 					missile.setVisible(true);
-					secondary = "Missiles";
-				}
 				if(tm.getTurn().getPlayer().myEntity(moveE)){
 					diplomacy.setVisible(false);
 					diplomacyB.setVisible(false);
@@ -158,6 +156,7 @@ public class MidHud{
 				}
 				moveB.setVisible(true);
 				missileB.setVisible(true);
+				secondary = "Missiles";
 				bulletB.setVisible(true);
 				if(moveE.getHandle()==21){
 					airstrike.setVisible(!moveE.getUsedMissiles());
