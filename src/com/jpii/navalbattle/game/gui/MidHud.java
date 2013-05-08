@@ -44,6 +44,7 @@ public class MidHud{
 	NewWindowManager parent;
 	
 	int width,height;
+	
 	String secondary = "Missiles";
 	String bullets = "Guns";
 	String store = "Shop";
@@ -114,6 +115,7 @@ public class MidHud{
 		elevation.setVisible(false);
 		elevationB.setVisible(false);
 		airstrike.setVisible(false);
+		
 		secondary = "";
 		bullets = "";
 		store = "";
@@ -146,8 +148,8 @@ public class MidHud{
 					shopB.setVisible(true);
 					diplomacy.setVisible(false);
 					diplomacyB.setVisible(false);
-					friend = "";
 					shop.setVisible(true);
+					friend = "";
 					secondary = "Missile";
 					bullets = "Guns";
 					store = "Shop";
@@ -156,6 +158,7 @@ public class MidHud{
 				if(moveE.getHandle()==21){
 					airstrike.setVisible(!moveE.getUsedMissiles());
 					missile.setVisible(false);
+					friend = "";
 					secondary = "Airstrike";
 					bullets = "Guns";
 					store = "Shop";
