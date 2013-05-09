@@ -73,12 +73,10 @@ public class TurnManager {
 	}
 	
 	private boolean doesPlayerHaveEntities(Player p){
-		System.out.println(p.ownsEntity());
 		return p.ownsEntity();
 	}
 	
 	private boolean doesPlayerHavePort(Player p){
-		System.out.println(p.ownsPort());
 		return p.ownsPort();
 	}
 }
