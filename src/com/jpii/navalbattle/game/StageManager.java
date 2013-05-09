@@ -18,6 +18,8 @@ import com.jpii.navalbattle.pavo.grid.GridHelper;
 import com.jpii.navalbattle.pavo.grid.GridedEntityTileOrientation;
 import com.jpii.navalbattle.pavo.grid.Location;
 import com.jpii.navalbattle.pavo.gui.NewWindowManager;
+import com.jpii.navalbattle.util.RoketUtils;
+import com.jpii.navalbattle.util.SoundUtils;
 
 public class StageManager {
 	
@@ -39,7 +41,8 @@ public class StageManager {
 	}
 	
 	public void checkForCompletion(boolean complete){
-		if(complete){
+		if(complete) {
+			SoundUtils.playSound(RoketUtils.class.getResourceAsStream("/com/jpii/navalbattle/res/sfx/nextround.wav"));
 			MainMenuWindow.spg.setNewGame();
 		}
 	}
