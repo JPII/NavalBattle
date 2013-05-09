@@ -140,10 +140,8 @@ public class MidHud{
 					move.setVisible(true);
 					transport = "Move";
 				}
-				if(!moveE.getUsedGuns()){
+				if(!moveE.getUsedGuns())
 					bullet.setVisible(true);
-					cannon = "Guns";
-				}
 				if(!moveE.getUsedMissiles())
 					missile.setVisible(true);
 				if(tm.getTurn().getPlayer().myEntity(moveE)){
@@ -158,6 +156,7 @@ public class MidHud{
 				missileB.setVisible(true);
 				secondary = "Missiles";
 				bulletB.setVisible(true);
+				cannon = "Guns";
 				if(moveE.getHandle()==21){
 					airstrike.setVisible(!moveE.getUsedMissiles());
 					missile.setVisible(false);
