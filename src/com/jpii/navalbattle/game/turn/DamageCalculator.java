@@ -6,6 +6,7 @@ import com.jpii.navalbattle.game.NavalManager;
 import com.jpii.navalbattle.game.entity.MoveableEntity;
 import com.jpii.navalbattle.game.entity.PortEntity;
 import com.jpii.navalbattle.util.RoketUtils;
+import com.jpii.navalbattle.util.SoundUtils;
 
 public class DamageCalculator {
 	
@@ -24,6 +25,7 @@ public class DamageCalculator {
 			if(take == null || take.isDisposed()){
 				player.addScore(Constants.SINK_SHIP_SCORE);
 			}
+			SoundUtils.playSound(RoketUtils.class.getResourceAsStream("/com/jpii/navalbattle/res/sfx/shot.wav"));
 		}
 		
 		nm.getGame().getTurnManager().checkDone();
@@ -40,6 +42,7 @@ public class DamageCalculator {
 				nm.getGame().getTurnManager().removeEntity(take);
 				player.addEntity(take);
 			}
+			SoundUtils.playSound(RoketUtils.class.getResourceAsStream("/com/jpii/navalbattle/res/sfx/shot.wav"));
 		}
 		
 		nm.getGame().getTurnManager().checkDone();
@@ -60,6 +63,7 @@ public class DamageCalculator {
 			if(take == null || take.isDisposed()){
 				player.addScore(Constants.SINK_SHIP_SCORE);
 			}
+			SoundUtils.playSound(RoketUtils.class.getResourceAsStream("/com/jpii/navalbattle/res/sfx/shot.wav"));
 		}
 		
 		nm.getGame().getTurnManager().checkDone();
@@ -76,6 +80,7 @@ public class DamageCalculator {
 				nm.getGame().getTurnManager().removeEntity(take);
 				player.addEntity(take);
 			}
+			SoundUtils.playSound(RoketUtils.class.getResourceAsStream("/com/jpii/navalbattle/res/sfx/shot.wav"));
 		}
 		
 		nm.getGame().getTurnManager().checkDone();
