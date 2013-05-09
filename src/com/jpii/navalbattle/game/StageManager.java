@@ -40,10 +40,15 @@ public class StageManager {
 		game = newGameComponent();
 	}
 	
-	public void checkForCompletion(boolean complete){
+	public void checkForCompletion(boolean complete,int index){		
 		if(complete) {
-			SoundUtils.playSound(RoketUtils.class.getResourceAsStream("/com/jpii/navalbattle/res/sfx/nextround.wav"));
-			MainMenuWindow.spg.setNewGame();
+			if(index==0){
+				//gameover
+			}
+			else{
+				SoundUtils.playSound(RoketUtils.class.getResourceAsStream("/com/jpii/navalbattle/res/sfx/nextround.wav"));
+				MainMenuWindow.spg.setNewGame();
+			}
 		}
 	}
 	

@@ -1,5 +1,6 @@
 package com.jpii.navalbattle.game.turn;
 
+import com.jpii.navalbattle.game.StageManager;
 import com.jpii.navalbattle.gui.MainMenuWindow;
 import com.jpii.navalbattle.pavo.grid.Entity;
 
@@ -57,17 +58,18 @@ public class TurnManager {
 	}
 	
 	public void checkDone(){
-		System.out.println("Checking game progress");
 		boolean flag = false;
-		
+		StageManager sm = MainMenuWindow.spg.getStageManager();
 		for(int index = 0; index<players.players.size(); index++){
-			if(!flag)
+			if(!flag){
 				flag = (!doesPlayerHaveEntities(players.getPlayer(index)));
-			if(!flag)
-				flag = (!doesPlayerHavePort(players.getPlayer(index)));		
+				sm.checkForCompletion(flag,index);
+			}
+			if(!flag){
+				flag = (!doesPlayerHavePort(players.getPlayer(index)));
+				sm.checkForCompletion(flag,index);
+			}
 		}
-		System.out.println("T/F The game is over "+flag);
-		MainMenuWindow.spg.getStageManager().checkForCompletion(flag);
 	}
 	
 	private boolean doesPlayerHaveEntities(Player p){
