@@ -20,6 +20,7 @@ package com.roketgamer.achievement;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.URL;
+import java.net.URLConnection;
 
 import com.roketgamer.RoketGamer;
 
@@ -75,6 +76,12 @@ public class Achievement {
 
 			BufferedReader in = new BufferedReader(new InputStreamReader(url.openStream()));
 
+			URLConnection connection = url.openConnection();
+		    connection.addRequestProperty("Protocol", "Http/1.1");
+		    connection.addRequestProperty("Connection", "keep-alive");
+		    connection.addRequestProperty("Keep-Alive", "1000");
+		    connection.addRequestProperty("User-Agent", "Web-Agent");
+			
 			String result = in.readLine();
 			if (result.contains("true")) {
 				in.close();
@@ -101,6 +108,12 @@ public class Achievement {
 		try {
 			URL url = new URL(RoketGamer.SERVER_LOCATION + "/api/" + RoketGamer.VERSION + "/achievement/submit.php?session=" + RoketGamer.getInstance().getSession().getSessionKey().trim() + "id=" + id);
 
+			URLConnection connection = url.openConnection();
+		    connection.addRequestProperty("Protocol", "Http/1.1");
+		    connection.addRequestProperty("Connection", "keep-alive");
+		    connection.addRequestProperty("Keep-Alive", "1000");
+		    connection.addRequestProperty("User-Agent", "Web-Agent");
+			
 			BufferedReader in = new BufferedReader(new InputStreamReader(url.openStream()));
 
 			String result = in.readLine();
