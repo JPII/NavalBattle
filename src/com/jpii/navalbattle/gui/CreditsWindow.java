@@ -32,11 +32,11 @@ public class CreditsWindow extends BaseWindow {
 	
 	private String contributorsText = "Many thanks to our contributors who have contributed to the project:" +
 			"<ul><li><b>Anthony \"abauer\" Bauer</b> - game design lead</li>" +
-			"<li><b>Thomas \"TexasGamer\" Gaubert</b> - SCM manager, RoketGamer lead</li>" +
+			"<li><b>Thomas \"TexasGamer\" Gaubert</b> - SCM manager, RoketGamer lead, music implementation</li>" +
 			"<li><b>Max \"maximusvladimir\" Kirkby</b> - grid and rendering lead</li>" +
 			"<li><b>JR \"DarkWarHero\" Vetus</b> - AI lead</li>" +
 			"<li><b>Matt \"Matthis5point0\" Waller</b> - QA and game-play lead</li>" +
-			"<li><b>Zach \"smeagle42\" Matthewson</b> - art and music lead</li>" +
+			"<li><b>Zach \"smeagle42\" Matthewson</b> - art and music design lead</li>" +
 			"<li><b>Stephen \"szsike\" Ziske - art asset contributions</li>" +
 			"</ul>";
 
