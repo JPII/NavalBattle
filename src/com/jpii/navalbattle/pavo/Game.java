@@ -72,7 +72,7 @@ public class Game extends Renderable implements Runnable, Serializable {
 	 */
 	public Game(WorldSize ws) {
 		server = new NavalServer(this);
-		System.out.println("Server status: " + server.start());
+		//System.out.println("Server status: " + server.start());
 		windowsnt = new NewWindowManager(this);
 		world = new World(this,ws);
 		threadInit();
