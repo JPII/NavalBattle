@@ -44,7 +44,7 @@ public class StageManager {
 		if(complete) {
 			if(index==0){
 				SoundUtils.playSound(RoketUtils.class.getResourceAsStream("/com/jpii/navalbattle/res/sfx/gameover.wav"));
-				// TODO: Game over
+				MainMenuWindow.spg.nextWindow("GameOverWindow");
 			} else {
 				SoundUtils.playSound(RoketUtils.class.getResourceAsStream("/com/jpii/navalbattle/res/sfx/nextround.wav"));
 				MainMenuWindow.spg.setNewGame();
