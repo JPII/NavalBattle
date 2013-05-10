@@ -464,9 +464,9 @@ public class AI extends Player{
 		}
 		while(!GridHelper.canMoveTo(e.getManager(), e, e.getCurrentOrientation(), currentY, currentX,e.getWidth()));
 		e.toggleMoveable();
-		if (!e.getManager().isEntityAnimated())
-			e.animatedMoveTo(new Location(currentY,currentX), 30);
-		else
+	//	if (!e.getManager().isEntityAnimated())
+		//	e.animatedMoveTo(new Location(currentY,currentX), 30);
+		//else
 			e.moveTo(new Location(currentY,currentX));
 		//delay
 	}
