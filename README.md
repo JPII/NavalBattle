@@ -9,11 +9,11 @@ We depend on the following projects. They can be found in the libs folder. If yo
 * Apache Commons IO, Lang, Codec
 
 ## Members
-* **TexasGamer** - SCM manager, RoketGamer lead
+* **TexasGamer** - SCM manager, RoketGamer lead, music lead
 * **abauer** - game design lead
 * **DarkWarHero** - AI lead
 * **maximusvladimir** - grid and rendering lead
-* **smeagle42** - art lead, music lead
+* **smeagle42** - art lead
 * **Matthis5point0** - QA lead, game-play lead
 
 ## License
