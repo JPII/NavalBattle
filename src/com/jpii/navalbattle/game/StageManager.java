@@ -98,9 +98,39 @@ public class StageManager {
 				tm.addEntity(new PortEntity(nm,poll,GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT),persists);
 				poll = gh.getClosestLocation(new Location(PavoHelper.getGameHeight(nm.getWorld().getWorldSize())*2-1,PavoHelper.getGameWidth(nm.getWorld().getWorldSize())*2-1), 0);
 				tm.addEntity(new PortEntity(nm,poll,GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT),ai);
-				new TutorialWindow(wm,"Test","a;ldsjf;lkasd","as");
+				new TutorialWindow(wm,"Stage 1: Attacking", "To attack, select your ship and press the attack button.", "Attack the enemy ship.");
 				break;
-		   default:
+			case 2:
+				new TutorialWindow(wm,"Stage 2: Movement", "To move, select your ship and press the move button.", "Move to ttack the enemy ship.");
+				break;
+			case 3:
+				new TutorialWindow(wm,"Stage 3: Ports", "To win a stage, take all ports or sink all ships.", "Attack the enemy port.");
+				break;
+			case 4:
+				new TutorialWindow(wm,"Stage 4: AI", "AIs will attempt to defeat you.");
+				break;
+			case 5:
+				new TutorialWindow(wm,"Stage 5: Shops", "You can buy ship upgrades in the ship shop.");
+				break;
+			case 6:
+				new TutorialWindow(wm,"Stage 6: Submarines", "Submarines are fast, lightly armored, and can submerge to avoid attacks.");
+				break;
+			case 7:
+				new TutorialWindow(wm,"Stage 7: Aircraft Carriers", "Aircraft carriers are slow, heavily armored, and have powerful airstrikes.");
+				break;
+			case 8:
+				new TutorialWindow(wm,"Stage 8: Port Shops", "You can buy ships from ports.");
+				break;
+			case 9:
+				new TutorialWindow(wm,"Stage 9: Diplomacy", "Enact diplomacy with the enemy to save your ship.", "Move your other ship for backup.");
+				break;
+			case 10:
+				new TutorialWindow(wm,"Stage 10: Battle!", "Use what you have learned to win the battle.");
+				break;
+			case 11:
+				new TutorialWindow(wm,"Congratulations!","You have passed basic training. Good luck!");
+				break;
+		    default:
 			   	addEntities(persists, 3, 3, 3, 2);
 				addEntities(ai, 3, 3, 3, 2);
 				addWhales(10);
