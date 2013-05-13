@@ -174,8 +174,8 @@ hr.soften {
   right: 0;
   bottom: 0;
   left: 0;
-  background: url(../img/bs-docs-masthead-pattern.png) repeat center center;
-  opacity: .4;
+  background: url(../img/navalwallpaper.png) repeat center center;
+  opacity: .7;
 }
 @media
 only screen and (-webkit-min-device-pixel-ratio: 2),
