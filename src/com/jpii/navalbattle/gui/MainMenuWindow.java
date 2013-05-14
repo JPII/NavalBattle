@@ -124,7 +124,8 @@ public class MainMenuWindow extends BaseWindow {
 		btnHelp.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				nextWindow("HelpWindow");
+				// nextWindow("HelpWindow");
+				URLUtils.openURL("http://jpii.github.io/NavalBattle/help.html");
 			}
 		});
 
