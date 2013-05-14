@@ -152,12 +152,5 @@ public class Player {
 		return false;
 	}
 	
-	public int diplomacyCost(Player p){
-		// new request window
-		return 100;
-	}
 	
-	public void recieveDiplomacy(){
-		
-	}
 }

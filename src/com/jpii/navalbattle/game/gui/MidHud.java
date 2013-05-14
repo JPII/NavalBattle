@@ -262,7 +262,7 @@ public class MidHud{
 		
 		diplomacy.addMouseListener(new PMouseEvent(){
 			public void mouseDown(int x, int y, int buttonid) {
-				diplomacyAction();
+				
 			}
 		});
 		
@@ -306,23 +306,7 @@ public class MidHud{
 		update();
 	}
 	
-	public void diplomacyAction(){
-		if(diplomacy.isVisible()){
-			if(moveE!=null) {
-				Player ai = tm.findPlayer(moveE);
-				Player me = tm.getTurn().getPlayer();
-				if(!me.equals(ai)){
-					if(me.getScore()>=ai.diplomacyCost(me)){
-						me.subtractscore(ai.diplomacyCost(me));
-						ai.addScore(ai.diplomacyCost(me));
-						ai.recieveDiplomacy();
-					}
-				}
-			}
-		}
-		update();
-	}
-	
+
 	public void turnAction(){
 		if(nextMove.isVisible()){
 			if(!TurnConfirmation.viewed){

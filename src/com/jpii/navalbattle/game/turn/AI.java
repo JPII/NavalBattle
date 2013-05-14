@@ -216,6 +216,7 @@ public class AI extends Player{
 		secondaryEnemies.clear();
 		primaryEnemies.clear();
 	}
+	
 	public void primaryAttack(int n, MoveableEntity currentEntity )
 	{
 		
@@ -246,6 +247,7 @@ public class AI extends Player{
 		DamageCalculator.doSecondaryDamage(currentEntity, enemyEntity);
 		}
 	}
+	
 	private void organizeMoveableEnemiesHP(ArrayList<Entity> Enemy){		
 		Entity temp;
 		for (int p = 1; p < Enemy.size(); p++){			
@@ -257,84 +259,6 @@ public class AI extends Player{
 				}
 			}
 		}
-	}
-	
-	public int diplomacyCost(Player p){
-		return 100;
-	}
-	
-	public void recieveDiplomacy(){
-		
-	}
-	
-	private void determineDiplomacy(){
-			int diplomacyLevel = 0;
-			for(int k = 0; k < getTotalEntities(); k++)
-			{
-				if(getHealth(getEntity(k))>70 && diplomacyLevel < 2){
-					diplomacyLevel = 1;
-				}
-				else if(getHealth(getEntity(k))<70 && getHealth(getEntity(k)) >40 && diplomacyLevel < 3){
-					diplomacyLevel = 2;
-				}
-				else{
-					diplomacyLevel = 3;
-				}
-			}
-			
-			if(this.getScore() > 9000)
-			{
-				if(diplomacyLevel > 0)
-					diplomacy = true;
-				
-				if(diplomacyLevel == 3){
-					this.subtractscore(8000);
-					diplomacyCounter = 5;
-				}
-				else if (diplomacyLevel == 2){
-					this.subtractscore(2000);
-					diplomacyCounter = 3;
-				}
-				else if (diplomacyLevel == 1){
-					this.subtractscore(500);
-					diplomacyCounter = 1;
-				}
-			}
-			else if(this.getScore() > 3000){
-				if(diplomacyLevel > 0)
-					diplomacy = true;
-				
-				if (diplomacyLevel == 2 || diplomacyLevel == 3){
-					this.subtractscore(2000);
-					diplomacyCounter = 3;
-				}
-				else if (diplomacyLevel == 1){
-					this.subtractscore(500);
-					diplomacyCounter = 1;
-				}
-				
-			}
-			
-			else if(this.getScore() > 1500){
-				if(diplomacyLevel > 0){
-					diplomacy = true;
-					this.subtractscore(500);
-					diplomacyCounter = 1;
-				}
-				
-			}
-			
-			
-			//long diplomacy cost: 8000 5 turns
-			//medium diplomacy cost: 2000 3 turns
-			//short diplomacy cost: 500 1 turn
-			
-			// TODO: JR, add the following line when the user purchases diplomacy:
-			// NavalBattle.getGameState().addPointsSpent(DIPLOMACY_COST);
-			// Replace DIPLOMACY_COST with the actual value
-			// ONLY FOR WHEN THE *PLAYER* PURCHASES
-		
-			
 	}
 	
 	private int getHealth(Entity e){
