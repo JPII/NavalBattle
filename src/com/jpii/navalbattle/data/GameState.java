@@ -17,9 +17,12 @@
 
 package com.jpii.navalbattle.data;
 
+import com.jpii.navalbattle.util.RoketUtils;
+
 public class GameState {
 	
 	private boolean offline = true;
+	private int pointsSpent = 0;
 	
 	/**
 	 * Get if game is in off-line mode.
@@ -35,5 +38,30 @@ public class GameState {
 	 */
 	public void setOffline(boolean offline) {
 		this.offline = offline;
+	}
+	
+	/**
+	 * Add points spent.
+	 */
+	public void addPointsSpent(int points) {
+		pointsSpent += points;
+		
+		if(pointsSpent >= 10000)
+			RoketUtils.submitAchievement(RoketGamerData.ACHIEVEMENT_BLANK_CHECK);
+	}
+	
+	/**
+	 * Get points spent in the current stage.
+	 * @return
+	 */
+	public int getPointsSpent() {
+		return pointsSpent;
+	}
+	
+	/**
+	 * Called at the end of a stage to reset all stage-related data.
+	 */
+	public void endStage() {
+		pointsSpent = 0;
 	}
 }

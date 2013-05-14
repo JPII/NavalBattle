@@ -1,5 +1,6 @@
 package com.jpii.navalbattle.game;
 
+import com.jpii.navalbattle.NavalBattle;
 import com.jpii.navalbattle.data.RoketGamerData;
 import com.jpii.navalbattle.game.entity.AircraftCarrier;
 import com.jpii.navalbattle.game.entity.BattleShip;
@@ -46,9 +47,11 @@ public class StageManager {
 			if(index==0){
 				SoundUtils.playSound(RoketUtils.class.getResourceAsStream("/com/jpii/navalbattle/res/sfx/gameover.wav"));
 				MainMenuWindow.spg.nextWindow("GameOverWindow");
+				NavalBattle.getGameState().endStage();
 			} else {
 				SoundUtils.playSound(RoketUtils.class.getResourceAsStream("/com/jpii/navalbattle/res/sfx/nextround.wav"));
 				MainMenuWindow.spg.setNewGame();
+				NavalBattle.getGameState().endStage();
 			}
 		}
 	}

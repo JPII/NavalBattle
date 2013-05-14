@@ -2,6 +2,7 @@ package com.jpii.navalbattle.game.turn;
 
 import java.util.ArrayList;
 
+import com.jpii.navalbattle.NavalBattle;
 import com.jpii.navalbattle.game.NavalGame;
 import com.jpii.navalbattle.game.NavalManager;
 import com.jpii.navalbattle.pavo.Game;
@@ -327,6 +328,11 @@ public class AI extends Player{
 			//long diplomacy cost: 8000 5 turns
 			//medium diplomacy cost: 2000 3 turns
 			//short diplomacy cost: 500 1 turn
+			
+			// TODO: JR, add the following line when the user purchases diplomacy:
+			// NavalBattle.getGameState().addPointsSpent(DIPLOMACY_COST);
+			// Replace DIPLOMACY_COST with the actual value
+			// ONLY FOR WHEN THE *PLAYER* PURCHASES
 		
 			
 	}

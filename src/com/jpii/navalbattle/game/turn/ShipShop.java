@@ -2,6 +2,7 @@ package com.jpii.navalbattle.game.turn;
 
 import java.awt.Font;
 
+import com.jpii.navalbattle.NavalBattle;
 import com.jpii.navalbattle.data.RoketGamerData;
 import com.jpii.navalbattle.game.NavalManager;
 import com.jpii.navalbattle.game.entity.MoveableEntity;
@@ -154,6 +155,7 @@ import com.jpii.navalbattle.util.RoketUtils;
 			if(current!=null && move!=null){
 				if(current.getScore()>=200){
 					current.subtractscore(200);
+					NavalBattle.getGameState().addPointsSpent(200);
 					move.hardenHull();
 				}
 				update();
@@ -164,6 +166,7 @@ import com.jpii.navalbattle.util.RoketUtils;
 			if(current!=null && move!=null){
 				if(current.getScore()>=250){
 					current.subtractscore(250);
+					NavalBattle.getGameState().addPointsSpent(250);
 					move.increaseMissile();
 				}
 				update();
@@ -174,6 +177,7 @@ import com.jpii.navalbattle.util.RoketUtils;
 			if(current!=null && move!=null){
 				if(current.getScore()>=350){
 					current.subtractscore(350);
+					NavalBattle.getGameState().addPointsSpent(350);
 					move.deflectMissile();
 				}
 				update();
@@ -184,6 +188,7 @@ import com.jpii.navalbattle.util.RoketUtils;
 			if(current!=null && move!=null){
 				if(current.getScore()>=700 && move.rangeLimit>0){
 					current.subtractscore(700);
+					NavalBattle.getGameState().addPointsSpent(700);
 					move.increaseRange();
 				}
 				update();
@@ -194,6 +199,7 @@ import com.jpii.navalbattle.util.RoketUtils;
 			if(current!=null && move!=null){
 				if(current.getScore()>=300){
 					current.subtractscore(300);
+					NavalBattle.getGameState().addPointsSpent(300);
 					move.repair();
 				}
 				update();

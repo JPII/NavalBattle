@@ -2,6 +2,7 @@ package com.jpii.navalbattle.game.turn;
 
 import java.awt.Font;
 
+import com.jpii.navalbattle.NavalBattle;
 import com.jpii.navalbattle.data.RoketGamerData;
 import com.jpii.navalbattle.game.NavalManager;
 import com.jpii.navalbattle.game.entity.PortEntity;
@@ -136,6 +137,7 @@ import com.jpii.navalbattle.util.RoketUtils;
 			if(current!=null && port!=null){
 				if(current.getScore()>=1000){
 					current.subtractscore(1000);
+					NavalBattle.getGameState().addPointsSpent(1000);
 					port.spawnBattleship();
 				}
 				update();
@@ -146,6 +148,7 @@ import com.jpii.navalbattle.util.RoketUtils;
 			if(current!=null && port!=null){
 				if(current.getScore()>=1250){
 					current.subtractscore(1250);
+					NavalBattle.getGameState().addPointsSpent(1250);
 					port.spawnSubmarine();
 				}
 				update();
@@ -156,6 +159,7 @@ import com.jpii.navalbattle.util.RoketUtils;
 			if(current!=null && port!=null){
 				if(current.getScore()>=1250){
 					current.subtractscore(1250);
+					NavalBattle.getGameState().addPointsSpent(1250);
 					port.spawnAC();
 				}
 				update();
@@ -166,6 +170,7 @@ import com.jpii.navalbattle.util.RoketUtils;
 			if(current!=null && port!=null){
 				if(current.getScore()>=500){
 					current.subtractscore(500);
+					NavalBattle.getGameState().addPointsSpent(500);
 					port.repair();
 				}
 				update();
