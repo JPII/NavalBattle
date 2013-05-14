@@ -48,6 +48,7 @@ public class StageManager {
 				SoundUtils.playSound(RoketUtils.class.getResourceAsStream("/com/jpii/navalbattle/res/sfx/gameover.wav"));
 				MainMenuWindow.spg.nextWindow("GameOverWindow");
 				NavalBattle.getGameState().endStage();
+				RoketUtils.submitAchievement(RoketGamerData.ACHIEVEMENT_FALLING_FROM_TREES);
 			} else {
 				SoundUtils.playSound(RoketUtils.class.getResourceAsStream("/com/jpii/navalbattle/res/sfx/nextround.wav"));
 				MainMenuWindow.spg.setNewGame();
