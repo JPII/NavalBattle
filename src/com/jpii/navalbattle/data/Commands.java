@@ -137,10 +137,6 @@ public class Commands {
 	    			new HelpWindow();
 	    		}
 	    		
-	    		if(args[0].equals("roketgamer") || args[0].equals("4") || args[0].equals("roketgamerwindow")) {
-	    			new RoketGamerWindow();
-	    		}
-	    		
 	    		if(args[0].equals("game") || args[0].equals("6") || args[0].equals("gamewindow") || args[0].equals("newgame")) {
 	    			new SinglePlayerGame();
 	    		}
