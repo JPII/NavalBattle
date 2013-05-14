@@ -102,6 +102,8 @@ public class StageManager {
 			RoketUtils.submitAchievement(RoketGamerData.ACHIEVEMENT_NAVAL_SUPERIORITY);
 		if(stageNumber == 30)
 			RoketUtils.submitAchievement(RoketGamerData.ACHIEVEMENT_UNSTOPPABLE);
+		if(stageNumber == 40)
+			RoketUtils.submitAchievement(RoketGamerData.ACHIEVEMENT_COMMANDER);
 		
 		switch(stageNumber){
 			case 1: 
