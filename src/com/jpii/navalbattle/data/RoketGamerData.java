@@ -12,7 +12,7 @@ public class RoketGamerData {
 	public static final Achievement ACHIEVEMENT_AIR_SUPERIORITY = new Achievement(4, "Air Superiority", false); // TODO
 	public static final Achievement ACHIEVEMENT_SYNCING_SHIP = new Achievement(5, "Syncing Ship", false);
 	public static final Achievement ACHIEVEMENT_BLANK_CHECK = new Achievement(6, "Blank Check", false); // TODO
-	public static final Achievement ACHIEVEMENT_PROMOTION = new Achievement(7, "Promotion", false); // TODO
+	public static final Achievement ACHIEVEMENT_PROMOTION = new Achievement(7, "Promotion", false);
 	public static final Achievement ACHIEVEMENT_WAR_BONDS = new Achievement(8, "War Bonds", false); // TODO
 	public static final Achievement ACHIEVEMENT_SHOCK_AND_AWE = new Achievement(9, "Shock and Awe", false); // TODO
 	public static final Achievement ACHIEVEMENT_LUCKY_SHOT = new Achievement(10, "Lucky Shot", false);
