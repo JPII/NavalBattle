@@ -72,6 +72,9 @@ public class StageManager {
 		stageNumber++;
 		if(game!=null) {
 			game.dispose();
+			NavalManager.w1 = null;
+			NavalManager.w2 = null;
+			NavalManager.w3 = null;
 		}
 		persists = new Player(playerName);
 		ai = new AI();
@@ -92,7 +95,7 @@ public class StageManager {
 	}
 	
 	private void setStage(){
-		//waitForGenerator();
+		waitForGenerator();
 		NewWindowManager wm = nm.getWorld().getGame().getWindows();
 		
 		if(stageNumber == 20)
@@ -152,8 +155,11 @@ public class StageManager {
 	}
 	
 	private void waitForGenerator(){
-		while(game.getGame().getManager().isGenerating())
-			;
+		//while(game.getGame().getManager().isGenerating())
+			//;
+		while (game.getGame().getManager().w3 == null) {
+			
+		}
 	}
 	
 	private void addEntities(Player p, int bss, int subs, int acs,int ports){	
