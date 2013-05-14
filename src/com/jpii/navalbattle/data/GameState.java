@@ -64,6 +64,8 @@ public class GameState {
 	public void shipDestroyed() {
 		shipsDestroyed++;
 		
+		RoketUtils.submitAchievement(RoketGamerData.ACHIEVEMENT_IT_ALL_CHANGED);
+		
 		if(shipsDestroyed >= 2)
 			RoketUtils.submitAchievement(RoketGamerData.ACHIEVEMENT_SHOCK_AND_AWE);
 	}
