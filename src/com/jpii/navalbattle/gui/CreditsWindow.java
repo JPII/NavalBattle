@@ -38,7 +38,7 @@ public class CreditsWindow extends BaseWindow {
 			"<li><b>Matt \"Matthis5point0\" Waller</b> - QA and game-play lead</li>" +
 			"<li><b>Zach \"smeagle42\" Mathewson</b> - art lead</li>" +
 			"<li><b>Stephen \"szsike\" Ziske - art asset contributions</li>" +
-			"</ul>";
+			"</ul><br><br><br><small>Hi matt</small>";
 
 	public CreditsWindow() {
 
