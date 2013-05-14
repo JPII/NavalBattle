@@ -30,6 +30,7 @@ import com.jpii.navalbattle.game.SinglePlayerGame;
 import com.jpii.navalbattle.gui.listeners.*;
 import com.jpii.navalbattle.io.NavalBattleIO;
 import com.jpii.navalbattle.renderer.Helper;
+import com.jpii.navalbattle.util.URLUtils;
 
 public class MainMenuWindow extends BaseWindow {
 	private static final long serialVersionUID = 1L;
@@ -131,8 +132,7 @@ public class MainMenuWindow extends BaseWindow {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				if(!NavalBattle.getGameState().isOffline()) {
-					dispose();
-					new RoketGamerWindow();
+					URLUtils.openURL("http://roketgamer.com/viewgame.php?id=3");
 				}
 			}
 		});
