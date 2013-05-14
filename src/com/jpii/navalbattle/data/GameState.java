@@ -22,7 +22,7 @@ import com.jpii.navalbattle.util.RoketUtils;
 public class GameState {
 	
 	private boolean offline = true;
-	private int pointsSpent = 0;
+	private int pointsSpent, shipsDestroyed = 0;
 	
 	/**
 	 * Get if game is in off-line mode.
@@ -59,9 +59,28 @@ public class GameState {
 	}
 	
 	/**
+	 * Called when a ship is destroyed.
+	 */
+	public void shipDestroyed() {
+		shipsDestroyed++;
+		
+		if(shipsDestroyed >= 2)
+			RoketUtils.submitAchievement(RoketGamerData.ACHIEVEMENT_SHOCK_AND_AWE);
+	}
+	
+	/**
+	 * Get number of ships destroyed this turn.
+	 * @return
+	 */
+	public int getShipsDestroyed() {
+		return shipsDestroyed;
+	}
+	
+	/**
 	 * Called at the end of a stage to reset all stage-related data.
 	 */
 	public void endStage() {
 		pointsSpent = 0;
+		shipsDestroyed = 0;
 	}
 }

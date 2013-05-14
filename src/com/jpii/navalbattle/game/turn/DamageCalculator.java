@@ -1,5 +1,6 @@
 package com.jpii.navalbattle.game.turn;
 
+import com.jpii.navalbattle.NavalBattle;
 import com.jpii.navalbattle.data.Constants;
 import com.jpii.navalbattle.data.RoketGamerData;
 import com.jpii.navalbattle.game.NavalManager;
@@ -22,7 +23,9 @@ public class DamageCalculator {
 				RoketUtils.submitAchievement(RoketGamerData.ACHIEVEMENT_LUCKY_SHOT);
 		} else if(take.takeDamage(calculatePrimaryDamage(deal, take))){
 			player.addScore(Constants.HIT_SHIP_SCORE);
-			if(take == null || take.isDisposed()){
+			if(take == null || take.isDisposed()) {
+				if(player.name.equals("Player 1"))
+					NavalBattle.getGameState().shipDestroyed();
 				player.addScore(Constants.SINK_SHIP_SCORE);
 			}
 			SoundUtils.playSound(RoketUtils.class.getResourceAsStream("/com/jpii/navalbattle/res/sfx/shot.wav"));
@@ -60,9 +63,11 @@ public class DamageCalculator {
 				RoketUtils.submitAchievement(RoketGamerData.ACHIEVEMENT_LUCKY_SHOT);
 		} else if(take.takeDamage(calculateSecondaryDamage(deal, take))) {
 			player.addScore(Constants.HIT_SHIP_SCORE);
-			if(take == null || take.isDisposed()){
+			if(take == null || take.isDisposed()) {
 				if(deal.getHandle() == 21)
 					RoketUtils.submitAchievement(RoketGamerData.ACHIEVEMENT_AIR_SUPERIORITY);
+				if(player.name.equals("Player 1"))
+					NavalBattle.getGameState().shipDestroyed();
 				player.addScore(Constants.SINK_SHIP_SCORE);
 			}
 			SoundUtils.playSound(RoketUtils.class.getResourceAsStream("/com/jpii/navalbattle/res/sfx/shot.wav"));

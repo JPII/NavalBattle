@@ -14,7 +14,7 @@ public class RoketGamerData {
 	public static final Achievement ACHIEVEMENT_BLANK_CHECK = new Achievement(6, "Blank Check", false);
 	public static final Achievement ACHIEVEMENT_PROMOTION = new Achievement(7, "Promotion", false);
 	public static final Achievement ACHIEVEMENT_WAR_BONDS = new Achievement(8, "War Bonds", false);
-	public static final Achievement ACHIEVEMENT_SHOCK_AND_AWE = new Achievement(9, "Shock and Awe", false); // TODO
+	public static final Achievement ACHIEVEMENT_SHOCK_AND_AWE = new Achievement(9, "Shock and Awe", false);
 	public static final Achievement ACHIEVEMENT_LUCKY_SHOT = new Achievement(10, "Lucky Shot", false);
 	public static final Achievement ACHIEVEMENT_IT_ALL_CHANGED = new Achievement(11, "It all changed...", true); // TODO
 	public static final Achievement ACHIEVEMENT_WHEN_FIRE_NATION_ATTACKED = new Achievement(12, "...when the fire nation attacked", true); // TODO
