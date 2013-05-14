@@ -1,6 +1,8 @@
 package com.jpii.navalbattle.game.turn;
 
+import com.jpii.navalbattle.data.RoketGamerData;
 import com.jpii.navalbattle.game.entity.MoveableEntity;
+import com.jpii.navalbattle.util.RoketUtils;
 
 public class Turn {
 	private Player player;
@@ -38,6 +40,10 @@ public class Turn {
 	}
 	
 	public void startTurn(){
+		if(player.name.equals("Player 1"))
+			if(player.score >= 10000)
+				RoketUtils.submitAchievement(RoketGamerData.ACHIEVEMENT_WAR_BONDS);
+		
 		player.startTurn();
 	}
 	
