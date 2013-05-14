@@ -16,14 +16,14 @@ public class RoketGamerData {
 	public static final Achievement ACHIEVEMENT_WAR_BONDS = new Achievement(8, "War Bonds", false);
 	public static final Achievement ACHIEVEMENT_SHOCK_AND_AWE = new Achievement(9, "Shock and Awe", false);
 	public static final Achievement ACHIEVEMENT_LUCKY_SHOT = new Achievement(10, "Lucky Shot", false);
-	public static final Achievement ACHIEVEMENT_IT_ALL_CHANGED = new Achievement(11, "It all changed...", true); // TODO
+	public static final Achievement ACHIEVEMENT_IT_ALL_CHANGED = new Achievement(11, "It all changed...", true);
 	public static final Achievement ACHIEVEMENT_WHEN_FIRE_NATION_ATTACKED = new Achievement(12, "...when the fire nation attacked", true); // TODO
 	public static final Achievement ACHIEVEMENT_ANOTHER_DAY = new Achievement(13, "Another Day", true);
 	public static final Achievement ACHIEVEMENT_FALLING_FROM_TREES = new Achievement(14, "Falling From Trees", true);
 	public static final Achievement ACHIEVEMENT_DAVE = new Achievement(15, "Dave", true);
 	public static final Achievement ACHIEVEMENT_NAVAL_SUPERIORITY = new Achievement(16, "Naval Superiority", true);
 	public static final Achievement ACHIEVEMENT_UNSTOPPABLE = new Achievement(17, "Unstoppable", true);
-	public static final Achievement ACHIEVEMENT_COMMANDER = new Achievement(18, "Commander", true); // TODO
+	public static final Achievement ACHIEVEMENT_COMMANDER = new Achievement(18, "Commander", true);
 
 	/* Leaderboard Object */
 	public static final Leaderboard LEADERBOARD_TOTAL_SCORE = new Leaderboard(1);
