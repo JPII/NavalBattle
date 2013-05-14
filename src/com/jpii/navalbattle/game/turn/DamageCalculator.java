@@ -58,9 +58,11 @@ public class DamageCalculator {
 			
 			if(take.getPercentHealth() <= 25)
 				RoketUtils.submitAchievement(RoketGamerData.ACHIEVEMENT_LUCKY_SHOT);
-		} else if(take.takeDamage(calculatePrimaryDamage(deal, take))) {
+		} else if(take.takeDamage(calculateSecondaryDamage(deal, take))) {
 			player.addScore(Constants.HIT_SHIP_SCORE);
 			if(take == null || take.isDisposed()){
+				if(deal.getHandle() == 21)
+					RoketUtils.submitAchievement(RoketGamerData.ACHIEVEMENT_AIR_SUPERIORITY);
 				player.addScore(Constants.SINK_SHIP_SCORE);
 			}
 			SoundUtils.playSound(RoketUtils.class.getResourceAsStream("/com/jpii/navalbattle/res/sfx/shot.wav"));
@@ -76,6 +78,9 @@ public class DamageCalculator {
 		
 		if(!calculateDeflect(take)) {
 			if(take.takeDamage(calculateSecondaryDamage(deal,take))){
+				if(deal.getHandle() == 21)
+					RoketUtils.submitAchievement(RoketGamerData.ACHIEVEMENT_AIR_SUPERIORITY);
+				
 				player.addScore(Constants.DESTROY_PORT_SCORE);
 				nm.getGame().getTurnManager().removeEntity(take);
 				player.addEntity(take);
@@ -130,6 +135,10 @@ public class DamageCalculator {
 		}
 		
 		return 100;
+	}
+	
+	private static int calculateSecondaryDamage(MoveableEntity deal, MoveableEntity take) {
+		return calculatePrimaryDamage(deal, take) * 2;
 	}
 	
 	private static int calculateSecondaryDamage(MoveableEntity deal, PortEntity take) {

@@ -9,7 +9,7 @@ public class RoketGamerData {
 	public static final Achievement ACHIEVEMENT_PORKCHOP = new Achievement(1, "Porkchop", false);
 	public static final Achievement ACHIEVEMENT_THRIFT_SHOP = new Achievement(2, "Thrift Shop", false);
 	public static final Achievement ACHIEVEMENT_SUNK_MY_BATTLESHIP = new Achievement(3, "You Sunk My Battleship", false);
-	public static final Achievement ACHIEVEMENT_AIR_SUPERIORITY = new Achievement(4, "Air Superiority", false); // TODO
+	public static final Achievement ACHIEVEMENT_AIR_SUPERIORITY = new Achievement(4, "Air Superiority", false);
 	public static final Achievement ACHIEVEMENT_SYNCING_SHIP = new Achievement(5, "Syncing Ship", false);
 	public static final Achievement ACHIEVEMENT_BLANK_CHECK = new Achievement(6, "Blank Check", false); // TODO
 	public static final Achievement ACHIEVEMENT_PROMOTION = new Achievement(7, "Promotion", false);
