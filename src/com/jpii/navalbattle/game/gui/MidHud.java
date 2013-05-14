@@ -14,7 +14,6 @@ import com.jpii.navalbattle.pavo.gui.controls.Control;
 import com.jpii.navalbattle.pavo.gui.controls.PButton;
 import com.jpii.navalbattle.pavo.gui.controls.PImage;
 import com.jpii.navalbattle.pavo.gui.events.PMouseEvent;
-import com.jpii.navalbattle.game.turn.Player;
 import com.jpii.navalbattle.game.turn.PortShop;
 import com.jpii.navalbattle.game.turn.ShipShop;
 import com.jpii.navalbattle.game.turn.TurnManager;
@@ -25,7 +24,6 @@ public class MidHud{
 	PImage missile;
 	PImage bullet;
 	PImage move;
-	PImage diplomacy;
 	PImage shop;
 	PImage elevation;
 	PImage airstrike;
@@ -33,7 +31,6 @@ public class MidHud{
 	PButton missileB;
 	PButton bulletB;
 	PButton moveB;
-	PButton diplomacyB;
 	PButton shopB;
 	PButton elevationB;
 	
@@ -49,7 +46,6 @@ public class MidHud{
 	String store     = "Shop";
 	String secondary = "Missiles";
 	String cannon    = "Guns";
-	String friend    = "Diplomacy";
 	String transport = "Move";
 	String submerge  = "Submerge";
 	
@@ -93,12 +89,11 @@ public class MidHud{
 		Font temp = g.getFont();
 		Font perks = new Font("Arial",0,10);
 		g.setFont(perks);
-		g.drawString(store,(width/2)-148,height-62);
-		g.drawString(secondary,(width/2)-93,height-62);
-		g.drawString(cannon,(width/2)-28,height-62);
-		g.drawString(friend,(width/2)+18,height-62);
-		g.drawString(transport,(width/2)+92,height-62);
-		g.drawString(submerge,(width/2)+142,height-62);
+		g.drawString(store,(width/2)-123,height-62);
+		g.drawString(secondary,(width/2)-73,height-62);
+		g.drawString(cannon,(width/2)-13,height-62);
+		g.drawString(transport,(width/2)+42,height-62);
+		g.drawString(submerge,(width/2)+87,height-62);
 		g.setFont(temp);
 	}
 	
@@ -109,8 +104,6 @@ public class MidHud{
 		missileB.setVisible(false);
 		bullet.setVisible(false);
 		bulletB.setVisible(false);
-		diplomacy.setVisible(false);
-		diplomacyB.setVisible(false);
 		shop.setVisible(false);
 		shopB.setVisible(false);
 		elevation.setVisible(false);
@@ -120,14 +113,10 @@ public class MidHud{
 		store     = "";
 		secondary = "";
 		cannon    = "";
-		friend    = "";
 		transport = "";
 		submerge  = "";
 		
 		if(display!=null){
-			diplomacy.setVisible(true);
-			diplomacyB.setVisible(true);
-			friend = "Diplomacy";
 			if(moveE!=null){
 				if(moveE.getHandle()==11){
 					Submarine sub = (Submarine)moveE;
@@ -145,9 +134,6 @@ public class MidHud{
 				if(!moveE.getUsedMissiles())
 					missile.setVisible(true);
 				if(tm.getTurn().getPlayer().myEntity(moveE)){
-					diplomacy.setVisible(false);
-					diplomacyB.setVisible(false);
-					friend = "";
 					shop.setVisible(true);
 					store = "Shop";
 					shopB.setVisible(true);
@@ -166,14 +152,10 @@ public class MidHud{
 			if(display.getHandle()%10 == 2){
 				PortEntity temp = (PortEntity) display;
 				shopB.setVisible(false);
-				friend = "Diplomacy";
 				if(tm.getTurn().getPlayer().myEntity(temp)){
 					shopB.setVisible(true);
 					shop.setVisible(true);
 					store = "Shop";
-					diplomacy.setVisible(false);
-					diplomacyB.setVisible(false);
-					friend = "";
 					
 				}
 			}
@@ -181,14 +163,13 @@ public class MidHud{
 	}
 	
 	private void initButtons(Control c){		
-		c.addControl(shopB = new PButton(c,(c.getWidth()/2)-150,c.getHeight()-60,32,31));
-		c.addControl(missileB = new PButton(c,(c.getWidth()/2)-90,c.getHeight()-60,32,31));
-		c.addControl(bulletB = new PButton(c,(c.getWidth()/2)-30,c.getHeight()-60,32,31));
-		c.addControl(diplomacyB = new PButton(c,(c.getWidth()/2)+30,c.getHeight()-60,32,31));
-		c.addControl(moveB = new PButton(c,(c.getWidth()/2)+90,c.getHeight()-60,32,31));
-		c.addControl(elevationB = new PButton(c,(c.getWidth()/2)+150,c.getHeight()-60,32,31));
+		c.addControl(shopB = new PButton(c,(c.getWidth()/2)-125,c.getHeight()-60,32,31));
+		c.addControl(missileB = new PButton(c,(c.getWidth()/2)-70,c.getHeight()-60,32,31));
+		c.addControl(bulletB = new PButton(c,(c.getWidth()/2)-15,c.getHeight()-60,32,31));
+		c.addControl(moveB = new PButton(c,(c.getWidth()/2)+40,c.getHeight()-60,32,31));
+		c.addControl(elevationB = new PButton(c,(c.getWidth()/2)+95,c.getHeight()-60,32,31));
 		
-		c.addControl(nextMove = new PButton(c,"End Turn",(c.getWidth()/2)-60,c.getHeight()-130,150,40));
+		c.addControl(nextMove = new PButton(c,"End Turn",(c.getWidth()/2)-78,c.getHeight()-130,150,40));
 		c.addControl(nextEntity = new PButton(c,"Next Ship",(c.getWidth()/2)+120,c.getHeight()-130,70,20));
 		
 		nextMove.setFont(new Font("Arial",0,35));	
@@ -197,23 +178,20 @@ public class MidHud{
 		missile = new PImage(c);
 		bullet = new PImage(c);
 		move = new PImage(c);
-		diplomacy = new PImage(c);
 		shop = new PImage(c);
 		elevation = new PImage(c);
 		airstrike = new PImage(c);
 		
-		shop.setLoc((c.getWidth()/2)-150,c.getHeight()-60);
-		missile.setLoc((c.getWidth()/2)-90,c.getHeight()-60);
-		bullet.setLoc((c.getWidth()/2)-30,c.getHeight()-60);
-		diplomacy.setLoc((c.getWidth()/2)+30,c.getHeight()-60);
-		move.setLoc((c.getWidth()/2)+90,c.getHeight()-60);
-		elevation.setLoc((c.getWidth()/2)+150,c.getHeight()-60);
-		airstrike.setLoc((c.getWidth()/2)-90,c.getHeight()-60);
+		shop.setLoc((c.getWidth()/2)-125,c.getHeight()-60);
+		missile.setLoc((c.getWidth()/2)-70,c.getHeight()-60);
+		bullet.setLoc((c.getWidth()/2)-15,c.getHeight()-60);
+		move.setLoc((c.getWidth()/2)+40,c.getHeight()-60);
+		elevation.setLoc((c.getWidth()/2)+95,c.getHeight()-60);
+		airstrike.setLoc((c.getWidth()/2)-70,c.getHeight()-60);
 		
 		shop.setSize(30,30);
 		missile.setSize(30,30);
 		bullet.setSize(30,30);
-		diplomacy.setSize(30,30);
 		move.setSize(30,30);
 		elevation.setSize(30,30);
 		airstrike.setSize(30,30);
@@ -221,7 +199,6 @@ public class MidHud{
 		shop.setImage(PImage.registerImage(FileUtils.getImage("drawable-game/Buttons/Shop.png")));
 		missile.setImage(PImage.registerImage(FileUtils.getImage("drawable-game/Buttons/Missile.png")));
 		bullet.setImage(PImage.registerImage(FileUtils.getImage("drawable-game/Buttons/Bullet.png")));
-		diplomacy.setImage(PImage.registerImage(FileUtils.getImage("drawable-game/Buttons/Diplomacy.png")));
 		move.setImage(PImage.registerImage(FileUtils.getImage("drawable-game/Buttons/Move.png")));
 		elevation.setImage(PImage.registerImage(FileUtils.getImage("drawable-game/Buttons/Elevation.png")));
 		airstrike.setImage(PImage.registerImage(FileUtils.getImage("drawable-game/Buttons/Airplane.png")));
@@ -229,7 +206,6 @@ public class MidHud{
 		shop.repaint();
 		missile.repaint();
 		bullet.repaint();
-		diplomacy.repaint();
 		move.repaint();
 		elevation.repaint();
 		airstrike.repaint();
@@ -237,7 +213,6 @@ public class MidHud{
 		c.addControl(shop);
 		c.addControl(missile);
 		c.addControl(bullet);
-		c.addControl(diplomacy);
 		c.addControl(move);
 		c.addControl(elevation);
 		c.addControl(airstrike);
@@ -257,12 +232,6 @@ public class MidHud{
 		bulletB.addMouseListener(new PMouseEvent(){
 			public void mouseDown(int x, int y, int buttonid) {
 				primaryAction();
-			}
-		});
-		
-		diplomacy.addMouseListener(new PMouseEvent(){
-			public void mouseDown(int x, int y, int buttonid) {
-				
 			}
 		});
 		
