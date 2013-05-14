@@ -1,5 +1,6 @@
 package com.jpii.navalbattle.game;
 
+import com.jpii.navalbattle.data.RoketGamerData;
 import com.jpii.navalbattle.game.entity.AircraftCarrier;
 import com.jpii.navalbattle.game.entity.BattleShip;
 import com.jpii.navalbattle.game.entity.PortEntity;
@@ -128,6 +129,7 @@ public class StageManager {
 				new TutorialWindow(wm,"Stage 10: Battle!", "Use what you have learned to win the battle.");
 				break;
 			case 11:
+				RoketUtils.submitAchievement(RoketGamerData.ACHIEVEMENT_PROMOTION);
 				new TutorialWindow(wm,"Congratulations!","You have passed basic training. Good luck!");
 				break;
 		    default:
