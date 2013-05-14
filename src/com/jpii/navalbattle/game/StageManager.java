@@ -93,6 +93,12 @@ public class StageManager {
 	private void setStage(){
 		waitForGenerator();
 		NewWindowManager wm = nm.getWorld().getGame().getWindows();
+		
+		if(stageNumber == 20)
+			RoketUtils.submitAchievement(RoketGamerData.ACHIEVEMENT_NAVAL_SUPERIORITY);
+		if(stageNumber == 30)
+			RoketUtils.submitAchievement(RoketGamerData.ACHIEVEMENT_UNSTOPPABLE);
+		
 		switch(stageNumber){
 			case 1: 
 				addEntities(persists, 1, 0, 0, 0);

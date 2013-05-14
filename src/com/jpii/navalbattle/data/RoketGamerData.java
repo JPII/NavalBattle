@@ -21,8 +21,8 @@ public class RoketGamerData {
 	public static final Achievement ACHIEVEMENT_ANOTHER_DAY = new Achievement(13, "Another Day", true); // TODO
 	public static final Achievement ACHIEVEMENT_FALLING_FROM_TREES = new Achievement(14, "Falling From Trees", true); // TODO
 	public static final Achievement ACHIEVEMENT_DAVE = new Achievement(15, "Dave", true);
-	public static final Achievement ACHIEVEMENT_NAVAL_SUPERIORITY = new Achievement(16, "Naval Superiority", true); // TODO
-	public static final Achievement ACHIEVEMENT_UNSTOPPABLE = new Achievement(17, "Unstoppable", true); // TODO
+	public static final Achievement ACHIEVEMENT_NAVAL_SUPERIORITY = new Achievement(16, "Naval Superiority", true);
+	public static final Achievement ACHIEVEMENT_UNSTOPPABLE = new Achievement(17, "Unstoppable", true);
 	public static final Achievement ACHIEVEMENT_COMMANDER = new Achievement(18, "Commander", true); // TODO
 
 	/* Leaderboard Object */
