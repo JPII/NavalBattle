@@ -52,6 +52,9 @@ public class Turn {
 	}
 	
 	public void endTurn(){
+		if(player.name.equals("Player 1"))
+			RoketUtils.submitAchievement(RoketGamerData.ACHIEVEMENT_ANOTHER_DAY);
+		
 		player.endTurn();
 	}
 	
