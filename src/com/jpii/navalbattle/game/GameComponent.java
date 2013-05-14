@@ -253,5 +253,6 @@ public class GameComponent extends JComponent {
 			
 		}
 		System.gc();
+		//System.out.println("shutdown complete.");
 	}
 }

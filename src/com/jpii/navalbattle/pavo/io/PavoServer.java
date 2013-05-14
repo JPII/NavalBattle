@@ -70,7 +70,7 @@ public class PavoServer implements Runnable {
 	}
 
 	public void run() {
-		try {
+		/*try {
 			socket = new ServerSocket(670);
 		} catch (IOException e2) {
 			if (!noInternet)
@@ -152,7 +152,7 @@ public class PavoServer implements Runnable {
             		else {
             			onMessageRecieved(rl);
             		}
-            	}*/
+            	}
 			} catch (Exception e) {
 				if (e.getMessage().equals("Connection reset") || e.getMessage().equals("Software caused connection abort: recv failed")) {
 					doing = false;
@@ -196,7 +196,7 @@ public class PavoServer implements Runnable {
 		if (autoReboot)
 			start();
 		else
-			halt();
+			halt();*/
 	}
 	boolean sendLock = false;
 	
@@ -252,7 +252,7 @@ public class PavoServer implements Runnable {
 	}
 	
 	public void halt() {
-		doing = false;
+		/*doing = false;
 		try {
 			Thread.sleep(250);
 		}
@@ -279,11 +279,13 @@ public class PavoServer implements Runnable {
 		catch (Throwable t) {
 			
 		}
-		self = null;
+		self = null;*/
 	}
 	
 	public void stop() {
+		boolean wasDoing = doing;
 		doing = false;
-		halt();
+		if (wasDoing)
+			halt();
 	}
 }

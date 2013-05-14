@@ -41,9 +41,14 @@ public class SinglePlayerGame extends BaseWindow {
 	}
 	
 	public void setNewGame(){
+		if (game != null) {
+		getContentPane().remove(game);
+		}
+		
 		game = sm.newGameComponent();
 		setSize(Game.Settings.initialWidth,Game.Settings.initialHeight-40);
 		setGameVars();
+		getContentPane().add(game);
 	}
 	
 	public void setSize(int width, int height) {

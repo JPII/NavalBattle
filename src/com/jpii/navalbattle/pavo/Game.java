@@ -174,11 +174,11 @@ public class Game extends Renderable implements Runnable, Serializable {
 	}
 	
 	public void shutdown() {
-		if (isAClient())
-			this.getSelfClient().halt();
-		else
-			this.getSelfServer().stop();
-		
+		//if (isAClient())
+			//this.getSelfClient().halt();
+		//else
+			//this.getSelfServer().stop();
+		//System.out.println("s");
 		gameRunning = false;
 		try {
 			Thread.sleep(250);
