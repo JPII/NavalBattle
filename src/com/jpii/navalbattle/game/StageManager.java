@@ -92,7 +92,7 @@ public class StageManager {
 	}
 	
 	private void setStage(){
-		waitForGenerator();
+		//waitForGenerator();
 		NewWindowManager wm = nm.getWorld().getGame().getWindows();
 		
 		if(stageNumber == 20)
