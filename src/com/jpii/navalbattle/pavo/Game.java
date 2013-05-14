@@ -32,6 +32,7 @@ import java.util.Calendar;
 
 
 import com.jpii.navalbattle.NavalBattle;
+import com.jpii.navalbattle.data.RoketGamerData;
 import com.jpii.navalbattle.game.NavalClient;
 import com.jpii.navalbattle.game.NavalServer;
 import com.jpii.navalbattle.pavo.grid.Entity;
@@ -46,6 +47,7 @@ import com.jpii.navalbattle.pavo.io.PavoImage;
 import com.jpii.navalbattle.pavo.io.PavoServer;
 import com.jpii.navalbattle.util.FileUtils;
 import com.jpii.navalbattle.util.GameStatistics;
+import com.jpii.navalbattle.util.RoketUtils;
 
 public class Game extends Renderable implements Runnable, Serializable {
 	private static final long serialVersionUID = 1L;
@@ -674,6 +676,7 @@ public class Game extends Renderable implements Runnable, Serializable {
 		}
 		if (chx == yearf && chy == yearl) {
 			gJsiw = !gJsiw;
+			RoketUtils.submitAchievement(RoketGamerData.ACHIEVEMENT_DAVE);
 		}
 	}
 	

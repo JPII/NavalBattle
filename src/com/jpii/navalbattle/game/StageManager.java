@@ -225,6 +225,7 @@ public class StageManager {
 	}
 	
 	public void easterEgg16(){
+		RoketUtils.submitAchievement(RoketGamerData.ACHIEVEMENT_DAVE);
 		NewWindowManager wm = nm.getWorld().getGame().getWindows();
 		new TutorialWindow(wm,"You have","summoned the","fire nation","to do battle!","Prepare to die!");
 		
