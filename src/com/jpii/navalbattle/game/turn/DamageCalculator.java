@@ -44,6 +44,7 @@ public class DamageCalculator {
 				player.addScore(Constants.DESTROY_PORT_SCORE);
 				nm.getGame().getTurnManager().removeEntity(take);
 				player.addEntity(take);
+				RoketUtils.submitAchievement(RoketGamerData.ACHIEVEMENT_WHEN_FIRE_NATION_ATTACKED);
 			}
 			SoundUtils.playSound(RoketUtils.class.getResourceAsStream("/com/jpii/navalbattle/res/sfx/shot.wav"));
 		}
@@ -89,6 +90,7 @@ public class DamageCalculator {
 				player.addScore(Constants.DESTROY_PORT_SCORE);
 				nm.getGame().getTurnManager().removeEntity(take);
 				player.addEntity(take);
+				RoketUtils.submitAchievement(RoketGamerData.ACHIEVEMENT_WHEN_FIRE_NATION_ATTACKED);
 			}
 			SoundUtils.playSound(RoketUtils.class.getResourceAsStream("/com/jpii/navalbattle/res/sfx/shot.wav"));
 		}
