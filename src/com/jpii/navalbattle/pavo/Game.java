@@ -83,9 +83,6 @@ public class Game extends Renderable implements Runnable, Serializable {
 		yearf = Integer.parseInt(years.substring(0,2));
 		yearl = Integer.parseInt(years.substring(2));
 		Instance = this;
-		NavalBattle.getWindowHandler().getToasterManager().setDisplayTime(8000);
-		NavalBattle.getWindowHandler().getToasterManager().showToaster(
-				"Sucessfully started a server instance.\n\nYour IP address:" + server.getSelfIP());
 	}
 	
 	/**
