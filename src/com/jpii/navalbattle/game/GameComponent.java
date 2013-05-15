@@ -171,11 +171,39 @@ public class GameComponent extends JComponent {
 	public void updateGame() {
 		game.forceUpdate();
 	}
+	boolean isWaving = true;
+	double ss = 0.0;
+	boolean isLocked = false;
 	public void paintComponent(Graphics g) {
+		if (isLocked)
+			return;
+		
+		isLocked = true;
 		//g.setColor(Color.black);
 		//g.fillRect(0,0,DynamicConstants.WND_WDTH,DynamicConstants.WND_HGHT);
-		if (game != null)
-			g.drawImage(game.getBuffer(),0,0,null);
+		if (game != null) {
+			if (isWaving) {
+				PavoImage buffer = game.getBuffer();
+				Thread.currentThread().setPriority(Thread.MAX_PRIORITY);
+				ss += 1.2;
+				PavoImage buffer2 = new PavoImage(buffer.getWidth(),buffer.getHeight(),BufferedImage.TYPE_INT_RGB);
+				Graphics m = buffer2.getGraphics();
+				m.setColor(Color.black);
+				m.fillRect(0,0,getWidth(),getHeight());
+				for (int c = 0; c < buffer.getWidth(); c++) {
+					int wh = (int)(Math.sin(ss+(c/8.0))*10);
+					for (int y = 0; y < buffer.getHeight(); y++) {
+						m.setColor(new Color(buffer.getRGB(c, y)));
+						m.fillRect(c,y+wh,1,1);
+					}
+				}
+				m.dispose();
+				g.drawImage(buffer2,0,0,null);
+			}
+			else {
+				g.drawImage(game.getBuffer(),0,0,null);
+			}
+		}
 		else {
 			g.setColor(Color.red);
 			g.fillRect(0,0,getWidth(),getHeight());
@@ -183,6 +211,8 @@ public class GameComponent extends JComponent {
 		if (notifier != null)
 			g.drawImage(notifier,(Game.Settings.currentWidth/2)-(notifier.getWidth()/2),
 				(Game.Settings.currentHeight/2)-(notifier.getHeight()/2),null);
+		
+		isLocked = false;
 	}
 	float transparency = 200;
 	long ticks = 0;
