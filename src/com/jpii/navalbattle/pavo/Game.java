@@ -67,6 +67,7 @@ public class Game extends Renderable implements Runnable, Serializable {
 	private NavalClient client;
 	private PavoServer server;
 	private boolean isClient = false;
+	private boolean needsPumping = false;
 	public static PavoSettings Settings = new PavoSettings();
 	
 	/**
@@ -274,6 +275,16 @@ public class Game extends Renderable implements Runnable, Serializable {
 				
 				while (getWorld().isLocked()) {}
 				getWorld().lock();
+				if (needsPumping) {
+					for (int c = 0; c < getWorld().getTotalChunks(); c++) {
+						Chunk chunk = getWorld().getChunk(c);
+						getWorld().getEntityManager().AQms03KampOQ9103nmJMs((chunk.getZ()*2), (chunk.getX()*2), chunk.water00);
+						getWorld().getEntityManager().AQms03KampOQ9103nmJMs((chunk.getZ()*2)+1, (chunk.getX()*2), chunk.water01);
+						getWorld().getEntityManager().AQms03KampOQ9103nmJMs((chunk.getZ()*2), (chunk.getX()*2)+1, chunk.water10);
+						getWorld().getEntityManager().AQms03KampOQ9103nmJMs((chunk.getZ()*2)+1, (chunk.getX()*2)+1, chunk.water11);
+					}
+					needsPumping = false;
+				}
 				getWorld().update();
 				getWorld().unlock();
 				TimeManager tim = getWorld().getTimeManager();
@@ -341,6 +352,10 @@ public class Game extends Renderable implements Runnable, Serializable {
 				getWorld().getEntityManager().AQms03KampOQ9103nmJMs((chunk.getZ()*2)+1, (chunk.getX()*2), chunk.water01);
 				getWorld().getEntityManager().AQms03KampOQ9103nmJMs((chunk.getZ()*2), (chunk.getX()*2)+1, chunk.water10);
 				getWorld().getEntityManager().AQms03KampOQ9103nmJMs((chunk.getZ()*2)+1, (chunk.getX()*2)+1, chunk.water11);
+			}
+			needsPumping = true;
+			while (needsPumping) {
+				
 			}
 			getWorld().getWorldStatus().NOTOUCH_930202894(0);
 			Game.getStats().SmKdn02nOaP(1);
