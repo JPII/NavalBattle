@@ -277,8 +277,8 @@ public class Entity implements Serializable {
 	}
 	
 	public void animatedMoveTo(Location loc, float speed) {
-		
-		readyForMove = false;
+		moveTo(loc);
+		/*readyForMove = false;
 		//if (ORIENTATION_BUFFER_POSITION != 
 			//	GridedEntityTileOrientation.ORIENTATION_LEFTTORIGHT) {
 			//moveTo(loc);
@@ -287,7 +287,7 @@ public class Entity implements Serializable {
 		getManager().getWorld().getGame().setAnimatedMotion(this, loc);
 		//moveTo(loc);
 		hideEntity();
-		readyForMove = true;
+		readyForMove = true;*/
 	}
 	
 	public boolean moveTo(Location loc, byte position){
