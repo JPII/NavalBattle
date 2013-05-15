@@ -171,7 +171,7 @@ public class GameComponent extends JComponent {
 	public void updateGame() {
 		game.forceUpdate();
 	}
-	boolean isWaving = true;
+	boolean isWaving = false;
 	double ss = 0.0;
 	boolean isLocked = false;
 	public void paintComponent(Graphics g) {
