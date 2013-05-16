@@ -50,7 +50,7 @@ public class GridHelper implements Serializable {
 	public Location pollNextShoreTile() {
 		boolean found = false;
 		int r = 0, c = 0, count=0;
-		while (!found&&count<20) {
+		while (!found&&count<50) {
 			count++;
 			r = random.nextInt(PavoHelper.getGameHeight(man.getWorld().getWorldSize())*2);
 			c = random.nextInt(PavoHelper.getGameWidth(man.getWorld().getWorldSize())*2);
@@ -58,7 +58,7 @@ public class GridHelper implements Serializable {
 			if (b > 10 && b < 70)
 				found = true;
 		}
-		if(count>=20){
+		if(count>=50){
 			System.out.println("There was an error finding a ShoreSpace");
 			return getRandomCorner();
 		}
