@@ -44,6 +44,7 @@ public class StageManager {
 	
 	public void checkForCompletion(boolean complete,int index){		
 		if(complete) {
+			System.exit(0);
 			if(index==0){
 				SoundUtils.playSound(RoketUtils.class.getResourceAsStream("/com/jpii/navalbattle/res/sfx/gameover.wav"));
 				MainMenuWindow.spg.nextWindow("GameOverWindow");
