@@ -74,13 +74,13 @@ public class Achievement {
 		try {
 			URL url = new URL(RoketGamer.SERVER_LOCATION + "/api/" + RoketGamer.VERSION + "/achievement/check.php?session=" + RoketGamer.getInstance().getSession().getSessionKey().trim() + "id=" + id);
 
-			BufferedReader in = new BufferedReader(new InputStreamReader(url.openStream()));
-
 			URLConnection connection = url.openConnection();
 		    connection.addRequestProperty("Protocol", "Http/1.1");
 		    connection.addRequestProperty("Connection", "keep-alive");
 		    connection.addRequestProperty("Keep-Alive", "1000");
 		    connection.addRequestProperty("User-Agent", "Web-Agent");
+		    
+		    BufferedReader in = new BufferedReader(new InputStreamReader(url.openStream()));
 			
 			String result = in.readLine();
 			if (result.contains("true")) {
