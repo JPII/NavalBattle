@@ -80,7 +80,7 @@ public class Achievement {
 		    connection.addRequestProperty("Keep-Alive", "1000");
 		    connection.addRequestProperty("User-Agent", "Web-Agent");
 		    
-		    BufferedReader in = new BufferedReader(new InputStreamReader(url.openStream()));
+		    BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
 			
 			String result = in.readLine();
 			if (result.contains("true")) {
@@ -114,7 +114,7 @@ public class Achievement {
 		    connection.addRequestProperty("Keep-Alive", "1000");
 		    connection.addRequestProperty("User-Agent", "Web-Agent");
 			
-			BufferedReader in = new BufferedReader(new InputStreamReader(url.openStream()));
+			BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
 
 			String result = in.readLine();
 			if (result.contains("true")) {
