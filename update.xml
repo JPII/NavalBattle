@@ -1,16 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <navalbattle>
-	<string name="version_code">8</string>
-	<string name="version_readable">0.8</string>
-	<string name="update_text">NavalBattle 0.8 is the next milestone! Please pull the latest code from GitHub.
+	<string name="version_code">12</string>
+	<string name="version_readable">1.0</string>
+	<string name="update_text">NavalBattle 1.0 is here!
 
 Changelog:
-+ AI
-+ New art assets
-+ Purchase upgrades and ships
-+ Capture ports
-+ Team colors for ships and ports
-+ Bug fixes and performance tweaks</string>
++ It's a game</string>
 	<string name="update_url">http://github.com/JPII/NavalBattle</string>
 	
 	<string name="announcement_code">-1</string>
