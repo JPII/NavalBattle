@@ -14,7 +14,7 @@ Changelog:
 	<string name="update_url">http://github.com/JPII/NavalBattle</string>
 	
 	<string name="announcement_code">-1</string>
-	<string name="announcement_title">Hello, world!</string>
-	<string name="announcement_text">If you can read this, the BroadcastService is working. This is a sticky announcement.</string>
+	<string name="announcement_title">Welcome to NavalBattle</string>
+	<string name="announcement_text">Thanks for playing! Leave feedback here: https://github.com/JPII/NavalBattle/issues</string>
 	<string name="announcement_url">http://github.com/JPII/NavalBattle</string>
 </navalbattle>
