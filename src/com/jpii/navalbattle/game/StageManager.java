@@ -35,7 +35,7 @@ public class StageManager {
 	GridHelper gh;
 	
 	public StageManager(String pn){
-		stageNumber = 0;
+		stageNumber = 19;
 		playerName = pn;
 		if(playerName.equals(""))
 			playerName = "Player 1";
@@ -87,7 +87,7 @@ public class StageManager {
 			case 3: Game.Settings.resetSeed(15); game=new GameComponent(new NavalGame(WorldSize.WORLD_SMALL,tm));  break;
 			case 4: Game.Settings.resetSeed(20); game=new GameComponent(new NavalGame(WorldSize.WORLD_SMALL,tm));  break;
 			case 5: Game.Settings.resetSeed(25); game=new GameComponent(new NavalGame(WorldSize.WORLD_SMALL,tm));  break;
-			default: Game.Settings.resetSeed(1000); game=new GameComponent(new NavalGame(WorldSize.WORLD_MEDIUM,tm));  break;
+			default: Game.Settings.resetSeed(Game.Settings.rand.nextInt()); game=new GameComponent(new NavalGame(WorldSize.WORLD_MEDIUM,tm));  break;
 		}
 		nm = game.getGame().getManager();
 		setStage();
@@ -148,17 +148,14 @@ public class StageManager {
 				new TutorialWindow(wm,"Congratulations!","You have passed basic training. Good luck!");
 				break;
 		    default:
-			   	addEntities(persists, 3, 3, 3, 2);
-				addEntities(ai, 3, 3, 3, 2);
+			   	addEntities(persists, 9, 7, 5, 3);
+				addEntities(ai, 7, 9, 6, 6);
 				addWhales(10);
-				new TutorialWindow(wm,"You have","created a","default stage");
 				break;
 		}
 	}
 	
 	private void waitForGenerator(){
-		//while(game.getGame().getManager().isGenerating())
-			//;
 		while (game.getGame().getManager().w3 == null) {
 			
 		}

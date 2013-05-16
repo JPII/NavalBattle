@@ -28,7 +28,7 @@ public class DamageCalculator {
 					NavalBattle.getGameState().shipDestroyed();
 				player.addScore(Constants.SINK_SHIP_SCORE);
 			}
-			SoundUtils.playSound(RoketUtils.class.getResourceAsStream("/com/jpii/navalbattle/res/sfx/shot.wav"));
+//			SoundUtils.playSound(RoketUtils.class.getResourceAsStream("/com/jpii/navalbattle/res/sfx/shot.wav"));
 		}
 		
 		nm.getGame().getTurnManager().checkDone();
@@ -46,7 +46,7 @@ public class DamageCalculator {
 				player.addEntity(take);
 				RoketUtils.submitAchievement(RoketGamerData.ACHIEVEMENT_WHEN_FIRE_NATION_ATTACKED);
 			}
-			SoundUtils.playSound(RoketUtils.class.getResourceAsStream("/com/jpii/navalbattle/res/sfx/shot.wav"));
+//			SoundUtils.playSound(RoketUtils.class.getResourceAsStream("/com/jpii/navalbattle/res/sfx/shot.wav"));
 		}
 		
 		nm.getGame().getTurnManager().checkDone();
@@ -71,7 +71,7 @@ public class DamageCalculator {
 					NavalBattle.getGameState().shipDestroyed();
 				player.addScore(Constants.SINK_SHIP_SCORE);
 			}
-			SoundUtils.playSound(RoketUtils.class.getResourceAsStream("/com/jpii/navalbattle/res/sfx/shot.wav"));
+//			SoundUtils.playSound(RoketUtils.class.getResourceAsStream("/com/jpii/navalbattle/res/sfx/shot.wav"));
 		}
 		
 		nm.getGame().getTurnManager().checkDone();
@@ -92,7 +92,7 @@ public class DamageCalculator {
 				player.addEntity(take);
 				RoketUtils.submitAchievement(RoketGamerData.ACHIEVEMENT_WHEN_FIRE_NATION_ATTACKED);
 			}
-			SoundUtils.playSound(RoketUtils.class.getResourceAsStream("/com/jpii/navalbattle/res/sfx/shot.wav"));
+//			SoundUtils.playSound(RoketUtils.class.getResourceAsStream("/com/jpii/navalbattle/res/sfx/shot.wav"));
 		}
 		
 		nm.getGame().getTurnManager().checkDone();
