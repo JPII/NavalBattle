@@ -88,7 +88,7 @@ public class StageManager {
 			case 3: Game.Settings.resetSeed(15); game=new GameComponent(new NavalGame(WorldSize.WORLD_SMALL,tm));  break;
 			case 4: Game.Settings.resetSeed(20); game=new GameComponent(new NavalGame(WorldSize.WORLD_SMALL,tm));  break;
 			case 5: Game.Settings.resetSeed(25); game=new GameComponent(new NavalGame(WorldSize.WORLD_SMALL,tm));  break;
-			default: Game.Settings.resetSeed(Game.Settings.rand.nextInt()); game=new GameComponent(new NavalGame(WorldSize.WORLD_MEDIUM,tm));  break;
+			default: Game.Settings.resetSeed(Game.Settings.rand.nextInt()); game=new GameComponent(new NavalGame(WorldSize.WORLD_LARGE,tm));  break;
 		}
 		nm = game.getGame().getManager();
 		setStage();
@@ -151,7 +151,7 @@ public class StageManager {
 		    default:
 			   	addEntities(persists, 9, 7, 5, 3);
 				addEntities(ai, 7, 9, 6, 6);
-				addWhales(10);
+				addWhales(15);
 				break;
 		}
 	}
